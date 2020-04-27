@@ -1,0 +1,647 @@
+Actor Firemother
+{
+  Health 3250
+  Speed 10
+  PainChance 35
+  Mass 2000
+  Scale 0.38
+  Radius 36
+  Height 80
+  Mass 1000
+  Monster
+  Species "Enemies"
+  +BOSS
+  +NORADIUSDMG
+  +FLOORCLIP
+  +DONTMORPH
+  +BOSSDEATH
+  +DONTHARMCLASS
+  +DONTRIP 
+  +DONTHARMSPECIES
+  +NOINFIGHTING
+  SeeSound "Firemother/sight"
+  PainSound "Firemother/pain"
+  DeathSound "Firemother/death"
+  ActiveSound "Firemother/active"
+  Obituary "%o was bewitched by the Firemother."
+  PainChance "PhosFireCoop", 0 	
+  PainChance "EradCoopGreenFire", 0
+  PainChance "EradGreenFire", 0
+  PainChance "StrifeExplosive", 0
+  PainChance "PSFire", 0	
+  PainChance "WTMelee", 96
+  PainChance "WTMeleeIce", 96	
+  PainChance "ShrinkerDMG", 0
+  DamageFactor "C7Disintegrate", 0.5  
+  DamageFactor "Mace", 1.4
+  DamageFactor "CorvusHellstaffTomed", 0.2
+  DamageFactor "CorvusCrossbow", 1.2	
+  DamageFactor "DragonClaw", 1.6
+  DamageFactor "MarathonShotgun", 1.2
+  DamageFactor "MarathonPlasmaFire", 0.3
+  DamageFactor "MarathonFusion", 0.8	
+  DamageFactor "WMCNade", 0.8
+  DamageFactor "BJSpear", 0.3
+  DamageFactor "DCannonProj", 0.8
+  DamageFactor "Tesla", 0.7
+  DamageFactor "Shock", 0.5	
+  DamageFactor "LifeLeech", 0.7		
+  DamageFactor "CalebFire", 0.2	
+  DamageFactor "Vodoo", 0.4
+  DamageFactor "DisruptorWall", 0.6
+  DamageFactor "EradNova", 0.3
+  DamageFactor "EradGreenFire", 0.1		
+  DamageFactor "EradCoopGreenFire", 0.1	
+  DamageFactor "RottFire", 0.1	
+  DamageFactor "HLLaser", 0.7
+  DamageFactor "WTRangedFire", 0.1
+  DamageFactor "Nuke", 0.1
+  DamageFactor "SWNuke", 0.1
+  DamageFactor "SWNukeCoop", 0.1
+  DamageFactor "SWFlame", 0.1
+  DamageFactor "SWFlameCoop", 0.1	
+  DamageFactor "SWFlame2", 0.1	
+  DamageFactor "SWFlame2Coop", 0.1
+  DamageFactor "SWFlame3", 0.1
+  DamageFactor "RMR-BigPlasma", 0.2		
+  DamageFactor "CMDMGSHIT", 0.6
+  DamageFactor "Disintegrate", 0.7
+  DamageFactor "FireExplosive", 0.1
+  DamageFactor "Fire", 0.1
+  States
+  {
+	Spawn:
+		C_FM A 0
+		C_FM A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		C_FM A 1 ACS_ExecuteAlways(668,0,1,0)
+		C_FM A 0 A_GiveInventory("AlreadySpawned",1)
+		C_FM A 0 A_JumpIfInventory("InvisibleToken",1,2)
+		C_FM A 0 A_Jump(256,2)
+		C_FM A 0 A_ChangeFlag("STEALTH",1)
+	Spawn2:
+		C_FM A 10 A_Look
+		Loop
+	See:
+        TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "See2")
+	    TNT1 A 0 A_GiveInventory("SawPlayer", 1)		
+		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
+	    TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+  		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+	See2:	
+		C_FM AABBCCDD 4 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(96,"Flamethr")
+		TNT1 A 0 A_Jump(84,"Missile2")
+		TNT1 A 0 A_Jump(72,"Missile3")
+		C_FM F 9 A_FaceTarget      
+		TNT1 A 0 A_PlaySound("firemother/flamethr")
+		C_FM G 3 Bright A_CustomMissile("CMFMBolt",44,-4,0,0)
+		C_FM G 2 Bright A_FaceTarget      
+		C_FM G 3 Bright A_CustomMissile("CMFMBolt",44,-4,0,0)
+		C_FM G 2 Bright A_FaceTarget      
+		C_FM G 3 Bright A_CustomMissile("CMFMBolt",44,-4,0,0)
+		C_FM G 2 Bright A_FaceTarget      
+		C_FM G 3 Bright A_CustomMissile("CMFMBolt",44,-4,0,0)
+		C_FM G 2 Bright A_FaceTarget      
+		C_FM G 3 Bright A_CustomMissile("CMFMBolt",44,-4,0,0)
+		C_FM G 2 Bright A_FaceTarget      
+		C_FM G 2 Bright A_CustomMissile("CMFMBolt",44,-4,0,0)
+		C_FM G 2 Bright A_FaceTarget      
+		C_FM G 2 Bright A_CustomMissile("CMFMBolt",44,-4,0,0)
+		C_FM G 6
+		Goto See
+	Missile2:
+		C_FM E 8
+		C_FM E 0 A_PlaySound("Firemother/ball4")
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,20)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,40)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,60)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,80)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,100)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,120)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,140)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,160)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-20)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-40)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-60)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-80)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-100)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-120)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-140)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,-160)
+		TNT1 A 0 A_CustomMissile("CultistGroundF",50,0,180)
+		C_FM E 10 bright A_CustomMissile("CultistGroundF",50,0,0)
+		C_FM EE 5
+		C_FM E 5
+		Goto See
+	Missile3:
+		C_FM H 4 A_FaceTarget
+		C_FM H 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("Firemother/ball1")
+		C_FM I 8 bright A_CustomMissile("CMMegaFlameBall", 32, 0, 0)
+		C_FM I 5 A_FaceTarget
+		Goto See
+	Flamethr:
+		C_SF A 0 A_JumpIfCloser(384, 1)
+		Goto Missile+1
+		TNT1 A 0
+		C_FM F 8 Bright A_FaceTarget
+		TNT1 A 0 Bright A_PlaySound("firemother/flamethr")
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1 Bright A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1 Bright A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1 Bright A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1 Bright A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1 Bright A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1 Bright A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1 Bright A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile("Firemotherfthr", 32, -10, 0)
+		C_FM G 2 Bright A_CustomMissile("Firemotherfthr", 32, 10, 0)
+		C_FM G 1
+		Goto See
+	Pain:
+		C_FM J 2
+		C_FM J 3 A_Pain
+		Goto See
+	Death:
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		C_FM E 4
+		C_FM E 30 A_Scream
+		C_FM E 3 A_SetTranslucent(0.9,0)
+		C_FM E 3 A_SetTranslucent(0.8,0)
+		C_FM E 0 A_NoBlocking
+		C_FM E 3 A_SetTranslucent(0.7,0)
+		C_FM E 3 A_SetTranslucent(0.6,0)
+		C_FM E 3 A_SetTranslucent(0.5,0)
+		C_FM E 3 A_SetTranslucent(0.4,0)
+		C_FM E 3 A_SetTranslucent(0.3,0)
+		C_FM E 3 A_SetTranslucent(0.2,0)
+		C_FM E 3 A_SetTranslucent(0.1,0)
+		TNT1 A 1 A_SetTranslucent(1,0)
+		TNT1 A 1 
+		TNT1 A -1 A_KillMaster
+		Stop
+	Pain.LifeLeech:
+		TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
+		TNT1 A 0 A_GiveToTarget("HealthBonus", 1)
+		Goto Pain	
+	Pain.Vodoo:
+		TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+		Goto Pain			
+	Death.DukeDamage:
+	Death.DukeExplosive:
+	Death.DukePistol:
+	Death.MightyBoot:		
+		TNT1 A 0 A_Jump(218,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		goto Death		
+	Death.ZorchPistol:
+	Death.Zorch:
+	Death.ZorchKamikaze:
+	Death.PhasingZorch:
+	Death.ZorchSpectral:
+		"####" "#" 0 A_StopSound(CHAN_BODY)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
+		"####" "#" 3 A_SpawnItem("ZorchEffectHuge")
+		"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_Scream
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 3 A_SetTranslucent(0.1,0) 
+		TNT1 A 1 A_SetTranslucent(1,0)
+		"####" "#" 0 A_KillMaster
+		stop			
+	Death.DukeIce:
+		"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+	Ice:
+	Death.HexenIce:
+	Death.WTMeleeIce:
+	Death.WTRangedIce:
+	Death.Ice:
+		"####" "#" 0 A_StopSound(CHAN_BODY)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_GenericFreezeDeath
+		"####" "#" 0 A_UnsetShootable
+		"####" "#" 140 A_UnsetSolid
+		"####" "#" 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+		"####" "##########################################################################################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+		"####" "#" 0 A_IceGuyDie
+		"####" "#" 1 A_IceGuyDie
+		TNT1 A 0 A_KillMaster
+		stop			
+	Death.Vodoo:
+	Death.VoodooPuff:
+	Death.DynamiteCoop:
+	Death.Dynamite:
+	Death.LifeLeech:
+	Death.CalebNapalm:
+	Death.Shock:	  
+	Death.Vodoo:
+	Death.Tesla:
+	Death.CalebFire:	
+	Death.CalebBullet:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt3", 1)
+		Goto Death
+	Death.EradExplosive:
+	Death.EradNova:
+	Death.EradShock:
+	Death.EradExplosive2:	
+    Death.EradDisc:
+	Death.EradPiercingDart:
+	Death.EradGreenFire:
+	Death.EradCoopGreenFire:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
+		Goto Death
+	Death.PSRAPower:
+	Death.PSRAPowerCoop:
+	Death.PSExplosive:
+	Death.PSExplosiveCoop:
+	Death.PSBullet:
+	Death.PSFire:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		Goto Death
+	Death.LeonardDamage2:
+	Death.LeonardDamage3:
+	Death.LeonardDamage0:
+	Death.LeonardDamage1:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
+		Goto Death
+	Death.SWFist:
+	Death.SWKatana:
+	Death.SWShuriken:
+	Death.SWSticky:
+	Death.SWStickyCoop:	
+	Death.SWGrenade:
+	Death.SWNuke:
+	Death.SWRocket:
+	Death.SWRailgun:
+	Death.SWRailgunCoop:
+	Death.SWNukeCoop:
+	Death.SWFlame:
+	Death.SWFlame2:
+	Death.SWFlame2Coop:
+	Death.SWFlame3:	
+    Death.SWBullet:	  
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
+		Goto Death
+	Death.RottDisintegrate:
+		"####" "#" 0 A_StopSound(CHAN_BODY)
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_SpawnItem("RGodModeDeathHuge")
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		TNT1 A 0 A_KillMaster
+		stop
+	Disintegrate:
+		"####" "#" 0 A_StopSound(CHAN_BODY)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_Stop
+		"####" "#" 3 A_SpawnItem("DisintEffectHuge",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		"####" "#" 0 A_KillMaster
+		stop
+	Death.Nuke:
+		"####" "#" 0 A_StopSound(CHAN_BODY)
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
+		"####" "#################" 3 A_Fadeout(0.05)
+		TNT1 A 0 A_KillMaster
+		stop				
+	}
+}
+
+actor Firemotherfthr
+{
+    Radius 12
+    Height 24
+    Speed 28
+    Damage 2
+    RenderStyle Add
+	Scale 0.6
+    PROJECTILE
+    +RIPPER
+    States
+    {
+    Spawn:
+        C_CZ A 3 Bright
+        C_CZ B 3 Bright
+        C_CZ A 3 Bright
+        C_CZ B 3 Bright
+        C_CZ C 2 Bright
+        C_CZ D 2 Bright
+        C_CZ E 2 Bright
+        C_CZ F 2 Bright
+        C_CZ A 2 Bright
+        C_CZ B 2 Bright
+        C_CZ C 2 Bright
+        C_CZ D 2 Bright
+        C_CZ E 2 Bright
+        C_CZ F 2 Bright
+        Stop
+    Death:
+        TNT1 A 1 Bright
+        Stop
+    }
+}
+
+actor CMMegaFlameBall
+{
+	Radius 12
+	Height 8
+	Speed 20
+	Damage 9
+	ExplosionDamage 160
+	ExplosionRadius 96
+	RenderStyle Add
+	+Ripper
+    +NoBlockmap
+    +LowGravity
+    +ActivatePCross
+    +ActivateImpact
+    +NoTeleport
+    +DropOff
+    +DontFall
+    +Missile
+	DeathSound "Firemother/ball2"
+	States
+	{
+	Spawn:
+		C_FM OPQR 4
+		Loop
+	Death:
+		C_CU P 0 A_PlaySound("weapons/vortex")
+		C_CU PQ 8 A_Explode
+		C_CU R 8 A_CustomMissile("CMFBallP1",8,0,0,2)
+		C_CU S 6
+		Stop
+	}
+}
+
+actor CMFBallP1
+{
+	Radius 12
+	Height 8
+	Speed 0
+	Damage 5
+	ExplosionDamage 64
+	ExplosionRadius 96
+	RenderStyle Add
+	+Ripper
+    +NoBlockmap
+    +LowGravity
+    +ActivatePCross
+    +ActivateImpact
+    +NoTeleport
+    +DropOff
+    +DontFall
+    +Corpse
+    +NoTarget
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,0,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,90,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,180,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,270,2)
+		TNT1 A 0 A_Explode
+		C_FM K 4 ThrustThingZ(0,12,0,1)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,18,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,108,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,198,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,288,2)
+		TNT1 A 0 A_Explode
+		C_FM L 4 ThrustThingZ(0,2,0,1)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,36,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,126,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,216,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,306,2)
+		TNT1 A 0 A_Explode
+		C_FM K 4 ThrustThingZ(0,2,0,1)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,54,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,144,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,234,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,324,2)
+		TNT1 A 0 A_Explode
+		C_FM L 4 ThrustThingZ(0,1,0,1)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,72,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,162,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,252,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,342,2)
+		TNT1 A 0 A_Explode
+		C_FM K 4 ThrustThingZ(0,1,0,1)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,0,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,90,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,180,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,270,2)
+		TNT1 A 0 A_Explode
+		C_FM L 4 ThrustThingZ(0,1,0,1)
+		Goto Death
+	Death:
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,18,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,108,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,198,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,288,2)
+		C_FM M 4 A_Explode
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,36,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,126,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,216,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,306,2)
+		C_FM N 4 A_Explode
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,54,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,144,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,234,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,324,2)
+		C_FM M 4 A_Explode
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,72,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,162,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,252,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,342,2)
+		C_FM N 4 A_Explode
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,0,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,90,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,180,2)
+		TNT1 A 0 A_CustomMissile("CMFBallP2",4,0,270,2)
+		C_FM M 4 A_Explode
+		Loop
+	Crash:
+		CMX2 B 8
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,0,2)
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,90,2)
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,180,2)
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,270,2)
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,45,2)
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,135,2)
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,225,2)
+		CMX2 B 0 A_CustomMissile("CMFBallP3",12,0,315,2)
+		CMX2 C 8 A_Explode
+		CMX2 DEFG 6 
+		Stop
+	}
+}
+
+projectile CMFBallP2
+{
+	Sprite C_CZ
+	Frames "ABCDEF"
+	DeathSprite C_CZ
+	DeathFrames "ABCDE"
+	Radius 8
+	Height 8
+	Damage 5
+	Speed 10
+	Scale 0.35
+	ExplosionDamage 32
+	ExplosionRadius 32
+    NoBlockmap
+	LowGravity
+    ActivatePCross
+    ActivateImpact
+    NoTeleport
+	DeathSound "CM/FGExp"
+}
+
+projectile CMFBallP3
+{
+	Sprite C_CZ
+	Frames "ABCDEF"
+	DeathSprite C_CZ
+	DeathFrames "A"
+	Radius 8
+	Height 8
+	Damage 5
+	Speed 20
+	Scale 0.35
+	ExplosionDamage 32
+	ExplosionRadius 32
+    NoBlockmap
+	LowGravity
+    ActivatePCross
+    ActivateImpact
+    NoTeleport
+	DeathSound "CM/FGExp"
+}
+
+ACTOR CMFMBolt
+{
+   Radius 8
+   Height 8
+   Speed 18
+   Damage 8
+   PROJECTILE
+   RenderStyle Add
+   ALPHA 0.80
+   DeathSound "CM/FGExp"
+   States
+   {
+   Spawn:
+      C_FM S 1 Bright A_BishopMissileWeave
+      BOLT A 0 A_SpawnItem("CMFMTrail",0,0)
+      loop
+   Death:
+      C_CU PQRS 3 Bright
+      stop
+   }
+}
+
+ACTOR CMFMTrail
+{   
+   Radius 0
+   Height 1
+   Speed 0
+   PROJECTILE
+   -SOLID
+   +CLIENTSIDEONLY
+   RENDERSTYLE ADD
+   ALPHA 0.85
+   States
+   {
+   Spawn:
+      NULL A 3 Bright
+      C_FM TUVWXY 3 Bright
+      Stop 
+   }
+}

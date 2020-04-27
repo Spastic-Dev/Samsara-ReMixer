@@ -1,0 +1,646 @@
+ACTOR Korax3 : Korax2
+{
+	Tag "Korax"
+	Health 5000
+	+BOSSDEATH
+	-TELESTOMP
+	+DONTRIP	
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
+    DamageFactor "BJSpear", 0.3
+	DamageFactor "DCannonProj", 0.8	
+	DamageFactor "Tesla", 0.6
+	DamageFactor "Shock", 0.3
+	DamageFactor "LifeLeech", 0.8		
+	DamageFactor "CalebFire", 0.7	
+	DamageFactor "Vodoo", 0.2	
+	DamageFactor "DisruptorWall", 0.4
+	DamageFactor "EradNova", 0.3
+    DamageFactor "EradGreenFire", 0.1
+    DamageFactor "EradCoopGreenFire", 0.1
+	DamageFactor "RottFire", 0.6
+	DamageFactor "HLLaser", 0.5
+	DamageFactor "WTRangedFire", 0.2
+	DamageFactor "Nuke", 0.2
+	DamageFactor "SWNuke", 0.2
+	DamageFactor "SWNukeCoop", 0.2
+	DamageFactor "SWFlame", 0.1
+	DamageFactor "SWFlameCoop", 0.1
+	DamageFactor "SWFlame2", 0.2
+	DamageFactor "SWFlame2Coop", 0.2
+	DamageFactor "SWFlame3", 0.4
+    DamageFactor "RMR-BigPlasma", 0.4
+	DamageFactor "CMDMGSHIT", 0.8	
+	DamageFactor "Disintegrate", 0.7	
+	DamageFactor "FireExplosive", 0.7
+	DamageFactor "C7Disintegrate", 0.5		
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
+			TNT1 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TNT1 A 0 A_GiveInventory("AlreadySpawned",1)
+			TNT1 A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			TNT1 A 0 A_Jump(256,2)
+			TNT1 A 0 A_ChangeFlag("STEALTH",1)
+			TNT1 A 0
+		Spawn2:
+			TNT1 A 0 A_SetTranslucent(0,0)
+			TNT1 A 80
+			TNT1 A 0 ACS_ExecuteAlways(204,0,1)			
+			KORX A 0 A_SetTranslucent(0.1,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.2,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.3,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.4,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.5,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.6,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.7,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.8,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			KORX A 0 A_SetTranslucent(0.9,0)
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_PlaySoundEx("KoraxVoiceGreetings","SoundSlot5",0,2)
+			KORX AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			KORX AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			KORX A 100 A_SetTranslucent(1,0)
+			TNT1 A 0 A_PlaySoundEx("KoraxVoiceReady","SoundSlot5",0,2)
+			KORX A 100
+			TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			KORX A 1 A_Look
+			Wait
+		Idle:
+			TNT1 A 0 A_SetTranslucent(1,0)
+			TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		IdleLoop:	
+			KORX A 5 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+		See2:
+			KORX AAA 3 A_Chase
+			KORX B 3 A_Chase
+			KORX BBB 3 A_Chase
+			KORX C 0 A_PlaySound("KoraxStep")
+			KORX C 3 A_Chase
+			TNT1 A 0 A_Jump(2,"Roar")
+		SeeContinue:	
+			KORX CCC 3 A_Chase
+			KORX D 3 A_Chase
+			KORX DDD 3 A_Chase
+			KORX A 0 A_PlaySound("KoraxStep")
+			KORX A 3 A_Chase
+			Goto See2
+		Roar:
+			TNT1 A 0 A_PlaySound("KoraxActive",6,1.0,0,ATTN_NONE)
+			Goto SeeContinue
+		Pain:
+			KORX H 5 A_Pain
+			KORX H 5
+			Goto See2			
+		Missile:
+			KORX E 2 Bright A_FaceTarget
+			KORX E 5 Bright A_Jump(80,"Command")			
+		Attack:
+			KORX E 4 Bright A_FaceTarget
+			KORX F 8 Bright A_KoraxMissile
+			KORX E 8 Bright
+			Goto See2	
+		Command:
+			KORX E 5 Bright A_FaceTarget
+			KORX W 10 Bright A_FaceTarget
+			TNT1 A 0 A_PlaySound("KoraxCommand",5,1.0,0,ATTN_NORM)
+			KORX G 15 Bright A_CustomMissile("KoraxBolt",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER,32)
+			TNT1 A 0 A_Jump(128,2,"Spike")
+			TNT1 A 0 A_JumpIfCloser(824,"Quake")
+			TNT1 A 0
+		Teleport:	
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_PlaySound("Hexen/TeleportC",6,1.0,0,ATTN_NORM)
+			TNT1 A 0 A_SpawnItemEx("HexenTeleportFog",0,0,50,0,0,0,0,288)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander			
+			KORX W 10 Bright A_SpawnItemEx("HexenTeleportFog",0,0,50,0,0,0,0,288)
+			TNT1 A 0 A_SetSolid
+			TNT1 A 0 A_SetShootable
+			KORX E 5 Bright
+			Goto See2
+		Quake:
+			KORX W 10 Bright Radius_Quake(8,72,5,20,0)
+			KORX E 5 Bright
+			Goto See2
+		Spike:
+			TNT1 A 0 A_FaceTarget
+			KORX W 10 Bright A_CustomMissile("KoraxSpikeSpawner")
+			KORX E 5 Bright
+			Goto See2			
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")			
+			KORX I 5
+			KORX J 5 A_FaceTarget
+			KORX K 5 A_Scream
+			KORX LMNOP 5
+			KORX Q 10
+			TNT1 A 0 Radius_Quake(7,50,5,20,0)
+			TNT1 AAAAAA 0 A_SpawnItemEx("KoraxSpirit2",0,0,2,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)			
+			KORX R 5 //A_KoraxBonePop
+			KORX S 5 A_NoBlocking
+			KORX TU 5
+			KORX V 30 A_KillMaster
+			KORX V -1
+			Stop
+		Death.LifeLeech:
+		Death.CalebNapalm:
+		Death.Shock:	  
+		Death.Vodoo:
+		Death.Tesla:
+		Death.CalebFire:	
+		Death.CalebBullet:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt3", 1)
+			Goto Death
+		Death.EradExplosive:
+		Death.EradNova:
+		Death.EradShock:
+		Death.EradExplosive2:	
+		Death.EradDisc:
+		Death.EradPiercingDart:
+		Death.EradGreenFire:
+		Death.EradCoopGreenFire:
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
+			Goto Death
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+			Goto Death
+		Death.PSRAPowerCoop:
+		Death.PSExplosive:
+		Death.PSExplosiveCoop:
+		Death.PSBullet:
+		Death.PSFire:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+			Goto Death
+		Death.LeonardDamage2:
+		Death.LeonardDamage3:
+		Death.LeonardDamage0:
+		Death.LeonardDamage1:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
+			Goto Death
+		Death.SWFist:
+		Death.SWKatana:
+		Death.SWShuriken:
+		Death.SWSticky:
+		Death.SWStickyCoop:		
+		Death.SWGrenade:
+		Death.SWNuke:
+		Death.SWRocket:
+		Death.SWRailgun:
+		Death.SWRailgunCoop:
+		Death.SWNukeCoop:
+		Death.SWFlame:
+		Death.SWFlame2:
+		Death.SWFlame2Coop:
+		Death.SWFlame3:	
+		Death.SWBullet:	  
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
+			goto Death	
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.PhasingZorch:
+		Death.ZorchKamikaze:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectHuge")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_PlaySoundEx("chex/koraxzorch","soundslot6",0,2)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0)
+//			TNT1 A 0 A_KoraxBonePop
+			TNT1 A 0 Radius_Quake(7,50,5,20,0)
+			TNT1 AAAAAA 0 A_SpawnItemEx("KoraxSpirit2",0,0,2,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 30 A_KillMaster
+			TNT1 A -1 
+			stop			
+		Death.DukeIce:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.Ice:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_NoBlocking
+//			KORX H 0 A_KoraxBonePop
+			TNT1 A 0 Radius_Quake(7,50,5,20,0)
+			TNT1 AAAAAA 0 A_SpawnItemEx("KoraxSpirit2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+			KORX H 0 A_UnsetShootable
+			KORX H 0 A_PlaySoundEx("freeze/korax","soundslot6",0,0)
+			KORX H 0 A_GenericFreezeDeath
+			KORX H 140 A_UnsetSolid
+			KORX H 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+			KORX HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+			KORX H 0 A_IceGuyDie
+			KORX H 1 A_IceGuyDie
+			TNT1 A 30 A_KillMaster
+			TNT1 A -1 
+			stop
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+			goto Death
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_PlaySoundEx("DragonSight","soundslot6",0,2)
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathHuge")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_PlaySoundEx("DragonSight","soundslot6",0,2)
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectHuge",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_PlaySoundEx("DragonSight","soundslot6",0,2)
+			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
+			"####" "#################" 3 A_Fadeout(0.05)
+			TNT1 A -1 A_KillMaster
+			stop
+	}
+}
+
+ACTOR KoraxSpikeSpawner
+{
+	Projectile
+	Radius 1
+	Height 1
+	Damage 0
+	Speed 20
+	Species "Enemies"	
+	Obituary "o% was impaled by Korax"
+	+FLOORHUGGER
+	+STEPMISSILE
+	+THRUACTORS
+	+NOBLOOD 
+	+BLOODLESSIMPACT
+	+EXTREMEDEATH
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+THRUSPECIES
+	States
+	{
+		Spawn:
+			TNT1 A 10 A_SpawnItemEx("KoraxSpike",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Explode(300,128)
+			Loop
+		Death:
+			TNT1 A 5 A_FadeOut
+			Stop
+	}
+}
+
+ACTOR KoraxSpike
+{
+	Radius 20
+	Height 128
+	+NOCLIP
+	+SHOOTABLE
+	+FLOORHUGGER
+	+FLOORCLIP
+	+NOBLOCKMAP
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_Jump(128,"Spawn2")
+			TEL7 N 3
+			TEL7 M 3
+			TEL7 L 3
+			TEL7 K 3		
+			TEL7 J 3
+			TEL7 I 3
+			TSPK A 20
+			TEL7 I 3
+			TEL7 J 3
+			TEL7 K 3
+			TEL7 L 3
+			TEL7 M 3
+			TEL7 N 3			
+			TSPK C 200
+		SpawnLoop:	
+			TSPK C 5 A_FadeOut
+			Loop
+		Spawn2:	
+			TEL7 T 3
+			TEL7 S 3
+			TEL7 R 3
+			TEL7 Q 3		
+			TEL7 P 3
+			TEL7 O 3
+			TSPK B 20
+			TEL7 O 3
+			TEL7 P 3
+			TEL7 Q 3
+			TEL7 R 3
+			TEL7 S 3
+			TEL7 T 3			
+			TSPK D 200
+		Spawn2Loop:	
+			TSPK D 5 A_FadeOut
+			Loop
+	}
+}
+
+Actor HexenTeleportFog {
+  +NOBLOCKMAP
+  +NOTELEPORT
+  +NOGRAVITY
+  +CLIENTSIDEONLY
+  -SOLID
+  RenderStyle Add
+  States {
+	Spawn:
+		TELE ABCDEFGHGFEDC 6 Bright
+		Stop
+  }
+}
+
+Actor KoraxSpirit2
+{
+  Speed 12
+  +ISMONSTER
+  +LOOKALLAROUND
+  +NOBLOCKMAP
+  +NOBLOCKMONST
+  -SHOOTABLE
+  +NOCLIP
+  -SOLID
+  +NOGRAVITY
+  +FLOAT  
+  -ACTIVATEPCROSS
+  -ACTIVATEIMPACT
+  -COUNTKILL
+  +NEVERFAST
+  RenderStyle Translucent
+  Alpha 0.4
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	TNT1 A 0 ThrustThingZ(0,Random(30,25)-Random((5+Random(10,0)),0),0,1)
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0
+    SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_ChangeFlag(NOCLIP,1)
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+	SPIR AABB 2 A_Wander
+	TNT1 A 0 A_Jump(236,2)
+	TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE,1.0,0,ATTN_NONE)
+	TNT1 A 0	
+	SPIR AABB 2 A_Wander
+  Death:
+	TNT1 A 0 A_PlaySound("SpiritDie",CHAN_VOICE,1.0,0,ATTN_NORM)
+    SPIR DEFGHI 5
+	TNT1 A 1 A_FadeOut
+    Stop
+  }
+}

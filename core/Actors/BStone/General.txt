@@ -1,0 +1,75 @@
+Actor BlakeStoneHumanoid {
+	Radius 16
+	Height 48
+	Speed 6
+	PainChance 200
+	Scale 1.175
+	Species "BStone"
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+NOINFIGHTING
+	PainSound ""
+	ActiveSound ""
+	Dropitem "DefaultPinataPop"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "BlakeEnemyBullet", 0.0
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Dropitem "BlakeClip"
+	Decal BulletChip
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor FakedOnce : Inventory {
+	inventory.maxamount 1
+}
+
+Actor ImStillHatched : Inventory {
+	inventory.maxamount 1
+}
+
+Actor Hatched : Inventory {
+	inventory.maxamount 1
+}
+
+Actor NeverHatch : Inventory {
+	inventory.maxamount 1
+}
+
+Actor AttackCount : Inventory {
+	inventory.maxamount 99
+}
+
+Actor BlakeClip : Clip2 {
+	States {
+		Spawn:
+			BCLP A -1
+			Stop
+	}
+}
+
+ACTOR BlakeEnemyBulletD1 : DoomEnemyBullet
+{
+	Damage (Random (1, 64))
+	DamageType "BlakeEnemyBullet"
+	+MTHRUSPECIES
+	States
+	{
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+ACTOR BlakeEnemyBulletD2 : BlakeEnemyBulletD1 { Damage (Random (1, 32)) }
+ACTOR BlakeEnemyBulletD3 : BlakeEnemyBulletD1 { Damage (Random (1, 16)) }
+ACTOR BlakeEnemyBulletD4 : BlakeEnemyBulletD1 { Damage (Random (1, 8)) }
+ACTOR BlakeEnemyBulletD5 : BlakeEnemyBulletD1 { Damage (Random (1, 4)) }
+ACTOR BlakeEnemyBulletD6 : BlakeEnemyBulletD1 { Damage (Random (1, 2)) }
+ACTOR BlakeEnemyBulletD7 : BlakeEnemyBulletD1 { Damage (1) }

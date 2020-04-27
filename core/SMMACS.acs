@@ -1,0 +1,692 @@
+#library "SMMACS"
+#include "zcommon.acs"
+
+#define MAX_GAME_TYPES 26
+
+int SMMCVARINFO = 
+"Stuff";
+
+int SMMCHANGES =
+"Stuff";
+
+str gameTypesStr[MAX_GAME_TYPES] =
+		{	"mm_doom", "mm_heretic", "mm_hexen", "mm_chex", "mm_wolf3d", "mm_duke3d", "mm_marathon", "mm_bstone", 
+			"mm_rott", "mm_rr", "mm_erad", "mm_strife", "mm_darkf", "mm_cm", "mm_c7", "mm_sw", 
+			"mm_blood", "mm_rmr", "mm_ps", "mm_ipog", "mm_witch", "mm_disrup", "mm_quake1", "mm_doom64", "mm_halflife"
+			,"mm_quake2"
+};
+
+str gameSetsStr[MAX_GAME_TYPES] = {
+	"SetDoom", "SetHeretic", "SetHexen", "SetChex", "SetWolf3D", "SetDuke3D", "SetMarathon", "SetBStone", "SetRoTT",
+	"SetRR", "SetErad", "SetStrife", "SetDarkF", "SetCM", "SetC7", "SetSW", "SetBlood", "SetRmr", "SetExhumed",
+	"SetIPOG", "SetWitch", "SetDisrup", "SetQuake1", "SetDoom64", "SetHL", "SetQuake2"
+};
+
+str gameClassesSTR[MAX_GAME_TYPES] = {
+	"DoomguyPlayer2", "CorvusPlayer2", "HexenPlayer2", "ChexWarrior2", "WolfenPlayer2", "DukePlayer2", "MarathonPlayer2", "BlakeStone2", "IPFreeley2",
+	"Leonard2", "Eleena2", "StrifeGuyPlayer2", "KatarnPlayer2", "CMPlayer2", "Corridor7Player2", "LoWangPlayer2", "Caleb2", "RebelMoonCommando2", "PSPlayer2",
+	"POGreedPlayer2", "GrondovalPlayer2", "DisruptorPlayer2", "QuakePlayer2", "Doom64GuyPlayer2", "HalfLifePlayer2", "Bitterman2"
+};
+
+bool activesets[MAX_GAME_TYPES];
+
+#define MAX_MAPS		500
+
+int activeGameTypes[MAX_GAME_TYPES];
+global int 2:alreadyshowedbs;
+global int 3:randomallclear;
+//global int 4:lastchosen;
+
+str skill[5] = { "Kindergarten", "Easy", "Normal", "MajorDamage", "TotalCarnage" };
+
+Script 667 OPEN 
+{
+	randomallclear = 0;
+	if (!GetCVar("mm_init"))
+	{
+		SetCVar("mm_doom", true);
+		SetCVar("mm_heretic", true);
+		SetCVar("mm_hexen", true);
+		SetCVar("mm_chex", true);
+		SetCVar("mm_wolf3d", true);
+		SetCVar("mm_duke3d", true);
+		SetCVar("mm_marathon", true);
+		SetCVar("mm_bstone", true);
+		SetCVar("mm_rott", true);
+		SetCVar("mm_rr", true);
+		SetCVar("mm_erad", true);
+		SetCVar("mm_strife", true);
+		SetCVar("mm_darkf", true);
+		SetCVar("mm_cm", true);
+		SetCVar("mm_c7", true);	
+		SetCVar("mm_sw", true);
+		SetCVar("mm_blood", true);
+		SetCVar("mm_rmr", true);
+		SetCVar("mm_ps", true);	
+		SetCVar("mm_ipog", true);	
+		SetCVar("mm_witch", true);				
+		SetCVar("mm_disrup", true);		
+		SetCVar("mm_quake1", true);		
+		SetCVar("mm_doom64", true);	
+		SetCVar("mm_halflife", true);	
+		SetCVar("mm_quake2", true);	
+		SetCVar("mm_wolfmode", 2);
+		SetCVar("mm_randomcycle", 0);
+		SetCVar("mm_fakehitlerfire", true);
+		SetCVar("mm_wolffastdeath", false);
+		SetCVar("mm_spawnmode", 0);
+		SetCVar("mm_skilloverride", 5);
+		SetCVar("mm_bandoom", false);
+		SetCVar("mm_banheretic", false);
+		SetCVar("mm_banhexen", false);
+		SetCVar("mm_banchex", false);
+		SetCVar("mm_banwolf3d", false);
+		SetCVar("mm_banduke3d", false);
+		SetCVar("mm_banmarathon", false);
+		SetCVar("mm_banbstone", false);
+		SetCVar("mm_banrott", false);
+		SetCVar("mm_banrr", false);
+		SetCVar("mm_banerad", false);
+		SetCVar("mm_banstrife", false);
+		SetCVar("mm_bandarkf", false);
+		SetCVar("mm_bancm", false);
+		SetCVar("mm_banc7", false);
+		SetCVar("mm_bansw", false);
+		SetCVar("mm_banblood", false);
+		SetCVar("mm_banrmr", false);
+		SetCVar("mm_banps", false);
+		SetCVar("mm_banipog", false);				
+		SetCVar("mm_banwitch", false);
+		SetCVar("mm_bandisrup", false);
+		SetCVar("mm_banquake1", false);
+		SetCVar("mm_bandoom64", false);	
+		SetCVar("mm_banhalflife", false);
+		SetCVar("mm_banquake2", false);		
+		SetCVar("mm_multiply", 0);
+		SetCVar("mm_newchex", true);
+		SetCVar("mm_pinataparty", false);
+		SetCVar("mm_rarespawns", true);
+		SetCVar("mm_fullradiusdmg", false);
+		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_nobats", true);
+		SetCVar("mm_specpermdeath", true);
+		
+		SetCVar("mm_init", true);
+		
+		/*for(int a = 0; a < MAX_GAME_TYPES; a++)
+		{
+			SetCVar(gameTypesClass[a], false);
+		}*/
+	}
+	ACS_Execute(669, 0, 0, 0, 0);
+	
+	if (alreadyshowedbs == 0)
+	{
+		if (GameType() == GAME_TITLE_MAP) { }
+		if (Singleplayer() == 1)
+		{
+			if(GetCvar("samsara_cvarinfo") == 0)
+			{
+				Delay(2);
+				Hudmessage(s:SMMCVARINFO; HUDMSG_PLAIN|HUDMSG_LOG, 93000, CR_GRAY, 1.5, 0.25, 2.5);
+				Hudmessage(s:"Also includes cvar info for SMM."; HUDMSG_FADEOUT, 93000, CR_RED, 1.5, 0.25, 2.0, 0.5);
+			}
+		}
+		else { 	Delay(2); Log(s:SMMCVARINFO); }
+		
+		alreadyshowedbs = 1;
+	}
+}
+
+Script 668 (int spawncode, int override)
+{
+	int map;
+	int setselect;
+	int multitoken;
+	int gameTypeMap;
+	int numGameTypes = 0;
+	
+	map = GetLevelInfo(LEVELINFO_LEVELNUM);
+	
+	Switch(spawncode)
+	{
+		case 1:
+			if(GetCVar("mm_skilloverride") < 5)
+			{
+				multitoken = GetCVar("mm_skilloverride");
+				GiveInventory("DifficultyToken", multitoken);
+			}
+			else
+			{
+				multitoken = GameSkill ();
+				GiveInventory("DifficultyToken", multitoken);
+			}
+			
+			if(GetCVar("mm_invisiblemode") == 1)
+			{
+				GiveInventory("InvisibleToken",1);
+				SetActorProperty(0,APROP_Alpha,0);
+			}
+
+			break;
+
+		case 2:
+			Delay(1);
+			PrintBold(s:"Case 2");
+			if(GetCvar("mm_spawnmode") == 0 || GetCvar("mm_spawnmode") == 3)
+			{
+				for(int a = 0; a < MAX_GAME_TYPES; a++){
+				if(activesets[a])
+					activeGameTypes[numGameTypes++] = a;
+				}
+				
+				if(GetCvar("mm_spawnmode") == 3)
+				{
+					if(numGameTypes == 0){
+					SetActorState(0,"SetNull",true);
+					break;
+					}
+				
+					if(GetCvar("mm_randomcycle") > 0)
+					{
+						until (randomallclear == 1) { Delay(5); }
+					}
+				}
+			}
+			else if(GetCvar("mm_spawnmode") == 1)
+			{
+				for(int b = 0; b < MAX_GAME_TYPES; b++){
+					gameTypeMap = strparam(s:gameTypesStr[b], d:map);;
+					
+					if(GetCvar(gameTypeMap))
+						activeGameTypes[numGameTypes++] = b;
+				}
+			}		
+			else
+			{
+				for(int c = 0; c < MAX_GAME_TYPES; c++){					
+					if(GetCvar(gameTypesStr[c]))
+						activeGameTypes[numGameTypes++] = c;
+					}
+			}
+			
+			setselect = random(0, numGameTypes - 1);
+			
+			// wolf3d
+			if(activeGameTypes[setselect] == 4)
+			{
+				switch(GetCvar("mm_wolfmode")){
+					case 0:
+						SetActorState(0,"SODM1",true);
+						terminate;
+					case 1:
+						SetActorState(0,"SODM2",true);
+						terminate;
+					case 2:
+						SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+						terminate;
+				}
+			}
+		
+			// all the other game types
+			
+			SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);				
+			break;
+
+		
+		case 3:
+		if(GetCVar("mm_multiply") > 1)
+		{
+			if(GetCvar("invasion") == 0||override == 1)
+			{
+				multitoken = GetCvar("mm_multiply");
+				GiveInventory("MultiplyToken", multitoken);
+				break;
+			}
+			else { break; }
+		}
+		else { break; }
+	}
+}
+
+Script 669 (void)
+{
+	int selectloop;	
+	int randomvalue;
+	int randnum;
+	int erroramount = 0;
+	int lastchosen = 0;
+	
+	if (GetCVar("mm_spawnmode") == 3)
+	{
+		selectloop = 0;
+		randomvalue = GetCvar("mm_randomcycle");
+		for(int a = 0; a < MAX_GAME_TYPES; a++){					
+			activesets[a] = 0;
+		}
+		
+		While (selectloop < randomvalue)
+		{
+			randnum = random(1, MAX_GAME_TYPES);
+			
+			switch(randnum){
+				case 1:
+					if(!GetCVar("mm_doom")||lastchosen == 1) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 1; }
+					break;
+					
+				case 2:
+					if(!GetCVar("mm_heretic")||lastchosen == 2) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 2; }
+					break;
+					
+				case 3:
+					if(!GetCVar("mm_hexen")||lastchosen == 3) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 3; }
+					break;
+				
+				case 4:
+					if(!GetCVar("mm_chex")||lastchosen == 4) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 4; }
+					break;
+					
+				case 5:
+					if(!GetCVar("mm_wolf3d")||lastchosen == 5) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 5; }
+					break;
+					
+				case 6:
+					if(!GetCVar("mm_duke3d")||lastchosen == 6) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 6; }
+					break;
+					
+				case 7:
+					if(!GetCVar("mm_marathon")||lastchosen == 7) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 7; }
+					break;
+					
+				case 8:
+					if(!GetCVar("mm_bstone")||lastchosen == 8) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 8; }
+					break;
+					
+				case 9:
+					if(!GetCVar("mm_rott")||lastchosen == 9) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 9; }
+					break;
+					
+				case 10:
+					if(!GetCVar("mm_rr")||lastchosen == 10) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 10; }
+					break;
+					
+				case 11:
+					if(!GetCVar("mm_erad")||lastchosen == 11) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 11; }
+					break;	
+				
+				case 12:
+					if(!GetCVar("mm_strife")||lastchosen == 12) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 12; }
+					break;	
+					
+				case 13:
+					if(!GetCVar("mm_darkf")||lastchosen == 13) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 13; }
+					break;
+					
+				case 14:
+					if(!GetCVar("mm_cm")||lastchosen == 14) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 14; }
+					break;
+					
+				case 15:
+					if(!GetCVar("mm_c7")||lastchosen == 15) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 15; }
+					break;
+					
+				case 16:
+					if(!GetCVar("mm_sw")||lastchosen == 16) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 16; }
+					break;
+					
+				case 17:
+					if(!GetCVar("mm_blood")||lastchosen == 17) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 17; }
+					break;
+					
+				case 18:
+					if(!GetCVar("mm_rmr")||lastchosen == 18) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 18; }
+					break;
+					
+				case 19:
+					if(!GetCVar("mm_ps")||lastchosen == 19) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 19; }
+					break;
+					
+				case 20:
+					if(!GetCVar("mm_ipog")||lastchosen == 20) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 20; }
+					break;
+					
+				case 21:
+					if(!GetCVar("mm_witch")||lastchosen == 21) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 21; }
+					break;
+					
+				case 22:
+					if(!GetCVar("mm_disrup")||lastchosen == 22) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 22; }
+					break;
+
+				case 23:
+					if(!GetCVar("mm_quake1")||lastchosen == 23) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 23; }
+					break;					
+
+				case 24:
+					if(!GetCVar("mm_doom64")||lastchosen == 24) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 24; }
+					break;
+					
+				case 25:
+					if(!GetCVar("mm_halflife")||lastchosen == 25) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 25; }
+					break;
+					
+				case 26:
+					if(!GetCVar("mm_quake2")||lastchosen == 26) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 26; }
+					break;
+			}
+		}
+		randomallclear = 1;
+	}
+}
+
+Script 670 OPEN
+{
+	While(GetCvar("invasion") > 0)
+	{
+		Until(GetInvasionState() == 4)
+		{
+			Delay(35);
+		}
+		ACS_Execute(669, 0, 0, 0, 0);
+		Delay(350);
+	}
+}
+
+Script 671 (void)
+{
+	int checkskill;
+	checkskill = ACS_ExecuteWithResult (680, 3);
+
+	SetActorState(0,skill[checkskill],true);
+}
+
+/*Script 672 (void)
+{
+
+}*/
+
+Script 680 (int pick)
+{
+	int response;
+
+	Switch (pick)
+	{
+		case 1:
+        response = GetCVar("mm_fakehitlerfire");
+        break;
+		
+		case 2:
+		response = GetCVar("mm_wolffastdeath");
+		break;
+		
+		case 3:
+		if(GetCVar("mm_skilloverride") < 5)
+		{
+			response = GetCVar("mm_skilloverride");
+		}
+		else
+		{
+			response = GameSkill ();
+		}
+		break;
+		
+		case 4:
+		response = GetCVar("mm_dropdefault");
+		break;
+		
+		case 5:
+		response = GetCvar("mm_pinataparty");
+		break;
+		
+		case 6:
+		response = GetCvar("mm_newchex");
+		break;
+		
+		case 7:
+		response = GetCvar("mm_rarespawns");
+		break;
+		
+		case 8:
+		response = GetCvar("mm_invisiblemode");
+		break;
+		
+		case 9:
+		response = GetCvar("mm_fullradiusdmg");
+		break;
+		
+		case 10:
+		response = GetCvar("mm_nobats");
+		break;
+		
+		case 11:
+		response = GetCvar("mm_specpermdeath");
+		break;
+		
+		case 12:
+		if(GetCvar("mm_spawnmode") < 3)
+		{
+		response = 1;
+		}
+		break;
+	}
+	SetResultValue(response);
+}
+
+int realindices[MAX_GAME_TYPES] = { 0, 3, 1, 4, 2, 5, 6, 22, 8, 7, 16, 11, 23, 10, 14, 17, 12, 19, 21, 20, 24, 15, 13, 18, 9, 25 };
+
+Script "ClassBasedSpawn_OPEN" Open
+{
+	int clients = PlayerCount();
+	int playervalue;
+
+	for(int a = 0; a < MAX_GAME_TYPES; a++)
+	{
+		activesets[a] = true;
+	}
+
+	for(int p = 0; p < clients; p++)
+	{	
+		if(PlayerInGame(p) == true)
+		{
+			for(int b = 0; b < MAX_GAME_TYPES; b++)
+			{
+				if(PlayerClass(p) == b)
+				{
+					playervalue = realindices[b];
+				}
+			}
+					
+			for(int i = 0; i < MAX_GAME_TYPES; i++)
+			{
+				if(playervalue == i)
+				{
+					activesets[i] = true;
+					break;
+				}
+			}
+		}
+		else
+		{
+			clients += 1;
+		}
+	}
+}
+
+Script "ClassBasedSpawn_RESPAWN" RESPAWN
+{
+	int clients = PlayerCount();
+	int playervalue;
+
+	for(int a = 0; a < MAX_GAME_TYPES; a++)
+	{
+		activesets[a] = true;
+	}
+
+	for(int p = 0; p < clients; p++)
+	{	
+		if(PlayerInGame(p) == true)
+		{
+			for(int b = 0; b < MAX_GAME_TYPES; b++)
+			{
+				if(PlayerClass(p) == b)
+				{
+					playervalue = realindices[b];
+				}
+			}
+					
+			for(int i = 0; i < MAX_GAME_TYPES; i++)
+			{
+				if(playervalue == i)
+				{
+					activesets[i] = true;
+					break;
+				}
+			}
+		}
+		else
+		{
+			clients += 1;
+		}
+	}
+}
+
+Script "ClassBasedSpawn_REOPEN" REOPEN
+{
+	int clients = PlayerCount();
+	int playervalue;
+
+	for(int a = 0; a < MAX_GAME_TYPES; a++)
+	{
+		activesets[a] = true;
+	}
+
+	for(int p = 0; p < clients; p++)
+	{	
+		if(PlayerInGame(p) == true)
+		{
+			for(int b = 0; b < MAX_GAME_TYPES; b++)
+			{
+				if(PlayerClass(p) == b)
+				{
+					playervalue = realindices[b];
+				}
+			}
+					
+			for(int i = 0; i < MAX_GAME_TYPES; i++)
+			{
+				if(playervalue == i)
+				{
+					activesets[i] = true;
+					break;
+				}
+			}
+		}
+		else
+		{
+			clients += 1;
+		}
+	}
+}
+
+Script "ClassBasedSpawn_ENTER" ENTER
+{
+	int clients = PlayerCount();
+	int playervalue;
+
+	for(int a = 0; a < MAX_GAME_TYPES; a++)
+	{
+		//SetCvar(gameTypesClass[a],false);
+		activesets[a] = false;
+	}
+
+	for(int p = 0; p < clients; p++)
+	{	
+		if(PlayerInGame(p) == true)
+		{
+			for(int b = 0; b < MAX_GAME_TYPES; b++)
+			{
+				if(PlayerClass(p) == b)
+				{
+					playervalue = realindices[b];
+				}
+			}
+					
+			for(int i = 0; i < MAX_GAME_TYPES; i++)
+			{
+				if(playervalue == i)
+				{
+					activesets[i] = true;
+					break;
+				}
+			}
+		}
+		else
+		{
+			clients += 1;
+		}
+	}
+}
+
+Script "ClassBasedSpawn_DISCONNECT" (int players) DISCONNECT
+{	
+	int clients = PlayerCount();
+	int playervalue;
+
+	for(int a = 0; a < MAX_GAME_TYPES; a++)
+	{
+		activesets[a] = true;
+	}
+
+	for(int p = 0; p < clients; p++)
+	{	
+		if(PlayerInGame(p) == true)
+		{
+			for(int b = 0; b < MAX_GAME_TYPES; b++)
+			{
+				if(PlayerClass(p) == b)
+				{
+					playervalue = realindices[b];
+				}
+			}
+					
+			for(int i = 0; i < MAX_GAME_TYPES; i++)
+			{
+				if(playervalue == i)
+				{
+					activesets[i] = true;
+					break;
+				}
+			}
+		}
+		else
+		{
+			clients += 1;
+		}
+	}
+}

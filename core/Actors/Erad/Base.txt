@@ -1,0 +1,116 @@
+Actor EradBaseGib
+{
+    Projectile
+    Speed 7
+    Radius 1
+    Height 1
+    -NOLIFTDROP
+    -SOLID
+	+NOPAIN
+	+RANDOMIZE
+    +DOOMBOUNCE	
+    +DROPOFF
+    +NOBLOCKMONST
+    +MOVEWITHSECTOR	
+    -NOGRAVITY
+    +NOBLOCKMAP
+    +CORPSE	
+    +WINDTHRUST	
+    +CLIENTSIDEONLY	
+    -TELESTOMP
+    +LOWGRAVITY	
+	BounceFactor 0.6
+	Gravity 0.7	
+    States
+    {
+      Spawn:
+        TNT1 A 5
+        Loop	
+      Death:
+	  Crash: 
+        TNT1 A 500 A_SetFloorClip
+		TNT1 A 1 A_FadeOut
+        Goto Death+1
+    }
+}
+
+Actor EradMetalDebris
+{
+  Projectile
+  Radius 1
+  Height 1
+  Speed 7
+  Scale 0.55
+  -NOGRAVITY
+  +WINDTHRUST
+  +NOBLOCKMAP
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +LOWGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  -SOLID
+  +EXPLODEONWATER
+  -TELESTOMP  
+  +DOOMBOUNCE
+  SeeSound ""
+  ActiveSound ""
+  DeathSound ""
+  Gravity 0.5
+  States
+  {
+	Spawn:
+		ERG8 ABCDEF 3 
+		Loop
+	Death:
+	Crash:
+		TNT1 A 1 A_FadeOut
+		Loop
+	}
+}
+
+Actor EradMetalDebris_2 : EradMetalDebris
+{
+  States
+  {
+	Spawn:
+		ERG8 MNOPQR 3
+		Loop
+  }
+}	
+
+Actor EradMetalDebris_3 : EradMetalDebris
+{
+  States
+  {
+	Spawn:
+		ERG8 STUVWX 3
+		Loop
+  }
+}	
+
+Actor EradMetalDebris_4 : EradMetalDebris
+{
+  States
+  {
+	Spawn:
+		ERG8 YZ 3
+		ERG9 ABCD 3
+		Loop
+  }
+}
+
+Actor EradMetalDebris_5 : EradMetalDebris
+{
+  States
+  {
+	Spawn:
+		ERG8 GHIJKL 3
+		Loop
+  }
+}
+
+Actor EradExplosionSmall_Z : EradPlasmaExplosion1 { Scale 0.30 }
+Actor EradExplosionMedium_Z : EradPlasmaExplosion1 { Scale 0.40 }
+Actor EradPlasmaExplosion3_2 : EradPlasmaExplosion3 { Scale 0.70 }
+Actor EradPlasmaExplosion3_1 : EradPlasmaExplosion3 { Scale 0.60 }

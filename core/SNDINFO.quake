@@ -1,0 +1,203 @@
+Quake/Plasma/Fire	Q_plsmfr
+Quake/Plasma/Act	Q_plsmfl
+Quake/Plasma/Die	Q_plsmxp
+
+//Grunt
+QGrunt/sight q_grtsee
+QGrunt/death q_grtdh1
+QGrunt/active q_grtact
+$Random QGrunt/pain { q_grtpin q_grtpn2 }
+q_grtpin	q_grtpin
+q_grtpn2	q_grtpn2
+
+//Enforcer
+QEnforcer/death  QENFDIE
+QEnforcer/active QENFIDLE
+QEnforcer/attack QENFIRE
+QEnforcer/hit    QENFSTOP
+QEnforcer/See1	 QENFSEE1
+QEnforcer/See2	 QENFSEE2
+QEnforcer/See3	 QENFSEE3
+QEnforcer/See4	 QENFSEE4
+QEnforcer/Ow1	 QENFPIN1
+QEnforcer/Ow2	 QENFPIN2
+$Random QEnforcer/Pain { QEnforcer/Ow1 QEnforcer/Ow2 }
+$Random QEnforcer/See { QEnforcer/See1 QEnforcer/See2 QEnforcer/See3 QEnforcer/See4 }
+
+//Rottweiler
+qdog/sight QDOGBARK
+qdog/melee QDOGATT
+qdog/pain  QDOGOW
+qdog/death QDOGDIE
+qdog/active QDOGACT
+
+//Zombie
+$Random QZombie/Pain { QZPAIN0 QZPAIN1 }
+QZPAIN0 QZ_PAIN
+QZPAIN1 QZ_PAIN1
+$Random QZombie/See { QZIDLE0 QZIDLE1 }
+QZIDLE0 QZ_IDLE
+QZIDLE1 QZ_IDLE1
+$Random QZombie/Act { QZombie/See QUAKEZOM/ALT }
+Quake/ZThrow QZ_SHOT1
+Quake/Zmiss QZ_MISS
+Quake/Zhit  QZ_HIT
+QUAKEZOM/DEATH QZ_DIE
+QUAKEZOM/ALT QZ_IDLE2
+
+//Knight
+QKnight/sight  Q_KSIGHT
+QKnight/death  Q_KDEATH
+QKnight/active Q_KIDLE
+QKnight/pain   Q_KHURT
+QKnight/Swing1 Q_KSWRD1
+QKnight/Swing2 Q_KSWRD2
+
+//Ogre
+QOgre/sight Q_OGWAKE
+QOgre/pain  Q_OGPN1
+QOgre/death Q_OGDTH
+$RANDOM QOgre/active { quake_oga1 quake_oga2 quake_oga3 }
+quake_oga1 Q_OGIDLE
+quake_oga2 Q_OGIDL2
+quake_oga3 Q_OGIDL3
+QOgre/saw  Q_OGSWTK
+
+//Scrag
+qwiz/sight  Q_WSIGHT
+qwiz/pain   Q_WPAIN
+qwiz/death  Q_WDEATH
+quake/wiza1	Q_WIDLE1
+quake/wiza2	Q_WIDLE2
+qwiz/hit    Q_WIZHIT
+qwiz/attack Q_WATTCK
+$Random qwiz/active { quake/wiza1 quake/wiza2 }
+
+//Fiend
+QFiend/sight  Q_FSIGHT
+QFiend/death  Q_FDEATH
+QFiend/active Q_DIDLE1
+QFiend/pain   Q_FPAIN1
+QFiend/Jump   Q_DJUMP
+QFiend/Land   Q_DLAND2
+QFiend/Munch  Q_DHIT2
+
+//Death Knight
+QHKnight/sight  Q_HKSEE
+QHKnight/pain   Q_HKPAIN
+QHKnight/death  Q_HKDIE
+QHKnight/active Q_HKACT
+QHKnight/fire   Q_HKFIRE
+QHKnight/hit    Q_HKHIT
+$limit QHKnight/fire 30
+
+// Vore
+Vore/sight vsight
+Vore/rage vattack
+Vore/melee vattack2
+Vore/pain vpain
+Vore/death vdeath
+Vore/active vidle
+
+//Shambler
+Shambler/boom   QSHAMBOO
+shambler/Sight  QSHAMSEE
+Shambler/Active QSHAMACT
+Shambler/Pain   QSHAMOW
+Shambler/Death  QSHAMDIE
+Shambler/Swing  QSHAMML1
+Shambler/Smash  QSHAMML2
+Shambler/Magic  QSHAMAT1
+Shambler/cast   QSHAMBOM
+Shambler/Hit    QSHAMMCK
+
+//Spawn
+QSpawn/see  Q_BLOB1
+QSpawn/die  Q_BLBDIE
+QSpawn/land Q_BLBFLL
+QSpawn/hit  Q_BLOBHT
+
+//Shub-Niggurath
+Shub-N/See shubsee
+Shub-N/Act shubact
+Shub-N/Die shubdie
+Shub-N/Exp shubexp
+
+//Dragon
+Pterodactyle/See pterosee
+Pterodactyle/Act pteroact
+Pterodactyle/Pain pteroow
+Pterodactyle/Die pterodie
+Pterodactyle/Fire pteroatt
+
+//Centroid
+QCentroid/sight  Qcentsee
+QCentroid/active Qcentide
+QCentroid/death  Qcentdie
+QCentroid/pain   Qcentpin
+QCentroid/sting  Qcentstn
+QCentroid/walk   Qcentwlk
+
+//Spike Mine
+QMine/active Q_spkmne
+$limit QMine/active 10
+
+//Statues
+QStatue/active QStatuei
+QStatue/pain   QStatuep
+QStatue/See    QStatues
+QStatue/Die    Qstatued
+
+//Guardian
+QGuardian/sight  QGURDSEE
+QGuardian/pain   QGURDPIN
+QGuardian/death  QGURDDIE
+QLight/run		Q_LHIT
+
+//Wrath
+QWrath/sight  Q_WRSEE
+QWrath/pain   Q_WRPAIN
+QWrath/death  Q_WRDTHC
+QWrath/attack Q_WRATT
+
+//Overlord
+$Random QSWrath/Attack { QSWrath/Att1 QSWrath/Att2 QSWrath/Att3 }
+QSWrath/Att1  Q_WRATT2
+QSWrath/Att2  Q_WRATT3
+QSWrath/Att3  Q_WRATT4
+
+$Random Q_Misc/Teleport { Q_Misc/Teleport1 Q_Misc/Teleport2 Q_Misc/Teleport3 Q_Misc/Teleport4 Q_Misc/Teleport5 }
+Q_Misc/Teleport1 Q_R_TEL1
+Q_Misc/Teleport2 Q_R_TEL2
+Q_Misc/Teleport3 Q_R_TEL3
+Q_Misc/Teleport4 Q_R_TEL4
+Q_Misc/Teleport5 Q_R_TEL5
+
+//Armagon
+Armagon/explode QARMAEXP
+Armagon/Laser   QARMLASR
+Armagon/Ric     QARMLSRC
+Armagon/Die     QARMDIE
+Armagon/Pain    QARMPAIN
+Armagon/See     QARMSEE2
+Armagon/Wait    QARMSEE
+Armagon/shoo    QARREPEL
+$RANDOM Armagon/Act { Armagon/Wait Armagon/act1 Armagon/act2 Armagon/act3 Armagon/act4 Armagon/act5 }
+Armagon/act1    QARMACT1
+Armagon/act2 	QARMACT2
+Armagon/act3 	QARMACT3
+Armagon/act4 	QARMACT4
+Armagon/act5 	QARMACT5
+$limit armagon/explode 20
+Armagon/Walk	QARMWLK2
+Armagon/Step	QARMWALK
+
+//Gremlin
+QGrem/sight  QGREMSEE
+QGrem/active QGREMACT
+QGrem/death  QGREMDIE
+$RANDOM Grem/pain { QGrem/pain1 QGrem/pain2 QGrem/pain3 }
+QGrem/pain1  QGREMPN1
+QGrem/pain2  QGREMPN2
+QGrem/pain3  QGREMPN3
+QGrem/claw   QGREMCLW

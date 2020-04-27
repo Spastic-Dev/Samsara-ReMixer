@@ -1,0 +1,633 @@
+Actor Tchernobog 
+{
+	Health 6000
+	Radius 40
+	Height 90
+	Speed 10
+	Mass 8000
+	PainChance 10
+	Species "Enemies"	
+	Obituary "%o is now one with Tchernobog."
+	Scale 0.7
+	+BOSSDEATH	
+	+FLOORCLIP
+	+BOSS
+	+NORADIUSDMG
+	+NOICEDEATH
+	+DONTMORPH
+	+NOFEAR
+	+DONTRIP	
+	+NOINFIGHTING
+	+NOBLOODDECALS
+	BloodType "NashGore_Blood_Monolith"		
+	PainChance "CalebFire", 0	
+	Monster
+	SeeSound "TchernobogKneel"
+	PainSound "Tchernobog/Pain"
+	ActiveSound "Tchernobog/Act"
+	DeathSound "tchernobogdie"
+    DamageFactor "Mace", 1.2
+	DamageFactor "CorvusHellstaffTomed", 0.12	
+    DamageFactor "CorvusCrossbow", 1.15	
+    DamageFactor "DragonClaw", 1.55
+	DamageFactor "MarathonShotgun", 1.2
+	DamageFactor "MarathonPlasmaFire", 0.54
+	DamageFactor "MarathonFusion", 0.89	
+    DamageFactor "WMCNade", 0.5
+    DamageFactor "BJSpear", 0.5
+	DamageFactor "DCannonProj", 0.6
+	DamageFactor "Tesla", 0.7
+	DamageFactor "Shock", 0.4
+	DamageFactor "LifeLeech", 0.1	
+	DamageFactor "CalebFire", 0.1	
+	DamageFactor "Vodoo", 0.1
+	DamageFactor "DisruptorWall", 0.2
+	DamageFactor "EradNova", 0.2
+    DamageFactor "EradGreenFire", 0.1
+    DamageFactor "EradCoopGreenFire", 0.1	
+	DamageFactor "RottFire", 0.1
+	DamageFactor "HLLaser", 0.5
+	DamageFactor "WTRangedFire", 0.1	
+	DamageFactor "Nuke", 0.1
+	DamageFactor "SWNuke", 0.1
+	DamageFactor "SWNukeCoop", 0.1
+	DamageFactor "SWFlame", 0.1
+	DamageFactor "SWFlameCoop", 0.1
+	DamageFactor "SWFlame2", 0.1
+	DamageFactor "SWFlame2Coop", 0.1
+	DamageFactor "SWFlame3", 0.4
+    DamageFactor "RMR-BigPlasma", 0.2		
+	DamageFactor "CMDMGSHIT", 0.7
+	DamageFactor "Disintegrate", 0.5
+	DamageFactor "PSFire", 0.1
+	DamageFactor "C7Disintegrate", 0.5
+	PainChance "ShrinkerDMG", 0
+	States
+	{
+	Spawn:
+		TCHR D 0
+		TCHR D 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		TCHR D 1 ACS_ExecuteAlways(668,0,1,0)
+		TCHR D 0 A_GiveInventory("AlreadySpawned",1)
+		TCHR D 0 A_JumpIfInventory("InvisibleToken",1,2)
+		TCHR D 0 A_Jump(256,2)
+		TCHR D 0 A_ChangeFlag("STEALTH",1)
+	Spawn2:	
+		TNT1 A 0 A_Jump(256,"SpawnLoop")
+		TNT1 A 0 A_PlaySound("Tchernobog/Wait",CHAN_VOICE,1.0,0,ATTN_NONE)
+	SpawnLoop:	
+		TCHR D 10 A_Look
+		Loop
+	See:
+        TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "See2")
+	    TNT1 A 0 A_GiveInventory("SawPlayer", 1)		
+		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
+	    TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+  		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+	See2:	
+		TCHR AABBCCDDEEFF 4 A_Chase
+		Loop
+	Missile:
+		TNT1 A 0 A_Jump(128,"Missile2")
+		TCHR G 4 Bright A_FaceTarget
+		TCHR H 6 Bright A_FaceTarget
+		TCHR I 5 Bright A_FaceTarget
+		TCHR J 0 Bright A_CustomMissile("TechnoBall3", 80, 0, 15) 
+		TCHR J 0 Bright A_CustomMissile("TechnoBall3", 80, 0, -15) 
+		TCHR J 5 Bright A_CustomMissile("TechnoBall3", 80, 0, 0) 
+		TCHR J 5 A_FaceTarget
+		Goto See
+	Missile2:
+		TCHR G 4 Bright A_FaceTarget
+		TCHR H 6 Bright A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX1", 64, 0, 16, 2, 32)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX2", 64, 0, -24, 2, 12)
+		TNT1 A 0 A_FaceTarget
+		TCHR I 5 Bright A_CustomMissile("TchernobogFireSpell1",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX3", 64, 0, 48, 2, 64)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX1", 64, 0, 64, 2, 100)
+		TNT1 A 0 A_FaceTarget
+		TCHR H 5 Bright A_CustomMissile("TchernobogFireSpell2",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX2", 64, 0, 56, 2, 32)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX3", 64, 0, -16, 2, 24)
+		TNT1 A 0 A_FaceTarget
+		TCHR I 5 Bright A_CustomMissile("TchernobogFireSpell3",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX1", 64, 0, 16, 2, 48)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX2", 64, 0, -48, 2, 32)
+		TNT1 A 0 A_FaceTarget
+		TCHR H 5 Bright A_CustomMissile("TchernobogFireSpell4",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX3", 64, 0, 6, 2, 12)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX1", 64, 0, -2, 2, 36)
+		TNT1 A 0 A_FaceTarget
+		TCHR I 5 Bright A_CustomMissile("TchernobogFireSpell5",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX2", 64, 0, 21, 2, 17)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX3", 64, 0, -12, 2, 21)
+		TNT1 A 0 A_FaceTarget
+		TCHR H 5 Bright A_CustomMissile("TchernobogFireSpell6",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX1", 64, 0, 17, 2, 100)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX2", 64, 0, -8, 2, 66)
+		TNT1 A 0 A_FaceTarget
+		TCHR I 5 Bright A_CustomMissile("TchernobogFireSpell7",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX3", 64, 0, 16, 2, 32)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX1", 64, 0, -16, 2, 32)
+		TNT1 A 0 A_FaceTarget
+		TCHR H 5 Bright A_CustomMissile("TchernobogFireSpell8",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX2", 64, 0, 16, 2, 12)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX3", 64, 0, -28, 2, 64)
+		TNT1 A 0 A_FaceTarget
+		TCHR I 5 Bright A_CustomMissile("TchernobogFireSpell9",32,0,0,CMF_CHECKTARGETDEAD)
+        TNT1 A 0 Bright A_CustomMissile ("TchernobogFireFX1", 64, 0, 24, 2, 100)
+		TNT1 A 0 A_Jump(96,"Retreat")
+		TCHR I 1 A_MonsterRefire (32, "Retreat")
+		Goto Missile2+2
+	Retreat:
+	    TCHR I 1
+		Goto See
+	Pain:
+		TCHR K 2
+		TCHR K 3 A_Pain
+		TCHR L 4
+		TCHR DD 5
+		Goto See
+	Death:
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+		TCHR M 10 A_Scream
+		TCHR N 10 A_Fall
+		TCHR O 10
+		TCHR P 10 A_KillMaster
+		TNT1 A 0 A_Jump(128,1)
+		TCHR Q 100
+		TCHR Q 100
+		TCHR QRSTUV 6 Bright 
+		TCHR WX 6 Bright 
+		TCHR Y 4 Bright A_SetTranslucent(0.9)
+		TCHR Y 4 Bright A_SetTranslucent(0.8)
+		TCHR Y 4 Bright A_SetTranslucent(0.7)
+		TCHR Y 4 Bright A_SetTranslucent(0.6)
+		TCHR Y 4 Bright A_SetTranslucent(0.5)
+		TCHR Y 4 Bright A_SetTranslucent(0.4)
+		TCHR Y 4 Bright A_SetTranslucent(0.3)
+		TCHR Y 4 Bright A_SetTranslucent(0.2)
+		TCHR Y 4 Bright A_SetTranslucent(0.1)
+		TNT1 A -1 
+		Stop
+	Death.DukeIce:
+		"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+	Ice:
+	Death.HexenIce:
+	Death.WTMeleeIce:
+	Death.WTRangedIce:
+	Death.Ice:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_GenericFreezeDeath
+		"####" "#" 0 A_UnsetShootable
+		"####" "#" 140 A_UnsetSolid
+		"####" "#" 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+		"####" "##########################################################################################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+		"####" "#" 0 A_IceGuyDie
+		"####" "#" 1 A_IceGuyDie
+		TNT1 A 5 A_KillMaster
+		stop						
+	Pain.Vodoo:
+		TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+		Goto Pain
+	Death.Voodoo:
+	Death.VoodooPuff:
+	Death.DynamiteCoop:
+	Death.Dynamite:
+	Death.LifeLeech:
+	Death.CalebNapalm:
+	Death.Shock:	  
+	Death.Vodoo:
+	Death.Tesla:
+	Death.CalebFire:	
+	Death.CalebBullet:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt3", 1)
+		Goto Death
+	Death.EradExplosive:
+	Death.EradNova:
+	Death.EradShock:
+	Death.EradExplosive2:	
+    Death.EradDisc:
+	Death.EradPiercingDart:
+	Death.EradGreenFire:
+	Death.EradCoopGreenFire:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
+		Goto Death
+	Death.DukeExplosive:
+	Death.DukeDamage:
+	Death.DukePistol:
+		TNT1 A 0 A_Jump(218,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		goto Death
+	Death.MightyBoot:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_Jump(64,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		goto Death
+	Death.PSRAPower:
+	Death.PSRAPowerCoop:
+	Death.PSExplosive:
+	Death.PSExplosiveCoop:
+	Death.PSBullet:
+	Death.PSFire:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		Goto Death
+	Death.LeonardDamage2:
+	Death.LeonardDamage3:
+	Death.LeonardDamage0:
+	Death.LeonardDamage1:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
+		Goto Death
+	Death.ZorchPistol:
+	Death.Zorch:
+	Death.ZorchKamikaze:
+	Death.PhasingZorch:
+	Death.ZorchSpectral:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
+		"####" "#" 3 A_SpawnItem("ZorchEffectHuge")
+		"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_Scream
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 3 A_SetTranslucent(0.1,0)
+		TNT1 A 1 A_SetTranslucent(1,0)
+		TNT1 A -1 A_KillMaster
+		stop
+	Death.SWFist:
+	Death.SWKatana:
+	Death.SWShuriken:
+	Death.SWSticky:
+	Death.SWStickyCoop:	
+	Death.SWGrenade:
+	Death.SWNuke:
+	Death.SWRocket:
+	Death.SWRailgun:
+	Death.SWRailgunCoop:
+	Death.SWNukeCoop:
+	Death.SWFlame:
+	Death.SWFlame2:
+	Death.SWFlame2Coop:
+	Death.SWFlame3:	
+    Death.SWBullet:	  
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
+		goto Death
+	Death.RottDisintegrate:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_SpawnItem("RGodModeDeathHuge")
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		TNT1 A 5 A_KillMaster
+		stop
+	Disintegrate:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_Stop
+		"####" "#" 3 A_SpawnItem("DisintEffectHuge",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+        TNT1 A 5 A_KillMaster
+        stop
+	Death.Nuke:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
+		"####" "#################" 3 A_Fadeout(0.05)
+		TNT1 A 5 A_KillMaster
+		stop	
+	}
+}
+
+Actor TechnoBall3
+{
+	Radius 10
+	Height 10
+	Speed 20
+	Damage 6
+	Scale 0.5
+	PROJECTILE
+	+FORCEXYBILLBOARD
+	DeathSound "Napalm/Explode"	
+	States
+	{
+	Spawn:
+		TROK A 1 Bright A_CustomMissile("TBTrail",0,0,random(45,-45))
+		TROK B 1 Bright A_CustomMissile("TBTrail",0,0,random(45,-45))
+		TROK C 1 Bright A_CustomMissile("TBTrail",0,0,random(45,-45))
+		TROK D 1 Bright A_CustomMissile("TBTrail",0,0,random(45,-45))
+		TROK E 1 Bright A_CustomMissile("TBTrail",0,0,random(45,-45))
+		TROK F 1 Bright A_CustomMissile("TBTrail",0,0,random(45,-45))
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(random(28,58),random(160,215),0)
+		TNT1 A 0 Radius_Quake(9,10,0,26,0)	
+		TNT1 A 5 A_SpawnItemEx("TBExplo",0,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+Actor TBTrail
+{
+	Mass 1
+	Radius 1
+	Height 1
+	Speed 3
+	Damage 0
+	Scale 0.44
+	-SOLID
+	+NOCLIP
+	+CLIENTSIDEONLY
+	PROJECTILE
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256,"Style1","Style2")
+	Style1:
+		TFIR ABCDEFG 3 BRIGHT 
+		TFIR H 1 BRIGHT A_FadeOut 
+		Stop
+	Style2:
+		TFIR IJKLMNO 3 BRIGHT 
+		TFIR P 1 BRIGHT A_FadeOut 
+		Stop		
+	}
+}
+
+Actor TBExplo
+{
+	Mass 1
+	Radius 1
+	Height 1
+	Speed 0
+	Damage 0
+	Scale 0.7
+	+NOCLIP
+	+CLIENTSIDEONLY
+	PROJECTILE
+	States
+	{
+	Spawn:
+		TEX2 ABCDEFGHIJKL 3 Bright
+		TEX2 M 2 Bright A_FadeOut
+		Stop
+	}
+}
+
+Actor TchernobogFireSpell1 : FastProjectile {
+	Projectile
+	Radius 1
+	Height 1
+    Damage ((random(1,5)+random(3,(random(2,1)))))
+	Speed 600
+	DamageType Fire	
+    +NOBLOOD
+    +NOTIMEFREEZE
+    +NOEXTREMEDEATH
+	-BLOODSPLATTER
+	+CANNOTPUSH
+	+NODAMAGETHRUST
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX1", 1, 0, -132, 2, 32)        
+			stop
+    }
+}
+
+
+Actor TchernobogFireSpell2 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX2", 1, 0, 128, 2, 32)        
+			stop
+    }
+}
+
+Actor TchernobogFireSpell3 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX3", 1, 0, 112, 2, 32)        
+			stop
+    }
+}
+
+Actor TchernobogFireSpell4 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX1", 1, 0, 140, 2, 32)        
+			stop
+    }
+}
+
+
+Actor TchernobogFireSpell5 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX2", 1, 0, -132, 2, 32)        
+			stop
+    }
+}
+
+Actor TchernobogFireSpell6 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX3", 1, 0, 120, 2, 32)        
+			stop
+    }
+}
+
+Actor TchernobogFireSpell7 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX1", 1, 0, -170, 2, 32)        
+			stop
+    }
+}
+
+Actor TchernobogFireSpell8 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX2", 1, 0, 170, 2, 32)        
+			stop
+    }
+}
+
+Actor TchernobogFireSpell9 : TchernobogFireSpell1 {
+	States {
+		Spawn:
+			TNT1 A 1
+			Loop
+		Death:
+			TNT1 A 1 A_CustomMissile ("TchernobogFireFX3", 1, 0, 132, 2, 32)        
+			stop
+    }
+}
+
+ACTOR TchernobogFireFX1
+{
+   Radius 1
+   Height 1
+   Speed 5
+   RenderStyle Add
+   PROJECTILE
+   +FORCEXYBILLBOARD  
+   +FORCERADIUSDMG
+   +NOCLIP
+   +CLIENTSIDEONLY
+   States
+   {
+   Spawn:
+        TFIR A 2 BRIGHT
+		TFIR B 2 BRIGHT
+		TFIR C 2 BRIGHT
+		TFIR D 2 BRIGHT
+		TFIR D 2 BRIGHT
+		TFIR E 2 BRIGHT
+        TFIR F 2 BRIGHT 
+        TFIR G 2 BRIGHT
+        TFIR H 2 BRIGHT
+		Stop
+   }
+}
+
+ACTOR TchernobogFireFX2
+{
+   Radius 1
+   Height 1
+   Speed 5
+   RenderStyle Add
+   PROJECTILE
+   +FORCEXYBILLBOARD  
+   +FORCERADIUSDMG
+   +NOCLIP
+   +CLIENTSIDEONLY  
+   States
+   {
+   Spawn:
+        TFIR A 2 BRIGHT
+		TFIR I 2 BRIGHT
+		TFIR J 2 BRIGHT
+		TFIR K 2 BRIGHT
+		TFIR L 2 BRIGHT
+		TFIR M 2 BRIGHT
+		TFIR N 2 BRIGHT
+		TFIR O 2 BRIGHT
+        TFIR P 2 BRIGHT 
+		Stop
+   }
+}
+
+ACTOR TchernobogFireFX3
+{
+   Radius 1
+   Height 1
+   Speed 5
+   RenderStyle Add
+   PROJECTILE
+   +FORCEXYBILLBOARD  
+   +FORCERADIUSDMG
+   +NOCLIP
+   +CLIENTSIDEONLY   
+   States
+   {
+   Spawn:
+        TFIR Q 2 BRIGHT
+		TFIR R 2 BRIGHT
+		TFIR S 2 BRIGHT
+		TFIR T 2 BRIGHT
+		TFIR U 2 BRIGHT
+		TFIR V 2 BRIGHT
+		Stop
+   }
+}

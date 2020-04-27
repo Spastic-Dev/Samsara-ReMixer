@@ -1,0 +1,97 @@
+Actor DisruptorHumanoid {
+	Radius 20
+	Height 56
+	Speed 10
+	PainChance 89
+    Scale 0.58	
+	Species "Enemies"
+	MONSTER	
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+NOINFIGHTING
+	Mass 250
+	PainSound ""
+	ActiveSound ""
+	Dropitem "DefaultPinataPop"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor DisruptorDroid {
+	Radius 20
+	Height 56
+	Speed 15
+	PainChance 75
+    Scale 0.58	
+	Species "Enemies"
+	MONSTER	
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS	
+	+LONGMELEERANGE
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOINFIGHTING
+//	+FLOAT
+//	+NOGRAVITY
+	+NOBLOOD
+	FloatSpeed 10
+	Mass 800
+	PainSound ""
+	ActiveSound ""
+	Dropitem "DefaultPinataPop"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.11
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	PainChance "ShrinkerDMG", 0
+}
+
+Actor DisruptorAlien {
+	Radius 20
+	Height 56
+	Speed 14
+	PainChance 67
+    Scale 0.58	
+	Species "Enemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS
+	+NOFEAR
+	+LONGMELEERANGE
+	+NOINFIGHTING
+	Mass 500
+	PainSound ""
+	ActiveSound ""
+	Dropitem "DefaultPinataPop"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor DisruptorEnemyBullet_Z1 : DisruptorBullet3 { DamageType "" Damage(Random(6,10)) Scale 0.50 }

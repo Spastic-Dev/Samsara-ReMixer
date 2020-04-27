@@ -1,0 +1,564 @@
+Actor Q2Carrier : Q2SoldierBase
+{
+	SeeSound "Carrier/Sight"
+	ActiveSound ""
+	PainSound "Carrier/Pain"
+	AttackSound ""
+	DeathSound "Carrier/Death"
+	+NOFEAR 
+	+NORADIUSDMG
+	+BOSS 
+	+BOSSDEATH 
+	+DONTMORPH 
+	+FLOAT 
+	+NOGRAVITY 
+	//+FLOATBOB
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOVERTICALMELEERANGE
+	Health 4500
+	Speed 8
+	PainChance 6
+	PainChance "BFG", 20
+	PainChance "BFGSplash", 5
+	PainChance "ShrinkerDMG", 0
+	DamageFactor "BFGSplash", 0.5
+	DamageFactor "BFGSplash", 0.33
+	Mass 6000
+	Radius 64
+	Height 100
+	Obituary "%o was killed by a Carrier."
+	DropItem "Q2Bullets" 128
+	DropItem "Q2Bullets" 128
+	DropItem "Q2Rockets" 128
+	DropItem "Q2Rockets" 128
+	Tag "Strogg Carrier"
+	var int user_luck;
+	States
+	{
+	Spawn:
+		CAR3 A 0
+		CAR3 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		CAR3 A 1 ACS_ExecuteAlways(668,0,1,0)
+		CAR3 A 0 A_GiveInventory("AlreadySpawned",1)
+		CAR3 A 0 A_JumpIfInventory("InvisibleToken",1,2)
+		CAR3 A 0 A_Jump(256,2)
+		CAR3 A 0 A_ChangeFlag("STEALTH",1)
+	Spawn2:
+		CAR3 A 0 NoDelay A_PlaySound("Hornet/Engine",CHAN_BODY,0.66,1,ATTN_NORM)
+	SpawnLoop:	
+		CAR3 ABCDEFGHIJKLMNOPQR 3 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+		TNT1 A 0 A_GiveToTarget("DukeOverlordTaunt")
+		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+	See2:
+		CAR0 A 0 A_ChangeFlag(NOPAIN,0)
+		CAR0 A 0 A_TakeInventory(Clip)
+		CAR0 ABCDEFGHIJKLM 3 A_Chase
+		Loop
+	Melee:
+		CAR1 A 0 
+		Goto Rockets
+	Missile:
+		CAR1 A 0 A_JumpIfCloser(126, "Check1")
+		CAR1 A 0 A_JumpIfTargetInLOS(1, 270, JLOSF_DEADNOJUMP)
+		Goto Rockets
+		CAR1 A 0 A_JumpIfCloser(600, "Check2")
+		Goto Check3
+	Check1:
+		CAR1 A 0 A_SetUserVar("user_luck", CallACS("LuckJump"))
+		CAR1 A 0 A_JumpIf(user_luck <= 51, "RailGun")
+		Goto MachineGun
+	Check2:
+		CAR1 A 0 A_Jump(128,2)
+		CAR1 A 0 A_JumpIfInventory("Q2CarrierFlyerMag", 4, 1)
+		CAR1 A 0
+		Goto Check2_Flyer
+	Check2_Guns:
+		CAR1 A 0 A_SetUserVar("user_luck", CallACS("LuckJump"))
+		CAR1 A 0 A_JumpIf(user_luck <= 77, "MachineGun")
+		CAR1 A 0 A_JumpIf(user_luck <= 166, "Grenades")
+		Goto Railgun
+	Check2_Flyer:
+		CAR1 A 0 A_SetUserVar("user_luck", CallACS("LuckJump"))
+		CAR1 A 0 A_JumpIf(user_luck <= 51, "MachineGun")
+		CAR1 A 0 A_JumpIf(user_luck <= 102, "Grenades")
+		CAR1 A 0 A_JumpIf(user_luck <= 179, "RailGun")
+		CAR1 A 0 A_Jump(128, "SpawnKamikaze")
+		Goto SpawnFlyer
+	Check3:
+		CAR1 A 0 A_Jump(128,2)
+		CAR1 A 0 A_JumpIfInventory("Q2CarrierFlyerMag", 4, 1)
+		CAR1 A 0
+		Goto Check3_Flyer
+	Check3_Guns:
+		CAR1 A 0 A_SetUserVar("user_luck", CallACS("LuckJump"))
+		CAR1 A 0 A_JumpIf(user_luck <= 115, "MachineGun")
+		Goto Railgun
+	Check3_Flyer:
+		CAR1 A 0 A_SetUserVar("user_luck", CallACS("LuckJump"))
+		CAR1 A 0 A_JumpIf(user_luck <= 77, "MachineGun")
+		CAR1 A 0 A_JumpIf(user_luck <= 166, "RailGun")
+		CAR1 A 0 A_Jump(128, "SpawnKamikaze")
+		Goto SpawnFlyer
+	MachineGun:
+		CAR1 ABCDEFGHIJKLM 3 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("Infantry/Attack1")
+		TNT1 A 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 O 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 O 0 A_FaceTarget
+		CAR1 O 4 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 N 0 A_PlayWeaponSound("Infantry/Attack1")
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, 36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_SpawnItemEx("Q2BulletPuff", 60, -36, 64, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		CAR1 N 0 A_FaceTarget
+		CAR1 N 3 A_CustomBulletAttack(10,10,2,3,"Q2BulletPuff")
+		CAR1 NN 3 A_FaceTarget
+		CAR1 N 0 A_SpidRefire
+		CAR1 N 0 A_GiveInventory(Clip,1)
+		CAR1 N 0 A_JumpIfInventory(Clip,Random(3,5),1)
+		Goto Missile+13
+		CAR1 MLKJIHGFEDCBA 3
+		Goto See
+	Rockets:
+		CAR0 A 10
+		TNT1 A 0 A_PlayWeaponSound("Hornet/Rocket")
+		TNT1 A 0 A_CustomMissile(IronMaidenRocket,28,-6,angle+(-10+180),CMF_ABSOLUTEANGLE)
+		TNT1 A 0 A_CustomMissile(IronMaidenRocket,28,-2,angle+(-5+180),CMF_ABSOLUTEANGLE)
+		TNT1 A 0 A_CustomMissile(IronMaidenRocket,28,2,angle+(5+180),CMF_ABSOLUTEANGLE)
+		TNT1 A 0 A_CustomMissile(IronMaidenRocket,28,6,angle+(10+180),CMF_ABSOLUTEANGLE)
+		CAR0 A 25
+		Goto See
+	Grenades:
+		CAR2 ABCDEFGH 3 A_FaceTarget
+		CAR2 H 0 A_PlayWeaponSound("Gunner/Attack3")
+		CAR2 HHHH 3 A_FaceTarget
+		CAR2 H 0 A_CustomMissile(GunnerGrenade,80,24,random(-4,4))
+		CAR2 H 0 A_PlayWeaponSound("Gunner/Attack3")
+		CAR2 HHHH 3 A_FaceTarget
+		CAR2 H 0 A_CustomMissile(GunnerGrenade,80,28,random(-4,4))
+		CAR2 H 0 A_PlayWeaponSound("Gunner/Attack3")
+		CAR2 HHHH 3 A_FaceTarget
+		CAR2 H 0 A_CustomMissile(GunnerGrenade,80,32,random(-4,4))
+		CAR2 H 0 A_PlayWeaponSound("Gunner/Attack3")
+		CAR2 HHHH 3 A_FaceTarget
+		CAR2 H 0 A_CustomMissile(GunnerGrenade,80,36,random(-4,4))
+		CAR2 HH 5 A_FaceTarget
+		CAR2 IJKLMNOP 3 A_FaceTarget
+		Goto See
+	Railgun:
+		"----" A 0 A_PlayWeaponSound("Gladiator/Railgun")
+		"----" AAAAA 5 A_FaceTarget
+		CAR0 A 0 A_CustomRailgun(50,3,"2F 67 7F","White",RGF_FULLBRIGHT,1,0,"Q2RailgunPuff",0,0,8129,35,1,1,None,-4)
+		"----" AAAA 5 A_FaceTarget
+		CAR0 A 0 A_FaceTarget
+		Goto See
+	SpawnKamikaze:
+		CAR0 A 7
+		CAR0 A 0 A_CustomMissile("Q2FlyerKamiKaze", 3, 0, 0)
+		Goto See
+	SpawnFlyer:
+		CAR0 A 0 A_JumpIfInventory("Q2CarrierFlyerMag", 6, "SpawnKamikaze")
+		CAR0 A 7
+		CAR0 A 0 A_SpawnItemEx("Q2CarrierFlyerSpawner",64,0,35,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION)
+		CAR0 A 0 A_GiveInventory("Q2CarrierFlyerMag", 1)
+		Goto See
+	Pain:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_Pain
+		Goto See
+	Death:
+	XDeath:
+		"----" A 0 A_StopSound(CHAN_BODY)
+		"----" A 0 A_StopSound(CHAN_WEAPON)
+		"----" A 0 A_StopSound(CHAN_VOICE)
+		"----" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)				
+		"----" A 0 A_Gravity
+		"----" A 3 A_Scream
+		CAR4 A 0 A_SetShootable
+		CAR4 ABCDEFGHIJKLMNO 3
+		CAR4 P 50
+		TNT1 A 0 A_KillMaster
+		CAR4 PPPP 8 A_SpawnItemEx(MakronExplosion,Random2(Radius),Random2(Radius),Random(0,40),0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION)
+		CAR4 PPPP 4 A_SpawnItemEx(MakronExplosion,Random2(Radius),Random2(Radius),Random(0,40),0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION)
+		CAR4 PPPP 0 A_SpawnItemEx(MakronExplosion,Random2(Radius),Random2(Radius),Random(0,40),0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION)
+		CAR4 A 0 A_UnsetShootable
+		TNT1 A 0 A_Fall
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)		
+		TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx(Q2Gib,Random2(Radius),0,Random(0,80),2,0,Random(0,10),Random(1,360))
+		TNT1 A 5
+		Stop
+	Death.DukeIce:
+		"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+	Ice:
+	Death.HexenIce:
+	Death.WTMeleeIce:
+	Death.WTRangedIce:
+	Death.Ice:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_GenericFreezeDeath
+		"####" "#" 0 A_UnsetShootable
+		"####" "#" 140 A_UnsetSolid
+		"####" "#" 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+		"####" "##########################################################################################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+		"####" "#" 0 A_IceGuyDie
+		"####" "#" 1 A_IceGuyDie
+		TNT1 A 0 A_KillMaster
+		stop						
+	Pain.LifeLeech: 
+		TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
+		TNT1 A 0 A_GiveToTarget("HealthBonus", 1)
+		Goto Pain
+	Pain.Vodoo:
+		TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+		Goto Pain
+	Death.Vodoo:
+	Death.VoodooPuff:
+	Death.DynamiteCoop:
+	Death.Dynamite:
+	Death.LifeLeech:
+	Death.CalebNapalm:
+	Death.Shock:	  
+	Death.Vodoo:
+	Death.Tesla:
+	Death.CalebFire:	
+	Death.CalebBullet:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt3", 1)
+		Goto Death
+	Death.EradExplosive:
+	Death.EradNova:
+	Death.EradShock:
+	Death.EradExplosive2:	
+    Death.EradDisc:
+	Death.EradPiercingDart:
+	Death.EradGreenFire:
+	Death.EradCoopGreenFire:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
+		Goto Death
+	Death.DukeExplosive:
+	Death.DukeDamage:
+	Death.DukePistol:
+		TNT1 A 0 A_Jump(218,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		goto Death
+	Death.MightyBoot:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_Jump(64,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		goto Death
+	Death.PSRAPower:
+	Death.PSRAPowerCoop:
+	Death.PSExplosive:
+	Death.PSExplosiveCoop:
+	Death.PSBullet:
+	Death.PSFire:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		Goto Death
+	Death.LeonardDamage2:
+	Death.LeonardDamage3:
+	Death.LeonardDamage0:
+	Death.LeonardDamage1:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
+		Goto Death
+	Death.ZorchPistol:
+	Death.Zorch:
+	Death.ZorchKamikaze:
+	Death.PhasingZorch:
+	Death.ZorchSpectral:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_NoGravity		
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
+		"####" "#" 3 A_SpawnItem("ZorchEffectHuge")
+		"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_Scream
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 3 A_SetTranslucent(0.1,0)
+		TNT1 A 1 A_SetTranslucent(1,0)
+		TNT1 A -1 A_KillMaster
+		stop
+	Death.SWFist:
+	Death.SWKatana:
+	Death.SWShuriken:
+	Death.SWSticky:
+    Death.SWStickyCoop:	
+	Death.SWGrenade:
+	Death.SWNuke:
+	Death.SWRocket:
+	Death.SWRailgun:
+	Death.SWRailgunCoop:
+	Death.SWNukeCoop:
+	Death.SWFlame:
+	Death.SWFlame2:
+	Death.SWFlame2Coop:
+	Death.SWFlame3:	
+    Death.SWBullet:	  
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
+		goto Death
+	Death.RottDisintegrate:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_SpawnItem("RGodModeDeathHuge")
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		"####" "#" 0 A_KillMaster
+		stop
+	Disintegrate:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_Stop
+		"####" "#" 3 A_SpawnItem("DisintEffectHuge",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+        "####" "#" 0 A_KillMaster
+        stop
+	Death.Nuke:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoGravity		
+		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
+		"####" "#################" 3 A_Fadeout(0.05)
+		TNT1 A 0 A_KillMaster
+		stop		
+	}
+}
+
+Actor Q2CarrierFlyerSpawner
+{
+	Radius 32
+	Height 64
+	RenderStyle Translucent
+	Alpha 0.33
+	+ISMONSTER
+	-COUNTKILL
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_Playsound("MedicComm/Spawn")
+			GROW A 2
+			TNT1 A 0 A_SpawnItemEx("Q2Flyer_Carrier",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+			GROW BCD 2
+			stop
+	}
+}
+
+Actor Q2Flyer_Carrier : Q2Flyer
+{
+	+NOTARGETSWITCH
+	States
+	{
+		Death:
+		XDeath:
+			TNT1 A 0 A_TakeInventory("Q2CarrierFlyerMag", 1, AAPTR_Master)
+			Goto Super::XDeath
+		Death.RottDisintegrate:
+			TNT1 A 0 A_TakeInventory("Q2CarrierFlyerMag", 1, AAPTR_Master)
+			Goto Super::Death.RottDisintegrate
+		Disintegrate:
+			TNT1 A 0 A_TakeInventory("Q2CarrierFlyerMag", 1, AAPTR_Master)
+			Goto Super::Disintegrate
+		Death.Nuke:
+			TNT1 A 0 A_TakeInventory("Q2CarrierFlyerMag", 1, AAPTR_Master)
+			Goto Super::Death.Nuke
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			TNT1 A 0 A_TakeInventory("Q2CarrierFlyerMag", 1, AAPTR_Master)
+			Goto Super::Death.Zorch
+	}
+}
+
+Actor Q2FlyerKamikaze
+{
+	+NOGRAVITY 
+	+FLOAT 
+	+FLOATBOB 
+	+DONTFALL 
+	+DONTGIB
+	+SHOOTABLE
+	Projectile
+	Damage (50)
+	Speed 16
+	Health 20
+	States
+	{
+		Spawn:
+			FLR1 A 0 NoDelay A_PlaySound("Flyer/Fly",CHAN_BODY,0.5,1)
+			FLR4 ABCDEFGHI 5
+			loop
+		Death:
+		Crash:
+			FLR1 A 0 A_Scream
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_PlaySound("Q2Weapons/RocketExplosion",CHAN_BODY)
+			TNT1 A 5 A_SpawnItem(Q2Explosion)
+			Stop
+	}
+}
+
+Actor Q2CarrierFlyerMag : Inventory { INVENTORY.maxamount 6 }

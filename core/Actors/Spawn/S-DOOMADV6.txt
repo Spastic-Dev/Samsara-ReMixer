@@ -1,0 +1,624 @@
+ACTOR SpectreSpawnerCoop replaces Spectre
+{
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 ACS_ExecuteAlways(668,0,3,0)
+			TNT1 A 0 ACS_ExecuteAlways(668,0,2)			
+		Deciding:
+			TNT1 A 1
+			Loop			
+		SetDoom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("Spectre3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHeretic:
+			TNT1 A 0 A_Jump(256,"Heretic1","Heretic2","Heretic3")
+			Heretic1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic1")
+				TNT1 A 1 A_SpawnItemEx("KnightGhost3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+				Stop
+			Heretic2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic2")
+				TNT1 A 1 A_SpawnItemEx("MummyGhost3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+				Stop
+			Heretic3:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic3")
+				TNT1 A 1 A_SpawnItemEx("MummyLeaderGhost3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+				Stop
+		SetHexen:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 1 A_SpawnItemEx("Centaur3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetChex:
+			TNT1 A 0 A_Jump(256,"Chex1","Chex2")
+			Chex1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+				TNT1 A 1 A_SpawnItemEx("NewFlemoidusCycloptisCommonus",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+				Stop
+			Chex2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+				TNT1 A 1 A_SpawnItemEx("NewLarva",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+				Stop
+		SetWolf3D:
+			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
+			SODM1:
+				TNT1 A 0 A_Jump(256,"Wolf1")
+			SODM2:
+				TNT1 A 0 A_Jump(256,"Wolf2")
+			Wolf1:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+				TNT1 A 1 A_SpawnItemEx("WolfDogSpectre",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+				Stop
+			Wolf2:
+				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+				TNT1 A 1 A_SpawnItemEx("SODDogSpectre",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+				Stop
+		SetDuke3D:
+		    TNT1 A 0 A_Jump(214,"SetDuke3D_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			TNT1 A 1 A_SpawnItemEx("ProtectorDroneDoom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetDuke3D_2:
+		    TNT1 A 1 A_SpawnItemEx("Duke3D_Protozoid",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetMarathon:
+			TNT1 A 0 A_Jump(32,"SetMarathon3")
+			TNT1 A 0 A_Jump(40,"SetMarathon2")		
+			TNT1 A 1 A_SpawnItemEx("WaterFlicktaSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetMarathon2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplymarathon2")
+			TNT1 A 1 A_SpawnItemEx("MLooker2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetMarathon3:
+			TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(680,7) == 0, 5)
+			TNT1 A 1 A_Jump(200,4)
+			TNT1 A 1 A_Jump(200,3)
+			TNT1 A 1 A_Jump(200,2)		
+			TNT1 A 1 A_SpawnItemEx("DrinniolMajorSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+			TNT1 A 1 A_SpawnItemEx("DrinniolMinorSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetBStone:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplybstone")
+			TNT1 A 1 A_SpawnItemEx("MutantGreen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetRoTT:
+			TNT1 A 0 A_Jump(5, "SetRott3")
+			TNT1 A 0 A_Jump(64, "SetRoTT2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrott1")
+			TNT1 A 1 A_SpawnItemEx("LightningGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetRoTT2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrott2")
+			TNT1 A 1 A_SpawnItemEx("HeavyGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetRoTT3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrott3")
+			TNT1 A 1 A_SpawnItemEx("MonkDrain_Weak", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetRR:
+			TNT1 A 0 A_Jump(200,"SetRR_3","SetRR_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrr1")
+			TNT1 A 1 A_SpawnItemEx("GuardDog", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetRR_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrr2")
+			TNT1 A 1 A_SpawnItemEx("Jackelope", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetRR_3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrr3")
+			TNT1 A 1 A_SpawnItemEx("Alligator", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetErad:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyerad")
+			TNT1 A 1 A_SpawnItemEx("BoonBitter", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetStrife:
+			TNT1 A 0 A_Jump(128,"SetStrife2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplystrife")
+			TNT1 A 1 A_SpawnItemEx("ShadowStalker", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetStrife2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplystrife2")
+			TNT1 A 1 A_SpawnItemEx("ShadowStalkerCeiling", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetDarkF:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplydarkf")
+			TNT1 A 1 A_SpawnItemEx("gamorrean_guard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetCM:
+			TNT1 A 0 A_Jump(96,"SetCM_8")
+			TNT1 A 0 A_Jump(128,"SetCM_6","SetCM_7")
+			TNT1 A 0 A_Jump(200,"SetCM_2","SetCM_3")
+			TNT1 A 0 A_Jump(256,"SetCM_4","SetCM_5")
+		SetCM_2:	
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplycm1")
+			TNT1 A 1 A_SpawnItemEx("CMSlugg", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetCM_3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplycm2")
+			TNT1 A 1 A_SpawnItemEx("Ghoulie", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetCM_4:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplycm3")
+			TNT1 A 1 A_SpawnItemEx("GangerMale", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetCM_5:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplycm4")
+			TNT1 A 1 A_SpawnItemEx("GangerFemale", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetCM_6:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplycm5")
+			TNT1 A 1 A_SpawnItemEx("CMGenno", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetCM_7:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplycm6")
+			TNT1 A 1 A_SpawnItemEx("WildMung", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetCM_8:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplycm7")
+			TNT1 A 1 A_SpawnItemEx("CMHellspider", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetC7:
+			TNT1 A 0 A_Jump(96,"SetC7_2","SetC7_3")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc71")
+			TNT1 A 1 A_SpawnItemEx("Semaj", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetC7_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc72")
+			TNT1 A 1 A_SpawnItemEx("Ailoprobe", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetC7_3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc73")
+			TNT1 A 1 A_SpawnItemEx("Eniram", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)			
+			Stop
+		SetSW:
+			TNT1 A 0 A_Jump(12,"SetSW3")
+			TNT1 A 0 A_Jump(128,"SetSW2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplysw1")
+			TNT1 A 1 A_SpawnItemEx("Coolie", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetSW2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplysw2")
+			TNT1 A 1 A_SpawnItemEx("SWRipperBaby", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetSW3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplysw3")
+			TNT1 A 1 A_SpawnItemEx("SWRipper", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetBlood:
+			TNT1 A 0 A_Jump(64,"SetBlood6")
+			TNT1 A 0 A_Jump(96,"SetBlood2","SetBlood3","SetBlood4","SetBlood5")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyblood1")
+			TNT1 A 1 A_SpawnItemEx("AxeZombie", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetBlood2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyblood2")
+			TNT1 A 1 A_SpawnItemEx("Hellhound", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop		
+		SetBlood3:
+			TNT1 A 1 A_SpawnItemEx("ChokingHand", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetBlood4:
+			TNT1 A 1 A_SpawnItemEx("GillBeast", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetBlood5:
+			TNT1 A 1 A_SpawnItemEx("AxeZombieBuried", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetBlood6:
+			TNT1 A 1 A_SpawnItemEx("BloodRat", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetRmr:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrmr")
+			TNT1 A 1 A_SpawnItemEx("BabyEstronBeast", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetExhumed:
+			TNT1 A 0 A_Jump(72,"SetExhumed2","SetExhumed3")		
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyexhumed1")
+			TNT1 A 1 A_SpawnItemEx("Bastet", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetExhumed2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyexhumed2")
+			TNT1 A 1 A_SpawnItemEx("Bluescorpion", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetExhumed3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyexhumed3")
+			TNT1 A 1 A_SpawnItemEx("RedMite", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetIPOG:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyipog")
+			TNT1 A 1 A_SpawnItemEx("IPOGBerserker", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch:
+			TNT1 A 0 A_Jump(128,"SetWitch2","SetWitch3","SetWitch8","SetWitch11","SetWitch10","SetWitch14","SetWitch15")
+			TNT1 A 0 A_Jump(96,"SetWitch5","SetWitch6","SetWitch7","SetWitch12")
+			TNT1 A 0 A_Jump(64,"SetWitch4","SetWitch9","SetWitch13","SetWitch16")			
+			TNT1 A 1 A_SpawnItemEx("WTRedMidianWarriorSword", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetWitch2:
+			TNT1 A 1 A_SpawnItemEx("WTBrownMidianWarriorSword", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch3:
+			TNT1 A 1 A_SpawnItemEx("WTBlueMidianWarriorSword", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch4:
+			TNT1 A 1 A_SpawnItemEx("WTPurpleMidianWarriorSword", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch5:
+			TNT1 A 1 A_SpawnItemEx("RedOgre", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetWitch6:
+			TNT1 A 1 A_SpawnItemEx("DesertGoblin", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch7:
+			TNT1 A 1 A_SpawnItemEx("WTArgothonianSword", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop	
+		SetWitch8:
+			TNT1 A 1 A_SpawnItemEx("WTArgothonianFist", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetWitch9:
+			TNT1 A 1 A_SpawnItemEx("WTCiraenSentinelMorningStar", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch10:
+			TNT1 A 1 A_SpawnItemEx("WTCiraenSentinelFists", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetWitch11:
+			TNT1 A 1 A_SpawnItemEx("WitchavenSpider", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch12:
+			TNT1 A 1 A_SpawnItemEx("WitchavenIMP", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch13:
+			TNT1 A 1 A_SpawnItemEx("WitchavenBrute", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetWitch14:
+			TNT1 A 1 A_SpawnItemEx("WitchavenShadowHound", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop			
+		SetWitch15:
+			TNT1 A 1 A_SpawnItemEx("WTGiryonKnight2HSword",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)			
+			stop			
+		SetWitch16:
+			TNT1 A 1 A_SpawnItemEx("MinoDrake",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)			
+			stop			
+		SetDisrup:
+			TNT1 A 0 A_Jump(128,"SetDisrup2")
+			TNT1 A 0 A_Jump(64,"SetDisrup3")
+			TNT1 A 1 A_SpawnItemEx("DsrptSawRobot", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetDisrup2:
+			TNT1 A 1 A_SpawnItemEx("DisruptorNightmareSpider", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetDisrup3:
+			TNT1 A 1 A_SpawnItemEx("DsrptPsionicSpikeBall", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake1:
+			TNT1 A 0 A_Jump(128,"SetQuake1_2","SetQuake1_3","SetQuake1_4","SetQuake1_5","SetQuake1_6","SetQuake1_7","SetQuake1_8","SetQuake1_9")
+			TNT1 A 1 A_SpawnItemEx("QGremlin", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop	
+		SetQuake1_2:
+			TNT1 A 1 A_SpawnItemEx("QKnight", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop	
+		SetQuake1_3:
+			TNT1 A 1 A_SpawnItemEx("QKStatue1", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop	
+		SetQuake1_4:
+			TNT1 A 1 A_SpawnItemEx("Rottweiler", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop		
+		SetQuake1_5:
+			TNT1 A 1 A_SpawnItemEx("Quake_Spawn", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop		
+		SetQuake1_6:
+			TNT1 A 1 A_SpawnItemEx("Quake_HellSpawn", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake1_7:
+			TNT1 A 1 A_SpawnItemEx("Quake_HellSpawn_2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake1_8:
+			TNT1 A 1 A_SpawnItemEx("QFiend", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake1_9:
+			TNT1 A 1 A_SpawnItemEx("QPhantomSwordsman", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetDoom64:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom64")
+			TNT1 A 1 A_SpawnItemEx("Spectre64", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHL:
+			TNT1 A 0 A_Jump(96,"SetHL2","SetHL3")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
+			TNT1 A 1 A_SpawnItemEx("Bullsquid", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHL2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
+			TNT1 A 1 A_SpawnItemEx("Gonome", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHL3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
+			TNT1 A 1 A_SpawnItemEx("HLPitdrone", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake2:
+			TNT1 A 0 A_Jump(248,"SetQuake2_2","SetQuake2_3","SetQuake2_4")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
+			TNT1 A 1 A_SpawnItemEx("Q2Mutant",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake2_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_2")
+			TNT1 A 1 A_SpawnItemEx("Q2Brain",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake2_3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_3")
+			TNT1 A 1 A_SpawnItemEx("Q2Parasite",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetQuake2_4:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_4")
+			TNT1 A 1 A_SpawnItemEx("Q2Gekk",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetNull:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		MultiplyDoom:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSpectre3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			Stop
+		MultiplyHeretic1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiKnightGhost3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic1")
+			Stop
+		MultiplyHeretic2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMummyGhost3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic2")
+			Stop
+		MultiplyHeretic3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMummyLeaderGhost3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic3")
+			Stop
+		MultiplyHexen:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiCentaur3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop
+		MultiplyChex1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewFlemoidusCycloptisCommonus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex1")
+			Stop
+		MultiplyChex2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiNewLarva",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex2")
+			Stop
+		MultiplyWolf1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWolfDogSpectre",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
+			Stop
+		MultiplyWolf2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSODDogSpectre",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
+			Stop
+		MultiplyDuke3D:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSpectreDrone",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
+			Stop
+		MultiplyMarathon2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMLooker",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMarathon2")
+			Stop
+		MultiplyMarathon3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDrinniolMinor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyMarathon3")
+			Stop
+		MultiplyBStone:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMutantGreen",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBStone1")
+			Stop
+		MultiplyRoTT1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("Multilightningguard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRott1")
+			Stop
+		MultiplyRoTT2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("Multiheavyguard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRott2")
+			Stop
+		MultiplyRoTT3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiMonkDrain_Weak",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRott3")
+			Stop				
+		MultiplyRR1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiGuardDog",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRR1")
+			Stop
+		MultiplyRR2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("Multijackelope",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRR2")
+			Stop
+		MultiplyRR3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("Multialligator",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRR3")
+			Stop
+		MultiplyErad:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBoonBitter",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyErad")
+			Stop
+		MultiplyStrife:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiShadowStalker",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyStrife")
+			Stop
+		MultiplyStrife2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiShadowStalkerCeiling",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyStrife2")
+			Stop
+		MultiplyDarkF:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multigamorrean_guard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDarkF")
+			Stop
+		MultiplyCM1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiCMSlugg",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM1")
+			Stop
+		MultiplyCM2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multighoulie",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM2")
+			Stop
+		MultiplyCM3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multigangermale",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM3")
+			Stop
+		MultiplyCM4:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multigangerfemale",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM4")
+			Stop
+		MultiplyCM5:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiCMGenno",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM5")
+			Stop
+		MultiplyCM6:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiwildmung",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM6")
+			Stop
+		MultiplyCM7:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multicmhellspider",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM7")
+			Stop
+		MultiplyC71:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiSemaj",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC71")
+			Stop
+		MultiplyC72:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiailoprobe",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC72")
+			Stop
+		MultiplyC73:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multieniram",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC73")
+			Stop
+		MultiplySW1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multicoolie",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW1")
+			Stop
+		MultiplySW2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiswripperbaby",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW2")
+			Stop
+		MultiplySW3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiswripper",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW3")
+			Stop
+		MultiplyBlood1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiaxezombie",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBlood1")
+			Stop
+		MultiplyBlood2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multihellhound",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBlood2")
+			Stop
+		MultiplyRmr:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multibabyestronbeast",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRMR")
+			Stop
+		MultiplyExhumed1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiBastet",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyExhumed1")
+			Stop
+		MultiplyExhumed2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multibluescorpion",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyExhumed2")
+			Stop
+		MultiplyExhumed3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("multiredmite",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyExhumed3")
+			Stop
+		MultiplyIPOG:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiIPOGBerserker",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG")
+			Stop
+		MultiplyDoom64:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiSpectre64",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom64")
+			Stop
+		MultiplyHL:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBullsquid",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
+			Stop
+		MultiplyHL2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiGonome",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
+			Stop
+		MultiplyHL3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHLPitdrone",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL3")
+			Stop
+		MultiplyQuake2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiQ2Mutant", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
+			Stop
+		MultiplyQuake2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiQ2Brain", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_2")
+			Stop
+		MultiplyQuake2_3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiQ2Parasite", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_3")
+			Stop
+		MultiplyQuake2_4:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiQ2Gekk", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_4")
+			Stop
+		MultiplyNull:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiBerzerkRobotYellow",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Stop
+	}
+}

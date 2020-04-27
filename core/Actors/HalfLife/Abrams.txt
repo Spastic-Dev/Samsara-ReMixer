@@ -1,0 +1,745 @@
+Actor HLAbrams 
+{
+	Health 640
+	Radius 48
+	Height 48
+	Mass 6000
+	Speed 2
+	Monster
+	Scale .5
+	PainChance 25
+	SeeSound ""
+	ActiveSound ""
+	PainSound ""
+	DeathSound ""
+	Tag "M1A1 Abrams"
+	+QUICKTORETALIATE
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOBLOOD
+	DamageFactor "CorvusCrossbow", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonFusion", 2.0
+	DamageFactor "WMCNade", 0.75
+	DamageFactor "CorvusHellstaffTomed", 0.2
+    DamageFactor "Mace", 1.3
+	DamageFactor "BJSpear", 0.4	
+	DamageFactor "DCannonProj", 0.8	
+	DamageFactor "Tesla", 0.7
+	DamageFactor "Shock", 0.3
+	DamageFactor "LifeLeech", 0.7
+	DamageFactor "Vodoo", 0.1
+	DamageFactor "DisruptorWall", 0.5
+	DamageFactor "EradNova", 0.3
+    DamageFactor "EradGreenFire", 0.1
+    DamageFactor "EradCoopGreenFire", 0.1
+	DamageFactor "RottFire", 0.7
+	DamageFactor "HLLaser", 0.
+	DamageFactor "WTRangedFire", 0.5
+	DamageFactor "Nuke", 0.2
+	DamageFactor "SWNuke", 0.2
+	DamageFactor "SWNukeCoop", 0.2
+	DamageFactor "SWFlame", 0.2
+	DamageFactor "SWFlameCoop", 0.2
+	DamageFactor "SWFlame2", 0.1	
+	DamageFactor "SWFlame2Coop", 0.1
+	DamageFactor "SWFlame3", 0.7
+    DamageFactor "RMR-BigPlasma", 0.3		
+	DamageFactor "CMDMGSHIT", 0.7
+	DamageFactor "Disintegrate", 0.4	
+	DamageFactor "C7Disintegrate", 0.3	
+	DamageFactor "TankCrush", 0.0
+	PainChance "ShrinkerDMG", 0
+	States {
+		Spawn:
+			HL00 B 0
+			HL00 B 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			HL00 B 1 ACS_ExecuteAlways(668,0,1,0)
+			HL00 B 0 A_GiveInventory("AlreadySpawned",1)
+			HL00 B 0 A_JumpIfInventory("InvisibleToken",1,2)
+			HL00 B 0 A_Jump(256,2)
+			HL00 B 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
+			TNT1 A 0
+			TNT1 A 0 A_Playsound("Abrams/Idle",CHAN_5,1.0,true)
+			goto SpawnLoop
+		SpawnLoop:
+			HL00 B 1 A_Look
+			Loop	
+		TurretRemoval:
+			TNT1 A 0 A_TakeInventory("HLAbramsNoTarget",1)
+			TNT1 A 0 A_RemoveChildren
+			goto See
+		See:
+			TNT1 A 0 A_StopSound(CHAN_5)
+		SeeLoop:	
+			TNT1 A 0 A_Playsound("Abrams/Move",CHAN_5)
+			HL00 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_Chase("","")
+			HL00 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_Chase
+			TNT1 A 0 A_TakeInventory("HLAbramsNoTarget",1)
+			TNT1 A 0 A_SpawnItemEx("AbramsCrush",0,0,0,0,0,0,0,SXF_SETMASTER)
+			Loop
+		Missile:
+			TNT1 A 0 A_Playsound("Abrams/Idle",CHAN_5,1.0,true)
+			TNT1 A 0 A_SpawnItemEx("AbramsTop",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+			TNT1 A 0 A_JumpIfInventory("HLAbramsNoTarget",1,"TurretRemoval")	
+			HL00 A 10
+			Goto Missile+2
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_StopSound(CHAN_5)
+			TNT1 A 0 A_RemoveChildren(TRUE)
+			HL00 C 1
+			HL00 CCC 7 A_SpawnItemEx("HLMegaExplosionBoomDamage",random(-24,24),random(-24,24),0,0,0,0,0,SXF_NOCHECKPOSITION)
+			HL00 C 100
+			HL00 CCCCCCC 6 A_SpawnItemEx("HLMegaExplosionBoomDamage",random(-48,48),random(-16,16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+			stop
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathWide")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			"####" "#" 0 A_KillMaster
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectSmallWide",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			"####" "#" 0 A_KillMaster
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathWide")
+			"####" "#################" 3 A_Fadeout(0.05)
+			TNT1 A 0 A_KillMaster
+			stop
+		Death.DukeIce:
+			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
+			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
+			"####" "#" 0 A_Jump(218,"Ice")
+			"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.Ice:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
+			"####" "#" 0 A_GenericFreezeDeath
+			"####" "#" 70 A_UnsetSolid
+			"####" "#" 0 A_IceGuyDie
+			"####" "#" 1 A_IceGuyDie
+			TNT1 A 0
+			stop	
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectWide")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_Scream
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+		Death.Vodoo:
+		Death.VoodooPuff:
+		Death.DynamiteCoop:
+		Death.Dynamite:
+		Death.CalebNapalm:
+		Death.Shock:	  
+		Death.Vodoo:
+			TNT1 A 0 A_JumpIfHealthLower(-20,"XDeathForCaleb")
+		Death.Tesla:
+		Death.CalebBullet:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+			Goto Death
+		XDeathForCaleb:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
+			Goto XDeath		
+		Death.EradExplosive:
+		Death.EradNova:
+		Death.EradShock:
+		Death.EradExplosive2:	
+		Death.EradDisc:
+		Death.EradPiercingDart:
+		Death.EradGreenFire:
+		Death.EradCoopGreenFire:
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1", 1)
+			Goto Death
+		Death.DukeExplosive:
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeRobotKill",1)
+			Goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			Goto Death
+		Death.PSRAPower:
+		Death.PSRAPowerCoop:
+		Death.PSExplosive:
+		Death.PSExplosiveCoop:
+			TNT1 A 0 A_JumpIfHealthLower(-30, "XDeathForJon")
+		Death.PSBullet:
+		Death.PSFire:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+			Goto Death
+		XDeathForJon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
+			Goto XDeath		
+		Death.LeonardDamage2:
+		Death.LeonardDamage3:
+			TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
+		Death.LeonardDamage0:
+		Death.LeonardDamage1:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
+			Goto Death
+		XDeathForLeonard:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
+			Goto XDeath		
+		Death.SWFist:
+		Death.SWKatana:
+		Death.SWShuriken:
+		Death.SWSticky:
+		Death.SWStickyCoop:		
+		Death.SWGrenade:
+		Death.SWNuke:
+		Death.SWRocket:
+		Death.SWRailgun:
+		Death.SWRailgunCoop:
+		Death.SWNukeCoop:
+		Death.SWFlame:
+		Death.SWFlame2:
+		Death.SWFlame2Coop:
+		Death.SWFlame3:	
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathForWang")
+		Death.SWBullet:	  
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			Goto Death
+		XDeathForWang:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(218, "XDeath")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
+			Goto XDeath	
+	}
+}
+
+Actor AbramsTop
+{
+	Height 56
+	Radius 32
+	Scale .5
+	Monster
+	Species "HLAbrams"
+	+NOBLOOD
+	-COUNTKILL
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	-SOLID
+	+THRUACTORS
+	+NODAMAGETHRUST
+	+NODAMAGE
+	Mass 1500
+	var int user_oldangle;
+	var int user_oldpitch;
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_Playsound("abrams/rotate",CHAN_7,1.0,true)
+			HL00 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_FaceTarget(90)
+			TNT1 A 0 A_JumpIfTargetinLOS(4,90,JLOSF_DEADNOJUMP)
+			TNT1 A 0 A_GiveInventory("HLAbramsNoTarget",1,AAPTR_MASTER)
+			TNT1 A 0 A_StopSound(CHAN_7)
+			HL00 A 10
+			stop
+			TNT1 A 0 A_SetUserVar("user_oldangle", angle)
+			TNT1 A 0 A_SetUserVar("user_oldpitch", pitch)
+			TNT1 A 0 A_StopSound(CHAN_7)
+			HL00 A 7
+			TNT1 A 0 A_CustomMissile("HLAbramsRocket",32,-8,user_oldangle,CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH,user_oldpitch)
+			HL00 A 10
+			loop
+		Death:
+			TNT1 A 0 A_StopSound(CHAN_7)		
+			TNT1 A 5 A_FadeOut
+			Stop			
+	}
+}
+
+Actor HLAbramsGun 
+{
+	Health 640
+	Radius 48
+	Height 48
+	Mass 6000
+	Speed 2
+	Monster
+	Scale .5
+	PainChance 25
+	SeeSound ""
+	ActiveSound ""
+	PainSound ""
+	DeathSound ""
+	Tag "M1A1 Abrams"
+	+QUICKTORETALIATE
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOBLOOD
+	DamageFactor "CorvusCrossbow", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonFusion", 2.0
+	DamageFactor "WMCNade", 0.75
+	DamageFactor "CorvusHellstaffTomed", 0.2
+    DamageFactor "Mace", 1.3
+	DamageFactor "BJSpear", 0.4	
+	DamageFactor "DCannonProj", 0.8	
+	DamageFactor "Tesla", 0.7
+	DamageFactor "Shock", 0.3
+	DamageFactor "LifeLeech", 0.7
+	DamageFactor "Vodoo", 0.1
+	DamageFactor "DisruptorWall", 0.5
+	DamageFactor "EradNova", 0.3
+    DamageFactor "EradGreenFire", 0.1
+    DamageFactor "EradCoopGreenFire", 0.1
+	DamageFactor "RottFire", 0.7
+	DamageFactor "HLLaser", 0.
+	DamageFactor "WTRangedFire", 0.5
+	DamageFactor "Nuke", 0.2
+	DamageFactor "SWNuke", 0.2
+	DamageFactor "SWNukeCoop", 0.2
+	DamageFactor "SWFlame", 0.2
+	DamageFactor "SWFlameCoop", 0.2
+	DamageFactor "SWFlame2", 0.1	
+	DamageFactor "SWFlame2Coop", 0.1
+	DamageFactor "SWFlame3", 0.7
+    DamageFactor "RMR-BigPlasma", 0.3		
+	DamageFactor "CMDMGSHIT", 0.7
+	DamageFactor "Disintegrate", 0.4	
+	DamageFactor "C7Disintegrate", 0.3	
+	DamageFactor "TankCrush", 0.0	
+	PainChance "ShrinkerDMG", 0
+	States {
+		Spawn:
+			HL00 B 0
+			HL00 B 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			HL00 B 1 ACS_ExecuteAlways(668,0,1,0)
+			HL00 B 0 A_GiveInventory("AlreadySpawned",1)
+			HL00 B 0 A_JumpIfInventory("InvisibleToken",1,2)
+			HL00 B 0 A_Jump(256,2)
+			HL00 B 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
+			TNT1 A 0
+			TNT1 A 0 A_Playsound("Abrams/Idle",CHAN_5,1.0,true)
+			goto SpawnLoop
+		SpawnLoop:
+			HL00 B 1 A_Look
+			Loop
+		TurretRemoval:
+			TNT1 A 0 A_TakeInventory("HLAbramsNoTarget",1)
+			TNT1 A 0 A_RemoveChildren
+			goto See
+		See:
+			TNT1 A 0 A_StopSound(CHAN_5)
+			TNT1 A 0 A_Playsound("Abrams/Move",CHAN_5)
+			HL00 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_Chase("","")
+			HL00 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_Chase
+			TNT1 A 0 A_TakeInventory("HLAbramsNoTarget",1)
+			TNT1 A 0 A_SpawnItemEx("AbramsCrush",0,0,0,0,0,0,0,SXF_SETMASTER)
+			Loop
+		Missile:
+			TNT1 A 0 A_Playsound("Abrams/Idle",CHAN_5,1.0,true)
+			TNT1 A 0 A_SpawnItemEx("AbramsTopGun",64,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+			TNT1 A 0 A_JumpIfInventory("HLAbramsNoTarget",1,"TurretRemoval")	
+			HL00 A 10
+			Goto Missile+2
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_StopSound(CHAN_5)
+			TNT1 A 0 A_RemoveChildren(TRUE)
+			HL00 C 1
+			HL00 CCC 7 A_SpawnItemEx("HLMegaExplosionBoomDamage",random(-24,24),random(-24,24),0,0,0,0,0,SXF_NOCHECKPOSITION)
+			HL00 C 100
+			HL00 CCCCCCC 6 A_SpawnItemEx("HLMegaExplosionBoomDamage",random(-48,48),random(-16,16),0,0,0,0,0,SXF_NOCHECKPOSITION)
+			stop
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathWide")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			"####" "#" 0 A_KillMaster
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectSmallWide",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			"####" "#" 0 A_KillMaster
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathWide")
+			"####" "#################" 3 A_Fadeout(0.05)
+			TNT1 A 0 A_KillMaster
+			stop
+		Death.DukeIce:
+			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
+			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
+			"####" "#" 0 A_Jump(218,"Ice")
+			"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.Ice:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
+			"####" "#" 0 A_GenericFreezeDeath
+			"####" "#" 70 A_UnsetSolid
+			"####" "#" 0 A_IceGuyDie
+			"####" "#" 1 A_IceGuyDie
+			TNT1 A 0
+			stop	
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectWide")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_Scream
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+		Death.Vodoo:
+		Death.VoodooPuff:
+		Death.DynamiteCoop:
+		Death.Dynamite:
+		Death.CalebNapalm:
+		Death.Shock:	  
+		Death.Vodoo:
+			TNT1 A 0 A_JumpIfHealthLower(-20,"XDeathForCaleb")
+		Death.Tesla:
+		Death.CalebBullet:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+			Goto Death
+		XDeathForCaleb:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
+			Goto XDeath		
+		Death.EradExplosive:
+		Death.EradNova:
+		Death.EradShock:
+		Death.EradExplosive2:	
+		Death.EradDisc:
+		Death.EradPiercingDart:
+		Death.EradGreenFire:
+		Death.EradCoopGreenFire:
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1", 1)
+			Goto Death
+		Death.DukeExplosive:
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeRobotKill",1)
+			Goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			Goto Death
+		Death.PSRAPower:
+		Death.PSRAPowerCoop:
+		Death.PSExplosive:
+		Death.PSExplosiveCoop:
+			TNT1 A 0 A_JumpIfHealthLower(-30, "XDeathForJon")
+		Death.PSBullet:
+		Death.PSFire:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+			Goto Death
+		XDeathForJon:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
+			Goto XDeath		
+		Death.LeonardDamage2:
+		Death.LeonardDamage3:
+			TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
+		Death.LeonardDamage0:
+		Death.LeonardDamage1:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
+			Goto Death
+		XDeathForLeonard:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
+			Goto XDeath		
+		Death.SWFist:
+		Death.SWKatana:
+		Death.SWShuriken:
+		Death.SWSticky:
+		Death.SWStickyCoop:		
+		Death.SWGrenade:
+		Death.SWNuke:
+		Death.SWRocket:
+		Death.SWRailgun:
+		Death.SWRailgunCoop:
+		Death.SWNukeCoop:
+		Death.SWFlame:
+		Death.SWFlame2:
+		Death.SWFlame2Coop:
+		Death.SWFlame3:	
+			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathForWang")
+		Death.SWBullet:	  
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			Goto Death
+		XDeathForWang:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(218, "XDeath")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
+			Goto XDeath	
+	}
+}
+
+Actor AbramsTopGun
+{
+	Height 32
+	Radius 8
+	Scale .5
+	Monster
+	Species "HLAbramsGun"
+	+NOBLOOD
+	-COUNTKILL
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	-SOLID
+	+THRUACTORS
+	+NODAMAGETHRUST
+	+NODAMAGE
+	Mass 1500
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_Playsound("abrams/rotate",CHAN_7,1.0,true)
+			HL00 AAAAA 2 A_FaceTarget(90)
+			TNT1 A 0 A_JumpIfTargetinLOS(4,90,JLOSF_DEADNOJUMP)
+			TNT1 A 0 A_GiveInventory("HLAbramsNoTarget",1,AAPTR_MASTER)
+			TNT1 A 0 A_StopSound(CHAN_7)
+			HL00 A 10
+			stop
+			TNT1 A 0 A_StopSound(CHAN_7)
+			TNT1 A 0 A_Playsound("slv_shoot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("HLBullet_Abrams",24,0,frandom(-2.50,2.50),CMF_OFFSETPITCH,frandom(-2.00,2.00))
+			HL00 A 2
+			loop
+		Death:
+			TNT1 A 0 A_StopSound(CHAN_7)		
+			TNT1 A 5 A_FadeOut
+			Stop			
+	}
+}
+Actor HLAbramsNoTarget : Inventory { Inventory.Maxamount 1 }
+
+Actor HLBullet_Abrams : HLBullet
+{
+	Damage (random(1,4))
+	Species "HLAbramsGun"
+	+THRUSPECIES
+}
+
+Actor HLAbramsRocket : HLRPGRocket2
+{
+	Damage (random(15,40))
+	Species "HLAbrams"
+	+THRUSPECIES
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("halflife/rpg_rockstart",CHAN_BODY)
+		goto SpawnStart
+	SpawnStart:
+		TNT1 A 0 A_JumpIfInventory("HLRPGStartCounter",18,"SpawnLoop")
+		TNT1 A 0 A_ScaleVelocity(1.10)
+		TNT1 A 0 A_GiveInventory("HLRPGStartCounter",1)
+		TNT1 A 0 A_SpawnItemEx("HLRPGFlare",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+		HP50 A 1 bright A_SpawnItemEx("HLRPGSmoke",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+		TNT1 A 0 A_SpawnItemEx("HLRPGFlare",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+		HP50 A 1 bright A_SpawnItemEx("HLRPGSmoke",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+		loop 
+	SpawnLoop:
+		TNT1 A 0 A_PlaySound("halflife/rpg_rockloop",CHAN_BODY,1.0,1) //A_LoopActiveSound
+		TNT1 A 0 A_SpawnItemEx("HLRPGFlare",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+		HP50 A 1 bright A_SpawnItemEx("HLRPGSmoke",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_TRANSFERPITCH)
+		goto SpawnLoop+1
+	Death:
+		TNT1 A 0 A_PlaySound("halflife/mp5_grenadehit",CHAN_BODY,1.0,0) //A_StopSound
+		TNT1 A 0 A_Explode(random(35,60),Random(80,126))
+		TNT1 A 5 A_SpawnItemEx("HLMegaExplosionBoom",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+		stop
+	}
+}
+
+Actor AbramsCrush
+{
+	DamageType "TankCrush"
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 A_Explode(8,16,0,false,16)
+			stop
+	}
+}

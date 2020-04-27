@@ -1,0 +1,482 @@
+Actor GorBoss
+{
+	Health 6000
+	Monster
+	Radius 40
+	Height 110
+	Mass 5000
+	Speed 13
+	PainChance 15
+	+BOSS
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NORADIUSDMG
+	+DONTMORPH
+	+EXTREMEDEATH
+	+FLOORCLIP
+	+DONTGIB	
+	+BOSSDEATH
+	+DONTRIP	
+	+NOGRAVITY
+	+SPAWNFLOAT	
+	+FLOAT
+	Tag "G'or"			
+	FloatSpeed 20
+	XScale 0.80
+	YScale 0.65
+	Species "Enemies"
+	MeleeRange 150
+	SeeSound "gor/see"
+	ActiveSound "gor/see"
+	PainSound "gor/pain"
+	DeathSound "gor/die"
+	Obituary "%o couldnt escape from G'or."
+	HitObituary "%o was pierced by G'or's tail."
+    DamageFactor "Mace", 1.2
+	DamageFactor "CorvusHellstaffTomed", 0.12	
+    DamageFactor "CorvusCrossbow", 1.1	
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 1.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+	DamageFactor "MarathonFusion", 1.2	
+    DamageFactor "WMCNade", 0.7
+    DamageFactor "BJSpear", 0.3	
+	DamageFactor "DCannonProj", 0.75	
+	DamageFactor "LifeLeech", 0.7	
+	DamageFactor "CalebFire", 0.8
+	DamageFactor "Vodoo", 0.1
+	DamageFactor "DisruptorWall", 0.4
+	DamageFactor "EradNova", 0.3
+    DamageFactor "EradGreenFire", 0.1
+    DamageFactor "EradCoopGreenFire", 0.1
+	DamageFactor "RottFire", 0.6	
+	DamageFactor "WTRangedFire", 0.6	
+	DamageFactor "Nuke", 0.6
+	DamageFactor "SWNuke", 0.7
+	DamageFactor "SWNukeCoop", 0.7
+	DamageFactor "SWFlame", 0.1
+	DamageFactor "SWFlameCoop", 0.1	
+	DamageFactor "SWFlame2", 0.2	
+	DamageFactor "SWFlame2Coop", 0.2
+	DamageFactor "SWFlame3", 0.8
+    DamageFactor "RMR-BigPlasma", 0.5
+	DamageFactor "CMDMGSHIT", 0.7	
+	DamageFactor "Disintegrate", 0.6
+	DamageFactor "C7Disintegrate", 0.5
+	PainChance "ShrinkerDMG", 0
+	States
+	{
+		Spawn:
+			GORZ A 0
+			GORZ A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			GORZ A 1 ACS_ExecuteAlways(668,0,1,0)
+			GORZ A 0 A_GiveInventory("AlreadySpawned",1)
+			GORZ A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			GORZ A 0 A_Jump(256,2)
+			GORZ A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
+			TNT1 A 0
+			TNT1 A 0 A_StopSound(CHAN_BODY)
+		SpawnLoop:	
+			GORZ A 5 A_Look	
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "See2")
+			TNT1 A 0 A_GiveInventory("SawPlayer", 1)
+			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+		See2:
+			TNT1 A 0 A_PlaySound("gor/move",CHAN_BODY,0.8,1,ATTN_NORM)
+		SeeLoop:	
+			GORZ BB 2 A_Chase("","")
+			GORZ CC 2 A_Chase("Melee","Missile",CHF_FASTCHASE|CHF_NOPLAYACTIVE)
+			GORZ DD 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			GORZ EE 2 A_Chase("Melee","Missile",CHF_FASTCHASE|CHF_NOPLAYACTIVE)
+			GORZ FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			GORZ GG 2 A_Chase("Melee","Missile",CHF_FASTCHASE|CHF_NOPLAYACTIVE)
+			Loop
+		Missile:
+			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_Jump(90,"Rockets")
+			GORZ K 7 A_FaceTarget
+			TNT1 A 0 A_PlaySound("erad/expshot2")
+			GORZ L 5 A_CustomMissile("GorMeteorite",75,38,0,0)
+			GORZ K 3 A_FaceTarget
+			TNT1 A 0 A_PlaySound("erad/expshot2")			
+			GORZ L 5 A_CustomMissile("GorMeteorite",75,38,0,0)
+			GORZ K 3 A_FaceTarget
+			TNT1 A 0 A_PlaySound("erad/expshot2")			
+			GORZ L 5 A_CustomMissile("GorMeteorite",75,38,0,0)
+			GORZ K 3 A_FaceTarget
+			TNT1 A 0 A_PlaySound("erad/expshot2")			
+			GORZ L 5 A_CustomMissile("GorMeteorite",75,38,0,0)
+			GORZ K 3 A_FaceTarget
+			TNT1 A 0 A_Jump(170,"See2")
+			Goto Missile+2
+		Rockets:
+			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_PlaySound("gor/rckt",CHAN_BODY)
+			GORZ D 7 A_FaceTarget
+			TNT1 A 0 A_PlaySound("Eleena/BoltShoot2",CHAN_WEAPON)			
+			GORZ C 6 A_CustomMissile("GorMissile",62,-30,0,0)
+			GORZ E 7 A_FaceTarget
+			TNT1 A 0 A_PlaySound("Eleena/BoltShoot2",CHAN_AUTO)						
+			GORZ B 6 A_CustomMissile("GorMissile",57,33,0,0)
+			Goto See2
+		Melee:
+			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_PlaySound("gor/att",CHAN_VOICE)
+			GORZ HI 8 A_FaceTarget
+			GORZ J 7 A_CustomMeleeAttack(random(6, 8) * Random(5, 7),"","","GorTail")
+			Goto See2
+		Pain:
+			TNT1 A 0 A_Jump(48,"SeeLoop")		
+			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			GORZ M 7 A_Pain
+			TNT1 A 0 A_Jump(86,"Rockets")
+			GORZ NO 6 
+			Goto See2
+		Death:
+		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	  		
+			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_Scream
+			GORZ PQPQPQPQPQPQPQPQPQPQ 7 A_SpawnItemex("EradBloodDrop",0,0,50,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)
+		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			GORZ RST 6
+			GORZ U 5 A_NoBlocking
+			GORZ V 3
+			GORZ V -1 A_KillMaster
+			Stop
+		Death.DukeIce:
+			"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.Ice:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_GenericFreezeDeath
+			"####" "#" 0 A_UnsetShootable
+			"####" "#" 140 A_UnsetSolid
+			"####" "#" 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+			"####" "##########################################################################################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+			"####" "#" 0 A_IceGuyDie
+			"####" "#" 1 A_IceGuyDie
+			TNT1 A -1 A_KillMaster
+			stop			
+		Death.VoodooPuff:
+		Death.DynamiteCoop:
+		Death.Dynamite:
+		Death.LifeLeech:
+		Death.CalebNapalm:
+		Death.Shock:	  
+		Death.Vodoo:
+		Death.Tesla:
+		Death.CalebFire:	
+		Death.CalebBullet:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+			Goto Death
+		Death.EradExplosive:
+		Death.EradNova:
+		Death.EradShock:
+		Death.EradExplosive2:	
+		Death.EradDisc:
+		Death.EradPiercingDart:
+		Death.EradGreenFire:
+		Death.EradCoopGreenFire:
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
+			Goto Death
+		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
+		Death.DukeDamage:
+		Death.DukePistol:
+			TNT1 A 0 A_Jump(218,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+			goto Death
+		Death.MightyBoot:
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(64,"Death")
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			goto Death
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnDebris("DukeGibs1")
+			TNT1 A 0 A_SpawnDebris("DukeGibs2")
+			TNT1 A 0 A_SpawnDebris("DukeGibs3")
+			TNT1 A 0 A_SpawnDebris("DukeGibs4")
+			TNT1 A 0 A_SpawnDebris("DukeGibs5")
+			TNT1 A 0 A_SpawnDebris("DukeGibs6")
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			Goto XDeath
+		Death.PSRAPower:
+		Death.PSRAPowerCoop:
+		Death.PSExplosive:
+		Death.PSExplosiveCoop:
+		Death.PSBullet:
+		Death.PSFire:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+			Goto Death
+		Death.LeonardDamage2:
+		Death.LeonardDamage3:
+		Death.LeonardDamage0:
+		Death.LeonardDamage1:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
+			Goto Death
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_NoGravity		
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectHuge")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_Scream
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0) 
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1 A_KillMaster
+			stop	
+		Death.SWFist:
+		Death.SWKatana:
+		Death.SWShuriken:
+		Death.SWSticky:
+		Death.SWStickyCoop:		
+		Death.SWGrenade:
+		Death.SWNuke:
+		Death.SWRocket:
+		Death.SWRailgun:
+		Death.SWRailgunCoop:
+		Death.SWNukeCoop:
+		Death.SWFlame:
+		Death.SWFlame2:
+		Death.SWFlame2Coop:
+		Death.SWFlame3:	
+		Death.SWBullet:	  
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
+			goto Death
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathHuge")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectHuge",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A -1 A_KillMaster
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoGravity		
+			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
+			"####" "#################" 3 A_Fadeout(0.05)
+			TNT1 A -1 A_KillMaster
+			stop			
+	}
+}
+
+Actor GorMissile
+{
+	Projectile
+	Radius 4
+	Height 6
+	Scale 0.55
+	Speed 18.96
+	+EXTREMEDEATH
+	+NOBLOOD
+	+BLOODLESSIMPACT
+	+THRUGHOST	
+	+SEEKERMISSILE
+	Damage (random((12-random(5,0)),5))
+	States
+	{
+		Spawn:
+			_GO4 WWWWW 3 Bright
+		SpawnLoop:
+			_GO4 WWWWWWWWWWWW 1 Bright A_SeekerMissile(40,60,SMF_LOOK,256)
+			TNT1 A 0 A_SpawnItemEx("GorMissileTrail",0,0,0,0)			
+			Loop
+		Death:
+			TNT1 A 0 A_Explode(random(25,45)/random(random(2,3),2),128+Random(60,12))
+			TNT1 A 0 A_SpawnITemEx("EradPlasmaExplosion1",0,0,0,0)
+			TNT1 A 5 A_PlaySound("EradMissile/Boom")
+			Stop
+	}
+}
+
+Actor GorMissileTrail : RocketSmokeTrail
+{
+	+CLIENTSIDEONLY
+	RenderStyle Translucent
+	Alpha 0.70
+	Scale 0.60
+	States
+	{
+		Spawn:
+			EVA6 ABCDEFGH 3 Bright A_FadeOut 
+			stop
+	}
+}
+Actor GorMeteorite
+{
+	Projectile
+	Speed 25
+	Radius 12
+	Height 12
+	Damage (random(40,60)/random(1,random(3,2)))
+	+BLOODSPLATTER
+	+FORCEXYBILLBOARD
+	Scale 0.55
+	DeathSound "erad/expshot3"
+	States
+	{
+		Spawn:
+			TNT1 A 0
+		SpawnLoop:
+			_GO4 OPQRSTUV 4 Bright
+			TNT1 A 0 A_SpawnItemEx("EradSmokeTrail",0,0,0,0)			
+			Loop
+		Death:
+			TNT1 A 0 A_SpawnItemEx("GorMissileDebris1",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)					
+			TNT1 A 0 A_SpawnItemEx("GorMissileDebris2",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)		
+			TNT1 A 0 A_SpawnItemEx("GorMissileDebris3",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)		
+			TNT1 A 0 A_SpawnItemEx("GorMissileDebris4",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)		
+			TNT1 A 0 A_SpawnItemEx("GorMissileDebris5",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)			
+			ERG9 QRSTUV 4 Bright
+			ERG9 V 1 A_FadeOut
+			Stop
+	}
+}	
+
+Actor GorMissileDebris1	: EradMetalDebris
+{
+  Scale 0.480
+  States
+  {
+	Spawn:
+		GOR_ ABCDEFGH 3 Bright
+		Loop
+  }
+}	
+
+Actor GorMissileDebris2	: EradMetalDebris
+{
+  Scale 0.480
+  States
+  {
+	Spawn:
+		GOR_ IJKLMNOP 3 Bright
+		Loop
+  }
+}	
+
+Actor GorMissileDebris3	: EradMetalDebris
+{
+  Scale 0.480
+  States
+  {
+	Spawn:
+		GOR_ QRSTUVWX 3 Bright
+		Loop
+  }
+}	
+
+Actor GorMissileDebris4	: EradMetalDebris
+{
+  Scale 0.480
+  States
+  {
+	Spawn:
+		GOR_ YZ 3 Bright
+		_GO4 ABCDEF 3 Bright
+		Loop
+  }
+}	
+
+Actor GorMissileDebris5	: EradMetalDebris
+{
+  Scale 0.480
+  States
+  {
+	Spawn:
+		_GO4 GHIJKLMN 3 Bright
+		Loop
+  }
+}

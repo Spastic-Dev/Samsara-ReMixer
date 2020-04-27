@@ -1,0 +1,743 @@
+Actor Q2Technician : Q2SoldierBase
+{
+	SeeSound "Technician/See"
+	ActiveSound "Technician/Idle"
+	PainSound "Technician/Pain"
+	DeathSound "Technician/Death"
+	Speed 8
+	+NOGRAVITY 
+	+FLOAT 
+	+FLOATBOB
+	+MISSILEMORE
+	Health 300
+	PainChance 60
+	GibHealth 100
+	Mass 600
+	HitObituary "%o died."
+	Obituary "%o died."
+	DropItem Q2Cell
+	MeleeRange 28
+	Tag "Strogg Technician"
+	States
+	{
+	Spawn:
+		TEK0 A 0
+		TEK0 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		TEK0 A 1 ACS_ExecuteAlways(668,0,1,0)
+		TEK0 A 0 A_GiveInventory("AlreadySpawned",1)
+		TEK0 A 0 A_JumpIfInventory("InvisibleToken",1,2)
+		TEK0 A 0 A_Jump(256,2)
+		TEK0 A 0 A_ChangeFlag("STEALTH",1)
+	Spawn2:
+		TEK0 A 0 A_PlaySound("Technician/Float",CHAN_BODY,0.5,1)
+		TEK0 A 6 A_LookEx(0,0,0,0,0,1)
+		Goto Spawn+1
+		TEK0 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[]" 3
+		Goto See
+	See:
+		TEK1 A 0 A_ChangeFlag(NOPAIN,0)
+		TEK1 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[]" 3 A_Chase
+		TEK2 ABCDEFGHIJKLMNOPQRSTUVW 3 A_Chase
+		Loop
+	Melee:
+		TNT1 A 0 A_Jump(128, "ShockProd")
+		TEK5 ABCDEFGHIJ 3 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("Technician/Claw")
+		TNT1 A 0 A_CustomMeleeAttack(random(5,10), "", "")
+		TEK5 KLMNOPQRSTUVWXYZ 3 A_FaceTarget
+		TEK6 ABCDEFG 3 A_FaceTarget
+		Goto See
+	ShockProd:
+		TEK4 ABCDE 3 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("Technician/Shock")
+		TEK4 FGHIJKLMNOP 3 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(6,12), "", "")
+		TNT1 A 0 A_SpawnItemEx(BlasterImpactParticle, 48, 0, 26, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		TEK4 QRSTUVWXY 3 A_FaceTarget
+		Goto See
+	Missile:
+		TEK3 ABCDE 3 A_FaceTarget
+		TEK3 FG 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile(FlyerProjectile,26,0)
+		TNT1 A 0 A_PlayWeaponSound("Technician/Blaster")
+		TEK3 HI 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile(FlyerProjectile,26,0)
+		TNT1 A 0 A_PlayWeaponSound("Technician/Blaster")
+		TEK3 JK 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile(FlyerProjectile,26,0)
+		TNT1 A 0 A_PlayWeaponSound("Technician/Blaster")
+		TEK3 LM 3 A_FaceTarget
+		TNT1 A 0 A_CustomMissile(FlyerProjectile,26,0)
+		TNT1 A 0 A_PlayWeaponSound("Technician/Blaster")
+		TEK3 N 2 A_FaceTarget
+		TNT1 A 0 A_CustomMissile(FlyerProjectile,26,0)
+		TNT1 A 0 A_PlayWeaponSound("Technician/Blaster")
+		Goto See
+	Pain:
+		"----" A 0 A_ChangeFlag(NOPAIN,1)
+		"----" A 0 A_Pain
+		"----" A 0 A_Jump(256,"Pain1","Pain2","Pain3")
+	Pain1:
+		"----" A 3
+		TEK6 HIJKLMN 3
+		Goto See
+	Pain2:
+		"----" A 3
+		TEK6 OPQRSTUV 3
+		Goto See
+	Pain3:
+		"----" A 3
+		TEK7 ABCDEFGHIJKL 3
+		Goto See
+	Death:
+		TNT1 A 0 A_StopSound(CHAN_BODY)
+		"----" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+		"----" A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
+		"----" A 3 A_ScreamAndUnblock
+		TEK7 M 0 A_ChangeFlag(FLOATBOB,0)
+		TEK7 M 0 A_SpawnItemEx("Q2TechnicianDeath", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		TNT1 A 0
+		stop
+	XDeath:
+		TNT1 A 0 A_StopSound(CHAN_BODY)
+		TNT1 A 0 A_PlaySound("Q2Weapons/RocketExplosion")
+		TNT1 A 0 A_SpawnItem(Q2Explosion,0,32)
+		Goto Super::XDeath
+	Death.RottDisintegrate:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_SpawnItem("RGodModeDeathSmall")
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		stop
+	Disintegrate:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_Stop
+		"####" "#" 3 A_SpawnItem("DisintEffectSmallWider",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+        stop
+	Death.Nuke:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
+		"####" "#################" 3 A_Fadeout(0.05)
+		stop
+	Pain.ShrinkerDMG:
+		TEK6 H 0
+		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+		"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_PlaySound("duke/shrink")
+		"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("Q2Technician_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+		TNT1 A 2
+		TNT1 A 0 Thing_Remove(0)
+		stop
+	Death.ExpanderDMG:
+	XDeath.ExpanderDMG:
+		TEK0 A 0
+		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+		"####" "#" 0 A_PlaySound("duke/expand")
+		Goto ExpanderLoop
+	ExpanderLoop:
+		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+		loop
+	ExpanderPop:	
+		"####" "#" 10
+		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+		TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_Jump(96,2)
+		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+		TNT1 A 0 A_SetScale (1.0, 1.0)
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		TNT1 A 1
+		Stop
+	Death.ExpanderDMGCoop:
+	XDeath.ExpanderDMGCoop:
+		TEK0 A 0
+		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+		"####" "#" 0 A_PlaySound("duke/expand")
+		Goto ExpanderLoopCoop
+	ExpanderLoopCoop:
+		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+		loop
+	ExpanderPopCoop:	
+		"####" "#" 10
+		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+		TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_Jump(96,2)
+		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+		TNT1 A 0 A_SetScale (1.0, 1.0)
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		TNT1 A 1
+		Stop
+	}
+}
+
+Actor Q2TechnicianDeath : SamsaraCorpseActorSmall
+{
+	Health 75
+	Height 40
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TEK7 MNOPQRS 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
+			Goto Death
+		Crash:
+			TEK7 TUVWX 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
+			TEK7 Y 35 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
+		Death:
+		XDeath:
+			TNT1 A 0 A_StopSound(CHAN_BODY)
+			TNT1 A 0 A_PlaySound("Q2Weapons/RocketExplosion")
+			TNT1 A 0 A_SpawnItem(Q2Explosion,0,32)
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+actor Q2Technician_Shrink : Q2Technician
+{
+	+FRIGHTENED
+	+NOTRIGGER
+	-SHOOTABLE
+	+THRUACTORS
+	+NORADIUSDMG
+	+VULNERABLE
+	+QUICKTORETALIATE
+	+COUNTKILL
+	-NOGRAVITY
+	+NODAMAGE
+	+NOPAIN
+	-FLOATBOB
+	MaxStepHeight 0
+	MaxDropOffHeight 0
+	MeleeRange 16
+	Height 16
+	Health 1
+	Speed 1
+	PainChance "ShrinkDMG", 0
+	DamageFactor "ShrinkDMG", 0.0
+	PainChance "ExpanderDMG", 0
+	DamageFactor "ExpanderDMG", 0.0
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("ShrunkToken",1,"SpawnLoop")
+			TNT1 A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			TNT1 A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			TNT1 A 0 A_SetScale(scalex*0.2,scaley*0.2) // setting the scale in ACS does work, but the actor shows up at normal size for a split second
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_Shrinker", 0, 1)
+			TEK6 H 10
+			Goto See
+		SpawnLoop:
+			TEK0 A 0 A_PlaySound("Technician/Float",CHAN_BODY,0.1,1)
+			TEK0 A 6 A_LookEx(0,0,0,0,0,1)
+			Goto Spawn+1
+			TEK0 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[]" 3
+			Goto See
+		See:
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 A 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 B 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 C 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 D 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 E 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 F 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 G 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 H 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 I 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 J 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 K 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 L 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 M 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 N 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 O 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 P 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 Q 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 R 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 S 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 T 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 U 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 V 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 W 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 X 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 Y 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 Z 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 "\" 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 "[" 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK1 "]" 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 A 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 B 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 C 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 D 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 E 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 F 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 G 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 H 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 I 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 J 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 K 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 L 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 M 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 N 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 O 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 P 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 Q 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 R 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 S 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 T 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 U 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 V 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			TEK2 W 3 A_Chase("","")
+			"####" "#" 0 A_JumpIf(CallACS("Samsara_Shrinker", 3) == 0, "Forget")
+			Loop
+		Forget:
+			"####" "#" 0 A_ClearTarget
+			Goto See
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2Technician", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+		Squish:
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2 
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0 
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
+			loop
+		Death:
+		XDeath:
+		Death.Squish:
+		XDeath.Squish:
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			stop
+		DukeStomp:
+			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
+			Goto Squish
+	}
+}
+
+actor Q2Technician_ShrinkEffect : Q2Technician
+{
+	-ISMONSTER
+	-COUNTKILL
+	-SHOOTABLE
+	-SOLID
+	+NOINTERACTION
+	+CLIENTSIDEONLY	
+	-NOGRAVITY
+	-FLOATBOB
+	Renderstyle Translucent
+	Alpha 0.4
+	States
+	{
+		Spawn:
+			TEK6 H 0
+			TEK6 H 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			TEK6 H 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			Stop
+	}
+}

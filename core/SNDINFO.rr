@@ -1,0 +1,287 @@
+//////////////////////////////////////////////
+//				Redneck Rampage				//
+//////////////////////////////////////////////
+
+Redneck/Thud RR_THUD
+
+//Skinny & Groovy old coot
+Coot/DieA 		 		CT_DIE
+Coot/DieB 		 		CT_DIE2
+Coot/DieC 		 		CT_DIE3
+$Random Coot/Die 		{ Coot/DieA Coot/DieB Coot/DieC }
+Coot/NewshooterA 		CT_GET
+Coot/FuckU		 		CT_GET2
+Coot/ImaGetU 	 		CT_GET3
+$Random Coot/Newshooter { Coot/NewshooterA Coot/FuckU }
+$Random Coot/SkinnyS 	{ Coot/ImaGetU Coot/FuckU }
+Coot/Laugh1 			CT_LAF
+Coot/Laugh2			    CT_LAF2
+Coot/Laugh3 			CT_LAF3
+Coot/GroovyA 			CT_LAND
+Coot/GTFOLand			CT_LAND2
+Coot/GetOfLand			CT_LAND3
+$Random Coot/Groovy 	{ Coot/GroovyA Coot/Newshooter }
+$Random Coot/LandF 		{ Coot/GetOfLand Coot/GTFOLand Coot/SkinnyS }
+Coot/Pain1 				CT_PAIN
+Coot/Pain2 				CT_PAIN2
+Coot/Pain3 				CT_PAIN3
+$Random Coot/Pain 		{ Coot/Pain1 Coot/Pain2 Coot/Pain3 }
+$Random Coot/Talk 		{ Coot/Laugh1 Coot/Laugh2 Coot/Groovy Coot/Laugh3 }
+$Random Coot/Yell 		{ Coot/Laugh1 Coot/Laugh2 Coot/LandF Coot/Laugh3 }
+
+//Billy Ray Jeeter
+Billy/DieA 				BR_DTH
+$Random Billy/Die 		{ Billy/DieA Billy/Pain2 }
+Billy/Itch1 			BR_ITCH
+Billy/Itch2 			BR_ITC2
+$Random Billy/Itch 		{ Billy/Itch1 Billy/Itch2 }
+Billy/Pain1 			BR_PAIN
+Billy/Pain2 			BR_PAI2
+$Random Billy/Pain 		{ Billy/Pain1 Billy/Pain2 }
+Billy/See1 				BR_RECOG
+Billy/See2 				BR_RECO2
+$Random Billy/See 		{ Billy/See1 Billy/See2 }
+Billy/Roam1 			BR_ROAM1
+Billy/Roam2 			BR_ROAM2
+Billy/Roam3 			BR_ROAM3
+Billy/Roam4 			BR_ROAMA
+Billy/Roam5 			BR_ROAMB
+Billy/Roam6 			BR_ROAMC
+Billy/Scratch			BR_SCRTH
+Billy/Sniff 			BR_SNIFF
+$random Billy/Talk 		{ Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/Roam4 Billy/Roam5 Billy/Roam6 Billy/See1 Billy/See2 }
+
+//Frank Doyle
+Doyle/Alive 	BK_ALIVE
+Doyle/Bourb 	BK_BOURB
+Doyle/Cheer 	BK_CHEER
+Doyle/DieNB 	BK_DIENB
+Doyle/Dontlook 	BK_DNTLK
+Doyle/Fun 		BK_FUN
+Doyle/Hey 		BK_HEY
+Doyle/HeyNb 	BK_HEYNB
+Doyle/JoyRide 	BK_JOYRD
+Doyle/Keepaway 	BK_KEEPA
+Doyle/Makeout1 	BK_MAKE1
+Doyle/Makeout2 	BK_MAKE2
+Doyle/Pain1 	BK_PAIN1
+Doyle/Pain2 	BK_PAIN2
+Doyle/Pain3 	BK_PAIN3
+Doyle/Please 	BK_PLEAS
+Doyle/Road 		BK_ROAD
+Doyle/SCHOG 	BK_SCHOG
+Doyle/SCRAT 	BK_SCRAT
+Doyle/Shutup 	BK_SHTUP
+Doyle/Snort 	BK_SNORT
+Doyle/ToHell 	BK_TOHEL
+Doyle/Tryin 	BK_TRYIN
+$random Doyle/Pain  	{ Doyle/Pain1 Doyle/Pain2 Doyle/Pain3 }
+$random Doyle/Talk  	{ Doyle/Alive Doyle/Dontlook Doyle/Fun Doyle/JoyRide Doyle/Please Doyle/Road Doyle/ToHell Doyle/SCRAT }
+$random Doyle/See 		{ Doyle/Hey Doyle/HeyNB Doyle/DieNB }
+$random Doyle/Talk2 	{ Doyle/Cheer Doyle/Keepaway Doyle/Bourb Doyle/Shutup Doyle/Tryin Doyle/SCHOG }
+$random Doyle/Makeout 	{ Doyle/Makeout1 Doyle/Makeout2 }
+
+$random doyle/daisy 	{ Doyle/Talk Cheer/IDLE Doyle/Talk2 Cheer/See }
+
+//Turd Minion
+Frog/Toss 		FROGTOSS
+Minion/Idle 	MN_AMB
+Minion/Freakout MN_FREAK
+Minion/Pain 	MN_PN
+Minion/See 		MN_REC
+
+//Daisy Mae
+Cheer/2468 		CH_2468
+Cheer/Bald 		CH_BALD
+Cheer/Barn 		CH_BARN
+Cheer/Bigon 	CH_BIGON
+Cheer/Doneit	CH_DONIT
+Cheer/GoGoGo 	CH_GOGOG
+Cheer/GoTeam 	CH_GTEAM
+Cheer/Hurt 		CH_HURT
+Cheer/Nipple 	CH_NIPPL
+Cheer/Pain1 	CH_PAIN1
+Cheer/Pain2 	CH_PAIN2
+Cheer/Pain3 	CH_PAIN3
+Cheer/Readyok 	CH_REDOK
+Cheer/Sandpaper CH_SANDP
+Cheer/Tease1 	CH_TEAS1
+Cheer/Tease2 	CH_TEAS2
+Cheer/Tease3 	CH_TEAS3
+Cheer/Whoop 	CH_WHOOP
+$random Cheer/See 	 { Cheer/2468 Cheer/Bald Cheer/Bigon Cheer/Doneit Cheer/GoGoGo Cheer/GoTeam Cheer/Readyok Cheer/Whoop }
+$random Cheer/IDLE	 { Cheer/Readyok Cheer/GoGoGo Cheer/Tease1 Cheer/GoTeam Cheer/Tease2 Cheer/Doneit Cheer/Tease3 Cheer/Barn Cheer/Sandpaper Cheer/Nipple Cheer/2468 Cheer/Bald Cheer/Hurt } 
+$random Cheer/Pain 	 { Cheer/Pain1 Cheer/Pain2 Cheer/Pain3 }
+
+//Guard Dog
+GuardDog/Bark1 	DG_BARK1
+GuardDog/Bark2 	DG_BARK2
+GuardDog/Death 	DG_DIE
+GuardDog/Growl1 DG_GRWL1
+GuardDog/Growl2 DG_GRWL2
+GuardDog/Lunge	DG_LUNGE
+GuardDog/Pain 	DG_YELP
+$random GuardDog/Bark  { GuardDog/Bark1 GuardDog/Bark2 }
+$random GuardDog/Growl { GuardDog/Growl1 GuardDog/Growl2 }
+
+//Bikes
+Bike/Start 	BIKESTRT
+Bike/Up 	BIKEUP
+Bike/Engine BIKEENEM
+Bike/Idle 	BIKEIDLE
+Bike/Skid 	BIKESKID
+Bike/Die1 	BIKEX_1 
+Bike/Die2 	BIKEX_2
+Bike/Loop 	BIKEENEM
+Bike/Land 	BIKELAND
+$random Bike/Death { Bike/Die1 Bike/Die2 }
+
+//Sheriff Hobbes
+Hobbes/Attention SF_ATTN
+Hobbes/Death1 	 SF_DETH1
+Hobbes/Death2 	 SF_DETH2
+Hobbes/Death3 	 SF_DETH3
+Hobbes/Freeze 	 SF_FREZ2
+Hobbes/Getya 	 SF_GETYA
+Hobbes/Handsup 	 SF_HANDS
+Hobbes/Hey 		 SF_HEY
+Hobbes/Hold 	 SF_HOLD
+Hobbes/Laugh 	 SF_LAFF1
+Hobbes/Name 	 SF_NAME
+Hobbes/Name2 	 SF_NAME2
+Hobbes/Over 	 SF_OVER
+Hobbes/Over2 	 SF_OVER2
+Hobbes/Pain1 	 SF_PAIN1
+Hobbes/Pain2 	 SF_PAIN2
+Hobbes/Pain3	 SF_PAIN3
+Hobbes/Pain4 	 SF_PAIN4
+Hobbes/Reload 	 SF_RLOAD
+Hobbes/Reload2	 SF_RLOD2
+Hobbes/Reload3	 SF_RLOAF
+Hobbes/Reload4	 SF_RLODC
+Hobbes/Shoot 	 SF_SHOOT
+Hobbes/TheLaw 	 SF_THLAW
+Hobbes/TheLaw2 	 SF_TLAW2
+$random Hobbes/See 		{ Hobbes/Hey Hobbes/Hold Hobbes/Shoot Hobbes/Freeze Hobbes/Handsup }
+$random Hobbes/Talk 	{ Hobbes/Attention Hobbes/Getya Hobbes/Laugh Hobbes/Name Hobbes/Over Hobbes/TheLaw Hobbes/TheLaw2 Hobbes/Over2 Hobbes/Name2 Hobbes/Hold }
+$random Hobbes/Reloadin { Hobbes/Reload Hobbes/Reload2 Hobbes/Reload4 Hobbes/Reload3 }
+$random Hobbes/Pain 	{ Hobbes/Pain1 Hobbes/Pain2 Hobbes/Pain3 Hobbes/Pain4 }
+$random Hobbes/Death 	{ Hobbes/Death1 Hobbes/Death2 Hobbes/Death3 }
+
+//Alien Hulk
+Hulk/Attack 	HULKATTK
+Hulk/Death 		HULKDIE
+Hulk/Laser 		HULKLZR
+Hulk/Pain 		HULKPAIN
+Hulk/See 		HULKRECG
+Hulk/Roam 		HULKROAM
+Hulk/Spit 		HULKSPIT
+Hulk/Explode 	DYNEW_9_
+
+//Alien Vixen
+vixen/toofar 	VX_2FAR
+vixen/baby 		VX_BABY2
+vixen/bite 		VX_BITE
+vixen/Bring1 	VX_BRING
+vixen/Bring3 	VX_BRING
+vixen/closer 	VX_CLSR1
+vixen/closer2 	VX_CLSR2
+vixen/die1 		VX_DIE1
+vixen/die4 		VX_DIE4
+vixen/die5 		VX_DIE5
+vixen/die6 		VX_DIE6
+vixen/die7 		VX_DIE7
+vixen/final 	VX_FINAL
+vixen/grunt 	VX_GRNT
+vixen/hiya 		VX_HIYA
+vixen/hiya2 	VX_HIYA2
+vixen/hiya3 	VX_HIYA3
+vixen/helpme 	VX_HLPME
+vixen/hmmm 		VX_HMMM2
+vixen/hurt 		VX_HURT2
+vixen/isthatall VX_ISTHT
+vixen/itsok 	VX_ITSOK
+vixen/kick2 	VX_KICK2
+vixen/kick3 	VX_KICK3
+vixen/laugh2 	VX_LAFF2
+vixen/laugh3 	VX_LAFF3
+vixen/mhmm 		VX_MHMM
+vixen/ooh 		VX_OOH
+vixen/pain1 	VX_PAIN1
+vixen/sex1 		VX_SEX1
+vixen/sex2 		VX_SEX2
+vixen/sex3 		VX_SEX3
+vixen/takeit 	VX_TAKIT
+vixen/tpin2 	VX_TPIN2
+vixen/tpin4 	VX_TPIN4
+vixen/tpot 		VX_TPOT4
+$random Vixen/Queen 	 { vixen/final DSNONE }
+$random Vixen/See 		 { vixen/itsok vixen/hmmm vixen/helpme vixen/mhmm vixen/Bring3 vixen/Bring1 vixen/closer vixen/toofar }
+$random Vixen/Laugh 	 { vixen/isthatall vixen/hurt vixen/isthatall vixen/baby }
+$random Vixen/IDLE 		 { vixen/bite vixen/itsok vixen/hmmm vixen/mhmm vixen/Bring3 vixen/Bring1 vixen/closer vixen/itsok vixen/laugh2 vixen/laugh3 }
+$random Vixen/Pain 		 { vixen/pain1 vixen/sex1 vixen/sex2 vixen/sex3 vixen/ooh vixen/grunt }
+$random Vixen/Kick 		 { vixen/hiya3 vixen/hiya vixen/hiya2 vixen/kick2 vixen/kick3 }
+$random Vixen/Death 	 { vixen/die1 vixen/die4 vixen/die5 vixen/die6 }
+$Random Vixen/TeleIn	 { vixen/tpin2 vixen/tpin4 }
+$Random Vixen/HighKick 	 { Vixen/Kick vixen/takeit vixen/hiya3 }
+$Random Vixen/Swing1 	 { vixen/hiya vixen/hiya2 vixen/kick2 }
+$Random Vixen/Swing2 	 { vixen/kick3 vixen/hiya3 Vixen/Swing1 vixen/takeit }
+
+//Momma jack
+Momma/Attack 	MJ_ATTK1
+Momma/Fart 		MJ_FART
+Momma/Jump 		MJ_JUMP
+Momma/Pain1 	MJ_PAIN1
+Momma/Pain2 	MJ_PAIN2
+Momma/Roam1 	MJ_ROAM1
+Momma/Roam2 	MJ_ROAM2
+Momma/Roll 		MJ_ROLL
+Momma/Land 		MJ_LAND
+$random Momma/Pain { Momma/Pain1 Momma/Pain2 }
+$random Momma/Idle { Momma/Roam1 Momma/Roam2 }
+
+//Mosquito
+Mosquito/Fly	MOSQUI4
+
+//UFO
+UFO/Fly		UFOLET_R
+UFO/Wander	UFO_RR
+UFO/Fire	LASERH_R
+
+//jackelope
+jackelope/roam1		JACK_RM1
+jackelope/roam2		JACK_RM2
+$Random jackelope/active { jackelope/roam1 jackelope/roam2 }
+jackelope/pain		JACKPAIN
+jackelope/jump		JACKJMP1
+jackelope/att1		JACKATK1
+jackelope/att2		JACKATK2
+$Random jackelope/attack { jackelope/att1 jackelope/att2 }
+
+//Ass Face
+AssFace/Sight	SB_IAM
+AssFace/Ouch1	SB_HRT1
+AssFace/Ouch2	SB_HRT2
+AssFace/Ouch3	SB_HRT3
+$Random AssFace/Pain { AssFace/Ouch1 AssFace/Ouch2 AssFace/Ouch3 }
+AssFace/HitU	SB_ATK2
+AssFace/Throw	SB_ATK1
+$Random AssFace/Attack { AssFace/HitU AssFace/Throw }
+AssFace/Quote1	SB_CORN
+AssFace/Quote2	SB_POO
+AssFace/Quote3	SB_LORD
+AssFace/Quote4	SB_LAF1
+AssFace/Quote5	SB_LAF2
+$Random AssFace/Active { AssFace/Quote1 AssFace/Quote2 AssFace/Quote3 AssFace/Quote4 AssFace/Quote5 AssFace/Throw }
+AssFace/Suck	SB_SCK1
+AssFace/Spit1	SB_SPT1
+AssFace/Spit2	SB_SPT2
+AssFace/Mini1	SB_MIN1
+AssFace/Mini2	SB_MIN2
+AssFace/Mini3	SB_MIN3
+$Random AssFace/Minions { AssFace/Mini1 AssFace/Mini2 AssFace/Mini3 }
+AssFace/Die		SB_DIE
+
+//Alligator
+Alligator/Bite	G_BITERR
+Alligator/See	G_SITRR

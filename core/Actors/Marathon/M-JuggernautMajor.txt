@@ -1,0 +1,496 @@
+ACTOR JuggernautMajor
+{
+	Health 5000
+	Radius 40
+	Height 100
+	Speed 5.887
+	Mass 10000
+	PainChance 0
+	Gravity 0.0375
+	MinMissileChance 10
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+	+DONTRIP
+	+NOBLOOD
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	+NOPAIN
+	+NOGRAVITY
+	+FLOAT
+	+BOSS
+	Tag "Pfhor Juggernaut Major"	
+	SeeSound ""
+	PainSound ""
+	DeathSound "m2jugger/explode"
+	ActiveSound ""
+	AttackSound ""
+	Dropitem "DefaultPinataPop"
+	Dropitem "DefaultPinataPop"
+	Obituary "%o was crushed from the might of the Major Pfhor Juggernaut."
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 2.0
+	DamageFactor "MarathonPlasmaFire", 0.74
+	DamageFactor "MarathonFusion", 1.8
+	DamageFactor "DCannonProj", 0.8	
+	DamageFactor "BJSpear", 0.5	
+	DamageFactor "Tesla", 0.67
+	DamageFactor "Shock", 0.2
+	DamageFactor "LifeLeech", 0.3		
+	DamageFactor "CalebFire", 0.9	
+    DamageFactor "CalebBullet", 0.8	
+	DamageFactor "Vodoo", 0.2	
+	DamageFactor "DisruptorWall", 0.5
+	DamageFactor "EradNova", 0.4
+    DamageFactor "EradGreenFire", 0.1	
+    DamageFactor "EradCoopGreenFire", 0.1	
+	DamageFactor "RottFire", 0.6
+	DamageFactor "WTRangedFire", 0.4
+	DamageFactor "Nuke", 0.4
+	DamageFactor "SWNuke", 0.4
+	DamageFactor "SWNukeCoop", 0.4
+	DamageFactor "SWFlame", 0.1
+	DamageFactor "SWFlameCoop", 0.1
+	DamageFactor "SWFlame2", 0.2	
+	DamageFactor "SWFlame2Coop", 0.2
+	DamageFactor "SWFlame3", 0.7	
+    DamageFactor "RMR-BigPlasma", 0.4		
+	DamageFactor "CMDMGSHIT", 0.8
+	DamageFactor "Disintegrate", 0.8	
+	DamageFactor "RottBullet", 0.8
+	DamageFactor "RottExplosive", 0.8
+	DamageFactor "C7Disintegrate", 0.5	
+	Decal BulletChip
+	States 
+	{
+		Spawn:
+			JUMA A 0
+			JUMA A 1 A_JumpIfInventory("AlreadySpawned",1,2)
+			JUMA A 1 ACS_ExecuteAlways(668,0,1,0)
+			JUMA A 0 A_GiveInventory("AlreadySpawned",1)
+			JUMA A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			JUMA A 0 A_Jump(256,2)
+			JUMA A 0 A_ChangeFlag("STEALTH",1)
+			JUMA A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
+			JUMA A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
+			JUMA A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
+			JUMA A 0 A_JumpIfInventory("DifficultyToken",1,"SpawnHNTR")
+			Goto SpawnITYTD
+		SpawnITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			Goto Spawn2
+		SpawnHNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			Goto Spawn2
+		SpawnHMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			Goto Spawn2
+		SpawnUV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			Goto Spawn2
+		SpawnNightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",17) //17.5
+			Goto Spawn2
+		Spawn2:
+			JUMA A 12 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+			Goto See2
+		See2:
+			TNT1 A 0 A_TakeInventory("AttackFrequency",1)
+			TNT1 A 0 A_GiveInventory("FrameTicCounter",1)
+			TNT1 A 0 A_JumpIfInventory("AttackFrequency",1,2)
+			JUMA A 1 A_Chase
+			Loop
+			JUMA A 1 A_Chase(0,0)
+			Loop
+		Missile:
+			TNT1 A 0 A_Jump(32,1)
+			TNT1 A 0 A_JumpIfCloser(192,"Missile1")
+			Goto Missile2
+		Missile1:
+			JUMA A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"Missile1Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"Missile1UV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"Missile1HMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"Missile1HNTR")
+		Missile1ITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",6,"Missile1End")
+			JUMA A 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("enforcer/shoot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("EnforcerShotEnemyITYTD", 40, -40, Random(-2,2),0, Random(-2,2))
+			JUMA B 4 Bright A_CustomMissile("EnforcerShotEnemyITYTD", 40, 40, Random(-2,2),0, Random(-2,2))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"Missile1End")
+			Goto Missile1ITYTD+1
+		Missile1HNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",6,"Missile1End")
+			JUMA A 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("enforcer/shoot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("EnforcerShotEnemyHNTR", 40, -40, Random(-2,2),0, Random(-2,2))
+			JUMA B 4 Bright A_CustomMissile("EnforcerShotEnemyHNTR", 40, 40, Random(-2,2),0, Random(-2,2))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"Missile1End")
+			Goto Missile1HNTR+1
+		Missile1HMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",10,"Missile1End")
+			JUMA A 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("enforcer/shoot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("EnforcerShotEnemy", 40, -40, Random(-2,2),0, Random(-2,2))
+			JUMA B 4 Bright A_CustomMissile("EnforcerShotEnemy", 40, 40, Random(-2,2),0, Random(-2,2))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"Missile1End")
+			Goto Missile1HMP+1
+		Missile1UV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",11,"Missile1End")
+			JUMA A 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("enforcer/shoot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("EnforcerShotEnemyUV", 40, -40, Random(-2,2),0, Random(-2,2))
+			JUMA B 4 Bright A_CustomMissile("EnforcerShotEnemyUV", 40, 40, Random(-2,2),0, Random(-2,2))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"Missile1End")
+			Goto Missile1UV+1
+		Missile1Nightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",11,"Missile1End")
+			JUMA A 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("enforcer/shoot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("EnforcerShotEnemyNightmare", 40, -40, Random(-2,2),0, Random(-2,2))
+			JUMA B 4 Bright A_CustomMissile("EnforcerShotEnemyNightmare", 40, 40, Random(-2,2),0, Random(-2,2))
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			TNT1 A 0 A_MonsterRefire(128,"Missile1End")
+			Goto Missile1Nightmare+1
+		Missile1End:
+			TNT1 A 0 A_TakeInventory("AttackReps",11)
+			Goto See
+		Missile2:
+			JUMA A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",4,"Missile2Nightmare")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",3,"Missile2UV")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",2,"Missile2HMP")
+			TNT1 A 0 A_JumpIfInventory("DifficultyToken",1,"Missile2HNTR")
+		Missile2ITYTD:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",210)
+			TNT1 A 0 A_FaceTarget
+			JUMA C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"Missile1End")
+			JUMA CCC 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("JuggernautRocketITYTD", 90, -40,0,0,0)
+			JUMA D 12 Bright A_CustomMissile("JuggernautRocketITYTD", 90, 40,0,0,0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2ITYTD+3
+		Missile2HNTR:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",140)
+			TNT1 A 0 A_FaceTarget
+			JUMA C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"Missile1End")
+			JUMA CCC 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("JuggernautRocketHNTR", 90, -40,0,0,0)
+			JUMA D 12 Bright A_CustomMissile("JuggernautRocketHNTR", 90, 40,0,0,0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2HNTR+3
+		Missile2HMP:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",70)
+			TNT1 A 0 A_FaceTarget
+			JUMA C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"Missile1End")
+			JUMA CCC 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("JuggernautRocket", 90, -40,0,0,0)
+			JUMA D 12 Bright A_CustomMissile("JuggernautRocket", 90, 40,0,0,0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2HMP+3
+		Missile2UV:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",35)
+			TNT1 A 0 A_FaceTarget
+			JUMA C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"Missile1End")
+			JUMA CCC 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("JuggernautRocketUV", 90, -40,0,0,0)
+			JUMA D 12 Bright A_CustomMissile("JuggernautRocketUV", 90, 40,0,0,0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2UV+3
+		Missile2Nightmare:
+			TNT1 A 0 A_GiveInventory("AttackFrequency",17)
+			TNT1 A 0 A_FaceTarget
+			JUMA C 12 A_PlaySound("Juggernaut/prep", CHAN_BODY)
+			TNT1 A 0 A_JumpIfInventory("AttackReps",2,"Missile1End")
+			JUMA CCC 4 A_FaceTarget
+			TNT1 A 0 A_PlaySound("M2Jugger/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("JuggernautRocketNightmare", 90, -40,0,0,0)
+			JUMA D 12 Bright A_CustomMissile("JuggernautRocketNightmare", 90, 40,0,0,0)
+			TNT1 A 0 A_GiveInventory("AttackReps",1)
+			Goto Missile2Nightmare+3
+		Death.Vodoo:
+		Death.VoodooPuff:
+		Death.DynamiteCoop:
+		Death.Dynamite:
+		Death.LifeLeech:
+		Death.CalebNapalm:
+		Death.Shock:	  
+		Death.Vodoo:
+		Death.Tesla:
+		Death.CalebFire:	
+		Death.CalebBullet:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt3", 1)
+			Goto Death
+		Death.EradExplosive:
+		Death.EradNova:
+		Death.EradShock:
+		Death.EradExplosive2:	
+		Death.EradDisc:
+		Death.EradPiercingDart:
+		Death.EradGreenFire:
+		Death.EradCoopGreenFire:
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
+			Goto Death
+		Death.PSRAPowerCoop:
+		Death.PSExplosive:
+		Death.PSExplosiveCoop:
+		Death.PSBullet:
+		Death.PSFire:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+			Goto Death
+		Death.LeonardDamage2:
+		Death.LeonardDamage3:
+		Death.LeonardDamage0:
+		Death.LeonardDamage1:	
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
+			Goto Death
+		Death.SWFist:
+		Death.SWKatana:
+		Death.SWShuriken:
+		Death.SWSticky:
+		Death.SWStickyCoop:		
+		Death.SWGrenade:
+		Death.SWNuke:
+		Death.SWRocket:
+		Death.SWRailgun:
+		Death.SWRailgunCoop:
+		Death.SWNukeCoop:
+		Death.SWFlame:
+		Death.SWFlame2:
+		Death.SWFlame2Coop:
+		Death.SWFlame3:	
+		Death.SWBullet:	  
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
+			goto Death	
+		Death.DukeDamage:
+		Death.MightyBoot:
+		Death.DukeExplosive:
+		Death.DukeSpectral:
+		Death.DukePistol:
+			TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
+			TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
+			JUMA E 12
+			TNT1 A 0 A_PlaySound("Juggernaut/warn", CHAN_BODY)
+			JUMA FFFFFFFFFFFF 3 A_CheckFloor("Death2")
+			Goto Death+4
+		Death2:
+			JUMA G 0 A_Stop
+			JUMA G 0 A_NoBlocking
+			JUMA G 0 A_Scream
+			JUMA G 0 A_GiveToTarget("JuggernautDeathFlash")
+			JUMA G 1 A_SpawnItemEx("JuggernautExplosion",0,0,32,0,0,0,0,1,0)
+			JUMA G 30
+			JUMA G -1 A_KillMaster
+			Stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_NoGravity		
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectHuge")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_PlaySound("Juggernaut/warn", CHAN_BODY)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 30
+			TNT1 A -1 A_KillMaster
+			stop
+		Death.DukeIce:
+			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
+			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
+			"####" "#" 0 A_Jump(218,"Ice")
+			"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.Ice:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 0 A_GenericFreezeDeath
+			"####" "#" 0 A_ChangeFlag("THRUACTORS",1)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",0)
+			"####" "######" 2 A_CheckFloor("IceDeath2")
+			Goto Death+3
+		IceDeath2:
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_UnsetSolid
+			"####" "##############################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+			"####" "#" 0 A_IceGuyDie
+			"####" "#" 1 A_IceGuyDie
+			"####" "#" 30
+			TNT1 A -1 A_KillMaster
+			Stop
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_PlaySound("Juggernaut/warn", CHAN_BODY)
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathHuge")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_KillMaster
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_PlaySound("Juggernaut/warn", CHAN_BODY)
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectHuge",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A 1 A_KillMaster
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_PlaySound("Juggernaut/warn", CHAN_BODY)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_NoGravity		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
+			"####" "#################" 3 A_Fadeout(0.05)
+			TNT1 A 1 A_KillMaster
+			stop
+	}
+}
+
+ACTOR JuggernautMajorITYTD : JuggernautMajor 
+{ 
+	Speed 5.18 
+	Health 2500 
+}
+ACTOR JuggernautMajorHNTR : JuggernautMajor 
+{ 
+	Speed 5.533 
+	Health 3750 
+}
+ACTOR JuggernautMajorUV : JuggernautMajor 
+{ 
+	Speed 6.652 
+	Health 6250 
+}
+ACTOR JuggernautMajorNightmare : JuggernautMajor 
+{ 
+	Speed 7.358
+	Health 7500
+}
+
+ACTOR MultiJuggernautMajor : JuggernautMajor
+{
+	Species "JuggernautMajor"
+	+THRUSPECIES
+}
+ACTOR MultiJuggernautMajorITYTD : JuggernautMajorITYTD
+{
+	Species "JuggernautMajor"
+	+THRUSPECIES
+}
+ACTOR MultiJuggernautMajorHNTR : JuggernautMajorHNTR
+{
+	Species "JuggernautMajor"
+	+THRUSPECIES
+}
+ACTOR MultiJuggernautMajorUV : JuggernautMajorUV
+{
+	Species "JuggernautMajor"
+	+THRUSPECIES
+}
+ACTOR MultiJuggernautMajorNightmare : JuggernautMajorNightmare
+{
+	Species "JuggernautMajor"
+	+THRUSPECIES
+}

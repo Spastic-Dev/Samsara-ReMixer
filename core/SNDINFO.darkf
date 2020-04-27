@@ -1,0 +1,161 @@
+//////////////////////////////////////////////
+//				Dark Forces					//
+//////////////////////////////////////////////
+
+//Imperial soldier deaths.
+imperial/pain			st-hrt-1
+$volume	imperial/pain 1.0
+imperial/death			ST-DIE-1
+$volume	imperial/death 1.0
+
+//Imperial Officer
+$random enemies/officer/see		{ officer/see1 officer/see2 officer/see3 officer/see4 }
+officer/see1					ranofc01
+officer/see2					ranofc02
+officer/see3					ranofc03
+officer/see4					ranofc04
+$volume	enemies/officer/see 1.0
+
+$Random enemies/officer2/see    { officer/see7 officer/see6 officer/see5 enemies/officer/see }
+officer/see5					STORM-1
+officer/see6					ICMDO-1
+officer/see7					IOFFIC-1
+$volume	enemies/officer2/see 1.0
+
+$alias enemies/officer/pain		imperial/pain
+$alias enemies/officer/death	imperial/pain
+
+//Storm Trooper
+$random enemies/storm/see		{ storm/see1 storm/see2 storm/see3 storm/see4
+								  storm/see5 storm/see6 storm/see7 storm/see8 officer/see5 officer/see7 officer/see6 }
+$volume enemies/storm/see 1.0
+storm/see1						ransto01
+storm/see2						ransto02
+storm/see3						ransto03
+storm/see4						ransto04
+storm/see5						ransto05
+storm/see6						ransto06
+storm/see7						ransto07
+storm/see8						ransto08
+
+$alias enemies/storm/pain		imperial/pain
+$alias enemies/storm/death		imperial/pain
+
+$random storm/laser/miss		{ DSNONE storm/laser/by }
+storm/laser/by					LASR_Y86
+
+//Gamorrean Guard
+enemies/gamorrean/see			gamor-3
+enemies/gamorrean/pain			gamor-2
+enemies/gamorrean/death			gamor-1
+enemies/gamorrean/axe			axe-1
+
+enemies/trandoshan/see			bossk-1
+enemies/trandoshan/pain			bossk-3
+enemies/trandoshan/death		bosskdie
+trandoshan/explode              KYLEEXLRG1
+
+enemies/gran/see				reeyee-1
+enemies/gran/pain				reeyee-2
+$Random enemies/gran/death 		{ reeyee-3 reeyee-4 }
+reeyee-3						reeyee-3
+reeyee-4						reeyee-4
+enemies/gran/punch				punch_DF
+
+enemies/darkf/swing				swing_DF
+
+enemies/pdroid/see				probe-1
+enemies/pdroid/fire				probfir1
+$Random enemies/pdroid/death	{ probalm probalm1 probalm2 }
+probalm							probalm
+probalm1						probalm1
+probalm2						probalm2
+
+enemies/remote/die				REMOTE-2
+
+enemies/idroid/see				intalert
+enemies/idroid/melee			intstun
+
+enemies/phase1/see				phase1a
+enemies/phase1/pain				phase1b
+enemies/phase1/death			phase1c
+enemies/phase1/sword			SWORD-1
+
+enemies/phase2/see				phase2a
+enemies/phase2/pain				phase2b
+enemies/phase2/death			phase2c
+
+enemies/phase3/see				phase3a
+enemies/phase3/pain				phase3b
+enemies/phase3/death			phase3c
+enemies/phase3/see2 			phase3d
+$Random phase3/seeZ 			{ enemies/phase3/see2 DSNONE }
+
+kelldragon/see					KELL-1
+kelldragon/act					KELL-2
+$Random kelldragon/active 		{ kelldragon/see kelldragon/act }
+kelldragon/bite					KELL-5
+kelldragon/die					KELL-7
+kelldragon/pain					KELL-8
+kelldragon/jump					KELLJUMP
+
+trandoshan/see					BOSSK-1
+trandoshan/act					BOSSK-2
+$Random trandoshan/active 		{ trandoshan/act trandoshan/see }
+trandoshan/pain					BOSSK-3
+trandoshan/die					BOSSKDIE
+
+fett/see						BOBA-1
+fett/fire						BOBA-2
+fett/pain						BOBA-3
+fett/death						BOBA-4
+
+$random jerec/sight { jerec/sight1 jerec/sight2 }
+jerec/sight1					JERECSI1
+jerec/sight2					JERECSI2
+
+$random jerec/active { jerec/active1 jerec/active2 jerec/active3 jerec/active4 jerec/active5 jerec/active6 jerec/active7 jerec/sight1 jerec/gasp }
+jerec/active1					JERECAC1
+jerec/active2					JERECAC2
+jerec/active3					JERECAC3
+jerec/active4					JERECAC4
+jerec/active5					JERECAC5
+jerec/active6					JERECAC6
+jerec/active7					JERECAC7
+
+$random jerec/pain {jerec/pain1 jerec/pain2 jerec/pain3 }
+jerec/pain1						JERECPN1
+jerec/pain2						JERECPN2
+jerec/pain3						JERECPN3
+
+jerec/gasp						JERECSIGH
+jerec/death						JERECDTH
+jerec/taunt						JERECTRI
+jerec/fire						JERECFIRE
+jerec/attack					JERECATK
+
+$random sith/deflect { SITHREF1 SITHREF2 SITHREF3 }
+SITHREF1 SITHREF1
+SITHREF2 SITHREF2
+SITHREF3 SITHREF3
+
+jerec/lightning/start 			Sounds/DarkForces/forcelightnin01.wav
+jerec/lightning/impact			Sounds/DarkForces/forcelitning02.wav
+jerec/grip 						Sounds/DarkForces/forcegrip01.wav
+jerec/pull 						Sounds/DarkForces/forcepull01.wav
+jerec/push 						Sounds/DarkForces/forcethrow01.wav
+jerec/destruction 				Sounds/DarkForces/forcedestruct01.wav
+jerec/destruction/impact 		Sounds/DarkForces/forcedestruct02.wav
+jerec/jump 						Sounds/DarkForces/forcejump02.wav
+
+$random jerec/saber/swing { jerec/SABER1 jerec/SABER2 jerec/SABER3 jerec/SABER4 jerec/SABER5 jerec/SABER6 jerec/SABER7 jerec/SABER8 }
+jerec/SABER1 					Sounds/DarkForces/ltsaberswing01.wav
+jerec/SABER2 					Sounds/DarkForces/ltsaberswing02.wav
+jerec/SABER3 					Sounds/DarkForces/ltsaberswing03.wav
+jerec/SABER4 					Sounds/DarkForces/ltsaberswing04.wav
+jerec/SABER5 					Sounds/DarkForces/ltsaberswing05.wav
+jerec/SABER6 					Sounds/DarkForces/ltsaberswing06.wav
+jerec/SABER7 					Sounds/DarkForces/ltsaberswing07.wav
+jerec/SABER8 					Sounds/DarkForces/ltsaberswing08.wav
+
+jerec/saber/hum Sounds/DarkForces/ltsaberlp01.wav

@@ -1,0 +1,277 @@
+/* *************************************************************************/
+/*
+/* HEXEN SOUNDS
+/*
+/************************************************************************* */
+
+//
+// Fighter
+//
+FighterPunchMiss        punchmis
+FighterPunchHitWall     punch8
+FighterPunchHitThing    mumpun5
+FighterAxeHitThing      axe5
+FighterHammerMiss       hammis2
+FighterHammerHitWall    hamwal1
+FighterHammerHitThing   hmhit1a
+FighterHammerContinuous hamfly1
+FighterHammerExplode    impact3
+FighterSwordFire        sword2
+FighterSwordExplode     impact3
+FighterGrunt            gntmis1
+
+//
+// Cleric
+//
+ClericCStaffFire        spell1
+ClericCStaffExplode     glbhit4
+ClericCStaffHitThing    vamp5
+ClericFlameFire         strike3
+ClericFlameExplode      strike1
+ClericFlameCircle       firedhit
+HolySymbolFire          holy3
+SpiritActive            spirt7
+SpiritAttack            spirt5
+SpiritDie               spirts1
+
+//
+// Mage
+//
+MageWandFire            wand4
+MageLightningFire       lite2
+MageLightningContinuous gntpow
+MageLightningReady      wepele2
+MageLightningZap        gntact1
+MageShardsFire          cone3
+MageShardsExplode       shards1b
+MageStaffFire           mage4
+MageStaffExplode        mageball
+
+// Pig
+PigActive1              pigrunt1
+PigActive2              squeal1
+PigPain                 pigpain2
+PigAttack               bite4
+PigDeath                pigdth2
+
+//===========================================================================
+//
+// MONSTER SOUNDS
+//
+//===========================================================================
+
+// Bishop
+BishopSight             syab2d
+BishopActive            stb1d
+BishopPain              bshpn1
+BishopAttack            pop
+BishopDeath             bishdth1
+BishopMissileExplode    bshhit2
+BishopBlur              blur6
+
+// Centaur
+CentaurSight            taur1
+CentaurActive           taur2
+CentaurPain             taur4
+CentaurAttack           centhit2
+CentaurDeath            cntdth1
+CentaurLeaderAttack     cntshld4
+CentaurMissileExplode   impact3
+
+// Serpent
+SerpentSight            wtrcrt7
+SerpentActive           srfc3
+SerpentPain             serppn1
+SerpentAttack           wtrswip
+SerpentMeleeHit         wtrhit
+SerpentDeath            srpdth1
+SerpentBirth            srfc1
+SerpentFXContinuous     glbhiss1
+SerpentFXHit            glbhit4
+
+// Demon
+DemonSight              sbtsit5
+DemonActive             sbtsit5
+DemonPain               minact1
+DemonAttack             dematk2
+DemonDeath              sbtdth3
+DemonMissileFire        impfire2
+DemonMissileExplode     impact3
+
+// Wraith
+WraithSight             raith5a
+WraithActive            raith3
+WraithPain              raith4a
+WraithAttack            raith1b
+WraithDeath             rathdth2
+WraithMissileFire       impfire2
+WraithMissileExplode    impact3
+
+// Maulator
+MaulatorSight           minsit1
+MaulatorActive          minact2
+MaulatorPain            minpain4
+MaulatorHamSwing        hamblo8a
+MaulatorHamHit          hamfir1
+MaulatorMissileHit      impact3
+MaulatorDeath           mindth4
+
+// Ettin
+EttinSight              cent2
+EttinActive             cent2
+EttinPain               cent1
+EttinAttack             ethit1
+EttinDeath              cntdth1
+
+// Fire Demon
+FireDemonSpawn          spawn3
+FireDemonActive         fired5
+FireDemonPain           fired2
+FireDemonAttack         spit6
+FireDemonMissileHit     firedhit
+FireDemonDeath          fired3
+
+// Ice Guy
+IceGuySight             frosty1
+IceGuyActive            frosty1
+IceGuyAttack            frosty2
+IceGuyMissileExplode    shards1b
+
+// Sorcerer Boss
+SorcererSight           sorboss1
+SorcererActive          sorboss2
+SorcererPain            sorboss3
+SorcererSpellCast       woosh3
+SorcererBallWoosh       balls1
+SorcererDeathScream     sordie2
+SorcererBishopSpawn     bishapp
+SorcererBallPop         cork
+SorcererBallBounce      bounce2
+SorcererBallExplode     impact3
+SorcererBigBallExplode  sorblexp
+SorcererHeadScream      sorblexp
+
+// Dragon
+DragonSight             dragsit1
+DragonActive            dragsit1
+DragonWingflap          wing1
+DragonAttack            mage4
+DragonPain              dragpn2
+DragonDeath             dragdie2
+DragonFireballExplode   mageball
+
+// Korax
+KoraxSight              korsit
+KoraxActive             koract
+KoraxPain               korpn1
+KoraxAttack             koratk
+KoraxCommand            korcom
+KoraxDeath              kordth1
+KoraxStep               step
+
+// Korax Voice sounds
+KoraxVoiceGreetings     grtngs1
+KoraxVoiceReady         ready1
+KoraxVoiceBlood         blood1
+KoraxVoiceGame          game1
+KoraxVoiceBoard         board1
+KoraxVoiceWorship       wrship1
+KoraxVoiceMaybe         maybe1
+KoraxVoiceStrong        strong1
+KoraxVoiceFace          face1
+
+// Alternate monster pain sound (in gas cloud, lightning zapped, wraithverged)
+PuppyBeat               pup4
+
+Ignite                  torch2
+Fireball                impact3               // generic fireball projectile
+
+GlassShatter            glass5
+FlechetteBounce         flech4
+FlechetteExplode        firedhit
+
+$rolloff * custom 0 2025
+
+$pitchshiftrange 3
+
+$alias minotaur/sight		MaulatorSight
+$alias minotaur/pain		MaulatorPain
+$alias minotaur/death		MaulatorDeath
+$alias minotaur/active		MaulatorActive
+$alias minotaur/attack1		MaulatorHamHit
+$alias minotaur/attack2		MaulatorHamSwing
+
+$random BishopActiveSounds	{ BishopActive BishopSight }
+$random PigActive			{ PigActive1 PigActive2 }
+
+$limit SorcererBallWoosh		4
+$limit SorcererBallBounce		3
+$limit SorcererBallExplode		3
+$limit SorcererBallPop			3
+$limit SorcererBigBallExplode	3
+$limit MysticIncant				4
+
+$pitchshift PlayerMageNormalDeath	0
+$pitchshift PlayerMageCrazyDeath	0
+$pitchshift PlayerMageExtreme1Death	0
+$pitchshift PlayerMageExtreme2Death	0
+$pitchshift PlayerMageExtreme3Death	0
+$pitchshift PlayerMageBurnDeath		0
+$pitchshift PlayerMagePain			0
+$pitchshift PlayerMageGrunt			0
+$pitchshift PlayerMageFallingScream	0
+$pitchshift PlayerMageFailedUse		0
+$pitchshift PickupWeapon			0
+$pitchshift PickupPiece				0
+$pitchshift WeaponBuild				0
+$pitchshift BellRing				0
+
+$limit PuppyBeat 					0
+$limit CeantaurPain 				0
+$limit BishopPain 					0
+$limit SerpentPain 					0
+$limit DemonPain 					0
+$limit WraithPain 					0
+$limit MaulatorPain 				0
+$limit EttinPain 					0
+$limit FireDemonPain 				0
+$limit SorcererPain 				0
+$limit DragonPain 					0
+
+// Menelkir
+
+BossMagePain				MGPAIN
+BossMageXDeath1				MGXDTH1	
+BossMageXDeath2				MGXDTH2
+BossMageXDeath3				MGXDTH3
+$Random BossMageGibDeath  	{ BossMageXDeath1 BossMageXDeath2 BossMageXDeath3 }
+BossMageDeath1				MGDTH
+BossMageDeath2				MGCDTH
+$Random	MageBossDeath		{ BossMageDeath1 BossMageDeath2 }
+BossMageActive	    		MGHMM
+
+//Zedek
+
+BossFighterPain				FGTPAIN
+BossFighterXDeath1			FGTXDTH1	
+BossFighterXDeath2			FGTXDTH1
+BossFighterXDeath3			FGTXDTH1
+$Random BossFighterGibDeath { BossFighterXDeath1 BossFighterXDeath2 BossFighterXDeath3 }
+BossFighterDeath1			FGTDDTH
+BossFighterDeath2			FGTCDTH
+$Random	FighterBossDeath	{ BossFighterDeath1 BossFighterDeath2 }
+BossFighterActive 			FGTHMM
+
+//Traductus
+
+BossClericPain				PLRPAIN3
+BossClericXDeath1			CLXDTH1	
+BossClericXDeath2			CLXDTH2
+BossClericXDeath3			CLXDTH3
+$Random BossClericGibDeath  { BossClericXDeath1 BossClericXDeath2 BossClericXDeath3 }
+BossClericDeath1			PLRDTH
+BossClericDeath2			PLRCDTH
+$Random	ClericBossDeath		{ BossClericDeath1 BossClericDeath2 }
+BossClericActive	    	CLHMM
+
+Hexen/TeleportC				HEX_TPRT

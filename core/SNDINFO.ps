@@ -1,0 +1,193 @@
+/////////// Powerslave Enemies ////////////
+
+
+ps/soul/ammo				PS_78PWR
+ps/soul/mana				PS_7MANA
+
+// Anubis Warrior
+
+anubis/sight                ANU_ICU
+anubis/active               ANU_ACT
+anubis/meleehit             ANU_HIT2
+anubis/pain                 ANU_PN
+$Random anubis/death 		{ ANU_DIE ANU_DIE3 }
+anubis/xdeath               ANU_DIE2
+anubis/fireball             ANU_FIR
+ANU_DIE						ANU_DIE
+ANU_DIE3					ANU_DIE3
+
+// Terrainians
+
+redmite/bite                SPI_EAT
+redmite/pain                SPI_JUMP
+redmite/death               SPI_NEWD
+redmite/jump                SPI_JUMP
+redmite/active              SPI-WALK
+
+// Blue Scorpion
+
+bluescorpion/bite           SPI_ATAK
+bluescorpion/pain           SPI_HIT2
+bluescorpion/death          SPI_DETH
+bluescorpion/jump           SPI_JUM2
+bluescorpion/active         SPI_WLK2
+
+// Hawk
+
+hawk/active                 HAWK_ACT
+hawk/death                  HAWK_DTH
+
+// Bastet
+
+bastet/sight   				cat_icu
+bastet/melee   				cat_warp
+bastet/active   			cat_move
+bastet/pain   				cat_hurt
+bastet/warpout  			tele_2
+bastet/warpin   			tele_1
+bastet/death   				cat_deth
+bastet/break  				cat_brak
+bastet/gib1  				cat_splt
+bastet/gib2   				cat_xpld
+$random bastet/gib   		{ bastet/gib1 bastet/gib2 }
+
+// Mummy
+
+$random ancientmummy/active { ancientmummy/active1 ancientmummy/active2 ancientmummy/active3 ancientmummy/active4 ancientmummy/active5 ancientmummy/active6 ancientmummy/active7 }
+ancientmummy/active1   			m_chant0
+ancientmummy/active2   			m_chant1
+ancientmummy/active3   			m_chant2
+ancientmummy/active4   			m_chant3
+ancientmummy/active5   			m_chant4
+ancientmummy/active6   			m_ymotob
+ancientmummy/active7   			m_mumble
+ancientmummy/swingstaff 		m_sswing
+ancientmummy/staffhitu   		m_hits_u
+ancientmummy/attackchant   		m_resch2
+ancientmummy/hitstaffonground   m_nstaff
+ancientmummy/raise   			m_resr_x
+ancientmummy/pain    			m_pain
+ancientmummy/evillaugh   		m_resur
+ancientmummy/skullmissile  		m_rskull
+ancientmummy/skullmissile5  	spi_jump
+ancientmummy/skullmoveinair 	m_skull4
+ancientmummy/death    			m_deth
+ancientmummy/unwrap   			m_unwrap
+ancientmummy/balhit   			m_sohit
+
+// Omen Wasp
+
+omenwasp/flying   				WASP_SML
+omenwasp/attack   				wasp-atk
+omenwasp/sting    				wasp_stg
+omenwasp/death1   				wasp_dy1
+omenwasp/death2   				wasp_dy2
+$random omenwasp/death   		{ omenwasp/death1 omenwasp/death2 }
+omenwasp2/sight   				waspicu2
+omenwasp2/melee   				wb_fire
+omenwasp2/flying   				wb_fly
+omenwasp2/pain   				wb_hit
+omenwasp2/death1   				wb_deth1
+omenwasp2/death2   				wb_deth2
+$random omenwasp2/death   		{ omenwasp2/death1 omenwasp2/death2 }
+omenwasp2/grenadeboom   		wb_boom
+
+// Kilmaat Sentry
+
+kilmaatsentry/sight   			roch_ac1
+kilmaatsentry/active1   		roch_ac1
+kilmaatsentry/active2   		roch_ac2
+kilmaatsentry/active3   		roch_ac3
+$random kilmaatsentry/active 	{ kilmaatsentry/active1 kilmaatsentry/active2 kilmaatsentry/active3 }
+kilmaatsentry/shoot1   			roch_gun
+kilmaatsentry/shoot2   			roch_gu3
+$random kilmaatsentry/shoot 	{ kilmaatsentry/shoot1 kilmaatsentry/shoot2 }
+$random kilmaatsentry/pain   	{ roch_pai roch_pai2 }
+kilmaatsentry/death   			roch_die
+kilmaatsentry/gun2   			roch_gu2
+roch_pai						roch_pai
+roch_pai2						roch_pai2
+
+// Am-mit
+
+ammit/sight   					rex_roar
+ammit/active1   				rex_walk
+ammit/active2  					rex_wal2
+ammit/active3  					rex_grgl
+ammit/active4  					rex_grr
+$random ammit/active   			{ ammit/active1 ammit/active2 ammit/active3 ammit/active4 }
+ammit/roar   					rex_icu
+ammit/pain  					rex_hit
+ammit/melee1   					rex_bite
+ammit/melee2   					rex_bit2
+$random ammit/melee   			{ ammit/melee1 ammit/melee2 }
+ammit/death   					rex_deth
+
+// Magmantis
+
+magmantis/sight   				lav_icu
+$random magmantis/active 		{ magmantis/active1 magmantis/active2 }
+magmantis/active1   			lava_bub
+magmantis/active2   			lav_icu
+magmantis/pain   				lav_hurt
+magmantis/death   				lav_deth
+magmantis/attack   				lav_fire
+magmantis/firehit   			lava_pow
+
+// Set
+
+set/sight   					set_icu
+set/move   						set_walk
+set/active1   					set_grl1
+set/active2   					set_grl2
+set/spiritexplode   			set_boom
+$random set/active   			{ set/active1 set/active2 }
+set/jump   						set_jump
+set/land   						set_land
+set/attack1   					set_atk
+set/attack2   					set_spir
+set/pain   						set_pain
+set/death   					set_dies
+set/melee   					set_hit
+set/ghost1 						GHOST106
+set/ghost2 						GHOST109
+$Random set/ghost 				{ set/ghost1 set/ghost2 }
+
+// Selkis
+
+selkis/sight   					scrp_icu
+selkis/melee   					scrp_cla
+selkis/clawswipe1  			 	scrp_cs1
+selkis/clawswipe2   			scrp_cs2
+$random selkis/clawswipe 		{ selkis/clawswipe1 selkis/clawswipe2 }
+selkis/zapmain   				scrp_zap
+selkis/zap1   					scrp_zp1
+selkis/zap2  					scrp_zp2
+selkis/zap3   					scrp_zp3
+selkis/zap4   					scrp_zp4
+selkis/zap5   					scrp_zp5
+$random selkis/zap 				{ selkis/zap1 selkis/zap2 selkis/zap3 selkis/zap4 selkis/zap5 }
+selkis/tailshot   				ro_fire
+selkis/pain1  					scrp_hit
+selkis/pain2   					scrp_cry
+$random selkis/pain 			{ selkis/pain1 selkis/pain2 }
+selkis/tailshot1   				scrp_tal
+selkis/tailshot1   				scrp_ta2
+$random selkis/tailshot 		{ selkis/tailshot1 selkis/tailshot2 }
+selkis/death   					scrp_die
+
+// Kilmaatikahn
+
+kilmaatikahn/see1   			q_icu2
+kilmaatikahn/see2   			q_icu
+kilmaatikahn/pain1   			q_growl
+kilmaatikahn/pain2   			q_roar
+$random kilmaatikahn/pain 		{ kilmaatikahn/pain1 kilmaatikahn/pain2 kilmaatikahn/pain1 }
+kilmaatikahn/rpain2   			q_hit
+kilmaatikahn/fakedeath   		q_dth
+kilmaatikahn/realdeath   		q_rdth
+kilmaatikahn/taillaser   		q_tail
+kilmaatikahn/spit   			q_spit
+kilmaatminion/see				egg_walk
+kilmaatminion/bounce			egg_bong
+kilmaatminion/bite				egg_bite

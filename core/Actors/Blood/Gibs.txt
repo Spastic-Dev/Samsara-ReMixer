@@ -1,0 +1,80 @@
+Actor GargoyleWingGib
+{ 
+  health 1
+  radius 8
+  height 16
+  Speed 10
+  Scale 0.6
+  mass 1
+  PROJECTILE
+  +DOOMBOUNCE
+  +BOUNCEONACTORS
+  +CANBOUNCEWATER
+  +RANDOMIZE
+  +WINDTHRUST
+  -NOGRAVITY
+  +FLOORCLIP
+  +CANNOTPUSH
+  -SOLID
+  +CLIENTSIDEONLY
+  Species "BDebris" 
+  +THRUSPECIES
+  seesound "Blood/OrganSplash"
+  states
+  {
+  Spawn:
+    GWNG ABCDEFG 3
+    Loop
+  Death:
+    GWNG H -1
+    Stop
+  }
+}
+
+actor GargoyleHeadGib : ZBloodBloodliver
+{ 
+  health 1
+  radius 20
+  height 26  
+  +CANNOTPUSH
+  Scale 0.6
+  states
+  {
+  Spawn:
+    GHED A -1
+    stop
+  }
+}
+
+actor GargoyleBoneGib : GargoyleWingGib
+{ 
+  states
+  {
+  Spawn:
+	GARF LLMMNNOOPPQQRRSS 2
+	Loop
+  Death:
+    GARF W -1
+    Stop
+  }
+}
+
+actor HellHoundPawGib : GargoyleHeadGib
+{ 
+  states
+  {
+  Spawn:
+    HOUX G -1
+    stop
+  }
+}
+
+actor HellHoundEyeGib  : ZBloodEyeGuts
+{ 
+  states
+  {
+  Spawn:
+    HOUX H -1
+    stop
+  }
+}

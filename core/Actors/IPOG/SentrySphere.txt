@@ -1,0 +1,377 @@
+ACTOR IPOGSentrySphere
+{
+	Health 300
+	Radius 31
+	Height 56
+	Mass 400
+	Speed 16
+	PainChance 30
+	Monster
+	+NOBLOOD
+	+FLOAT
+	+NOGRAVITY
+	+NOINFIGHTING
+	SeeSound "ipogsentry/sight"
+	PainSound "ipogsentry/pain"
+	DeathSound "ipogsentry/death"
+	ActiveSound "ipogsentry/active"
+	Obituary "%o was neutralized by a Sentry Sphere."
+	Tag "Sentry Sphere"
+	States
+	{
+	Spawn:
+		IPOC A 0
+		IPOC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		IPOC A 1 ACS_ExecuteAlways(668,0,1,0)
+		IPOC A 0 A_GiveInventory("AlreadySpawned",1)
+		IPOC A 0 A_JumpIfInventory("InvisibleToken",1,2)
+		IPOC A 0 A_Jump(256,2)
+		IPOC A 0 A_ChangeFlag("STEALTH",1)
+	Spawn2:
+		IPOC A 5 A_Look
+		Loop
+	See:
+		IPOC A 3 A_Chase
+		Loop
+	Missile:
+		IPOC A 5 A_FaceTarget
+		IPOC B 3 Bright A_FaceTarget
+		IPOC A 0 A_PlaySound("ipogsentry/fire")
+		IPOC B 0 Bright A_CustomMissile("IPOGSentryShot",16,0,0,8)
+		IPOC B 0 Bright A_CustomMissile("IPOGSentryShot",48,0,0,8)
+		IPOC B 0 Bright A_CustomMissile("IPOGSentryShot",32,-18,0,8)
+		IPOC B 6 Bright A_CustomMissile("IPOGSentryShot",32,18,0,8)
+		IPOC A 2
+		Goto See
+	Pain:
+		IPOC A 3
+		IPOC A 3 A_Pain
+		Goto See
+	Death:
+	XDeath:
+		IPOC G 1 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		IPOC G 1 A_Scream
+		IPOC G 0 A_SpawnItemEx("PGRocketPuff",0,0,0,0,0,0,4)
+		IPOC DEF 2 A_SpawnItemEx("PGRocketSmallPuff00",random(-32,32),random(-32,32),random(-24,24),0,0,random(1,3),0)
+		IPOC G 3 A_SpawnItemEx("PGRocketSmallPuff00",random(-32,32),random(-32,32),random(-24,24),0,0,random(1,3),0)
+		TNT1 AAAAA 0 A_CustomMissile("ipogbigguardgib1",random(25,75),0,random(-180,180),2,random(10,25))
+		TNT1 AAAAA 0 A_CustomMissile("ipogbigguardgib2",random(25,75),0,random(-180,180),2,random(10,25))
+		TNT1 AAAAA 0 A_CustomMissile("ipogbigguardgib3",random(2,75),0,random(-180,180),2,random(10,25))
+		TNT1 AAAAA 0 A_CustomMissile("ipogbigguardgib4",random(25,75),0,random(-180,180),2,random(10,25))
+		IPOC HIJ 2 A_SpawnItemEx("PGRocketSmallPuff00",random(-32,32),random(-32,32),random(-24,24),0,0,random(1,3),0)
+		IPOC K 5
+		TNT1 A 1 A_NoBlocking
+		TNT1 A -1
+		Stop	
+	Death.Vodoo:
+	Death.VoodooPuff:
+	Death.DynamiteCoop:
+	Death.Dynamite:
+	Death.CalebNapalm:
+	Death.Shock:	  
+	Death.Vodoo:
+	Death.Tesla:
+	Death.CalebBullet:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+		Goto Death
+	Death.EradExplosive:
+	Death.EradNova:
+	Death.EradShock:
+	Death.EradExplosive2:	
+    Death.EradDisc:
+	Death.EradPiercingDart:
+	Death.EradGreenFire:
+	Death.EradCoopGreenFire:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1", 1)
+		Goto Death
+	Death.DukeExplosive:
+	Death.DukeDamage:
+	Death.DukePistol:
+		TNT1 A 0 A_Jump(218,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		goto Death
+	Death.MightyBoot:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_Jump(64,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+		goto Death
+	Death.PSRAPower:
+	Death.PSRAPowerCoop:
+	Death.PSExplosive:
+	Death.PSExplosiveCoop:
+	Death.PSBullet:
+	Death.PSFire:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		Goto Death
+	Death.LeonardDamage2:
+	Death.LeonardDamage3:
+	Death.LeonardDamage0:
+	Death.LeonardDamage1:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
+		Goto Death
+	Death.DukeIce:
+		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
+		"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
+		"####" "#" 0 A_Jump(218,"Ice")
+		"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+	Ice:
+	Death.HexenIce:
+	Death.WTMeleeIce:
+	Death.WTRangedIce:
+	Death.Ice:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_GenericFreezeDeath
+		"####" "#" 70 A_UnsetSolid
+		"####" "#" 0 A_IceGuyDie
+		"####" "#" 1 A_IceGuyDie
+		TNT1 A 0
+		stop	
+	Death.ZorchPistol:
+	Death.Zorch:
+	Death.ZorchKamikaze:
+	Death.PhasingZorch:
+	Death.ZorchSpectral:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_NoGravity
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+		"####" "#" 3 A_SpawnItem("ZorchEffectSmall")
+		"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_Scream
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 3 A_SetTranslucent(0.1,0) 
+		TNT1 A 1 A_SetTranslucent(1,0)
+		TNT1 A 0 A_Gravity
+		TNT1 A -1
+		stop
+	Death.SWFist:
+	Death.SWKatana:
+	Death.SWShuriken:
+	Death.SWSticky:
+	Death.SWStickyCoop:	
+	Death.SWGrenade:
+	Death.SWNuke:
+	Death.SWRocket:
+	Death.SWRailgun:
+	Death.SWRailgunCoop:
+	Death.SWNukeCoop:
+	Death.SWFlame:
+	Death.SWFlame2:
+	Death.SWFlame2Coop:
+	Death.SWFlame3:	
+    Death.SWBullet:	  
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+		goto Death
+	Death.RottDisintegrate:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_SpawnItem("RGodModeDeathSmall")
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		stop
+	Disintegrate:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_Stop
+		"####" "#" 3 A_SpawnItem("DisintEffectSmall",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+        stop
+	Death.Nuke:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoGravity		
+		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
+		"####" "#################" 3 A_Fadeout(0.05)
+		stop	
+	}
+}
+
+Actor PGRocketSmallPuff00 : PGRocketSmallPuff { Scale 0.5 }
+
+ACTOR IPOGSentryShot
+{
+	Radius 6
+	Height 8
+	Speed 25
+	Damage (Random(1,4))
+	Projectile 
+	+RANDOMIZE
+	States
+	{
+	Spawn:
+		IPOC LMLN 4 Bright
+		Loop
+	Death:
+		IPOC L 4 Bright
+		Stop
+	}
+}
+
+ACTOR IPOGSentrySphere0
+{
+	Health 100
+	Radius 16
+	Height 56
+	Mass 50
+	Speed 20
+	PainChance 80
+	Scale 0.60
+	Monster
+	+NOBLOOD
+	+FLOAT
+	+NOGRAVITY
+	SeeSound "ipogsentry/sight"
+	PainSound "ipogsentry/pain"
+	DeathSound "ipogsentry/death"
+	ActiveSound "ipogsentry/active"
+	Obituary "%o did not expect to find a Sentry Sphere prototype."
+	Tag "Prototype Sentry Sphere"
+	States
+	{
+	Spawn:
+		IPOC A 5 A_Look
+		Loop
+	See:
+		IPOC A 3 A_Chase
+		Loop
+	Missile:
+		IPOC A 5 A_FaceTarget
+		IPOC B 3 Bright A_FaceTarget
+		IPOC A 0 A_PlaySound("ipogsentry/fire")
+		IPOC B 6 Bright A_CustomMissile("IPOGSentryShot",32,0,0,8)
+		IPOC A 2
+		Goto See
+	Pain:
+		IPOC A 3
+		IPOC A 3 A_Pain
+		Goto See
+	Death:
+	XDeath:
+		IPOC G 1 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		IPOC G 1 A_Scream
+		IPOC K 3 A_SpawnItemEx("PGRocketPuff",0,0,0,0,0,0,4)
+		TNT1 A 3 A_SpawnItemEx("PGRocketPuff",0,0,0,0,0,0,4)
+		TNT1 A 3 A_SpawnItemEx("PGRocketPuff",0,0,0,0,0,0,4)
+		TNT1 A 3 A_NoBlocking
+		TNT1 A -1
+		Stop
+	Disintegrate:
+        TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+        TNT1 A 0 A_GiveInventory("EnemyZorched",1)
+        TNT1 A 0 A_NoBlocking
+        TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+        TNT1 A 0 A_SpawnItemEx("IPOGSentrySphereSmallDisintegrate",0,0,5,0,0,0,0,32)
+        TNT1 A 0 A_Scream
+        TNT1 A -1
+        stop
+	Death.ZorchPistol:
+	Death.Zorch:
+	Death.ZorchKamikaze:
+	Death.PhasingZorch:
+	Death.ZorchSpectral:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		IPOC A 0 A_Stop
+		IPOC A 0 A_NoGravity		
+		TNT1 A 0 A_ChangeFlag("DONTGIB",1)
+		TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+		IPOC A 3 A_SpawnItem("ZorchEffectSmall")
+		IPOC A 0 A_GiveInventory("EnemyZorched",1)
+		IPOC A 3 A_SetTranslucent(0.9,0)
+		IPOC A 0 A_Scream
+		IPOC A 3 A_SetTranslucent(0.8,0)
+		IPOC A 0 A_NoBlocking
+		IPOC A 3 A_SetTranslucent(0.7,0)
+		IPOC A 3 A_SetTranslucent(0.6,0)
+		IPOC A 3 A_SetTranslucent(0.5,0)
+		IPOC A 3 A_SetTranslucent(0.4,0)
+		IPOC A 3 A_SetTranslucent(0.3,0)
+		IPOC A 3 A_SetTranslucent(0.2,0)
+		IPOC A 3 A_SetTranslucent(0.1,0)
+		TNT1 A 1 A_SetTranslucent(1,0)
+		TNT1 A -1
+		stop		
+	}
+}
+
+Actor IPOGSentrySphereSmallDisintegrate : ZombiemanDisintegrate
+{
+  Scale 0.60
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    IPOC A 3 A_SpawnItem("DisintEffectSmall",0,10)
+    IPOC A 3 A_SetTranslucent(0.9,0)
+    IPOC A 3 A_SetTranslucent(0.8,0)
+    IPOC A 3 A_SetTranslucent(0.7,0)
+    IPOC A 3 A_SetTranslucent(0.6,0)
+    IPOC A 3 A_SetTranslucent(0.5,0)
+    IPOC A 2 A_SetTranslucent(0.4,0)
+    IPOC A 2 A_SetTranslucent(0.3,0)
+    IPOC A 2 A_SetTranslucent(0.2,0)
+    IPOC A 2 A_SetTranslucent(0.1,0)
+    Stop
+  }
+}

@@ -1,0 +1,376 @@
+Actor ExplosiveDiskJr  {
+	Speed 4
+	Scale 0.75
+	+NOGRAVITY
+	+FLOAT
+	+FLOATBOB
+	+SPAWNFLOAT
+	+NOBLOOD
+	Monster
+    Radius 18
+    Height 14
+    Scale 0.74
+	Health 20
+	Species "Enemies"
+    Tag "Explosive Disk Jr."	
+	ActiveSound ""
+	DeathSound "NME/Hit"
+	PainChance "ShrinkerDMG", 0
+	States {
+		Spawn:
+			RNME N 0
+			RNME N 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			RNME N 1 ACS_ExecuteAlways(668,0,1,0)
+			RNME N 0 A_GiveInventory("AlreadySpawned",1)
+			RNME N 0 A_JumpIfInventory("InvisibleToken",1,2)
+			RNME N 0 A_Jump(256,2)
+			RNME N 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:  
+			RNME NNOOPPQQ 2 Bright A_Look
+			Loop
+		See:
+			RNME NN 2 Bright A_Chase("","")
+			RNME OO 2 Bright A_Chase
+			RNME PP 2 Bright A_Chase("","")
+			RNME QQ 2 Bright A_Chase
+			Loop
+		Missile:
+		   RNME NO 3 A_FaceTarget
+		 KeepFiring:
+		   TNT1 A 0 A_FaceTarget
+		   TNT1 A 0 A_PlaySound("OP_FIRE",CHAN_WEAPON)
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME O 3
+		   TNT1 A 0 A_FaceTarget
+		   TNT1 A 0 A_PlaySound("OP_FIRE",CHAN_WEAPON)		   
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME O 1 A_GiveInventory("AttackDecider_2", 1)
+		   RNME O 2 A_JumpIfInventory("DoAttack", 1, "Repeat")
+		   Goto See
+	   Repeat:
+		   TNT1 A 0 A_TakeInventory("DoAttack", 1)
+		   TNT1 A 0 A_JumpIf(1 == ACS_ExecuteWithResult(808, 0), "See")
+		   Goto KeepFiring	
+	  Melee:
+		   TNT1 A 0 A_Jumpifcloser(64,1)
+		   goto Missile
+		   TNT1 A 0 A_Jumpifcloser(64,1)
+		   goto Missile
+		   TNT1 A 0 A_Jumpifcloser(64,1)
+		   goto Missile
+		   TNT1 A 0 A_Jumpifcloser(64,1)
+		   goto See
+		   TNT1 A 0 A_Jumpifcloser(64,1)
+		   goto See
+		   TNT1 A 0 A_Die("Suicide")
+		   goto See
+		Death:
+		XDeath:
+			TNT1 A 0 A_NoGravity
+	        TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Explode(8, 32)
+			TNT1 A 0 A_NoBlocking
+			EXPL AAB 1 Bright
+			TNT1 A 0 A_RadiusThrust(2000, 96)
+			EXPL BCC 1 Bright
+			TNT1 A 0 A_Explode(8, 32)
+			EXPL DDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTT 1 Bright
+			Stop	
+		Death.Suicide:
+			TNT1 A 0 A_NoGravity
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Explode(8, 32)
+			TNT1 A 0 A_NoBlocking
+			EXPL AAB 1 Bright
+			TNT1 A 0 A_RadiusThrust(2000, 96)
+			EXPL BCC 1 Bright
+			TNT1 A 0 A_Explode(8, 32)
+			EXPL DDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTT 1 Bright
+			Stop			
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_NoGravity
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectTiny")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_Scream
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0) 
+			TNT1 A 0 A_Gravity
+			TNT1 A 1 A_SetTranslucent(1,0)
+			stop
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Pain
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathTiny")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectTiny",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoGravity				
+			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathTiny")
+			"####" "#################" 3 A_Fadeout(0.05)
+			stop
+	}
+}
+
+Actor ExplosiveDiskSr  {
+	Speed 8
+	Species "Enemies"
+	+NOGRAVITY
+	+FLOAT	
+	+FLOATBOB
+	+SPAWNFLOAT
+	+NOBLOOD
+	Monster
+    Radius 12
+    Height 15
+	Scale 0.92
+	Health 120
+    Tag "Explosive Disk"	
+	ActiveSound ""
+	DeathSound "NME/Hit"
+	MeleeDamage 0
+	meleerange 32
+	PainChance "ShrinkerDMG", 0
+	States {
+		Spawn:
+			RNME N 0
+			RNME N 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			RNME N 1 ACS_ExecuteAlways(668,0,1,0)
+			RNME N 0 A_GiveInventory("AlreadySpawned",1)
+			RNME N 0 A_JumpIfInventory("InvisibleToken",1,2)
+			RNME N 0 A_Jump(256,2)
+			RNME N 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:  
+			RNME NNOOPPQQ 2 Bright A_Look
+			Loop
+		See:
+			RNME NN 2 Bright A_Chase("","")
+			RNME OO 2 Bright 
+			RNME PP 2 Bright A_Chase("","")
+			RNME QQ 2 Bright 
+			Loop
+		Missile:
+		   RNME NO 3 A_FaceTarget
+	    KeepFiring:
+		   TNT1 A 0 A_FaceTarget
+		   TNT1 A 0 A_PlaySound("E_BIGEMP",CHAN_WEAPON)
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME O 3
+		   TNT1 A 0 A_FaceTarget
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME O 3
+		   TNT1 A 0 A_FaceTarget
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)		   
+		   RNME O 1 A_GiveInventory("AttackDecider_2", 1)
+		   RNME O 2 A_JumpIfInventory("DoAttack", 1, "Repeat")
+		   Goto See
+	    Repeat:
+		   TNT1 A 0 A_TakeInventory("DoAttack", 1)
+		   TNT1 A 0 A_JumpIf(1 == ACS_ExecuteWithResult(808, 0), "See")
+		   Goto KeepFiring			
+		Melee:
+			TNT1 A 0 A_Jumpifcloser(64,1)
+			goto Missile
+			TNT1 A 0 A_Jumpifcloser(64,1)
+			goto Missile
+			TNT1 A 0 A_Jumpifcloser(64,1)
+			goto Missile
+			TNT1 A 0 A_Jumpifcloser(64,1)
+			goto See
+			TNT1 A 0 A_Jumpifcloser(64,1)
+			goto See
+			TNT1 A 0 A_Die("Suicide")
+			goto See
+		Death:
+		XDeath:
+            TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_NoGravity			
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_Explode(16, 64)
+			EXPL AAB 1 Bright
+			TNT1 A 0 A_RadiusThrust(2000, 96)
+			EXPL BCC 1 Bright
+			TNT1 A 0 A_Explode(16, 64)
+			EXPL DDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTT 1 Bright
+			Stop
+		Death.Suicide:
+			TNT1 A 0 A_NoGravity			
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_Explode(16, 64)
+			EXPL AAB 1 Bright
+			TNT1 A 0 A_RadiusThrust(2000, 96)
+			EXPL BCC 1 Bright
+			TNT1 A 0 A_Explode(16, 64)
+			EXPL DDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTT 1 Bright
+			Stop			
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_NoGravity
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectTiny")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_Scream
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0) 
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 A_Gravity
+			stop
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Pain
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathTiny")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectTiny",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoGravity				
+			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathTiny")
+			"####" "#################" 3 A_Fadeout(0.05)
+			stop	
+	}
+}

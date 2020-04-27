@@ -1,0 +1,1322 @@
+ACTOR Quake_RocketTrail1 : Quake_NewParticles
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx ("Quake_DustParticle", random(-2,2)*2, random(-2,2)*2, random(-2,2)*2)
+    TNT1 A 0 A_SpawnItemEx ("Quake_DustParticle", random(-2,2)*2, random(-2,2)*2, random(-2,2)*2)
+    TNT1 A 0 A_SpawnItemEx ("Quake_DustParticle", random(-2,2)*2, random(-2,2)*2, random(-2,2)*2)
+    TNT1 A 0 A_SpawnItemEx ("Quake_FireParticle", random(-1,1)*1, random(-1,1)*1, random(-1,1)*1)
+    TNT1 A 0 A_SpawnItemEx ("Quake_FireParticle", random(-1,1)*1, random(-1,1)*1, random(-1,1)*1)
+    TNT1 A 1 A_SpawnItemEx ("Quake_FireParticle", random(-1,1)*1, random(-1,1)*1, random(-1,1)*1)
+    Stop
+  }
+}
+
+actor Quake_WGIB1
+{
+  Radius 4
+  Height 4
+  Speed 0
+  -NOGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  +THRUACTORS
+  +CLIENTSIDEONLY
+  -SOLID
+  +CORPSE
+  Gravity 0.5
+  health 1
+  States
+  {
+  Spawn:
+    QD11 AABBCCDDEEFFGGHH 2 A_SpawnItemEx("Quake_GibBlood",0,0,0)
+    loop
+  Crash:
+    QD11 A 1
+    stop
+  }
+}
+
+actor Quake_WGIB2
+{
+  Radius 4
+  Height 4
+  Speed 0
+  -NOGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  +THRUACTORS
+  +CLIENTSIDEONLY
+  -SOLID
+  +CORPSE
+  Gravity 0.5
+  health 1
+  States
+  {
+  Spawn:
+    QD11 AABBCCDDEEFFGGHH 2 A_SpawnItemEx("Quake_GibBlood",0,0,0)
+    loop
+  Crash:
+    QD11 A 1
+    stop
+  }
+}
+
+actor Quake_WGIB3
+{
+  Radius 4
+  Height 4
+  Speed 0
+  -NOGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  +THRUACTORS
+  +CLIENTSIDEONLY
+  -SOLID
+  +CORPSE
+  Gravity 0.5
+  health 1
+  States
+  {
+  Spawn:
+    QD11 AABBCCDDEEFFGGHH 2 A_SpawnItemEx("Quake_GibBlood",0,0,0)
+    loop
+  Crash:
+    QD11 A 1
+    stop
+  }
+}
+
+actor Quake_STGIB1
+{
+  Radius 4
+  Height 4
+  Speed 0
+  Projectile
+  Gravity 0.5
+  BounceType Doom
+  BounceFactor 0.5
+  -NOGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  +THRUACTORS
+  +CLIENTSIDEONLY
+  -SOLID
+  health 2
+  States
+  {
+  Spawn:
+    QD11 AABBCCDDEEFFGGHH 2 A_SpawnItemEx("Quake_GibBlood",0,0,0)
+    loop
+  Death:
+    QD11 I 0 A_Jump(192, 2, 3, 4)
+    QD11 I 300 A_Gravity
+    stop
+    QD11 I 250 A_Gravity
+    stop
+    QD11 I 200 A_Gravity
+    stop
+    QD11 I 150 A_Gravity
+    stop
+  }
+}
+
+actor Quake_STGIB2
+{
+  Radius 4
+  Height 4
+  Speed 0
+  Projectile
+  Gravity 0.5
+  BounceType Doom
+  BounceFactor 0.5
+  -NOGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  +THRUACTORS
+  +CLIENTSIDEONLY
+  -SOLID
+  health 3
+  States
+  {
+  Spawn:
+    QD11 AABBCCDDEEFFGGHH 2 A_SpawnItemEx("Quake_GibBlood",0,0,0)
+    loop
+  Death:
+    QD11 I 0 A_Jump(192, 2, 3, 4)
+    QD11 I 300 A_Gravity
+    stop
+    QD11 I 250 A_Gravity
+    stop
+    QD11 I 200 A_Gravity
+    stop
+    QD11 I 150 A_Gravity
+    stop
+  }
+}
+
+actor Quake_STGIB3
+{
+  Radius 4
+  Height 4
+  Speed 0
+  Projectile
+  Gravity 0.5
+  BounceType Doom
+  BounceFactor 0.5
+  -NOGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  +THRUACTORS
+  +CLIENTSIDEONLY
+  -SOLID
+  health 4
+  States
+  {
+  Spawn:
+    QD11 AABBCCDDEEFFGGHH 2 A_SpawnItemEx("Quake_GibBlood",0,0,0)
+    loop
+  Death:
+    QD11 I 0 A_Jump(192, 2, 3, 4)
+    QD11 I 300 A_Gravity
+    stop
+    QD11 I 250 A_Gravity
+    stop
+    QD11 I 200 A_Gravity
+    stop
+    QD11 I 150 A_Gravity
+    stop
+  }
+}
+
+actor Quake_MeatChunk
+{
+  Radius 4
+  Height 4
+  Speed 0
+  -NOGRAVITY
+  +NOTELEPORT
+  +MOVEWITHSECTOR
+  +THRUACTORS
+  +CLIENTSIDEONLY
+  -SOLID
+  +CORPSE
+  Gravity 0.5
+  States
+  {
+  Spawn:
+    QD11 EE 2 A_SpawnItemEx("Quake_GibBlood",0,0,0)
+    loop
+  Crash:
+    QD11 E 1
+    stop
+  }
+}
+
+actor Quake_ZombHead : Quake_GIB1
+{
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_dogHead : Quake_GIB1
+{
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_ShamblerHead : Quake_GIB1
+{
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_VoreHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_KnightHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_ST1Head : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_FiendHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_EnforcerHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_WizardHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_OgreHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_MOgreHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_GremlinHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_HKnightHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_ST2Head : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_ScorpHead : Quake_GIB1
+{
+  Scale 0.7
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_ZombHead2 : Quake_GIB0 {}
+actor Quake_GruntHead2 : Quake_GIB0 {}
+actor Quake_dogHead2 : Quake_GIB0 {}
+actor Quake_ShamblerHead2 : Quake_GIB0 {}
+actor Quake_VoreHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_KnightHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_ST1Head2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_FiendHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_EnforcerHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_WizardHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_OgreHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_MOgreHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_GremlinHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_HKnightHead2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_ST2Head2 : Quake_GIB0 { Scale 0.7 }
+actor Quake_ScorpHead2 : Quake_GIB0 { Scale 0.7 }
+
+ACTOR Quake_BloodDrop
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 1
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -SOLID
+  Scale 0.65
+  Damage (0)
+//DamageType PainKill
+  States
+  {
+  Spawn:
+    BPAR C 0
+    BPAR C 0 A_Jump (256, "shade1", "shade3", "shade5")
+    Shade1:
+    BPAR C 5
+    Stop
+    Shade3:
+    BPAR D 5
+    Stop
+    Shade5:
+    BPAR E 5
+    Stop
+  }
+}
+
+ACTOR Quake_BloodDrop2 : Quake_BloodDrop { Speed 2 }
+
+ACTOR Quake_BloodParticle
+{
+  Mass 5
+  +NoClip
+  +NoTeleport
+  +ClientSideOnly
+  Gravity 0.01
+  States
+  {
+  Spawn:
+    BPAR C 0
+    BPAR C 0 A_Jump (256, "shade1", "shade3", "shade5")
+    Shade1:
+    BPAR C 5
+	A:
+	BPAR C 1 A_FadeOut
+    Loop
+    Shade3:
+    BPAR D 5
+	B:
+	BPAR D 1 A_FadeOut
+    Loop
+    Shade5:
+    BPAR E 5
+	C:
+	BPAR E 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_PlasmaDebris
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 4
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -SOLID
+  Damage (0)
+  States
+  {
+  Spawn:
+    PPAR AAAABBBBCCCCDDDDEEEE 1 BRIGHT
+  Death:
+    PPAR ABCDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_PlasmaDebrisS
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 2
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -SOLID
+  States
+  {
+  Spawn:
+    PPAR AAAABBBBCCCCDDDDEEEE 1 BRIGHT
+  Death:
+    PPAR ABCDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_PlasmaDebrisSS
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 1
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -SOLID
+  States
+  {
+  Spawn:
+    PPAR AAAABBBBCCCCDDDDEEEE 1 BRIGHT
+  Death:
+    PPAR ABCDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_FireParticle
+{
+  Mass 5
+  +NOTELEPORT
+  +NOGRAVITY
+  +CLIENTSIDEONLY
+  -SOLID
+  +NOBLOCKMAP
+  +NOBLOCKMONST
+  Scale 0.5
+  States
+  {
+  Spawn:
+    FPAR AAAABBBBCCCCDDDDEEEE 1 Bright
+  Death:
+    FPAR ABCDE 1 A_FadeOut
+	Loop
+  }
+}
+
+ACTOR Quake_GrenadeWeak
+{
+  Radius 11
+  Height 8
+  Speed 25
+  Damage (0)
+  Projectile
+  -NOGRAVITY
+  +RANDOMIZE
+  +DOOMBOUNCE
+  Gravity 0.50
+  BounceFactor 0.5
+  SeeSound "quakeweps/grenadebounce"
+  Obituary "%o ate an Ogre's pineaple."
+  DamageType Grenade
+  States
+  {
+  Spawn:
+    QGRN A 0
+    QGRN A 0 A_PlaySound("quakeweps/blank", CHAN_VOICE)
+	TNT1 A 0 ThrustThingZ(0,random(15,25)-random(5,10),0,0)	
+    goto SpawnLoop
+  SpawnLoop:
+    QGRN ABCDEFGHIJKLABCDEFGHIJKLABCDEFGHIJKL 1 Bright A_SpawnItemEx("Quake_GrenadeTrail1")
+    Loop
+  Death:
+    TNT1 A 5 A_SpawnItemEx("QWGrenFloor")
+    Stop  
+  XDeath:
+    TNT1 A 0 A_NoGravity
+    TNT1 A 0 A_Explode(Random(20,40)-10,160)
+    TNT1 A 5 A_SpawnItemEx("QuakeExplosion_Mixer")
+    Stop
+  }
+}
+
+ACTOR QWGrenFloor
+{
+  Radius 8
+  Height 5
+  Speed 0
+  Damage (1)
+  Health 20
+  DamageType Grenade
+  Projectile
+  +NOBLOOD
+  -SHOOTABLE
+  -MISSILE
+  +THRUACTORS
+  -NOGRAVITY
+  Obituary "%o ate an Ogre's pineaple."
+  States
+  {
+  Spawn:
+    QGRN A 0
+    QGRN A 0 A_Jump(256,"Floor1","Floor2","Floor3","Floor4","Floor5","Floor6","Floor7","Floor8","Floor9","Floor10","Floor11","Floor12")
+  Floor1:
+    QGRN A 35 Bright
+    Goto death
+  Floor2:
+    QGRN B 35 Bright
+    Goto death
+  Floor3:
+    QGRN C 35 Bright
+    Goto death
+  Floor4:
+    QGRN D 35 Bright
+    Goto death
+  Floor5:
+    QGRN E 35 Bright
+    Goto death
+  Floor6:
+    QGRN F 35 Bright
+    Goto death
+  Floor7:
+    QGRN G 35 Bright
+    Goto death
+  Floor8:
+    QGRN H 35 Bright
+    Goto death
+  Floor9:
+    QGRN I 35 Bright
+    Goto death
+  Floor10:
+    QGRN J 35 Bright
+    Goto death
+  Floor11:
+    QGRN K 35 Bright
+    Goto death
+  Floor12:
+    QGRN L 35 Bright
+    Goto death
+  Death:
+    TNT1 A 0 A_Explode(Random(20,40)-10,160)
+    TNT1 A 5 A_SpawnItemEx("QuakeExplosion_Mixer")
+    Stop
+  }
+}
+
+ACTOR Quake_GrenadeTrail1 : Quake_NewParticles
+{
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_SpawnItemEx("Quake_DustParticle", random(-2,2)*2, random(-2,2)*2, random(-2,2)*2)
+    TNT1 A 0 A_SpawnItemEx("Quake_DustParticle", random(-2,2)*2, random(-2,2)*2, random(-2,2)*2)
+    TNT1 A 1 A_SpawnItemEx("Quake_DustParticle", random(-2,2)*2, random(-2,2)*2, random(-2,2)*2)
+    Stop
+  }
+}
+
+ACTOR Quake_DustParticle
+{
+  Mass 5
+  +NoTeleport
+  +NoGravity
+  +ClientSideOnly
+  -Solid
+  Scale 0.5
+  VSpeed 1
+  States
+  {
+  Spawn:
+    APAR AABBCCDDEE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_SPAWNparticles
+{
+  Radius 1
+  Height 1
+  Speed 0
+  Damage 0
+  Projectile
+  -Solid
+  +ThruActors
+  +NoClip 
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisSS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris2",Random(-3,3)+1,Random(-3,3)+1,Random(-2,2)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisSS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisSS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisSS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris2",Random(-3,3)+1,Random(-3,3)+1,Random(-2,2)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisSS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisSS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisSS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebris2",Random(-3,3)+1,Random(-3,3)+1,Random(-2,2)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_SPAWNDebrisS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR Quake_SPAWNDebris
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 4
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  Damage (0)
+  DamageType PainKill
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  Death:
+    VPAR CDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_SPAWNDebrisS
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 2
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  Damage (0)
+  DamageType PainKill
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  Death:
+    VPAR CDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_SPAWNDebrisSS
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 1
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  Damage (0)
+  DamageType PainKill
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  Death:
+    VPAR CDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_EXPDebris
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 4
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  Damage (0)
+  DamageType PainKill
+  States
+  {
+  Spawn:
+    FPAR ABCDE 5 BRIGHT
+    Stop
+  Death:
+    FPAR ABCDE 1 A_FadeOut
+	Loop
+  }
+}
+
+ACTOR Quake_EXPDebrisS
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 2
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  Damage (0)
+  DamageType PainKill
+  States
+  {
+  Spawn:
+    FPAR ABCDE 5 BRIGHT
+    Stop
+  Death:
+    FPAR ABCDE 1 A_FadeOut
+	Loop
+  }
+}
+
+ACTOR Quake_EXPDebrisSS
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 1
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  Damage (0)
+  DamageType PainKill
+  States
+  {
+  Spawn:
+    FPAR ABCDE 5 BRIGHT
+    Stop
+  Death:
+    FPAR ABCDE 1 A_FadeOut
+	Loop
+  }
+}
+
+ACTOR Quake_EXPDebris2 : Quake_EXPDebris
+{
+  States
+  {
+  Spawn:
+    1PAR ABCDE 5
+    Stop
+  }
+}
+
+ACTOR Quake_EXPDebrisS2 : Quake_EXPDebrisS
+{
+  States
+  {
+  Spawn:
+    1PAR ABCDE 5
+    Stop
+  }
+}
+
+ACTOR Quake_EXPDebrisSS2 : Quake_EXPDebrisSS
+{
+  States
+  {
+  Spawn:
+    1PAR ABCDE 5
+    Stop
+  }
+}
+
+
+ACTOR Quake_EXPDebris3 : Quake_EXPDebris
+{
+  States
+  {
+  Spawn:
+    2PAR ABCDE 5
+    Stop
+  }
+}
+
+ACTOR Quake_EXPDebrisS3 : Quake_EXPDebrisS
+{
+  States
+  {
+  Spawn:
+    2PAR ABCDE 5
+    Stop
+  }
+}
+
+ACTOR Quake_EXPDebrisSS3 : Quake_EXPDebrisSS
+{
+  States
+  {
+  Spawn:
+    2PAR ABCDE 5
+    Stop
+  }
+}
+
+ACTOR Quake_SPAWNDebris2 : Quake_EXPDebris
+{
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_SPAWNDebrisS2 : Quake_EXPDebrisS
+{
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_SPAWNDebrisSS2 : Quake_EXPDebrisSS
+{
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_SPAWNDebris3 : Quake_EXPDebris
+{
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_SPAWNDebrisS3 : Quake_EXPDebrisS
+{
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_SPAWNDebrisSS3 : Quake_EXPDebrisSS
+{
+  States
+  {
+  Spawn:
+    VPAR CDE 7 BRIGHT
+    Stop
+  }
+}
+
+ACTOR QuakeDustDrop
+{
+  Radius 1
+  Height 1
+  Projectile
+  Speed 0
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  +NOCLIP
+  -SOLID
+  Gravity 0.1
+  Scale 0.65
+  Damage (0)
+  States
+  {
+  Spawn:
+    APAR F 0
+    APAR F 0 A_Jump (256, "shade1", "shade3", "shade5")
+    Shade1:
+    APAR F 1 A_CheckFloor("Ground")
+    APAR F 2
+    APAR F 10 A_ChangeFlag("Nogravity",0)
+    Stop
+    Shade3:
+    APAR G 1 A_CheckFloor("Ground")
+    APAR G 2
+    APAR G 10 A_ChangeFlag("Nogravity",0)
+    Stop
+    Shade5:
+    APAR H 1 A_CheckFloor("Ground")
+    APAR H 2
+    APAR H 10 A_ChangeFlag("Nogravity",0)
+    Stop
+    Ground:
+    TNT1 A 5
+    Stop
+  }
+}  
+
+ACTOR Quake_TELEparticles
+{
+  Radius 1
+  Height 1
+  Speed 0
+  Damage 0
+  Projectile 
+  -Solid
+  +ThruActors
+  +NoClip
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris2",Random(-3,3)+1,Random(-3,3)+1,Random(-2,2)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris2",Random(-3,3)+1,Random(-3,3)+1,Random(-2,2)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris2",Random(-3,3)+1,Random(-3,3)+1,Random(-2,2)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisSS2",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebris3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 0 A_SpawnItemEx("Quake_TELEDebrisS3",Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1,Random(-3,3)+1)
+    TNT1 A 1
+    Stop
+  }
+}
+
+ACTOR Quake_TELEDebris
+{
+  Radius 1
+  Height 1
+  Scale 0.6
+  Projectile
+  Speed 4
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -SOLID
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  Death:
+    TPAR ABCDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_TELEDebrisS
+{
+  Radius 1
+  Height 1
+  Scale 0.6
+  Projectile
+  Speed 2
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -SOLID
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  Death:
+    TPAR ABCDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_TELEDebrisSS
+{
+  Radius 1
+  Height 1
+  Scale 0.6
+  Projectile
+  Speed 1
+  +NOBLOCKMAP
+  +DROPOFF
+  +CANNOTPUSH
+  +SKYEXPLODE
+  +NOBLOCKMONST
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -SOLID
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  Death:
+    TPAR ABCDE 1 A_FadeOut
+    Loop
+  }
+}
+
+ACTOR Quake_TELEDebris2 : Quake_EXPDebris
+{
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_TELEDebrisS2 : Quake_EXPDebrisS
+{
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_TELEDebrisSS2 : Quake_EXPDebrisSS
+{
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  }
+}
+
+
+ACTOR Quake_TELEDebris3 : Quake_EXPDebris
+{
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_TELEDebrisS3 : Quake_EXPDebrisS
+{
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_TELEDebrisSS3 : Quake_EXPDebrisSS
+{
+  States
+  {
+  Spawn:
+    TPAR ABCDE 5 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Quake_LaserParticle
+{
+  Mass 5
+  +NoTeleport
+  +NoGravity
+  +ClientSideOnly
+  -SOLID
+  Scale 0.5
+  VSpeed 1
+  States
+  {
+  Spawn:
+    BPAR ABCDE 2
+    Stop
+  }
+}
+
+actor Quake_DragonHead : Quake_GIB1
+{
+  Health 1
+  Scale 0.2
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_DragonLeg : Quake_GIB1
+{
+  Health 1
+  Scale 0.3
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor Quake_DragonWing : Quake_GIB1
+{
+  Health 1
+  Scale 0.5
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
+actor QuakeExplosion_Mixer
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+    RenderStyle Add    
+    States
+    {
+      Spawn:
+		QEXP A 0
+        QEXP AAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("QuakeExplosionParticle",  0, 0, random(-180, 180), 2, random(-180, 180))
+        QEXP AAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("QuakeExplosionParticle2", 0, 0, random(-180, 180), 2, random(-180, 180))
+        QEXP AAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("QuakeExplosionParticle3", 0, 0, random(-180, 180), 2, random(-180, 180))
+      Death:
+        QEXP A 4 bright A_PlaySound("quakeweps/explode")
+        QEXP B 4 bright
+        QEXP CD 3 bright
+        QEXP EF 2 bright
+        stop
+    }
+}
+
+actor QuakeTinyExplosion_Mixer: QuakeExplosion_Mixer
+{
+	Scale 0.6
+    States
+    {
+      Spawn:
+		QEXP A 0
+        QEXP AAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("QuakeTinyParticle",  0, 0, random(-180, 180), 2, random(-180, 180))
+        QEXP AAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("QuakeTinyParticle2", 0, 0, random(-180, 180), 2, random(-180, 180))
+        QEXP AAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("QuakeTinyParticle3", 0, 0, random(-180, 180), 2, random(-180, 180))
+      Death:
+        QEXP A 4 bright A_PlaySound("quakeweps/explode", CHAN_AUTO, 0.5)
+        QEXP B 4 bright
+        QEXP CD 3 bright
+        QEXP EF 2 bright
+        stop
+    }
+}

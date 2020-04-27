@@ -1,0 +1,60 @@
+Actor C7Alien {
+	Radius 16
+	Height 48
+	Speed 10
+	PainChance 200
+	Species "C7"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+DONTGIB	
+	+NOINFIGHTING
+	Mass 250
+	PainSound ""
+	ActiveSound ""
+	Dropitem "DefaultPinataPop"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "C7EnemyBullet", 0.0
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Decal BulletChip
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor C7EnemyBulletD1 : DoomEnemyBullet {
+	Damage (Random (1, 64))
+	DamageType "C7EnemyBullet"
+	+MTHRUSPECIES
+	States {
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+ACTOR C7EnemyBulletD2 : C7EnemyBulletD1 { Damage (Random (1, 32)) }
+ACTOR C7EnemyBulletD3 : C7EnemyBulletD1 { Damage (Random (1, 16)) }
+ACTOR C7EnemyBulletD4 : C7EnemyBulletD1 { Damage (Random (1, 8)) }
+ACTOR C7EnemyBulletD5 : C7EnemyBulletD1 { Damage (Random (1, 4)) }
+ACTOR C7EnemyBulletD6 : C7EnemyBulletD1 { Damage (Random (1, 2)) }
+ACTOR C7EnemyBulletD7 : C7EnemyBulletD1 { Damage (1) }
+
+ACTOR C7EnemyBulletB1 : C7EnemyBulletD1 { Damage (Random (1, 64)) }
+ACTOR C7EnemyBulletB2 : C7EnemyBulletD1 { Damage (Random (1, 32)) }
+ACTOR C7EnemyBulletB3 : C7EnemyBulletD1 { Damage (Random (1, 16)) }
+ACTOR C7EnemyBulletB4 : C7EnemyBulletD1 { Damage (Random (1, 8)) }
+ACTOR C7EnemyBulletB5 : C7EnemyBulletD1 { Damage (Random (1, 4)) }
+ACTOR C7EnemyBulletB6 : C7EnemyBulletD1 { Damage (Random (1, 2)) }
+ACTOR C7EnemyBulletB7 : C7EnemyBulletD1 { Damage (1) }
+
+Actor C7EnemyDropClip : Clip2 {
+	States {
+		Spawn:
+			7PRP I -1
+			Stop
+	}
+}

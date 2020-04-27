@@ -1,0 +1,166 @@
+Actor WitchavenEnemyBaseMelee {
+	Radius 20
+	Height 56
+	Speed 10
+	PainChance 67
+	Species "Enemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOFEAR
+	+DONTBLAST
+	+LONGMELEERANGE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS	
+	+NOINFIGHTING
+	Mass 500
+	PainSound ""
+	ActiveSound ""
+	Dropitem "DefaultPinataPop"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor WitchavenEnemyBaseRanged {
+	Radius 20
+	Height 56
+	Speed 15
+	PainChance 124
+	Species "Enemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS
+	+NOINFIGHTING
+//	+SEEINVISIBLE
+	Mass 300
+	PainSound ""
+	ActiveSound ""
+	Dropitem "DefaultPinataPop"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor Witchaven_PikeAxeMonsterDrop : SamsaraSlotThreeDrop2 {
+	Scale 0.23
+	+DROPPED
+	States
+    {
+      Spawn:
+        WH77 UUVVWWXXYYZZ 2
+		WH78 AABB 2
+        Loop
+    }
+}
+
+Actor Witchaven_QuiverArrowDrop : Ammo1Small_1 {
+	Scale 0.25
+	+DROPPED
+	States
+    {
+      Spawn:
+        WH77 MMNNOOPPQQRRSSTT 2
+        Loop
+    }
+}
+
+Actor WHAdamantineRing : BasicArmorBonus
+{
+  inventory.pickupmessage "Adamantine Ring"
+  inventory.icon "TNT1A0"
+  Inventory.PickupSound "gpickup/gen"
+  armor.savepercent 33.215
+  armor.saveamount 15  
+  armor.maxsaveamount 200  
+  armor.maxbonus 3
+  armor.maxbonusmax 50  
+  Scale 0.20
+  +DROPPED
+  +FLOATBOB
+  states
+  {
+  Spawn:
+    WH77 IIJJKKLL 2 Bright
+    Loop
+  }
+}
+
+Actor WHShadowAmulet : PowerupGiver
+{
+  inventory.pickupmessage "Shadow Amulet! Monsters will flee from you for 100 seconds!"
+  Inventory.PickupSound "wtargoth/spell5"
+  Scale 0.25
+  Powerup.Type Frightener
+  Powerup.Duration -100
+  +AUTOACTIVATE  
+  +INVENTORY.ALWAYSPICKUP 
+  +DROPPED
+  +FLOATBOB
+  states
+  {
+  Spawn:
+    WH77 AABBCCDDEEFFGGHH 2 Bright
+    Loop
+  }
+}
+
+Actor WTGore_Skeleton : WTGore
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_Jump(256,"Gore1","Gore2","Gore3","Gore4","Gore5","Gore6","Gore7","Gore8","Gore9","Gore10")
+		stop
+	Gore1:
+		WH_F XX 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore2:
+		WH_F YY 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore3:
+		WH_F ZZ 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore4:
+		WH_A AA 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore5:
+		WH_A BB 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore6:
+		WH_A CC 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore7:
+		WH_A DD 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore8:
+		WH_A EE 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore9:
+		WH_A FF 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	Gore10:
+		WH_A GG 36 A_JumpIf(waterlevel > 1, "GoreBegone")
+		stop
+	}
+}

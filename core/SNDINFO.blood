@@ -1,0 +1,313 @@
+//========= Blood ===========
+
+ZombieBuried		 ZOMRUS
+ZombieAxe			 ZOMAXE
+ZombieDeath1		 ZOMDTH1
+ZombieDeath2		 ZOMDTH2
+ZombieDeath3		 ZOMBDTH
+ZombiePain			 ZOMPAIN
+ZombieSee1			 ZOMSEE1
+ZombieSee2			 ZOMSEE2
+ZombieSee3			 ZOMSEE3
+$Random ZombieSee    { ZombieSee1 ZombieSee2 ZombieSee3 }
+$Random ZombieDeath  { ZombieDeath1 ZombieDeath2 }
+$Random ZombieDeathB { ZombieDeath1 ZombieDeath2 ZombieDeath3 }
+$Random Zombie/FakeD { ZombieDeath3 ZombiePain }
+Zombie/FRaise		 ZOMFAKE
+
+Cheogh/Sight1		 SARGROAM
+Cheogh/Sight2		 SARGSPOT
+$Random Cheogh/Roam  { Cheogh/Sight1 Cheogh/Sight2 }
+$rollOff Cheogh/Roam 1200 1400
+Cheogh/Slap			 SARGCLAW
+Cheogh/Die1			 SARGDIE1
+Cheogh/Die2			 SARGDIE2
+Cheogh/Die3			 SARGDIE3
+$Random Cheogh/Die 	 {Cheogh/Die1 Cheogh/Die2 Cheogh/Die3}
+Cheogh/Pain			 SARGPAIN
+$rollOff baron/sight 1200 1400
+Cheogh/Ball			 SARGFX
+Cheogh/Fire 		 SARGBLST
+
+Blood/HeartPU		 BL_PCKHL
+
+Bat/Die1			 BATDIE1
+Bat/Die2			 BATDIE2
+Bat/Die3			 BATDIE3
+$Random Bat/Die		 { Bat/Die1 Bat/Die2 Bat/Die3 }
+Bat/Pain			 BATPAIN
+Bat/Roam			 BATROAM
+Bat/Spot			 BATSPOT
+Bat/See				 BATSEE1
+$Random Bat/Active   { Bat/See Bat/Spot Bat/Roam }
+
+ButcherSee			 BBUTSEE
+ButcherPain			 BBUTPN
+ButcherDeath1		 BBUTDT1
+ButcherDeath2		 BBUTDT2
+ButcherDeath3        BBUTDT3
+ButcherBurn			 DSFZDIE3
+ButcherVomit		 BBUTVO
+$Random ButcherDeath { ButcherDeath1 ButcherDeath2 ButcherDeath3}
+
+Butcher/Wall1		 ACIDHIT1
+Butcher/Wall2		 ACIDHIT2
+Butcher/Cleaver		 CLEAVER
+$Random Butcher/Wall {Butcher/Wall1	Butcher/Wall2}
+Butcher/Active		 BBUTACT
+
+Cultist/Morph		 CULTMO1
+CultistSee1			 CULTSEE1
+CultistSee2			 CULTSEE2
+CultistSee3			 CULTSEE3
+CultistSee4			 CULTSEE4
+CultistSee5			 CULTSEE5
+CultistAct1			 CULTACT
+$Random CultistSee   { CultistSee1 CultistSee2 CultistSee3 CultistSee4 CultistSee5 CultistAct1 }
+$Random CultistAct   { CultistSee1 CultistSee2 CultistSee3 CultistSee4 CultistSee5 CultistAct1 }
+
+CultistPain1		 CULTPAN1
+CultistPain2		 CULTPAN2
+CultistPain3		 CULTPAN3
+CultistPain4		 CULTPAN4
+CultistPain5		 CULTPAN5
+CultistPain6		 CULTPAN6
+$Random CultistPain  { CultistPain1 CultistPain2 /*CultistPain3 CultistPain4 */ }
+
+CultistDie1			 CULTDIE1
+CultistDie2			 CULTDIE2
+CultistDie3			 CULTDIE3
+$Random CultistDie   { CultistDie1 CultistDie2 }
+$Random CultistDieFire   { CultistDie1 CultistDie2 CultistDie3 }
+
+CultistGotYou1		 CULTKIL1
+CultistGotYou2		 CULTKIL2
+CultistGotYou3		 CULTKIL3
+CultistGotYou4		 CULTKIL4
+$Random CultistGotYou { CultistGotYou1 CultistGotYou2 CultistGotYou3 CultistGotYou4 }
+
+CultistFire1		 CULTFIR1
+CultistFire2		 CULTFIR2
+CultistFire3		 CULTFIR3
+$Random CultistOnFire { CultistFire1 CultistFire2 CultistFire3 }
+
+cultist/shoot1		 C_CSGUN1
+cultist/shoot2		 C_CSGUN2
+$Random cultist/fire { cultist/shoot1 cultist/shoot2 }
+Cultists/Toss		 CULTNT
+
+fanatic/shoot1		 TCLTATT1
+fanatic/shoot2		 TCLTATT2
+fanatic/hit			 TCLTATT3
+
+Fanatic/See1		 Sounds/Blood/Cultist/Fanatic/FANATSEE1.ogg
+Fanatic/See2		 Sounds/Blood/Cultist/Fanatic/FANATSEE2.ogg
+Fanatic/See3		 Sounds/Blood/Cultist/Fanatic/FANATSEE3.ogg
+Fanatic/See4		 Sounds/Blood/Cultist/Fanatic/FANATSEE4.ogg
+Fanatic/See5		 Sounds/Blood/Cultist/Fanatic/FANATSEE5.ogg
+Fanatic/Act1		 Sounds/Blood/Cultist/Fanatic/FANATACT2.ogg
+$Random Fanatic/See   { Fanatic/See1 Fanatic/See2 Fanatic/See3 Fanatic/See4 Fanatic/See5 }
+$Random Fanatic/Act   { Fanatic/See1 Fanatic/See2 Fanatic/See3 /*Fanatic/See4 Fanatic/See5 Fanatic/Act1*/ }
+
+Fanatic/Pain1		 Sounds/Blood/Cultist/Fanatic/FANATPAN1.ogg
+Fanatic/Pain2		 Sounds/Blood/Cultist/Fanatic/FANATPAN2.ogg
+Fanatic/Pain3		 Sounds/Blood/Cultist/Fanatic/FANATPAN3.ogg
+Fanatic/Pain4		 Sounds/Blood/Cultist/Fanatic/FANATPAN4.ogg
+Fanatic/Pain5		 Sounds/Blood/Cultist/Fanatic/FANATPAN5.ogg
+Fanatic/Pain6		 Sounds/Blood/Cultist/Fanatic/FANATPAN6.ogg
+$Random Fanatic/Pain  { Fanatic/Pain1 Fanatic/Pain2 /*Fanatic/Pain3*/ Fanatic/Pain4 }
+
+Fanatic/Die1		 Sounds/Blood/Cultist/Fanatic/FANATDIE1.ogg
+Fanatic/Die2		 Sounds/Blood/Cultist/Fanatic/FANATDIE2.ogg
+Fanatic/Die3		 Sounds/Blood/Cultist/Fanatic/FANATDIE3.ogg
+$Random Fanatic/Die   { Fanatic/Die1 Fanatic/Die2 }
+$Random Fanatic/Die/Fire   { Fanatic/Die1 Fanatic/Die2 Fanatic/Die3 }
+
+Fanatic/GotYou1		 Sounds/Blood/Cultist/Fanatic/FANATKILL1.ogg
+Fanatic/GotYou2		 Sounds/Blood/Cultist/Fanatic/FANATKILL2.ogg
+Fanatic/GotYou3		 Sounds/Blood/Cultist/Fanatic/FANATKILL3.ogg
+Fanatic/GotYou4		 Sounds/Blood/Cultist/Fanatic/FANATKILL4.ogg
+$Random Fanatic/GotYou { Fanatic/GotYou1 Fanatic/GotYou2 /*Fanatic/GotYou3*/ Fanatic/GotYou4 }
+
+Fanatic/OnFire1		 Sounds/Blood/Cultist/Fanatic/FANATFIR1.ogg
+Fanatic/OnFire2		 Sounds/Blood/Cultist/Fanatic/FANATFIR2.ogg
+Fanatic/OnFire3		 Sounds/Blood/Cultist/Fanatic/FANATFIR3.ogg
+$Random Fanatic/OnFire { Fanatic/OnFire1 Fanatic/OnFire2 Fanatic/OnFire3 }
+
+Zombie/Fake	 		 ZOMFAKE
+Zombie/Raise 		 ZOMRUS
+
+Phantasm/See		 PHANSEE
+Phantasm/Creepy		 PHAROAM
+Phantasm/Skull		 SKULAIR
+Phantasm/Miss		 PHANMIS
+Phantasm/Pain		 PHANPAI
+Phantasm/Swing		 PHANMEL
+Phantasm/Die1		 PHANDIE
+Phantasm/Die2		 PHANDI2
+Phantasm/Cast		 PHAN_F79
+$Random Phantasm/Die { Phantasm/Die1 Phantasm/Die2 }
+$Random Phantasm/SoulFire { DSNONE Phantasm/Cast }
+
+CerberusSee				CERBSEE
+$RollOff CerberusSee 	3000 9600
+CerberusDie				CERBDIE
+$RollOff CerberusDie 	3000 9600
+CerberusPain1			CERBPN1
+CerberusPain2			CERBPN2
+$Random CerberusPain 	{ CerberusPain1 CerberusPain2 }
+Cerberus/Roam1			CERBROAM
+//$RollOff Cerberus/Roam1 1400 2700
+$Random Cerberus/Roam	{ Cerberus/Roam1 CerberusSee }
+Cerberus/PainD			CERBSEE2
+
+HellHoundSee			HOUNDSEE
+HellHoundPain			HOUNDPN
+HellHoundDie1			HOUNDD1
+HellHoundDie2			HOUNDD2
+HellHoundDie3			HOUNDD3
+$Random HellhoundDie 	{ HellHoundDie1 HellHoundDie2 HellHoundDie3 }
+HellHound/BiteHit		HOUNDBIT
+HellHound/Bite			HOUNDBT3
+$RollOff HOUNDBT3 		1400 1800
+
+GargoyleSee				GARGSEE
+GargoyleAct				GARGACT
+GargoylePain			GARGPAIN
+GargoyleDie1			GARGDIE1
+GargoyleDie2			GARGDIE2
+GargoyleBurn			GARGDIE3
+GargoyleMelee			GARGMLE
+$Random GargoyleDie 	{ GargoyleDie1 GargoyleDie2 }
+GargoyleWingFlap 		GarWing
+$Random GargoylePain_Burn { GargoylePain GargoyleBurn }
+
+GillBeastSee2			GILLSEE
+GillBeastSee			GILLSEE
+$RollOff GillBeastSee 	700 2000
+GillBeastAct			GILLACT
+$RollOff GillBeastAct 	200 600
+GillBeastPain			GILLPAIN
+GillbeastDie1			GILLDIE1
+GillBeastDie2			GILLDIE2
+$Random GillBeastDie 	{ GillbeastDie1 GillbeastDie2 }
+
+BeastSee				BSTSEE
+BeastSee2				BSTSE2
+BeastDie1				BSTDIE
+BeastDie2				BSTDI2
+BeastDie3				BSTDI3
+BeastPain1				BSTPAIN
+BeastPain2				BSTPAI2
+BeastPain3				BSTPAI3
+BeastAct1				BSTACT1
+BeastAct2				BSTACT2
+BeastAct3				BSTACT3
+BeastSlash1				BSTCUT1
+BeastSlash2				BSTCUT2
+BeastSlash3				BSTCUT3
+BeastStomp				BSTSTOMP
+$Random BeastAct 		{ BeastAct1 BeastAct2 BeastAct3 BeastSee2 }
+$Random BeastSlash  	{ BeastSlash1 BeastSlash2 BeastSlash3 }
+$Random BeastDie 		{ BeastDie1 BeastDie2 BeastDie3 }
+$Random BeastPain 		{ BeastPain1 BeastPain2 BeastPain3 }
+
+SpiderSee				SPIDSEE
+SpiderAct				SPIDACT
+SpiderBurn				SPIDBURN
+SpiderPain				SPIDPAIN
+SpiderDie1				SPIDDIE1
+SpiderDie2				SPIDDIE2
+$Random Spiderdie 		{ SpiderDie1 Spiderdie2 }
+
+MotherSpiderSee1		MSPISEE
+MotherSpiderDie			MSPIDIE
+MotherSpiderPain1		MSPIPAIN
+MotherSpiderPain2		MSPIPAI2
+$Random MotherSpiderPain { DSNONE MotherSpiderPain1 DSNONE MotherSpiderPain2 DSNONE }
+MotherSpiderSee2 		MSPISE2
+$Random MotherSpiderSee { MotherSpiderSee1 MotherSpiderSee2 }
+
+TchernobogAct1			TBBOW1
+TchernobogAct2			TBBOW2
+TchernobogAct3			TBKNEEL1
+TchernobogAct4			TBKNEEL2
+TchernobogAct5			TBKNEEL4
+TchernobogAct6			TBLAUGH1
+TchernobogAct7			TBLAUGH2
+TchernobogAct8			TBLAUGH3
+TchernobogAct9			TBLAUGH4
+TchernobogActA			TBLAUGH5
+TchernobogActB			TBSACRI1
+TchernobogActC			TBSACRI2
+TchernobogActD			TBSACRI3
+TchernobogActE			TBWORSH2
+TchernobogActF			TBWORSH1
+TchernobogPain1			TBPAIN1
+TchernobogPain2			TBPAIN2
+TchernobogPain3			TBPAIN3
+TchernobogPain4			TBPAIN4 // Extreme Pain
+TchernobogPain5			TBPAIN5 
+TchernobogPain6			TBPAIN6 
+TchernobogPain7			TBPAIN7 
+TchernobogDie			TBDIE
+TchernobogWait1			TBWAIT1
+TchernobogWait2			TBWAIT2
+TchernobogLaugh			TBLAUGH
+TchernobogKneel 		TBKNEEL
+TchernobogHoof			TBHOOF
+TchernobogBurn 			TBEVAP
+
+$Random Tchernobog/Act { TchernobogAct1 TchernobogAct2 TchernobogAct3 TchernobogAct4 TchernobogAct5 TchernobogAct6 TchernobogAct7 TchernobogAct8 TchernobogAct9 TchernobogActA TchernobogActB TchernobogActC TchernobogActD TchernobogActE TchernobogActF }
+$Random Tchernobog/Pain { TchernobogPain1 TchernobogPain2 TchernobogPain3 TchernobogPain4 TchernobogPain5 TchernobogPain6 TchernobogPain7 }
+$Random Tchernobog/Wait { TchernobogWait1 DSNONE TchernobogWait2 }
+
+Blood/BurningBody		BURSTFLM
+Blood/CrispyBody		ALIVEBRN
+
+$rolloff TchernobogAct1	 384 1200
+$rolloff TchernobogAct2	 384 1200
+$rolloff TchernobogAct3	 384 1200
+$rolloff TchernobogAct4	 384 1200
+$rolloff TchernobogAct5	 384 1200
+$rolloff TchernobogAct6	 384 1200
+$rolloff TchernobogAct7	 384 1200
+$rolloff TchernobogAct8	 384 1200
+$rolloff TchernobogAct9	 384 1200
+$rolloff TchernobogActA	 384 1200
+$rolloff TchernobogActB	 384 1200
+$rolloff TchernobogActC	 384 1200
+$rolloff TchernobogActD	 384 1200
+$rolloff TchernobogActE	 384 1200
+$rolloff TchernobogActF	 384 1200
+$rolloff TchernobogPain1 384 1200
+$rolloff TchernobogPain2 384 1200
+$rolloff TchernobogPain3 384 1200
+$rolloff TchernobogPain4 384 1200
+$rolloff TchernobogPain5 384 1200
+$rolloff TchernobogPain6 384 1200
+$rolloff TchernobogPain7 384 1200
+$rolloff TchernobogDie   384 1200
+$rolloff TchernbogBurn   3000 3000
+
+$Random Blood/BloodSplash { DSNONE DSNONE Blood/gib1 DSNONE DSNONE }
+$Random Blood/OrganSplash { DSNONE Blood/gib5 DSNONE Blood/gib4 DSNONE Blood/gib3 DSNONE Blood/gib2 DSNONE DSNONE DSNONE }
+
+Hand/See1	HANDSPOT
+Hand/See2	HANDROAM
+$Random Hand/Roam { Hand/See1 Hand/See2 }
+Hand/Pain	HANDPAIN
+$Random Hand/Die { Hand/Die1 Hand/Die2 Hand/Die3 }
+Hand/Die1	HANDDIE1
+Hand/Die2	HANDDIE2
+Hand/Die3	HANDDIE3
+
+BloodRat/See	RATSPOT
+BloodRat/Pain	RATPAIN
+BloodRat/Roam	RATROAM
+BloodRat/Die1	RATDIE1
+BloodRat/Die2	RATDIE2
+BloodRat/Die3	RATDIE3
+$Random BloodRat/Die { BloodRat/Die1 BloodRat/Die2 BloodRat/Die3 }
+$Random BloodRat/Burn { BloodRat/Die BloodRat/Pain }
+$Random BloodRac/Act { BloodRat/See BloodRat/Roam }

@@ -1,0 +1,298 @@
+Actor Mosquito
+{
+	Health 50
+	MONSTER
+	SeeSound ""
+	ActiveSound ""
+	DeathSound ""
+	PainSound ""
+	AttackSound ""
+	DropItem "DefaultPinataPop"
+	Speed 20
+	Painchance 0
+	Height 36
+	Species "Enemies"		
+	Radius 20
+	Obituary "%o was stung by a mosquito."
+	Mass 60
+    +NOPAIN
+	+NOBLOOD
+	+NOGRAVITY
+	+FLOAT
+	+FLOORCLIP	
+	+NOTARGET
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOINFIGHTING
+	+NOBLOODDECALS
+	Scale 0.30
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255	
+	PainChance "ShrinkerDMG", 0
+	States
+	{
+	Spawn:
+		MOSQ A 0
+		MOSQ A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		MOSQ A 1 ACS_ExecuteAlways(668,0,1,0)
+		MOSQ A 0 A_GiveInventory("AlreadySpawned",1)
+		MOSQ A 0 A_JumpIfInventory("InvisibleToken",1,2)
+		MOSQ A 0 A_Jump(256,2)
+		MOSQ A 0 A_ChangeFlag("STEALTH",1)
+	Spawn2:
+		TNT1 A 0 A_Jump(256,"SpawnLoop")
+		TNT1 A 0 A_PlaySound("Mosquito/Fly",CHAN_BODY,0.7,1,ATTN_NORM)
+	SpawnLoop:	
+		MOSQ ABCDEF 3 A_Look
+		Loop
+	See:
+		MOSQ A 3 A_Chase
+		TNT1 A 0 A_Chase("","",CHF_FASTCHASE)
+		MOSQ B 3 A_Chase
+		MOSQ C 3 A_Chase
+		TNT1 A 0 A_Chase("","")
+		MOSQ D 3 A_Chase
+		MOSQ E 3 A_Chase
+		TNT1 A 0 A_Chase("","",CHF_FASTCHASE)
+		MOSQ F 3 A_Chase
+		Loop
+	Missile:
+		MOSQ A 1 A_FaceTarget
+		MOSQ A 1 A_SkullAttack	
+		MOSQ A 1 A_FaceTarget
+		MOSQ BCDEF 3 A_FaceTarget
+		Goto Missile+2
+	Melee:
+		MOSQ A 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack((random(1,3)))
+		MOSQ F 2 A_FaceTarget
+		Goto See
+	Death:
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_StopSound(CHAN_BODY)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_SpawnItemEx("RRMOSQUITOWING1",0,0,0,random(-320,320)/10.00,random(-320,320)/10.00,random(50,200)/10.00)
+		TNT1 A 0 A_SpawnItemEx("RRMOSQUITOWING2",0,0,0,random(-320,320)/10.00,random(-320,320)/10.00,random(50,200)/10.00)		
+		TNT1 A 5
+		Stop
+	Death.Vodoo:
+	Death.VoodooPuff:
+	Death.DynamiteCoop:
+	Death.Dynamite:
+	Death.LifeLeech:
+	Death.CalebNapalm:
+	Death.Shock:	  
+	Death.Vodoo:
+	Death.Tesla:
+	Death.CalebFire:	
+	Death.CalebBullet:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+		Goto Death
+	Death.EradExplosive:
+	Death.EradNova:
+	Death.EradShock:
+	Death.EradExplosive2:	
+    Death.EradDisc:
+	Death.EradPiercingDart:
+	Death.EradGreenFire:
+	Death.EradCoopGreenFire:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1", 1)
+		Goto Death
+	Death.DukeExplosive:
+	Death.DukeDamage:
+	Death.DukePistol:
+		TNT1 A 0 A_Jump(218,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+		goto Death
+	Death.MightyBoot:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_Jump(64,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+		goto Death
+	Death.PSRAPower:
+	Death.PSRAPowerCoop:
+	Death.PSExplosive:
+	Death.PSExplosiveCoop:
+	Death.PSBullet:
+	Death.PSFire:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		Goto Death
+	Death.LeonardDamage2:
+	Death.LeonardDamage3:
+	Death.LeonardDamage0:
+	Death.LeonardDamage1:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
+		Goto Death
+	Death.DukeIce:
+		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
+		"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
+		"####" "#" 0 A_Jump(218,"Ice")
+		"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+	Ice:
+	Death.HexenIce:
+	Death.WTMeleeIce:
+	Death.WTRangedIce:
+	Death.Ice:
+		"####" "#" 0 A_StopSound(CHAN_BODY)	
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_GenericFreezeDeath
+		"####" "#" 70 A_UnsetSolid
+		"####" "#" 0 A_IceGuyDie
+		"####" "#" 1 A_IceGuyDie
+		TNT1 A -1
+		stop
+	Death.ZorchPistol:
+	Death.Zorch:
+	Death.ZorchKamikaze:
+	Death.PhasingZorch:
+	Death.ZorchSpectral:
+		"####" "#" 0 A_StopSound(CHAN_BODY)	
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_NoGravity		
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+		"####" "#" 3 A_SpawnItem("ZorchEffectSuperTiny")
+		"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_Scream
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 3 A_SetTranslucent(0.1,0) 
+		TNT1 A 1 A_SetTranslucent(1,0)
+		TNT1 A -1
+		stop	
+	Death.SWSticky:
+    Death.SWStickyCoop:	
+	Death.SWGrenade:
+	Death.SWNuke:
+	Death.SWRocket:
+	Death.SWRailgun:
+	Death.SWRailgunCoop:
+	Death.SWNukeCoop:
+	Death.SWFlame:
+	Death.SWFlame2:
+	Death.SWFlame2Coop:
+	Death.SWFlame3:	
+    Death.SWBullet:	  
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+		goto Death	
+    Death.RottDisintegrate:
+		"####" "#" 0 A_StopSound(CHAN_BODY)	
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Pain
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_SpawnItem("RGodModeDeathSuperTiny")
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		stop
+	Disintegrate:
+		"####" "#" 0 A_StopSound(CHAN_BODY)	
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_Stop
+		"####" "#" 3 A_SpawnItem("DisintEffectTiny",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		stop
+	Death.Nuke:
+		"####" "#" 0 A_StopSound(CHAN_BODY)	
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoGravity		
+		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_SpawnItem("WTNukeDeathSuperTiny")
+		"####" "#################" 3 A_Fadeout(0.05)
+		stop	
+	}
+}
+
+Actor RRMOSQUITOWING1 : RRCOCKFEATHER
+{
+	Scale 0.30
+	Gravity 0.087
+	+WINDTHRUST
+	States
+	{
+		Spawn:
+			MOSQ GGGGHHHHIIIIJJJJ 1 A_Weave(0.5,0,12,0)
+			Loop
+		Death:
+		Crash:
+			TNT1 A 5 A_FadeOut
+			Stop
+	}
+}
+
+Actor RRMOSQUITOWING2 : RRMOSQUITOWING1
+{
+	States
+	{
+		Spawn:
+			MOSQ KKKKLLLLMMMMNNNN 1 A_Weave(0.5,0,12,0)
+			Loop
+		Death:
+		Crash:
+			TNT1 A 5 A_FadeOut
+			Stop
+	}
+}

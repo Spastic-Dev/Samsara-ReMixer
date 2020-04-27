@@ -1,0 +1,14 @@
+Actor LudicrousGibsItem : CustomInventory {
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.AUTOACTIVATE
+	Inventory.Maxamount 1
+	+IGNORESKILL	
+	States {
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("RoTTClass", 1, "Success")
+		Stop
+		Success:
+			TNT1 A 0 ACS_ExecuteAlways(996, 0)
+		Stop
+	}
+}

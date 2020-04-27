@@ -1,0 +1,823 @@
+Actor MaleAssassin1_MP5 : HECU_Commander1
+{
+	Seesound ""
+	Activesound ""
+	Painsound ""
+	Deathsound ""
+	Scale 0.9
+	Painchance 32
+	Speed 12
+	Health 100
+	Meleerange 48
+	Tag "Black Operations (M)"
+	States
+	{
+		Spawn:
+			HL00 A 0
+			HL00 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
+			HL00 A 1 ACS_ExecuteAlways(668,0,1,0)
+			HL00 A 0 A_GiveInventory("AlreadySpawned",1)
+			HL00 A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			HL00 A 0 A_Jump(256,2)
+			HL00 A 0 A_ChangeFlag("STEALTH",1)
+		SpawnStandard:
+			TNT1 A 0
+			TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
+		Spawn1:
+			HL05 ABCDEFGHIJ 4 A_Look
+			Loop
+		Spawn2:
+			HL14 ABCDEFGHIJKLMNOPQ 4 A_Look		
+			Loop
+		Spawn3:
+			HL00 ABCDEFGHIJKLMNOPQ 4 A_Look
+			HL01 IJKLMNOPQR 4 A_Look
+			Loop
+		Spawn4:
+			HL06 ABCDEF 4 A_Look
+			Loop
+		See:
+		    TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "SeeLoop")	   
+		    TNT1 A 0 A_GiveInventory("SawPlayer", 1)
+			TNT1 A 0 A_Jump(90,1)
+			TNT1 A 0 A_JumpIfTargetInLos("Flank", 90, JLOSF_DEADNOJUMP)
+			HL23 ABCDEFGHIJK 2 A_FaceTarget
+			Goto SeeLoop
+		SetSee:
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)			
+			Goto SeeLoop
+		SeeLoop:
+			HL02 A 0 A_JumpIfHealthLower(50,"LimpRun")
+			HL02 AB 2 A_Chase("Melee","")
+			HL02 CD 2 A_Chase
+			HL02 EF 2 A_Chase
+			HL02 GH 2 A_Chase("Melee","")
+			HL02 I 2 A_Chase
+			Loop	
+		LimpRun:
+			TNT1 A 0 A_Jump(4, "Retreat")
+			HL16 AB 2 A_Chase("Melee","")
+			HL16 CD 2 A_Chase
+			HL16 EF 2 A_Chase
+			HL16 GH 2 A_Chase("Melee","")
+			HL16 I 2 A_Chase
+			Loop
+		LimpRun2:
+			HL16 AB 2 A_Chase("Melee","")
+			HL16 CD 2 A_Chase
+			HL16 EF 2 A_Chase
+			HL16 GH 2 A_Chase("Melee","")
+			HL16 I 2 A_Chase
+			Loop
+		Retreat:
+			HL25 ABCDEFGHIJKLMNOP 2 A_FaceTarget
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED, 1)
+			Goto LimpRun2
+		Flank:
+			HL24 ABCDEFGHIJKLMNOP 2 A_FaceTarget
+			Goto SeeLoop
+		Missile:
+			TNT1 A 0 A_Jump(180,"StartFiring")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_JumpIfCloser(128,"Kick3")
+			TNT1 A 0
+			TNT1 A 0 A_Jump(90,2)
+			TNT1 A 0 A_JumpIfCloser(328,"ThrowGrenade")
+			TNT1 A 0
+		StartFiring:	
+			HL02 A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
+			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)			
+			TNT1 A 0 A_PlaySound("MP5/FireBurst")
+			TNT1 A 0 A_CustomMissile("HLBullet_Blackop",44,4,angle+random(-5.0,5.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-5.0,5.0))
+			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",36,4,44,0,0,0,0,SXF_NOCHECKPOSITION)
+			HL03 ABCDEF 1
+			HL02 A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
+			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)			
+			TNT1 A 0 A_CustomMissile("HLBullet_Blackop",44,4,angle+random(-5.0,5.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-5.0,5.0))
+			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",36,4,44,0,0,0,0,SXF_NOCHECKPOSITION)
+			HL03 ABCDEF 1
+			HL02 A 0 A_FaceTarget
+			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
+			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)			
+			TNT1 A 0 A_CustomMissile("HLBullet_Blackop",44,4,angle+random(-5.0,5.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-5.0,5.0))
+			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",36,4,44,0,0,0,0,SXF_NOCHECKPOSITION)
+			HL03 ABCDEF 1
+			TNT1 A 0 A_JumpIfTargetInLOS("KeepFiring",0,JLOSF_DEADNOJUMP)
+			Goto Retaliate
+		KeepFiring:
+			HL03 A 20
+			TNT1 A 0 A_CPosRefire
+			Goto StartFiring+1
+		Retaliate:
+			TNT1 A 0
+			Goto SeeLoop
+		Reload:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+			TNT1 A 0 A_TakeInventory("HECU_MP5_DummyReload",50)
+			HL19 ABCDEFGHIJKLMNOPQRSTUVWX 2
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
+			Goto SeeLoop
+		ThrowGrenade:
+			TNT1 A 0 A_JumpIfInventory("HECU_M203_DummyReload",1,"ReloadGrenade")
+			HL13 ABCDEF 3 A_FaceTarget
+			TNT1 A 0 A_PlaySound("halflife/mp5_shootgrenade")
+			TNT1 A 0 A_CustomMissile("HLHECUM203Grenade", 32)
+			HL13 GHIJKLMNOP 2
+			TNT1 A 0 A_GiveInventory("HECU_M203_DummyReload",1)
+			TNT1 A 0 A_JumpIfCloser(464,"Cover")					
+			Goto SeeLoop
+		ReloadGrenade:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+			TNT1 A 0 A_TakeInventory("HECU_M203_DummyReload",1)
+			HL19 ABCDEFGHIJKLMNOPQRSTUVWX 2
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
+			Goto ThrowGrenade	
+		Melee:
+			TNT1 A 0 A_Jump(41,"PlaceGrenade")
+		Kick:	
+			TNT1 A 0 A_Jump(64,"Kick2")
+			HL15 ABCD 4 A_FaceTarget
+			HL15 E 3 A_CustomMeleeAttack(Random(5,10)*2,"","HLZombie/Miss")
+			HL15 FGHIJK 2
+			Goto SeeLoop	
+		Kick2:
+			HL26 A 1 A_FaceTarget
+			HL26 B 1 A_CustomMeleeAttack(Random(5,10)*2,"","HLZombie/Miss")
+			HL26 CDEFG 3 A_FaceTarget
+			HL26 H 2 A_CustomMeleeAttack(Random(5,10)*2,"","HLZombie/Miss")
+			HL26 IJKLMN 3
+			Goto SeeLoop
+		Kick3:
+			HL27 ABCDE 3 A_FaceTarget
+			TNT1 A 0 A_ChangeVelocity(12,0,0,CVF_REPLACE)
+			HL27 F 1 A_CustomMeleeAttack(Random(5,10)*2,"","HLZombie/Miss")
+			HL27 GHI 4 A_FaceTarget
+			HL27 J 1 A_CustomMeleeAttack(Random(5,10)*2,"","HLZombie/Miss")
+			HL27 KLMN 3 A_FaceTarget
+			HL27 O 1 A_CustomMeleeAttack(Random(5,10)*2,"","HLZombie/Miss")
+			HL27 PQRSTUVWXY 3
+			Goto SeeLoop
+		PlaceGrenade:
+			HL20 ABCDEFGHIJ 3 A_FaceTarget
+			TNT1 A 0 A_SpawnItemEx("HLHECUGrenade_Ground",3,-15,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			HL20 KLMNO 2
+			Goto RunAway
+		RunAway:
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,1)
+			HL02 ABCDEFGHI 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			HL02 ABCDEFGHI 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			HL02 ABCDEFGHI 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Jump(24,"SetCover")
+			HL02 ABCDEFGHI 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Jump(12,"SetSee")
+			HL02 ABCDEFGHI 2 A_Chase("","",CHF_NOPLAYACTIVE)			
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)			
+			Goto SeeLoop	
+		SetCover:
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)			
+			Goto Cover
+		Cover:
+			HL21 ABCDEFGHIJKLMNOPQRSTU 2
+			Goto SeeLoop
+		Pain:
+			HL18 ABCDEF 3
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
+			Goto SeeLoop
+		Pain.ShrinkerDMG:
+			HL18 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin1_MP5_Shrink : MaleAssassin1_MP5
+{
+	+FRIGHTENED
+	+NOTRIGGER
+	-SHOOTABLE
+	+THRUACTORS
+	+NORADIUSDMG
+	+VULNERABLE
+	+QUICKTORETALIATE
+	+COUNTKILL
+	-NOGRAVITY
+	+NODAMAGE
+	+NOPAIN
+	MaxStepHeight 0
+	MaxDropOffHeight 0
+	MeleeRange 16
+	Height 16
+	Health 1
+	Speed 1
+	PainChance "ShrinkDMG", 0
+	DamageFactor "ShrinkDMG", 0.0
+	PainChance "ExpanderDMG", 0
+	DamageFactor "ExpanderDMG", 0.0
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("ShrunkToken",1,"SpawnLoop")
+			TNT1 A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			TNT1 A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			TNT1 A 0 A_SetScale(scalex*0.2,scaley*0.2) // setting the scale in ACS does work, but the actor shows up at normal size for a split second
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_Shrinker", 0, 1)
+			HL18 A 10
+			Goto See
+		SpawnLoop:
+			HL00 ABCDEFGHIJKLMNO 4 A_Look
+			Loop
+		See:
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 A 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 B 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 C 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 D 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 E 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 F 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 G 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 H 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			HL02 I 2 A_Chase("","")
+			"####" "#" 0 A_JumpIf(CallACS("Samsara_Shrinker", 3) == 0, "Forget")
+			Loop
+		Forget:
+			"####" "#" 0 A_ClearTarget
+			Goto See
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_MP5", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+		Squish:
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2 
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0 
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
+			loop
+		Death:
+		XDeath:
+		Death.Squish:
+		XDeath.Squish:
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			stop
+		DukeStomp:
+			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
+			Goto Squish
+	}
+}
+
+actor MaleAssassin1_MP5_ShrinkEffect : MaleAssassin1_MP5
+{
+	-ISMONSTER
+	-COUNTKILL
+	-SHOOTABLE
+	-SOLID
+	+NOINTERACTION
+	-NOGRAVITY
+	+CLIENTSIDEONLY	
+	Renderstyle Translucent
+	Alpha 0.4
+	States
+	{
+		Spawn:
+			HL18 A 0
+			HL18 A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			HL18 A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			Stop
+	}
+}
+
+Actor MaleAssassin2_MP5 : MaleAssassin1_MP5
+{
+	States
+	{
+		Pain.ShrinkerDMG:
+			HL18 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin2_MP5_Shrink : MaleAssassin1_MP5_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_MP5", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin2_MP5_ShrinkEffect : MaleAssassin1_MP5_ShrinkEffect {}
+
+Actor MaleAssassin3_MP5 : MaleAssassin1_MP5
+{
+	States
+	{
+		Pain.ShrinkerDMG:
+			HL18 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin3_MP5_Shrink : MaleAssassin1_MP5_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_MP5", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin3_MP5_ShrinkEffect : MaleAssassin1_MP5_ShrinkEffect {}
+
+Actor MaleAssassin1_M40 : MaleAssassin1_MP5
+{
+	States
+	{
+		Missile:
+			TNT1 A 0 A_Jump(180,"StartFiring")
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_JumpIfCloser(128,"Kick3")
+			TNT1 A 0
+			TNT1 A 0 A_Jump(90,2)
+			TNT1 A 0 A_JumpIfCloser(328,"ThrowGrenade")
+			TNT1 A 0
+		StartFiring:	
+			TNT1 A 0 A_JumpIfInventory("Ass_M40_DummyReload",5,"Reload")
+			TNT1 A 0 A_GiveInventory("Ass_M40_DummyReload",1)			
+			HL03 ABCDEFG 4 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("m40/shoot")
+			TNT1 A 0 A_CustomMissile("HLBullet_M40",44,4,angle+random(-1.0,1.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-1.0,1.0))
+			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",36,4,44,0,0,0,0,SXF_NOCHECKPOSITION)
+			HL03 G 4
+			Goto Retaliate
+		Retaliate:
+			TNT1 A 0
+			Goto SeeLoop
+		ThrowGrenade:
+			HL13 ABCDEFGHIJKLM 3 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("HLHECUGrenade", 32)
+			HL13 NOPQRS 2
+			TNT1 A 0 A_Jump(100,"RunAway")
+			TNT1 A 0 A_JumpIfCloser(464,"Cover")
+			TNT1 A 0 A_Jump(164,"RunAway")			
+			TNT1 A 0 A_JumpIfCloser(729,"Cover")			
+			Goto SeeLoop
+		Reload:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+			TNT1 A 0 A_TakeInventory("Ass_M40_DummyReload",5)
+			HL19 ABCDEFGHIJKLMNOPQRSTUVW 2
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
+			Goto See
+		Pain.ShrinkerDMG:
+			HL18 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin1_M40_Shrink : MaleAssassin1_MP5_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin1_M40", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin1_M40_ShrinkEffect : MaleAssassin1_MP5_ShrinkEffect {}
+
+Actor MaleAssassin2_M40 : MaleAssassin1_M40
+{
+	States
+	{
+		Pain.ShrinkerDMG:
+			HL18 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin2_M40_Shrink : MaleAssassin1_MP5_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin2_M40", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin2_M40_ShrinkEffect : MaleAssassin1_MP5_ShrinkEffect {}
+
+Actor MaleAssassin3_M40 : MaleAssassin1_M40
+{
+	States
+	{
+		Pain.ShrinkerDMG:
+			HL18 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin3_M40_Shrink : MaleAssassin1_MP5_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MaleAssassin3_M40", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor MaleAssassin3_M40_ShrinkEffect : MaleAssassin1_MP5_ShrinkEffect {}
+
+Actor HLBullet_Blackop : HLBullet
+{
+	Damage (5)
+}
+
+Actor HLBullet_M40 : HLBullet
+{
+	Damage (15*Random(2,1))
+}
+
+Actor Ass_M40_DummyReload : Inventory { Inventory.Amount 1 Inventory.MaxAmount 50 }
+
+Actor HLBlackopsMaleSpawner : RandomSpawner
+{
+	DropItem "MaleAssassin1_MP5", 255, 8
+	DropItem "MaleAssassin2_MP5", 255, 8
+	DropItem "MaleAssassin3_MP5", 255, 8
+	DropItem "MaleAssassin1_M40", 255, 4
+	DropItem "MaleAssassin2_M40", 255, 4
+	DropItem "MaleAssassin3_M40", 255, 4
+}

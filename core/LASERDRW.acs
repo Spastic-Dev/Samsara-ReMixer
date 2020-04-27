@@ -1,0 +1,180 @@
+#include "zcommon.acs"
+#library "LaserLib"
+
+function int sqrt(int number)
+{
+	if(number <= 3)
+	{
+		if(number > 0)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
+	int oldAns = number >> 1,                     // initial guess
+	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
+
+	// main iterative method
+	while(newAns < oldAns)
+	{
+		oldAns = newAns;
+		newAns = (oldAns + number / oldAns) >> 1;
+	}
+
+	return oldAns;
+}
+
+function int abs (int x)
+{
+    if (x < 0)
+        return -x;
+
+    return x;
+}
+int matres[4];
+int matinput[4];
+int matmultiplier[4][4];
+int positions[33][3];
+Script 949 (void)
+{
+	int px = GetActorX(0) >> 16;
+	int py = GetActorY(0) >> 16;
+	int pz = GetActorZ(0) >> 16;
+	
+	SetActivatorToTarget(0);
+	
+	int offset = GetActorViewHeight(PlayerNumber() + 1000) >> 16;
+	
+	int sx = GetActorX(0) >> 16;
+	int sy = GetActorY(0) >> 16;
+	int sz = (GetActorZ(0) >> 16) + (offset - 9);
+	
+	int pitch = GetActorPitch(0);
+	int angle = GetActorAngle(0);
+	int offx = fixedmul(16.0,cos(angle)) >> 16;
+	int offy = fixedmul(16.0,sin(angle));
+	int offz = fixedmul(16.0,sin(pitch)) >> 16; sz += -offz;
+	
+	sx += offx;
+	offy = fixedmul(offy, cos(pitch)) >> 16; sy += offy;
+	
+	positions[0][0] = 0; positions[0][1] = 0;
+	for (int loc = 1; loc < 33; loc++)
+	{
+		positions[loc][0] = random(-12.0,12.0); //x
+		positions[loc][1] = random(-12.0,12.0); //z
+		positions[loc][2] = (32*loc) << 16;   //y
+		
+		matinput[0] = positions[loc][0]; 
+		matinput[1] = positions[loc][1];
+		matinput[2] = positions[loc][2];
+		
+		matrotpitch(-pitch);
+		matinput[0] = matres[0]; matinput[1] = matres[1]; matinput[2] = matres[2];
+		matrotangle(-angle);
+		positions[loc][0] = matres[2];
+		positions[loc][1] = matres[1];
+		positions[loc][2] = matres[0];
+	}
+	
+	int x = px - sx;
+	int y = py - sy;
+	int z = pz - sz;
+	
+	int xs = abs(x*x);
+	int ys = abs(y*y);
+	int zs = abs(z*z);
+	
+	int total = xs + ys + zs;
+	int len = sqrt(total);
+	
+	int curx = sx << 16; 
+	int cury = sy << 16; 
+	int curz = sz << 16;
+	
+	int slx = (x << 16) / len;
+	int sly = (y << 16) / len;
+	int slz = (z << 16) / len;
+	
+	//printbold(f:sin(0.20));
+	
+	for (int pos = 0; pos < (len / 32); pos++)
+	{	
+		int step = 0; 
+		int tslx = ((positions[pos+1][0] - positions[pos][0])) / 32;
+		int tslz = ((positions[pos+1][1] - positions[pos][1])) / 32;
+		int tsly = ((positions[pos+1][2] - positions[pos][2])) / 32;
+		
+		//tsly = fixedmul(tslz,vcos);
+		
+		//print(s:"tslx:",d:tslx,s:" tsly:",d:tsly,s:" tslz:",f:tslz,s:" vcos:",f:vcos,s:" vsin",f:vsin,s:" angle:",f:angle);
+		
+		for (int rayloc = 0; rayloc < 32; rayloc++)
+		{
+			curx += tslx;
+			cury += tsly;
+			curz += tslz;
+			step++;
+			
+			if ((step % 8) == 0)
+			{
+				Spawn("OmegaEffect",curx,cury,curz,0,0);
+			}
+		}
+	}
+}
+
+Script 950 ENTER
+{
+	Thing_ChangeTid(0,1000+PlayerNumber());
+}
+
+function void matmult(void)
+{
+	for (int pos = 0; pos < 4; pos++)
+	{
+		int result = 0;
+		for (int tloc = 0; tloc < 4; tloc++)
+		{
+			result += fixedmul(matinput[tloc],matmultiplier[tloc][pos]);
+		}
+		matres[pos] = result;
+	}
+}
+
+function void matclr(void)
+{
+	for (int x = 0; x < 4; x++)
+	{
+		for (int y = 0; y < 4; y++)
+		{
+			matmultiplier[x][y] = 0;
+		}
+	}
+}
+
+function void matident(void)
+{
+	matclr();
+	for (int i = 0; i < 4; i++)
+	{
+		matmultiplier[i][i] = 1.0; 
+	}
+}
+
+function void matrotpitch(int angle)
+{
+	matident(); matmultiplier[1][1] = cos(angle); matmultiplier[2][1] = sin(angle);
+	matmultiplier[1][2] = -sin(angle); matmultiplier[2][2] = cos(angle);
+	
+	matmult();
+}
+
+function void matrotangle(int angle)
+{
+	matident(); matmultiplier[0][0] = cos(angle); matmultiplier[0][2] = sin(angle);
+	matmultiplier[2][0] = -sin(angle); matmultiplier[2][2] = cos(angle);
+	
+	matmult();
+}

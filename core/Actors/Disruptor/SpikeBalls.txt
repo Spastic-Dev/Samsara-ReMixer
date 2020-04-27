@@ -1,0 +1,536 @@
+Actor DsrptSilverSpikeBall : DisruptorDroid {
+	Radius 20
+	Height 35
+	Health 20
+	Damage (5)
+	+DROPOFF
+	+FLOAT
+	+NOGRAVITY
+	+SPAWNFLOAT
+	+NOPAIN
+	PainSound "dsrpsawr/pain"	
+	SeeSound ""
+	ActiveSound ""
+	AttackSound ""
+	DeathSound "Disruptor/MeteorBoom"
+	Scale 0.43
+	Speed 7
+	FloatSpeed 9
+	Tag "Silver Spike Ball"	
+	Obituary "%o was pierced by a Spikeball"
+	States {
+		Spawn:
+			DIS1 A 0
+			DIS1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			DIS1 A 1 ACS_ExecuteAlways(668,0,1,0)
+			DIS1 A 0 A_GiveInventory("AlreadySpawned",1)
+			DIS1 A 0 A_JumpIfInventory("InvisibleToken",1,2)
+			DIS1 A 0 A_Jump(256,2)
+			DIS1 A 0 A_ChangeFlag("STEALTH",1)
+		Spawn2:
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"RoamAroundT2")
+		SpawnLoop:
+			DIS1 AABBCCDDEEFF 2 A_Look
+			Loop			
+		RoamAroundT1:
+			TNT1 A 0 A_TakeInventory("SawPlayer",1)
+			TNT1 A 0 A_PlaySound("dsrpmines/slp")
+			DIS1 RRSSTT 2 A_Wander
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
+			Goto ActiveT2+4
+		RoamAroundT2:	
+			TNT1 A 0 A_TakeInventory("SawPlayer",1)		
+			TNT1 A 0 A_PlaySound("dsrpmines/slp")
+			DIS1 RRSSTT 2 A_Wander
+			Goto SpawnLoop+8			
+		See:
+			TNT1 A 0 A_Jump(128,"See_2")	
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"SeeLoop")
+			TNT1 A 0 A_GiveInventory("SawPlayer")		
+			TNT1 A 0 A_PlaySound("dsrpmines/set")
+			DIS1 GGHHIIJJKK 2 A_Chase("","")
+		SeeLoop:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		ActiveT1:
+			DIS1 L 2 A_Chase("","Missile")
+			DIS1 L 2 A_Chase("","")
+			DIS1 M 2 A_Chase("","Missile")
+			DIS1 M 2 A_Chase("","")
+			DIS1 N 2 A_Chase("","")
+			DIS1 N 2 A_Chase("","")
+			DIS1 O 2 A_Chase("","Missile")
+			DIS1 O 2 A_Chase("","")
+			DIS1 P 2 A_Chase("","Missile")
+			DIS1 P 2 A_Chase("","")
+			DIS1 Q 2 A_Chase("","")
+			DIS1 Q 2 A_Chase("","")
+			DIS1 L 2 A_Chase("","Missile")
+			DIS1 L 2 A_Chase("","")
+			DIS1 M 2 A_Chase("","Missile")
+			DIS1 M 2 A_Chase("","")
+			DIS1 N 2 A_Chase("","")
+			DIS1 N 2 A_Chase("","")
+			DIS1 O 2 A_Chase("","Missile")
+			DIS1 O 2 A_Chase("","")
+			DIS1 P 2 A_Chase("","Missile")
+			DIS1 P 2 A_Chase("","")
+			DIS1 Q 2 A_Chase("","")
+			DIS1 Q 2 A_Chase("","")			
+			Loop
+		See_2:
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"RoamAroundT1")
+		ActiveT2:	
+			DIS1 A 2 A_Chase("","")
+			DIS1 A 2 A_Chase("","")
+			DIS1 B 2 A_Chase("","")
+			DIS1 B 2 A_Chase("","Missile_2")			
+			DIS1 C 2 A_Chase("","")			
+			DIS1 C 2 A_Chase("","")			
+			DIS1 D 2 A_Chase("","")			
+			DIS1 D 2 A_Chase("","Missile_2")			
+			DIS1 E 2 A_Chase("","")			
+			DIS1 E 2 A_Chase("","")			
+			DIS1 F 2 A_Chase("","")			
+			DIS1 F 2 A_Chase("","Missile_2")					
+			DIS1 A 2 A_Chase("","")			
+			DIS1 A 2 A_Chase("","")			
+			DIS1 B 2 A_Chase("","")			
+			DIS1 B 2 A_Chase("","Missile_2")			
+			DIS1 C 2 A_Chase("","")			
+			DIS1 C 2 A_Chase("","")			
+			DIS1 D 2 A_Chase("","")			
+			DIS1 D 2 A_Chase("","Missile_2")			
+			DIS1 E 2 A_Chase("","")			
+			DIS1 E 2 A_Chase("","")			
+			DIS1 F 2 A_Chase("","")			
+			DIS1 F 2 A_Chase("","Missile_2")
+			Loop			
+		Missile:
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_SkullAttack
+			DIS1 LLMMNNOOPPQQ 2 Bright A_FaceTarget
+			Goto Missile+2
+		Missile_2:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+			TNT1 A 0 A_GiveInventory("SawPlayer")
+			TNT1 A 0 A_PlaySound("dsrpmines/set")			
+			DIS1 GGHHIIJJKK 2 A_FaceTarget			
+			TNT1 A 0 A_SkullAttack
+			DIS1 LLMMNNOOPPQQ 2 Bright A_FaceTarget
+			Goto Missile_2+14
+		Pain:
+			TNT1 A 0 A_Pain
+			Goto See
+		Death:
+		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0) 
+			DIS2 A 2 bright A_NoGravity
+			DIS2 A 2 bright A_Scream
+			DIS2 B 2 bright A_NoBlocking
+			DIS2 B 2 bright // A_SpawnItem("DsrptSpikeBallBomb1")
+			DIS2 C 2 bright A_TakeInventory("SawPlayer",1)
+			DIS2 C 2 bright
+			DIS2 D 2 bright
+			DIS2 D 2 bright
+			DIS2 E 2 bright
+			DIS2 E 2 bright
+			DIS2 FFFGGGHHHIIIJJJKKK 1 bright 
+			TNT1 A -1
+			Stop
+		Death.RottDisintegrate:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathTiny")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			stop
+		Disintegrate:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_Stop
+			"####" "#" 3 A_SpawnItem("DisintEffectTiny",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			stop
+		Death.Nuke:
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoGravity		
+			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_SpawnItem("WTNukeDeathTiny")
+			"####" "#################" 3 A_Fadeout(0.05)
+			stop
+		Death.DukeIce:
+			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
+			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
+			"####" "#" 0 A_Jump(218,"Ice")
+			"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.Ice:
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_GenericFreezeDeath
+			"####" "#" 70 A_UnsetSolid
+			"####" "#" 0 A_IceGuyDie
+			"####" "#" 1 A_IceGuyDie
+			TNT1 A 0
+			stop
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:		
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_NoGravity
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+			"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			"####" "#" 3 A_SpawnItem("ZorchEffectTiny")
+			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_Scream
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.1,0)
+			TNT1 A 0 A_Gravity
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A -1
+			Stop
+	}
+}
+
+Actor DsrptSpikeBallBomb1 {
+	Radius 1
+	Height 1
+	Speed 0
+	+NOCLIP
+	PROJECTILE
+	States {
+		Spawn:
+			TNT1 A 0
+			Goto Death
+		Death:
+			TNT1 A 0
+			TNT1 A 5 A_Explode(4*random(2,6),70)
+			TNT1 A -1 A_FadeOut
+			stop
+  }
+}
+
+Actor DsrptGoldSpikeBall : DsrptSilverSpikeBall {
+	Damage (Random(10,15))
+	DeathSound "dsrpmines/die"
+	Tag "Gold Spike Ball"		
+	States {
+		Spawn:
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"RoamAroundT2")
+		SpawnLoop:
+			DISS AABBCCDDEEFF 2 A_Look
+			Loop			
+		RoamAroundT1:
+			TNT1 A 0 A_TakeInventory("SawPlayer",1)
+			TNT1 A 0 A_PlaySound("dsrpmines/slp")
+			DISS RRSSTT 2 A_Wander
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
+			Goto ActiveT2+4
+		RoamAroundT2:	
+			TNT1 A 0 A_TakeInventory("SawPlayer",1)		
+			TNT1 A 0 A_PlaySound("dsrpmines/slp")
+			DISS RRSSTT 2 A_Wander
+			Goto SpawnLoop+8
+		See:
+			TNT1 A 0 A_Jump(128,"See_2")	
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"SeeLoop")
+			TNT1 A 0 A_GiveInventory("SawPlayer")		
+			TNT1 A 0 A_PlaySound("dsrpmines/set")
+			DISS GGHHIIJJKK 2 A_Chase("","")
+		SeeLoop:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		ActiveT1:
+			DISS L 2 A_Chase("","Missile",CHF_FASTCHASE)
+			DISS L 2 A_Chase("","")
+			DISS M 2 A_Chase("","Missile")
+			DISS M 2 A_Chase("","")
+			DISS N 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DISS N 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DISS O 2 A_Chase("","Missile")
+			DISS O 2 A_Chase("","")
+			DISS P 2 A_Chase("","Missile")
+			DISS P 2 A_Chase("","")
+			DISS Q 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DISS Q 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DISS L 2 A_Chase("","Missile")
+			DISS L 2 A_Chase("","")
+			DISS M 2 A_Chase("","Missile")
+			DISS M 2 A_Chase("","")
+			DISS N 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DISS N 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DISS O 2 A_Chase("","Missile",CHF_FASTCHASE)
+			DISS O 2 A_Chase("","")
+			DISS P 2 A_Chase("","Missile")
+			DISS P 2 A_Chase("","")
+			DISS Q 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DISS Q 2 A_Chase("","",CHF_NOPLAYACTIVE)			
+			Loop
+		See_2:
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"RoamAroundT1")
+		ActiveT2:	
+			DISS A 2 A_Chase("","")
+			DISS A 2 A_Chase("","")
+			DISS B 2 A_Chase("","")
+			DISS B 2 A_Chase("","Missile_2")			
+			DISS C 2 A_Chase("","")			
+			DISS C 2 A_Chase("","")			
+			DISS D 2 A_Chase("","")			
+			DISS D 2 A_Chase("","Missile_2")			
+			DISS E 2 A_Chase("","")			
+			DISS E 2 A_Chase("","")			
+			DISS F 2 A_Chase("","")			
+			DISS F 2 A_Chase("","Missile_2")					
+			DISS A 2 A_Chase("","")			
+			DISS A 2 A_Chase("","")			
+			DISS B 2 A_Chase("","")			
+			DISS B 2 A_Chase("","Missile_2")			
+			DISS C 2 A_Chase("","")			
+			DISS C 2 A_Chase("","")			
+			DISS D 2 A_Chase("","")			
+			DISS D 2 A_Chase("","Missile_2")			
+			DISS E 2 A_Chase("","")			
+			DISS E 2 A_Chase("","")			
+			DISS F 2 A_Chase("","")			
+			DISS F 2 A_Chase("","Missile_2")
+			Loop			
+		Missile:
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_SkullAttack
+			DISS LLMMNNOOPPQQ 2 Bright A_FaceTarget
+			Goto Missile+2
+		Missile_2:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+			TNT1 A 0 A_GiveInventory("SawPlayer")
+			TNT1 A 0 A_PlaySound("dsrpmines/set")			
+			DISS GGHHIIJJKK 2 A_FaceTarget			
+			TNT1 A 0 A_SkullAttack
+			DISS LLMMNNOOPPQQ 2 Bright A_FaceTarget
+			Goto Missile_2+14
+		Pain:
+			TNT1 A 0 A_Pain
+			Goto See
+		Death:
+		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0) 
+			DISS U 2 bright A_NoGravity
+			DISS U 2 bright A_Scream
+			DISS V 2 bright A_NoBlocking
+			DISS V 2 bright // A_SpawnItem("DsrptSpikeBallBomb1")
+			DIS2 L 2 bright A_TakeInventory("SawPlayer",1)
+			DIS2 L 2 bright
+			DIS2 M 2 bright
+			DIS2 M 2 bright
+			DIS2 N 2 bright
+			DIS2 N 2 bright
+			DIS2 OOOPPPQQQRRRSSSTTT 1 bright 
+			TNT1 A -1
+			Stop
+	}
+}
+
+Actor DsrptPsionicSpikeBall : DsrptSilverSpikeBall {
+	Damage (20)
+	Speed 10
+	PainSound ""
+	+NOPAIN
+	Tag "Psionic Spike Ball"		
+	FloatSpeed 12
+	States {
+		Spawn:
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"RoamAroundT2")
+		SpawnLoop:
+			DS98 AABBCCDDEEFF 2 A_Look
+			Loop
+		RoamAroundT1:
+			TNT1 A 0 A_TakeInventory("SawPlayer",1)
+			TNT1 A 0 A_PlaySound("dsrpmines/slp")
+			DS98 QQRR 2 A_Wander
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+			Goto ActiveT2+4
+		RoamAroundT2:
+			TNT1 A 0 A_TakeInventory("SawPlayer",1)
+			TNT1 A 0 A_PlaySound("dsrpmines/slp")
+			DS98 QQRR 2 A_Wander
+			Goto SpawnLoop+8
+		See:
+			TNT1 A 0 A_Jump(128,"See_2")
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"SeeLoop")
+			TNT1 A 0 A_GiveInventory("SawPlayer")
+			TNT1 A 0 A_PlaySound("dsrpmines/set")
+			DS98 GGHHIIJJ 2 A_Chase("","")
+		SeeLoop:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		ActiveT1:
+			DS98 K 2 A_Chase("","Missile",CHF_FASTCHASE)
+			DS98 K 2 A_Chase("","")
+			DS98 L 2 A_Chase("","Missile")
+			DS98 L 2 A_Chase("","")
+			DS98 M 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DS98 M 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DS98 N 2 A_Chase("","Missile")
+			DS98 N 2 A_Chase("","")
+			DS98 O 2 A_Chase("","Missile")
+			DS98 O 2 A_Chase("","")
+			DS98 P 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DS98 P 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DS98 K 2 A_Chase("","Missile")
+			DS98 K 2 A_Chase("","")
+			DS98 L 2 A_Chase("","Missile")
+			DS98 L 2 A_Chase("","")
+			DS98 M 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DS98 M 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DS98 N 2 A_Chase("","Missile",CHF_FASTCHASE)
+			DS98 N 2 A_Chase("","")
+			DS98 O 2 A_Chase("","Missile")
+			DS98 O 2 A_Chase("","")
+			DS98 P 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			DS98 P 2 A_Chase("","",CHF_NOPLAYACTIVE)			
+			Loop
+		See_2:
+			TNT1 A 0 A_JumpIfInventory("SawPlayer",1,"RoamAroundT1")
+		ActiveT2:	
+			DS98 A 2 A_Chase("","")
+			DS98 A 2 A_Chase("","")
+			DS98 B 2 A_Chase("","")
+			DS98 B 2 A_Chase("","Missile_2")			
+			DS98 C 2 A_Chase("","")			
+			DS98 C 2 A_Chase("","")			
+			DS98 D 2 A_Chase("","")			
+			DS98 D 2 A_Chase("","Missile_2")			
+			DS98 E 2 A_Chase("","")			
+			DS98 E 2 A_Chase("","")			
+			DS98 F 2 A_Chase("","")			
+			DS98 F 2 A_Chase("","Missile_2")					
+			DS98 A 2 A_Chase("","")			
+			DS98 A 2 A_Chase("","")			
+			DS98 B 2 A_Chase("","")			
+			DS98 B 2 A_Chase("","Missile_2")			
+			DS98 C 2 A_Chase("","")			
+			DS98 C 2 A_Chase("","")			
+			DS98 D 2 A_Chase("","")			
+			DS98 D 2 A_Chase("","Missile_2")			
+			DS98 E 2 A_Chase("","")			
+			DS98 E 2 A_Chase("","")			
+			DS98 F 2 A_Chase("","")			
+			DS98 F 2 A_Chase("","Missile_2")
+			Loop
+		Missile:
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_SkullAttack
+			DS98 KKLLMMNNOOPP 2 Bright A_FaceTarget
+			Goto Missile+2
+		Missile_2:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+			TNT1 A 0 A_GiveInventory("SawPlayer")
+			TNT1 A 0 A_PlaySound("dsrpmines/set")			
+			DS98 GGHHIIJJ 2 A_FaceTarget			
+			TNT1 A 0 A_SkullAttack
+			DS98 LLMMNNOOPPQQ 2 Bright A_FaceTarget
+			Goto Missile_2+12
+		Pain:
+			TNT1 A 0 A_Pain
+			Goto See
+		Death:
+		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			DS97 E 2 bright A_NoGravity
+			DS97 E 2 bright A_Scream
+			DS97 F 2 bright A_NoBlocking
+			DS97 F 2 bright
+			DS97 G 2 bright A_TakeInventory("SawPlayer",1)
+			DS97 G 2 bright
+			TNT1 A 0 A_SpawnItemEx("DsrptSpikeBallBomb3",0,0,-5)
+			DS97 H 2 bright
+			DS97 H 2 bright
+			DS97 I 2 bright
+			DS97 I 2 bright
+			DS97 JJJKKKLLLMMMNNNOOOPPPQQQRRR 2 bright 
+			TNT1 A -1
+			Stop
+	}
+}
+
+Actor DsrptSpikeBallBomb3 {
+	Radius 1
+	Height 1
+	Speed 0
+	+NOCLIP
+	PROJECTILE
+	States {
+		Spawn:
+			TNT1 A 0
+			Goto Death
+		Death:
+			TNT1 A 0 A_PlaySound("dsrpmines/die")
+			TNT1 A 0 A_Explode(4*random(3,8),100)
+			DS98 S 2 bright
+			DS98 S 2 bright
+			DS98 T 2 bright
+			DS98 T 2 bright
+			DS98 UUUVVVWWWXXXYYYZZZ 1 bright 
+			DS97 AAABBBCCCDDD 1 bright 
+			TNT1 A 5 A_FadeOut
+			Stop
+  }
+}

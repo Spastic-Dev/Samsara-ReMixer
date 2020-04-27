@@ -1,0 +1,3962 @@
+//The 'mass' property specifies the type of attack
+Actor Q2LightGuard : Q2SoldierBase
+{
+	Health 20 
+	Mass 101 
+	Obituary "%o was Blasted by a Light Guard" 
+	DropItem "Q2BulletsPickup" 16 
+	Tag "Strogg Light Guard"
+	States
+	{
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
+		Death1:
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death2:
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death3:
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death4:
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death5:
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death6:
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death.RottFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_NoBlocking		
+			TNT1 A 5
+		   Stop	
+		Death.RottExplosive:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 1
+			TNT1 A 0 A_Jump(128, 2)
+			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+			TNT1 AA 0
+			TNT1 A 5 A_NoBlocking
+			Stop
+		Death.RottDisintegrate:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_Scream
+			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 5 A_FadeOut
+			Stop
+		Pain.ShrinkerDMG:
+			GRD3 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+actor Q2LightGuard_Shrink : Q2LightGuard
+{
+	+FRIGHTENED
+	+NOTRIGGER
+	-SHOOTABLE
+	+THRUACTORS
+	+NORADIUSDMG
+	+VULNERABLE
+	+QUICKTORETALIATE
+	+COUNTKILL
+	-NOGRAVITY
+	+NODAMAGE
+	+NOPAIN
+	MaxStepHeight 0
+	MaxDropOffHeight 0
+	MeleeRange 16
+	Height 16
+	Health 1
+	Speed 1
+	PainChance "ShrinkDMG", 0
+	DamageFactor "ShrinkDMG", 0.0
+	PainChance "ExpanderDMG", 0
+	DamageFactor "ExpanderDMG", 0.0
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("ShrunkToken",1,"SpawnLoop")
+			TNT1 A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			TNT1 A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			TNT1 A 0 A_SetScale(scalex*0.2,scaley*0.2) // setting the scale in ACS does work, but the actor shows up at normal size for a split second
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_Shrinker", 0, 1)
+			GRD3 A 10
+			Goto See
+		SpawnLoop:
+			GRD9 ABCDEFGHIJKLMNOP 6 A_Look
+			Loop
+		See:
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			GRD2 A 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			GRD2 B 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			GRD2 C 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			GRD2 D 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			GRD2 E 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			GRD2 F 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			GRD2 G 3 A_Chase("","")
+			"####" "#" 0 A_JumpIf(CallACS("Samsara_Shrinker", 3) == 0, "Forget")
+			Loop
+		Forget:
+			"####" "#" 0 A_ClearTarget
+			Goto See
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LightGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+		Squish:
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2 
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0 
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
+			loop
+		Death:
+		XDeath:
+		Death.Squish:
+		XDeath.Squish:
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			stop
+		DukeStomp:
+			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
+			Goto Squish
+	}
+}
+
+actor Q2LightGuard_ShrinkEffect : Q2LightGuard
+{
+	-ISMONSTER
+	-COUNTKILL
+	-SHOOTABLE
+	-SOLID
+	+NOINTERACTION
+	+CLIENTSIDEONLY	
+	-NOGRAVITY
+	Renderstyle Translucent
+	Alpha 0.4
+	States
+	{
+		Spawn:
+			GRD3 A 0
+			GRD3 A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			GRD3 A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath1Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 52
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 8
+			GRD5 ABCDEFGH 4
+			GRDB ABCDEFGHIJKLMNOPQR 6
+			GRD5 IJ 4
+			GRD5 K 4 A_SpawnItemEx("Q2LightGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath1Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD5 K 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD5 K 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath2Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 20
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	Tag "Strogg Light Guard"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
+			GRD6 ABC 4
+			GRD6 D 0 A_CustomMissile(LightGuardBlaster,15,3,Random(-5,5),2,Random(-5,5))
+			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 DEF 4
+			GRD6 D 0 A_CustomMissile(LightGuardBlaster,15,3,Random(-5,5),2,Random(-5,5))
+			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 GHIJKLMNOPQ 4
+			GRD6 R 4 A_SpawnItemEx("Q2LightGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath2Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD6 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD6 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath3Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD6 "RSTUVWXYZ[^]" 4
+			GRD7 ABCDEFGHIJKLMNOPQ 4
+			GRD7 R 4 A_SpawnItemEx("Q2LightGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath3Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD7 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD7 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath4Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
+			GRD8 W 4 A_SpawnItemEx("Q2LightGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath4Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD8 W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD8 W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath5Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC ABCDEFGHIJKL 6
+			GRDC M 4 A_SpawnItemEx("Q2LightGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath5Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC M 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath6Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC NOPQRSTUV 4
+			GRDC W 4 A_SpawnItemEx("Q2LightGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LightGuardDeath6Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuard : Q2SoldierBase 
+{ 
+	Health 40 
+	Mass 102 
+	AttackSound "Q2Soldier/Shotgun" 
+	Obituary "%o was Gunned Down by a Shotgun Guard" 
+	DropItem "Q2ShellPickup" 64 
+	Tag "Strogg Shotgun Guard"
+	States
+	{
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
+		Death1:
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death2:
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death3:
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death4:
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death5:
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death6:
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Raise:
+			GRDC W 0 A_RemoveChildren(true)
+			GRDC W 4
+			GRDC VUTSRQPON 4
+			GRD2 A 4
+			Goto See
+		Death.RottFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_NoBlocking		
+			TNT1 A 5
+		   Stop	
+		Death.RottExplosive:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 1
+			TNT1 A 0 A_Jump(128, 2)
+			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+			TNT1 AA 0
+			TNT1 A 5 A_NoBlocking
+			Stop
+		Death.RottDisintegrate:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_Scream
+			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 5 A_FadeOut
+			Stop
+		Pain.ShrinkerDMG:
+			GRD3 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath1Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 52
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 8
+			GRD5 ABCDEFGH 4
+			GRDB ABCDEFGHIJKLMNOPQR 6
+			GRD5 IJ 4
+			GRD5 K 4 A_SpawnItemEx("Q2ShotgunGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath1Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD5 K 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD5 K 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath2Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 20
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	Tag "Strogg Light Guard"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
+			GRD6 ABC 4
+			GRD6 D 0 A_CustomBulletAttack(8,8,5,2,"Q2BulletPuff",1024,CBAF_AIMFACING)
+	//		TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,37,5,18)
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 DEF 4
+			GRD6 G 0 A_CustomBulletAttack(8,8,5,2,"Q2BulletPuff",1024,CBAF_AIMFACING)
+	//		TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,37,5,18)
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 GHIJKLMNOPQ 4
+			GRD6 R 4 A_SpawnItemEx("Q2ShotgunGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath2Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD6 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD6 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath3Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD6 "RSTUVWXYZ[^]" 4
+			GRD7 ABCDEFGHIJKLMNOPQ 4
+			GRD7 R 4 A_SpawnItemEx("Q2ShotgunGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath3Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD7 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD7 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath4Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
+			GRD8 W 4 A_SpawnItemEx("Q2ShotgunGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath4Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD8 W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD8 W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath5Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC ABCDEFGHIJKL 6
+			GRDC M 4 A_SpawnItemEx("Q2ShotgunGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath5Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC M 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath6Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC NOPQRSTUV 4
+			GRDC W 4 A_SpawnItemEx("Q2ShotgunGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2ShotgunGuardDeath6Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+actor Q2ShotgunGuard_Shrink : Q2LightGuard_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2ShotgunGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor Q2ShotgunGuard_ShrinkEffect : Q2LightGuard_ShrinkEffect {}
+
+Actor Q2MachinegunGuard : Q2SoldierBase 
+{ 
+	Mass 103 
+	Health 80 
+	AttackSound "Q2Soldier/Machinegun" 
+	Obituary "%o was Machinegunned by a Machinegun Guard" 
+	DropItem "Q2BulletsPickup" 128 
+	Tag "Strogg Machine Gun Guard"
+	States
+	{	
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
+		Death1:
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death2:
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death3:
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death4:
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death5:
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death6:
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Raise:
+			GRDC W 0 A_RemoveChildren(true)
+			GRDC W 4
+			GRDC VUTSRQPON 4
+			GRD2 A 4
+			Goto See
+		Death.RottFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_NoBlocking		
+			TNT1 A 5
+		   Stop	
+		Death.RottExplosive:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 1
+			TNT1 A 0 A_Jump(128, 2)
+			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+			TNT1 AA 0
+			TNT1 A 5 A_NoBlocking
+			Stop
+		Death.RottDisintegrate:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_Scream
+			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 5 A_FadeOut
+			Stop
+		Pain.ShrinkerDMG:
+			GRD3 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath1Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 52
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 8
+			GRD5 ABCDEFGH 4
+			GRDB ABCDEFGHIJKLMNOPQR 6
+			GRD5 IJ 4
+			GRD5 K 4 A_SpawnItemEx("Q2MachineGunGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath1Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD5 K 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD5 K 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath2Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 20
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	Tag "Strogg Light Guard"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
+			GRD6 ABC 4
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD6 DEF 4
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomBulletAttack(8,8,1,3,"Q2BulletPuff",1024,CBAF_AIMFACING) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD6 GHIJKLMNOPQ 4
+			GRD6 R 4 A_SpawnItemEx("Q2MachineGunGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath2Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD6 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD6 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath3Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD6 "RSTUVWXYZ[^]" 4
+			GRD7 ABCDEFGHIJKLMNOPQ 4
+			GRD7 R 4 A_SpawnItemEx("Q2MachineGunGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath3Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD7 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD7 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath4Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
+			GRD8 W 4 A_SpawnItemEx("Q2MachineGunGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath4Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD8 W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD8 W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath5Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC ABCDEFGHIJKL 6
+			GRDC M 4 A_SpawnItemEx("Q2MachineGunGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath5Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC M 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath6Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC NOPQRSTUV 4
+			GRDC W 4 A_SpawnItemEx("Q2MachineGunGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2MachineGunGuardDeath6Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+actor Q2MachinegunGuard_Shrink : Q2LightGuard_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2MachinegunGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor Q2MachinegunGuard_ShrinkEffect : Q2LightGuard_ShrinkEffect {}
+
+Actor Q2EnhancedLightGuard : Q2SoldierBase 
+{ 
+	Health 60 
+	Mass 104 
+	Obituary "%o was blasted by A Enhanced Light Guard" 
+	DropItem "Q2CellPickup" 32
+	Tag "Enhanced Strogg Light Guard"
+	States
+	{
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
+		Death1:
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death2:
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death3:
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death4:
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death5:
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death6:
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Raise:
+			GRDC W 0 A_RemoveChildren(true)
+			GRDC W 4
+			GRDC VUTSRQPON 4
+			GRD2 A 4
+			Goto See
+		Death.RottFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_NoBlocking		
+			TNT1 A 5
+		   Stop	
+		Death.RottExplosive:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 1
+			TNT1 A 0 A_Jump(128, 2)
+			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+			TNT1 AA 0
+			TNT1 A 5 A_NoBlocking
+			Stop
+		Death.RottDisintegrate:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_Scream
+			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 5 A_FadeOut
+			Stop
+		Pain.ShrinkerDMG:
+			GRD3 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath1Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 52
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 8
+			GRD5 ABCDEFGH 4
+			GRDB ABCDEFGHIJKLMNOPQR 6
+			GRD5 IJ 4
+			GRD5 K 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath1Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD5 K 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD5 K 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath2Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 20
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	Tag "Strogg Light Guard"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
+			GRD6 ABC 4
+			GRD6 D 0 A_CustomMissile(LightGuardBlaster,15,3,Random(-5,5),2,Random(-5,5))
+			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 DEF 4
+			GRD6 D 0 A_CustomMissile(LightGuardBlaster,15,3,Random(-5,5),2,Random(-5,5))
+			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 GHIJKLMNOPQ 4
+			GRD6 R 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath2Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD6 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD6 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath3Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD6 "RSTUVWXYZ[^]" 4
+			GRD7 ABCDEFGHIJKLMNOPQ 4
+			GRD7 R 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath3Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD7 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD7 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath4Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
+			GRD8 W 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath4Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD8 W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD8 W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath5Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC ABCDEFGHIJKL 6
+			GRDC M 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath5Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC M 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath6Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC NOPQRSTUV 4
+			GRDC W 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2EnhancedLightGuardDeath6Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+actor Q2EnhancedLightGuard_Shrink : Q2LightGuard_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2EnhancedLightGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor Q2EnhancedLightGuard_ShrinkEffect : Q2LightGuard_ShrinkEffect {}
+
+Actor Q2RipperGuard : Q2SoldierBase 
+{ 
+	Health 50 
+	Mass 105 
+	Obituary "%o was ripped by a Ripper Guard" 
+	DropItem "Q2CellPickup" 32
+	Tag "Strogg Ripper Guard"
+	States
+	{
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
+		Death1:
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death2:
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death3:
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death4:
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death5:
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death6:
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Raise:
+			GRDC W 0 A_RemoveChildren(true)
+			GRDC W 4
+			GRDC VUTSRQPON 4
+			GRD2 A 4
+			Goto See
+		Death.RottFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_NoBlocking		
+			TNT1 A 5
+		   Stop	
+		Death.RottExplosive:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 1
+			TNT1 A 0 A_Jump(128, 2)
+			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+			TNT1 AA 0
+			TNT1 A 5 A_NoBlocking
+			Stop
+		Death.RottDisintegrate:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_Scream
+			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 5 A_FadeOut
+			Stop
+		Pain.ShrinkerDMG:
+			GRD3 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath1Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 52
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 8
+			GRD5 ABCDEFGH 4
+			GRDB ABCDEFGHIJKLMNOPQR 6
+			GRD5 IJ 4
+			GRD5 K 4 A_SpawnItemEx("Q2RipperGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath1Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD5 K 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD5 K 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath2Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 20
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	Tag "Strogg Light Guard"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
+			GRD6 ABC 4
+			GRD6 D 0 A_CustomMissile(GuardBoomerang,15,3,Random(-5,5),2,Random(-5,5))
+			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 DEF 4
+			GRD6 D 0 A_CustomMissile(GuardBoomerang,15,3,Random(-5,5),2,Random(-5,5))
+			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 GHIJKLMNOPQ 4
+			GRD6 R 4 A_SpawnItemEx("Q2RipperGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath2Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD6 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD6 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath3Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD6 "RSTUVWXYZ[^]" 4
+			GRD7 ABCDEFGHIJKLMNOPQ 4
+			GRD7 R 4 A_SpawnItemEx("Q2RipperGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath3Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD7 R 4
+			Goto Spawn
+			GRD7 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath4Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
+			GRD8 W 4 A_SpawnItemEx("Q2RipperGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath4Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD8 W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD8 W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath5Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC ABCDEFGHIJKL 6
+			GRDC M 4 A_SpawnItemEx("Q2RipperGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath5Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC M 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath6Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC NOPQRSTUV 4
+			GRDC W 4 A_SpawnItemEx("Q2RipperGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2RipperGuardDeath6Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+actor Q2RipperGuard_Shrink : Q2LightGuard_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2RipperGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor Q2RipperGuard_ShrinkEffect : Q2LightGuard_ShrinkEffect {}
+
+Actor Q2HyperBlasterGuard : Q2SoldierBase 
+{ 
+	Health 60 
+	Mass 106 
+	Obituary "%o was blasted by A Hyper Blaster Guard" 
+	DropItem "Q2CellPickup" 32
+	Tag "Strogg Hyper Blaster Guard"
+	States
+	{
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
+		Death1:
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death2:
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death3:
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death4:
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death5:
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death6:
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Raise:
+			GRDC W 0 A_RemoveChildren(true)
+			GRDC W 4
+			GRDC VUTSRQPON 4
+			GRD2 A 4
+			Goto See
+		Death.RottFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_NoBlocking		
+			TNT1 A 5
+		   Stop	
+		Death.RottExplosive:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 1
+			TNT1 A 0 A_Jump(128, 2)
+			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+			TNT1 AA 0
+			TNT1 A 5 A_NoBlocking
+			Stop
+		Death.RottDisintegrate:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_Scream
+			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 5 A_FadeOut
+			Stop
+		Pain.ShrinkerDMG:
+			GRD3 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath1Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 52
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 8
+			GRD5 ABCDEFGH 4
+			GRDB ABCDEFGHIJKLMNOPQR 6
+			GRD5 IJ 4
+			GRD5 K 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath1Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD5 K 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD5 K 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath2Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 20
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	Tag "Strogg Light Guard"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
+			GRD6 ABC 4
+			TNT1 A 0 A_PlaySound("Q2Weapons/HyperBlasterLoop",CHAN_WEAPON,1.0,1)
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD6 DEF 4
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			GRD5 "]" 0 A_CustomMissile(GuardHyperBlaster,15,3,Random(-5,5),2,Random(-5,5)) //TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,39,5,18) TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD5 "]" 2
+			GRD6 A 2
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 A_PlaySound("Q2Weapons/HyperBlasterStop",CHAN_WEAPON)
+			GRD6 GHIJKLMNOPQ 4
+			GRD6 R 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath2Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD6 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD6 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath3Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD6 "RSTUVWXYZ[^]" 4
+			GRD7 ABCDEFGHIJKLMNOPQ 4
+			GRD7 R 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath3Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD7 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD7 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath4Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
+			GRD8 W 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath4Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD8 W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD8 W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath5Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC ABCDEFGHIJKL 6
+			GRDC M 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath5Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC M 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath6Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC NOPQRSTUV 4
+			GRDC W 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2HyperBlasterGuardDeath6Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+actor Q2HyperBlasterGuard_Shrink : Q2LightGuard_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2HyperBlasterGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor Q2HyperBlasterGuard_ShrinkEffect : Q2LightGuard_ShrinkEffect {}
+
+Actor Q2LaserGuard : Q2SoldierBase 
+{ 
+	Health 70 
+	Mass 107
+	Obituary "%o was vaporized by a Laser Guard" 
+	DropItem "Q2CellPickup" 32
+	Tag "Strogg Laser Guard"
+	States
+	{
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
+		Death1:
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death2:
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death3:
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death4:
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death5:
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Death6:
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			TNT1 A -1
+			stop
+		Raise:
+			GRDC W 0 A_RemoveChildren(true)
+			GRDC W 4
+			GRDC VUTSRQPON 4
+			GRD2 A 4
+			Goto See
+		Death.RottFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_NoBlocking		
+			TNT1 A 5
+		   Stop	
+		Death.RottExplosive:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 1
+			TNT1 A 0 A_Jump(128, 2)
+			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+			TNT1 AA 0
+			TNT1 A 5 A_NoBlocking
+			Stop
+		Death.RottDisintegrate:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_Scream
+			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 5 A_FadeOut
+			Stop
+		Pain.ShrinkerDMG:
+			GRD3 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+			"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_PlaySound("duke/shrink")
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 2
+			TNT1 A 0 Thing_Remove(0)
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			GRD1 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath1Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 52
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 8
+			GRD5 ABCDEFGH 4
+			GRDB ABCDEFGHIJKLMNOPQR 6
+			GRD5 IJ 4
+			GRD5 K 4 A_SpawnItemEx("Q2LaserGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath1Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD5 K 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD5 K 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath2Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 20
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	Tag "Strogg Light Guard"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
+			GRD6 ABC 4
+			GRD6 D 0 A_CustomMissile(LaserProjectileB,15,3,Random(-5,5),2,Random(-5,5))
+			GRD6 D 0 A_CustomMissile(LaserProjectile,15,3,Random(-5,5),2,Random(-5,5))
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 DEF 4
+			GRD6 D 0 A_CustomMissile(LaserProjectileB,15,3,Random(-5,5),2,Random(-5,5))
+			GRD6 D 0 A_CustomMissile(LaserProjectile,15,3,Random(-5,5),2,Random(-5,5))
+	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
+			GRD6 GHIJKLMNOPQ 4
+			GRD6 R 4 A_SpawnItemEx("Q2LaserGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath2Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD6 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD6 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath3Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD6 "RSTUVWXYZ[^]" 4
+			GRD7 ABCDEFGHIJKLMNOPQ 4
+			GRD7 R 4 A_SpawnItemEx("Q2LaserGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath3Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD7 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD7 R 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath4Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
+			GRD8 W 4 A_SpawnItemEx("Q2LaserGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath4Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRD8 W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRD8 W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath5Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC ABCDEFGHIJKL 6
+			GRDC M 4 A_SpawnItemEx("Q2LaserGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath5Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC M 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath6Animation : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 32
+	Radius 20
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			GRD2 A 4
+			GRDC NOPQRSTUV 4
+			GRDC W 4 A_SpawnItemEx("Q2LaserGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			Stop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+Actor Q2LaserGuardDeath6Corpse : SamsaraCorpseActorSmall
+{
+	Health 50
+	Height 8
+	Radius 16
+	Mass 5000
+	BloodType "Q2Blood"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			GRDC W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+			Goto Spawn
+			GRDC W 4
+			Loop
+		Death:
+			TNT1 A 0 A_RemoveMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_SpawnItem(Q2GibSpawner)
+			Stop
+	}
+}
+
+actor Q2LaserGuard_Shrink : Q2LightGuard_Shrink
+{
+	States
+	{
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("Q2LaserGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_DamageChildren(CallACS("Samsara_Shrinker",2))
+			TNT1 A 2 Thing_Remove(0)
+			stop
+	}
+}
+
+actor Q2LaserGuard_ShrinkEffect : Q2LightGuard_ShrinkEffect {}
+
+Actor LightGuardBlaster : BlasterProjectile 
+{ 
+	Damage (5)
+	Speed 28 
+}
+Actor GuardHyperBlaster : FastProjectile
+{ 
+	Radius 3
+	Height 6
+	Speed 32
+	Damage (1*Random(5,8)/Random(2,1))
+	MissileHeight 8
+	MissileType HyperBlasterTrailSpawner
+	DeathSound "Q2Weapons/LaserHit"
+	+BLOODSPLATTER
+	Decal BlasterScorch
+	States
+	{
+	Spawn:
+		NULL A 1 Light(HBlasterProjectile) Bright A_PlaySound("Q2Weapons/LaserFly",CHAN_VOICE,0.5,1)
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItem(HyperBlasterProjectileImpact)
+		TNT1 A 3 Light(HBlasterProjectile_X1)
+		TNT1 A 3 Light(HBlasterProjectile_X2)
+		TNT1 A 3 Light(HBlasterProjectile_X3)
+		TNT1 A 3 Light(HBlasterProjectile_X4)
+		Stop
+	XDeath:
+		TNT1 A 5
+		Stop
+	}
+}
+Actor HyperBlasterProjectileImpact : Q2EffectBase
+{
+	Height 6
+	+BRIGHT
+	RenderStyle Normal
+	Translation "80:111=192:207"
+	States
+	{
+	Spawn:
+		TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(HyperBlasterImpactParticle,0,0,0,FRandom(0,1),0,FRandom(-0.25,3),Random(1,360),1)
+		TNT1 A 0 A_CheckFloor("Floor")
+		TNT1 A 0 A_CheckCeiling(1)
+		Goto Air
+		TNT1 A 0 A_SetScale(-1)
+	Floor:
+		NULL ABC 3
+		NULL D 1 A_FadeOut(0.25)
+		Wait
+	Air:
+		NULL EFG 3
+		NULL H 1 A_FadeOut(0.25)
+		Wait
+	}
+}
+Actor HyperBlasterTrailSpawner : Q2EffectBase
+{
+	Scale 0.66
+	States
+	{
+	Spawn:
+		TNT1 AA 0 A_SpawnItemEx(HyperBlasterTrail,FRandom(0,2),0,FRandom(-2,2),FRandom(0,0.15),0,FRandom(-0.15,0.15),Random(1,360),128|SXF_TRANSFERSCALE)
+		Stop
+	}
+}
+Actor HyperBlasterTrail : Q2BulletPuffParticle 
+{ 
+	Translation "80:111=192:207" 
+	Scale 0.75 
+	+BRIGHT
+	RenderStyle Normal
+	States
+	{
+	Spawn:
+		P001 ABCDEFGH 0 A_Jump(64,"Fade")
+		Loop
+	Fade:
+		"----" A 5
+		"----" A 1 A_FadeOut
+		Wait
+	}
+}
+Actor HyperBlasterImpactParticle : HyperBlasterTrail
+{
+	Projectile
+	-NOINTERACTION -NOGRAVITY
+	Gravity 0.125
+	Translation "80:111=192:207" 
+	States
+	{
+	Fade:
+		"----" A 10
+		"----" A 1 A_FadeOut
+		Wait
+	}
+}
+Actor GuardBoomerang : Q2IonBoomerang { Damage (5) }

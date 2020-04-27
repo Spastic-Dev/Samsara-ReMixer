@@ -1,0 +1,442 @@
+Actor QueenVixen 
+{
+    obituary "%o learned not to mess with the Queen!"
+    hitobituary "%o got impaled by the Queen Vixen's high-heeled boots."
+    health 4800
+    speed 12
+    radius 12
+    height 56	
+    meleedamage 10
+    meleerange 50	
+	Monster
+	Damage (random(15,30))
+	Mass 3000
+    seesound "Vixen/See"
+    painsound "Vixen/Pain"	
+	activesound "Vixen/IDLE"	
+    deathsound "vixen/die7"	
+    scale 0.400	
+	Species "Enemies"
+	Tag "Queen Vixen"	
+    +BOSS
+    +DONTMORPH
+	+DONTRIP	
+	+BOSSDEATH	
+    +FLOORCLIP
+    +MISSILEMORE
+	+MISSILEEVENMORE
+    +STRIFEDAMAGE	
+	+NOINFIGHTING
+	+NOBLOODDECALS
+	painchance 25
+	dropitem " Alien Bra Gun Drop ",128,1
+    BloodType "LeonardBlood_RR"		
+    DamageFactor "Mace", 1.3
+	DamageFactor "CorvusHellstaffTomed", 0.22	
+    DamageFactor "CorvusCrossbow", 1.1	
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "MarathonShotgun", 1.0
+	DamageFactor "MarathonPlasmaFire", 0.86
+	DamageFactor "MarathonFusion", 0.8	
+    DamageFactor "WMCNade", 0.85
+    DamageFactor "BJSpear", 0.3
+	DamageFactor "Tesla", 0.6
+	DamageFactor "Shock", 0.2	
+	DamageFactor "DCannonProj", 0.7	
+	DamageFactor "LifeLeech", 0.8		
+	DamageFactor "CalebFire", 0.8
+	DamageFactor "Vodoo", 0.2
+	DamageFactor "DisruptorWall", 0.3
+	DamageFactor "EradNova", 0.3
+    DamageFactor "EradGreenFire", 0.1	
+    DamageFactor "EradCoopGreenFire", 0.1
+	DamageFactor "RottFire", 0.65
+	DamageFactor "HLLaser", 0.4
+	DamageFactor "WTRangedFire", 0.6
+	DamageFactor "Nuke", 0.3
+	DamageFactor "SWNuke", 0.3
+	DamageFactor "SWNukeCoop", 0.3
+	DamageFactor "SWFlame", 0.1
+	DamageFactor "SWFlameCoop", 0.1
+	DamageFactor "SWFlame2", 0.2
+	DamageFactor "SWFlame2Coop", 0.2
+	DamageFactor "SWFlame3", 0.7
+    DamageFactor "RMR-BigPlasma", 0.4
+	DamageFactor "CMDMGSHIT", 0.8
+	DamageFactor "Disintegrate", 0.7
+	DamageFactor "RottExplosive", 0.8
+	DamageFactor "C7Disintegrate", 0.5	
+	PainChance "ShrinkerDMG", 0
+    States
+    {
+    Spawn:
+		VIX7 E 0
+		VIX7 E 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		VIX7 E 1 ACS_ExecuteAlways(668,0,1,0)
+		VIX7 E 0 A_GiveInventory("AlreadySpawned",1)
+		VIX7 E 0 A_JumpIfInventory("InvisibleToken",1,2)
+		VIX7 E 0 A_Jump(256,2)
+		VIX7 E 0 A_ChangeFlag("STEALTH",1)
+	Spawn2:
+		TNT1 A 0 A_Jump(256,"STOPFROMTALKING")
+		TNT1 A 0 A_PlaySound("Vixen/Queen",CHAN_VOICE,1.0,0,ATTN_NONE)
+	STOPFROMTALKING:	
+		RRE8 A 0 A_TakeInventory("QueenVixenJumpKick",5)
+		RRE8 A 0 A_JumpIfinventory("VixenTaunt",1,2)
+		VIX7 E 4 A_Look
+		Loop
+		VIX7 I 0 A_SetShootable 
+		VIX7 I 0 A_SetTranslucent(1,0) 
+		VIX7 IJKL 3 A_Look
+		VIX7 A 0 A_PlaySound("Vixen/Laugh")	
+		VIX7 MNO 3 A_Look	
+		VIX7 IJKLMNO 3 A_Look
+		VIX7 A 0 A_TakeInventory("VixenTaunt",1)
+		VIX7 IJKLMNO 3 A_Look
+		VIX7 IJKLMNO 3 A_Look
+		loop
+	Idle:
+		VIX7 I 0 A_SetTranslucent(1,0) 
+		RRE8 A 0 A_TakeInventory("QueenVixenJumpKick",5)	
+		VIX7 A 0 A_JumpIfinventory("VixenTaunt",1,2)
+		VIX7 E 4 A_Look
+		loop
+		VIX7 I 0 A_SetShootable 
+		VIX7 IJKL 3 A_Look
+		VIX7 A 0 A_PlaySound("Vixen/Laugh")	
+		VIX7 MNO 3 A_Look
+		VIX7 IJKLMNO 3 A_Look
+		VIX7 A 0 A_TakeInventory("VixenTaunt",1)
+		VIX7 IJKLMNO 3 A_Look
+		VIX7 IJKLMNO 3 A_Look
+		loop	
+    See:
+		TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "OhFuckMe")
+		TNT1 A 0 A_GiveInventory("SawPlayer", 1)	
+		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
+		TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+	OhFuckMe:
+		VIX7 A 0 A_GiveInventory("VixenTaunt",1)
+	FuckSee:
+		RRE8 A 0 A_JumpIfInventory("QueenVixenJumpKick",1,"FuckBitchKick")	
+		VIX7 ABCDEFGH 4 A_Chase
+		VIX7 A 0 A_Jump(10,"TeleBitch")
+		Loop
+	FuckBitchKick:	
+		TNT1 A 0 A_Stop  
+		VIX8 GHI 3
+		RRM8 A 0 A_TakeInventory("QueenVixenJumpKick",5)
+		goto OhFuckMe
+    Missile:
+		VIX7 A 0 A_Jump(60,"TeleBitch") 
+		VIX7 A 0 A_Jump(90,"BraFire") 
+		VIX7 A 0 A_Jump(112,"Dildo2") 
+		TNT1 A 0 A_Jump(128,2)
+		TNT1 A 0 A_JumpIfCloser(364,"HighKarateBitchKick") 
+		TNT1 A 0
+		VIX7 P 5 A_FaceTarget
+		VIX7 Q 5 A_CustomMissile("VixenBlast_Q",46,0,0)
+		VIX7 P 5 A_FaceTarget
+		VIX7 Q 5 A_CustomMissile("VixenBlast_Q",46,0,0)
+		VIX7 P 5 A_FaceTarget
+		VIX7 Q 5 A_CustomMissile("VixenBlast_Q",46,0,0)
+		goto OhFuckMe
+	Dildo2:
+		VIX7 A 0 A_PlaySound("vixen/swing1")
+		VIX7 S 4 A_FaceTarget
+		VIX7 R 4 A_FaceTarget
+		VIX7 T 4 A_FaceTarget
+		VIX8 O 4 A_FaceTarget
+		VIX8 P 4 A_FaceTarget
+		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)
+		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)
+		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)
+		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)	
+		VIX7 VWX 4 A_FaceTarget
+		VIX7 A 0 A_PlaySound("vixen/swing2")
+		VIX7 YZ 4 A_FaceTarget
+		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
+		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
+		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
+		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)	
+		VIX7 "]" 4 A_FaceTarget
+		VIX8 ABC 4 A_FaceTarget
+		goto OhFuckMe	
+	HighKarateBitchKick:	
+		TNT1 A 0 A_PlaySound("Vixen/HighKick")
+		VIX8 D 4 A_FaceTarget
+		TNT1 A 0 A_SkullAttack
+		TNT1 A 0 ThrustThingZ(0,25,0,0)
+		VIX8 E 4 A_Recoil(4)
+		TNT1 A 0 A_GiveInventory("QueenVixenJumpKick",1)
+	KarateKickLoop:
+		VIX8 F 1 A_CheckFloor("KarateKickFinish")
+		Goto KarateKickLoop
+	KarateKickFinish:
+		TNT1 A 0 A_TakeInventory("VixenTeatrush_Queen",10)
+		Goto FuckBitchKick
+    Melee:
+		VIX8 A 0 A_PlaySound("vixen/kick")
+		VIX8 DEG 4 A_FaceTarget
+		VIX8 F 4 A_MeleeAttack
+		VIX8 GHI 4 A_FaceTarget
+		goto FuckSee	
+	BraFire:
+		VIX8 M 2 A_FaceTarget
+		VIX8 Z 0 A_PlayWeaponSound("rr/ranchrf")
+		VIX8 L 2  Bright A_CustomBulletAttack(6,3,1,3,"rrPuff",0,CBAF_NORANDOM)
+		VIX8 K 2 A_FaceTarget
+		VIX8 Z 0 A_PlayWeaponSound("rr/ranchrf")
+		VIX8 N 2 Bright A_CustomBulletAttack(5,2,1,random(3,4),"rrPuff",0,CBAF_NORANDOM)
+		VIX8 A 0 A_GiveInventory("VixenTeatrush_Queen",1)
+		VIX8 A 0 A_JumpIfInventory("VixenTeatrush_Queen",10,1)
+		goto BraFire
+		VIX7 A 0 A_TakeInventory("VixenTeatrush_Queen",10)
+		goto OhFuckMe		
+    Pain:
+		VIX7 A 0 A_Pain
+		RRE8 A 0 A_TakeInventory("QueenVixenJumpKick",1)
+		VIX7 A 0 A_TakeInventory("VixenTeatrush_Queen",10)
+		VIX7 A 0 A_Jump(64,"FuckSee")
+		VIX7 IIIJJJKKKLLLMMMNNNOOO 1
+		VIX7 A 0 A_Jump(48,"TeleBitch")
+		goto OhFuckMe
+	TeleBitch:	
+		VIXN A 0 A_PlaySound("vixen/tpot")
+		VIXN A 0 A_UnSetShootable	
+		VIXN ABC 6
+		VIXN D 6 A_SetTranslucent(0.7,1)
+		VIXN E 6 A_SetTranslucent(0.4,1)
+		VIXN E 6 A_SetTranslucent(0.1,1)
+		VIXN E 0 A_SetTranslucent(0,1)
+		VIXN AAAAAAAAAAAAAAAAAAAA 1 A_Chase(0,0,CHF_NOPLAYACTIVE)
+		VIXN E 6 A_SetTranslucent(0.1,1)
+		VIXN T 0 A_PlaySound("Vixen/TeleIn")
+		VIXN E 6 A_SetTranslucent(0.4,1)
+		VIXN D 6 A_SetTranslucent(0.7,1)
+		VIXN CBA 6 A_SetTranslucent(1,0)
+		VIXN A 0 A_SetShootable	
+		Goto FuckSee	
+	Death.ZorchPistol:
+	Death.Zorch:
+	Death.ZorchKamikaze:
+	Death.PhasingZorch:
+	Death.ZorchSpectral:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
+		"####" "#" 3 A_SpawnItem("ZorchEffectHuge")
+		"####" "#" 0 A_GiveInventory("EnemyZorched",1)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_Scream
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 3 A_SetTranslucent(0.1,0) 
+		TNT1 A 1 A_SetTranslucent(1,0)
+		TNT1 A -1 A_KillMaster
+		stop
+	Death.VoodooPuff:
+	Death.DynamiteCoop:
+	Death.Dynamite:
+	Death.LifeLeech:
+	Death.CalebNapalm:
+	Death.Shock:	  
+	Death.Vodoo:
+	Death.Tesla:
+	Death.CalebFire:	
+	Death.CalebBullet:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt3", 1)
+		Goto Death
+	Death.EradExplosive:
+	Death.EradNova:
+	Death.EradShock:
+	Death.EradExplosive2:	
+    Death.EradDisc:
+	Death.EradPiercingDart:
+	Death.EradGreenFire:
+	Death.EradCoopGreenFire:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
+		Goto Death
+	Death.DukeExplosive:
+	Death.DukeDamage:
+	Death.DukePistol:
+	Death.MightyBoot:	
+	Death.DukeIce:	
+		TNT1 A 0 A_Jump(218,"Death")
+		TNT1 A 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		goto Death
+	Death.PSRAPower:
+	Death.PSRAPowerCoop:
+	Death.PSExplosive:
+	Death.PSExplosiveCoop:
+	Death.PSBullet:
+	Death.PSFire:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		Goto Death
+	Death.LeonardDamage2:
+	Death.LeonardDamage3:
+	Death.LeonardDamage0:
+	Death.LeonardDamage1:	
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
+		Goto Death
+	Death.SWFist:
+	Death.SWKatana:
+	Death.SWShuriken:
+	Death.SWSticky:
+    Death.SWStickyCoop:	
+	Death.SWGrenade:
+	Death.SWNuke:
+	Death.SWRocket:
+	Death.SWRailgun:
+	Death.SWRailgunCoop:
+	Death.SWNukeCoop:
+	Death.SWFlame:
+	Death.SWFlame2:
+	Death.SWFlame2Coop:
+	Death.SWFlame3:	
+    Death.SWBullet:	  
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
+		goto Death	
+    Death:
+    XDeath:	
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)				
+	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+		VIXG A 0 A_Scream
+		TNT1 A 0 A_NoBlocking
+		VIXG ABCDEF 5
+		VIXG GH 5
+		TNT1 A 0 A_playsound("redneck/thud")
+		VIXG H -1 A_KillMaster
+		stop		
+	Death.DukeIce:
+        "####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+    Ice:
+    Death.HexenIce:
+	Death.WTMeleeIce:
+	Death.WTRangedIce:
+    Death.Ice:
+        "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+        "####" "#" 0 A_NoBlocking
+        "####" "#" 0 A_GenericFreezeDeath
+        "####" "#" 0 A_UnsetShootable
+        "####" "#" 140 A_UnsetSolid
+        "####" "#" 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+        "####" "##########################################################################################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+        "####" "#" 0 A_IceGuyDie
+        "####" "#" 1 A_IceGuyDie
+        TNT1 A -1 A_KillMaster
+        stop			
+	 Death.RottDisintegrate:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Stop
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_SpawnItem("RGodModeDeathHuge")
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+		TNT1 A -1 A_KillMaster
+		stop
+	Disintegrate:
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
+		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+		"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+		"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+		"####" "#" 0 A_Stop
+		"####" "#" 3 A_SpawnItem("DisintEffectHuge",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.4,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.3,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.2,0)
+		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+		"####" "#" 2 A_SetTranslucent(0.1,0)
+        TNT1 A -1 A_KillMaster
+        stop
+	Death.Nuke:
+		"####" "#" 0 A_ChangeFlag("SOLID", 0)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
+		"####" "#################" 3 A_Fadeout(0.05)
+		TNT1 A -1 A_KillMaster
+		stop
+    }
+}
+
+Actor VixenBlast_4 : Vixenblast_2
+{
+    damage 10
+    states
+    {
+    Spawn:
+		VIX2 UVW 4 Bright 
+		loop
+    }
+}
+
+Actor VixenBlast_5 : Vixenblast_3
+{
+    damage 9
+    states
+    {
+    Spawn:
+		VIX2 Z 4 Bright
+		VIX3 AB 4 Bright
+		loop
+    }
+}
+
+Actor VixenBlast_Q : VixenBlast { Speed 35 Damage 8 }
+Actor QueenVixenJumpKick : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
+Actor VixenTeatrush_Queen : Inventory { inventory.MaxAmount 10 inventory.Amount 1 }
