@@ -63,14 +63,6 @@ Actor SerpentGodBig
   States
   {
   Spawn:
-	SERP A 0
-	SERP A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-	SERP A 1 ACS_ExecuteAlways(668,0,1,0)
-	SERP A 0 A_GiveInventory("AlreadySpawned",1)
-	SERP A 0 A_JumpIfInventory("InvisibleToken",1,2)
-	SERP A 0 A_Jump(256,2)
-	SERP A 0 A_ChangeFlag("STEALTH",1)
-  Spawn2:
     TNT1 A 0
 	TNT1 A 0 A_JumpIfInventory("Ring18", 1, "SpawnLoop")
 	TNT1 A 0 A_GiveInventory("Ring18", 18)
@@ -95,14 +87,13 @@ Actor SerpentGodBig
   Melee:
 	SERP DEF 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Serpent/Melee")
-	SERP G 5 A_CustomMeleeAttack(50)
+	SERP G 4 A_CustomMeleeAttack(50)
 	SERP H 4
-	TNT1 A 0 A_JumpIfCloser(80, "Melee")
-	SERP H 2
+	SERP G 3
     Goto See
   Missile:
 	TNT1 A 0 A_JumpIfInventory("Ring18", 18, "Ring")
-	TNT1 A 0 A_Jump(100, "Green")
+	TNT1 A 0 A_Jump(128, "Green")
 	SERP A 1 A_FaceTarget
 	SERP A 1 A_CustomMissile("SnakeMagicSkull", 30, 0, 0, 2, 30)
 	TNT1 A 0 A_GiveInventory("Ring18", 1)
@@ -135,12 +126,19 @@ Actor SerpentGodBig
 	SERP J 6 A_FaceTarget
 	Goto See
   Green:
+ 	TNT1 A 0 A_Jump(128,"BigShot")   
 	SERP LK 4 A_FaceTarget
 	SERP J 4 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Serpent/Magic")
-	TNT1 A 0 A_CustomMissile("SerpentProj", 48, -24)
+	TNT1 A 0 A_CustomMissile("SerpentProj2", 48, -24)
 	SERP I 6 A_CustomMissile("SerpentProj2", 48, 24)
 	Goto See
+  BigShot:
+ 	SERP IJ 4 A_FaceTarget
+	SERP K 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Serpent/Magic") 
+	SERP L 6 A_CustomMissile("SerpentMissile2", 36)
+	Goto See	
   Pain:
     SERP A 2
     SERP A 2 A_Pain
@@ -148,7 +146,7 @@ Actor SerpentGodBig
   Death:  
   XDeath:
 	TNT1 A 0 A_GiveInventory("SnakeDie", 1)
-	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    
+	TNT1 A 0 A_GiveToTarget("KillCount",1)    
 	TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 	SERP M 6 A_Scream
 	SERP NOPQRSTUW 6
@@ -167,7 +165,7 @@ Actor SerpentGodBig
   Death.WTRangedIce:
   Death.Ice:
 	"####" "#" 0 A_GiveInventory("SnakeDie", 1)
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_NoBlocking
 	"####" "#" 0 A_KillMaster
 	"####" "#" 0 A_GenericFreezeDeath
@@ -179,7 +177,7 @@ Actor SerpentGodBig
   Death.RottDisintegrate:
 	"####" "#" 0 A_GiveInventory("SnakeDie", 1)
 	"####" "#" 0 A_ChangeFlag("SOLID", 0)
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_Scream
 	"####" "#" 0 A_NoBlocking	
 	"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -209,7 +207,7 @@ Actor SerpentGodBig
 	stop
   Disintegrate:
 	"####" "#" 0 A_GiveInventory("SnakeDie", 1)
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_NoBlocking
 	"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 	"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -242,7 +240,7 @@ Actor SerpentGodBig
   Death.Nuke:
 	"####" "#" 0 A_GiveInventory("SnakeDie", 1)
 	"####" "#" 0 A_ChangeFlag("SOLID", 0)
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_Scream
 	"####" "#" 0 A_NoBlocking		
 	"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
@@ -255,7 +253,7 @@ Actor SerpentGodBig
   Death.PhasingZorch:
   Death.ZorchSpectral:
 	"####" "#" 0 A_GiveInventory("SnakeDie", 1)
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_Stop
 	"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 	"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
@@ -409,7 +407,7 @@ Actor SerpentGodBig
   XDeath.QuakeExplosive:
   XDeathForRanger:
 	TNT1 A 0 A_GiveInventory("SnakeDie", 1)
-	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+	TNT1 A 0 A_GiveToTarget("KillCount",1)  
 	TNT1 A 0 A_SpawnItemEx("QuakeLargeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_Fall
 	TNT1 A 0 A_KillMaster
@@ -420,7 +418,7 @@ Actor SerpentGodBig
 	goto Death
   XdeathForBitterman:
 	TNT1 A 0 A_GiveInventory("SnakeDie", 1)
-	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+	TNT1 A 0 A_GiveToTarget("KillCount",1)  
 	TNT1 A 0 A_SpawnItemEx("Q2LargeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_Fall
 	TNT1 A 0 A_KillMaster
@@ -435,7 +433,7 @@ Actor SnakeDie : inventory { Inventory.MaxAmount 1 }
 Actor SerpentProj
 {
 	PROJECTILE
-	Obituary "%o was no match for an incarnation of the Serpent God."
+	Obituary "%o was no match for the apprentice of the Serpent God."
 	Speed 32
 	Damage 3
 	Radius 8
@@ -444,16 +442,16 @@ Actor SerpentProj
 	States
 	{
 		Spawn:
-			RIPP ABCD 3 Bright
+			DS95 STUV 3 Bright
 			Loop
 		Death:
 			TNT1 A 0 A_PlaySound("Weapons/MissileHitX")
-			RIPP ABCD 1 Bright
+			DS95 WXYZI 1 Bright
 			Stop
 	}
 }
 
-Actor SerpentProj2 : SerpentProj { Damage 4 }
+Actor SerpentProj2 : SerpentProj { Damage 4 Obituary "%o was no match for an incarnation of the Serpent God." }
 
 Actor OrbitSkull_1
 {
@@ -1278,17 +1276,17 @@ Actor MagicSkullLowExplode
 
 Actor MagicSkullBigExplode
 {
-+NOGRAVITY
-+NOBLOCKMAP
--SOLID
-Scale 1.3
-States
-	{
-	Spawn:
-	TNT1 A 0
-	TNT1 AAAAAAAA 0 A_CustomMissile ("SWGrenadeBall", 10, 0, random (0, 360), 2, random (150, 50))
-	WMI4 ABCDEFGHIJKLMNOPQ 2 Bright
-	Stop 
+	+NOGRAVITY
+	+NOBLOCKMAP
+	-SOLID
+	Scale 1.3
+	States
+		{
+		Spawn:
+			TNT1 A 0
+			TNT1 AAAAAAAA 0 A_CustomMissile ("SWGrenadeBall", 10, 0, random (0, 360), 2, random (150, 50))
+			WMI4 ABCDEFGHIJKLMNOPQ 2 Bright
+			Stop 
 	}
 }	
 
@@ -1325,14 +1323,6 @@ Actor SerpentGod
   States
   {
   Spawn:
-	SERP A 0
-	SERP A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-	SERP A 1 ACS_ExecuteAlways(668,0,1,0)
-	SERP A 0 A_GiveInventory("AlreadySpawned",1)
-	SERP A 0 A_JumpIfInventory("InvisibleToken",1,2)
-	SERP A 0 A_Jump(256,2)
-	SERP A 0 A_ChangeFlag("STEALTH",1)
-  Spawn2:
     SERP A 10 A_Look
     Loop
   See:
@@ -1345,21 +1335,23 @@ Actor SerpentGod
   Melee:
 	SERP DEF 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Serpent/Melee")
-	SERP G 5 A_CustomMeleeAttack(random(25,35))
+	SERP G 4 A_CustomMeleeAttack(random(25,35))
 	SERP H 4
-	TNT1 A 0 A_JumpIfCloser(70, "Melee")
-	SERP H 2
+	SERP G 3
     Goto See
   Missile:
-	SERP IJ 4 A_FaceTarget
-	SERP K 4 A_FaceTarget
+	TNT1 A 0 A_Jump(128, "BigShot")  
+	SERP LK 4 A_FaceTarget
+	SERP J 4 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Serpent/Magic")
-	TNT1 A 0 A_Jump(128, "BigShot")
 	TNT1 A 0 A_CustomMissile("SerpentProj", 36, -20)
-	SERP L 6 A_CustomMissile("SerpentProj", 36, 20)
+	SERP I 6 A_CustomMissile("SerpentProj", 36, 20)
 	Goto See
   BigShot:
-	SERP L 6 A_CustomMissile("SerpentMissile2", 36)
+	SERP IJ 4 A_FaceTarget
+	SERP K 4 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Serpent/Magic")  
+	SERP L 6 A_CustomMissile("SerpentMissileSub2", 36)
 	Goto See
   Pain:
     SERP A 2
@@ -1367,9 +1359,8 @@ Actor SerpentGod
     Goto See
   Death:  
   XDeath:
-	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    
- 	TNT1 A 0 ACS_ExecuteAlways(SAMSARA_CLIENT_DECORATE,0,11)
-  Death2:  
+	TNT1 A 0 A_GiveToTarget("KillCount",1)    
+	TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 	SERP M 6 A_Scream
 	SERP NOPQRSTUW 6
 	TNT1 A 0 A_NoBlocking
@@ -1392,7 +1383,7 @@ Actor SerpentGod
   Death.WTMeleeIce:
   Death.WTRangedIce:
   Death.Ice:
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_NoBlocking
 	"####" "#" 0 A_KillMaster
 	"####" "#" 0 A_GenericFreezeDeath
@@ -1403,7 +1394,7 @@ Actor SerpentGod
 	stop		
   Death.RottDisintegrate:
 	"####" "#" 0 A_ChangeFlag("SOLID", 0)
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_Scream
 	"####" "#" 0 A_NoBlocking	
 	"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -1432,7 +1423,7 @@ Actor SerpentGod
 	TNT1 A -1 A_KillMaster
 	stop
   Disintegrate:
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_NoBlocking
 	"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 	"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -1464,7 +1455,7 @@ Actor SerpentGod
     stop
   Death.Nuke:
 	"####" "#" 0 A_ChangeFlag("SOLID", 0)
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_Scream
 	"####" "#" 0 A_NoBlocking		
 	"####" "#" 0 A_SpawnItem("WTNukeDeathBig")
@@ -1476,7 +1467,7 @@ Actor SerpentGod
   Death.ZorchKamikaze:
   Death.PhasingZorch:
   Death.ZorchSpectral:
-	"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	"####" "#" 0 A_GiveToTarget("KillCount",1)
 	"####" "#" 0 A_Stop
 	"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 	"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
@@ -1629,7 +1620,7 @@ Actor SerpentGod
   XDeath.NotQuadded:
   XDeath.QuakeExplosive:
   XDeathForRanger:
-	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+	TNT1 A 0 A_GiveToTarget("KillCount",1)  
 	TNT1 A 0 A_SpawnItemEx("QuakeMediumGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_Fall
 	TNT1 A 0 A_KillMaster
@@ -1639,7 +1630,7 @@ Actor SerpentGod
 	TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 	goto Death
   XdeathForBitterman:
-	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+	TNT1 A 0 A_GiveToTarget("KillCount",1)  
 	TNT1 A 0 A_SpawnItemEx("Q2MediumGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_Fall
 	TNT1 A 0 A_KillMaster
@@ -1715,7 +1706,7 @@ Actor SWSerpentGodCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
+			TNT1 A 0 A_JumpIfMasterCloser(1,2)
 			SERP Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
 			Goto Spawn
 			SERP Y 4
@@ -1791,7 +1782,7 @@ Actor SWSerpentGodCorpse
 		Death.WTRangedIce:
 		Death.Ice:
 			"####" "#" 0 A_RemoveMaster
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_GiveToTarget("KillCount",1)
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
@@ -1937,7 +1928,7 @@ actor SerpentGod_Shrink : SerpentGod
 		XDeath.Squish:
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_GiveToTarget("KillCount", 1)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
@@ -1987,12 +1978,13 @@ actor SerpentGod_ShrinkEffect : SerpentGod
 
 Actor SerpentMissile2 : BabyRipperMissileBig
 {
-	Damage (12)	
+	Damage (6)	
+	Obituary "%o was no match for an incarnation of the Serpent God."
 	States
 	{
 		Death:
 			TNT1 A 0 A_PlaySound("Ghost/Hit")
-			TNT1 A 0 A_Explode(12, 128, 0)
+			TNT1 A 0 A_Explode(32, 132, 0)
 			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_3B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
 			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_3B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
 			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_3B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
@@ -2004,12 +1996,154 @@ Actor SerpentMissile2 : BabyRipperMissileBig
 }
 
 Actor BabyRipperExplosion_3B : BabyRipperExplosion {
-	Damage (8*Random(2,1))
+	Damage (4*Random(2,1))
+	Obituary "%o was no match for an incarnation of the Serpent God."
 	States {
 		Death:
-			TNT1 A 0 A_Explode(4, 108)
+			TNT1 A 0 A_NoGravity		
+			TNT1 A 0 A_Explode(16, 132)
 		    TNT1 A 0 A_PlaySound("Ghost/Hit")
-			TNT1 A 1			
+			DS95 WXYZI 2			
 			Stop
 	}
 }
+
+Actor SerpentMissileSub2 : BabyRipperMissileBig
+{
+	Obituary "%o was no match for the apprentice of the Serpent God."
+	Damage (3)	
+	States
+	{
+		Death:
+			TNT1 A 0 A_PlaySound("Ghost/Hit")
+			TNT1 A 0 A_Explode(16, 128, 0)
+			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_2B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
+			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_2B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
+			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_2B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
+			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_2B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
+			TNT1 A 0 A_CustomMissile("BabyRipperExplosion_2B", 8, 0, random(0,359), CMF_TRACKOWNER | CMF_AIMDIRECTION)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor BabyRipperExplosion_2B : BabyRipperExplosion { 
+	Damage (4)
+	Obituary "%o was no match for the apprentice of the Serpent God."
+	States {
+		Death:
+			TNT1 A 0 A_NoGravity
+			TNT1 A 0 A_Explode(8, 128)
+		    TNT1 A 0 A_PlaySound("Ghost/Hit")
+			DS95 WXYZI 2			
+			Stop
+	}
+}	
+
+Actor EvilSkull
+{
+	Radius 8
+	Height 16
+	Health 150
+	Mass 8000
+	Species "Enemies"
+	+NOGRAVITY
+	+SHOOTABLE
+	+THRUSPECIES
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+MTHRUSPECIES
+	+NOBLOOD
+    Tag "Accursed Head"	
+	Scale 0.7
+	RadiusDamageFactor 0.375
+	Obituary "%o was no match for an incarnation of the Serpent God."
+	States
+	{
+		Spawn:
+			RSKP A 5
+			TNT1 A 0 A_Stop
+		SpawnLoop:
+			TNT1 A 0 A_SetAngle(angle+10)
+			RSKP A 1 A_Look
+		Loop
+		Clear:
+			RSKP A 1 A_ClearTarget
+		Goto SpawnLoop
+		See:
+			RSKP A 1
+			TNT1 A 0 A_JumpIfInTargetInventory("SkullJumpCooldown", 1, "Clear")
+			TNT1 A 0 A_JumpIfInTargetInventory("HasSkull", 1, "Clear")
+			TNT1 A 0 A_JumpIfCloser(288, "Shoot")
+		Goto SpawnLoop
+		Shoot:
+			TNT1 A 0 ACS_ExecuteAlways(1788, 0)
+			RSKP AA 4 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("EvilSkullProjSerpent")
+			TNT1 A 0 A_Die("Shoot")
+		Wait
+		Death:
+		    TNT1 A 0 Thing_ChangeTID(0, 0)
+			TNT1 A 0 A_NoGravity
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_PlaySound("Weapons/GrenadeExplode")
+			TNT1 A 5 A_SpawnItem("EvilSkullExplosion")
+		Stop
+		Death.Shoot:
+			TNT1 A 5 A_FadeOut
+			Stop
+	}
+}
+
+Actor EvilSkullExplosion
+{
+	Scale 0.7
+	Height 1
+	Radius 1
+	+NOINTERACTION
+	-SOLID
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			RSKP BCDEFGHIJKLMNO 2 Bright
+		Stop
+	}
+}
+
+Actor EvilSkullProjSerpent : EvilSkullProj
+{
+	PROJECTILE
+	Height 16
+	Radius 8
+	Speed 20
+	Damage 3
+	-NOGRAVITY
+	-NOBLOCKMAP
+	+THRUSPECIES
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+MTHRUSPECIES
+	Species "Enemies"
+	Obituary "%o was no match for an incarnation of the Serpent God."
+	Scale 0.8	
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			RSKP AA 4 ThrustThingZ(0, 16, 0, 1)
+		SpawnLoop:
+			RSKP A 4
+		Loop
+		Death:
+			TNT1 A 0 A_NoGravity
+			TNT1 A 0 A_PlaySound("Weapons/MissileHitX")
+			TNT1 A 0 A_Explode(12, 114, 0)
+			RSKP BCDEFGHIJKLMNO 2 Bright
+		Stop
+	}
+}
+
+Actor SkullJumpCooldown : PowerProtection {	powerup.duration -2	damagefactor "normal", 1.0 }
+Actor HasSkull : Inventory { inventory.maxamount 32 }
