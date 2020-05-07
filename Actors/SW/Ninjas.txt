@@ -114,7 +114,7 @@ Actor SWNinja
 		NINJ S 3 A_Scream
 		NINJ T 3 A_NoBlocking
 		NINJ UVWX 3
-		NINJ Y 0 A_SpawnItemEx("SWNinjaCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NINJ Y 0 A_SpawnItemEx("SWNinjaCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.SuicideDeath:
@@ -125,7 +125,7 @@ Actor SWNinja
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		NINS C 6 A_NoBlocking
 		NINS DEFG 6
-		NINS H 0 A_SpawnItemEx("SWNinjaCorpse_Suicide", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NINS H 0 A_SpawnItemEx("SWNinjaCorpse_Suicide", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -148,7 +148,7 @@ Actor SWNinja
 		NINC A 30 A_PlaySound("ninja/Cut",6)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		NINC BCDEFGHI 5
-		NINJ J 0 A_SpawnItemEx("SWNinjaCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NINJ J 0 A_SpawnItemEx("SWNinjaCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -556,9 +556,6 @@ Actor SWNinjaCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NINJ Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NINJ Y 4
 			Loop
 		Death:
@@ -660,9 +657,6 @@ Actor SWNinjaCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NINC J 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NINC J 4
 			Loop
 		Death:
@@ -764,9 +758,6 @@ Actor SWNinjaCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NINS H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NINS H 4
 			Loop
 		Death:
@@ -1206,7 +1197,7 @@ Actor NinjaRed : SWNinja
 		NIRJ T 3 A_NoBlocking
 		NIRJ UVWX 3
 		NIRJ Y 0 A_KillMaster
-		NIRJ Y 0 A_SpawnItemEx("SWNinjaRedCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIRJ Y 0 A_SpawnItemEx("SWNinjaRedCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -1231,7 +1222,7 @@ Actor NinjaRed : SWNinja
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		NIRC BCDEFGHI 5
 		NIRC J 0 A_KillMaster
-		NIRC J 0 A_SpawnItemEx("SWNinjaRedCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIRC J 0 A_SpawnItemEx("SWNinjaRedCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -1665,9 +1656,6 @@ Actor SWNinjaRedCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIRJ Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIRJ Y 4
 			Loop
 		Death:
@@ -1769,9 +1757,6 @@ Actor SWNinjaRedCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIRC J 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIRC J 4
 			Loop
 		Death:
@@ -1873,9 +1858,6 @@ Actor SWNinjaRedCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIRS H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIRS H 4
 			Loop
 		Death:
@@ -2327,7 +2309,7 @@ Actor NinjaOrange : NinjaRed
 		NIOJ T 3 A_NoBlocking
 		NIOJ UVWX 3
 		NIOJ Y 0 A_KillMaster
-		NIOJ Y 0 A_SpawnItemEx("SWNinjaOrangeCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIOJ Y 0 A_SpawnItemEx("SWNinjaOrangeCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop	
 	Death.SWKatana:
@@ -2344,7 +2326,7 @@ Actor NinjaOrange : NinjaRed
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		NIOC BCDEFGHI 5
 		NIOC J 0 A_KillMaster
-		NIOC J 0 A_SpawnItemEx("SWNinjaOrangeCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIOC J 0 A_SpawnItemEx("SWNinjaOrangeCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop	
 	Raise:
@@ -2647,9 +2629,6 @@ Actor SWNinjaOrangeCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIOJ Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIOJ Y 4
 			Loop
 		Death:
@@ -2751,9 +2730,6 @@ Actor SWNinjaOrangeCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIOC J 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIOC J 4
 			Loop
 		Death:
@@ -2855,9 +2831,6 @@ Actor SWNinjaOrangeCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIOS H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIOS H 4
 			Loop
 		Death:
@@ -3274,7 +3247,7 @@ Actor NinjaGray : NinjaRed
 		NIGJ T 3 A_NoBlocking
 		NIGJ UVWX 3
 		NIGJ Y 0 A_KillMaster
-		NIGJ Y 0 A_SpawnItemEx("SWNinjaGrayCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIGJ Y 0 A_SpawnItemEx("SWNinjaGrayCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop	
 	Death.SWKatana:
@@ -3291,7 +3264,7 @@ Actor NinjaGray : NinjaRed
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		NIGC BCDEFGHI 5
 		NIGC J 0 A_KillMaster
-		NIGC J 0 A_SpawnItemEx("SWNinjaGrayCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIGC J 0 A_SpawnItemEx("SWNinjaGrayCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop	
 	Raise:
@@ -3594,9 +3567,6 @@ Actor SWNinjaGrayCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIGJ Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIGJ Y 4
 			Loop
 		Death:
@@ -3698,9 +3668,6 @@ Actor SWNinjaGrayCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIGC J 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIGC J 4
 			Loop
 		Death:
@@ -3802,9 +3769,6 @@ Actor SWNinjaGrayCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIGS H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIGS H 4
 			Loop
 		Death:
@@ -4325,7 +4289,7 @@ Actor NinjaDark : NinjaRed
 		NIDJ T 3 A_NoBlocking
 		NIDJ UVWX 3
 		NIDJ Y 0 A_KillMaster
-		NIDJ Y 0 A_SpawnItemEx("SWNinjaDarkCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIDJ Y 0 A_SpawnItemEx("SWNinjaDarkCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop	
 	Death.SWKatana:
@@ -4344,7 +4308,7 @@ Actor NinjaDark : NinjaRed
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		NIDC BCDEFGHI 5
 		NIDC J 0 A_KillMaster
-		NIDC J 0 A_SpawnItemEx("SWNinjaDarkCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		NIDC J 0 A_SpawnItemEx("SWNinjaDarkCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop	
 	Raise:
@@ -4678,9 +4642,6 @@ Actor SWNinjaDarkCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIDJ Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIDJ Y 4
 			Loop
 		Death:
@@ -4782,9 +4743,6 @@ Actor SWNinjaDarkCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIDC J 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIDC J 4
 			Loop
 		Death:
@@ -4886,9 +4844,6 @@ Actor SWNinjaDarkCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			NIDS H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			NIDS H 4
 			Loop
 		Death:

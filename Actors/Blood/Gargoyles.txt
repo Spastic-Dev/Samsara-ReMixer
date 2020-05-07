@@ -118,7 +118,7 @@ Actor BloodGargoyle
 		BGAR L 5 A_Fall
 		BGAR M 5 
 		BGAR NO 6
-		BGAR P 0 A_SpawnItemEx("BloodGargoyleCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BGAR P 0 A_SpawnItemEx("BloodGargoyleCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath: 
@@ -603,9 +603,6 @@ Actor BloodGargoyleCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			BGAR P 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			BGAR P 4
 			Loop
 		Death:

@@ -1366,7 +1366,7 @@ Actor SerpentGod
 	TNT1 A 0 A_NoBlocking
 	SERP X 6
 	SERP Y 0 A_KillMaster
-    SERP Y 0 A_SpawnItemEx("SWSerpentGodCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+    SERP Y 0 A_SpawnItemEx("SWSerpentGodCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop
   Raise:
@@ -1706,9 +1706,6 @@ Actor SWSerpentGodCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(1,2)
-			SERP Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			SERP Y 4
 			Loop
 		Death:

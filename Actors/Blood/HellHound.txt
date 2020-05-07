@@ -83,7 +83,7 @@ Actor HellHound
 		HOUN L 5 A_Fall
 		HOUN M 5 
 		HOUN NOPQ 5
-		HOUN R 0 A_SpawnItemEx("HellHoundCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HOUN R 0 A_SpawnItemEx("HellHoundCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -501,9 +501,6 @@ Actor HellHoundCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HOUN R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HOUN R 4
 			Loop
 		Death:

@@ -92,7 +92,7 @@ Actor SWWizard
     WIZR K 6 A_Scream
     WIZR L 6 A_NoBlocking
     WIZR MNOPQ 6
-    WIZR R 0 A_SpawnItemEx("SWWizardCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+    WIZR R 0 A_SpawnItemEx("SWWizardCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop
   XDeath:
@@ -502,9 +502,6 @@ Actor SWWizardCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			WIZR R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			WIZR R 4
 			Loop
 		Death:
@@ -1150,7 +1147,7 @@ Actor SWWizardGray : SWWizard
     WIZ2 L 6 A_NoBlocking
     WIZ2 MNOPQ 6
     WIZ2 R 0 A_KillMaster
-    WIZ2 R 0 A_SpawnItemEx("SWWizardGrayCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+    WIZ2 R 0 A_SpawnItemEx("SWWizardGrayCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop
   XDeath:
@@ -1581,9 +1578,6 @@ Actor SWWizardGrayCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			WIZ2 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			WIZ2 R 4
 			Loop
 		Death:
@@ -1991,7 +1985,7 @@ Actor SWWizardRed : SWWizardGray
     WIZ3 L 6 A_NoBlocking
     WIZ3 MNOPQ 6
     WIZ3 R 0 A_KillMaster
-    WIZ3 R 0 A_SpawnItemEx("SWWizardRedCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+    WIZ3 R 0 A_SpawnItemEx("SWWizardRedCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop
   XDeath:
@@ -2330,9 +2324,6 @@ Actor SWWizardRedCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			WIZ3 R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			WIZ3 R 4
 			Loop
 		Death:

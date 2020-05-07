@@ -77,7 +77,7 @@ Actor Q2Medic : Q2SoldierBase
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
 		TNT1 A 0 A_ScreamAndUnblock
-		MED4 A 0 A_SpawnItemEx("Q2MedicDeathAnimation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		MED4 A 0 A_SpawnItemEx("Q2MedicDeathAnimation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A 0
 		stop
 	Raise:
@@ -192,9 +192,9 @@ Actor Q2MedicDeathAnimation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			MED4 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[" 3
-			MED4 "]" 0 A_SpawnItemEx("Q2MedicDeathCorpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			MED4 "]" 0 A_SpawnItemEx("Q2MedicDeathCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -609,7 +609,7 @@ Actor Q2MedicCommander : Q2Medic
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
 			TNT1 A 0 A_ScreamAndUnblock
-			MED4 A 0 A_SpawnItemEx("Q2MedicCommanderDeathAnimation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			MED4 A 0 A_SpawnItemEx("Q2MedicCommanderDeathAnimation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A 0
 			stop
 	}
@@ -627,9 +627,9 @@ Actor Q2MedicCommanderDeathAnimation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			MED4 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[" 3
-			MED4 "]" 0 A_SpawnItemEx("Q2MedicCommanderDeathCorpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			MED4 "]" 0 A_SpawnItemEx("Q2MedicCommanderDeathCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster

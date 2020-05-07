@@ -361,7 +361,7 @@ ACTOR AssaultCaptain
 			ASCA J 5 A_NoBlocking
 			ASCA K 6
 			ASCA L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
-			ASTR M 0 A_SpawnItemEx("AssaultCaptainCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			ASTR M 0 A_SpawnItemEx("AssaultCaptainCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		PermDeath:
@@ -675,9 +675,6 @@ Actor AssaultCaptainCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			ASCA M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			ASCA M 4
 			Loop
 		Death:
@@ -892,7 +889,7 @@ Actor AssaultCaptainChoking : AssaultCaptain {
 			Wait
 		Death.Hemorrhage:
 			ASCA M 5 A_NoBlocking
-			ASTR M 0 A_SpawnItemEx("AssaultCaptainCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			ASTR M 0 A_SpawnItemEx("AssaultCaptainCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop	
 		Pain:
@@ -905,7 +902,7 @@ Actor AssaultCaptainChoking : AssaultCaptain {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASCA P 1 A_Fall
 			ASCA P 5 A_Scream
-			ASTR M 0 A_SpawnItemEx("AssaultCaptainCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			ASTR M 0 A_SpawnItemEx("AssaultCaptainCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death.ZorchPistol:

@@ -16,27 +16,27 @@ Actor Q2LightGuard : Q2SoldierBase
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
-			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death2:
-			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death3:
-			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath3Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death4:
-			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath4Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death5:
-			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath5Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death6:
-			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death.RottFire:
@@ -340,12 +340,12 @@ Actor Q2LightGuardDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 8
 			GRD5 ABCDEFGH 4
 			GRDB ABCDEFGHIJKLMNOPQR 6
 			GRD5 IJ 4
-			GRD5 K 4 A_SpawnItemEx("Q2LightGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD5 K 4 A_SpawnItemEx("Q2LightGuardDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -396,7 +396,7 @@ Actor Q2LightGuardDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
@@ -408,7 +408,7 @@ Actor Q2LightGuardDeath2Animation : SamsaraCorpseActorSmall
 			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
 	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
 			GRD6 GHIJKLMNOPQ 4
-			GRD6 R 4 A_SpawnItemEx("Q2LightGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD6 R 4 A_SpawnItemEx("Q2LightGuardDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -458,10 +458,10 @@ Actor Q2LightGuardDeath3Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD6 "RSTUVWXYZ[^]" 4
 			GRD7 ABCDEFGHIJKLMNOPQ 4
-			GRD7 R 4 A_SpawnItemEx("Q2LightGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD7 R 4 A_SpawnItemEx("Q2LightGuardDeath3Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -511,10 +511,10 @@ Actor Q2LightGuardDeath4Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
-			GRD8 W 4 A_SpawnItemEx("Q2LightGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD8 W 4 A_SpawnItemEx("Q2LightGuardDeath4Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -564,10 +564,10 @@ Actor Q2LightGuardDeath5Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC ABCDEFGHIJKL 6
-			GRDC M 4 A_SpawnItemEx("Q2LightGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC M 4 A_SpawnItemEx("Q2LightGuardDeath5Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -617,10 +617,10 @@ Actor Q2LightGuardDeath6Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC NOPQRSTUV 4
-			GRDC W 4 A_SpawnItemEx("Q2LightGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC W 4 A_SpawnItemEx("Q2LightGuardDeath6Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -676,27 +676,27 @@ Actor Q2ShotgunGuard : Q2SoldierBase
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
-			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death2:
-			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death3:
-			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath3Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death4:
-			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath4Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death5:
-			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath5Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death6:
-			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Raise:
@@ -837,12 +837,12 @@ Actor Q2ShotgunGuardDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 8
 			GRD5 ABCDEFGH 4
 			GRDB ABCDEFGHIJKLMNOPQR 6
 			GRD5 IJ 4
-			GRD5 K 4 A_SpawnItemEx("Q2ShotgunGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD5 K 4 A_SpawnItemEx("Q2ShotgunGuardDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -893,7 +893,7 @@ Actor Q2ShotgunGuardDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
@@ -905,7 +905,7 @@ Actor Q2ShotgunGuardDeath2Animation : SamsaraCorpseActorSmall
 	//		TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,37,5,18)
 	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
 			GRD6 GHIJKLMNOPQ 4
-			GRD6 R 4 A_SpawnItemEx("Q2ShotgunGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD6 R 4 A_SpawnItemEx("Q2ShotgunGuardDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -955,10 +955,10 @@ Actor Q2ShotgunGuardDeath3Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD6 "RSTUVWXYZ[^]" 4
 			GRD7 ABCDEFGHIJKLMNOPQ 4
-			GRD7 R 4 A_SpawnItemEx("Q2ShotgunGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD7 R 4 A_SpawnItemEx("Q2ShotgunGuardDeath3Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1008,10 +1008,10 @@ Actor Q2ShotgunGuardDeath4Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
-			GRD8 W 4 A_SpawnItemEx("Q2ShotgunGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD8 W 4 A_SpawnItemEx("Q2ShotgunGuardDeath4Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1061,10 +1061,10 @@ Actor Q2ShotgunGuardDeath5Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC ABCDEFGHIJKL 6
-			GRDC M 4 A_SpawnItemEx("Q2ShotgunGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC M 4 A_SpawnItemEx("Q2ShotgunGuardDeath5Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1114,10 +1114,10 @@ Actor Q2ShotgunGuardDeath6Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC NOPQRSTUV 4
-			GRDC W 4 A_SpawnItemEx("Q2ShotgunGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC W 4 A_SpawnItemEx("Q2ShotgunGuardDeath6Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1203,27 +1203,27 @@ Actor Q2MachinegunGuard : Q2SoldierBase
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
-			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death2:
-			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death3:
-			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath3Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death4:
-			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath4Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death5:
-			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath5Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death6:
-			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Raise:
@@ -1364,12 +1364,12 @@ Actor Q2MachineGunGuardDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 8
 			GRD5 ABCDEFGH 4
 			GRDB ABCDEFGHIJKLMNOPQR 6
 			GRD5 IJ 4
-			GRD5 K 4 A_SpawnItemEx("Q2MachineGunGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD5 K 4 A_SpawnItemEx("Q2MachineGunGuardDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1420,7 +1420,7 @@ Actor Q2MachineGunGuardDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
@@ -1453,7 +1453,7 @@ Actor Q2MachineGunGuardDeath2Animation : SamsaraCorpseActorSmall
 			GRD5 "]" 2
 			GRD6 A 2
 			GRD6 GHIJKLMNOPQ 4
-			GRD6 R 4 A_SpawnItemEx("Q2MachineGunGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD6 R 4 A_SpawnItemEx("Q2MachineGunGuardDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1503,10 +1503,10 @@ Actor Q2MachineGunGuardDeath3Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD6 "RSTUVWXYZ[^]" 4
 			GRD7 ABCDEFGHIJKLMNOPQ 4
-			GRD7 R 4 A_SpawnItemEx("Q2MachineGunGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD7 R 4 A_SpawnItemEx("Q2MachineGunGuardDeath3Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1556,10 +1556,10 @@ Actor Q2MachineGunGuardDeath4Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
-			GRD8 W 4 A_SpawnItemEx("Q2MachineGunGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD8 W 4 A_SpawnItemEx("Q2MachineGunGuardDeath4Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1609,10 +1609,10 @@ Actor Q2MachineGunGuardDeath5Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC ABCDEFGHIJKL 6
-			GRDC M 4 A_SpawnItemEx("Q2MachineGunGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC M 4 A_SpawnItemEx("Q2MachineGunGuardDeath5Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1662,10 +1662,10 @@ Actor Q2MachineGunGuardDeath6Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC NOPQRSTUV 4
-			GRDC W 4 A_SpawnItemEx("Q2MachineGunGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC W 4 A_SpawnItemEx("Q2MachineGunGuardDeath6Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1750,27 +1750,27 @@ Actor Q2EnhancedLightGuard : Q2SoldierBase
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
-			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death2:
-			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death3:
-			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath3Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death4:
-			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath4Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death5:
-			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath5Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death6:
-			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Raise:
@@ -1911,12 +1911,12 @@ Actor Q2EnhancedLightGuardDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 8
 			GRD5 ABCDEFGH 4
 			GRDB ABCDEFGHIJKLMNOPQR 6
 			GRD5 IJ 4
-			GRD5 K 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD5 K 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -1967,7 +1967,7 @@ Actor Q2EnhancedLightGuardDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
@@ -1979,7 +1979,7 @@ Actor Q2EnhancedLightGuardDeath2Animation : SamsaraCorpseActorSmall
 			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
 	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
 			GRD6 GHIJKLMNOPQ 4
-			GRD6 R 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD6 R 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2029,10 +2029,10 @@ Actor Q2EnhancedLightGuardDeath3Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD6 "RSTUVWXYZ[^]" 4
 			GRD7 ABCDEFGHIJKLMNOPQ 4
-			GRD7 R 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD7 R 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath3Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2082,10 +2082,10 @@ Actor Q2EnhancedLightGuardDeath4Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
-			GRD8 W 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD8 W 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath4Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2135,10 +2135,10 @@ Actor Q2EnhancedLightGuardDeath5Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC ABCDEFGHIJKL 6
-			GRDC M 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC M 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath5Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2188,10 +2188,10 @@ Actor Q2EnhancedLightGuardDeath6Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC NOPQRSTUV 4
-			GRDC W 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC W 4 A_SpawnItemEx("Q2EnhancedLightGuardDeath6Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2276,27 +2276,27 @@ Actor Q2RipperGuard : Q2SoldierBase
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
-			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death2:
-			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death3:
-			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath3Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death4:
-			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath4Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death5:
-			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath5Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death6:
-			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Raise:
@@ -2437,12 +2437,12 @@ Actor Q2RipperGuardDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 8
 			GRD5 ABCDEFGH 4
 			GRDB ABCDEFGHIJKLMNOPQR 6
 			GRD5 IJ 4
-			GRD5 K 4 A_SpawnItemEx("Q2RipperGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD5 K 4 A_SpawnItemEx("Q2RipperGuardDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2493,7 +2493,7 @@ Actor Q2RipperGuardDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
@@ -2505,7 +2505,7 @@ Actor Q2RipperGuardDeath2Animation : SamsaraCorpseActorSmall
 			TNT1 A 0 A_PlayWeaponSound("Q2Soldier/Blaster")
 	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
 			GRD6 GHIJKLMNOPQ 4
-			GRD6 R 4 A_SpawnItemEx("Q2RipperGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD6 R 4 A_SpawnItemEx("Q2RipperGuardDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2555,10 +2555,10 @@ Actor Q2RipperGuardDeath3Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD6 "RSTUVWXYZ[^]" 4
 			GRD7 ABCDEFGHIJKLMNOPQ 4
-			GRD7 R 4 A_SpawnItemEx("Q2RipperGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD7 R 4 A_SpawnItemEx("Q2RipperGuardDeath3Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2608,10 +2608,10 @@ Actor Q2RipperGuardDeath4Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
-			GRD8 W 4 A_SpawnItemEx("Q2RipperGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD8 W 4 A_SpawnItemEx("Q2RipperGuardDeath4Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2661,10 +2661,10 @@ Actor Q2RipperGuardDeath5Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC ABCDEFGHIJKL 6
-			GRDC M 4 A_SpawnItemEx("Q2RipperGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC M 4 A_SpawnItemEx("Q2RipperGuardDeath5Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2714,10 +2714,10 @@ Actor Q2RipperGuardDeath6Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC NOPQRSTUV 4
-			GRDC W 4 A_SpawnItemEx("Q2RipperGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC W 4 A_SpawnItemEx("Q2RipperGuardDeath6Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -2802,27 +2802,27 @@ Actor Q2HyperBlasterGuard : Q2SoldierBase
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
-			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death2:
-			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death3:
-			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath3Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death4:
-			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath4Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death5:
-			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath5Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death6:
-			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Raise:
@@ -2963,12 +2963,12 @@ Actor Q2HyperBlasterGuardDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 8
 			GRD5 ABCDEFGH 4
 			GRDB ABCDEFGHIJKLMNOPQR 6
 			GRD5 IJ 4
-			GRD5 K 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD5 K 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3019,7 +3019,7 @@ Actor Q2HyperBlasterGuardDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
@@ -3055,7 +3055,7 @@ Actor Q2HyperBlasterGuardDeath2Animation : SamsaraCorpseActorSmall
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 A_PlaySound("Q2Weapons/HyperBlasterStop",CHAN_WEAPON)
 			GRD6 GHIJKLMNOPQ 4
-			GRD6 R 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD6 R 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3105,10 +3105,10 @@ Actor Q2HyperBlasterGuardDeath3Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD6 "RSTUVWXYZ[^]" 4
 			GRD7 ABCDEFGHIJKLMNOPQ 4
-			GRD7 R 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD7 R 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath3Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3158,10 +3158,10 @@ Actor Q2HyperBlasterGuardDeath4Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
-			GRD8 W 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD8 W 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath4Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3211,10 +3211,10 @@ Actor Q2HyperBlasterGuardDeath5Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC ABCDEFGHIJKL 6
-			GRDC M 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC M 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath5Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3264,10 +3264,10 @@ Actor Q2HyperBlasterGuardDeath6Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC NOPQRSTUV 4
-			GRDC W 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC W 4 A_SpawnItemEx("Q2HyperBlasterGuardDeath6Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3352,27 +3352,27 @@ Actor Q2LaserGuard : Q2SoldierBase
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
-			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death2:
-			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death3:
-			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath3Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath3Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death4:
-			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath4Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath4Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death5:
-			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath5Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath5Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Death6:
-			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath6Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		Raise:
@@ -3513,12 +3513,12 @@ Actor Q2LaserGuardDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 8
 			GRD5 ABCDEFGH 4
 			GRDB ABCDEFGHIJKLMNOPQR 6
 			GRD5 IJ 4
-			GRD5 K 4 A_SpawnItemEx("Q2LaserGuardDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD5 K 4 A_SpawnItemEx("Q2LaserGuardDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3569,7 +3569,7 @@ Actor Q2LaserGuardDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
@@ -3581,7 +3581,7 @@ Actor Q2LaserGuardDeath2Animation : SamsaraCorpseActorSmall
 			GRD6 D 0 A_CustomMissile(LaserProjectile,15,3,Random(-5,5),2,Random(-5,5))
 	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
 			GRD6 GHIJKLMNOPQ 4
-			GRD6 R 4 A_SpawnItemEx("Q2LaserGuardDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD6 R 4 A_SpawnItemEx("Q2LaserGuardDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3631,10 +3631,10 @@ Actor Q2LaserGuardDeath3Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD6 "RSTUVWXYZ[^]" 4
 			GRD7 ABCDEFGHIJKLMNOPQ 4
-			GRD7 R 4 A_SpawnItemEx("Q2LaserGuardDeath3Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD7 R 4 A_SpawnItemEx("Q2LaserGuardDeath3Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3684,10 +3684,10 @@ Actor Q2LaserGuardDeath4Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRD8 ABCDEFGHIJKLMNOPQRSTUV 7
-			GRD8 W 4 A_SpawnItemEx("Q2LaserGuardDeath4Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRD8 W 4 A_SpawnItemEx("Q2LaserGuardDeath4Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3737,10 +3737,10 @@ Actor Q2LaserGuardDeath5Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC ABCDEFGHIJKL 6
-			GRDC M 4 A_SpawnItemEx("Q2LaserGuardDeath5Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC M 4 A_SpawnItemEx("Q2LaserGuardDeath5Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -3790,10 +3790,10 @@ Actor Q2LaserGuardDeath6Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GRD2 A 4
 			GRDC NOPQRSTUV 4
-			GRDC W 4 A_SpawnItemEx("Q2LaserGuardDeath6Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GRDC W 4 A_SpawnItemEx("Q2LaserGuardDeath6Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster

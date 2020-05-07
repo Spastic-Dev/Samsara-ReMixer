@@ -92,7 +92,7 @@ Actor BlueFrankDoyle
 		FRDY ] 2
 		FRDS ABCDEF 3
 		TNT1 A 0 A_playsound("redneck/thud")
-		FRDS G 0 A_SpawnItemEx("BlueFrankDoyleCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		FRDS G 0 A_SpawnItemEx("BlueFrankDoyleCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.Explosive:
@@ -131,7 +131,7 @@ Actor BlueFrankDoyle
 		FRDS [ 4 A_NoBlocking
 		FRDS ] 4
 		FRDX ABCDE 4	
-		FRDX F 0 A_SpawnItemEx("BlueFrankDoyleCorpse_Gibbed", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		FRDX F 0 A_SpawnItemEx("BlueFrankDoyleCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -551,9 +551,6 @@ Actor BlueFrankDoyleCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			FRDS G 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			FRDS G 4
 			Loop
 		Death:
@@ -662,9 +659,6 @@ Actor BlueFrankDoyleCorpse_Gibbed
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			FRDX F 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			FRDX F 4
 			Loop
 		Death:
@@ -1037,7 +1031,7 @@ Actor BlackFrankDoyle : BlueFrankDoyle
 		FRD5 ] 2
 		FRD6 ABCDEF 3
 		TNT1 A 0 A_playsound("redneck/thud")
-		FRD6 G 0 A_SpawnItemEx("BlackFrankDoyleCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		FRD6 G 0 A_SpawnItemEx("BlackFrankDoyleCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.Explosive:
@@ -1076,7 +1070,7 @@ Actor BlackFrankDoyle : BlueFrankDoyle
 		FRD6 [ 4 A_NoBlocking
 		FRD6 ] 4
 		FRD7 ABCDE 4	
-		FRD7 F 0 A_SpawnItemEx("BlackFrankDoyleCorpse_Gibbed", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		FRD7 F 0 A_SpawnItemEx("BlackFrankDoyleCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -1397,9 +1391,6 @@ Actor BlackFrankDoyleCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			FRD6 G 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			FRD6 G 4
 			Loop
 		Death:
@@ -1508,9 +1499,6 @@ Actor BlackFrankDoyleCorpse_Gibbed
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			FRD7 F 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			FRD7 F 4
 			Loop
 		Death:
@@ -1882,7 +1870,7 @@ Actor GreenFrankDoyle : BlueFrankDoyle
 		FRD2 ] 2
 		FRD3 ABCDEF 3
 		TNT1 A 0 A_playsound("redneck/thud")
-		FRD3 G 0 A_SpawnItemEx("GreenFrankDoyleCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		FRD3 G 0 A_SpawnItemEx("GreenFrankDoyleCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.Explosive:
@@ -1921,7 +1909,7 @@ Actor GreenFrankDoyle : BlueFrankDoyle
 		FRD3 [ 4 A_NoBlocking
 		FRD3 ] 4
 		FRD4 ABCDE 4	
-		FRD4 F 0 A_SpawnItemEx("GreenFrankDoyleCorpse_Gibbed", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		FRD4 F 0 A_SpawnItemEx("GreenFrankDoyleCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -2242,9 +2230,6 @@ Actor GreenFrankDoyleCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			FRD3 G 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			FRD3 G 4
 			Loop
 		Death:
@@ -2353,9 +2338,6 @@ Actor GreenFrankDoyleCorpse_Gibbed
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			FRD4 F 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			FRD4 F 4
 			Loop
 		Death:
@@ -2728,7 +2710,7 @@ Actor RedFrankDoyle : BlueFrankDoyle
 		FRD_ ] 2
 		_FRD ABCDEF 3
 		TNT1 A 0 A_playsound("redneck/thud")
-		_FRD G 0 A_SpawnItemEx("RedFrankDoyleCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		_FRD G 0 A_SpawnItemEx("RedFrankDoyleCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.Explosive:
@@ -2767,7 +2749,7 @@ Actor RedFrankDoyle : BlueFrankDoyle
 		_FRD [ 4 A_NoBlocking
 		_FRD ] 4
 		F_RD ABCDE 4	
-		F_RD F 0 A_SpawnItemEx("RedFrankDoyleCorpse_Gibbed", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		F_RD F 0 A_SpawnItemEx("RedFrankDoyleCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -3088,9 +3070,6 @@ Actor RedFrankDoyleCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			_FRD G 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			_FRD G 4
 			Loop
 		Death:
@@ -3199,9 +3178,6 @@ Actor RedFrankDoyleCorpse_Gibbed
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			F_RD F 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			F_RD F 4
 			Loop
 		Death:
@@ -3574,7 +3550,7 @@ Actor BrownFrankDoyle : BlueFrankDoyle
 		8FRD ] 2
 		0FRD ABCDEF 3
 		TNT1 A 0 A_playsound("redneck/thud")
-		0FRD G 0 A_SpawnItemEx("BrownFrankDoyleCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		0FRD G 0 A_SpawnItemEx("BrownFrankDoyleCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.Explosive:
@@ -3613,7 +3589,7 @@ Actor BrownFrankDoyle : BlueFrankDoyle
 		0FRD [ 4 A_NoBlocking
 		0FRD ] 4
 		3FRD ABCDE 4	
-		3FRD F 0 A_SpawnItemEx("BrownFrankDoyleCorpse_Gibbed", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		3FRD F 0 A_SpawnItemEx("BrownFrankDoyleCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -3949,9 +3925,6 @@ Actor BrownFrankDoyleCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			0FRD G 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			0FRD G 4
 			Loop
 		Death:
@@ -4060,9 +4033,6 @@ Actor BrownFrankDoyleCorpse_Gibbed
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			3FRD F 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			3FRD F 4
 			Loop
 		Death:

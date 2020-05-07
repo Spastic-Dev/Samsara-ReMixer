@@ -62,7 +62,7 @@ Actor Q2Gladiator : Q2SoldierBase
 		TNT1 A 0 A_ScreamAndUnblock
 		TNT1 A 0 A_KillMaster
 		TNT1 A 0 A_PlaySound("Gladiator/Deathb",0)
-		GLD0 H 0 A_SpawnItemEx("Q2GladiatorDeathAnimation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		GLD0 H 0 A_SpawnItemEx("Q2GladiatorDeathAnimation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -318,10 +318,10 @@ Actor Q2GladiatorDeathAnimation : SamsaraCorpseActorMedium
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GLD0 H 3
 			GLD2 GHIJKLMNOPQRSTUVWXY 4
-			GLD2 Z 0 A_SpawnItemEx("Q2GladiatorDeathCorpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GLD2 Z 0 A_SpawnItemEx("Q2GladiatorDeathCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -569,7 +569,7 @@ Actor Q2GladiatorBetaClass : Q2Gladiator
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_PlaySound("Gladiator/Deathb",0)
-			GLD0 H 0 A_SpawnItemEx("Q2GladiatorBetaClassDeathAnimation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			GLD0 H 0 A_SpawnItemEx("Q2GladiatorBetaClassDeathAnimation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		XDeath:
@@ -834,10 +834,10 @@ Actor Q2GladiatorBetaClassDeathAnimation : SamsaraCorpseActorMedium
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			GLD0 H 3
 			GLD2 GHIJKLMNOPQRSTUVWXY 4
-			GLD2 Z 0 A_SpawnItemEx("Q2GladiatorBetaClassDeathCorpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			GLD2 Z 0 A_SpawnItemEx("Q2GladiatorBetaClassDeathCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster

@@ -140,7 +140,7 @@ Actor SWHenchman
 		HENC S 3 A_Scream
 		HENC T 3 A_NoBlocking
 		HENC UVWX 3
-		HENC Y 0 A_SpawnItemEx("SWHenchmenCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENC Y 0 A_SpawnItemEx("SWHenchmenCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.SuicideDeath:
@@ -151,7 +151,7 @@ Actor SWHenchman
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		HENZ C 6 A_NoBlocking
 		HENZ DEFG 6
-		HENZ H 0 A_SpawnItemEx("SWHenchmenCorpse_Suicide", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENZ H 0 A_SpawnItemEx("SWHenchmenCorpse_Suicide", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -175,7 +175,7 @@ Actor SWHenchman
 		HENZ I 30 A_PlaySound("ninja/Cut",6)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		HENZ JKLMNOPQ 5
-		HENZ R 0 A_SpawnItemEx("SWHenchmenCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENZ R 0 A_SpawnItemEx("SWHenchmenCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop		
 	Raise:
@@ -572,9 +572,6 @@ Actor SWHenchmenCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENC Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENC Y 4
 			Loop
 		Death:
@@ -659,9 +656,6 @@ Actor SWHenchmenCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENZ R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENZ R 4
 			Loop
 		Death:
@@ -746,9 +740,6 @@ Actor SWHenchmenCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENZ H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENZ H 4
 			Loop
 		Death:
@@ -1110,7 +1101,7 @@ Actor SWHenchmanRed : SWHenchman
 		HEND T 3 A_NoBlocking
 		HEND UVWX 3
 		HEND Y 0 A_KillMaster
-		HEND Y 0 A_SpawnItemEx("SWHenchmenRedCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HEND Y 0 A_SpawnItemEx("SWHenchmenRedCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -1134,7 +1125,7 @@ Actor SWHenchmanRed : SWHenchman
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		HENY JKLMNOPQ 5
 		HENY R 0 A_KillMaster
-		HENY R 0 A_SpawnItemEx("SWHenchmenRedCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENY R 0 A_SpawnItemEx("SWHenchmenRedCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -1540,9 +1531,6 @@ Actor SWHenchmenRedCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HEND Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HEND Y 4
 			Loop
 		Death:
@@ -1627,9 +1615,6 @@ Actor SWHenchmenRedCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENY R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENY R 4
 			Loop
 		Death:
@@ -1714,9 +1699,6 @@ Actor SWHenchmenRedCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENY H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENY H 4
 			Loop
 		Death:
@@ -2111,7 +2093,7 @@ Actor SWHenchmanGreen : SWHenchmanRed
 		HENE T 3 A_NoBlocking
 		HENE UVWX 3
 		HENE Y 0 A_KillMaster
-		HENE Y 0 A_SpawnItemEx("SWHenchmenGreenCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENE Y 0 A_SpawnItemEx("SWHenchmenGreenCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -2136,7 +2118,7 @@ Actor SWHenchmanGreen : SWHenchmanRed
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		HENX JKLMNOPQ 5
 		HENX R 0 A_KillMaster
-		HENX R 0 A_SpawnItemEx("SWHenchmenGreenCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENX R 0 A_SpawnItemEx("SWHenchmenGreenCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -2492,9 +2474,6 @@ Actor SWHenchmenGreenCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENE Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENE Y 4
 			Loop
 		Death:
@@ -2596,9 +2575,6 @@ Actor SWHenchmenGreenCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENX R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENX R 4
 			Loop
 		Death:
@@ -2700,9 +2676,6 @@ Actor SWHenchmenGreenCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENX H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENX H 4
 			Loop
 		Death:
@@ -3083,7 +3056,7 @@ Actor SWHenchmanPurple :SWHenchmanRed
 		HENF T 3 A_NoBlocking
 		HENF UVWX 3
 		HENF Y 0 A_KillMaster
-		HENF Y 0 A_SpawnItemEx("SWHenchmenPurpleCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENF Y 0 A_SpawnItemEx("SWHenchmenPurpleCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -3107,7 +3080,7 @@ Actor SWHenchmanPurple :SWHenchmanRed
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
 		HENW JKLMNOPQ 5
 		HENW R 0 A_KillMaster
-		HENW R 0 A_SpawnItemEx("SWHenchmenPurpleCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENW R 0 A_SpawnItemEx("SWHenchmenPurpleCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -3410,9 +3383,6 @@ Actor SWHenchmenPurpleCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENF Y 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENF Y 4
 			Loop
 		Death:
@@ -3514,9 +3484,6 @@ Actor SWHenchmenPurpleCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENW R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENW R 4
 			Loop
 		Death:
@@ -3618,9 +3585,6 @@ Actor SWHenchmenPurpleCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENW H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENW H 4
 			Loop
 		Death:
@@ -4001,7 +3965,7 @@ Actor SWHenchmanOrange :SWHenchmanRed	//Missing variant...
 		HENY C 3 A_NoBlocking
 		HENY DEFG 3
 		HENY H 0 A_KillMaster
-		HENY H 0 A_SpawnItemEx("SWHenchmenOrangeCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENY H 0 A_SpawnItemEx("SWHenchmenOrangeCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -4026,7 +3990,7 @@ Actor SWHenchmanOrange :SWHenchmanRed	//Missing variant...
 		HENW BCDEFGH 5
 		HENX A 5
 		HENX B 0 A_KillMaster
-		HENX B 0 A_SpawnItemEx("SWHenchmenOrangeCorpse_Sword", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		HENX B 0 A_SpawnItemEx("SWHenchmenOrangeCorpse_Sword", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -4330,9 +4294,6 @@ Actor SWHenchmenOrangeCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENY H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENY H 4
 			Loop
 		Death:
@@ -4434,9 +4395,6 @@ Actor SWHenchmenOrangeCorpse_Sword
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENX B 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENX B 4
 			Loop
 		Death:
@@ -4538,9 +4496,6 @@ Actor SWHenchmenOrangeCorpse_Suicide
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			HENX H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			HENX H 4
 			Loop
 		Death:

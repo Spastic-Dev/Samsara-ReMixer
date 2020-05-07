@@ -57,7 +57,7 @@ Actor Q2Parasite : Q2SoldierBase
 		"----" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 		"----" A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 		"----" A 3 A_ScreamAndUnblock
-		PRT3 L 0 A_SpawnItemEx("Q2ParasiteDeathAnimation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		PRT3 L 0 A_SpawnItemEx("Q2ParasiteDeathAnimation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -242,9 +242,9 @@ Actor Q2ParasiteDeathAnimation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			PRT3 LMNOPQ 4
-			PRT3 R 0 A_SpawnItemEx("Q2ParasiteDeathCorpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			PRT3 R 0 A_SpawnItemEx("Q2ParasiteDeathCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster

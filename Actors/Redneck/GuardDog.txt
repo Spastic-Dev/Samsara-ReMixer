@@ -107,7 +107,7 @@ Actor GuardDog
 		GDOD E 4 A_NoBlocking
 		GDOD FGH 4
 		TNT1 A 0 A_playsound("redneck/thud")
-		GDOD I 0 A_SpawnItemEx("GuardDogCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		GDOD I 0 A_SpawnItemEx("GuardDogCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
     Raise:
@@ -502,9 +502,6 @@ Actor GuardDogCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			GDOD I 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			GDOD I 4
 			Loop
 		Death:

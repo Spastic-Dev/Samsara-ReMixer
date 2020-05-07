@@ -85,11 +85,11 @@ Actor Q2Mutant : Q2SoldierBase
 		MUT6 A 0 A_Jump(256, "Death1", "Death2")
 		Goto Death1
 	Death1:
-		MUT6 L 0 A_SpawnItemEx("Q2MutantDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		MUT6 L 0 A_SpawnItemEx("Q2MutantDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death2:
-		MUT7 A 0 A_SpawnItemEx("Q2MutantDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		MUT7 A 0 A_SpawnItemEx("Q2MutantDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -274,9 +274,9 @@ Actor Q2MutantDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			MUT6 LMNOPQRST 4
-			MUT6 T 0 A_SpawnItemEx("Q2MutantDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			MUT6 T 0 A_SpawnItemEx("Q2MutantDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -326,9 +326,9 @@ Actor Q2MutantDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			MUT7 ABCDEFGHIJ 4
-			MUT7 J 0 A_SpawnItemEx("Q2MutantDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			MUT7 J 0 A_SpawnItemEx("Q2MutantDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			stop
 		Death:
 			TNT1 A 0 A_RemoveMaster

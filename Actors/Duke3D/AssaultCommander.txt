@@ -314,7 +314,7 @@ ACTOR AssaultCommander
 			ASCO G 5 A_Scream
 			ASCO H 5 A_NoBlocking
 			ASCO IJKLMN 5 
-			ASCO N 0 A_SpawnItemEx("AssaultCommanderCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			ASCO N 0 A_SpawnItemEx("AssaultCommanderCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		XDeath:
@@ -606,9 +606,6 @@ Actor AssaultCommanderCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			ASCO N 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			ASCO N 4
 			Loop
 		Death:

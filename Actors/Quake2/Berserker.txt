@@ -60,11 +60,11 @@ Actor Q2Berserker : Q2SoldierBase
 		TNT1 A 0 A_ScreamAndUnblock
 		TNT1 A 0 A_Jump(256,"Death1","Death2")
 	Death1:
-		BRS2 E 0 A_SpawnItemEx("Q2BerserkerDeath1Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BRS2 E 0 A_SpawnItemEx("Q2BerserkerDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death2:
-		BRS2 R 0 A_SpawnItemEx("Q2BerserkerDeath2Animation", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BRS2 R 0 A_SpawnItemEx("Q2BerserkerDeath2Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Raise:
@@ -249,10 +249,10 @@ Actor Q2BerserkerDeath1Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			BRS2 EFGHI 4
 			BRS2 JKLMNOP 4
-			BRS2 Q 0 A_SpawnItemEx("Q2BerserkerDeath1Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			BRS2 Q 0 A_SpawnItemEx("Q2BerserkerDeath1Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster
@@ -302,10 +302,10 @@ Actor Q2BerserkerDeath2Animation : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteAlways("WarpLoop")
+			TNT1 A 0 
 			BRS2 RST 4 
 			BRS2 UVWX 4
-			BRS2 Y 0 A_SpawnItemEx("Q2BerserkerDeath2Corpse",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE)
+			BRS2 Y 0 A_SpawnItemEx("Q2BerserkerDeath2Corpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Death:
 			TNT1 A 0 A_RemoveMaster

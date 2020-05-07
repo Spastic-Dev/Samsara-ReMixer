@@ -253,7 +253,7 @@ ACTOR MagnumPig
 			MPIG M 5 A_NoBlocking
 			MPIG N 4
 			MPIG OP 5
-			MPIG P 0 A_SpawnItemEx("MagnumPigCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			MPIG P 0 A_SpawnItemEx("MagnumPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		XDeath:
@@ -542,9 +542,6 @@ Actor MagnumPigCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			MPIG P 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			MPIG P 4
 			Loop
 		Death:

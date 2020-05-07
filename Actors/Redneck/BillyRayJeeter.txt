@@ -109,7 +109,7 @@ Actor BillyRayJeeter
 		BRJT P 4 A_NoBlocking
 		BRJT QR 4
 		TNT1 A 0 A_playsound("redneck/thud")
-		BRJT S 0 A_SpawnItemEx("BillyRayJeeterCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BRJT S 0 A_SpawnItemEx("BillyRayJeeterCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -140,7 +140,7 @@ Actor BillyRayJeeter
 		BRJS Q 3 
 		BRJS R 0 A_playsound("redneck/thud")
 		BRJS R 3
-		BRJS R 0 A_SpawnItemEx("BillyRayJeeterCorpse_Gibbed", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BRJS R 0 A_SpawnItemEx("BillyRayJeeterCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		stop
 	Raise:
 		BRJT S 0 A_RemoveChildren(true)
@@ -544,9 +544,6 @@ Actor BillyRayJeeterCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			BRJT S 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			BRJT S 4
 			Loop
 		Death:
@@ -653,9 +650,6 @@ Actor BillyRayJeeterCorpse_Gibbed
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			BRJS R 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			BRJS R 4
 			Loop
 		Death:

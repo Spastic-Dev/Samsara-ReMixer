@@ -21,14 +21,6 @@ actor RMRHoverGunner : RMRDroids
   States
   {
 	Spawn:
-		RM71 A 0
-		RM71 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-		RM71 A 1 ACS_ExecuteAlways(668,0,1,0)
-		RM71 A 0 A_GiveInventory("AlreadySpawned",1)
-		RM71 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		RM71 A 0 A_Jump(256,2)
-		RM71 A 0 A_ChangeFlag("STEALTH",1)
-	Spawn2:
 		TNT1 A 0 A_Jump(256,"SpawnLoop")
 		TNT1 A 0 A_PlaySound("RMR/UNJTrooper/Fly",CHAN_BODY,0.5,1,ATTN_NORM)
 	SpawnLoop:	
@@ -58,19 +50,19 @@ actor RMRHoverGunner : RMRDroids
 		Goto See
 	Death:
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+		TNT1 A 0 A_GiveToTarget("KillCount",1)		
 		RM71 B 2 A_StopSound(CHAN_BODY)
 		RM71 C 4 A_Scream
 		RM71 D 5 A_NoBlocking
 		RM71 E 4 
 		RM71 F 4
-		RM71 GHIJKLMN 5
-		RM71 O -1
+		RM71 GHIJKLMNO 5
+		RM71 P -1
 		Stop
 	Death.RottDisintegrate:
 		"####" "#" 0 A_StopSound(CHAN_BODY)	
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoBlocking	
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -99,7 +91,7 @@ actor RMRHoverGunner : RMRDroids
 		stop
 	Disintegrate:
 		"####" "#" 0 A_StopSound(CHAN_BODY)	
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -131,7 +123,7 @@ actor RMRHoverGunner : RMRDroids
 	Death.Nuke:
 		"####" "#" 0 A_StopSound(CHAN_BODY)	
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoGravity		
 		"####" "#" 0 A_NoBlocking		
@@ -242,14 +234,14 @@ actor RMRHoverGunner : RMRDroids
 	Death.WTMeleeIce:
 	Death.WTRangedIce:
 	Death.Ice:
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_StopSound(CHAN_BODY)		
 		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_GenericFreezeDeath
 		"####" "#" 70 A_UnsetSolid
 		"####" "#" 0 A_IceGuyDie
 		"####" "#" 1 A_IceGuyDie
-		TNT1 A 0
+		TNT1 A -1
 		stop
 	Death.ZorchPistol:
 	Death.Zorch:
@@ -257,7 +249,7 @@ actor RMRHoverGunner : RMRDroids
 	Death.PhasingZorch:
 	Death.ZorchSpectral:	
 		"####" "#" 0 A_StopSound(CHAN_BODY)	
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_NoGravity		
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
@@ -287,7 +279,7 @@ actor RMRHoverGunner : RMRDroids
 	XDeath.NotQuadded:
 	XDeath.QuakeExplosive:
 	XDeathForRanger:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_GiveToTarget("KillCount",1)  
 		TNT1 A 0 A_StopSound(CHAN_BODY)		
 		TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Fall
@@ -297,7 +289,7 @@ actor RMRHoverGunner : RMRDroids
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
 	XdeathForBitterman:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_GiveToTarget("KillCount",1)  
 		TNT1 A 0 A_StopSound(CHAN_BODY)		
 		TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Fall

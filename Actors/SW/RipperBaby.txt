@@ -74,7 +74,7 @@ Actor SWRipperBaby
     RIPB M 4 A_Scream
     RIPB N 4 A_NoBlocking
     RIPB O 0
-    RIPB O 0 A_SpawnItemEx("SWRipperBabyCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+    RIPB O 0 A_SpawnItemEx("SWRipperBabyCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop
   XDeath:
@@ -477,9 +477,6 @@ Actor SWRipperBabyCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			RIPB O 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			RIPB O 4
 			Loop
 		Death:
@@ -846,7 +843,7 @@ Actor SWRipperBabyBig : SWRipperBaby
     RI2B M 4 A_Scream
     RI2B N 4 A_NoBlocking
     RI2B O 0 A_KillMaster
-    RI2B O 0 A_SpawnItemEx("SWRipperBabyBigCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+    RI2B O 0 A_SpawnItemEx("SWRipperBabyBigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop
   XDeath:
@@ -1210,9 +1207,6 @@ Actor SWRipperBabyBigCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			RI2B O 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			RI2B O 4
 			Loop
 		Death:

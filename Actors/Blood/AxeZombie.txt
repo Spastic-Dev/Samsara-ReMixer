@@ -89,7 +89,7 @@ Actor AxeZombie
 		BZOD L 5 A_CustomMissile("AxeZombieHead",52,0,Random(0,360))
 		BZOD M 5 A_Fall
 		BZOD NOPQRS 5
-		BZOD S 0 A_SpawnItemEx("AxeZombieCorpse_Decap", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BZOD S 0 A_SpawnItemEx("AxeZombieCorpse_Decap", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	FakeDeath:
@@ -99,7 +99,7 @@ Actor AxeZombie
 		TNT1 A 0 ThrustThingZ(0,5,0,0)		
 		BZOD A 5 A_PlaySound("Zombie/FakeD",CHAN_VOICE,1.0,0,ATTN_NORM)
 		BZOD BCD 5
-		BZOD E 0 A_SpawnItemEx("AxeZombieCorpse_Fake", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BZOD E 0 A_SpawnItemEx("AxeZombieCorpse_Fake", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	AutoRaise: // he was dead, but he's revived
@@ -111,7 +111,7 @@ Actor AxeZombie
 		BZOD A 5 A_Scream		
 		BZOD B 5 A_Fall
 		BZOD CDE 5
-		BZOD E 0 A_SpawnItemEx("AxeZombieCorpse_Normal", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BZOD E 0 A_SpawnItemEx("AxeZombieCorpse_Normal", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	XDeath:
@@ -129,7 +129,7 @@ Actor AxeZombie
 		BZOX A 4 A_Scream
 		BZOX B 4 A_Fall  
 		BZOX CDEFG 4
-		BZOX H 0 A_SpawnItemEx("AxeZombieCorpse_Gibbed", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		BZOX H 0 A_SpawnItemEx("AxeZombieCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
 	Death.Vodoo:
@@ -558,9 +558,6 @@ Actor AxeZombieCorpse_Normal
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			BZOD E 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			BZOD E 4
 			Loop
 		Death:
@@ -647,9 +644,6 @@ Actor AxeZombieCorpse_Fake
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			BZOD E 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			BZOD E 210
 			BZOD E 35 A_Jump(128,"Rise")
 			Goto Spawn+2
@@ -740,9 +734,6 @@ Actor AxeZombieCorpse_Decap
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			BZOD S 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			BZOD S 4
 			Loop
 		Death:
@@ -829,9 +820,6 @@ Actor AxeZombieCorpse_Gibbed
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			BZOX H 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			BZOX H 4
 			Loop
 		Death:

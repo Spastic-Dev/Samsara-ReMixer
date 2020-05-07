@@ -1196,9 +1196,9 @@ Script "WarpLoop" (void) //for when I need to simplify specificy corpse code
 	if(ClassifyActor(0) == ACTOR_WORLD)
 		terminate;
 
-	int currentx = GetActorX(0);
-	int currenty = GetActorY(0);
-	int currentz = GetActorZ(0);
+	//int currentx = GetActorX(0);
+	//int currenty = GetActorY(0);
+	//int currentz = GetActorZ(0);
 	int oldTID, target, masterTID, oldmasterTID;
 	oldTID = ActivatorTID();
 	oldmasterTID = ActivatorTID();
@@ -1207,17 +1207,23 @@ Script "WarpLoop" (void) //for when I need to simplify specificy corpse code
 	SetActivator(0, AAPTR_Master);
 	masterTID = UniqueTID();
 	Thing_ChangeTID(0, masterTID);
-	int masterx = GetActorX(0);
-	int mastery = GetActorY(0);
-	int masterz = GetActorZ(0);
+	int masterx = GetActorVelX(0);
+	int mastery = GetActorVelY(0);
+	int masterz = GetActorVelZ(0);
 	
 	SetActivator(target);
 	Thing_ChangeTID(target, oldTID);
 
-	if(abs(masterx - currentx) > (8<<16) || abs(mastery - currenty) > (8<<16) || abs(masterz - currentz) > (8<<16))
+	/*if(abs(masterx - currentx) > (8<<16) || abs(mastery - currenty) > (8<<16) || abs(masterz - currentz) > (8<<16))
+	{
+		Warp(masterTID, 0, 0, 0, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	}*/
+	
+	if(abs(masterx) > 0 || abs(mastery) > 0 || abs(masterz) > 0)
 	{
 		Warp(masterTID, 0, 0, 0, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
 	}
+	
 	Thing_ChangeTID(masterTID, oldmasterTID);
 	Delay(4);
 	restart;

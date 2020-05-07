@@ -263,7 +263,7 @@ ACTOR PigCop
 			PIGC M 5 A_NoBlocking
 			PIGC N 4 A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
 			PIGC OP 5
-			PIGC P 0 A_SpawnItemEx("PigCopCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			PIGC P 0 A_SpawnItemEx("PigCopCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		XDeath:
@@ -552,9 +552,6 @@ Actor PigCopCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			PIGC P 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			PIGC P 4
 			Loop
 		Death:

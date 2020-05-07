@@ -304,7 +304,7 @@ ACTOR ProtectorDrone
 			PRDR R 4
 			PRDR STU 5
 			PRDR V 4
-			PRDR W 0 A_SpawnItemEx("ProtectorDroneCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			PRDR W 0 A_SpawnItemEx("ProtectorDroneCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		XDeath:
@@ -566,9 +566,6 @@ Actor ProtectorDroneCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			PRDR W 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			PRDR W 4
 			Loop
 		Death:

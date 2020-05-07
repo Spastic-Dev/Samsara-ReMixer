@@ -125,7 +125,7 @@ Actor CoolieGhost
   Landed:
     TNT1 A 0 A_PlaySound("Body/Land")
     GHOS N 0 A_SetFloorClip
-    GHOS N 0 A_SpawnItemEx("SWCoolieGhostCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+    GHOS N 0 A_SpawnItemEx("SWCoolieGhostCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop
   XDeath:
@@ -423,9 +423,6 @@ Actor SWCoolieGhostCorpse
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			GHOS N 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			GHOS N 4
 			Loop
 		Death:
