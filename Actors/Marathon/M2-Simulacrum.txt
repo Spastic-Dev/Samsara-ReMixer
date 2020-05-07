@@ -258,6 +258,19 @@ ACTOR M2Simulacrum
 			TNT1 A 0 A_PlaySoundEx("marathon/splash","body",0,0)
 			M_HX V -1
 			Stop						
+		Death.HLLaser:
+		Death.HLExplosive:
+		Death.HLRPGExplosive:	
+			TNT1 A 0 A_JumpIfHealthLower(-20,1)
+			goto Death
+		Death.HLEgon:
+		Death.FreemanGibs:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.QuakeElectric:
 		Death.NotQuadded:
 		Death.QuakeExplosive:

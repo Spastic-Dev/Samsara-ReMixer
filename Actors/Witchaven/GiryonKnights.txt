@@ -127,8 +127,12 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS N 4 A_Pain
@@ -770,8 +774,13 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS N 4 A_Pain
@@ -1417,8 +1426,13 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS N 4 A_Pain

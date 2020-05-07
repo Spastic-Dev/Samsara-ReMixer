@@ -419,65 +419,8 @@ Actor GeneWorm_Death
 	Spawn:
 		TNT1 A 0
 		TNT1 AAAAAAAA 1 A_CustomMissile("GeneSprite",48,0,random(0,180),CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH,random(0,180))
-		TNT1 A 16 A_CustomMissile("DisplacerProjectile",48,0,random(0,180),CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH,random(0,180))
+		TNT1 A 16 A_CustomMissile("HLDisplacerProjectile",48,0,random(0,180),CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH,random(0,180))
 		loop
-	}
-}
-
-Actor DisplacerProjectile : FastProjectile
-{
-	+THRUACTORS
-	+NOGRAVITY
-	+CLIENTSIDEONLY
-	Radius 16
-	Height 32
-	Speed 24
-	Projectile
-	MissileType "DisplacerTrail"
-	Scale 0.75
-	RenderStyle Add
-	Deathsound "Displacer/Portal"
-	Seesound "Displacer/Fire"
-	States
-	{
-	Spawn:
-		GWDB ABCDEFGHIJKLMNOPQRSTUVWXY 2
-		loop
-	Death:
-		TNT1 A 5 A_SpawnItemEx("DisplacerRing",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		stop
-	}
-}
-
-Actor DisplacerTrail
-{
-	+CLIENTSIDEONLY
-	+NOGRAVITY
-	+NOBLOCKMAP
-	+THRUACTORS
-	RenderStyle add
-	scale 0.1
-	States
-	{
-	Spawn:
-		TNT1 A 0
-		GWDB ABCDEFGHIJKLMNOPQRSTUVWXY 2 A_Fadeout(0.05)
-		stop
-	}
-}
-
-Actor DisplacerRing
-{
-	+CLIENTSIDEONLY
-	+NOGRAVITY
-	+NOBLOCKMAP
-	Renderstyle add
-	States
-	{
-	Spawn:
-		TNT1 A 0
-		HL00 ABCDE 3 A_SetScale(scalex+0.2,1.0)
-		stop
 	}
 }
 
