@@ -95,7 +95,7 @@ Actor Q2Technician : Q2SoldierBase
 		"----" A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
 		"----" A 3 A_ScreamAndUnblock
 		TEK7 M 0 A_ChangeFlag(FLOATBOB,0)
-		TEK7 M 0 A_SpawnItemEx("Q2TechnicianDeath", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		TEK7 M 0 A_SpawnItemEx("Q2TechnicianDeath", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A 0
 		stop
 	XDeath:
@@ -279,11 +279,11 @@ Actor Q2TechnicianDeath : SamsaraCorpseActorSmall
 	States
 	{
 		Spawn:
-			TEK7 MNOPQRS 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
+			TEK7 MNOPQRS 4
 			Goto Death
 		Crash:
-			TEK7 TUVWX 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			TEK7 Y 35 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
+			TEK7 TUVWX 4
+			TEK7 Y 35
 		Death:
 		XDeath:
 			TNT1 A 0 A_StopSound(CHAN_BODY)
