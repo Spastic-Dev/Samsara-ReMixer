@@ -82,21 +82,33 @@ Actor Selkis
 		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
 	    TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
   		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
 	See2:	
 		SELK AAABBBCCCDDD 1 A_Chase
 		loop
     Missile:
+		TNT1 A 0 A_Jump(90,"Missile2")	//PS1 Attack
 		SELK E 3 A_FaceTarget
-		TNT1 A 0 A_PlaySound("selkis/tailshot")
+		TNT1 A 0 A_PlaySound("selkis/tailshot",CHAN_WEAPON)
 		SELK F 3 Bright A_CustomMissile("SelkisLaser",32,5,0,0)
 		SELK E 3 A_FaceTarget
 		SELK E 0 A_SpidRefire
 		SELK E 0 A_Jump(96,1)
-		goto Missile
-		SELK E 0
+		goto Missile+1
+		TNT1 A 0
 		goto See
+	Missile2:
+		TNT1 A 0 A_PlaySound("selkis/snake",CHAN_WEAPON)
+		SELK EE 5 A_FaceTarget
+		SELK F 5 Bright A_CustomMissile("CobraStaffSnake_Selkis",32,5,0,0)
+		SELK E 5 
+		SELK E 0 A_SpidRefire
+		SELK E 0 A_Jump(114,1)
+		goto Missile
+		TNT1 A 0
+		goto See		
     Melee:
-		SELK A 0 A_PlayWeaponSound("selkis/clawswipe")
+		SELK A 0 A_PlaySound("selkis/clawswipe",CHAN_WEAPON)
 		SELK AG 4 A_FaceTarget
 		SELK H 4 A_MeleeAttack
 		SELK IJ 4 A_FaceTarget
@@ -110,7 +122,7 @@ Actor Selkis
 		goto See
     Death:
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
 		TNT1 A 0 A_UnsetSolid
 		SELK N 8
 		SELK O 8 Bright A_PlaySound("selkis/zap")
@@ -148,7 +160,7 @@ Actor Selkis
 	Death.WTMeleeIce:
 	Death.WTRangedIce:
 	Death.Ice:
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_GenericFreezeDeath
 		"####" "#" 0 A_UnsetShootable
@@ -243,7 +255,7 @@ Actor Selkis
 	Death.PhasingZorch:
 	Death.ZorchSpectral:
 		"####" "#" 0 A_StopSound(CHAN_BODY)
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 		"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
@@ -265,7 +277,7 @@ Actor Selkis
 		stop
 	Death.RottDisintegrate:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoBlocking	
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -294,7 +306,7 @@ Actor Selkis
 		TNT1 A 5 A_KillMaster
 		stop
 	Disintegrate:
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -326,7 +338,7 @@ Actor Selkis
         stop
 	Death.Nuke:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoBlocking		
 		"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
@@ -375,3 +387,107 @@ Actor SelkisLaserD
 
 Actor Powerslaveexplosion2 : ExGrenadeExplosion { Scale 0.55  +CLIENTSIDEONLY }
 Actor RedMite0 : RedMite { +LOOKALLAROUND +THRUSPECIES }
+
+Actor CobraStaffSnake_Selkis
+{
+	scale 0.5
+	radius 5
+	height 10
+	speed 15
+	damage 5
+	deathsound "Jon/CobraDeath"
+	activesound "Jon/CobraTrail"
+	DamageType "PSExplosive"
+	PROJECTILE
+	+SEEKERMISSILE
+	states
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_LoopActiveSound
+			SELZ GGGGG 1 Bright A_SpawnItemEx("CobraStaffTail_Selkis",-12,0,0,0,0,0,0)
+			Goto SpawnLoop
+		SpawnLoop:
+			SELZ G 0 A_SpawnItemEx("CobraStaffTail_Selkis",-12,0,0,0,0,0,0)
+			SELZ G 0 A_SeekerMissile(90,90,SMF_LOOK|SMF_PRECISE,60)
+			SELZ G 1 Bright A_Weave(4.5,0,2.0,0.0)
+			loop
+		Death:
+			SELZ G 0 bright A_Jump(128,"Style2")
+			SELZ H 4 Bright A_Explode(Random(20,40),100)
+			SELZ I 4 Bright
+			SELZ J 4 Bright
+			SELZ K 4 Bright
+			stop
+		Style2:
+			SELZ M 4 Bright A_Explode(Random(20,40),100)
+			SELZ N 4 Bright
+			SELZ O 4 Bright
+			SELZ P 4 Bright
+			SELZ Q 4 Bright
+			Stop
+	}
+}
+
+Actor CobraStaffTail_Selkis
+{
+	scale 0.5
+	speed 0
+	PROJECTILE
+	+FORCEXYBILLBOARD
+	+CLIENTSIDEONLY
+	states
+	{
+		Spawn:
+			SELZ L 2 Bright
+			SELZ L 0 Bright A_SpawnItem("CobraStaffTail2_Selkis",0,0,0)
+			stop
+	}
+}
+
+Actor CobraStaffTail2_Selkis : CobraStaffTail_Selkis
+{
+	scale 0.4
+	states
+	{
+		Spawn:
+			SELZ L 2 Bright
+			SELZ L 0 Bright A_SpawnItem("CobraStaffTail3_Selkis",0,0,0)
+			stop
+	}
+}
+
+Actor CobraStaffTail3_Selkis : CobraStaffTail_Selkis
+{
+	scale 0.3
+	states
+	{
+		Spawn:
+			SELZ L 2 Bright
+			SELZ L 0 Bright A_SpawnItem("CobraStaffTail4_Selkis",0,0,0)
+			stop
+	}
+}
+
+Actor CobraStaffTail4_Selkis : CobraStaffTail_Selkis
+{
+	scale 0.2
+	states
+	{
+		Spawn:
+		SELZ L 2 Bright
+		SELZ L 0 Bright A_SpawnItem("CobraStaffTail5_Selkis",0,0,0)
+		stop
+	}
+}
+
+Actor CobraStaffTail5_Selkis : CobraStaffTail_Selkis
+{
+	scale 0.1
+	states
+	{
+		Spawn:
+			SELZ L 2 Bright
+			stop
+	}
+}

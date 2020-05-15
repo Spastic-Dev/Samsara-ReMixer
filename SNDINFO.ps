@@ -34,8 +34,15 @@ bluescorpion/active         SPI_WLK2
 
 // Hawk
 
-hawk/active                 HAWK_ACT
-hawk/death                  HAWK_DTH
+$Random hawk/active        	 { hawk/active1 hawk/active2 }
+hawk/active1                 HAWK_ACT
+hawk/active2                 HAWK_CRY
+hawk/pain                	 HAWK_HRT
+hawk/death                   HAWK_DTH
+$Random hawk/flap			 { hawk/flap1 hawk/flap2 }
+hawk/flap1                	 HAWK_FP2
+hawk/flap2                 	 HAWK_FP2
+hawk/dive2                 	 HAWK_DIV
 
 // Bastet
 
@@ -53,7 +60,7 @@ $random bastet/gib   		{ bastet/gib1 bastet/gib2 }
 
 // Mummy
 
-$random ancientmummy/active { ancientmummy/active1 ancientmummy/active2 ancientmummy/active3 ancientmummy/active4 ancientmummy/active5 ancientmummy/active6 ancientmummy/active7 }
+$random ancientmummy/active { ancientmummy/active1 ancientmummy/active2 ancientmummy/active3 ancientmummy/active4 ancientmummy/active5 ancientmummy/active6 ancientmummy/active7 ancientmummy/active8 }
 ancientmummy/active1   			m_chant0
 ancientmummy/active2   			m_chant1
 ancientmummy/active3   			m_chant2
@@ -61,6 +68,7 @@ ancientmummy/active4   			m_chant3
 ancientmummy/active5   			m_chant4
 ancientmummy/active6   			m_ymotob
 ancientmummy/active7   			m_mumble
+ancientmummy/active8   			m_weirdness
 ancientmummy/swingstaff 		m_sswing
 ancientmummy/staffhitu   		m_hits_u
 ancientmummy/attackchant   		m_resch2
@@ -175,19 +183,30 @@ selkis/tailshot1   				scrp_tal
 selkis/tailshot1   				scrp_ta2
 $random selkis/tailshot 		{ selkis/tailshot1 selkis/tailshot2 }
 selkis/death   					scrp_die
+selkis/snake					scrp_pow
 
 // Kilmaatikahn
 
 kilmaatikahn/see1   			q_icu2
 kilmaatikahn/see2   			q_icu
+kilmaatikahn/see3   			q_icu3
+kilmaatikahn/see4   			q_hiss
+$random kilmaatikahn/act		{ kilmaatikahn/see4 kilmaatikahn/pain1 }
+$random kilmaatikahn/snake		{ kilmaatikahn/see2 kilmaatikahn/see3 }
 kilmaatikahn/pain1   			q_growl
 kilmaatikahn/pain2   			q_roar
-$random kilmaatikahn/pain 		{ kilmaatikahn/pain1 kilmaatikahn/pain2 kilmaatikahn/pain1 }
+kilmaatikahn/pain3   			q_cry
+$Random	kilmaatikahn/roar		{ kilmaatikahn/pain2 kilmaatikahn/pain3 }
+$random kilmaatikahn/pain 		{ DSNONE kilmaatikahn/pain2 kilmaatikahn/rpain2 }
 kilmaatikahn/rpain2   			q_hit
-kilmaatikahn/fakedeath   		q_dth
+$random kilmaatikahn/fakedeath 	{ kilmaatikahn/fakedeath1 kilmaatikahn/fakedeath2 kilmaatikahn/fakedeath3 }
+kilmaatikahn/fakedeath1   		q_dth
+kilmaatikahn/fakedeath2		 	q_deth1
+kilmaatikahn/fakedeath3			q_deth
 kilmaatikahn/realdeath   		q_rdth
 kilmaatikahn/taillaser   		q_tail
 kilmaatikahn/spit   			q_spit
+kilmaatikahn/bite				q_bite
 kilmaatminion/see				egg_walk
 kilmaatminion/bounce			egg_bong
 kilmaatminion/bite				egg_bite

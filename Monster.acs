@@ -746,7 +746,21 @@ Script 2527 (void)
 	{
 		if(CheckInventory(gameClassesSTR[i]) > 0)
 		{
-			SpawnSpotFacingForced(ClassesAISTR[i], 0, 0);
+			int oldtid = ActivatorTid();
+			int usertid = UniqueTid(0);
+			int dummytid = UniqueTid(0);
+		
+			if(CheckInventory("HalfLifeOpposingForce"))
+				SpawnSpotFacingForced("Shephard_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[i], 0, usertid);
+				
+			SpawnSpotForced("TranslationDummy",0,dummytid,0);
+			Thing_SetTranslation(dummytid, -1);
+			SetActivator(dummytid, AAPTR_Default);
+			Thing_SetTranslation(usertid, -1);
+			Thing_ChangeTid(usertid, 0);
+			break;
 		}
 	}
 }

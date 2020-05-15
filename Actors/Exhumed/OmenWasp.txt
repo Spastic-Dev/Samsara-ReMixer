@@ -34,17 +34,17 @@ Actor OmenWasp
 		OWDE A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		OWDE A 0 A_ChangeFlag(FLOATBOB,1)
-		OWDE A 0 A_PlaySound("omenwasp/flying")
+		OWDE A 0 A_PlaySound("omenwasp/flying",5)
 		OWDE AA 1 A_Look
-		OWDE B 0 A_PlaySound("omenwasp/flying")
+		OWDE B 0 A_PlaySound("omenwasp/flying",6)
 		OWDE BB 1 A_Look
 		loop
     See:
 		OWDE A 0 A_ChangeFlag(FLOATBOB,0)
 	SeeLoop:	
-		OWDE A 0 A_PlaySound("omenwasp/flying")
+		OWDE A 0 A_PlaySound("omenwasp/flying",5)
 		OWDE AA 1 A_Chase
-		OWDE B 0 A_PlaySound("omenwasp/flying")
+		OWDE B 0 A_PlaySound("omenwasp/flying",6)
 		OWDE BB 1 A_Chase
 		loop
     Melee:
@@ -60,7 +60,7 @@ Actor OmenWasp
 		goto See
     Death:
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_GiveToTarget("KillCount",1)
 		TNT1 A 0 A_UnsetSolid
 		OWDE A 0 A_ChangeFlag(FLOATBOB,0)
 		OWDE A 0 A_Scream
@@ -190,7 +190,7 @@ Actor OmenWasp
 	Death.WTMeleeIce:
 	Death.WTRangedIce:
 	Death.Ice:
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_GenericFreezeDeath
 		"####" "#" 70 A_UnsetSolid
@@ -203,7 +203,7 @@ Actor OmenWasp
 	Death.ZorchKamikaze:
 	Death.PhasingZorch:
 	Death.ZorchSpectral:
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_NoGravity		
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
@@ -273,7 +273,7 @@ Actor OmenWasp
 	XDeath.NotQuadded:
 	XDeath.QuakeExplosive:
 	XDeathForRanger:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_GiveToTarget("KillCount",1)  
 		TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Fall
 		TNT1 A 5 A_FadeOut
@@ -282,14 +282,14 @@ Actor OmenWasp
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
 	XDeathForBitterman:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_GiveToTarget("KillCount",1)  
 		TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Fall
 		TNT1 A 5 A_FadeOut
 		Stop
 	Death.RottDisintegrate:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoBlocking	
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -317,7 +317,7 @@ Actor OmenWasp
 		"####" "#" 2 A_SetTranslucent(0.1,0)
 		stop
 	Disintegrate:
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -348,7 +348,7 @@ Actor OmenWasp
         stop
 	Death.Nuke:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
-		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_GiveToTarget("KillCount",1)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoBlocking		
 		"####" "#" 0 A_NoGravity		
@@ -410,7 +410,7 @@ Actor OmenWasp
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
 		TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_GiveToTarget("KillCount", 1)
 		TNT1 A 0 A_Jump(96,2)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
 		TNT1 A 0 A_SetScale (1.0, 1.0)
@@ -440,7 +440,7 @@ Actor OmenWasp
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
 		TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_GiveToTarget("KillCount", 1)
 		TNT1 A 0 A_Jump(96,2)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
 		TNT1 A 0 A_SetScale (1.0, 1.0)
@@ -564,7 +564,7 @@ actor OmenWasp_Shrink : OmenWasp
 		XDeath.Squish:
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_GiveToTarget("KillCount", 1)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			stop

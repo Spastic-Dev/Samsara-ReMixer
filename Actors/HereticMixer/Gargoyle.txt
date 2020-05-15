@@ -48,8 +48,12 @@ ACTOR HereticImp3 : HereticImp2
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.Dynamite:
 		Death.LifeLeech:
 		Death.CalebNapalm:
@@ -594,8 +598,12 @@ ACTOR HereticImpLeader3 : HereticImpLeader2
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.Dynamite:
 		Death.LifeLeech:
 		Death.CalebNapalm:
