@@ -718,6 +718,7 @@ Actor Headcrab_Barney : Headcrab_Scientist
 { 
 	Health 45
 	Tag "Headcrabbed Security Guard"
+	DropItem "Headcrab_Barney_Drop", 96
 	States
 	{
 		XDeath:
@@ -770,6 +771,12 @@ Actor Headcrab_Barney : Headcrab_Scientist
 	}
 }
 
+actor Headcrab_Barney_Drop : RandomSpawner
+{
+	DropItem "HL_9mmclip", 255, 20
+	DropItem "HL_357clip", 255, 10
+}
+
 actor Headcrab_Barney_Shrink : Headcrab_Scientist_Shrink
 {
 	States
@@ -804,6 +811,7 @@ Actor Headcrab_Soldier : Headcrab_Scientist
 { 
 	Health 50
 	Tag "Headcrabbed Soldier"
+	DropItem "Headcrab_Soldier_Drop", 96
 	States
 	{
 		Spawn:
@@ -926,3 +934,12 @@ actor Headcrab_Soldier_Shrink : Headcrab_Scientist_Shrink
 }
 
 actor Headcrab_Soldier_ShrinkEffect : Headcrab_Scientist_ShrinkEffect {}
+
+actor Headcrab_Soldier_Drop : RandomSpawner
+{
+	DropItem "HL_MP5Clip", 255, 16
+	DropItem "HL_ShotShell", 255, 16
+	DropItem "HL_GrenadeAmmo", 255, 12
+	DropItem "HL_M203Grenade", 255, 6
+	DropItem "Saw_Clipbox", 255, 2
+}

@@ -187,7 +187,8 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			TNT1 A 1 A_SpawnItemEx("Fatso64", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetHL:
-			TNT1 A 0 A_Jump(96,"SetHL2", "SetHL3")
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_OpposingForceSpawnCheck") > 0, "SetHLOP")
+			TNT1 A 0 A_Jump(192,"SetHL2", "SetHL3")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
 			TNT1 A 1 A_SpawnItemEx("Voltigore", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
@@ -198,6 +199,10 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 		SetHL3:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL3")
 			TNT1 A 1 A_SpawnItemEx("HLBradley", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		SetHLOP:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
+			TNT1 A 1 A_SpawnItemEx("Voltigore", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetQuake2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
@@ -503,6 +508,15 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHLBradley",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL3_2")
+			Goto BossWait
+		MultiplyHLOP:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiVoltigore",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto MultiplyHLOP_2
+		MultiplyHLOP_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiVoltigore",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP_2")
 			Goto BossWait
 		MultiplyQuake2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

@@ -172,7 +172,6 @@ Script 668 (int spawncode, int override)
 
 		case 2:
 			Delay(1);
-			PrintBold(s:"Case 2");
 			if(GetCvar("mm_spawnmode") == 0 || GetCvar("mm_spawnmode") == 3)
 			{
 				for(int a = 0; a < MAX_GAME_TYPES; a++){
@@ -621,7 +620,6 @@ Script "ClassBasedSpawn_ENTER" ENTER
 
 	for(int a = 0; a < MAX_GAME_TYPES; a++)
 	{
-		//SetCvar(gameTypesClass[a],false);
 		activesets[a] = false;
 	}
 
@@ -689,4 +687,9 @@ Script "ClassBasedSpawn_DISCONNECT" (int players) DISCONNECT
 			clients += 1;
 		}
 	}
+}
+
+Script "Samsara_OpposingForceSpawnCheck" (void)
+{
+	SetResultValue(ThingCountName("HalfLifeAdrianModeMapDummy",0));
 }

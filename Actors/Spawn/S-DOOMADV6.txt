@@ -327,6 +327,7 @@ ACTOR SpectreSpawnerCoop replaces Spectre
 			TNT1 A 1 A_SpawnItemEx("Spectre64", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetHL:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_OpposingForceSpawnCheck") > 0, "SetHLOP")
 			TNT1 A 0 A_Jump(96,"SetHL2","SetHL3")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
 			TNT1 A 1 A_SpawnItemEx("Bullsquid", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
@@ -338,6 +339,15 @@ ACTOR SpectreSpawnerCoop replaces Spectre
 		SetHL3:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
 			TNT1 A 1 A_SpawnItemEx("HLPitdrone", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHLOP:
+			TNT1 A 0 A_Jump(48,"SetHLOP2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
+			TNT1 A 1 A_SpawnItemEx("HLPitDrone", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHLOP2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
+			TNT1 A 1 A_SpawnItemEx("Gonome", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetQuake2:
 			TNT1 A 0 A_Jump(248,"SetQuake2_2","SetQuake2_3","SetQuake2_4")
@@ -594,6 +604,16 @@ ACTOR SpectreSpawnerCoop replaces Spectre
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHLPitdrone",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL3")
+			Stop
+		MultiplyHLOP:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHLPitdrone",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP")
+			Stop
+		MultiplyHLOP2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiGonome",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP2")
 			Stop
 		MultiplyQuake2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

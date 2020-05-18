@@ -10,6 +10,7 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 	Health 100
 	Meleerange 48
 	Tag "Black Operations (M)"
+	DropItem "HL_HECU_MP5Drop", 128, 1
 	States
 	{
 		Spawn:
@@ -550,6 +551,7 @@ actor MaleAssassin3_MP5_ShrinkEffect : MaleAssassin1_MP5_ShrinkEffect {}
 
 Actor MaleAssassin1_M40 : MaleAssassin1_MP5
 {
+	DropItem "HL_HECU_M40A1Drop", 100, 1
 	States
 	{
 		Missile:
@@ -811,6 +813,27 @@ Actor HLBullet_M40 : HLBullet
 }
 
 Actor Ass_M40_DummyReload : Inventory { Inventory.Amount 1 Inventory.MaxAmount 50 }
+
+Actor HL_HECU_M40A1Drop : RandomSpawner
+{
+	DropItem "HL_M40A1clip", 255, 8
+	DropItem "HL_GrenadeAmmo", 255, 8
+}
+
+ACTOR HL_M40A1clip : Ammo2Big_1
+{
+	Scale 0.9
+	+DROPPED
+	States
+    {
+      Spawn:
+        HL00 A -1
+        stop
+	  Pickup:
+		TNT1 A 0 A_GiveInventory("Shell",10)
+		Goto "Super::Pickup"
+    }
+}
 
 Actor HLBlackopsMaleSpawner : RandomSpawner
 {

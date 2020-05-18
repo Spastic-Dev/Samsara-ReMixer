@@ -202,6 +202,7 @@ ACTOR ShotgunGuySpawnerCoop replaces ShotgunGuy
 			TNT1 A 1 A_SpawnItemEx("Shotgunguy64", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetHL:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_OpposingForceSpawnCheck") > 0, "SetHLOP")
 			TNT1 A 0 A_Jump(128,"SetHL2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
 			TNT1 A 1 A_SpawnItemEx("HECU_Grunt", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
@@ -209,6 +210,20 @@ ACTOR ShotgunGuySpawnerCoop replaces ShotgunGuy
 		SetHL2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
 			TNT1 A 1 A_SpawnItemEx("HECU_Grunt_Opp_Small", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHLOP:
+			TNT1 A 0 A_Jump(192,"SetHLOP2")
+			TNT1 A 0 A_Jump(16,"SetHLOP3")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP")
+			TNT1 A 1 A_SpawnItemEx("Headcrab_Soldier", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHLOP2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP2")
+			TNT1 A 1 A_SpawnItemEx("HLHoundeye", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHLOP3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP3")
+			TNT1 A 1 A_SpawnItemEx("HECU_FGrunt_Opp_Small", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetQuake2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
@@ -377,6 +392,21 @@ ACTOR ShotgunGuySpawnerCoop replaces ShotgunGuy
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHECU_Grunt_Opp_Small",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
+			Stop
+		MultiplyHLOP:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHeadcrab_Soldier",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP")
+			Stop
+		MultiplyHLOP2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHLHoundeye",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP2")
+			Stop
+		MultiplyHLOP3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHECU_FGrunt_Opp_Small",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHLOP3")
 			Stop
 		MultiplyQuake2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
