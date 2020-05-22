@@ -82,21 +82,21 @@ Actor HLPitWorm {
 			TNT1 A 0 A_ChangeFlag(SHOOTABLE,1)						
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 		SurfaceSpawnLoop:	
-			TNT1 A 0 A_Jump(78,"SpawnSurface2")
+			HL04 A 0 A_Jump(78,"SpawnSurface2")
 			HL04 ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 A_Look
-			TNT1 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			HL05 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			HL05 ABCDE 4 A_Look	
-			TNT1 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			HL04 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			Loop
 		SpawnSurface2:
 			HL00 ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 A_Look
-			TNT1 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			HL01 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			HL01 ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 A_Look
-			TNT1 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			HL02 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			HL02 ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 A_Look
-			TNT1 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			HL03 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			HL03 ABCDEFGHIJKLMNOPQR 4 A_Look	
-			TNT1 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			HL00 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			Goto SurfaceSpawnLoop		
 		See:
 			TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "See2")
@@ -133,6 +133,7 @@ Actor HLPitWorm {
 			//TNT1 A 0 A_Jump(100,"DigOut")
 			Loop
 		DigOut: 
+			TNT1 A 0 A_SpawnItemEx("HLPitwormDirtClump", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_PlaySound("Pitworm/Angry", CHAN_VOICE)
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 			TNT1 A 0 A_TakeInventory("HLPitWormBuried",1)		
@@ -196,34 +197,34 @@ Actor HLPitWorm {
 		Missile:
 			TNT1 A 0 A_Playsound("Pitworm/Eyeblast", CHAN_5)
 			HL10 ABC 2 A_FaceTarget
-			HL10 D 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 E 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 F 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 G 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 H 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 I 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 J 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 K 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 L 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 M 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 N 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 O 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 P 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 Q 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 R 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 S 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 T 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 U 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 V 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 W 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 X 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 Y 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL10 Z 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL11 A 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL11 B 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL11 C 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL11 D 2 A_CustomMissile("HLPitwormBeam",208,-24)
-			HL11 E 2 A_CustomMissile("HLPitwormBeam",208,-24)
+			HL10 D 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 E 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 F 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 G 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 H 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 I 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 J 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 K 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 L 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 M 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 N 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 O 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 P 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 Q 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 R 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 S 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 T 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 U 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 V 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 W 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 X 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 Y 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL10 Z 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL11 A 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL11 B 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL11 C 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL11 D 2 A_CustomMissile("HLPitwormBeam",208,0)
+			HL11 E 2 A_CustomMissile("HLPitwormBeam",208,0)
 			Goto See
 		Melee:
 			TNT1 A 0 A_Playsound("Pitworm/Melee", CHAN_5)
@@ -548,6 +549,7 @@ Actor HLPitwormBeam : FastProjectile
 	States
 	{
 	Spawn:
+		TNT1 A 0
 		PWGB A 2
 		loop
 	Death:

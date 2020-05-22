@@ -10,6 +10,8 @@ Actor HECU_Grunt1_Opp_MP5 : HECU_Grunt1
 			HL00 A 0
 			HL00 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
 			HL00 A 1 ACS_ExecuteAlways(668,0,1,0)
+			HL00 A 0 ACS_NamedExecuteAlways("HalfLifeFootStepGeneratorEnemy")
+			HL00 A 0 A_GiveInventory("HLSpeedTokens",8)
 			HL00 A 0 A_GiveInventory("AlreadySpawned",1)
 			HL00 A 0 A_JumpIfInventory("InvisibleToken",1,2)
 			HL00 A 0 A_Jump(256,2)
@@ -49,37 +51,49 @@ Actor HECU_Grunt1_Opp_MP5 : HECU_Grunt1
 			TNT1 A 0 A_Jump(128,"Death2","Death3","Death4","Death5","Death6")
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
-			HL07 ABCDEFGHI 4
+			HL07 ABCDE 4
+			HL07 F 0 A_PlaySound("HLCorpse/Fall", CHAN_BODY, 0.9)
+			HL07 FGHI 4
 			HL07 I -1
 			Stop
 		Death2:
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
-			HL08 ABCDEFGHIJKLMNOPQRS 4
+			HL08 ABCD 4
+			HL08 E 0 A_PlaySound("HLCorpse/Fall", CHAN_BODY, 0.9)
+			HL08 EFGHIJKLMNOPQRS 4
 			HL08 S -1
 			Stop	
 		Death3:
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
-			HL09 ABCDEFGHIJKLMNO 4
+			HL09 ABCDE 4
+			HL09 E 0 A_PlaySound("HLCorpse/Fall", CHAN_BODY, 0.9)
+			HL09 EFGHIJKLMNO 4
 			HL09 O -1
 			Stop
 		Death4:
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
-			HL10 ABCDEFGHIJKLMNOPQRSTUVWX 4
+			HL10 ABCDEFGHIJKLMNOPQRST 4
+			HL10 U 0 A_PlaySound("HLCorpse/Fall", CHAN_BODY, 0.9)
+			HL10 UVWX 4
 			HL10 X -1
-			Stop				
+			Stop			
 		Death5:
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
-			HL11 ABCDEFGHIJKLMNOPQRSTU 4
+			HL11 ABCDEFGHIJKLMNO 3
+			HL11 P 0 A_PlaySound("HLCorpse/Fall", CHAN_BODY, 0.9)
+			HL11 PQRSTU 3
 			HL11 U -1
 			Stop			
 		Death6:
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
-			HL12 ABCDEFG 4
+			HL12 ABCD 4
+			HL12 E 0 A_PlaySound("HLCorpse/Fall", CHAN_BODY, 0.9)
+			HL12 EFG 4
 			HL12 G -1
 			Stop	
 		Pain.ShrinkerDMG:
@@ -566,6 +580,8 @@ Actor HECU_Commander1_Opp_MP5 : HECU_Commander1
 			HL00 A 0
 			HL00 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
 			HL00 A 1 ACS_ExecuteAlways(668,0,1,0)
+			HL00 A 0 ACS_NamedExecuteAlways("HalfLifeFootStepGeneratorEnemy")
+			HL00 A 0 A_GiveInventory("HLSpeedTokens",8)
 			HL00 A 0 A_GiveInventory("AlreadySpawned",1)
 			HL00 A 0 A_JumpIfInventory("InvisibleToken",1,2)
 			HL00 A 0 A_Jump(256,2)
@@ -586,22 +602,32 @@ Actor HECU_Commander1_Opp_MP5 : HECU_Commander1
 			HL14 ABCDEFGHIJKLMNOPQR 4 A_Look		
 			Loop
 		See:
-		    TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "SeeLoop")	   
+		    TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "SetRun")	   
 		    TNT1 A 0 A_GiveInventory("SawPlayer", 1)
 			TNT1 A 0 A_Jump(90,1)
 			TNT1 A 0 A_JumpIfTargetInLos("Flank", 90, JLOSF_DEADNOJUMP)
 			HL29 ABCDEFGHIJK 2 A_FaceTarget
+			Goto SetRun
+		SetRun:
+			TNT1 A 0 A_JumpIfHealthLower(50,"LimpRun")
+			HL01 A 1
+			HL01 A 0 ACS_NamedExecuteAlways("HalfLifeAllyWalkRunSpeed", 0, 1)
 			Goto SeeLoop
 		SeeLoop:
 			TNT1 A 0 A_JumpIfHealthLower(50,"LimpRun")
 			HL01 ABCDEFGHI 2 A_Chase
+			HL01 A 0
 			Loop
 		LimpRun:
-			TNT1 A 0 A_Jump(4, "Retreat")
-			TNT1 A 0 A_Jump(180,3)
-			TNT1 A 0 A_JumpIfTargetInLOS(2,90, JLOSF_DEADNOJUMP)
-			TNT1 A 0 A_Playsound("OppGrunt/Charge", CHAN_VOICE)
-			TNT1 A 0
+			HL16 A 1
+			HL16 A 0 ACS_NamedExecuteAlways("HalfLifeAllyWalkRunSpeed", 0, 1)
+			Goto LimpRunLoop
+		LimpRunLoop:
+			HL16 A 0 A_Jump(4, "Retreat")
+			HL16 A 0 A_Jump(180,3)
+			HL16 A 0 A_JumpIfTargetInLOS(2,90, JLOSF_DEADNOJUMP)
+			HL16 A 0 A_Playsound("OppGrunt/Charge", CHAN_VOICE)
+			HL16 A 0
 			HL16 ABCDEFGHI 2 A_Chase
 			Loop
 		Missile:
@@ -642,7 +668,7 @@ Actor HECU_Commander1_Opp_MP5 : HECU_Commander1
 			HL13 GHIJKLMNOP 2
 			TNT1 A 0 A_GiveInventory("HECU_M203_DummyReload",1)
 			TNT1 A 0 A_JumpIfCloser(464,"Cover")					
-			Goto SeeLoop
+			Goto SetRun
 		ReloadGrenade:
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 			TNT1 A 0 A_TakeInventory("HECU_M203_DummyReload",1)
@@ -652,7 +678,7 @@ Actor HECU_Commander1_Opp_MP5 : HECU_Commander1
 		Cover:
 			TNT1 A 0 A_Playsound("OppGrunt/Grenade", CHAN_VOICE)
 			HL21 ABCDEFGHIJKLMNOPQRSTU 2
-			Goto SeeLoop
+			Goto SetRun
 		Pain.ShrinkerDMG:
 			HL18 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -823,7 +849,7 @@ Actor HECU_Major_Opp_MP5 : HECU_Commander1_Opp_MP5
 			TNT1 A 0 A_Jump(90,1)		
 			TNT1 A 0 A_JumpIfTargetInLos("Flank", 90, JLOSF_DEADNOJUMP)
 			HL29 ABCDEFGHIJK 2 A_FaceTarget
-			Goto SeeLoop
+			Goto SetRun
 		SeeLoop:
 			TNT1 A 0 A_JumpIfHealthLower(50,"LimpRun")
 			TNT1 A 0 A_Jump(180,3)
@@ -849,11 +875,11 @@ Actor HECU_Major_Opp_MP5 : HECU_Commander1_Opp_MP5
 			HL13 GHIJKLMNOP 2
 			TNT1 A 0 A_GiveInventory("HECU_M203_DummyReload",1)
 			TNT1 A 0 A_JumpIfCloser(464,"Cover")					
-			Goto SeeLoop
+			Goto SetRun
 		Cover:
 			TNT1 A 0 A_Playsound("OppGrunt/Grenade", CHAN_VOICE)
 			HL21 ABCDEFGHIJKLMNOPQRSTU 2
-			Goto SeeLoop
+			Goto SetRun
 		Pain.ShrinkerDMG:
 			HL18 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1446,13 +1472,13 @@ Actor HECU_Commander1_Opp_Shotgun : HECU_Commander1_Opp_MP5
 			Goto Retaliate		
 		Retaliate:
 			TNT1 A 0
-			Goto SeeLoop	
+			Goto SetRun	
 		Reload:
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 			TNT1 A 0 A_TakeInventory("HECU_Shotgun_DummyReload",8)
 			HL19 ABCDEFGHIJKLMNOPQRSTUVWX 2
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
-			Goto SeeLoop
+			Goto SetRun
 		ThrowGrenade:
 			TNT1 A 0 A_Playsound("OppGrunt/Throw", CHAN_VOICE)
 			HL13 ABCDEFGHIJKLM 3 A_FaceTarget
@@ -1462,7 +1488,7 @@ Actor HECU_Commander1_Opp_Shotgun : HECU_Commander1_Opp_MP5
 			TNT1 A 0 A_JumpIfCloser(464,"Cover")
 			TNT1 A 0 A_Jump(164,"RunAway")			
 			TNT1 A 0 A_JumpIfCloser(729,"Cover")			
-			Goto SeeLoop
+			Goto SetRun
 		Pain.ShrinkerDMG:
 			HL18 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1622,13 +1648,13 @@ Actor HECU_Major_Opp_Shotgun : HECU_Major_Opp_MP5
 			Goto Retaliate
 		Retaliate:
 			TNT1 A 0
-			Goto SeeLoop	
+			Goto SetRun	
 		Reload:
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 			TNT1 A 0 A_TakeInventory("HECU_Shotgun_DummyReload",8)
 			HL19 ABCDEFGHIJKLMNOPQRSTUVWX 2
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
-			Goto SeeLoop
+			Goto SetRun
 		ThrowGrenade:
 			//TNT1 A 0 A_Playsound("OppGrunt/Throw", CHAN_VOICE)
 			HL13 ABCDEFGHIJKLM 3 A_FaceTarget
@@ -1638,7 +1664,7 @@ Actor HECU_Major_Opp_Shotgun : HECU_Major_Opp_MP5
 			TNT1 A 0 A_JumpIfCloser(464,"Cover")
 			TNT1 A 0 A_Jump(164,"RunAway")			
 			TNT1 A 0 A_JumpIfCloser(729,"Cover")			
-			Goto SeeLoop
+			Goto SetRun
 		Pain.ShrinkerDMG:
 			HL18 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
