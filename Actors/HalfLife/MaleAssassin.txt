@@ -859,8 +859,43 @@ ACTOR HL_M40A1clip : Ammo2Big_1
         HL00 A -1
         stop
 	  Pickup:
-		TNT1 A 0 A_GiveInventory("Shell",10)
-		Goto "Super::Pickup"
+		TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")	  
+        TNT1 A 0 A_JumpIfInventory("HexenClass", 1, "PickupHexen")
+        TNT1 A 0 A_JumpIfInventory("WolfenClass", 1, "PickupWolfen")
+        TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+		TNT1 A 0 A_JumpIfInventory("StrifeClass", 0, "PickupStrife")
+		TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")		
+        TNT1 A 0 A_JumpIfInventory("SWClass", 0, "PickupSW")		
+        TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupFail")
+        TNT1 A 0 A_GiveInventory("Shell", 10)
+        stop
+      PickupRott:
+	    TNT1 A 0 A_JumpIfInventory("RottMissiles", 0, "PickupFail")
+		TNT1 A 0 A_GiveInventory("RottMissiles", 7)
+	    Stop
+	  PickupWitchaven:
+        TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupFail")
+        TNT1 A 0 A_GiveInventory("Shell", 12)
+        stop
+	  PickupStrife:
+		TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupStrife2")
+		TNT1 A 0 A_GiveInventory("Shell", 10)
+		TNT1 A 0 A_GiveInventory("StrifePoisonAmmo", 5)
+		Stop	
+	  PickupStrife2:
+		TNT1 A 0 A_JumpIfInventory("StrifePoisonAmmo", 0, "PickupFail")
+		TNT1 A 0 A_GiveInventory("StrifePoisonAmmo", 5)
+		Stop
+	  PickupSW:
+		TNT1 A 0 A_JumpIfInventory("Shell", 0, "Check1")
+      SWSafe:
+	    TNT1 A 0 A_GiveInventory("Shell", 10)	  
+		TNT1 A 0 A_Jump(204,1)
+		TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
+	    Stop
+	  Check1:
+		TNT1 A 0 A_JumpIfInventory("RocketAmmo", 0, "PickupFail")
+		Goto SWSafe	
     }
 }
 

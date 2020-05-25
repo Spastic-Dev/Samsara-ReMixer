@@ -434,7 +434,7 @@ Actor Q2Jorg : Q2Makron
 		JRG0 A 0 A_Jump(256,2)
 		JRG0 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
-		JRG4 A 0 NoDelay A_JumpIfInventory(Cell,1,"Eject",AAPTR_MASTER)
+		JRG4 A 0 A_JumpIfInventory(Cell,1,"Eject",AAPTR_MASTER)
 		JRG4 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[]" 6 A_Look
 		JRG5 A 0 A_PlaySound("Jorg/Laugh",CHAN_VOICE)
 		JRG5 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[]" 6 A_Look
