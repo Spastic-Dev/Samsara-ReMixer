@@ -13,6 +13,8 @@ Actor Q2Brain : Q2SoldierBase
 	Mass 200
 	Obituary "%o was clawed by a brain."
 	Tag "Strogg Brains"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -34,6 +36,7 @@ Actor Q2Brain : Q2SoldierBase
 		BRN0 "Z^[]" 3 A_Chase("Melee","",CHF_DONTMOVE)
 		Loop
 	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(80,"Melee2")
 		BRN1 ABCD 3 A_FaceTarget
 		BRN1 E 0 A_PlaySound("Q2Brain/Attack",CHAN_BODY)
@@ -65,6 +68,24 @@ Actor Q2Brain : Q2SoldierBase
 		Goto See
 	Pain3:
 		BRN4 IJKLMN 4
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		BRN4 I 4 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		BRN4 J 4 A_Pain
+		BRN4 KLMN 4
+		Goto See
+	Pain.MarathonStun:
+		BRN4 I 0 A_Stop
+		BRN4 I 0 A_GiveInventory("NothingSpeed")
+		BRN4 I 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		BRN4 I 5 A_FaceTarget
+		BRN4 I 0 A_Gravity
+		BRN4 I 30 A_Pain
+		BRN4 I 70
+		BRN4 I 0
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		

@@ -20,6 +20,8 @@ ACTOR QGremlin
   DeathSound "QGrem/death"
   ActiveSound "QGrem/active"
   Obituary "%o was outsmarted by a Gremlin"
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -42,6 +44,7 @@ ACTOR QGremlin
 		GRM2 A 0 A_JumpIfCloser(400,"Decide")
 		Loop
 	  Leap0:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		GRM3 A 0 A_CheckFloor("Leap")
 		Goto see
 	  Leap:
@@ -62,7 +65,27 @@ ACTOR QGremlin
 		GRM6 BCD 4
 		GRM6 D 0 A_ChangeFlag("NOPAIN", 0)
 		Goto see
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		GRM6 A 4 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		GRM6 B 4 A_Pain
+		GRM6 CD 4
+		GRM6 D 0
+		Goto See
+	  Pain.MarathonStun:
+		GRM6 A 0 A_Stop
+		GRM6 A 0 A_GiveInventory("NothingSpeed")
+		GRM6 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		GRM6 A 5 A_FaceTarget
+		GRM6 A 0 A_Gravity
+		GRM6 A 30 A_Pain
+		GRM6 A 70
+		GRM6 A 0
+		Goto See
 	  Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		GRM4 A 0 A_Jump(256,"Claw","Claws"/*,"Steal"*/)
 	  Claw:
 		GRM4 A 0

@@ -26,6 +26,7 @@ actor TerranCommando : RMRHumanoid
 		RM75 ABCD 4 A_Chase
 		loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RM75 EEE 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("RMR/PlasmaC")
 		RM75 E 5 Bright A_CustomMissile("RMR-EnemyBigPlasma_Terran",32,0,0,0)
@@ -39,6 +40,22 @@ actor TerranCommando : RMRHumanoid
 	Pain:
 		RM75 F 4 A_Pain
 		RM75 F 4 
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		RM75 F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RM75 F 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		RM75 F 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		RM75 F 30 A_Pain
+		RM75 F 70
 		Goto See
 	Death:
 	XDeath:

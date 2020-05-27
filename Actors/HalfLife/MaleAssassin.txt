@@ -4,7 +4,7 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 	Activesound ""
 	Painsound ""
 	Deathsound ""
-	Scale 0.9
+	Scale 0.85
 	Painchance 32
 	Speed 12
 	Health 100
@@ -90,6 +90,7 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			HL24 ABCDEFGHIJKLMNOP 2 A_FaceTarget
 			Goto SeeLoop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(180,"StartFiring")
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_JumpIfCloser(128,"Kick3")
@@ -148,6 +149,7 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto ThrowGrenade	
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(41,"PlaceGrenade")
 		Kick:	
 			TNT1 A 0 A_Jump(64,"Kick2")
@@ -202,6 +204,25 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			HL18 ABCDEF 3
 			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
 			Goto SeeLoop
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			HL18 A 3 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL18 B 3 A_Pain
+			HL18 CDEF 3
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
+			Goto See
+		Pain.MarathonStun:
+			HL18 A 0 A_Stop
+			HL18 A 0 A_GiveInventory("NothingSpeed")
+			HL18 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL18 A 5 A_FaceTarget
+			HL18 A 0 A_Gravity
+			HL18 A 30 A_Pain
+			HL18 A 70
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
+			Goto See
 		Pain.ShrinkerDMG:
 			HL18 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -584,6 +605,7 @@ Actor MaleAssassin1_M40 : MaleAssassin1_MP5
 	States
 	{
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(180,"StartFiring")
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_JumpIfCloser(128,"Kick3")

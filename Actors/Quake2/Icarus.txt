@@ -15,6 +15,8 @@ Actor Q2Icarus : Q2SoldierBase
 	Obituary "%o was blasted by the icarus."
 	DropItem Q2Cell
 	Tag "Strogg Icarus"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -53,6 +55,24 @@ Actor Q2Icarus : Q2SoldierBase
 		Goto See
 	Pain2:
 		HVR2 MNOPQRSTU 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		HVR2 M 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		HVR2 N 3 A_Pain
+		HVR2 OPQRSTU 3
+		Goto See
+	Pain.MarathonStun:
+		HVR2 A 0 A_Stop
+		HVR2 A 0 A_GiveInventory("NothingSpeed")
+		HVR2 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		HVR2 A 5 A_FaceTarget
+		HVR2 A 0 A_Gravity
+		HVR2 A 30 A_Pain
+		HVR2 A 70
+		HVR2 A 0
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		

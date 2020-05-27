@@ -31,6 +31,7 @@ Actor DisruptorAcidBloater : DisruptorAlien
 			DISG AABBCCDDEEFFHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYY 2 A_Chase	
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DISG ZZ 2 A_FaceTarget
 			DISH AABBC 2 A_FaceTarget
 			TNT1 A 0 A_JumpIfCloser(30,"H")
@@ -104,6 +105,23 @@ Actor DisruptorAcidBloater : DisruptorAlien
 		Pain:
 			DISH G 2 A_Pain
 			DISH GHHIIJJKKLLGG 2 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DISH G 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DISH G 2 A_Pain
+			DISH HHIIJJKKLLGG 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DISH G 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DISH G 30 A_Pain
+			DISH G 70
 			Goto See
 		Death:
 		XDeath:

@@ -19,6 +19,8 @@ Actor Vortigaunt // slave
 	DeathSound "vortigaunt/die"
 	BloodColor "Khaki"
 	BloodType "HalfLifeAlienBlood"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_oldangle;
 	var int user_oldpitch;
 	var int user_scalex;
@@ -118,7 +120,26 @@ Actor Vortigaunt // slave
 			TNT1 A 0 A_Pain
 			HL08 ABCDEFG 2
 			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			HL08 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL08 B 2 A_Pain
+			HL08 CDEFG 2
+			Goto See
+		Pain.MarathonStun:
+			HL08 A 0 A_Stop
+			HL08 A 0 A_GiveInventory("NothingSpeed")
+			HL08 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL08 A 5 A_FaceTarget
+			HL08 A 0 A_Gravity
+			HL08 A 30 A_Pain
+			HL08 A 70
+			HL08 A 0
+			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL12 A 0 A_Playsound("slv_charge")
 			HL12 A 0 A_CustomRailgun(0,0,"none","green",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT|RGF_EXPLICITANGLE,0,8,"none",random(-50,-40),random(-50,-40),80,5,0.0)
 			HL12 A 0 A_CustomRailgun(0,0,"none","green",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT|RGF_EXPLICITANGLE,0,8,"none",random(40,50),random(-50,-40),80,5,0.0)
@@ -166,6 +187,7 @@ Actor Vortigaunt // slave
 			HL13 ABCDEFGH 2
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL00 ABC 2 A_FaceTarget
 			HL00 D 0 A_CustomMeleeAttack(random(4,5),"headcrab/hit","halflife/crow_swing")
 			HL00 DEF 2 A_FaceTarget

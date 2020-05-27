@@ -21,6 +21,8 @@ Actor CMLoD
 	Scale 0.33
 	RadiusDamageFactor 1.5
 	Tag "Legion Of Doom"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	PainChance "ShrinkerDMG", 0
     States
     {
@@ -44,6 +46,7 @@ Actor CMLoD
 		C_LD CCDD 4 A_Chase
         Loop
     Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         C_LD E 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound ("cmlod/attack", CHAN_WEAPON)
         C_LD F 6 bright A_CustomMissile("CMRocket2", 32.0, 0.0, 0, 0)

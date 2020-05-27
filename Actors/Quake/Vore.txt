@@ -22,6 +22,8 @@ ACTOR Vore
   ActiveSound "vore/active"
   Obituary "%o was exploded by a Vore"
   PainChance "ShrinkerDMG", 0
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -43,6 +45,7 @@ ACTOR Vore
 		Loop
 	  Melee:
 	  Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		VORE A 0 A_Playsound("Vore/rage")
 		VORE ABCDEFGH 3 A_FaceTarget
 		VORE I 3 A_CustomMissile("VorePod", 40)
@@ -54,6 +57,25 @@ ACTOR Vore
 		VORE MNOP 3
 		VORE P 0 A_ChangeFlag("NOPAIN", 0)
 		Goto see
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		VORE L 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		VORE M 3 A_Pain
+		VORE NOP 3
+		VORE P 0
+		Goto See
+  	  Pain.MarathonStun:
+		VORE A 0 A_Stop
+		VORE A 0 A_GiveInventory("NothingSpeed")
+		VORE A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		VORE A 5 A_FaceTarget
+		VORE A 0 A_Gravity
+		VORE A 30 A_Pain
+		VORE A 70
+		VORE A 0
+		Goto See
 	  Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")				

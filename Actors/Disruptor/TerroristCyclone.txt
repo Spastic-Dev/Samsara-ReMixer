@@ -36,6 +36,7 @@ Actor DisruptorTerroristCyclone : DisruptorHumanoid
 			_DSR HH 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			_DSR IIJJKKLLMM 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("ds_terrorist2/att",CHAN_WEAPON)
 			_DSR N 3 Bright A_CustomMissile("DisruptorEnergyBall_2_Enemi",32)
@@ -59,6 +60,23 @@ Actor DisruptorTerroristCyclone : DisruptorHumanoid
 		Pain:
 			_DSR O 2 A_Pain
 			_DSR OPPQQPPOO 2 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			_DSR O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			_DSR O 2 A_Pain
+			_DSR PPQQPPOO 2 
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			_DSR O 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			_DSR O 30 A_Pain
+			_DSR O 70
 			Goto See
 		Death:
 		XDeath:

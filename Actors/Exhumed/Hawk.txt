@@ -24,6 +24,8 @@ Actor ExHawk
 	Obituary "%o was killed by a Hawk."
 	PainChance 10
 	PainChance "ShrinkerDMG", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -45,6 +47,7 @@ Actor ExHawk
 		HAWK CCDDEEFFBB 1 A_Chase
 		Loop
 	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HAWK G 1 A_FaceTarget
 		HAWK G 3 A_MeleeAttack
 		HAWK AABB 1 A_Wander
@@ -57,6 +60,22 @@ Actor ExHawk
 		goto See
 	Pain:
 		HAWK G 2 A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		HAWK G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		HAWK G 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		HAWK G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		HAWK G 30 A_Pain
+		HAWK G 70
 		Goto See
 	Death:
 	XDeath:

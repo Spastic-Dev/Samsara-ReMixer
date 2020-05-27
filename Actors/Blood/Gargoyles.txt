@@ -19,7 +19,9 @@ Actor BloodGargoyle
 	Monster
 	Species "Enemies"	
 	Scale 0.58
-	PainChance "CalebFire", 0		
+	PainChance "CalebFire", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	MissileHeight 30
 	SeeSound "GargoyleSee"
 	DeathSound "GargoyleDie"
@@ -49,12 +51,14 @@ Actor BloodGargoyle
 		BGAR DD 3 A_Chase
 		Loop 
 	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Stop	
 		BGAR EFG 3 A_FaceTarget
 		BGAR H 3 A_CustomMeleeAttack(5*random(1,7),"GargoyleMelee")
 		BGAR I 8 A_FaceTarget
 		Goto See
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(64,2)
 		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,350,60)		
 		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,1200,60)
@@ -103,7 +107,23 @@ Actor BloodGargoyle
 		BGAR J 3 A_Pain 
 		BGAR J 4
 		BGAR AA 5
-		Goto See 
+		Goto See
+	Pain.MightyBoot:
+        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+        BGAR J 2 A_FaceTarget
+        TNT1 A 0 A_Recoil(10)
+        BGAR J 16 A_Pain
+        Goto See
+	Pain.MarathonStun:
+        TNT1 A 0 A_Stop
+        TNT1 A 0 A_GiveInventory("NothingSpeed")
+        TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+        BGAR J 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+        BGAR J 30 A_Pain
+        BGAR J 70
+        Goto See
  	Pain.QuakeElectric:
 	Pain.Electric:
 	Pain.Shock:

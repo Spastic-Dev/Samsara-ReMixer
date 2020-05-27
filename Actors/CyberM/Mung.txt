@@ -18,6 +18,8 @@ Actor CMMung
     PainSound "cmmung/pain"
     DeathSound "cmmung/death"
     ActiveSound "cmmung/active"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Bloodcolor Blue
 	Tag "Mung"
 	Scale 0.27
@@ -43,6 +45,7 @@ Actor CMMung
 		C_MU DD 4 A_Chase
         Loop
     Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         C_MU E 3 A_FaceTarget
 		C_MU E 3 A_FaceTarget
         C_MU F 4 A_FaceTarget

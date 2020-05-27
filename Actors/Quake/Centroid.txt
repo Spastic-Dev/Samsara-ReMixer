@@ -20,6 +20,8 @@ ACTOR QCentroid
   DeathSound "QCentroid/death"
   ActiveSound "QCentroid/active"
   Obituary "%o was stung by a Centroid"
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -45,7 +47,7 @@ ACTOR QCentroid
 		CEN2 ABCDEF 4 A_Chase
 		Loop
 	  Melee:
-		CEN3 A 0
+		CEN3 A 0 A_ChangeFlag("NOPAIN",0)
 		CEN3 A 0 A_StopSound(6)
 		CEN3 ABCDE 4 A_FaceTarget
 		CEN3 F 0 A_PlaySound("QCentroid/sting")
@@ -53,7 +55,7 @@ ACTOR QCentroid
 		CEN3 GHIJK 4
 		Goto see
 	  Missile:
-		CEN1 A 0
+		CEN1 A 0 A_ChangeFlag("NOPAIN",0)
 		CEN1 A 0 A_StopSound(6)
 		CEN1 A 1 A_FaceTarget
 		CEN4 A 0 A_PlaySound("quakeweps/nailgunfire")
@@ -97,6 +99,26 @@ ACTOR QCentroid
 		CEN5 CDE 4
 		CEN5 E 0 A_ChangeFlag("NOPAIN", 0)
 		Goto see
+	  Pain.MightyBoot:
+	    TNT1 A 0 A_StopSound(6)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		CEN5 A 4 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		CEN5 B 4 A_Pain
+		CEN5 CDE 4
+		CEN5 E 0
+		Goto See
+	  Pain.MarathonStun:
+	    CEN5 A 0 A_Stop
+		CEN5 A 0 A_GiveInventory("NothingSpeed")
+		CEN5 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		CEN5 A 5 A_FaceTarget
+		CEN5 A 0 A_Gravity
+		CEN5 A 30 A_Pain
+		CEN5 A 70
+		CEN5 A 0
+		Goto See
 	  Death:
 		CEN6 A 0 A_StopSound(6)  
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  

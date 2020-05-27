@@ -17,6 +17,8 @@ Actor CMHellspider
     activesound "cmhspider/active"
 	painsound "cmhspider/pain"
 	deathsound "cmhspider/death"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Bloodcolor Green
 	Meleerange 72
 	+FLOORCLIP
@@ -63,6 +65,7 @@ Actor CMHellspider
 		C_HS F 3 A_CheckFloor("See")	
 		Goto LeanLoop
 	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		C_HS EEE 2 A_FaceTarget
 		C_HS FF 2 A_FaceTarget
 		C_HS F 1 A_FaceTarget

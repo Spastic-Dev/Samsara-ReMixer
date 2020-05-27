@@ -16,6 +16,8 @@ Actor CMStynx
     PainSound "stynx/pain"
     DeathSound "stynx/death"
     ActiveSound "stynx/active"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Tag "Stynx"
     DropItem Clip 24
 	Scale 0.25
@@ -41,6 +43,7 @@ Actor CMStynx
 		C_YX CC 4 A_Chase
         Loop
     Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         TNT1 A 0 A_Jump(100,"Slide")
 		C_YX D 5 A_FaceTarget
         C_YX E 5 A_FaceTarget

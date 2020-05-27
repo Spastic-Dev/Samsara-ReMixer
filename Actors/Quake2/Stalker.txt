@@ -14,6 +14,8 @@ Actor Q2Stalker : Q2SoldierBase
 	Tag "Strogg Stalker"
 	+NOVERTICALMELEERANGE
 	+MOVEWITHSECTOR
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -120,6 +122,24 @@ Actor Q2Stalker : Q2SoldierBase
 		"----" A 0 A_Pain
 		"----" A 0 A_ChangeFlag(NOPAIN,1)
 		STK2 WXYZ 3
+		Goto See
+	Pain.MightyBoot:
+		"----" A 0 A_ChangeFlag("NOPAIN",1)
+		"----" A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		"----" A 3 A_FaceTarget
+		"----" A 0 A_Recoil(14)
+		STK2 W 3 A_Pain
+		STK2 XYZ 3
+		Goto See
+	Pain.MarathonStun:
+		STK2 W 0 A_Stop
+		STK2 W 0 A_GiveInventory("NothingSpeed")
+		STK2 W 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		STK2 W 5 A_FaceTarget
+		STK2 W 0 A_Gravity
+		STK2 W 30 A_Pain
+		STK2 W 70
+		STK2 W 0
 		Goto See
 	FalseDeath:
 		STK4 ABCDEFGHI 3

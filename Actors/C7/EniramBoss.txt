@@ -43,6 +43,7 @@ Actor EniramBoss : C7Alien {
 			C702 DD 3 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			C702 EE 7 A_FaceTarget
 			C702 D 0 A_PlaySound("c7alien/firer",CHAN_WEAPON)
 			C702 F 5 A_CustomMissile("EniramMissile",43,10)

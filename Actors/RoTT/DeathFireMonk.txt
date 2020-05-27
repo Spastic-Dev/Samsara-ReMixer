@@ -19,6 +19,8 @@ ACTOR MonkDeathFire {
    PainSound "FireMonk/pain"
    DeathSound "FireMonk/death"
    Obituary "%o was fried by a Deathfire Monk."
+   PainChance "MightyBoot", 255
+   PainChance "MarathonStun", 255
    var int user_scalex;
    var int user_scaley;
    States {
@@ -45,6 +47,7 @@ ACTOR MonkDeathFire {
 			ALLW D 2 A_Chase("", "")
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ALLK A 7 BRIGHT A_FaceTarget
 			ALLK B 7 BRIGHT
 			ALLK C 7 BRIGHT
@@ -63,6 +66,7 @@ ACTOR MonkDeathFire {
 			ALLP B 4 A_Pain
 			Goto See
 		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			TNT1 A 0 A_Jump(128, "BootPain2")
 			ALLP A 2 A_FaceTarget

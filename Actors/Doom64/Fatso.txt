@@ -47,6 +47,7 @@ ACTOR Fatso64
 			64FT AABBCCDDEEFF 4 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			64FT H 0 A_Playsound("64fatso/raiseguns")
 			64FT HHHH 5 A_FaceTarget			
 			64FT G 0 BRIGHT A_CustomMissile("FatShot64", 56, -35, 0)
@@ -68,6 +69,22 @@ ACTOR Fatso64
 			64FT I 3
 			64FT I 3 A_Pain
 			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64FT I 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			64FT I 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			64FT I 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			64FT I 30 A_Pain
+			64FT I 70
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")			
@@ -79,14 +96,6 @@ ACTOR Fatso64
 			Stop
 		Raise:
 			64FT ONMLKJ 5
-			Goto See
-		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			64FT I 3 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
-			64FT I 16 A_Pain
-			TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
 			Goto See						
 		Crush:
 			A027 A 0

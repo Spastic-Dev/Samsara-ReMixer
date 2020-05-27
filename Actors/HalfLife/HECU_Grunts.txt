@@ -3,7 +3,7 @@ Actor HECU_Grunt1
 	Height 52
 	Radius 20
 	Monster
-	Scale 0.9
+	Scale 0.85
 	Health 60
 	speed 8
 	+MISSILEMORE
@@ -131,6 +131,7 @@ Actor HECU_Grunt1
 			HL16 ABCDEFGHI 2 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(180,"StartFiring")
 			TNT1 A 0 A_JumpIfCloser(328,"ThrowGrenade")
 		StartFiring:	
@@ -199,6 +200,7 @@ Actor HECU_Grunt1
 			HL21 ABCDEFGHIJKLMNOPQRSTU 2
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(41,"PlaceGrenade")
 		Kick:	
 			HL15 ABCD 4 A_FaceTarget
@@ -214,6 +216,25 @@ Actor HECU_Grunt1
 			TNT1 A 0 A_Pain
 			HL18 ABCDEF 3
 			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			HL18 A 3 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL18 B 3 A_Pain
+			HL18 CDEF 3
+			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
+			Goto See
+		Pain.MarathonStun:
+			HL18 A 0 A_Stop
+			HL18 A 0 A_GiveInventory("NothingSpeed")
+			HL18 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL18 A 5 A_FaceTarget
+			HL18 A 0 A_Gravity
+			HL18 A 30 A_Pain
+			HL18 A 70
+			HL18 A 0 A_ChangeFlag(FRIGHTENED,0)
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
@@ -1007,6 +1028,7 @@ Actor HECU_Shotgun1 : HECU_Grunt1
 	States
 	{
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(180,"StartFiring")
 			TNT1 A 0 A_JumpIfCloser(328,"ThrowGrenade")
 		StartFiring:	
@@ -1335,6 +1357,7 @@ Actor HECU_Commander1 : HECU_Grunt1
 			HL01 ABCDEFGHI 2 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(180,"StartFiring")
 			TNT1 A 0 A_JumpIfCloser(328,"ThrowGrenade")
 		StartFiring:	
@@ -1419,6 +1442,25 @@ Actor HECU_Commander1 : HECU_Grunt1
 			HL18 ABCDEF 3
 			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
 			Goto SeeLoop
+		Pain.MightyBoot:
+			HL18 A 0 A_Stop
+			HL18 A 0 A_GiveInventory("NothingSpeed")
+			HL18 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL18 A 5 A_FaceTarget
+			HL18 A 0 A_Gravity
+			HL18 A 30 A_Pain
+			HL18 A 70
+			HL18 A 0 A_ChangeFlag(FRIGHTENED,0)
+			Goto SeeLoop
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL18 A 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			HL18 B 20 A_Pain
+			HL18 CDEF 20 A_ChangeFlag(FRIGHTENED,0) 
+			Goto SeeLoop
 		Pain.ShrinkerDMG:
 			HL18 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1493,6 +1535,7 @@ Actor HECU_Commander2 : HECU_Commander1
 	States
 	{
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(180,"StartFiring")
 //			TNT1 A 0 A_JumpIfCloser(128,"StartFiring")
 			TNT1 A 0 A_JumpIfCloser(328,"ThrowGrenade")
@@ -1599,7 +1642,7 @@ Actor HECU_Sarge : HECU_Commander1
 	Speed 2
 	Mass 180
 	DropItem "HL_HECU_SawDrop", 32, 1
-	Scale 0.95
+	Scale 0.85
 	States
 	{
 		Spawn:
@@ -1677,6 +1720,7 @@ Actor HECU_Sarge : HECU_Commander1
 		Melee:
 		Missile:
 		StartFiring:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("Sarge/Spinup",5)
 			HL04 AABBCC 2 A_FaceTarget		
 			HL04 D 0 A_PlaySound("Sarge/Fireloop",CHAN_WEAPON,1.0,TRUE)
@@ -1757,6 +1801,37 @@ Actor HECU_Sarge : HECU_Commander1
 		Pain2:
 			HL10 A 0 A_Pain
 			HL10 ABCDEFGHIJKLMNOP 3
+			TNT1 A 0
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 A_StopSound(CHAN_BODY)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(128,"BootPain2")
+			HL09 A 3 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL09 B 3 A_Pain
+			HL09 CDEFGHIJKLMNOP 3
+			TNT1 A 0
+			Goto See
+		BootPain2:
+			HL10 A 3 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL10 B 3 A_Pain
+			HL10 CDEFGHIJKLMNOP 3
+			TNT1 A 0
+			Goto See
+		Pain.MarathonStun:
+			HL10 A 0 A_StopSound(CHAN_WEAPON)
+			HL10 A 0 A_StopSound(CHAN_BODY)
+			HL10 A 0 A_Stop
+			HL10 A 0 A_GiveInventory("NothingSpeed")
+			HL10 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL10 A 5 A_FaceTarget
+			HL10 A 0 A_Gravity
+			HL10 A 30 A_Pain
+			HL10 A 70
 			TNT1 A 0
 			Goto See
 		Death:

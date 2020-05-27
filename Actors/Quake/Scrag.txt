@@ -21,6 +21,8 @@ ACTOR QScrag
   ActiveSound "qwiz/active"
   Obituary "%o was scragged by a Scrag"
   PainChance "ShrinkerDMG", 0
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -40,6 +42,7 @@ ACTOR QScrag
 		WIZ2 ABCDEFGHIJKLMN 3 A_Chase
 		Loop
 	  Missile:
+	    TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		WIZ3 ABCDEF 3 A_FaceTarget
 		WIZ3 F 0 A_PLaySound("QWiz/attack")
 		WIZ3 G 3 A_CustomMissile("QWizardAcid",50)
@@ -52,6 +55,25 @@ ACTOR QScrag
 		WIZ4 A 3 A_pain
 		WIZ4 BCD 3
 		WIZ4 A 0 A_ChangeFlag("NOPAIN", 0)
+		Goto See
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		WIZ4 A 4 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		WIZ4 B 4 A_Pain
+		WIZ4 CD 4
+		WIZ4 D 0
+		Goto See
+	  Pain.MarathonStun:
+		WIZ4 A 0 A_Stop
+		WIZ4 A 0 A_GiveInventory("NothingSpeed")
+		WIZ4 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		WIZ4 A 5 A_FaceTarget
+		WIZ4 A 0 A_Gravity
+		WIZ4 A 30 A_Pain
+		WIZ4 A 70
+		WIZ4 A 0
 		Goto See
 	  Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  

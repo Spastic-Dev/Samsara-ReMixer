@@ -19,6 +19,8 @@ ACTOR QZombie
   ActiveSound "QZombie/act"
   Obituary "%o joins the zombies"
   RadiusDamageFactor 2.5
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -51,6 +53,7 @@ ACTOR QZombie
 		Loop
 	  Melee:
 	  Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		QZUM Z 0 A_Jump(256, "Missile1", "Missile2", "Missile3")
 	  Missile1:
 		QZU0 C 4 A_facetarget
@@ -92,6 +95,24 @@ ACTOR QZombie
 		QZU8 A 3 A_Pain
 		QZU8 BCDEFGHIJKLM 3
 		QZU8 M 0 A_ChangeFlag("NOPAIN", 0)
+		Goto See
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		QZU0 F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		QZU6 A 3 A_Pain
+		QZU6 BCDEFGHIJK 3 
+		Goto See
+  	  Pain.MarathonStun:
+		QZU6 A 0 A_Stop
+		QZU6 A 0 A_GiveInventory("NothingSpeed")
+		QZU6 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		QZU6 A 5 A_FaceTarget
+		QZU6 A 0 A_Gravity
+		QZU6 A 30 A_Pain
+		QZU6 A 70
+		QZU6 A 0
 		Goto See
 	  Death:
 		QZU9 A 0 A_Jump(256,"Death1","Death2")

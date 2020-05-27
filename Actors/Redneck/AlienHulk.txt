@@ -58,6 +58,7 @@ Actor AlienHulk
 		HULK HH 2 A_Chase
 		loop
     Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HULK I 0 A_Jump(40,"LandMine")
 		HULK I 6 A_FaceTarget
 		TNT1 A 0 A_PlaySound("RR/AlienArmF")
@@ -87,6 +88,7 @@ Actor AlienHulk
 		HULK V 10
 		goto See
     Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HULK MNO 6 A_FaceTarget
 		HULK P 4 A_FaceTarget
 		HULK Q 4 A_MeleeAttack
@@ -103,8 +105,16 @@ Actor AlienHulk
 		HULK Y 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		HULK Y 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
-		Goto See								
+		Goto See			
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		HULK Y 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		HULK Y 30 A_Pain
+		HULK Y 70
+		Goto See
 	Death:		
 	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		HULD A 0 A_Scream

@@ -19,6 +19,8 @@ Actor IPOGWizard
 	ActiveSound "ipogwizard/active"
 	Obituary "%o was vanquished by a Yrktarel High Priest."
 	Tag "Yrktarel High Priest"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -43,6 +45,7 @@ Actor IPOGWizard
 		IPO8 BB 3 A_Chase("","")
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		IPO8 F 3 A_FaceTarget
 		IPO8 F 0 A_PlaySound("ipogwizard/attack")
 		IPO8 E 8 A_FaceTarget
@@ -54,6 +57,22 @@ Actor IPOGWizard
 	Pain:
 		IPO8 F 3
 		IPO8 F 3 A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		IPO8 F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		IPO8 F 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		IPO8 F 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		IPO8 F 30 A_Pain
+		IPO8 F 70
 		Goto See
 	Death:
 	XDeath:

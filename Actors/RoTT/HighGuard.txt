@@ -36,6 +36,7 @@ ACTOR HighGuard : RoTTHumanoid {
 		HIGH E 3 A_Chase("", "")	   
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HIGH M 8 A_FaceTarget
 		HIGH N 8 
 	KeepFiring:
@@ -61,6 +62,7 @@ ACTOR HighGuard : RoTTHumanoid {
 		HIGH G 4 A_Pain
 		Goto See
 	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		TNT1 A 0 A_Jump(128, "BootPain2")
 		HIGP A 2 A_FaceTarget

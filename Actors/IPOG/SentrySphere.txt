@@ -16,6 +16,8 @@ ACTOR IPOGSentrySphere
 	DeathSound "ipogsentry/death"
 	ActiveSound "ipogsentry/active"
 	Obituary "%o was neutralized by a Sentry Sphere."
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Tag "Sentry Sphere"
 	States
 	{
@@ -34,6 +36,7 @@ ACTOR IPOGSentrySphere
 		IPOC A 3 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		IPOC A 5 A_FaceTarget
 		IPOC B 3 Bright A_FaceTarget
 		IPOC A 0 A_PlaySound("ipogsentry/fire")
@@ -46,6 +49,22 @@ ACTOR IPOGSentrySphere
 	Pain:
 		IPOC A 3
 		IPOC A 3 A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		IPOC A 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		IPOC A 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		IPOC A 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		IPOC A 30 A_Pain
+		IPOC A 70
 		Goto See
 	Death:
 	XDeath:

@@ -19,6 +19,8 @@ Actor AlienGrunt
 	activesound "agrunt/attack"
 	painchance 44
 	tag "Xen Grunt"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -77,7 +79,7 @@ Actor AlienGrunt
 		SetRun:
 			HL01 A 1
 			HL01 A 0 ACS_NamedExecuteAlways("HalfLifeAllyWalkRunSpeed", 0, 1)
-			Goto SetRun
+			Goto SeeLoop
 		SeeLoop:
 			HL01 A 0 A_JumpIf(momz < 0, "Fall")
 			HL01 ABCDEFGHIJKLM 3 A_Chase
@@ -89,6 +91,7 @@ Actor AlienGrunt
 			HL19 ABCDEFGHIJK 3 
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL02 A 0 A_Jump(155,"Missile2")
 			HL02 ABCD 2 A_FaceTarget
 		FireMissile:
@@ -116,6 +119,7 @@ Actor AlienGrunt
 			HL03 DEF 2 
 			Goto SetRun
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL04 ABCD 2
 			HL04 E 0 A_CustomMeleeAttack(random(5,8)*random(2,5),"HLZombie/Claw","HLZombie/Miss")
 			HL04 EFGH 2
@@ -123,6 +127,25 @@ Actor AlienGrunt
 		Pain:
 			HL07 A 0 A_Pain
 			HL07 ABCDEFGH 2
+			Goto SetRun
+		Pain.MightyBoot:
+			HL07 A 0 A_ChangeFlag("NOPAIN",1)
+			HL07 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			HL07 A 2 A_FaceTarget
+			HL07 A 0 A_Recoil(14)
+			HL07 A 2 A_Pain
+			HL07 BCDEFGH 2
+			HL07 H 0
+			Goto SetRun
+		Pain.MarathonStun:
+			HL07 A 0 A_Stop
+			HL07 A 0 A_GiveInventory("NothingSpeed")
+			HL07 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL07 A 5 A_FaceTarget
+			HL07 A 0 A_Gravity
+			HL07 A 30 A_Pain
+			HL07 A 70
+			HL07 A 0
 			Goto SetRun
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		

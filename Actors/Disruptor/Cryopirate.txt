@@ -30,6 +30,7 @@ Actor DisruptorCryopirate : DisruptorHumanoid
 			DIS9 FF 3 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DIS9 GGHHIIJJ 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("ds_terrorist3/att")
 			DIS9 FFFFFF 0 A_CustomMissile("DisruptorEnemyBullet_Z1",32,0,frandom(-15.85,15.85),8,frandom(-16.68,16.68))
@@ -39,6 +40,23 @@ Actor DisruptorCryopirate : DisruptorHumanoid
 		Pain:
 			DIS9 O 2 A_Pain
 			DIS9 OPPQQPPOO 2 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DIS9 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DIS9 O 2 A_Pain
+			DIS9 PPQQPPOO 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DIS9 O 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DIS9 O 30 A_Pain
+			DIS9 O 70
 			Goto See
 		Death:
 		XDeath:

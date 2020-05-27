@@ -21,7 +21,9 @@ Actor SWAssassin
   XScale 0.6
   Yscale 0.55
   Tag "Assassin"
-  BloodType "SWDefaultBloodSpawner"  
+  BloodType "SWDefaultBloodSpawner" 
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;	
   States
@@ -44,6 +46,7 @@ Actor SWAssassin
 	ASSA DDDD 1 A_Chase
     Loop
   Missile:
+	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
     TNT1 A 0 A_Jump(34, "Sticky")
     ASSA E 5 A_FaceTarget
 	ASSA E 1 A_FaceTarget
@@ -72,6 +75,22 @@ Actor SWAssassin
   Pain2:
 	ASSA U 3
 	ASSA U 3 A_Pain
+	Goto See
+  Pain.MightyBoot:
+	TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+	TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+	ASSA G 2 A_FaceTarget
+	TNT1 A 0 A_Recoil(14)
+	ASSA G 16 A_Pain
+	Goto See
+  Pain.MarathonStun:
+	TNT1 A 0 A_Stop
+	TNT1 A 0 A_GiveInventory("NothingSpeed")
+	TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+	ASSA G 5 A_FaceTarget
+	TNT1 A 0 A_Gravity
+	ASSA G 30 A_Pain
+	ASSA G 70
 	Goto See
   Death: 
 	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    

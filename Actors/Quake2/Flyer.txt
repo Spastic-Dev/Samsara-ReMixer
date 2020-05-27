@@ -16,6 +16,8 @@ Actor Q2Flyer : Q2SoldierBase
 	PainChance 30
 	DropItem Q2Cell 128
 	Tag "Strogg Flyer"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -78,6 +80,24 @@ Actor Q2Flyer : Q2SoldierBase
 		Goto See
 	Pain3:
 		FLR4 MNOP 5
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		FLR4 I 5 A_FaceTarget
+		FLR4 I 0 A_Recoil(14)
+		FLR4 J 5 A_Pain
+		FLR4 KL 5
+		Goto See
+	Pain.MarathonStun:
+		FLR4 I 0 A_Stop
+		FLR4 I 0 A_GiveInventory("NothingSpeed")
+		FLR4 I 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		FLR4 I 5 A_FaceTarget
+		FLR4 I 0 A_Gravity
+		FLR4 I 30 A_Pain
+		FLR4 I 70
+		FLR4 I 0
 		Goto See
 	Death:
 	XDeath:

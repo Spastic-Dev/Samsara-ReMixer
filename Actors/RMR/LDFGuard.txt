@@ -26,6 +26,7 @@ actor RMRLDFRegular : RMRHumanoid
 		RM77 ABCD 4 A_Chase
 		loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RM77 EE 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("RMR/ACRSHOT")
 		RM77 E 5 Bright A_CustomMissile("LDFPuffyPuffShit",32,0,frandom(-2.50,2.50))
@@ -33,6 +34,22 @@ actor RMRLDFRegular : RMRHumanoid
 	Pain:
 		RM77 F 4 A_Pain
 		RM77 F 4 
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		RM77 F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RM77 F 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		RM77 F 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		RM77 F 30 A_Pain
+		RM77 F 70
 		Goto See
 	Death:
 	XDeath:  

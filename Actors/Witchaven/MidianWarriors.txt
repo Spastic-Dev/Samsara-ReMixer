@@ -44,6 +44,8 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 			TNT1 A 0 A_CPosRefire
 			Goto Missile
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HR AABBCCDD 2 A_FaceTarget
 			W_HR EE 2 A_FaceTarget
 			W_HR H 0 A_CustomMeleeAttack(Random(16,24)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -52,6 +54,22 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 		Pain:
 			W_HR L 4 A_Pain
 			W_HR L 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HR L 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HR L 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HR L 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HR L 30 A_Pain
+			W_HR L 70
 			Goto See
 		Death:
 		XDeath:
@@ -672,6 +690,7 @@ Actor WTRedMidianWarriorSword : WTRedMidianWarriorHalberd {
 			W_HR RRSSTTUU 3 A_Chase("Melee","")
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HR NN 2 A_FaceTarget
 			W_HR OO 2 A_FaceTarget
 			W_HR H 0 A_CustomMeleeAttack(Random(12,26)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -680,6 +699,22 @@ Actor WTRedMidianWarriorSword : WTRedMidianWarriorHalberd {
 		Pain:
 			W_HR V 4 A_Pain
 			W_HR V 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HR V 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HR V 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HR V 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HR V 30 A_Pain
+			W_HR V 70
 			Goto See
 		Death:
 		XDeath:
@@ -1170,6 +1205,7 @@ Actor WTRedMidianWarriorSpell : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HR FFGG 2 A_FaceTarget
 			W_HR AABBCCDD 2 A_FaceTarget
 			W_HR E 2 A_CustomMeleeAttack(Random(12,26)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -1178,6 +1214,22 @@ Actor WTRedMidianWarriorSpell : WTRedMidianWarriorHalberd {
 		Pain:
 			W_HS O 4 A_Pain
 			W_HS O 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HS O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HS O 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HS O 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HS O 30 A_Pain
+			W_HS O 70
 			Goto See
 		Death:
 		XDeath:
@@ -1674,6 +1726,7 @@ Actor WTBrownMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HQ AABBCCDD 2 A_FaceTarget
 			W_HQ EE 2 A_FaceTarget
 			W_HQ H 0 A_CustomMeleeAttack(Random(10,5)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -1682,6 +1735,22 @@ Actor WTBrownMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 		Pain:
 			W_HQ L 4 A_Pain
 			W_HQ L 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HQ L 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HQ L 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HQ L 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HQ L 30 A_Pain
+			W_HQ L 70
 			Goto See
 		Death:
 		XDeath:
@@ -2161,6 +2230,7 @@ Actor WTBrownMidianWarriorSword : WTBrownMidianWarriorHalberd {
 			W_HQ RRSSTTUU 3 A_Chase("Melee","")
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HQ NN 2 A_FaceTarget
 			W_HQ OO 2 A_FaceTarget
 			W_HQ H 0 A_CustomMeleeAttack(Random(12,8)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -2169,6 +2239,22 @@ Actor WTBrownMidianWarriorSword : WTBrownMidianWarriorHalberd {
 		Pain:
 			W_HQ V 4 A_Pain
 			W_HQ V 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HQ V 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HQ V 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HQ V 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HQ V 30 A_Pain
+			W_HQ V 70
 			Goto See
 		Death:
 		XDeath:
@@ -2659,6 +2745,7 @@ Actor WTBrownMidianWarriorSpell : WTBrownMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HQ FFGG 2 A_FaceTarget
 			W_HQ AABBCCDD 2 A_FaceTarget
 			W_HQ E 2 A_CustomMeleeAttack(Random(10,5)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -2667,6 +2754,22 @@ Actor WTBrownMidianWarriorSpell : WTBrownMidianWarriorHalberd {
 		Pain:
 			W_HD O 4 A_Pain
 			W_HD O 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HD O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HD O 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HD O 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HD O 30 A_Pain
+			W_HD O 70
 			Goto See
 		Death:
 		XDeath:
@@ -3162,6 +3265,7 @@ Actor WTBlueMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HK AABBCCDD 2 A_FaceTarget
 			W_HK EE 2 A_FaceTarget
 			W_HK H 0 A_CustomMeleeAttack(Random(14,28)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -3170,6 +3274,22 @@ Actor WTBlueMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 		Pain:
 			W_HK L 4 A_Pain
 			W_HK L 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HK L 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HK L 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HK L 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HK L 30 A_Pain
+			W_HK L 70
 			Goto See
 		Death:
 		XDeath:
@@ -3649,6 +3769,7 @@ Actor WTBlueMidianWarriorSword : WTBlueMidianWarriorHalberd {
 			W_HK RRSSTTUU 3 A_Chase("Melee","")
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HK NN 2 A_FaceTarget
 			W_HK OO 2 A_FaceTarget
 			W_HK H 0 A_CustomMeleeAttack(Random(19,28)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -3657,6 +3778,22 @@ Actor WTBlueMidianWarriorSword : WTBlueMidianWarriorHalberd {
 		Pain:
 			W_HK V 4 A_Pain
 			W_HK V 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HK V 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HK V 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HK V 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HK V 30 A_Pain
+			W_HK V 70
 			Goto See
 		Death:
 		XDeath:
@@ -4147,6 +4284,7 @@ Actor WTBlueMidianWarriorSpell : WTBlueMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HK FFGG 2 A_FaceTarget
 			W_HK AABBCCDD 2 A_FaceTarget
 			W_HK E 2 A_CustomMeleeAttack(Random(19,26)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -4155,6 +4293,22 @@ Actor WTBlueMidianWarriorSpell : WTBlueMidianWarriorHalberd {
 		Pain:
 			W_HL O 4 A_Pain
 			W_HL O 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HL O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HL O 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HL O 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HL O 30 A_Pain
+			W_HL O 70
 			Goto See
 		Death:
 		XDeath:
@@ -4651,6 +4805,7 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HG AABBCCDD 2 A_FaceTarget
 			W_HG EE 2 A_FaceTarget
 			W_HG H 0 A_CustomMeleeAttack(Random(28,43)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -4659,6 +4814,22 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 		Pain:
 			W_HG L 4 A_Pain
 			W_HG L 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HG L 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HG L 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HG L 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HG L 30 A_Pain
+			W_HG L 70
 			Goto See
 		Death:
 		XDeath:
@@ -5270,6 +5441,7 @@ Actor WTPurpleMidianWarriorSword : WTPurpleMidianWarriorHalberd {
 			W_HG RRSSTTUU 3 A_Chase("Melee","")
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HG NN 2 A_FaceTarget
 			W_HG OO 2 A_FaceTarget
 			W_HG H 0 A_CustomMeleeAttack(Random(22,32)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -5278,6 +5450,22 @@ Actor WTPurpleMidianWarriorSword : WTPurpleMidianWarriorHalberd {
 		Pain:
 			W_HG V 4 A_Pain
 			W_HG V 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HG V 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HG V 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HG V 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HG V 30 A_Pain
+			W_HG V 70
 			Goto See
 		Death:
 		XDeath:
@@ -5893,6 +6081,7 @@ Actor WTPurpleMidianWarriorSpell : WTPurpleMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
 			Goto See
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HG FFGG 2 A_FaceTarget
 			W_HG AABBCCDD 2 A_FaceTarget
 			W_HG E 2 A_CustomMeleeAttack(Random(21,30)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -5901,6 +6090,22 @@ Actor WTPurpleMidianWarriorSpell : WTPurpleMidianWarriorHalberd {
 		Pain:
 			W_HH O 4 A_Pain
 			W_HH O 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			W_HH O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			W_HH O 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			W_HH O 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			W_HH O 30 A_Pain
+			W_HH O 70
 			Goto See
 		Death:
 		XDeath:

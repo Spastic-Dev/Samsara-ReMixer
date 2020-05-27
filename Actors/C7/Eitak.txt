@@ -28,6 +28,7 @@ Actor Eitak : C7Alien {
 			C713 DD 2 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			C713 JJKK 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("bandor/fire", CHAN_WEAPON)
 			TNT1 A 0 A_JumpIfCloser (118, "Bullet1")

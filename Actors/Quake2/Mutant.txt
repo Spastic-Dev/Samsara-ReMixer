@@ -10,6 +10,8 @@ Actor Q2Mutant : Q2SoldierBase
 	Mass 370
 	Obituary "%o was clawed by a Mutant."
 	Tag "Strogg Mutant"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -77,6 +79,24 @@ Actor Q2Mutant : Q2SoldierBase
 		"----" A 0 A_Pain
 		"----" A 3 A_ChangeFlag(NOPAIN,1)
 		MUT5 ABCDEFGHIJK 3
+		Goto See
+	Pain.MightyBoot:
+		"----" A 0 A_ChangeFlag("NOPAIN",1)
+		"----" A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		"----" A 3 A_FaceTarget
+		"----" A 0 A_Recoil(14)
+		MUT4 Q 3 A_Pain
+		MUT4 RSTUV 3
+		Goto See
+	Pain.MarathonStun:
+		MUT4 Q 0 A_Stop
+		MUT4 Q 0 A_GiveInventory("NothingSpeed")
+		MUT4 Q 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		MUT4 Q 5 A_FaceTarget
+		MUT4 Q 0 A_Gravity
+		MUT4 Q 30 A_Pain
+		MUT4 Q 70
+		MUT4 Q 0
 		Goto See
 	Death:
 		"----" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		

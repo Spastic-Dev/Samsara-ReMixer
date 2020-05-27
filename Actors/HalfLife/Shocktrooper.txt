@@ -20,6 +20,8 @@ Actor Shocktrooper
 	+NOINFIGHTING
 	+NOBLOODDECALS
 	tag "Shocktrooper"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -133,6 +135,7 @@ Actor Shocktrooper
 			HL11 ABCDEFGHIJKLM 2 A_Chase	
 			Loop			
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(128,"Melee2","Melee3","Melee4")
 			TNT1 A 0
 			HL13 ABCDEFG 3 A_FaceTarget
@@ -161,6 +164,7 @@ Actor Shocktrooper
 			HL16 A 0 A_JumpIfCloser(meleerange, "Melee")
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL06 A 0 A_FaceTarget
 			HL06 A 0 A_JumpIfCloser(128,1)
 			HL06 A 0 A_Jump(160,2)
@@ -179,6 +183,24 @@ Actor Shocktrooper
 		Pain:
 			TNT1 A 0 A_Pain
 			HL17 ABCDEF 3 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			HL17 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL17 B 2 A_Pain
+			HL17 CDEF 3
+			Goto See
+		Pain.MarathonStun:
+			HL17 A 0 A_Stop
+			HL17 A 0 A_GiveInventory("NothingSpeed")
+			HL17 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL17 A 5 A_FaceTarget
+			HL17 A 0 A_Gravity
+			HL17 A 30 A_Pain
+			HL17 A 70
+			HL17 A 0
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
@@ -842,6 +864,7 @@ Actor Shockroach
 			TNT1 A 0 A_Look			
 			Loop			
 		Leap:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("Shockroach/Jump",CHAN_WEAPON)
 			TNT1 A 0 A_Jump(128,"Leap2","Leap3")
 		Leap1:
@@ -884,6 +907,24 @@ Actor Shockroach
 			TNT1 A 0 A_Pain
 			HL07 ABCDE 3
 			Goto SeeLoop
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			HL07 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL07 B 2 A_Pain
+			HL07 CDE 3
+			Goto See
+		Pain.MarathonStun:
+			HL07 A 0 A_Stop
+			HL07 A 0 A_GiveInventory("NothingSpeed")
+			HL07 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL07 A 5 A_FaceTarget
+			HL07 A 0 A_Gravity
+			HL07 A 30 A_Pain
+			HL07 A 70
+			HL07 A 0
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)					

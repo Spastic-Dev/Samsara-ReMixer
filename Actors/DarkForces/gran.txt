@@ -42,11 +42,13 @@ ACTOR gran___DF : enemy_base
 			GRAN DDD 2 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			GRAN E 5 A_FaceTarget
 			GRAN F 4 A_CustomMeleeAttack(8,"enemies/gran/punch","enemies/darkf/swing","DFMelee",1)
 			GRAN E 5 A_FaceTarget
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			GRAN G 5 A_FaceTarget
 			GRAN HI 5 A_FaceTarget
 			TNT1 A 0 A_JumpIfCloser (128, "Throw1")

@@ -18,6 +18,8 @@ Actor HLMrFriendly
 	+MISSILEMORE
 	+NOINFIGHTING
 	+NOBLOODDECALS
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Speed 6
 	Tag "Mr. Friendly"
 	States
@@ -122,6 +124,7 @@ Actor HLMrFriendly
 			HL09 OO 2 A_Chase			
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(128,"Melee2")
 			HL03 ABCDEFGHIJKLMNOPQR 2 A_FaceTarget
 			HL03 S 2 A_CustomMeleeAttack(random(5,7)*Random(2,1),"HLZombie/Claw","HLZombie/Miss")
@@ -135,6 +138,7 @@ Actor HLMrFriendly
 			HL07 PQRSTU 2
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("hlmrfriendly/att",CHAN_WEAPON)
 			HL08 ABCDEFGHIJKLMNOPQRSTUVWX 2 A_FaceTarget
 			Goto See			
@@ -147,6 +151,31 @@ Actor HLMrFriendly
 		Pain2:
 			TNT1 A 0 A_Pain
 			HL02 ABCDEFGHIJKLMNOP 2
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(128,"BootPain2")
+			HL01 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL01 B 2 A_Pain
+			HL01 CDEFGHIJKLMNOPQRSTU 2
+			Goto See
+		BootPain2:
+			HL02 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL02 B 2 A_Pain
+			HL02 CDEFGHIJKLMNOP 2
+			Goto See
+		Pain.MarathonStun:
+			HL02 A 0 A_Stop
+			HL02 A 0 A_GiveInventory("NothingSpeed")
+			HL02 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL02 A 5 A_FaceTarget
+			HL02 A 0 A_Gravity
+			HL02 A 30 A_Pain
+			HL02 A 70
+			HL02 A 0
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
