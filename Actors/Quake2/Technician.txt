@@ -18,6 +18,8 @@ Actor Q2Technician : Q2SoldierBase
 	DropItem Q2Cell
 	MeleeRange 28
 	Tag "Strogg Technician"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -88,6 +90,24 @@ Actor Q2Technician : Q2SoldierBase
 	Pain3:
 		"----" A 3
 		TEK7 ABCDEFGHIJKL 3
+		Goto See
+	Pain.MightyBoot:
+		"----" A 0 A_ChangeFlag("NOPAIN",1)
+		"----" A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		"----" A 3 A_FaceTarget
+		"----" A 0 A_Recoil(14)
+		TEK6 H 3 A_Pain
+		TEK6 IJKLMN 3
+		Goto See
+	Pain.MarathonStun:
+		TEK6 H 0 A_Stop
+		TEK6 H 0 A_GiveInventory("NothingSpeed")
+		TEK6 H 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		TEK6 H 5 A_FaceTarget
+		TEK6 H 0 A_Gravity
+		TEK6 H 30 A_Pain
+		TEK6 H 70
+		TEK6 H 0
 		Goto See
 	Death:
 		TNT1 A 0 A_StopSound(CHAN_BODY)

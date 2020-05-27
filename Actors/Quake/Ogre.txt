@@ -21,6 +21,8 @@ ACTOR QOgre
   DeathSound "QOgre/death"
   ActiveSound "QOgre/active"
   Obituary "%o was destroyed by an Ogre"
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -40,6 +42,7 @@ ACTOR QOgre
 		OGR2 ABCDEFGH 3 A_Chase
 		Loop
 	  Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		OGR3 A 0 A_Jump(256,"Overhead","Slash")
 	  Overhead:
 		OGR3 A 0
@@ -77,6 +80,7 @@ ACTOR QOgre
 		OGR4 LMN 3
 		Goto see
 	  Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		OGR5 A 6 A_FaceTarget
 		OGR5 BC 4 A_FaceTarget
 		OGR5 C 0 A_PlaySound("quakeweps/glfire")
@@ -115,6 +119,25 @@ ACTOR QOgre
 		OGRA BCDEFGHIJKLMNO 4
 		OGRA O 0 A_ChangeFlag("NOPAIN", 0)
 		Goto see
+	  Pain.MightyBoot:
+		OGR6 A 0 A_ChangeFlag("NOPAIN",1)
+		OGR6 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		OGR6 A 4 A_FaceTarget
+		OGR6 A 0 A_Recoil(14)
+		OGR6 B 4 A_Pain
+		OGR6 CDE 4
+		OGR6 E 0
+		Goto See
+	  Pain.MarathonStun:
+		OGR6 A 0 A_Stop
+		OGR6 A 0 A_GiveInventory("NothingSpeed")
+		OGR6 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		OGR6 A 5 A_FaceTarget
+		OGR6 A 0 A_Gravity
+		OGR6 A 30 A_Pain
+		OGR6 A 70
+		OGR6 A 0
+		Goto See
 	  Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)

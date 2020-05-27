@@ -21,6 +21,8 @@ Actor HLHoundeye
 	DamageFactor "Sound", 0.0
 	Painchance "Sound", 0
 	Speed 8
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -136,7 +138,33 @@ Actor HLHoundeye
 		Pain2:
 			TNT1 A 0 A_Pain
 			HL15 ABCDEFGHI 2
-			Goto SeeLoop			
+			Goto SeeLoop
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_Jump(128,"BootPain2")
+			HL14 A 1 A_FaceTarget
+			HL14 A 1 
+			TNT1 A 0 A_Recoil(14)
+			HL14 B 1 A_Pain
+			HL14 BCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQ 1
+			Goto SeeLoop
+		BootPain2:
+			HL15 A 2 A_FaceTarget 
+			TNT1 A 0 A_Recoil(14)
+			HL15 B 2 A_Pain
+			HL15 CDEFGHI 2
+			Goto SeeLoop
+		Pain.MarathonStun:
+			HL15 A 0 A_Stop
+			HL15 A 0 A_GiveInventory("NothingSpeed")
+			HL15 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			HL15 A 5 A_FaceTarget
+			HL15 A 0 A_Gravity
+			HL15 A 30 A_Pain
+			HL15 A 70
+			HL15 A 0
+			Goto SeeLoop
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)					

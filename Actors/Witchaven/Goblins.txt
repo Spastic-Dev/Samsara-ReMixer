@@ -28,6 +28,7 @@ Actor ForestGoblin : WitchavenEnemyBaseMelee
 			WH_0 BBCCDDEE 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_0 F 5 A_FaceTarget
 			WH_0 G 6 A_FaceTarget
 			WH_0 H 0 A_CustomMeleeAttack(6,"ggen/metal_l","ggen/swing4")
@@ -36,6 +37,22 @@ Actor ForestGoblin : WitchavenEnemyBaseMelee
 		Pain:
 			WH_0 I 4 A_Pain
 			WH_0 I 4 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			WH_0 I 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			WH_0 I 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WH_0 I 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WH_0 I 30 A_Pain
+			WH_0 I 70
 			Goto See
 		Death:
 		XDeath:
@@ -609,6 +626,7 @@ Actor MountainGoblin : ForestGoblin {
 			WH_2 BBCCDDEE 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_2 F 5 A_FaceTarget
 			WH_2 G 6 A_FaceTarget
 			WH_2 H 0 A_CustomMeleeAttack(7,"ggen/metal_l","ggen/swing4")
@@ -617,6 +635,22 @@ Actor MountainGoblin : ForestGoblin {
 		Pain:
 			WH_2 I 4 A_Pain
 			WH_2 I 4 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			WH_2 I 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			WH_2 I 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WH_2 I 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WH_2 I 30 A_Pain
+			WH_2 I 70
 			Goto See
 		Death:
 		XDeath:
@@ -1186,6 +1220,7 @@ Actor DesertGoblin : ForestGoblin {
 			WH_1 BBCCDDEE 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_1 F 5 A_FaceTarget
 			WH_1 G 6 A_FaceTarget
 			WH_1 H 0 A_CustomMeleeAttack(8,"ggen/metal_l","ggen/swing4")
@@ -1194,6 +1229,22 @@ Actor DesertGoblin : ForestGoblin {
 		Pain:
 			WH_1 I 4 A_Pain
 			WH_1 I 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			WH_1 I 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			WH_1 I 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WH_1 I 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WH_1 I 30 A_Pain
+			WH_1 I 70
 			Goto See
 		Death:
 		XDeath:

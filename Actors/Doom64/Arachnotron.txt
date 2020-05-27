@@ -49,6 +49,7 @@ ACTOR Arachnotron64
 			64PI AABBCCDD 3 A_Chase
 			Goto See+1
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			64PI AAAA 5 A_FaceTarget		
 			64PI E 0 BRIGHT A_PlaySound("doom64guy/plasmaf", CHAN_WEAPON, 1, 0, ATTN_NORM)
 			64PI E 0 BRIGHT A_CustomMissile("ArachnotronPlasma64", 25, -12, 2)
@@ -90,6 +91,22 @@ ACTOR Arachnotron64
 			64PI F 3
 			64PI F 3 A_Pain
 			Goto See+1
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64PI F 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			64PI F 16 A_Pain
+			Goto See+1
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			64PI F 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			64PI F 30 A_Pain
+			64PI F 70
+			Goto See+1
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")			
@@ -101,14 +118,6 @@ ACTOR Arachnotron64
 		Raise:
 			64PI LKJIHG 5
 			Goto See+1
-		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			64PI F 3 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
-			64PI F 16 A_Pain
-			TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
-			Goto See
 		Crush:
 			A027 A 0
 			A027 A 0 A_PlaySound("friendlyimp64/crush")

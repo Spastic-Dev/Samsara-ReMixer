@@ -54,6 +54,7 @@ Actor GuardDog
 		GDOG G 2 A_Chase
 		Loop
     JumpingThenBite:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 		GDOG A 0 A_PlaySound("guarddog/lunge")
 		GDOG A 4 A_FaceTarget
 		GDOG B 0 A_SkullAttack
@@ -67,6 +68,7 @@ Actor GuardDog
 		GDOG L 0 A_Stop
 		Goto See
     Melee:
+		TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
 		GDOG A 0 A_PlaySound("guarddog/bark")
 		GDOG HI 3 A_FaceTarget
 		GDOG A 0 A_CustomMeleeAttack((8),"","")
@@ -84,8 +86,16 @@ Actor GuardDog
 		GDOG Q 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		GDOG R 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
-		Goto See								
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		GDOG Q 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		GDOG Q 30 A_Pain
+		GDOG Q 70
+		Goto See
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")

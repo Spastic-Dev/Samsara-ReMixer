@@ -19,6 +19,8 @@ Actor IPOGMastiff
 	PainSound "ipogmastiff/pain"
 	DeathSound "ipogbigguard/death"
 	ActiveSound "ipogmastiff/sight"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Obituary "%o was hunted down by a Robot Mastiff."
 	States
 	{
@@ -39,6 +41,7 @@ Actor IPOGMastiff
 		IPOD CCBB 3 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		IPOD C 8 A_FaceTarget
 		IPOD E 2 A_FaceTarget
 		IPOD D 0 A_PlayWeaponSound("greed/laser")
@@ -69,6 +72,22 @@ Actor IPOGMastiff
 	Pain:
 		IPOD F 3
 		IPOD F 3 A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		IPOD F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		IPOD F 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		IPOD F 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		IPOD F 30 A_Pain
+		IPOD F 70
 		Goto See
 	Death:
 	XDeath:

@@ -11,7 +11,9 @@ Actor Cultist
 	+NOINFIGHTING
 	+NOBLOODDECALS
 	Monster
-	PainChance "CalebFire", 0	
+	PainChance "CalebFire", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Species "Enemies"
 	SeeSound "cultistsee"
 	PainSound "cultistpain"
@@ -138,9 +140,10 @@ Actor Cultist
 		YCUL F 1 A_Chase("", "",CHF_NOPLAYACTIVE)
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(220,"ASD")
 		TNT1 A 0 A_JumpIfCloser(450,"TNTT")
-	ASD:	
+	ASD:
 		YCUF A 1 A_FaceTarget	
 		TNT1 A 0 A_playsound("cultist/Fire")
 		YCUF B 6 Bright A_CustomBulletAttack(5.8,4.45,3,2,"ZBBulletPuff_2")
@@ -163,7 +166,7 @@ Actor Cultist
 	Retreat:
 	    YCUF A 8 A_FaceTarget
 		Goto See
-	TNTT:	
+	TNTT:
 		TNT1 A 0 A_Jump(100,"See","ASD")
 		TNT1 A 0 A_Jump(15,"TNTT2")
 		YCUL XYZ 4 A_FaceTarget
@@ -195,6 +198,43 @@ Actor Cultist
 		TNT1 A 0 A_Jump(90,"Crawl")
 		TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
 		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlBootPain")
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUL G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUL G 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlMarathonStun")
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUL G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUL G 30 A_Pain
+		YCUL G 70
+		Goto See
+	CrawlBootPain:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUL G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUL G 16 A_Pain
+		TNT1 A 0 A_Jump(90,"Crawling")	
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
+	CrawlMarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUL G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUL G 30 A_Pain
+		YCUL G 70
+		TNT1 A 0 A_Jump(90,"Crawling")
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
 	CrawlPain:
 		YCUL G 2 
 		YCUL G 3 A_Pain
@@ -248,6 +288,7 @@ Actor Cultist
 		TNT1 A 0 A_Jump(5,"CrawlSet")				
 		Loop		
 	CrawlFire:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		YCUB N 1 A_FaceTarget	
 		TNT1 A 0 A_playsound("cultist/Fire")
 		YCUB O 6 Bright A_CustomBulletAttack(6,5,3,2,"ZBBulletPuff_2")
@@ -1350,7 +1391,8 @@ Actor Fanatic : Cultist
 		YCUG F 1 A_Chase 
 		YCUG F 1 A_Chase("", "",CHF_NOPLAYACTIVE)
 		Loop
-	Missile:				
+	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(220,"FFF")
 		TNT1 A 0 A_JumpIfCloser(450,"TNTT")	
 	FFF:	
@@ -1396,6 +1438,43 @@ Actor Fanatic : Cultist
 		TNT1 A 0 A_Jump(90,"Crawl")
 		TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
 		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlBootPain")
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUG G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUG G 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlMarathonStun")
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUG G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUG G 30 A_Pain
+		YCUG G 70
+		Goto See
+	CrawlBootPain:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUG G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUG G 16 A_Pain
+		TNT1 A 0 A_Jump(90,"Crawling")	
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
+	CrawlMarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUG G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUG G 30 A_Pain
+		YCUG G 70
+		TNT1 A 0 A_Jump(90,"Crawling")
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
 	CrawlPain:
 		YCUG G 2 
 		YCUG G 3 A_Pain
@@ -2499,6 +2578,7 @@ Actor BloodAcolyte : Cultist
 		YCUD F 1 A_Chase("", "",CHF_NOPLAYACTIVE)
 		Loop		
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_JumpIfCloser(912,1)		
 		Goto See
 		TNT1 A 0 A_Jump(72,"See")
@@ -2532,6 +2612,43 @@ Actor BloodAcolyte : Cultist
 		TNT1 A 0 A_Jump(40,"Crawl")
 		TNT1 A 0 A_ChangeFlag(NOPAIN,0)				
 		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlBootPain")
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUD G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUD G 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlMarathonStun")
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUD G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUD G 30 A_Pain
+		YCUD G 70
+		Goto See
+	CrawlBootPain:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUD G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUD G 16 A_Pain
+		TNT1 A 0 A_Jump(90,"Crawling")	
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
+	CrawlMarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUD G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUD G 30 A_Pain
+		YCUD G 70
+		TNT1 A 0 A_Jump(90,"Crawling")
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
 	CrawlPain:
 		YCUD G 2 
 		YCUD G 3 A_Pain
@@ -3558,6 +3675,7 @@ Actor Zealot : Cultist
 		YCUJ F 1 A_Chase("", "",CHF_NOPLAYACTIVE)
 		Loop	
 	Missile:	
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(240,"FFFU")
 		TNT1 A 0 A_JumpIfCloser(450,"TNTT")
 	FFFU:	
@@ -3606,6 +3724,43 @@ Actor Zealot : Cultist
 		TNT1 A 0 A_Jump(60,"Crawl")
 		TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
 		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlBootPain")
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUJ G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUJ G 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_JumpIfInventory("CultistIsCrawling",1,"CrawlMarathonStun")
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUJ G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUJ G 30 A_Pain
+		YCUJ G 70
+		Goto See
+	CrawlBootPain:
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUJ G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUJ G 16 A_Pain
+		TNT1 A 0 A_Jump(90,"Crawling")	
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
+	CrawlMarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUJ G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUJ G 30 A_Pain
+		YCUJ G 70
+		TNT1 A 0 A_Jump(90,"Crawling")
+		TNT1 A 0 A_Jump(5,"BackToNormal")		
+		Goto Crawling
 	CrawlPain:
 		YCUJ G 2 
 		YCUJ G 3 A_Pain 
@@ -4761,6 +4916,7 @@ Actor BloodPriest : Cultist
 		YCUR F 1 A_Chase("", "",CHF_NOPLAYACTIVE)
 		Loop		
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		YCU7 A 1 A_FaceTarget		
 		TNT1 A 0 A_playsound("cultist/Fire")
 		YCU7 B 6 Bright A_CustomBulletAttack(5.8,4.45,3,Random(2,3),"ZBBulletPuff_2")
@@ -4794,7 +4950,23 @@ Actor BloodPriest : Cultist
 		YCUR G 3 A_Pain
 		YCUR G 4
 		YCU7 AA 5
-		Goto See 	
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		YCUR G 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		YCUR G 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		YCUR G 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		YCUR G 30 A_Pain
+		YCUR G 70
+		Goto See
  	Pain.QuakeElectric:
 	Pain.Electric:
 	Pain.Shock:

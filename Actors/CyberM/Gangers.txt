@@ -17,6 +17,8 @@ Actor GangerMale
     PainSound "cmganger/pain"
     DeathSound "cmganger/death"
     ActiveSound "cmganger/active"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Tag "Ganger (M)"
 	Scale 0.25
 	var int user_scalex;
@@ -49,6 +51,7 @@ Actor GangerMale
         C_GM I 3 A_Pain
         Goto See
     Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	    TNT1 A 0 A_Jump(128,"Melee2")
         C_GM E 3 A_FaceTarget
         C_GM E 3 A_FaceTarget
@@ -666,6 +669,8 @@ Actor GangerFemale
     PainSound "cmgangerf/pain"
     DeathSound "cmgangerf/death"
     ActiveSound "cmgangerf/active"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Scale 0.25
 	var int user_scalex;
 	var int user_scaley;
@@ -697,6 +702,7 @@ Actor GangerFemale
         C_GF I 3 A_Pain
         Goto See
     Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	    TNT1 A 0 A_Jump(128,"Melee2")
         C_GF E 3 A_FaceTarget
         C_GF E 3 A_FaceTarget
@@ -847,17 +853,17 @@ Actor GangerFemale
 	Pain.MightyBoot:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		C_GF K 2 A_FaceTarget
+		C_GF I 2 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
-		C_GF K 16 A_Pain
+		C_GF I 16 A_Pain
 		Goto See
 	Pain.MarathonStun:
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_GiveInventory("NothingSpeed")
 		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-		C_GF K 5 A_FaceTarget
-		C_GF K 30 A_Pain
-		C_GF K 70
+		C_GF I 5 A_FaceTarget
+		C_GF I 30 A_Pain
+		C_GF I 70
 		Goto See
 	Death.ZorchPistol:
 	Death.Zorch:

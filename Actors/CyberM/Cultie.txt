@@ -18,6 +18,8 @@ Actor CMCultie
     PainSound "cmcultie/pain"
     DeathSound "cmcultie/death"
     ActiveSound "cmcultie/active"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Tag "Cultie"
 	Scale 0.25
 	var int user_scalex;
@@ -42,6 +44,7 @@ Actor CMCultie
 		C_CU DD 4 A_Chase
         Loop
     Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         TNT1 A 0 A_Jump(64,"Missile2","Missile3")
         C_CU G 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("CM/MagicFire4")

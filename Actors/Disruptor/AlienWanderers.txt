@@ -34,6 +34,7 @@ Actor AlienWanderer_T1 : DisruptorAlien {
 			DISE AABBCCDDEEFF 2 A_Chase		
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("ds_alienwanderer/att",CHAN_WEAPON)
 			DISE GGHHII 2 A_FaceTarget
 			DISE J 2 A_CustomMeleeAttack(8,"","")
@@ -42,6 +43,23 @@ Actor AlienWanderer_T1 : DisruptorAlien {
 		Pain:
 			DISE N 2 A_Pain
 			DISE OPQRQPON 2
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DISE N 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DISE O 2 A_Pain
+			DISE PQRQPON 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DISE N 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DISE N 30 A_Pain
+			DISE N 70
 			Goto See
 		Death:
 		XDeath:		
@@ -321,6 +339,7 @@ Actor AlienWanderer_T2 : AlienWanderer_T1 {
 			DISF AABBCCDDEEFF 2 A_Chase		
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("ds_alienwanderer/att",CHAN_WEAPON)
 			DISF GGHHII 2 A_FaceTarget
 			DISF J 2 A_CustomMeleeAttack(13,"","")
@@ -329,6 +348,23 @@ Actor AlienWanderer_T2 : AlienWanderer_T1 {
 		Pain:
 			DISF N 2 A_Pain
 			DISF OPQRQPON 2
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DISF N 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DISF O 2 A_Pain
+			DISF PQRQPON 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DISF N 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DISF N 30 A_Pain
+			DISF N 70
 			Goto See
 		Death:
 		XDeath:	

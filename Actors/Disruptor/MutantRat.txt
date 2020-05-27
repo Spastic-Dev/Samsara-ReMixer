@@ -31,6 +31,7 @@ Actor DisruptorMRat : DisruptorAlien
 			DIS4 HH 3 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("dsrptrat/fire")
 			DIS4 IIJJKKLLMMNNOO 2 A_FaceTarget
 			DIS4 P 2 Bright A_CustomMissile("MutantRat_FireSpit",25)			
@@ -39,6 +40,23 @@ Actor DisruptorMRat : DisruptorAlien
 		Pain:
 			DIS4 Q 2 A_Pain
 			DIS4 QRRSSRRQQ 2 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DIS4 Q 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DIS4 Q 2 A_Pain
+			DIS4 RRSSRRQQ 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DIS4 Q 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DIS4 Q 30 A_Pain
+			DIS4 Q 70
 			Goto See
 		Death:
 		XDeath:

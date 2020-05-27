@@ -82,6 +82,7 @@ Actor RedDaisyMae
 		CHR2 K 4 A_Chase	
 		Goto See
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		CHER UUUVVVWWW 1 A_FaceTarget
 		CHER XXX 1 A_FaceTarget
 		CHER YYY 1 A_FaceTarget
@@ -105,6 +106,7 @@ Actor RedDaisyMae
 		TNT1 A 0 A_JumpIfCloser(300,1)
 		Goto See
 	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		CHR3 F 1 A_FaceTarget
 		CHR2 VWX 3 A_FaceTarget
 		CHR2 YZ 3 A_FaceTarget
@@ -129,9 +131,17 @@ Actor RedDaisyMae
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		CHR2 M 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
-		CHR2 Q 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
-		Goto See						
+		CHR2 Q 16 A_Pain	
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		CHR2 M 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		CHR2 M 30 A_Pain
+		CHR2 M 70
+		Goto See
     Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")

@@ -44,6 +44,7 @@ ACTOR hoth_trooper : enemy_base
 			HOTH G 1 A_TakeInventory("hoth_troop_shots",30)
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HOTH GG 4 A_FaceTarget
 			HOTH G 1 A_FaceTarget			
 			HOTH H 0 A_JumpIfInventory("hoth_troop_shots",0,"Reload")

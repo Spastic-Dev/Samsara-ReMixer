@@ -20,6 +20,8 @@ ACTOR QFiend
   DeathSound "QFiend/death"
   ActiveSound "QFiend/active"
   Obituary "%o was eviscerated by a Fiend"
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -83,6 +85,25 @@ ACTOR QFiend
 		FIN5 A 3 A_pain
 		FIN5 BCDEF 3
 		FIN5 A 0 A_ChangeFlag("NOPAIN", 0)
+		Goto See
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		FIN5 A 4 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		FIN5 B 4 A_Pain
+		FIN5 CDEF 4
+		FIN5 F 0
+		Goto See
+	  Pain.MarathonStun:
+		FIN5 A 0 A_Stop
+		FIN5 A 0 A_GiveInventory("NothingSpeed")
+		FIN5 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		FIN5 A 5 A_FaceTarget
+		FIN5 A 0 A_Gravity
+		FIN5 A 30 A_Pain
+		FIN5 A 70
+		FIN5 A 0
 		Goto See
 	  Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  

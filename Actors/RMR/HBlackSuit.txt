@@ -28,6 +28,7 @@ Actor HeavyBlacksuit : RMRHumanoid
 		RM89 ABCD 5 A_Chase
 		loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RM89 EEEE 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("RMR/PIGFIRE",CHAN_WEAPON)
 		TNT1 A 0 A_CustomMissile("RMREnemyGrenade",32,0,0)	
@@ -36,6 +37,22 @@ Actor HeavyBlacksuit : RMRHumanoid
 	Pain:
 		RM89 F 4
 		RM89 F 4 A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		RM89 F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RM89 F 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		RM89 F 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		RM89 F 30 A_Pain
+		RM89 F 70
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
@@ -178,22 +195,7 @@ Actor HeavyBlacksuit : RMRHumanoid
 		TNT1 A 0 A_SpawnItemEx("RRGibSpawner")
 		TNT1 A 0 A_Jump(96,"XDeath")
 		TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
-		Goto XDeath		
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		TRAN G 2 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		TRAN G 16 A_Pain
-		Goto See
-	Pain.MarathonStun:
-		TNT1 A 0 A_Stop
-		TNT1 A 0 A_GiveInventory("NothingSpeed")
-		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-		TRAN G 5 A_FaceTarget
-		TRAN G 30 A_Pain
-		TRAN G 70
-		Goto See
+		Goto XDeath
 	Death.ZorchPistol:
 	Death.Zorch:
 	Death.ZorchKamikaze:

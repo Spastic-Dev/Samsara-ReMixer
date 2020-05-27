@@ -14,6 +14,8 @@ Actor Butcher
 	Monster
 	Species "Enemies"	
 	PainChance "CalebFire", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	SeeSound "ButcherSee"
 	PainSound "ButcherPain"
 	DeathSound "ButcherDeath"
@@ -45,11 +47,13 @@ Actor Butcher
 		BBUT FF 2 A_Chase
 		Loop
 	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BBUT GH 6 A_FaceTarget
 		BBUT I 5 A_CustomMeleeAttack(6*random(1,5),"butcher/cleaver","butcher/cleaver","Normal",1)
 		BBUT J 7 A_FaceTarget
 		Goto See
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(160, "Vomit")
 		BBUT GH 6 A_FaceTarget
 		BBUT I 5 A_CustomMissile("ButcherCleaver", 24)
@@ -71,6 +75,22 @@ Actor Butcher
 		BBUT O 3
 		BBUT O 4
 		BBUT DD 5
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		BBUT O 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		BBUT O 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		BBUT O 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		BBUT O 30 A_Pain
+		BBUT O 70
 		Goto See
  	Pain.QuakeElectric:
 	Pain.Electric:

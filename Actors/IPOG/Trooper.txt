@@ -16,6 +16,8 @@ Actor IPOGTrooper
 	ActiveSound "ipogtrooper/active"
 	Obituary "%o was killed by a Trooper."
 	Tag "Trooper"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -35,6 +37,7 @@ Actor IPOGTrooper
 		IPO1 AABBCCBB 3 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	    IPO1 A 0 A_Jump(48,"Missile2")
 		IPO1 D 4 A_FaceTarget
 		IPO1 D 0 A_PlaySound("ipogtrooper/fire")
@@ -56,6 +59,22 @@ Actor IPOGTrooper
 	Pain:
 		IPO1 F 3
 		IPO1 F 3 A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		IPO1 F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		IPO1 F 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		IPO1 F 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		IPO1 F 30 A_Pain
+		IPO1 F 70
 		Goto See
 	Death:
 	XDeath:

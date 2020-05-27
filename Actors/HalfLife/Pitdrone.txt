@@ -20,6 +20,8 @@ Actor HLPitdrone
 	+NOBLOODDECALS
 	Speed 15
 	Tag "Pit Drone"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -477,6 +479,7 @@ Actor HLPitdrone
 			HL63 L 2 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(220,"MeleeAlt")
 			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 6, "Melee6")
 			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 5, "Melee5")
@@ -595,6 +598,7 @@ Actor HLPitdrone
 			HL08 HIJKLMNO 2		
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 6, "Missile6")
 			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 5, "Missile5")
 			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 4, "Missile4")
@@ -795,6 +799,113 @@ Actor HLPitdrone
 		Pain6:
 			TNT1 A 0 A_Pain
 			HL07 ABCDEFG 2
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 6, "BootPain6")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 5, "BootPain5")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 4, "BootPain4")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 3, "BootPain3")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 2, "BootPain2")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 1, "BootPain1")
+			H300 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			H300 B 2 A_Pain
+			H300 CDEFG 2
+			Goto See
+		BootPain1:
+			HL57 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL57 B 2 A_Pain
+			HL57 CDEFG 2
+			Goto See
+		BootPain2:
+			HL47 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL47 B 2 A_Pain
+			HL47 CDEFG 2
+			Goto See
+		BootPain3:
+			HL37 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL37 B 2 A_Pain
+			HL37 CDEFG 2
+			Goto See
+		BootPain4:
+			HL27 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL27 B 2 A_Pain
+			HL27 CDEFG 2
+			Goto See
+		BootPain5:
+			HL17 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL17 B 2 A_Pain
+			HL17 CDEFG 2
+			Goto See
+		BootPain6:
+			HL07 A 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			HL07 B 2 A_Pain
+			HL07 CDEFG 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 6, "MarathonStun6")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 5, "MarathonStun5")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 4, "MarathonStun4")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 3, "MarathonStun3")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 2, "MarathonStun2")
+			TNT1 A 0 A_JumpIfInventory("HLPitdrone_DummyReload", 1, "MarathonStun1")
+			H300 A 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			H300 B 15 A_Pain
+			H300 CDEFG 15
+			Goto See
+		MarathonStun1:
+			HL57 A 5 A_FaceTarget
+			HL57 A 0 A_Gravity
+			HL57 A 30 A_Pain
+			HL57 A 70
+			HL57 A 0
+			Goto See
+		MarathonStun2:
+			HL47 A 5 A_FaceTarget
+			HL47 A 0 A_Gravity
+			HL47 A 30 A_Pain
+			HL47 A 70
+			HL47 A 0
+			Goto See
+		MarathonStun3:
+			HL37 A 5 A_FaceTarget
+			HL37 A 0 A_Gravity
+			HL37 A 30 A_Pain
+			HL37 A 70
+			HL37 A 0
+			Goto See
+		MarathonStun4:
+			HL27 A 5 A_FaceTarget
+			HL27 A 0 A_Gravity
+			HL27 A 30 A_Pain
+			HL27 A 70
+			HL27 A 0
+			Goto See
+		MarathonStun5:
+			HL17 A 5 A_FaceTarget
+			HL17 A 0 A_Gravity
+			HL17 A 30 A_Pain
+			HL17 A 70
+			HL17 A 0
+			Goto See
+		MarathonStun6:
+			HL07 A 5 A_FaceTarget
+			HL07 A 0 A_Gravity
+			HL07 A 30 A_Pain
+			HL07 A 70
+			HL07 A 0
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		

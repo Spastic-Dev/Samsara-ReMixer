@@ -16,6 +16,8 @@ Actor EradArcher
 	PainSound "skev/ow"
 	DeathSound "skev/die"
 	Obituary "%o was sniped by an archer."	
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -38,6 +40,7 @@ Actor EradArcher
 			_SKE EE 2 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			_SKE FF 6 A_FaceTarget
 			TNT1 A 0 A_PlaySound("erarcher/fire")
 			_SKE G 2 A_CustomMissile("SkeArcherDart",40,0,0,0)
@@ -52,6 +55,22 @@ Actor EradArcher
 		Pain:
 			_SKE H 2 
 			_SKE H 4 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)	
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			_SKE H 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			_SKE H 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			_SKE H 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			_SKE H 30 A_Pain
+			_SKE H 70
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	  		
@@ -72,13 +91,7 @@ Actor EradArcher
 			TNT1 AAAAA 0 A_SpawnItemex("EradBloodDrop",0, 0, 32, random(3.0,5.0),random(3.0,5.0),random(0.0,10.0),random(0.0,360.0), SXF_ABSOLUTEANGLE , 0)
 			TNT1 A 5 A_FadeOut
 			Stop
-		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)	
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			_SKE H 2 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
-			_SKE H 16 A_Pain
-			Goto See						
+		
 		Death.HLLaser:
 		Death.HLExplosive:
 		Death.HLRPGExplosive:	

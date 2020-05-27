@@ -48,6 +48,7 @@ Actor DS_Flying_Droid : DisruptorDroid {
 			DS23 B 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("dsrptflyingd/load",CHAN_VOICE)
 			DS23 DDEEFFGGHH 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("dsrptflyingd/fire",CHAN_WEAPON)
@@ -70,6 +71,25 @@ Actor DS_Flying_Droid : DisruptorDroid {
 			DS23 J 1
 			DS23 J 1 A_Pain
 			DS23 JKKJJ 2
+			Goto LoopMySound
+		Pain.MightyBoot:
+			TNT1 A 0 A_StopSound(CHAN_BODY)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DS23 J 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DS23 J 2 A_Pain
+			DS23 KKJJ 2
+			Goto LoopMySound
+		Pain.MarathonStun:
+			TNT1 A 0 A_StopSound(CHAN_BODY)	
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DS23 J 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DS23 J 30 A_Pain
+			DS23 J 70
 			Goto LoopMySound
 		Death:
 		XDeath:

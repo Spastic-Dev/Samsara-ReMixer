@@ -37,6 +37,7 @@ Actor DisruptorNightmareSpider : DisruptorAlien
 			DISK AABBCCDDEEFFGGHH 2 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("nightmare_spider/att")
 			DISK IIJJKKLLMMNNOOPP 2 A_FaceTarget
 			DISK F 0 A_CustomMeleeAttack(20,"","","Poison")			
@@ -47,6 +48,25 @@ Actor DisruptorNightmareSpider : DisruptorAlien
 			DISK XYYZZ 2
 			DISK [ 2
 			DISK [ 2
+			Goto SeeLoop
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DISK X 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DISK X 2 A_Pain
+			DISK YYZZ 2
+			DISK [ 2
+			DISK [ 2
+			Goto SeeLoop
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DISK X 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DISK X 30 A_Pain
+			DISK X 70
 			Goto SeeLoop
 		Death:
 		XDeath:

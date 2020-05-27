@@ -30,6 +30,7 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			WH_5 AABBCCDDEEFF 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_5 GH 4 A_FaceTarget
 			WH_5 IJ 4 A_FaceTarget
 			WH_5 H 0 A_CustomMeleeAttack(Random(20,30)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -38,6 +39,22 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 		Pain:
 			WH_5 M 4 A_Pain
 			WH_5 M 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			WH_5 M 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			WH_5 M 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WH_5 M 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WH_5 M 30 A_Pain
+			WH_5 M 70
 			Goto See
 		Death:
 		XDeath:
@@ -655,6 +672,7 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			WH_4 AABBCCDDEEFF 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_4 GHI 3 A_FaceTarget
 			WH_4 JKL 3 A_FaceTarget
 			WH_4 H 0 A_CustomMeleeAttack(Random(15,25)/Random(2,1),"ggen/metal_l","ggen/swing4")
@@ -663,6 +681,22 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 		Pain:
 			WH_4 N 4 A_Pain
 			WH_4 N 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			WH_4 N 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			WH_4 N 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WH_4 N 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WH_4 N 30 A_Pain
+			WH_4 N 70
 			Goto See
 		Death:
 		XDeath:
@@ -1307,6 +1341,7 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			WH_6 AABBCCDDEEFF 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_6 GH 4 A_FaceTarget
 			WH_6 IJ 4 A_FaceTarget
 			WH_6 H 0 A_CustomMeleeAttack(25/Random(2,1),"wtflesh/hit","gthrow/swing")
@@ -1315,6 +1350,22 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 		Pain:
 			WH_6 N 4 A_Pain
 			WH_6 N 4
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			WH_6 N 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			WH_6 N 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			WH_6 N 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			WH_6 N 30 A_Pain
+			WH_6 N 70
 			Goto See
 		Death:
 		XDeath:

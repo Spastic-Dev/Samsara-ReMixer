@@ -47,6 +47,7 @@ ACTOR PainElemental64
 			64PN A 3 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			64PN BB 6 A_FaceTarget
 			64PN C 6 BRIGHT A_FaceTarget
 			64PN C 0 BRIGHT A_PainAttack("LostSoul64", 32, 0, 17)
@@ -60,6 +61,22 @@ ACTOR PainElemental64
 			64PN D 0 ThrustThingZ(0, 55, 0, 0)
 			64PN D 6
 			64PN D 6 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64PN D 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			64PN D 16 A_Pain
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			64PN D 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			64PN D 30 A_Pain
+			64PN D 70
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
@@ -78,15 +95,7 @@ ACTOR PainElemental64
 			Goto Pain		
 		Pain.Vodoo:
 			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-			Goto Pain  								
-		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			64PN D 3 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
-			64PN D 16 A_Pain
-			TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
-			Goto See						
+			Goto Pain  														
 		Raise:
 			64PN LKJIHGFE 8
 			Goto See

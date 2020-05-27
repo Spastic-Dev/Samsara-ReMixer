@@ -20,6 +20,8 @@ ACTOR Rottweiler
   DeathSound "qdog/death"
   ActiveSound "qdog/active"
   Obituary "%o was mauled by a Rottweiler"
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -69,6 +71,25 @@ ACTOR Rottweiler
 		DOG6 A 3 A_pain
 		DOG6 BCDEFGHIJKLMNOP 3
 		DOG6 A 0 A_ChangeFlag("NOPAIN", 0)
+		Goto See
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		DOG5 A 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		DOG5 B 3 A_Pain
+		DOG5 CDEF 3
+		DOG5 F 0
+		Goto See
+	  Pain.MarathonStun:
+		DOG5 A 0 A_Stop
+		DOG5 A 0 A_GiveInventory("NothingSpeed")
+		DOG5 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		DOG5 A 5 A_FaceTarget
+		DOG5 A 0 A_Gravity
+		DOG5 A 30 A_Pain
+		DOG5 A 70
+		DOG5 A 0
 		Goto See
 	  Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  

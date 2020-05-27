@@ -23,6 +23,8 @@ Actor MiniRepairDroid
 	+DONTRIP	
 	Obituary "%o's face couldnt be repaired anymore."
 	PainChance "ShrinkerDMG", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -52,12 +54,14 @@ Actor MiniRepairDroid
 		RDRO FF 2 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RDRO AA 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Eleena/RFire",CHAN_WEAPON)		
 		RDRO B 5 A_CustomMissile("RepairDroidMissile",10,0,0,0)
 		RDRO A 5
 		Goto See
-	Melee:	
+	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RDRO G 6 A_FaceTarget
 	G:	
 		TNT1 A 0 A_PlaySound("rdroid/att",CHAN_WEAPON)			
@@ -71,6 +75,24 @@ Actor MiniRepairDroid
 		TNT1 A 0 A_StopSound(CHAN_WEAPON)
 		RDRO J 4 A_Pain
 		RDRO J 4
+		Goto SeeLoop
+	Pain.MightyBoot:
+		TNT1 A 0 A_StopSound(CHAN_WEAPON)	
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)	
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		RDRO J 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RDRO J 16 A_Pain
+		Goto SeeLoop
+	Pain.MarathonStun:
+		TNT1 A 0 A_StopSound(CHAN_WEAPON)
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		RDRO J 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		RDRO J 30 A_Pain
+		RDRO J 70
 		Goto SeeLoop
 	Death:
 	XDeath:	
@@ -89,14 +111,7 @@ Actor MiniRepairDroid
 		TNT1 A 5 A_NoBlocking
 		TNT1 A -1
 		Stop
-	Pain.MightyBoot:
-		TNT1 A 0 A_StopSound(CHAN_WEAPON)	
-		TNT1 A 0 A_ChangeFlag("NOPAIN",1)	
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RDRO J 2 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RDRO J 16 A_Pain
-		Goto See							
+								
 	Death.HLLaser:
 	Death.HLExplosive:
 	Death.HLRPGExplosive:	
@@ -449,6 +464,7 @@ Actor RepairDroid : MiniRepairDroid
 		RDRO RR 2 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RDRO K 3 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Eleena/RFire",CHAN_WEAPON)		
 		RDRO L 4 A_CustomMissile("RepairDroidMissile_2",10,0,0,0)
@@ -460,7 +476,8 @@ Actor RepairDroid : MiniRepairDroid
 		RDRO L 4 A_CustomMissile("RepairDroidMissile_2",10,0,0,0)
 		RDRO K 3		
 		Goto See
-	Melee:	
+	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RDRO T 6 A_FaceTarget
 	G:	
 		TNT1 A 0 A_PlaySound("rdroid/att",CHAN_WEAPON)			
@@ -474,6 +491,24 @@ Actor RepairDroid : MiniRepairDroid
 		TNT1 A 0 A_StopSound(CHAN_WEAPON)
 		RDRO U 4 A_Pain
 		RDRO U 4
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_StopSound(CHAN_WEAPON)	
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)	
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		RDRO U 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RDRO U 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_StopSound(CHAN_WEAPON)
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		RDRO U 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		RDRO U 30 A_Pain
+		RDRO U 70
 		Goto See
 	Death:
 	XDeath:	
@@ -491,15 +526,7 @@ Actor RepairDroid : MiniRepairDroid
         TNT1 AAAAAA 0 A_SpawnItemex("EradBloodDrop",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)
 		TNT1 A 0 A_SpawnITemEx("EradPlasmaExplosion1")
 		TNT1 A 5 A_KillMaster
-		Stop
-	Pain.MightyBoot:
-		TNT1 A 0 A_StopSound(CHAN_WEAPON)	
-		TNT1 A 0 A_ChangeFlag("NOPAIN",1)	
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RDRO U 2 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RDRO U 16 A_Pain
-		Goto See							
+		Stop							
 	Death.DukeIce:
 		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 		"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")

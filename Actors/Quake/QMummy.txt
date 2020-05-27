@@ -34,6 +34,7 @@ ACTOR QMummy : QZombie
 		Loop
 	  Melee:
 	  Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		QMUM Z 0 A_Jump(256, "Missile1", "Missile2", "Missile3")
 	  Missile1:
 		QMU0 C 4 A_facetarget
@@ -75,6 +76,25 @@ ACTOR QMummy : QZombie
 		QMU8 A 3 A_Pain
 		QMU8 BCDEFGHIJKLM 3
 		QMU8 M 0 A_ChangeFlag("NOPAIN", 0)
+		Goto See
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		QMU6 A 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		QMU6 B 3 A_Pain
+		QMU6 CDEFGHIJK 3 
+		QMU6 K 0
+		Goto See
+	  Pain.MarathonStun:
+		QMU6 A 0 A_Stop
+		QMU6 A 0 A_GiveInventory("NothingSpeed")
+		QMU6 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		QMU6 A 5 A_FaceTarget
+		QMU6 A 0 A_Gravity
+		QMU6 A 30 A_Pain
+		QMU6 A 70
+		QMU6 A 0
 		Goto See
 	  Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    

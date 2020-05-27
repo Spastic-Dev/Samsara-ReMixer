@@ -18,6 +18,8 @@ ACTOR QGrunt
   DeathSound "qgrunt/death"
   ActiveSound "qgrunt/active"
   Obituary "%o was shot by a Grunt"
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -37,6 +39,7 @@ ACTOR QGrunt
 		GNT2 ABCDEFGH 4 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN", 0)
 		GNT3 A 6 A_FaceTarget
 		GNT3 BCD 4 A_FaceTarget
 		GNT3 E 3 A_CustomBulletAttack(22.5,0,4,random(2,2)*1,"QuakeBulletPuff",0)
@@ -62,6 +65,25 @@ ACTOR QGrunt
 		GNT6 BCDEFGHIJKLM 4
 		GNT6 M 0 A_ChangeFlag("NOPAIN", 0)
 		Goto see
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		GNT4 A 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		GNT4 B 4 A_Pain
+		GNT4 CDEF 4
+		GNT4 F 0
+		Goto See
+	Pain.MarathonStun:
+		GNT4 A 0 A_Stop
+		GNT4 A 0 A_GiveInventory("NothingSpeed")
+		GNT4 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		GNT4 A 5 A_FaceTarget
+		GNT4 A 0 A_Gravity
+		GNT4 A 30 A_Pain
+		GNT4 A 70
+		GNT4 A 0
+		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)

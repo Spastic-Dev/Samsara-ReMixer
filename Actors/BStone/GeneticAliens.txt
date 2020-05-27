@@ -51,12 +51,14 @@ Actor MutantBrown {
 			BS14 AABBCCDD 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			BS14 E 4 A_FaceTarget
 			TNT1 A 0 A_FaceTarget
 			BS14 F 6 A_PlaySound("podalien/melee")
 			BS14 G 5 A_CustomMeleeAttack(random(4, 16) / Random(1, 2), "", "")
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			BS14 N 5 A_FaceTarget
 			TNT1 A 0 A_FaceTarget
 			BS14 OO 2 A_FaceTarget
@@ -684,12 +686,14 @@ Actor MutantGreen : MutantBrown {
 			BS13 AABBCCDD 3 A_Chase
 			Loop
 		Melee:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			BS13 E 4 A_FaceTarget
 			TNT1 A 0 A_FaceTarget
 			BS13 F 6 A_PlaySound("podalien/melee")
 			BS13 G 5 A_CustomMeleeAttack(random(4, 20) / Random(1, 2), "", "")
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			BS13 N 5 A_FaceTarget
 			TNT1 A 0 A_FaceTarget
 			BS13 OO 2 A_FaceTarget

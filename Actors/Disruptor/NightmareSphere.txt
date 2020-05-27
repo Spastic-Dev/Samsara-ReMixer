@@ -68,6 +68,7 @@ Actor DisruptorNightmareSphere : DisruptorAlien
 			DS24 XX 2 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("nightmare_sphere/att")
 			DS24 YYZZ 2 A_FaceTarget
 			DS25 AA 2 A_FaceTarget		
@@ -78,6 +79,23 @@ Actor DisruptorNightmareSphere : DisruptorAlien
 		Pain:
 			DS25 I 2 A_Pain
 			DS25 JJKKLLMMII 2
+			Goto SeeLoop
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DS25 I 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DS25 J 2 A_Pain
+			DS25 JKKLLMMII 2
+			Goto SeeLoop
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DS25 I 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DS25 I 30 A_Pain
+			DS25 I 70
 			Goto SeeLoop
 		Death:
 		XDeath:

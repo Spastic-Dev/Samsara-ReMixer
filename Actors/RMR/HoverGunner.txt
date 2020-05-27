@@ -37,6 +37,7 @@ actor RMRHoverGunner : RMRDroids
 		RM71 AA 2 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RM71 A 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("RMR/RLGUNSHOT",CHAN_WEAPON)
 		RM71 A 3 Bright A_CustomMissile("RMREnemyBullet_2",24,frandom(-6.00,6.00),frandom(-6.00,6.00))
@@ -47,6 +48,22 @@ actor RMRHoverGunner : RMRDroids
 	Pain:
 		RM71 B 4 A_Pain
 		RM71 B 4 
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		RM71 B 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RM71 B 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		RM71 B 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		RM71 B 30 A_Pain
+		RM71 B 70
 		Goto See
 	Death:
 	XDeath:

@@ -18,6 +18,8 @@ Actor CMDrone
 	ActiveSound "cmdrone/pursue"
 	DeathSound "cmdrone/death" 
 	PainChance "ShrinkerDMG", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	Tag "Drone"
     States
     {
@@ -36,6 +38,7 @@ Actor CMDrone
         C_DR BBB 1 A_Chase
         Loop
     Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	    TNT1 A 0 A_Jump(192,"Missile2")
 	    TNT1 A 0 A_PlaySound("cmdrone/attack")
         C_DR C 3 bright A_FaceTarget

@@ -16,6 +16,8 @@ Actor IPOGHuntress
 	ActiveSound "ipogpriestess/active"
 	Obituary "%o became a Huntress' trophy."
 	Tag "Huntress"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -35,6 +37,7 @@ Actor IPOGHuntress
 		IPOB AABBCCBB 3 A_Chase
 		Loop
 	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	    IPOB E 0 A_Jump(64,"Missile2")
 		IPOB E 2 A_FaceTarget
 		IPOB D 0 A_PlayWeaponSound("ipoghuntress/fire")
@@ -58,6 +61,22 @@ Actor IPOGHuntress
 	Pain:
 		IPOB F 3
 		IPOB F 3 A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		IPOB F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		IPOB F 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		IPOB F 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		IPOB F 30 A_Pain
+		IPOB F 70
 		Goto See
 	Death:
 	XDeath:

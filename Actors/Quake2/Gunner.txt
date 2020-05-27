@@ -12,6 +12,8 @@ Actor Q2Gunner : Q2SoldierBase
 	GibHealth 60
 	DropItem Q2BulletsPickup 192
 	Tag "Strogg Gunner"
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	States
 	{
 	Spawn:
@@ -152,6 +154,24 @@ Actor Q2Gunner : Q2SoldierBase
 		Goto See
 	Pain3:
 		GNR4 RSTUV 6
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		GNR4 R 6 A_FaceTarget
+		GNR4 R 0 A_Recoil(14)
+		GNR4 S 6 A_Pain
+		GNR4 TUV 6
+		Goto See
+	Pain.MarathonStun:
+		GNR4 R 0 A_Stop
+		GNR4 R 0 A_GiveInventory("NothingSpeed")
+		GNR4 R 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		GNR4 R 5 A_FaceTarget
+		GNR4 R 0 A_Gravity
+		GNR4 R 30 A_Pain
+		GNR4 R 70
+		GNR4 R 0
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		

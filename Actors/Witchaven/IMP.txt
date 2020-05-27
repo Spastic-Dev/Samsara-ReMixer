@@ -27,6 +27,7 @@ Actor WitchavenIMP : WitchavenEnemyBaseMelee
 		WH_I AABBCCDDEEFF 3 A_Chase
 		Loop
 	Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		WH_I G 4 A_FaceTarget
 		WH_I H 3 A_FaceTarget
 		WH_I I 5 A_CustomMeleeAttack(8/Random(2,1),"wtskele/melee","","Poison")
@@ -37,6 +38,22 @@ Actor WitchavenIMP : WitchavenEnemyBaseMelee
 	Pain:
 		WH_I M 4 A_Pain
 		WH_I M 4
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		WH_I M 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		WH_I M 16 A_Pain
+		Goto See
+	Pain.MarathonStun:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_GiveInventory("NothingSpeed")
+		TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		WH_I M 5 A_FaceTarget
+		TNT1 A 0 A_Gravity
+		WH_I M 30 A_Pain
+		WH_I M 70
 		Goto See
 	Death:
 	XDeath:

@@ -20,6 +20,8 @@ ACTOR QWrath
   DeathSound "qwrath/death"
   Obituary "%o was disintegrated by a Wrath"
   PainChance "ShrinkerDMG", 0
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -39,6 +41,7 @@ ACTOR QWrath
 		WIZ1 ABCDEFGHIJKL 3 A_Chase
 		Loop
 	  Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		WIZ2 A 0 A_Jump(256,"Missile1","Missile2","Missile3")
 	  Missile1:
 		WIZ2 A 0 A_PLaySound("QWrath/attack")
@@ -70,6 +73,25 @@ ACTOR QWrath
 		WIZ6 A 2 A_pain
 		WIZ6 BCDEFGHIJK 2
 		WIZ6 A 0 A_ChangeFlag("NOPAIN", 0)
+		Goto See
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		WIZ5 A 4 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		WIZ5 B 4 A_Pain
+		WIZ5 CDEF 4
+		WIZ5 F 0
+		Goto See
+	  Pain.MarathonStun:
+		WIZ5 A 0 A_Stop
+		WIZ5 A 0 A_GiveInventory("NothingSpeed")
+		WIZ5 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		WIZ5 A 5 A_FaceTarget
+		WIZ5 A 0 A_Gravity
+		WIZ5 A 30 A_Pain
+		WIZ5 A 70
+		WIZ5 A 0
 		Goto See
 	  Death:
 	  XDeath:

@@ -60,6 +60,7 @@ Actor Nightmare_Demon : DisruptorAlien
 			DISO JJ 2 A_Chase("","",CHF_NOPLAYACTIVE)			
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_JumpIfCloser(30,"MissileSuccess")
 			TNT1 A 0 A_JumpIfCloser(153,"MissileSuccess")
 			TNT1 A 0 A_JumpIfCloser(281,"MissileSuccess")
@@ -76,6 +77,23 @@ Actor Nightmare_Demon : DisruptorAlien
 		Pain:
 			DISO X 2 A_Pain
 			DISO XYYZZYYXX 2 
+			Goto SeeLoop
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DISO X 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DISO X 2 A_Pain
+			DISO YYZZYYXX 2
+			Goto SeeLoop
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DISO X 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DISO X 30 A_Pain
+			DISO X 70
 			Goto SeeLoop
 		Death:
 		XDeath:

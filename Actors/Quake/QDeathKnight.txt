@@ -19,6 +19,8 @@ ACTOR QHKnight
   DeathSound "QHKnight/death"
   ActiveSound "QHKnight/active"
   Obituary "%o was slain by a Death Knight"
+  PainChance "MightyBoot", 255
+  PainChance "MarathonStun", 255
   var int user_scalex;
   var int user_scaley;
   States
@@ -53,6 +55,7 @@ ACTOR QHKnight
 		HKT2 H 0 A_JumpIfCloser(120,"Charge")
 		Loop
 	  Charge:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HKT3 A 0 A_Jump(256,"Charge1","Charge2")
 	  Charge1:
 		HKT4 H 0 A_FaceTarget
@@ -97,6 +100,7 @@ ACTOR QHKnight
 		TNT1 A 0 A_Recoil(-4)
 		Goto see
 	  Melee:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HKT3 A 0 A_Jump(256,"melee1","melee2","melee3")
 	  Melee1:
 		HKT3 A 1 A_PlaySound("Quake/Zthrow")
@@ -163,6 +167,7 @@ ACTOR QHKnight
 		HKT8 V 3 A_FaceTarget
 		Goto see
 	  Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HKT9 A 0 A_Jump(256,"Missile1","Missile2","Missile3")
 	  Missile1:
 		HKT9 ABCDEFG 2 A_FaceTarget 
@@ -206,6 +211,25 @@ ACTOR QHKnight
 		HKT6 CDE 4
 		HKT6 E 0 A_ChangeFlag("NOPAIN", 0)
 		Goto see
+	  Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		HKT6 A 4 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		HKT6 B 4 A_Pain
+		HKT6 CDE 4
+		HKT6 E 0
+		Goto See
+	  Pain.MarathonStun:
+		HKT6 A 0 A_Stop
+		HKT6 A 0 A_GiveInventory("NothingSpeed")
+		HKT6 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+		HKT6 A 5 A_FaceTarget
+		HKT6 A 0 A_Gravity
+		HKT6 A 30 A_Pain
+		HKT6 A 70
+		HKT6 A 0
+		Goto See
 	  Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)

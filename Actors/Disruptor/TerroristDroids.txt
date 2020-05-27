@@ -34,6 +34,7 @@ Actor DisruptorTerroristDroid : DisruptorDroid
 			DIS7 HH 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DIS7 IIJJKKLLM 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("terroristdroid/fire")
 			DIS7 M 2 Bright A_CustomMissile("DisruptorEnergyBall_1_Enemy",32,-10)
@@ -42,6 +43,23 @@ Actor DisruptorTerroristDroid : DisruptorDroid
 		Pain:
 			DIS7 S 2 A_Pain
 			DIS7 STTUUTTSS 2 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DIS7 S 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DIS7 S 2 A_Pain
+			DIS7 TTUUTTSS 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DIS7 S 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DIS7 S 30 A_Pain
+			DIS7 S 70
 			Goto See
 		Death:
 		XDeath:
@@ -327,6 +345,7 @@ Actor DisruptorTerroristDroid2 : DisruptorTerroristDroid
 			DISQ HH 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DISQ IIJJKKLLM 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("terroristdroid/fire")
 			DISQ M 2 Bright A_CustomMissile("DisruptorEnergyBall_1_Enemy_2T",32,-10)
@@ -341,6 +360,23 @@ Actor DisruptorTerroristDroid2 : DisruptorTerroristDroid
 		Pain:
 			DISQ U 2 A_Pain
 			DISQ UVVVUU 2 
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			DISQ U 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			DISQ U 2 A_Pain
+			DISQ VVVUU 2
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			DISQ U 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			DISQ U 30 A_Pain
+			DISQ U 70
 			Goto See
 		Death:
 		XDeath:
