@@ -1,5 +1,6 @@
 #library "MONSTER"
 #include "zcommon.acs"
+#include "commonFuncs.h"
 
 #define KNIFE_ANIM_TICS 2
 #define NET_ANIM_TICS 5
@@ -32,11 +33,6 @@ int ringMonstCount = 0;
 
 int sumofirecount[MAXPLAYERS];
 
-function int abs(int x) {
-	if(x < 0)
-		return -x;
-	return x;
-}
 
 Script 800 (void) {
 	int thisactor = ActivatorTID();
@@ -812,7 +808,7 @@ int ClassWeapons[26][9] =
         "Dragon Claw",
         "Phoenix Rod",
         "Hellstaff",
-        "notapplicable",
+        "DSparilStaff",
     },
 
     {   // B.J.
@@ -899,7 +895,7 @@ int ClassWeapons[26][9] =
 	{	// Caleb
 		"VoodooDoll",
 		"VoodooDoll",
-		"VoodooDoll",
+		"Spraycan",
         "Dynamite",
         "SawedOff",
         "Tommygun",
@@ -1008,9 +1004,9 @@ int ClassWeapons[26][9] =
 		"Spellbook",
 	},
 	{	//Freebutt
-		"notapplicable",
-		"notapplicable",
-		"notapplicable",
+		"HL Squeaks",
+		"HL Crossbow",
+		"HL Squeaks",
 		"Hornetgun",
 		"Assault Shotgun",
 		"MP5",
@@ -1251,4 +1247,37 @@ Script "MonsterProjectilePitch" (int x, int y, int z)
 	int vector2original = sqrt(x*x + y*y);
 	int vector2target = sqrt(currentx*currentx + currenty*currenty);
 	SetResultValue(VectorAngle(vector2target - vector2original, currentz - z));
+}
+Script "Samsara_HLShockRoachPickupCondition" (void)
+{
+	int currentx = GetActorX(0);
+	int currenty = GetActorY(0);
+	int currentz = GetActorZ(0);
+	SetActivatorToTarget(0);
+	int targetx = GetActorX(0);
+	int targety = GetActorY(0);
+	int targetz = GetActorZ(0);
+	int distancex = abs(currentx - targetx)>>16;
+	int distancey = abs(currenty - targety)>>16;
+	int distancez = abs(currentz - targetz)>>16;
+	int distance = magnitudeTwo(distancex, distancey);	
+	
+	if(CheckInventory("IsSamsaraClass") && !CheckInventory("GotWeapon1") && distance < 32 && distancez <= 56)
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+}
+Script "Samsara_HLShockRoachPickup" (void)
+{
+	SetActivatorToTarget(0);
+	for(int a = 0; a < 26; a++)
+	{
+		if(CheckInventory(gameClassesSTR[a]) > 0)
+		{
+			GiveInventory(ClassWeapons[a][3], 1);
+			GiveInventory("GotWeapon1", 1);
+			if(a == 20)
+				ACS_ExecuteAlways(2685,0,11);
+		}	
+	}
 }

@@ -867,13 +867,25 @@ Actor Ass_M40_DummyReload : Inventory { Inventory.Amount 1 Inventory.MaxAmount 5
 
 Actor HL_HECU_M40A1Drop : RandomSpawner
 {
-	DropItem "HL_M40A1clip", 255, 8
-	DropItem "HL_GrenadeAmmo", 255, 8
+	DropItem "HL_M40A1clip", 255, 10
+	DropItem "HL_M40A1", 255, 2
+	DropItem "HL_GrenadeWeapon", 255, 2
+	DropItem "HL_GrenadeWeapon2", 255, 2
+}
+
+ACTOR HL_M40A1 : SamsaraUniquePickup2 {
+	+DROPPED
+	States
+    {
+      Spawn:
+        HL00 A -1
+        stop
+    }
 }
 
 ACTOR HL_M40A1clip : Ammo2Big_1
 {
-	Scale 0.9
+	Scale 0.75
 	+DROPPED
 	States
     {
