@@ -18,12 +18,10 @@ Actor Alligator
 	PainSound ""
 	DeathSound ""
 	ActiveSound "Alligator/See"
-	AttackSound "Alligator/Bite"
 	Dropitem "DefaultPinataPop"
 	Obituary "%o was swallowed whole by an Alligator."
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
-	MeleeDamage 9
     BloodType "LeonardBlood_RR"		
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
@@ -50,7 +48,7 @@ Actor Alligator
 	Melee:
 		A_LJ GGGGHHHHIIIIJJJJ 1 A_FaceTarget
 		A_LJ CCCC 1
-		TNT1 A 0 A_MeleeAttack
+		TNT1 A 0 A_CustomMeleeAttack(random(1,2)*5, "Alligator/Bite", "Alligator/Bite")
 		A_LJ KKKKLLLL 1 A_FaceTarget
 		Goto See
 	Death:

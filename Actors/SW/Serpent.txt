@@ -2071,7 +2071,7 @@ Actor EvilSkull
 		See:
 			RSKP A 1
 			TNT1 A 0 A_JumpIfInTargetInventory("SkullJumpCooldown", 1, "Clear")
-			TNT1 A 0 A_JumpIfInTargetInventory("HasSkull", 1, "Clear")
+			TNT1 A 0 A_JumpIfInTargetInventory("HasSkullSerpent", 1, "Clear")
 			TNT1 A 0 A_JumpIfCloser(288, "Shoot")
 		Goto SpawnLoop
 		Shoot:
@@ -2144,4 +2144,4 @@ Actor EvilSkullProjSerpent : EvilSkullProj
 }
 
 Actor SkullJumpCooldown : PowerProtection {	powerup.duration -2	damagefactor "normal", 1.0 }
-Actor HasSkull : Inventory { inventory.maxamount 32 }
+Actor HasSkullSerpent : Inventory { inventory.maxamount 32 }

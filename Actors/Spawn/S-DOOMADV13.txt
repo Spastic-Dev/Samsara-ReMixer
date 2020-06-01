@@ -71,7 +71,7 @@ ACTOR CacodemonSpawnerCoop replaces Cacodemon
 			Stop			
 		SetRR:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrr")
-			TNT1 A 1 A_SpawnItemEx("TurdUFO",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("RedneckUFO",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetErad:
 			TNT1 A 0 A_Jump(96, "SetErad_2")
@@ -221,7 +221,7 @@ ACTOR CacodemonSpawnerCoop replaces Cacodemon
 			Stop
 		MultiplyRR:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiTurdUFO",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiRedneckUFO",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRR")
 			Stop
 		MultiplyErad1:

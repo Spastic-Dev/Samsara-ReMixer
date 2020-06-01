@@ -1454,7 +1454,7 @@ ACTOR NewDukeGibs6_Colgate : NewDukeGibs6
 	}
 }
 
-ACTOR M2EnforcerDrop : SamsaraSlotSixDrop2
+ACTOR M2EnforcerDrop : SamsaraSlotSixDrop
 {
 	+DROPPED
 	+NOCLIP
@@ -1479,7 +1479,7 @@ ACTOR M2EnforcerDrop : SamsaraSlotSixDrop2
     }
 }
 
-ACTOR M1EnforcerDrop : SamsaraSlotFourDrop2
+ACTOR M1EnforcerDrop : SamsaraSlotFourDrop
 {
 	+DROPPED
 	+NOCLIP
@@ -1493,7 +1493,7 @@ ACTOR M1EnforcerDrop : SamsaraSlotFourDrop2
 			TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"SOPickup")
 			TNT1 A 0 A_JumpIfInventory("HalfLifeClass",1, "CheckHL")
 			TNT1 A 0 A_JumpIfInventory("SWClass",1, "CheckSW")
-			TNT1 A 0 A_GiveInventory("Clip2x5",20)
+			TNT1 A 0 A_GiveInventory("Clip2",20)
 			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 4, 1) & 1) == 1, "PickupSuccess")
 			goto PickupFailure
 		SOPickup:

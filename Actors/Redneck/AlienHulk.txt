@@ -7,9 +7,9 @@ Actor AlienHulk
     height 64
     speed 7
     mass 4500
-    health 800
+    health 1200
     painchance 40
-    meleedamage 7
+    meleedamage 22
     meleerange 65	
     SeeSound "hulk/see"
     ActiveSound "hulk/roam"
@@ -719,7 +719,7 @@ Actor AlienHulklandmine
 		HULM ABCD 3 Bright	
 		loop
     Crash:
-		TNT1 A 0 A_Explode(20-Random(10,0),128)
+		TNT1 A 0 A_Explode(50,128)
 		TNT1 A 0 A_PlaySound("Hulk/Explode")
 		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION___ZA2",0,0,0,0)
 		TNT1 A 5
@@ -762,7 +762,7 @@ Actor AlienHulklandmine2
 		Loop
     Death:	
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_Explode(24-Random(10,0),128)
+		TNT1 A 0 A_Explode(50,128)
 		TNT1 A 0 A_PlaySound("Hulk/Explode")	
 		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION___ZA2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 5
@@ -917,8 +917,8 @@ Actor AlienHulkRevive
     }
 }  
 
-Actor AlienHulkPlasmashot_2_ : AlienHulkPlasmashot { Damage (2*random(1,2)) }
-Actor AlienHulkPlasmashot2_2_ : AlienHulkPlasmashot2 { Damage (1*random(1,2)) }
+Actor AlienHulkPlasmashot_2_ : AlienHulkPlasmashot { Damage (5) }
+Actor AlienHulkPlasmashot2_2_ : AlienHulkPlasmashot2 { Damage (5) }
 
 Actor HulkHead
 {

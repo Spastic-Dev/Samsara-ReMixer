@@ -234,6 +234,16 @@ actor Quake_dogHead : Quake_GIB1
   }
 }
 
+actor Quake_GruntHead : Quake_GIB1
+{
+  States
+  {
+  Death:
+    QD11 B -1 A_Gravity
+    stop
+  }
+}
+
 actor Quake_ShamblerHead : Quake_GIB1
 {
   States
@@ -428,36 +438,6 @@ ACTOR Quake_BloodDrop
 }
 
 ACTOR Quake_BloodDrop2 : Quake_BloodDrop { Speed 2 }
-
-ACTOR Quake_BloodParticle
-{
-  Mass 5
-  +NoClip
-  +NoTeleport
-  +ClientSideOnly
-  Gravity 0.01
-  States
-  {
-  Spawn:
-    BPAR C 0
-    BPAR C 0 A_Jump (256, "shade1", "shade3", "shade5")
-    Shade1:
-    BPAR C 5
-	A:
-	BPAR C 1 A_FadeOut
-    Loop
-    Shade3:
-    BPAR D 5
-	B:
-	BPAR D 1 A_FadeOut
-    Loop
-    Shade5:
-    BPAR E 5
-	C:
-	BPAR E 1 A_FadeOut
-    Loop
-  }
-}
 
 ACTOR Quake_PlasmaDebris
 {

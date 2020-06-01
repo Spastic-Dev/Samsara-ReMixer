@@ -79,7 +79,7 @@ Actor BillyRayJeeter
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BRJT TU 1 A_FaceTarget
 		BRJT VW 0 A_PlayWeaponSound("RR/SGFire")  
-		BRJT X 5 Bright A_CustomBulletAttack(6.6, 3.3, 4, 3, "RRPuff",0,CBAF_NORANDOM)
+		BRJT X 5 Bright A_CustomBulletAttack(30, 30, 1, 6, "RRPuff",0,CBAF_NORANDOM)
 		BRJT Y 12 A_FaceTarget
 		BRJT V 1 A_PlaySound("RR/SGReload")
 		BRJT T 5 A_FaceTarget
@@ -981,7 +981,7 @@ Actor BillyRayBody : BillyRayHead
     }
 }
 
-ACTOR JeeterAmmoDrop : Ammo2Small_1
+ACTOR JeeterAmmoDrop : Ammo2Small
 {
 	Scale 0.3
 	+DROPPED
@@ -1026,7 +1026,7 @@ ACTOR JeeterAmmoDrop : Ammo2Small_1
     }
 }
 
-Actor BillyScatteredGun : SamsaraSlotThreeDrop2 {
+Actor BillyScatteredGun : SamsaraSlotThreeDrop {
 	+DROPPED
 	States
     {

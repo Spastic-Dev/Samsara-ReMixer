@@ -172,27 +172,6 @@ Actor Shooting : Inventory {
 	inventory.maxamount 1
 }
 
-ACTOR MissileTrail {
-	Radius 2
-	Height 2
-	Speed 0
-	Scale 0.65
-	PROJECTILE
-	+NOGRAVITY
-	+RANDOMIZE
-	+CLIENTSIDEONLY
-	States {
-	  Spawn:
-		 TNT1 A 4
-		 MTRL AAAA 1 Bright
-		 Goto Misc		 
-	  Misc:
-		 MTRL BBCCDD 1 Bright A_fadeout
-		 Stop
-   
-	}
-}
-
 actor ash1 {
     radius 10
     height 10

@@ -77,10 +77,10 @@ Actor SWWizard
   Decide:
     TNT1 A 0 A_Jump(128, "Blue")
   Yellow:
-    TNT1 A 0 A_JumpIfInventory("HasSkull", 1, "Blue")
+    TNT1 A 0 A_JumpIfInventory("HasSkullWizard", 1, "Blue")
 	WIZR H 6 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Weapons/FireCircle",CHAN_WEAPON,1.0,0,ATTN_NORM)	
-	TNT1 A 0 A_GiveInventory("HasSkull", 1)
+	TNT1 A 0 A_GiveInventory("HasSkullWizard", 1)
 	WIZR I 6 Bright A_GiveInventory("WizardMagicCircleSpawner", 1)
     Goto See
   Pain:
@@ -1149,10 +1149,10 @@ Actor SWWizardGray : SWWizard
   Decide:
     TNT1 A 0 A_Jump(128, "Blue")
   Yellow:
-    TNT1 A 0 A_JumpIfInventory("HasSkull", 1, "Blue")
+    TNT1 A 0 A_JumpIfInventory("HasSkullWizard", 1, "Blue")
 	WIZ2 H 6 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Weapons/FireCircle",CHAN_WEAPON,1.0,0,ATTN_NORM)			
-	TNT1 A 0 A_GiveInventory("HasSkull", 1)
+	TNT1 A 0 A_GiveInventory("HasSkullWizard", 1)
 	WIZ2 I 6 Bright A_GiveInventory("WizardMagicCircleSpawner", 1)
     Goto See
   Pain:
@@ -1987,10 +1987,10 @@ Actor SWWizardRed : SWWizardGray
   Decide:
     TNT1 A 0 A_Jump(128, "Blue")
   Yellow:
-    TNT1 A 0 A_JumpIfInventory("HasSkull", 1, "Blue")
+    TNT1 A 0 A_JumpIfInventory("HasSkullWizard", 1, "Blue")
 	WIZ3 H 6 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Weapons/FireCircle",CHAN_WEAPON,1.0,0,ATTN_NORM)			
-	TNT1 A 0 A_GiveInventory("HasSkull", 1)
+	TNT1 A 0 A_GiveInventory("HasSkullWizard", 1)
 	WIZ3 I 6 Bright A_GiveInventory("WizardMagicCircleSpawner", 1)
     Goto See
   Pain:
@@ -2737,7 +2737,7 @@ Actor WizardPillarS : WizardPillarM
 }
 
 Actor GuardianFireEnemyStrong : GuardianFireEnemyWeak { Damage (Random(6,12)*Random(2,1)) }
-Actor HasSkull : Inventory { Inventory.MaxAmount 1 }
+Actor HasSkullWizard : Inventory { Inventory.MaxAmount 1 }
 
 Actor WizardMagicCircleSpawner : SWACSTrigger {
 	States {
