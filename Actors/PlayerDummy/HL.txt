@@ -39,6 +39,7 @@ actor HalfLifePlayer2 : HalfLifePlayer replaces HalfLifePlayer {
 			TNT1 A 0 A_JumpIfInventory("freeman_slot2selected",1,"Python_Attack")
 			TNT1 A 0 A_JumpIfInventory("freeman_slot1selected",1,"HornetGun_Attack")
 			TNT1 A 0 A_JumpIfInventory("freeman_fistselected",1,"CrowBar_Attack")
+			TNT1 A 0 A_JumpIfInventory("HalfLifeOpposingForce",1,"Attack_Opp")
 			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(2724) == 1,"Normal_CrouchAttack")					
 			VL11 OPQRST 3
 			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)				
