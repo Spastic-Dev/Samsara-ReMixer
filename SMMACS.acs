@@ -1,5 +1,6 @@
 #library "SMMACS"
 #include "zcommon.acs"
+#include "commonFuncs.h"
 
 #define MAX_GAME_TYPES 26
 
@@ -75,33 +76,7 @@ Script 667 OPEN
 		SetCVar("mm_fakehitlerfire", true);
 		SetCVar("mm_wolffastdeath", false);
 		SetCVar("mm_spawnmode", 0);
-		SetCVar("mm_skilloverride", 5);
-		SetCVar("mm_bandoom", false);
-		SetCVar("mm_banheretic", false);
-		SetCVar("mm_banhexen", false);
-		SetCVar("mm_banchex", false);
-		SetCVar("mm_banwolf3d", false);
-		SetCVar("mm_banduke3d", false);
-		SetCVar("mm_banmarathon", false);
-		SetCVar("mm_banbstone", false);
-		SetCVar("mm_banrott", false);
-		SetCVar("mm_banrr", false);
-		SetCVar("mm_banerad", false);
-		SetCVar("mm_banstrife", false);
-		SetCVar("mm_bandarkf", false);
-		SetCVar("mm_bancm", false);
-		SetCVar("mm_banc7", false);
-		SetCVar("mm_bansw", false);
-		SetCVar("mm_banblood", false);
-		SetCVar("mm_banrmr", false);
-		SetCVar("mm_banps", false);
-		SetCVar("mm_banipog", false);				
-		SetCVar("mm_banwitch", false);
-		SetCVar("mm_bandisrup", false);
-		SetCVar("mm_banquake1", false);
-		SetCVar("mm_bandoom64", false);	
-		SetCVar("mm_banhalflife", false);
-		SetCVar("mm_banquake2", false);		
+		SetCVar("mm_skilloverride", 5);	
 		SetCVar("mm_multiply", 0);
 		SetCVar("mm_newchex", true);
 		SetCVar("mm_pinataparty", false);
@@ -171,7 +146,9 @@ Script 668 (int spawncode, int override)
 			break;
 
 		case 2:
-			Delay(1);
+			If(!IsSinglePlayer())
+				Delay(3);
+				
 			if(GetCvar("mm_spawnmode") == 0 || GetCvar("mm_spawnmode") == 3)
 			{
 				for(int a = 0; a < MAX_GAME_TYPES; a++){
@@ -506,7 +483,7 @@ Script "ClassBasedSpawn_OPEN" Open
 
 	for(int a = 0; a < MAX_GAME_TYPES; a++)
 	{
-		activesets[a] = true;
+		activesets[a] = false;
 	}
 
 	for(int p = 0; p < clients; p++)
@@ -544,7 +521,7 @@ Script "ClassBasedSpawn_RESPAWN" RESPAWN
 
 	for(int a = 0; a < MAX_GAME_TYPES; a++)
 	{
-		activesets[a] = true;
+		activesets[a] = false;
 	}
 
 	for(int p = 0; p < clients; p++)
@@ -582,7 +559,7 @@ Script "ClassBasedSpawn_REOPEN" REOPEN
 
 	for(int a = 0; a < MAX_GAME_TYPES; a++)
 	{
-		activesets[a] = true;
+		activesets[a] = false;
 	}
 
 	for(int p = 0; p < clients; p++)
@@ -658,7 +635,7 @@ Script "ClassBasedSpawn_DISCONNECT" (int players) DISCONNECT
 
 	for(int a = 0; a < MAX_GAME_TYPES; a++)
 	{
-		activesets[a] = true;
+		activesets[a] = false;
 	}
 
 	for(int p = 0; p < clients; p++)
