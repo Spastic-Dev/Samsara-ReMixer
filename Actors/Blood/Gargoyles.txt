@@ -38,9 +38,6 @@ Actor BloodGargoyle
 		BGAR A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		BGAR A 1 ACS_ExecuteAlways(668,0,1,0)
 		BGAR A 0 A_GiveInventory("AlreadySpawned",1)
-		BGAR A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		BGAR A 0 A_Jump(256,2)
-		BGAR A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:	
 		BGAR ABCD 4 A_Look 
 		Loop 

@@ -10,9 +10,6 @@ ACTOR Knight3 : Knight2
 			KNIG A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			KNIG A 1 ACS_ExecuteAlways(668,0,1,0)
 			KNIG A 0 A_GiveInventory("AlreadySpawned",1)
-			KNIG A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			KNIG A 0 A_Jump(256,2)
-			KNIG A 0 A_ChangeFlag("STEALTH",1)
 			KNIG A 0
 			Goto "Super::Spawn"
 		Pain.LifeLeech:
@@ -468,9 +465,6 @@ ACTOR KnightGhost3 : KnightGhost2
 			KNIG A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			KNIG A 1 ACS_ExecuteAlways(668,0,1,0)
 			KNIG A 0 A_GiveInventory("AlreadySpawned",1)
-			KNIG A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			KNIG A 0 A_Jump(256,2)
-			KNIG A 0 A_ChangeFlag("STEALTH",1)
 			KNIG A 0
 			Goto "Super::Spawn"
 		Pain.LifeLeech:

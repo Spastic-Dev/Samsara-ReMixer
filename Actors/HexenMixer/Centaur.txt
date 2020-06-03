@@ -12,9 +12,6 @@ ACTOR Centaur3 : Centaur2
 			CENT A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			CENT A 1 ACS_ExecuteAlways(668,0,1,0)
 			CENT A 0 A_GiveInventory("AlreadySpawned",1)
-			CENT A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			CENT A 0 A_Jump(256,2)
-			CENT A 0 A_ChangeFlag("STEALTH",1)
 			CENT A 0
 			Goto "Super::Spawn"
 		Ice:
@@ -512,9 +509,6 @@ ACTOR CentaurLeader3 : CentaurLeader2
 			CENT A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			CENT A 1 ACS_ExecuteAlways(668,0,1,0)
 			CENT A 0 A_GiveInventory("AlreadySpawned",1)
-			CENT A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			CENT A 0 A_Jump(256,2)
-			CENT A 0 A_ChangeFlag("STEALTH",1)
 			CENT A 0
 			Goto "Super::Spawn"
 		Death:

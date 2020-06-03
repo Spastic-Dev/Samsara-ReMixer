@@ -10,9 +10,6 @@ ACTOR Archvile3 : Archvile2
 			VILE A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			VILE A 1 ACS_ExecuteAlways(668,0,1,0)
 			VILE A 0 A_GiveInventory("AlreadySpawned",1)
-			VILE A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			VILE A 0 A_Jump(256,2)
-			VILE A 0 A_ChangeFlag("STEALTH",1)
 			VILE A 0
 			Goto "Super::Spawn"
 		Pain.ShrinkerDMG:

@@ -29,9 +29,6 @@ ACTOR MonkDeathFire {
 			ALLS A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			ALLS A 1 ACS_ExecuteAlways(668,0,1,0)
 			ALLS A 0 A_GiveInventory("AlreadySpawned",1)
-			ALLS A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			ALLS A 0 A_Jump(256,2)
-			ALLS A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			ALLS A 10 A_Look
 			Loop

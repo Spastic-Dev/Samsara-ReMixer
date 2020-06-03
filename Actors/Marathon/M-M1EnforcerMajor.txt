@@ -41,9 +41,6 @@ ACTOR M1EnforcerMajor
 			1EMA A 1 A_JumpIfInventory("AlreadySpawned",1,2)
 			1EMA A 1 ACS_ExecuteAlways(668,0,1,0)
 			1EMA A 0 A_GiveInventory("AlreadySpawned",1)
-			1EMA A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			1EMA A 0 A_Jump(256,2)
-			1EMA A 0 A_ChangeFlag("STEALTH",1)
 			1EMA A 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
 			1EMA A 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
 			1EMA A 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
@@ -163,16 +160,16 @@ ACTOR M1EnforcerMajor
 			TNT1 A 0 A_GiveInventory("AttackReps",1)
 			Goto MissileNightmare+2
 		MissileEnd:
-			TNT1 A 0 A_TakeInventory("AttackReps",5)
+			TNT1 A 0 A_TakeInventory("AttackReps",7)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			Goto See
 		Pain:
 			1EMA A 1
-			TNT1 A 0 A_TakeInventory("AttackReps",5)
+			TNT1 A 0 A_TakeInventory("AttackReps",7)
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_TakeInventory("AttackReps",5)
+			TNT1 A 0 A_TakeInventory("AttackReps",7)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			1EMA A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -180,7 +177,7 @@ ACTOR M1EnforcerMajor
 			Goto See
 		Pain.MarathonStun:
 			TNT1 A 0 A_Stop
-			TNT1 A 0 A_TakeInventory("AttackReps",8)
+			TNT1 A 0 A_TakeInventory("AttackReps",7)
 			TNT1 A 0 A_GiveInventory("NothingSpeed")
 			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
 			1EMA B 5 A_FaceTarget

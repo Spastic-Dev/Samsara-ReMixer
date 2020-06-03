@@ -29,9 +29,6 @@ ACTOR QGrunt
 		GNT1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		GNT1 A 1 ACS_ExecuteAlways(668,0,1,0)
 		GNT1 A 0 A_GiveInventory("AlreadySpawned",1)
-		GNT1 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		GNT1 A 0 A_Jump(256,2)
-		GNT1 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		GNT1 ABCDEFGH 4 A_Look
 		Loop

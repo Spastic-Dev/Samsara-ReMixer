@@ -25,9 +25,6 @@ Actor Q2Infantry : Q2SoldierBase
 		INF6 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		INF6 A 1 ACS_ExecuteAlways(668,0,1,0)
 		INF6 A 0 A_GiveInventory("AlreadySpawned",1)
-		INF6 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		INF6 A 0 A_Jump(256,2)
-		INF6 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		INF6 ABCDEFGHIJKLMNOPQRSTUV 6 A_Look
 		INF6 V 0 A_Jump(64,1)

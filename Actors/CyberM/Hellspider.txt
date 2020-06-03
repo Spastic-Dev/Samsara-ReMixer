@@ -35,9 +35,6 @@ Actor CMHellspider
 		C_HS B 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		C_HS B 1 ACS_ExecuteAlways(668,0,1,0)
 		C_HS B 0 A_GiveInventory("AlreadySpawned",1)
-		C_HS B 0 A_JumpIfInventory("InvisibleToken",1,2)
-		C_HS B 0 A_Jump(256,2)
-		C_HS B 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		C_HS BB 4 A_Look
 		loop

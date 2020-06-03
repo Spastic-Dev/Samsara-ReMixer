@@ -67,9 +67,6 @@ ACTOR phase3_DF : enemy_base
 			PHA3 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			PHA3 A 1 ACS_ExecuteAlways(668,0,1,0)
 			PHA3 A 0 A_GiveInventory("AlreadySpawned",1)
-			PHA3 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			PHA3 A 0 A_Jump(256,2)
-			PHA3 A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			TNT1 A 0 A_Jump(256,"SpawnLoop")
 			TNT1 A 0 A_PlaySound("phase3/seeZ",CHAN_VOICE,1.0,0,ATTN_NONE)

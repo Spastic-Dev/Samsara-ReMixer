@@ -35,9 +35,6 @@ ACTOR WolfSpectre
 			WSPE A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			WSPE A 1 ACS_ExecuteAlways(668,0,1,0)
 			WSPE A 0 A_GiveInventory("AlreadySpawned",1)
-			WSPE A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WSPE A 0 A_Jump(256,2)
-			WSPE A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			WSPE ABCD 5 A_Look
 			loop

@@ -69,9 +69,6 @@ Actor Tchernobog
 		TCHR D 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		TCHR D 1 ACS_ExecuteAlways(668,0,1,0)
 		TCHR D 0 A_GiveInventory("AlreadySpawned",1)
-		TCHR D 0 A_JumpIfInventory("InvisibleToken",1,2)
-		TCHR D 0 A_Jump(256,2)
-		TCHR D 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:	
 		TNT1 A 0 A_Jump(256,"SpawnLoop")
 		TNT1 A 0 A_PlaySound("Tchernobog/Wait",CHAN_VOICE,1.0,0,ATTN_NONE)

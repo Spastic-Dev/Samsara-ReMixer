@@ -17,9 +17,6 @@ ACTOR MageBoss3 : MageBoss2
 		MAGE A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 		MAGE A 1 ACS_ExecuteAlways(668,0,1,0)
 		MAGE A 0 A_GiveInventory("AlreadySpawned",1)
-		MAGE A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		MAGE A 0 A_Jump(256,2)
-		MAGE A 0 A_ChangeFlag("STEALTH",1)
 		MAGE A 0
 		Goto "Super::Spawn"
 	Spawn:

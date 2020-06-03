@@ -48,9 +48,6 @@ ACTOR M1HunterMajor
 			M_HY U 1 A_JumpIfInventory("AlreadySpawned",1,2)
 			M_HY U 1 ACS_ExecuteAlways(668,0,1,0)
 			M_HY U 0 A_GiveInventory("AlreadySpawned",1)
-			M_HY U 0 A_JumpIfInventory("InvisibleToken",1,2)
-			M_HY U 0 A_Jump(256,2)
-			M_HY U 0 A_ChangeFlag("STEALTH",1)
 			M_HY U 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
 			M_HY U 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
 			M_HY U 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
@@ -188,6 +185,7 @@ ACTOR M1HunterMajor
 			Goto See
 		Pain.MarathonStun:
 			TNT1 A 0 A_Stop
+			TNT1 A 0 A_TakeInventory("AttackReps",6)
 			TNT1 A 0 A_GiveInventory("NothingSpeed")
 			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
 			M_HY R 5 A_FaceTarget

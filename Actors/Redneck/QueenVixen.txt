@@ -74,9 +74,6 @@ Actor QueenVixen
 		VIX7 E 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		VIX7 E 1 ACS_ExecuteAlways(668,0,1,0)
 		VIX7 E 0 A_GiveInventory("AlreadySpawned",1)
-		VIX7 E 0 A_JumpIfInventory("InvisibleToken",1,2)
-		VIX7 E 0 A_Jump(256,2)
-		VIX7 E 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		TNT1 A 0 A_Jump(256,"STOPFROMTALKING")
 		TNT1 A 0 A_PlaySound("Vixen/Queen",CHAN_VOICE,1.0,0,ATTN_NONE)

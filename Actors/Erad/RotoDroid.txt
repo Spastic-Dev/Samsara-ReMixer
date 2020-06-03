@@ -33,9 +33,6 @@ ACTOR RotoDroid
 		RO_D E 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		RO_D E 1 ACS_ExecuteAlways(668,0,1,0)
 		RO_D E 0 A_GiveInventory("AlreadySpawned",1)
-		RO_D E 0 A_JumpIfInventory("InvisibleToken",1,2)
-		RO_D E 0 A_Jump(256,2)
-		RO_D E 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		RO_D E 5 A_Look
 		Loop

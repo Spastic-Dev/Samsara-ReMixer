@@ -29,9 +29,6 @@ ACTOR gran___DF : enemy_base
 			GRAN R 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			GRAN R 1 ACS_ExecuteAlways(668,0,1,0)
 			GRAN R 0 A_GiveInventory("AlreadySpawned",1)
-			GRAN R 0 A_JumpIfInventory("InvisibleToken",1,2)
-			GRAN R 0 A_Jump(256,2)
-			GRAN R 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			GRAN R 5 A_Look
 			Loop

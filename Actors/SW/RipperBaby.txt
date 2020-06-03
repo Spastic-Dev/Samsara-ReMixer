@@ -35,9 +35,6 @@ Actor SWRipperBaby
 	RIPB A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 	RIPB A 1 ACS_ExecuteAlways(668,0,1,0)
 	RIPB A 0 A_GiveInventory("AlreadySpawned",1)
-	RIPB A 0 A_JumpIfInventory("InvisibleToken",1,2)
-	RIPB A 0 A_Jump(256,2)
-	RIPB A 0 A_ChangeFlag("STEALTH",1)
   Spawn2:
     RIPB A 5 A_Look
     Loop
@@ -826,9 +823,6 @@ Actor SWRipperBabyBig : SWRipperBaby
 	RI2B A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 	RI2B A 1 ACS_ExecuteAlways(668,0,1,0)
 	RI2B A 0 A_GiveInventory("AlreadySpawned",1)
-	RI2B A 0 A_JumpIfInventory("InvisibleToken",1,2)
-	RI2B A 0 A_Jump(256,2)
-	RI2B A 0 A_ChangeFlag("STEALTH",1)
   Spawn2:
     RI2B A 5 A_Look
     Loop

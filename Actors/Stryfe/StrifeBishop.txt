@@ -15,9 +15,6 @@ Actor NewStrifeBishop : StrifeBishop2
 			MLDR A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			MLDR A 1 ACS_ExecuteAlways(668,0,1,0)
 			MLDR A 0 A_GiveInventory("AlreadySpawned",1)
-			MLDR A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MLDR A 0 A_Jump(256,2)
-			MLDR A 0 A_ChangeFlag("STEALTH",1)
 			Goto "Super::Spawn"
 		Missile:
 			MLDR E 3 A_FaceTarget
