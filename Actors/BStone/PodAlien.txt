@@ -41,9 +41,6 @@ Actor PodAlien {
 			BSE7 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnMain")
 			BSE7 A 1 ACS_ExecuteAlways(668,0,1,0)
 			BSE7 A 0 A_GiveInventory("AlreadySpawned",1)
-			BSE7 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			BSE7 A 0 A_Jump(256,2)
-			BSE7 A 0 A_ChangeFlag("STEALTH",1)
 		SpawnMain:
 			TNT1 A 0 A_JumpIfInventory("NeverHatch",1,"SpawnNormalLoop")
 			TNT1 A 0 A_JumpIfInventory("Hatched",1,"SpawnNormalLoop")			

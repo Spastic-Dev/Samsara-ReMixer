@@ -62,9 +62,6 @@ Actor StrifeEntity : EntityBoss
 			MNAL A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			MNAL A 1 ACS_ExecuteAlways(668,0,1,0)
 			MNAL A 0 A_GiveInventory("AlreadySpawned",1)
-			MNAL A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MNAL A 0 A_Jump(256,2)
-			MNAL A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			TNT1 A 0 A_Jump(256,"SpawnLoop")
 			TNT1 A 0 A_PlaySound("entity/threat",CHAN_VOICE,1.0,0,ATTN_NONE)
@@ -394,9 +391,6 @@ Actor StrifeSubEntity : EntitySecond
 			MNAL R 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			MNAL R 1 ACS_ExecuteAlways(668,0,1,0)
 			MNAL R 0 A_GiveInventory("AlreadySpawned",1)
-			MNAL R 0 A_JumpIfInventory("InvisibleToken",1,2)
-			MNAL R 0 A_Jump(256,2)
-			MNAL R 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			TNT1 A 0 A_JumpIfInventory("SubEntitySpawned",1,"SpawnLoop")
 			TNT1 A 1

@@ -72,9 +72,6 @@ Actor Kilmaatikahn
 		KBOS I 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		KBOS I 1 ACS_ExecuteAlways(668,0,1,0)
 		KBOS I 0 A_GiveInventory("AlreadySpawned",1)
-		KBOS I 0 A_JumpIfInventory("InvisibleToken",1,2)
-		KBOS I 0 A_Jump(256,2)
-		KBOS I 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		TNT1 A 0 A_JumpIfHealthLower(2500, "Spawn_TailLess")	
 		KBOS I 5 A_Look
@@ -1016,9 +1013,6 @@ Actor KilmaatMouthMinion
 		KBS2 H 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		KBS2 H 1 ACS_ExecuteAlways(668,0,1,0)
 		KBS2 H 0 A_GiveInventory("AlreadySpawned",1)
-		KBS2 H 0 A_JumpIfInventory("InvisibleToken",1,2)
-		KBS2 H 0 A_Jump(256,2)
-		KBS2 H 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		KBS2 H 5 A_Look
 		loop
@@ -1302,9 +1296,6 @@ ACTOR KilmaatikahnWaspEggSpawner
 		KBS2 J 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		KBS2 J 1 ACS_ExecuteAlways(668,0,1,0)
 		KBS2 J 0 A_GiveInventory("AlreadySpawned",1)
-		KBS2 J 0 A_JumpIfInventory("InvisibleToken",1,2)
-		KBS2 J 0 A_Jump(256,2)
-		KBS2 J 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		KBS2 B 100
 		TNT1 A 0 A_Jump(60,"Hatch")		
@@ -1749,9 +1740,6 @@ Actor kilmaatikahn2
 		KBOS W 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		KBOS W 1 ACS_ExecuteAlways(668,0,1,0)
 		KBOS W 0 A_GiveInventory("AlreadySpawned",1)
-		KBOS W 0 A_JumpIfInventory("InvisibleToken",1,2)
-		KBOS W 0 A_Jump(256,2)
-		KBOS W 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		KBOS W 0
 		KBOS W 1 A_JumpIfInventory("KilmaatSpawnstatecheck",1,7)

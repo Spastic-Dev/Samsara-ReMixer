@@ -85,6 +85,7 @@ Script 667 OPEN
 		SetCVar("mm_invisiblemode", false);
 		SetCVar("mm_nobats", true);
 		SetCVar("mm_specpermdeath", true);
+		SetCVar("mm_maratele", true);
 		
 		SetCVar("mm_init", true);
 		
@@ -400,6 +401,15 @@ Script 671 (void)
 	checkskill = ACS_ExecuteWithResult (680, 3);
 
 	SetActorState(0,skill[checkskill],true);
+}
+
+Script "MarathonTeleport" (void)
+{
+	if(GetCVar("mm_maratele") == 1)
+	{
+		GiveInventory("TeleportIn", 1);
+	}
+	else { terminate; }
 }
 
 /*Script 672 (void)

@@ -30,9 +30,6 @@ Actor GangerMale
 		C_GM A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		C_GM A 1 ACS_ExecuteAlways(668,0,1,0)
 		C_GM A 0 A_GiveInventory("AlreadySpawned",1)
-		C_GM A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		C_GM A 0 A_Jump(256,2)
-		C_GM A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
         C_GM C 10 A_Look
         Loop
@@ -681,9 +678,6 @@ Actor GangerFemale
 		C_GF C 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		C_GF C 1 ACS_ExecuteAlways(668,0,1,0)
 		C_GF C 0 A_GiveInventory("AlreadySpawned",1)
-		C_GF C 0 A_JumpIfInventory("InvisibleToken",1,2)
-		C_GF C 0 A_Jump(256,2)
-		C_GF C 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
         C_GF C 10 A_Look
         Loop

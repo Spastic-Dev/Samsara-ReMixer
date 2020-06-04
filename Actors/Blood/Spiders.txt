@@ -37,9 +37,6 @@ Actor MotherSpider
 		SPDW A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		SPDW A 1 ACS_ExecuteAlways(668,0,1,0)
 		SPDW A 0 A_GiveInventory("AlreadySpawned",1)
-		SPDW A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		SPDW A 0 A_Jump(256,2)
-		SPDW A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:	
 		SPDW A 10 A_Look
 		Loop
@@ -747,9 +744,6 @@ Actor BloodSpider1
 		BL74 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		BL74 A 1 ACS_ExecuteAlways(668,0,1,0)
 		BL74 A 0 A_GiveInventory("AlreadySpawned",1)
-		BL74 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		BL74 A 0 A_Jump(256,2)
-		BL74 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:	
 		BL74 A 5 A_Look
 		Loop
@@ -1140,9 +1134,6 @@ Actor BloodSpider2 : BloodSpider1
 		BL76 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		BL76 A 1 ACS_ExecuteAlways(668,0,1,0)
 		BL76 A 0 A_GiveInventory("AlreadySpawned",1)
-		BL76 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		BL76 A 0 A_Jump(256,2)
-		BL76 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:	
 		BL76 A 5 A_Look
 		Loop

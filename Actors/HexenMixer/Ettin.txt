@@ -10,9 +10,6 @@ ACTOR Ettin3 : Ettin2
 			ETTN A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			ETTN A 1 ACS_ExecuteAlways(668,0,1,0)
 			ETTN A 0 A_GiveInventory("AlreadySpawned",1)
-			ETTN A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			ETTN A 0 A_Jump(256,2)
-			ETTN A 0 A_ChangeFlag("STEALTH",1)
 			ETTN A 0
 			Goto "Super::Spawn"
 		Pain.LifeLeech:

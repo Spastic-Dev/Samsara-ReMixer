@@ -11,9 +11,6 @@ Actor StrifeReaver : Reaver2
 			ROB1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			ROB1 A 1 ACS_ExecuteAlways(668,0,1,0)
 			ROB1 A 0 A_GiveInventory("AlreadySpawned",1)
-			ROB1 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			ROB1 A 0 A_Jump(256,2)
-			ROB1 A 0 A_ChangeFlag("STEALTH",1)
 			Goto "Super::Spawn"	
 		Crush:
 			ROB1 R -1

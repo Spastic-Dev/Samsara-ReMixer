@@ -31,9 +31,6 @@ Actor Bastet
 		BAST A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		BAST A 1 ACS_ExecuteAlways(668,0,1,0)
 		BAST A 0 A_GiveInventory("AlreadySpawned",1)
-		BAST A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		BAST A 0 A_Jump(256,2)
-		BAST A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		BAST A 0 A_JumpIfInventory("BastetInTeleport",1,"TeleBack")
 		BAST A 0 A_GiveInventory("Bastetnoriseup",1)

@@ -27,9 +27,6 @@ ACTOR LSD
 		LSD1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		LSD1 A 1 ACS_ExecuteAlways(668,0,1,0)
 		LSD1 A 0 A_GiveInventory("AlreadySpawned",1)
-		LSD1 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		LSD1 A 0 A_Jump(256,2)
-		LSD1 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		TNT1 A 0
 		TNT1 A 0 A_StopSound(CHAN_BODY)

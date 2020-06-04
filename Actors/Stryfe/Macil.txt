@@ -38,9 +38,6 @@ Actor NewMacil
 			LEAD A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			LEAD A 1 ACS_ExecuteAlways(668,0,1,0)
 			LEAD A 0 A_GiveInventory("AlreadySpawned",1)
-			LEAD A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			LEAD A 0 A_Jump(256,2)
-			LEAD A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			LEAD A 1 A_Look
 			loop	

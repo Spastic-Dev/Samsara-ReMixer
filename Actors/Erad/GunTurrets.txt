@@ -33,9 +33,6 @@ Actor GunTurret1
 			GTUR A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			GTUR A 1 ACS_ExecuteAlways(668,0,1,0)
 			GTUR A 0 A_GiveInventory("AlreadySpawned",1)
-			GTUR A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			GTUR A 0 A_Jump(256,2)
-			GTUR A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			GTUR A 5 A_Look
 			Loop
@@ -257,9 +254,6 @@ Actor GunTurret2 : GunTurret1
 			GTUR D 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			GTUR D 1 ACS_ExecuteAlways(668,0,1,0)
 			GTUR D 0 A_GiveInventory("AlreadySpawned",1)
-			GTUR D 0 A_JumpIfInventory("InvisibleToken",1,2)
-			GTUR D 0 A_Jump(256,2)
-			GTUR D 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			GTUR D 5 A_Look
 			Loop

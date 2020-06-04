@@ -75,9 +75,6 @@ ACTOR BigJackelope
 		J2_M O 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		J2_M O 1 ACS_ExecuteAlways(668,0,1,0)
 		J2_M O 0 A_GiveInventory("AlreadySpawned",1)
-		J2_M O 0 A_JumpIfInventory("InvisibleToken",1,2)
-		J2_M O 0 A_Jump(256,2)
-		J2_M O 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		J2_M O 5 A_Look
 		Loop

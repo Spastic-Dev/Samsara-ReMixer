@@ -30,9 +30,6 @@ ACTOR CopterPatrol {
 		R_C1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		R_C1 A 1 ACS_ExecuteAlways(668,0,1,0)
 		R_C1 A 0 A_GiveInventory("AlreadySpawned",1)
-		R_C1 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		R_C1 A 0 A_Jump(256,2)
-		R_C1 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		R_C1 AB 8 A_Look
 		Loop
@@ -292,9 +289,6 @@ ACTOR CopterPatrol2 {
 		R_C2 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		R_C2 A 1 ACS_ExecuteAlways(668,0,1,0)
 		R_C2 A 0 A_GiveInventory("AlreadySpawned",1)
-		R_C2 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		R_C2 A 0 A_Jump(256,2)
-		R_C2 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		R_C2 AB 8 A_Look
 		Loop

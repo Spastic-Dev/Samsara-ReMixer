@@ -60,9 +60,6 @@ Actor HECU_Apache {
 			HL00 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			HL00 A 1 ACS_ExecuteAlways(668,0,1,0)
 			HL00 A 0 A_GiveInventory("AlreadySpawned",1)
-			HL00 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			HL00 A 0 A_Jump(256,2)
-			HL00 A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			HL00 ABCD 4 A_Look
 			HL00 EF 1 A_Look

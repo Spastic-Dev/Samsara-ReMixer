@@ -41,9 +41,6 @@ Actor AlienHulk
 		HULK A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		HULK A 1 ACS_ExecuteAlways(668,0,1,0)
 		HULK A 0 A_GiveInventory("AlreadySpawned",1)
-		HULK A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		HULK A 0 A_Jump(256,2)
-		HULK A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		HULK A 4 A_Look
 		loop

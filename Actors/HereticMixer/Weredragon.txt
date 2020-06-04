@@ -11,9 +11,6 @@ ACTOR Beast3 : Beast2
 			BEAS A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			BEAS A 1 ACS_ExecuteAlways(668,0,1,0)
 			BEAS A 0 A_GiveInventory("AlreadySpawned",1)
-			BEAS A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			BEAS A 0 A_Jump(256,2)
-			BEAS A 0 A_ChangeFlag("STEALTH",1)
 			BEAS A 0
 			Goto "Super::Spawn"
 		Death:

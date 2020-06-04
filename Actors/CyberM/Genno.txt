@@ -30,9 +30,6 @@ Actor CMGenno
 	  C_GE G 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 	  C_GE G 1 ACS_ExecuteAlways(668,0,1,0)
 	  C_GE G 0 A_GiveInventory("AlreadySpawned",1)
-	  C_GE G 0 A_JumpIfInventory("InvisibleToken",1,2)
-	  C_GE G 0 A_Jump(256,2)
-	  C_GE G 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
       C_GE G 10 A_Look 
       Loop 

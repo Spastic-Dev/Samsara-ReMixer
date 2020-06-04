@@ -11,9 +11,6 @@ ACTOR HellKnight3 : HellKnight2
 			BOS2 A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			BOS2 A 1 ACS_ExecuteAlways(668,0,1,0)
 			BOS2 A 0 A_GiveInventory("AlreadySpawned",1)
-			BOS2 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			BOS2 A 0 A_Jump(256,2)
-			BOS2 A 0 A_ChangeFlag("STEALTH",1)
 			BOS2 A 0
 			Goto "Super::Spawn"
 		Pain.ShrinkerDMG:
@@ -310,9 +307,6 @@ ACTOR BaronOfHell3 : BaronOfHell2
 			BOSS A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			BOSS A 1 ACS_ExecuteAlways(668,0,1,0)
 			BOSS A 0 A_GiveInventory("AlreadySpawned",1)
-			BOSS A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			BOSS A 0 A_Jump(256,2)
-			BOSS A 0 A_ChangeFlag("STEALTH",1)
 			BOSS A 0
 			Goto "Super::Spawn"	
 		Death.DukeExplosive:
