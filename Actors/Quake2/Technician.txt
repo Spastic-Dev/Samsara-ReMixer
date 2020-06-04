@@ -27,9 +27,6 @@ Actor Q2Technician : Q2SoldierBase
 		TEK0 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		TEK0 A 1 ACS_ExecuteAlways(668,0,1,0)
 		TEK0 A 0 A_GiveInventory("AlreadySpawned",1)
-		TEK0 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		TEK0 A 0 A_Jump(256,2)
-		TEK0 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		TEK0 A 0 A_PlaySound("Technician/Float",CHAN_BODY,0.5,1)
 		TEK0 A 6 A_LookEx(0,0,0,0,0,1)

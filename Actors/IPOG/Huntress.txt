@@ -27,9 +27,6 @@ Actor IPOGHuntress
 		IPOB B 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		IPOB B 1 ACS_ExecuteAlways(668,0,1,0)
 		IPOB B 0 A_GiveInventory("AlreadySpawned",1)
-		IPOB B 0 A_JumpIfInventory("InvisibleToken",1,2)
-		IPOB B 0 A_Jump(256,2)
-		IPOB B 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		IPOB B 5 A_Look
 		Loop

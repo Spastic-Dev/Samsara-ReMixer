@@ -11,9 +11,6 @@ ACTOR PainElemental3 : PainElemental2
 			PAIN A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			PAIN A 1 ACS_ExecuteAlways(668,0,1,0)
 			PAIN A 0 A_GiveInventory("AlreadySpawned",1)
-			PAIN A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			PAIN A 0 A_Jump(256,2)
-			PAIN A 0 A_ChangeFlag("STEALTH",1)
 			PAIN A 0
 			Goto "Super::Spawn"	
 		Missile:

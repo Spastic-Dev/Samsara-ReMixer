@@ -11,9 +11,6 @@ ACTOR Wraith3 : Wraith2
 			WRTH A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			WRTH A 1 ACS_ExecuteAlways(668,0,1,0)
 			WRTH A 0 A_GiveInventory("AlreadySpawned",1)
-			WRTH A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WRTH A 0 A_Jump(256,2)
-			WRTH A 0 A_ChangeFlag("STEALTH",1)
 			WRTH A 0
 			Goto "Super::Spawn"
 		Death.ZorchPistol:
@@ -447,9 +444,6 @@ ACTOR WraithBuried3 : WraithBuried2
 			WRTH A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			WRTH A 1 ACS_ExecuteAlways(668,0,1,0)
 			WRTH A 0 A_GiveInventory("AlreadySpawned",1)
-			WRTH A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WRTH A 0 A_Jump(256,2)
-			WRTH A 0 A_ChangeFlag("STEALTH",1)
 			WRTH A 0
 			Goto "Super::Spawn"
 		Death.ZorchPistol:

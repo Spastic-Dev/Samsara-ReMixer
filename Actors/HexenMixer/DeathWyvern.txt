@@ -20,9 +20,6 @@ ACTOR Dragon3 : Dragon2
 			DRAG A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			DRAG A 1 ACS_ExecuteAlways(668,0,1,0)
 			DRAG A 0 A_GiveInventory("AlreadySpawned",1)
-			DRAG A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			DRAG A 0 A_Jump(256,2)
-			DRAG A 0 A_ChangeFlag("STEALTH",1)
 			DRAG A 0
 			Goto "Super::Spawn"
 		Idle:

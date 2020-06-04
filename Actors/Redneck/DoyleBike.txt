@@ -43,9 +43,6 @@ Actor DoyleBike
 		_DLK A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		_DLK A 1 ACS_ExecuteAlways(668,0,1,0)
 		_DLK A 0 A_GiveInventory("AlreadySpawned",1)
-		_DLK A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		_DLK A 0 A_Jump(256,2)
-		_DLK A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		TNT1 A 0 A_StopSound(CHAN_BODY)		
 		DLK_ ABCD 4 A_Look
@@ -466,9 +463,6 @@ Actor DoyleBike_Green : DoyleBike {
 		_DX5 E 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		_DX5 E 1 ACS_ExecuteAlways(668,0,1,0)
 		_DX5 E 0 A_GiveInventory("AlreadySpawned",1)
-		_DX5 E 0 A_JumpIfInventory("InvisibleToken",1,2)
-		_DX5 E 0 A_Jump(256,2)
-		_DX5 E 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		TNT1 A 0 A_StopSound(CHAN_BODY)		
 		_DX5 EFGH 4 A_Look

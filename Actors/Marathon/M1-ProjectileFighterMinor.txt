@@ -43,9 +43,6 @@ ACTOR M1ProjectileFighterMinor
 			M_H6 M 1 A_JumpIfInventory("AlreadySpawned",1,2)
 			M_H6 M 1 ACS_ExecuteAlways(668,0,1,0)
 			M_H6 M 0 A_GiveInventory("AlreadySpawned",1)
-			M_H6 M 0 A_JumpIfInventory("InvisibleToken",1,2)
-			M_H6 M 0 A_Jump(256,2)
-			M_H6 M 0 A_ChangeFlag("STEALTH",1)
 			M_H6 M 0 A_JumpIfInventory("DifficultyToken",4,"SpawnNightmare")
 			M_H6 M 0 A_JumpIfInventory("DifficultyToken",3,"SpawnUV")
 			M_H6 M 0 A_JumpIfInventory("DifficultyToken",2,"SpawnHMP")
@@ -216,6 +213,15 @@ ACTOR M1ProjectileFighterMinor
 			M_H6 N 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			M_H6 N 16
+			Goto See
+		Pain.MarathonStun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("NothingSpeed")
+			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			M_H6 N 5 A_FaceTarget
+			TNT1 A 0 A_Gravity
+			M_H6 N 30 A_Pain
+			M_H6 N 70
 			Goto See
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))

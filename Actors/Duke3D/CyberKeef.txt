@@ -70,9 +70,6 @@ ACTOR CyberKeef
 			CKEF B 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			CKEF B 1 ACS_ExecuteAlways(668,0,1,0)
 			CKEF A 0 A_GiveInventory("AlreadySpawned",1)
-			CKEF A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			CKEF A 0 A_Jump(256,2)
-			CKEF A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			CKEF B 10 A_Look
 			Loop

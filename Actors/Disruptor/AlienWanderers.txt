@@ -19,9 +19,6 @@ Actor AlienWanderer_T1 : DisruptorAlien {
 			DISE A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			DISE A 1 ACS_ExecuteAlways(668,0,1,0)
 			DISE A 0 A_GiveInventory("AlreadySpawned",1)
-			DISE A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			DISE A 0 A_Jump(256,2)
-			DISE A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			DISE AA 2 A_Look
 			DISE BB 2 A_Look
@@ -324,9 +321,6 @@ Actor AlienWanderer_T2 : AlienWanderer_T1 {
 			DISF A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			DISF A 1 ACS_ExecuteAlways(668,0,1,0)
 			DISF A 0 A_GiveInventory("AlreadySpawned",1)
-			DISF A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			DISF A 0 A_Jump(256,2)
-			DISF A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			DISF AA 2 A_Look
 			DISF BB 2 A_Look

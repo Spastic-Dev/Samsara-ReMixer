@@ -34,9 +34,6 @@ Actor Q2Makron : Q2SoldierBase
 		JRG0 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		JRG0 A 1 ACS_ExecuteAlways(668,0,1,0)
 		JRG0 A 0 A_GiveInventory("AlreadySpawned",1)
-		JRG0 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		JRG0 A 0 A_Jump(256,2)
-		JRG0 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		JRG0 A 0 A_Jump(192,2)
 		TNT1 A 0 A_PlaySound("Makron/Active",CHAN_VOICE)
@@ -430,9 +427,6 @@ Actor Q2Jorg : Q2Makron
 		JRG0 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		JRG0 A 1 ACS_ExecuteAlways(668,0,1,0)
 		JRG0 A 0 A_GiveInventory("AlreadySpawned",1)
-		JRG0 A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		JRG0 A 0 A_Jump(256,2)
-		JRG0 A 0 A_ChangeFlag("STEALTH",1)
 	Spawn2:
 		JRG4 A 0 A_JumpIfInventory(Cell,1,"Eject",AAPTR_MASTER)
 		JRG4 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[]" 6 A_Look

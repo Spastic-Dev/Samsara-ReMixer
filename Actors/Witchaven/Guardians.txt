@@ -22,9 +22,6 @@ Actor Witchaven1Guardian : WitchavenEnemyBaseRanged {
 			WH_G A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
 			WH_G A 1 ACS_ExecuteAlways(668,0,1,0)
 			WH_G A 0 A_GiveInventory("AlreadySpawned",1)
-			WH_G A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WH_G A 0 A_Jump(256,2)
-			WH_G A 0 A_ChangeFlag("STEALTH",1)
 		SpawnStandard:
 			WH_G A 5 A_Look
 			Loop
@@ -327,9 +324,6 @@ Actor Witchaven2Guardian : WitchavenEnemyBaseRanged {
 			WH_J G 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
 			WH_J G 1 ACS_ExecuteAlways(668,0,1,0)
 			WH_J G 0 A_GiveInventory("AlreadySpawned",1)
-			WH_J G 0 A_JumpIfInventory("InvisibleToken",1,2)
-			WH_J G 0 A_Jump(256,2)
-			WH_J G 0 A_ChangeFlag("STEALTH",1)
 		SpawnStandard:
 			WH_J G 1 A_Look
 			Loop

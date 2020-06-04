@@ -9,9 +9,6 @@ ACTOR Revenant3 : Revenant2
 			SKEL A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			SKEL A 1 ACS_ExecuteAlways(668,0,1,0)
 			SKEL A 0 A_GiveInventory("AlreadySpawned",1)
-			SKEL A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			SKEL A 0 A_Jump(256,2)
-			SKEL A 0 A_ChangeFlag("STEALTH",1)
 			SKEL A 0
 			Goto "Super::Spawn"
 		Pain.ShrinkerDMG:

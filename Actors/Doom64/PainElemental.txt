@@ -36,9 +36,6 @@ ACTOR PainElemental64
 			64PN A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			64PN A 1 ACS_ExecuteAlways(668,0,1,0)
 			64PN A 0 A_GiveInventory("AlreadySpawned",1)
-			64PN A 0 A_JumpIfInventory("InvisibleToken",1,2)
-			64PN A 0 A_Jump(256,2)
-			64PN A 0 A_ChangeFlag("STEALTH",1)
 		Spawn2:
 			64PN AD 10 A_Look
 			Loop

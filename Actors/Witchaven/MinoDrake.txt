@@ -19,9 +19,6 @@ Actor MinoDrake : WitchavenEnemyBaseMelee
 		W_HS A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
 		W_HS A 1 ACS_ExecuteAlways(668,0,1,0)
 		W_HS A 0 A_GiveInventory("AlreadySpawned",1)
-		W_HS A 0 A_JumpIfInventory("InvisibleToken",1,2)
-		W_HS A 0 A_Jump(256,2)
-		W_HS A 0 A_ChangeFlag("STEALTH",1)
 	SpawnStandard:
 		WH_S A 5 A_Look
 		Loop
