@@ -136,8 +136,7 @@ Actor Q2IronMaiden : Q2SoldierBase
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("Q2IronMaiden_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 Thing_Remove(0)
-		stop
+        TNT1 A 0 Thing_Remove(0)
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		BTC0 A 0
@@ -166,7 +165,7 @@ Actor Q2IronMaiden : Q2SoldierBase
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
@@ -196,7 +195,7 @@ Actor Q2IronMaiden : Q2SoldierBase
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	}
 }
@@ -536,12 +535,28 @@ Actor Q2IronMaidenBetaClass : Q2IronMaiden
 			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 			"####" "#" 0 A_SpawnItemEx("Q2IronMaidenBetaClass_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
-			TNT1 A 0 Thing_Remove(0)
+			TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+			TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
+			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+			TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
+			TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+			Goto ShrunkLoop
+		ShrunkLoop:
+			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
+			loop
+		ShrunkDie:
+			TNT1 A 0
+			TNT1 A 1 A_Die("Shrink")
+			stop
+		Death.Shrink:
+			TNT1 A 0
+			TNT1 A 1 A_KillMaster
 			stop
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)					
 			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_Jump(256,"Death1","Death2")
 		Death1:
 			BTC2 A 0 A_SpawnItemEx("Q2IronMaidenBetaClassDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)

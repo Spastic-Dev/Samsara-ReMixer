@@ -20,6 +20,7 @@ Actor BlueVixen
     +MISSILEMORE
 	+MISSILEEVENMORE
     +STRIFEDAMAGE
+	+BOSSDEATH
 	+DONTRIP
 	+NOINFIGHTING
 	+NOBLOODDECALS
@@ -165,6 +166,7 @@ Actor BlueVixen
 	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		VIXD A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_KillMaster
 		VIXD ABCDEF 5
 		VIXD GH 5
 		TNT1 A 0 A_playsound("redneck/thud")
@@ -191,7 +193,7 @@ Actor BlueVixen
 		"####" "#" 70 A_UnsetSolid
 		"####" "#" 0 A_IceGuyDie
 		"####" "#" 1 A_IceGuyDie
-		TNT1 A -1
+		TNT1 A -1 A_KillMaster
 		stop		
 	Death.ZorchPistol:
 	Death.Zorch:
@@ -216,7 +218,7 @@ Actor BlueVixen
 		"####" "#" 3 A_SetTranslucent(0.2,0)
 		"####" "#" 3 A_SetTranslucent(0.1,0) 
 		TNT1 A 1 A_SetTranslucent(1,0)
-		TNT1 A -1
+		TNT1 A -1 A_KillMaster
 		stop
 	Pain.Shock:
 	Pain.Tesla:
@@ -229,7 +231,7 @@ Actor BlueVixen
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 5
+		TNT1 A 5 A_KillMaster
 		stop
 	Death.CalebNapalm:
 	Death.Vodoo:
@@ -318,6 +320,7 @@ Actor BlueVixen
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -345,6 +348,7 @@ Actor BlueVixen
 	Disintegrate:
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 		"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 		"####" "#" 0 A_Scream
@@ -376,7 +380,8 @@ Actor BlueVixen
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
-		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 		"####" "#################" 3 A_Fadeout(0.05)
 		stop
@@ -392,6 +397,7 @@ Actor BlueVixen
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Fall
+		TNT1 A 0 A_KillMaster
 		TNT1 A 5 A_FadeOut	
 		Stop
 	Death.BittermanDamage:
@@ -401,6 +407,7 @@ Actor BlueVixen
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Fall
+		TNT1 A 0 A_KillMaster
 		TNT1 A 5 A_FadeOut	
 		Stop
 	Pain.ShrinkerDMG:
@@ -436,7 +443,22 @@ Actor BlueVixen
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("BlueVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 Thing_Remove(0)
+		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		Goto ShrunkLoop
+	ShrunkLoop:
+		TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
+		loop
+	ShrunkDie:
+		TNT1 A 0
+		TNT1 A 1 A_Die("Shrink")
+		stop
+    Death.Shrink:
+		TNT1 A 0
+		TNT1 A 1 A_KillMaster
 		stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
@@ -466,7 +488,7 @@ Actor BlueVixen
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
@@ -496,7 +518,7 @@ Actor BlueVixen
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	}
 }
@@ -902,6 +924,7 @@ Actor RedVixen : BlueVixen {
 	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		VIXJ A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_KillMaster
 		VIXJ ABCDEF 5
 		VIXJ GH 5
 		TNT1 A 0 A_playsound("redneck/thud")
@@ -935,7 +958,7 @@ Actor RedVixen : BlueVixen {
 		"####" "#" 3 A_SetTranslucent(0.2,0)
 		"####" "#" 3 A_SetTranslucent(0.1,0) 
 		TNT1 A 1 A_SetTranslucent(1,0)
-		TNT1 A -1
+		TNT1 A -1 A_KillMaster
 		stop
 	Death.Vodoo:
 	Death.VoodooPuff:
@@ -1060,7 +1083,22 @@ Actor RedVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("RedVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 Thing_Remove(0)
+		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		Goto ShrunkLoop
+	ShrunkLoop:
+		TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
+		loop
+	ShrunkDie:
+		TNT1 A 0
+		TNT1 A 1 A_Die("Shrink")
+		stop
+	Death.Shrink:
+		TNT1 A 0
+		TNT1 A 1 A_KillMaster
 		stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
@@ -1090,7 +1128,7 @@ Actor RedVixen : BlueVixen {
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
@@ -1120,7 +1158,7 @@ Actor RedVixen : BlueVixen {
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	}
 }
@@ -1525,6 +1563,7 @@ Actor GreenVixen : BlueVixen {
 	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		VIXF A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_KillMaster
 		VIXF ABCDEF 5
 		VIXF GH 5
 		TNT1 A 0 A_playsound("redneck/thud")
@@ -1558,7 +1597,7 @@ Actor GreenVixen : BlueVixen {
 		"####" "#" 3 A_SetTranslucent(0.2,0)
 		"####" "#" 3 A_SetTranslucent(0.1,0) 
 		TNT1 A 1 A_SetTranslucent(1,0)
-		TNT1 A -1
+		TNT1 A -1 A_KillMaster
 		stop
 	Death.Dynamite:
 	Death.Shock:	  
@@ -1680,7 +1719,22 @@ Actor GreenVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("GreenVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 Thing_Remove(0)
+		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		Goto ShrunkLoop
+	ShrunkLoop:
+		TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
+		loop
+	ShrunkDie:
+		TNT1 A 0
+		TNT1 A 1 A_Die("Shrink")
+		stop
+	Death.Shrink:
+		TNT1 A 0
+		TNT1 A 1 A_KillMaster
 		stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
@@ -1710,7 +1764,7 @@ Actor GreenVixen : BlueVixen {
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
@@ -1740,7 +1794,7 @@ Actor GreenVixen : BlueVixen {
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	}
 }
@@ -2146,6 +2200,7 @@ Actor BrownVixen : BlueVixen {
 	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		V_IX A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_KillMaster
 		V_IX ABCDEF 5
 		V_IX GH 5
 		TNT1 A 0 A_playsound("redneck/thud")
@@ -2179,7 +2234,7 @@ Actor BrownVixen : BlueVixen {
 		"####" "#" 3 A_SetTranslucent(0.2,0)
 		"####" "#" 3 A_SetTranslucent(0.1,0) 
 		TNT1 A 1 A_SetTranslucent(1,0)
-		TNT1 A -1
+		TNT1 A -1 A_KillMaster
 		stop
 	Death.Dynamite:
 	Death.Shock:	  
@@ -2301,7 +2356,22 @@ Actor BrownVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("BrownVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 Thing_Remove(0)
+		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		Goto ShrunkLoop
+	ShrunkLoop:
+		TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
+		loop
+	ShrunkDie:
+		TNT1 A 0
+		TNT1 A 1 A_Die("Shrink")
+		stop
+	Death.Shrink:
+		TNT1 A 0
+		TNT1 A 1 A_KillMaster
 		stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
@@ -2331,7 +2401,7 @@ Actor BrownVixen : BlueVixen {
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
@@ -2361,7 +2431,7 @@ Actor BrownVixen : BlueVixen {
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
+		TNT1 A 1 A_KillMaster
 		Stop
 	}
 }

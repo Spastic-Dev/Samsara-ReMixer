@@ -13,6 +13,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 	Scale 1.36
 	Mass 1000
 	Species "Enemies"
+	+BOSSDEATH
 	+LOOKALLAROUND
 	States {
 		Spawn:
@@ -138,7 +139,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			BS18 H 9 A_Scream
 			BS18 I 8 A_NoBlocking
-			BS18 J 7
+			BS18 J 7 A_KillMaster
 			BS18 KL 6
 			BS18 M -1
 			Stop
@@ -165,6 +166,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
 			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 1 A_KillMaster
 			TNT1 A -1
 			stop
 		Death.DukeIce:
@@ -183,7 +185,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0
+			TNT1 A 0 A_KillMaster
 			stop
 		Raise:
 			BS18 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
@@ -334,6 +336,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			"####" "#" 0 A_NoBlocking	
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 0 A_Stop
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
 			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
@@ -367,6 +370,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
 			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
 			"####" "#" 0 A_Stop
+			"####" "#" 0 A_KillMaster
 			"####" "#" 3 A_SpawnItem("DisintEffectLarge",0,10)
 			"####" "#" 3 A_SetTranslucent(0.9,0)
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -390,7 +394,8 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
-			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_SpawnItem("WTNukeDeathBig")
 			"####" "#################" 3 A_Fadeout(0.05)
 			stop
@@ -406,6 +411,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("QuakeLargeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			Stop
 		Death.BittermanDamage:
@@ -415,6 +421,7 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2LargeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			Stop
 		Pain.ShrinkerDMG:
@@ -450,8 +457,85 @@ Actor BreatherBeast : BlakeStoneHumanoid {
 			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 			"####" "#" 0 A_SpawnItemEx("BreatherBeast_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
-			TNT1 A 0 Thing_Remove(0)
+			TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+			TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
+			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+			TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
+			TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+			Goto ShrunkLoop
+		ShrunkLoop:
+			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
+			loop
+		ShrunkDie:
+			TNT1 A 0
+			TNT1 A 1 A_Die("Shrink")
 			stop
+		Death.Shrink:
+			TNT1 A 0
+			TNT1 A 1 A_KillMaster
+			stop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			BS17 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoop
+		ExpanderLoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
+			loop
+		ExpanderPop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			BS17 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto ExpanderLoopCoop
+		ExpanderLoopCoop:
+			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
+			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
+			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
+			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
+			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
+			loop
+		ExpanderPopCoop:	
+			"####" "#" 10
+			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
+			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Jump(96,2)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
+			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 1
+			Stop			
 	}
 }
 

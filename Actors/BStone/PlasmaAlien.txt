@@ -92,7 +92,7 @@ Actor PlasmaAlien {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			BSE8 L 8 Bright A_Scream
 			BSE8 M 8 Bright A_NoBlocking
-			BSE8 N 8 Bright
+			BSE8 N 8 Bright A_KillMaster
 			TNT1 A -1
 			Stop
 		Death.ZorchPistol:
@@ -108,6 +108,7 @@ Actor PlasmaAlien {
 			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
 			"####" "#" 3 A_SetTranslucent(0.9,0)
 			"####" "#" 0 A_Scream
+			"####" "#" 0 A_KillMaster
 			"####" "#" 3 A_SetTranslucent(0.8,0)
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 3 A_SetTranslucent(0.7,0)
@@ -136,7 +137,7 @@ Actor PlasmaAlien {
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0
+			TNT1 A 0 A_KillMaster
 			stop
 		Raise:
 			TNT1 A 0 A_StopSound(0)
@@ -244,7 +245,8 @@ Actor PlasmaAlien {
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
-			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 0 A_Stop
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -275,6 +277,7 @@ Actor PlasmaAlien {
 			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 0 A_Scream
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
@@ -303,7 +306,8 @@ Actor PlasmaAlien {
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
-			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 			"####" "#################" 3 A_Fadeout(0.05)
 			stop	
