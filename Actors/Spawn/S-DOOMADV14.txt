@@ -20,10 +20,6 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 		SetHexen:
 			TNT1 A 0 A_Jump(90,"SetHexen2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
-			TNT1 A 1 A_SpawnItemEx("MageBoss3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
-		SetHexen2:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
 			TNT1 A 1 A_SpawnItemEx("CentaurLeader3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop			
 		SetChex:
@@ -155,29 +151,37 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 			Stop
 		SetWitch:
 			TNT1 A 0 A_Jump(64,"SetWitch2","SetWitch3")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch")
 			TNT1 A 1 A_SpawnItemEx("WTGreyWitch", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetWitch2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch2")
 			TNT1 A 1 A_SpawnItemEx("WTBlueMidianWarriorHalberd", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetWitch3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch3")
 			TNT1 A 1 A_SpawnItemEx("WTBlueMidianWarriorSpell", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetDisrup:
 	    	TNT1 A 0 A_Jump(128,"SetDisrup2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup")
 			TNT1 A 1 A_SpawnItemEx("DisruptorTerroristDroid2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetDisrup2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup2")
 		    TNT1 A 1 A_SpawnItemEx("DisruptorTerroristElite", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetQuake1:
 			TNT1 A 0 A_Jump(128,"SetQuake1_2","SetQuake1_3")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
 			TNT1 A 1 A_SpawnItemEx("QOgre", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop	
 		SetQuake1_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1_2")
 			TNT1 A 1 A_SpawnItemEx("QMultiOgre", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop			
 		SetQuake1_3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1_3")
 			TNT1 A 1 A_SpawnItemEx("Vore", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop			
 		SetDoom64:
@@ -213,14 +217,9 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 			Stop
 		MultiplyHexen:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiMageBoss3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
-			Stop
-		MultiplyHexen2:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiCentaurLeader3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
-			Stop			
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			Stop		
 		MultiplyChex:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiNewQuadrumpus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
@@ -351,6 +350,46 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 			TNT1 A 1 A_SpawnItemEx("multiIPOGVeekWarrior",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG")
 			Stop
+		MultiplyWitch:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWTGreyWitch",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch")
+			Stop	
+		MultiplyWitch2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWTBlueMidianWarriorHalberd",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch2")
+			Stop
+		MultiplyWitch3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWTBlueMidianWarriorSpell",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch3")
+			Stop
+		MultiplyDisrup:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDisruptorTerroristDroid2",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup")
+			Stop
+		MultiplyDisrup2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDisruptorTerroristElite",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup2")
+			Stop
+		MultiplyQuake1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiQOgre",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
+			Stop
+		MultiplyQuake1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiQMultiOgre",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1_2")
+			Stop		
+		MultiplyQuake1_3:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiVore",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1_3")
+			Stop			
 		MultiplyDoom64:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiRevenant64",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)

@@ -171,15 +171,19 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			Goto BossWait			
 		SetWitch:
 			TNT1 A 0 A_Jump(128,"SetWitch2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch")
 			TNT1 A 1 A_SpawnItemEx("WTSkeletalPriestess",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)			
 			Goto BossWait
 		SetWitch2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch2")
 			TNT1 A 1 A_SpawnItemEx("Witchaven2Guardian",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)			
 			Goto BossWait						
-		SetDisrup:		
+		SetDisrup:	
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup")
 			TNT1 A 1 A_SpawnItemEx("DisruptorGuardDroid",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)			
 			Goto BossWait
 		SetQuake1:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
 			TNT1 A 1 A_SpawnItemEx("Shambler",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)			
 			Goto BossWait			
 		SetDoom64:
@@ -473,6 +477,26 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			TNT1 A 1 A_SpawnItemEx("multiIPOGMastiff",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG_2")
 			Goto BossWait
+		MultiplyWitch:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWTSkeletalPriestess",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch")
+			Goto BossWait	
+		MultiplyWitch2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWitchaven2Guardian",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch2")
+			Goto BossWait
+		MultiplyDisrup:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDisruptorGuardDroid",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup")
+			Goto BossWait	
+		MultiplyQuake1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiShambler",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
+			Goto BossWait			
 		MultiplyDoom64:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiFatso64",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)

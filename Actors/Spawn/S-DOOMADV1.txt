@@ -175,29 +175,37 @@ ACTOR ZombiemanSpawnerCoop replaces Zombieman
 			Stop
 		SetWitch:
 			TNT1 A 0 A_Jump(128,"SetWitch2","SetWitch3","SetWitch4")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch")
 			TNT1 A 1 A_SpawnItemEx("WTSkeleton", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetWitch2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch2")
 			TNT1 A 1 A_SpawnItemEx("ForestGoblin", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetWitch3:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch3")
 			TNT1 A 1 A_SpawnItemEx("WTBrownMidianWarriorHalberd", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetWitch4:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch")
 			TNT1 A 1 A_SpawnItemEx("WTBrownMidianWarriorSpell", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetDisrup:
 			TNT1 A 0 A_Jump(32,"SetDisrup2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyDisrup")
 			TNT1 A 1 A_SpawnItemEx("DsrptSilverSpikeBall", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetDisrup2:	
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyDisrup2")
 			TNT1 A 1 A_SpawnItemEx("DisruptorMutantSoldier", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop		
 		SetQuake1:
 			TNT1 A 0 A_Jump(128,"SetQuake1_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyQuake1")
 			TNT1 A 1 A_SpawnItemEx("QGrunt", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop		
 		SetQuake1_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyQuake1_2")
 			TNT1 A 1 A_SpawnItemEx("Rottweiler", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop	
 		SetDoom64:
@@ -364,6 +372,46 @@ ACTOR ZombiemanSpawnerCoop replaces Zombieman
 			TNT1 A 1 A_SpawnItemEx("multiIPOGPrisoner",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG2")
 			Stop
+		MultiplyWitch:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("WTSkeleton", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch")
+			Stop
+		MultiplyWitch2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiForestGoblin", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch2")
+			Stop	
+		MultiplyWitch3:	
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWTBrownMidianWarriorHalberd", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch3")
+			Stop
+		MultiplyWitch4:	
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiWTBrownMidianWarriorSpell", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch4")
+			Stop		
+		MultiplyDisrup:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDsrptSilverSpikeBall", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup")
+			Stop
+		MultiplyDisrup2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiDisruptorMutantSoldier", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup2")
+			Stop			
+		MultiplyQuake1:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiQGrunt", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
+			Stop
+		MultiplyQuake1_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiRottweiler", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1_2")
+			Stop			
 		MultiplyDoom64:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiZombieman64",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
