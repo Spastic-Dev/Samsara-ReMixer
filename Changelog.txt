@@ -24,9 +24,11 @@ Global
 -Integrated CommonFuncs.h into SMMACS
 -Added an extra 3 tic delay for enemies to spawn in coop for good measure (and to account for alternative modes)
 -Ported vanilla SMM invisible token system
+-Added A_KillMaster function to all AV replacements' death states, treating them as a de Facto miniboss
 
 Hexen
 -Korax steps now use CHAN_BODY
+-Undead Masters are now exclusively AV replacements, Death Wyvern is an Arachno
 
 Wolf 3d
 -Removed duplicate pain states from a few Wolf3d enemies
@@ -40,18 +42,29 @@ Rise of the Triad
 Blood
 -Added fire nerf changes to blood enemies as well
 
+Quake 1
+-Added Multipliers
+
 Quake 2
 -Cut back on A_Warp calls incorrectly since that means little when the warps move a small amount in 0 tics, so now they move 5 times more, additionally found a way for warps to be run on client
 -Changed lasers to use additive renderstyle
 -Thickened widow form 2 beam
+-Modified to use proper HL Gibs
 -Corrected Tank Commander Model Paths
+-Added A_KillMaster to LaserBrain and Medic
 -Fixed corpses for good
 
 Rebel Moon Rising
 -Fixed Hover Gunner not giving players a killcount and improved death animations
 
+Disruptor
+-Added Multipliers
+
 Shadow Warrior
 -Removed Duplicate Actors
+
+Bitchaven
+-Added Multipliers
 
 Half Life
 -Hopefully fixed HECU Sarge broken death animation
@@ -94,5 +107,10 @@ Redneck Rampage
 - Skinny old coots now fire twice in a row (second shot has no projectile) and has terrible accuracy similar to RR (although each shot does 19 damage, that may need to be lowered)
 - UFOS now have 100 hp instead of 430, will always spawn the pilot, and have cut variations implemented
 
+Spawn
+- Added BossDeath and BossWait to AV Spawners
+- Heretic Lich, Hexen Masters, and Chex Maximus spawners now inherit directly from AV spawners
+- Heretic Clink spawners inherit from Demon spawner instead of Hellknight
+- Chex Spawners now inherit from/replace renamed Chex Quest actors, fixing GZDoom issues
 
 //No previous logs kept
