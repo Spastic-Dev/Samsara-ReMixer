@@ -94,11 +94,11 @@ ACTOR AssaultTrooper
 //			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"FlyShot")
 			TNT1 A 0 A_Jump (64, "CrouchShot")
 			Goto StandShot
-		FlyShot:
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			Goto SeeFly
+//		FlyShot:
+//			TNT1 A 0 A_FaceTarget
+//			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+//			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
+//			Goto SeeFly
 		StandShot:	
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASTR QQ 9 A_Facetarget 
