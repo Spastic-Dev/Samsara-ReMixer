@@ -2710,7 +2710,28 @@ actor BrownVixen_ShrinkEffect : BrownVixen
 	}
 }
 
-Actor AlienVixenSpawner : RandomSpawner { DropItem "BlueVixen" DropItem "RedVixen" DropItem "GreenVixen" DropItem "BrownVixen" }
+Actor AlienVixenSpawner : ArchvileSpawnerCoop
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 A_Jump(256,"Blue","Red","Green","Brown")
+			Loop
+		Blue:
+			TNT1 A 1 A_SpawnItemEx("BlueVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
+			Stop
+		Red:
+			TNT1 A 1 A_SpawnItemEx("RedVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
+			Stop
+		Green:
+			TNT1 A 1 A_SpawnItemEx("GreenVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
+			Stop
+		Brown:
+			TNT1 A 1 A_SpawnItemEx("BrownVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
+			Stop
+	}
+}
 Actor VixenTaunt : Inventory { inventory.MaxAmount 1 inventory.Amount 1 }
 Actor VixenTeatrush : Inventory { inventory.MaxAmount 5 inventory.Amount 1 }
 

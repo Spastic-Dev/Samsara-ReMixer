@@ -26,6 +26,9 @@ Global
 -Ported vanilla SMM invisible token system
 -Added A_KillMaster function to all AV replacements' death states, treating them as a de Facto miniboss
 
+Heretic
+- D'sparil now plays the proper Rise animation after his serpent dies
+
 Hexen
 -Korax steps now use CHAN_BODY
 -Undead Masters are now exclusively AV replacements, Death Wyvern is an Arachno
@@ -106,11 +109,13 @@ Redneck Rampage
 - Queen Vixen has 3000 hp
 - Skinny old coots now fire twice in a row (second shot has no projectile) and has terrible accuracy similar to RR (although each shot does 19 damage, that may need to be lowered)
 - UFOS now have 100 hp instead of 430, will always spawn the pilot, and have cut variations implemented
+- Tweaked AlienVixenSpawner to transfer pointers required for A_KillMaster to function
 
 Spawn
 - Added BossDeath and BossWait to AV Spawners
 - Heretic Lich, Hexen Masters, and Chex Maximus spawners now inherit directly from AV spawners
 - Heretic Clink spawners inherit from Demon spawner instead of Hellknight
 - Chex Spawners now inherit from/replace renamed Chex Quest actors, fixing GZDoom issues
+- Fixed A_Jump errors that would prevent mm_multiply from working properly on a few sets
 
 //No previous logs kept
