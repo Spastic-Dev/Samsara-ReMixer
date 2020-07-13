@@ -18,6 +18,7 @@
 #define MAXPLAYERS 64
 #define SKULLCOOLDOWNTID 1000
 
+#define CLASSCOUNT          28
 
 #define MAX_RING_MONST 128
 #define RING_MONST_BASE_TID		1000000		// base TIDs for SW ring monsters' objects
@@ -724,16 +725,16 @@ script 2526 (int onoff)
 	}
 }
 
-str gameClassesSTR[26] = {
+str gameClassesSTR[CLASSCOUNT] = {
 	"DoomguyClass", "ChexClass", "CorvusClass", "WolfenClass", "HexenClass", "DukeClass", "MarathonClass", "QuakeClass", "RottClass", "BlakeClass",
 	"CalebClass", "StrifeClass", "Doom64GuyClass", "EradClass", "C7Class", "RMRClass", "KatarnClass", "POGreedClass", "DisruptorClass", "WitchavenClass", 
-	"HalfLifeClass", "SWClass", "CMClass", "JonClass", "RRClass", "BittermanClass"
+	"HalfLifeClass", "SWClass", "CMClass", "JonClass", "RRClass", "BittermanClass", "Hexen2Class", "BondClass"
 	};
 
 Script 2527 (void)
 {
 
-	str ClassesAISTR[26] = {
+	str ClassesAISTR[CLASSCOUNT] = {
 	"Doom_AI", "Chex_AI", "Corvus_AI", "Blaskowicz_AI", "Parias_AI", "Duke_AI", "SecurityOfficer_AI", "Ranger_AI", "IPFreeley_AI", "Blake_AI",
 	"Caleb_AI", "StrifeGuy_AI", "Doom64_AI", "Eleena_AI", "Corridor7_AI", "RMR_AI", "Katarn_AI", "POGreed_AI", "Jack_AI", "Grondoval_AI", 
 	"Freeman_AI", "LoWang_AI", "Cybermage_AI", "Jon_AI", "Leonard_AI", "Bitterman_AI"
@@ -775,7 +776,7 @@ Script 2529 (void) // Decorate with Jerec's grip is kinda broken so I think I wa
 	SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
 }
 
-int ClassWeapons[26][9] = 
+int ClassWeapons[CLASSCOUNT][9] = 
 {
     {   // Doomguy
         "notapplicable",
@@ -1069,6 +1070,28 @@ int ClassWeapons[26][9] =
         "Q2HyperBlaster",
         "Q2BFG10K",
     },
+	{   // Demoness
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "Hexen2IceMace",
+        "Hexen2AcidRune",
+        "Hexen2SpellBookBoneShard",
+        "Hexen2FireRune",
+        "Hexen2RavenStaff",
+        "Hexen2TempestStaff",
+    },
+	{   // James Bond
+		"Goldeneye_SniperRifle",
+		"Goldeneye_SilencedD5K",
+		"notapplicable",
+        "Goldeneye_ThrowingKnives",
+        "Goldeneye_AutoShotgun",
+        "Goldeneye_AR33",
+        "Goldeneye_RocketLauncher",
+        "Goldeneye_RCP90",
+        "Goldeneye_Moonraker",
+    },
 };
 
 str SlotDummies[6] = {
@@ -1098,7 +1121,7 @@ Script 2531 (int action) // Lightning Guard steal script. Trust me, it's better 
 	{
 	Case 1: // check to steal
 		SetActivator(0,AAPTR_TARGET);
-		for(int i = 0; i < 26; i++)
+		for(int i = 0; i < CLASSCOUNT; i++)
 		{
 			if(CheckInventory(gameClassesSTR[i]) > 0)
 			{
@@ -1119,7 +1142,7 @@ Script 2531 (int action) // Lightning Guard steal script. Trust me, it's better 
 		break;
 	Case 2: //stealing mechanic
 		SetActivator(0,AAPTR_TARGET);
-		for(int k = 0; k < 26; k++)
+		for(int k = 0; k < CLASSCOUNT; k++)
 		{
 			if(CheckInventory(gameClassesSTR[k]) > 0)
 			{
@@ -1280,4 +1303,9 @@ Script "Samsara_HLShockRoachPickup" (void)
 				ACS_ExecuteAlways(2685,0,11);
 		}	
 	}
+}
+Script "Samsara_Hexen2MissileDetector" (void)
+{
+	SetActivatorToTarget(0);
+	SetResultValue(CheckInventory("Hexen2EnemyFireDetector"));
 }
