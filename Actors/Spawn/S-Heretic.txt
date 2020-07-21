@@ -914,36 +914,35 @@ ACTOR MinotaurReplacer : CyberDemonSpawnerCoop replaces Minotaur
 
 ACTOR Sorcerer1Replacer : SpiderMastermindSpawnerCoop replaces Sorcerer1 
 {
-	States
+/*states
 	{
-		Death:
-			TNT1 A 1
-			TNT1 A 1 A_SpawnItemEx("Sorcerer2Replacer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
-	}
-}
-
-ACTOR Sorcerer2Replacer replaces Sorcerer2
-{
-	Health 0x7fffffff
-	Height 0
-	Radius 0
-	MONSTER
-	-COUNTKILL
-	-SOLID
-	+NOCLIP
-	+NOTDMATCH
-	+BOSSDEATH
-	States
-	{
-		Spawn:
-			TNT1 AAAA 1
-			TNT1 A 1 A_Die
-		Death:
-			TNT1 A 1
-			TNT1 A 1 A_BossDeath
-			Stop
-	}
+	SetDoom:
+	TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+	TNT1 A 1 A_SpawnItemEx("Sorcerer5",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+	Goto BossWait
+	SetHeretic:
+	TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic1")
+	TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+	Goto BossWait
+	MultiplyDoom:
+	TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+	TNT1 A 1 A_SpawnItemEx("MultiSorcerer5",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+	Goto MultiplyDoom_2
+	MultiplyDoom_2:
+	TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+	TNT1 A 1 A_SpawnItemEx("MultiSorcerer5",0,0,0,random(-1,1),random(-1,1),0,0,288)
+	TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom_2")
+	Goto BossWait
+	MultiplyHeretic1:
+	TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+	TNT1 A 1 A_SpawnItemEx("MultiSpiderMastermind3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+	Goto MultiplyHeretic1_2
+	MultiplyHeretic1_2:
+	TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+	TNT1 A 1 A_SpawnItemEx("MultiSpiderMastermind3",0,0,0,random(-1,1),random(-1,1),0,0,288)
+	TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic1_2")
+	Goto BossWait
+	} */
 }
 
 ACTOR ChickenReplacer : WolfensteinSSSpawnerCoop replaces Chicken 

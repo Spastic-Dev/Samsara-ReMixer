@@ -4,7 +4,7 @@ ACTOR LowGuard : RoTTHumanoid {
    Mass 75
    SCALE 0.60
    PainChance 255
-   SeeSound ""
+   SeeSound "lowguard/sightM"
    PainSound "lowguard/pain"
    DeathSound "lowguard/death"
    Species "Enemies"
@@ -17,7 +17,7 @@ ACTOR LowGuard : RoTTHumanoid {
 		   LWGS A 1 ACS_ExecuteAlways(668,0,1,0)
 		   LWGS A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
-		   LWGS A 10 A_Look
+		   LWGS A 10 A_LookEx(LOF_NOSEESOUND)
 		   Loop
 	   Idle:
 		   TNT1 A 0 A_TakeInventory("SawPlayer", 1)
@@ -232,6 +232,7 @@ ACTOR LowGuard : RoTTHumanoid {
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 5
 			stop
 	  Death.CalebNapalm:

@@ -8,9 +8,17 @@ Actor JamesBond2 : JamesBond replaces JamesBond
 			Goto Super::Pain
 		Missile:
 		Melee:
-			"####" "#" 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
-			"####" "#" 0 A_GiveInventory("ProtozoidAttackOMG",1)		
-		    "####" "#" 1
+			GEAA A 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
+			GEAA A 0 A_GiveInventory("ProtozoidAttackOMG",1)
+			GEAA A 0 A_JumpIf(CallACS("BondWeaponChecker") == 0, "MissileUnarmed")
+			GEBA A 0 A_JumpIf(CallACS("BondWeaponChecker") == 1, "MissilePistol")
+		MissileUnarmed:
+			GEAI ABCDEFGH 2
+			Goto MissileFinish
+		MissilePistol:
+			GEBI ABCDEFGH 2
+			Goto MissileFinish
+		MissileFinish:
 			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)
 			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
 		    Goto Spawn
@@ -24,12 +32,30 @@ Actor JamesBond2 : JamesBond replaces JamesBond
 			TNT1 A 0 ACS_ExecuteAlways(2529)
 			Goto Super::Pain
 		Death:
-			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
+		    TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)	  				
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			TNT1 A 0 A_PlayerScream
-			TNT1 A -1
-			Stop
+			GEAD A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5")
+		Death1:
+			GEAD ABCDEFGHIJKLMNOPQRSTU 2
+			GEAD U -1
+			stop
+		Death2:
+			GEAE ABCDEFGHIJKLMNOPQR 2
+			GEAE R -1
+			stop
+		Death3:
+			GEAF ABCDEFGHIJKLMNOPQRSTUVW 2
+			GEAF W -1
+			stop
+		Death4:
+			GEAG ABCDEFGHIJKLMNOPQRSTUV 2
+			GEAG V -1
+			stop
+		Death5:
+			GEAH ABCDEFGHIJKLMNOPQRSTUV 2
+			GEAH V -1
+			stop
 		Pain.DukeEnforcerSpit:
 			TNT1 A 0 ACS_ExecuteAlways(4110, 0)
 			Goto Super::Pain			

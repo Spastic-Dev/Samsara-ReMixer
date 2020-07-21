@@ -230,6 +230,7 @@ Actor BlueVixen
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_KillMaster
 		stop
 	Death.CalebNapalm:
@@ -2710,28 +2711,7 @@ actor BrownVixen_ShrinkEffect : BrownVixen
 	}
 }
 
-Actor AlienVixenSpawner : ArchvileSpawnerCoop
-{
-	States
-	{
-		Spawn:
-			TNT1 A 0
-			TNT1 A 1 A_Jump(256,"Blue","Red","Green","Brown")
-			Loop
-		Blue:
-			TNT1 A 1 A_SpawnItemEx("BlueVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
-			Stop
-		Red:
-			TNT1 A 1 A_SpawnItemEx("RedVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
-			Stop
-		Green:
-			TNT1 A 1 A_SpawnItemEx("GreenVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
-			Stop
-		Brown:
-			TNT1 A 1 A_SpawnItemEx("BrownVixen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS)
-			Stop
-	}
-}
+Actor AlienVixenSpawner : RandomSpawner { DropItem "BlueVixen" DropItem "RedVixen" DropItem "GreenVixen" DropItem "BrownVixen" }
 Actor VixenTaunt : Inventory { inventory.MaxAmount 1 inventory.Amount 1 }
 Actor VixenTeatrush : Inventory { inventory.MaxAmount 5 inventory.Amount 1 }
 
