@@ -359,6 +359,24 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HR L 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -898,6 +916,24 @@ Actor WTRedMidianWarriorSword : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HR V 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1412,6 +1448,24 @@ Actor WTRedMidianWarriorSpell : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HS O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1930,6 +1984,24 @@ Actor WTBrownMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HQ L 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2432,6 +2504,24 @@ Actor WTBrownMidianWarriorSword : WTBrownMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HQ V 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2946,6 +3036,24 @@ Actor WTBrownMidianWarriorSpell : WTBrownMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HD O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3463,6 +3571,24 @@ Actor WTBlueMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HK L 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3965,6 +4091,24 @@ Actor WTBlueMidianWarriorSword : WTBlueMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HK V 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -4479,6 +4623,24 @@ Actor WTBlueMidianWarriorSpell : WTBlueMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HL O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -5108,6 +5270,25 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HG L 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -5737,6 +5918,24 @@ Actor WTPurpleMidianWarriorSword : WTPurpleMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HG V 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -6274,6 +6473,25 @@ Actor WTPurpleMidianWarriorSpell : WTPurpleMidianWarriorHalberd {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Pain.Hexen2RavenDamage:
+			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			Goto Pain
+		Death.Hexen2Damage:
+		Death.Hexen2Fire:
+		Death.Hexen2Electric:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Death
+		Death.Hexen2Extreme:
+		Death.Hexen2ElectricExtreme:
+		XDeathForDemoness:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5 A_FadeOut
+			stop			
 		Pain.ShrinkerDMG:
 			W_HH O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)

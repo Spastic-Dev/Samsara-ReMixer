@@ -355,7 +355,6 @@ Actor SWNinja
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_NoBlocking
 		TNT1 A 5
 		stop
     Death.CalebNapalm:
@@ -470,6 +469,24 @@ Actor SWNinja
 		TNT1 A 0 A_Fall
 		TNT1 A 5 A_FadeOut		
 		Stop
+	Pain.Hexen2RavenDamage:
+		TNT1 A 0 A_Jump(192,"Pain")
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Goto Pain
+	Death.Hexen2Damage:
+	Death.Hexen2Fire:
+	Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto Death
+	Death.Hexen2Extreme:
+	Death.Hexen2ElectricExtreme:
+	XDeathForDemoness:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_FadeOut
+		stop		
 	Pain.ShrinkerDMG:
 		NINJ R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1461,7 +1478,6 @@ Actor NinjaRed : SWNinja
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_KillMaster
 		TNT1 A 5
 		stop
@@ -1579,6 +1595,25 @@ Actor NinjaRed : SWNinja
 		TNT1 A 0 A_KillMaster
 		TNT1 A 5 A_FadeOut	
 		Stop
+	Pain.Hexen2RavenDamage:
+		TNT1 A 0 A_Jump(192,"Pain")
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Goto Pain
+	Death.Hexen2Damage:
+	Death.Hexen2Fire:
+	Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto Death
+	Death.Hexen2Extreme:
+	Death.Hexen2ElectricExtreme:
+	XDeathForDemoness:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_KillMaster
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_FadeOut
+		stop		
 	Pain.ShrinkerDMG:
 		NIRJ R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2504,7 +2539,6 @@ Actor NinjaOrange : NinjaRed
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_KillMaster
 		TNT1 A 5
 		stop
@@ -2579,6 +2613,11 @@ Actor NinjaOrange : NinjaRed
 	Death.BittermanDamage:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
+	Death.Hexen2Damage:
+	Death.Hexen2Fire:
+	Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto Death		
 	Pain.ShrinkerDMG:
 		NIOJ R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3469,7 +3508,6 @@ Actor NinjaGray : NinjaRed
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_KillMaster
 		TNT1 A 5
 		stop
@@ -3544,6 +3582,11 @@ Actor NinjaGray : NinjaRed
 	Death.BittermanDamage:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
+	Death.Hexen2Damage:
+	Death.Hexen2Fire:
+	Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto Death		
 	Pain.ShrinkerDMG:
 		NIGJ R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -4540,7 +4583,6 @@ Actor NinjaDark : NinjaRed
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_KillMaster
 		TNT1 A 5
 		stop
@@ -4615,6 +4657,11 @@ Actor NinjaDark : NinjaRed
 	Death.BittermanDamage:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
+	Death.Hexen2Damage:
+	Death.Hexen2Fire:
+	Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto Death		
 	Disintegrate:
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_NoBlocking

@@ -737,6 +737,10 @@ Actor Kilmaatikahn
 	Pain.Vodoo:
 		TNT1 A 0 A_GiveToTarget("Voodoo", 1)
 		Goto Pain
+	Pain.Hexen2RavenDamage:
+		TNT1 A 0 A_Jump(192,"Pain")
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Goto Pain			
 	Death.Vodoo:
 	Death.VoodooPuff:
 	Death.DynamiteCoop:
@@ -1039,7 +1043,7 @@ Actor KilmaatMouthMinion
 		Goto See		
 	Pain.Vodoo:
 		TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-		Goto See
+		Goto See			
 	Death.Vodoo:
 	Death.VoodooPuff:
 	Death.DynamiteCoop:
@@ -1155,6 +1159,24 @@ Actor KilmaatMouthMinion
 		TNT1 A 0 A_Fall
 		TNT1 A 5 A_FadeOut
 		Stop
+	Pain.Hexen2RavenDamage:
+		TNT1 A 0 A_Jump(192,"Pain")
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Goto See
+	Death.Hexen2Damage:
+	Death.Hexen2Fire:
+	Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto Death
+	Death.Hexen2Extreme:
+	Death.Hexen2ElectricExtreme:
+	XDeathForDemoness:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_FadeOut
+		stop		
 	Death.DukeIce:
 		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 		"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
@@ -1502,6 +1524,24 @@ Actor KilmaatikahnWasp
 		TNT1 A 0 A_Fall
 		TNT1 A 5 A_FadeOut
 		Stop
+	Pain.Hexen2RavenDamage:
+		TNT1 A 0 A_Jump(192,"Pain")
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Goto See
+	Death.Hexen2Damage:
+	Death.Hexen2Fire:
+	Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto Death
+	Death.Hexen2Extreme:
+	Death.Hexen2ElectricExtreme:
+	XDeathForDemoness:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_FadeOut
+		stop		
 	Death.DukeIce:
 		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 		"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
