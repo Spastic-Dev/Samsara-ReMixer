@@ -26,8 +26,8 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
 			TNT1 A 1 A_SpawnItemEx("Beast3Doom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		SetHexen:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+		SetHexen1:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			TNT1 A 1 A_SpawnItemEx("Demon2CDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetChex:
@@ -186,6 +186,14 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
 			TNT1 A 1 A_SpawnItemEx("Q2TankCommander",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
+		SetHexen2:
+			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
+			TNT1 A 1 A_SpawnItemEx("Demon2CDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		SetGoldeneye:
+			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyGoldeneye")
+			TNT1 A 1 A_SpawnItemEx("TriadEnforcer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			stop
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
@@ -208,14 +216,14 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 1 A_SpawnItemEx("MultiBeast3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic_2")
 			Goto BossWait
-		MultiplyHexen:
+		MultiplyHexen1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiDemon2CDoom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto MultiplyHexen_2
-		MultiplyHexen_2:
+			Goto MultiplyHexen1_2
+		MultiplyHexen1_2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiDemon2CDoom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1_2")
 			Goto BossWait
 		MultiplyChex:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
@@ -507,8 +515,8 @@ ACTOR BelphegorSpawnerCoop : BaronofHellSpawnerCoop replaces Belphegor
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
 			TNT1 A 1 A_SpawnItemEx("Beast3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			stop
-		SetHexen:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+		SetHexen1:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			TNT1 A 1 A_SpawnItemEx("Demon2CDoom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			stop
 		SetChex:
@@ -666,10 +674,10 @@ ACTOR BelphegorSpawnerCoop : BaronofHellSpawnerCoop replaces Belphegor
 			TNT1 A 1 A_SpawnItemEx("MultiBeast3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
 			stop
-		MultiplyHexen:
+		MultiplyHexen1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiDemon2CDoom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			Stop
 		MultiplyChex:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

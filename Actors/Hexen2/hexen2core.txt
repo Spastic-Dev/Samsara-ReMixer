@@ -1,5 +1,5 @@
 ACTOR Hexen2EnemyFireDetector : Hexen2Boolean {}
-Actor Hexen2SpiderChunk1 : Hexen2Chunk1Colored { }
+/*Actor Hexen2SpiderChunk1 : Hexen2Chunk1Colored { }
 Actor Hexen2SpiderChunk2 : Hexen2SpiderChunk1 { }
 Actor Hexen2SpiderChunk3 : Hexen2SpiderChunk1 { }
 Actor Hexen2SmallSpiderChunk1 : Hexen2SpiderChunk1 { Scale 0.6 }
@@ -52,7 +52,7 @@ Actor Hexen2SpiderGibSpawnerSmall : Hexen2SpiderGibSpawner
 		TNT1 A 1
 		Stop				
 		}
-}	
+}	*/
 
 Actor Hexen2CorpseActor : SamsaraCorpseActorSmall
 {
@@ -60,9 +60,11 @@ Actor Hexen2CorpseActor : SamsaraCorpseActorSmall
 	BloodType "Hexen2Blood"
 	Speed 0
 	Mass 200
+	Species "Hexen2Corpse"
 	+SHOOTABLE
 	+PUSHABLE
 	+SLIDESONWALLS	
+	+THRUSPECIES
 }
 
 Actor Hexen2HeadActor : SamsaraCorpseActorSmall
