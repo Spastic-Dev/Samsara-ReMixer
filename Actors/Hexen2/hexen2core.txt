@@ -79,3 +79,61 @@ Actor Hexen2HeadActor : SamsaraCorpseActorSmall
 	+PUSHABLE
 	+SLIDESONWALLS
 }	
+
+Actor Hexen2BlueMana : HexenAmmo12Small
+{
+	Inventory.PickupSound "Hexen2/ItemPickup"
+	States
+	{
+      Spawn:
+        HX00 A 20 Light("Blue") BRIGHT
+        loop
+		}
+}
+
+Actor Hexen2GreenMana : HexenAmmo34Small
+{
+	Inventory.PickupSound "Hexen2/ItemPickup"
+	States
+	{
+      Spawn:
+        HX00 A 20 Light("Green") BRIGHT
+        loop
+		}
+}
+
+Actor Hexen2CombinedMana : HexenEverythingAmmo	
+{
+	Inventory.PickupSound "Hexen2/ItemPickup"
+	Scale 1.0
+	States
+	{
+      Spawn:
+        HX00 A 20 Light("Red") BRIGHT
+        loop
+		}
+}	
+
+Actor Hexen2CrystalVial : HealPack1
+{
+	Inventory.PickupSound "Hexen2/ItemPickup"
+	Scale 1.0
+    RenderStyle Normal
+    Alpha 1.0	
+	States
+	{
+      Spawn:
+        HX00 A 20 Light("Blue") BRIGHT
+        loop
+		}
+}	
+
+Actor Hexen2TomeDrop : SamsaraUniquePickup1
+{
+	States
+	{
+	Spawn:
+		HX00 A -1 
+		Loop
+	}
+}	
