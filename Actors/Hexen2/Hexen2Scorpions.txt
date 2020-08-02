@@ -1,0 +1,223 @@
+Actor Hexen2YellowScorpion
+{
+	Health 100
+	Radius 20
+	Height 48
+	Mass 450
+	Speed 8
+	BloodType "Hexen2Blood"
+	Monster
+	+FLOORCLIP
+	+NODROPOFF
+	PainChance 178
+	SeeSound "Hexen2/Scorpion/See"
+	PainSound "Hexen2/Scorpion/Pain"
+	DeathSound "Hexen2/Scorpion/Death"
+	Obituary "%o was stung by a Sand Scorpion."
+	MeleeRange 100
+	States
+	{
+	Spawn:
+		HX07 A 0
+		HX07 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		HX07 A 1 ACS_ExecuteAlways(668,0,1,0)
+		HX07 A 0 A_GiveInventory("AlreadySpawned",1)
+	Spawn2:		
+		HX07 A 2 A_Look
+		Loop
+	See:
+		HX07 ABCDEFGHIJKLM 2
+		HX07 NOPQRSTUVWXYZ 2
+	See2:
+		HX08 ABCD 2 A_Chase   HX08 E 0 A_Jump(76,3)	"####" "#" 0 A_JumpIf(CallACS("Samsara_Hexen2MissileDetector") == 0, 2)		"####" "#" 0 A_JumpIfInTargetLOS("Strafe",20,JLOSF_CLOSENOJUMP,2048,80)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 EFGH 2 A_Chase   HX08 I 0 A_Jump(76,3)	"####" "#" 0 A_JumpIf(CallACS("Samsara_Hexen2MissileDetector") == 0, 2)		"####" "#" 0 A_JumpIfInTargetLOS("Strafe",20,JLOSF_CLOSENOJUMP,2048,80)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 IJKL 2 A_Chase   HX08 M 0 A_Jump(76,3)	"####" "#" 0 A_JumpIf(CallACS("Samsara_Hexen2MissileDetector") == 0, 2)		"####" "#" 0 A_JumpIfInTargetLOS("Strafe",20,JLOSF_CLOSENOJUMP,2048,80)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 MNOP 2 A_Chase   HX08 A 0 A_Jump(76,"See2")	"####" "#" 0 A_JumpIf(CallACS("Samsara_Hexen2MissileDetector") == 0, 2)		"####" "#" 0 A_JumpIfInTargetLOS("Strafe",20,JLOSF_CLOSENOJUMP,2048,80)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		Loop
+	Strafe:
+		TNT1 A 0 A_Jump(128,"StrafeLeft")
+	StrafeRight:
+		HX08 ABCD 2 ThrustThing(0,1,0,0)
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 EFGH 2 ThrustThing(0,1,0,0)
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 IJKL 2 ThrustThing(0,1,0,0) 
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 MNOP 2 ThrustThing(0,1,0,0)
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		Goto See2
+	StrafeLeft:
+		HX08 ABCD 2 ThrustThing(128,1,0,0)
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 EFGH 2 ThrustThing(128,1,0,0)
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 IJKL 2 ThrustThing(128,1,0,0)
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		HX08 MNOP 2 ThrustThing(128,1,0,0)
+		TNT1 AAAA 0 A_Recoil(-1.0)
+		TNT1 A 0 A_PlaySound("Hexen2/Scorpion/Step",CHAN_BODY)
+		Goto See2		
+	Pain:
+		TNT1 A 0 A_Pain	
+		HX05 ABCDEFGHIJ 2
+		HX05 KLMNOPQRST 2
+		Goto See2
+	Melee:
+		TNT1 A 0 A_Jump(255, "ClawsOnly","TailWhip","ThreeHitCombo")
+		Goto ClawsOnly
+	ThreeHitCombo:
+		HX00 ABCDE 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(1,2),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX00 FGHIJ 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(1,2),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX00 KLMN 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(8,11),"Hexen2/Scorpion/Tail","Hexen2/Scorpion/Tail","Hexen2Damage")
+		HX00 OPQRSTUVW 2 A_FaceTarget
+		Goto See2
+	ClawsOnly:
+		HX01 ABCDEFG 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(1,2),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX01 HIJK 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(1,2),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX01 LMNOPQR 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(1,2),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX01 STUVW 2 A_FaceTarget
+		Goto See2
+	TailWhip:
+		HX03 ABCDEFGHI 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(8,11),"Hexen2/Scorpion/Tail","Hexen2/Scorpion/Tail","Hexen2Damage")
+		HX03 JKLMNOPQRSTU 2 A_FaceTarget
+		Goto See2
+	Death:
+		TNT1 A 0 A_JumpIfHealthLower(-30,"XDeath")
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		HX04 A 0 A_NoBlocking
+		HX04 A 0 A_Scream
+		HX04 A 0 A_SpawnItemEx("Hexen2YellowScorpionDeath",0,0,0,velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		TNT1 A 5
+		stop		
+	XDeath:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_FadeOut
+		stop		
+		}
+}		
+
+Actor Hexen2YellowScorpionDeath : Hexen2CorpseActor 
+{
+	Health 20
+	Radius 20
+	Height 48
+	Mass 450
+	States
+	{
+	Spawn:
+		HX04 ABCDEFGHIJKL 2 
+		HX04 MNOPQRST 2
+		HX04 U 4
+		TNT1 A 0 A_SpawnItemEx("Hexen2YellowScorpionCorpse",0,0,0,velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
+	Death:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 A_RemoveMaster
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Stop
+		}
+}
+
+Actor Hexen2YellowScorpionCorpse : Hexen2CorpseActor 
+{
+	Health 20
+	Radius 20
+	Height 48
+	Mass 450
+	States
+	{
+	Spawn:
+		HX04 U 4
+		Loop
+	Death:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 A_RemoveMaster
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Stop
+		}		
+}
+
+Actor Hexen2BlackScorpion : Hexen2YellowScorpion 
+{ 
+	Speed 10 
+	Health 200 
+	Obituary "%o was stung by a Bog Scorpion." 
+	States
+	{
+	Melee:
+		TNT1 A 0 A_Jump(255, "ClawsOnly","TailWhip","ThreeHitCombo")
+		Goto ClawsOnly
+	ThreeHitCombo:
+		HX00 ABCDE 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(2,10),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX00 FGHIJ 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(2,10),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX00 KLMN 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(3,11),"Hexen2/Scorpion/Tail","Hexen2/Scorpion/Tail","Hexen2Damage")
+		HX00 OPQRSTUVW 2 A_FaceTarget
+		Goto See2
+	ClawsOnly:
+		HX01 ABCDEFG 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(2,10),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX01 HIJK 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(2,10),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX01 LMNOPQR 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(2,10),"Hexen2/Scorpion/Claw","Hexen2/Scorpion/Claw","Hexen2Damage")
+		HX01 STUVW 2 A_FaceTarget
+		Goto See2
+	TailWhip:
+		HX03 ABCDEFGHI 2 A_FaceTarget
+		TNT1 A 0 A_CustomMeleeAttack(random(3,11),"Hexen2/Scorpion/Tail","Hexen2/Scorpion/Tail","Hexen2Damage")
+		HX03 JKLMNOPQRSTU 2 A_FaceTarget
+		Goto See2	
+	Death:
+		TNT1 A 0 A_JumpIfHealthLower(-30,"XDeath")
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		HX04 A 0 A_NoBlocking
+		HX04 A 0 A_Scream
+		HX04 A 0 A_SpawnItemEx("Hexen2BlackScorpionDeath",0,0,0,velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		TNT1 A 5
+		stop	
+		}
+}
+Actor Hexen2BlackScorpionDeath : Hexen2YellowScorpionDeath 
+{ 
+	States
+	{
+	Spawn:
+		HX04 ABCDEFGHIJKL 2 
+		HX04 MNOPQRST 2
+		HX04 U 4
+		TNT1 A 0 A_SpawnItemEx("Hexen2BlackScorpionCorpse",0,0,0,velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
+		}
+}
+
+Actor Hexen2BlackScorpionCorpse : Hexen2YellowScorpionCorpse { }
+
+Actor Hexen2Scorpion : RandomSpawner { DropItem "Hexen2YellowScorpion" DropItem "Hexen2BlackScorpion" }
