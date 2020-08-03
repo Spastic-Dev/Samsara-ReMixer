@@ -403,7 +403,7 @@ ACTOR M1FighterMajor
 			goto Death
 		XdeathForBitterman:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
-			TNT1 A 0 A_SpawnItemEx("Q2GibColorSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("Q2ColorGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
@@ -523,6 +523,8 @@ ACTOR M1FighterMajor
         Death.PhosFireCoop:			
 		Death.WolfenFlamethrower:
 		Death.HexGreenFire:
+		Death.PGFire:
+		Death.WTRangedFire:
 		Death.QuakeFire:
 		Death.FireExplosive:
 		Death.MarathonPlasmaFire:
