@@ -405,15 +405,31 @@ ACTOR PainElemental64
 		XDeathForRanger:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("QuakeMediumGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_PainDie("LostSoul64")
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Death.HLLaser:
+		Death.HLExplosive:
+		Death.HLRPGExplosive:	
+			TNT1 A 0 A_JumpIfHealthLower(-20,1)
+			goto Death
+		Death.HLEgon:
+		Death.FreemanGibs:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_PainDie("LostSoul64")
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop			
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
 		XdeathForBitterman:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2MediumGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_PainDie("LostSoul64")
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
@@ -432,6 +448,7 @@ ACTOR PainElemental64
 			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_PainDie("LostSoul64")
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5 A_FadeOut
 			stop							

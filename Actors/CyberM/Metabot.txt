@@ -24,6 +24,7 @@ Actor Metabot
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "ElectricBolt", 2.0
 	DamageFactor "PoisonBolt", 0
+	DropItem "CMBotDrop", 24
 	Dropitem "DefaultPinataPop"
 	Scale 0.30
     States
@@ -291,4 +292,14 @@ Actor Metabot
 		"####" "#################" 3 A_Fadeout(0.05)
 		stop			
 	}
+}
+
+Actor CMBotDrop : Ammo2Small { 
+	Scale 0.30
+	States
+	{
+	Spawn:
+		C_MB J -1
+		Stop
+	}	
 }

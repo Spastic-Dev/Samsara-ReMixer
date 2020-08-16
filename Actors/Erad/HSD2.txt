@@ -140,8 +140,13 @@ Actor HSD2 : HSD
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -343,6 +348,7 @@ Actor HSD2 : HSD
 			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5 A_FadeOut
 			stop			

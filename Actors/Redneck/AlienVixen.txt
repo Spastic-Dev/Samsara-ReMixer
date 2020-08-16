@@ -401,6 +401,20 @@ Actor BlueVixen
 		TNT1 A 0 A_KillMaster
 		TNT1 A 5 A_FadeOut	
 		Stop
+	Death.HLLaser:
+	Death.HLExplosive:
+	Death.HLRPGExplosive:	
+		TNT1 A 0 A_JumpIfHealthLower(-20,1)
+		goto Death
+	Death.HLEgon:
+	Death.FreemanGibs:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_KillMaster
+		TNT1 A 0 A_Fall
+		TNT1 A 5 A_FadeOut
+		stop		
 	Death.BittermanDamage:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
@@ -1067,6 +1081,11 @@ Actor RedVixen : BlueVixen {
 	Death.QuakeExplosive:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XDeathForRanger")
 		goto Death
+	Death.HLLaser:
+	Death.HLExplosive:
+	Death.HLRPGExplosive:	
+		TNT1 A 0 A_JumpIfHealthLower(-20,"Death.FreemanGibs")
+		goto Death		
 	Death.BittermanDamage:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
@@ -1711,6 +1730,11 @@ Actor GreenVixen : BlueVixen {
 	Death.BittermanDamage:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death
+	Death.HLLaser:
+	Death.HLExplosive:
+	Death.HLRPGExplosive:	
+		TNT1 A 0 A_JumpIfHealthLower(-20,"Death.FreemanGibs")
+		goto Death		
 	 Death.Hexen2Damage:
 	 Death.Hexen2Fire:
 	 Death.Hexen2Electric:
@@ -2350,6 +2374,11 @@ Actor BrownVixen : BlueVixen {
 	Death.QuakeExplosive:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XDeathForRanger")
 		goto Death
+	Death.HLLaser:
+	Death.HLExplosive:
+	Death.HLRPGExplosive:	
+		TNT1 A 0 A_JumpIfHealthLower(-20,"Death.FreemanGibs")
+		goto Death		
 	Death.BittermanDamage:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 		goto Death

@@ -21,6 +21,7 @@ Actor CMCultie
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	Dropitem "DefaultPinataPop"
+	DropItem "CMDarklightDrop", 8
 	Tag "Cultie"
 	Scale 0.25
 	var int user_scalex;
@@ -773,3 +774,13 @@ actor CultistGroundM
         Stop
     }
 }
+
+Actor CMDarklightDrop : SamsaraUniquePickup1
+{
+	States
+	{
+	Spawn:
+		CMUQ A -1
+		Stop
+		}
+}		

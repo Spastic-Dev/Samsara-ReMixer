@@ -186,7 +186,6 @@ Actor StrifeAcolyte
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)	
 			Goto Burn			
 		Death.WolfenFlamethrower:
-		Death.Hexen2Fire:
 		Death.HexGreenFire:
 		Death.QuakeFire:
 		Death.PGFire:
@@ -277,8 +276,13 @@ Actor StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath	
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
 			TNT1 A 0 A_GiveToTarget("HealthBonus", 1)
@@ -843,8 +847,13 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
 			TNT1 A 0 A_GiveToTarget("HealthBonus", 1)
@@ -958,11 +967,13 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
-	    Death.Hexen2Damage:
-	    Death.Hexen2Fire:
-	    Death.Hexen2Electric:
+		Death.Hexen2Damage:
+		Death.Hexen2Electric:
 			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
-			Goto Death			
+			Goto Death
+		Death.Hexen2Fire:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Burn			
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGR2 N -1
@@ -1280,8 +1291,13 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.DukeExplosive:
 		Death.DukeSpectral:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
@@ -1487,11 +1503,13 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
-	    Death.Hexen2Damage:
-	    Death.Hexen2Fire:
-	    Death.Hexen2Electric:
+		Death.Hexen2Damage:
+		Death.Hexen2Electric:
 			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
-			Goto Death			
+			Goto Death
+		Death.Hexen2Fire:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Burn		
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGR3 N -1
@@ -1855,8 +1873,13 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
@@ -2016,11 +2039,13 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
-	    Death.Hexen2Damage:
-	    Death.Hexen2Fire:
-	    Death.Hexen2Electric:
+		Death.Hexen2Damage:
+		Death.Hexen2Electric:
 			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
-			Goto Death			
+			Goto Death
+		Death.Hexen2Fire:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Burn			
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGR4 N -1
@@ -2410,8 +2435,13 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Raise:
 			AGR5 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			AGR5 NMLKJIHG 6
@@ -2546,11 +2576,13 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
-	    Death.Hexen2Damage:
-	    Death.Hexen2Fire:
-	    Death.Hexen2Electric:
+		Death.Hexen2Damage:
+		Death.Hexen2Electric:
 			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
-			Goto Death			
+			Goto Death
+		Death.Hexen2Fire:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Burn		
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGR5 N -1
@@ -2962,8 +2994,13 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
 			TNT1 A 0 A_GiveToTarget("HealthBonus", 1)
@@ -3077,11 +3114,13 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
-	    Death.Hexen2Damage:
-	    Death.Hexen2Fire:
-	    Death.Hexen2Electric:
+		Death.Hexen2Damage:
+		Death.Hexen2Electric:
 			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
-			Goto Death			
+			Goto Death
+		Death.Hexen2Fire:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Burn			
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGR6 N -1
@@ -3378,8 +3417,13 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop	
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -3607,11 +3651,13 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
-	    Death.Hexen2Damage:
-	    Death.Hexen2Fire:
-	    Death.Hexen2Electric:
+		Death.Hexen2Damage:
+		Death.Hexen2Electric:
 			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
-			Goto Death			
+			Goto Death
+		Death.Hexen2Fire:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Burn			
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGR7 N -1
@@ -3977,8 +4023,13 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
-			Goto XDeath		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop	
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
@@ -4138,11 +4189,13 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
-	    Death.Hexen2Damage:
-	    Death.Hexen2Fire:
-	    Death.Hexen2Electric:
+		Death.Hexen2Damage:
+		Death.Hexen2Electric:
 			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
-			Goto Death			
+			Goto Death
+		Death.Hexen2Fire:
+			TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+			Goto Burn		
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGR8 N -1

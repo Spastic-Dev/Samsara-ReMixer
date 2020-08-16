@@ -21,6 +21,7 @@ Actor CMMung
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	Dropitem "DefaultPinataPop"
+	DropItem "CMMungDrop", 48
 	Bloodcolor Blue
 	Tag "Mung"
 	Scale 0.27
@@ -711,3 +712,14 @@ Actor CybermageFakeBoom
         Stop
     }
 }
+
+Actor CMMungDrop : Ammo3Small
+{
+	Scale 0.30
+	States
+	{
+	Spawn:
+		C_MU S -1
+		Stop
+		}
+	}	

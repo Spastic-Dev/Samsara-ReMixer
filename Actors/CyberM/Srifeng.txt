@@ -23,6 +23,7 @@ Actor Srifeng
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	Dropitem "DefaultPinataPop"
+	DropItem "CMDarklightDrop"
 	Bloodcolor Orange
 	Scale 0.30
 	Tag "Sri-Feng"
@@ -210,6 +211,20 @@ Actor Srifeng
 		"####" "#" 1 A_IceGuyDie
 		TNT1 A 0 A_KillMaster
 		stop
+	Death.HLLaser:
+	Death.HLExplosive:
+	Death.HLRPGExplosive:	
+		TNT1 A 0 A_JumpIfHealthLower(-20,1)
+		goto Death
+	Death.HLEgon:
+	Death.FreemanGibs:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_Fall
+		TNT1 A 0 A_KillMaster
+		TNT1 A 5 A_FadeOut
+		stop		
 	Death.Vodoo:
 	Death.VoodooPuff:
 	Death.DynamiteCoop:

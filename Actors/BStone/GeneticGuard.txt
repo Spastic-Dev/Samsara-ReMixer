@@ -5,7 +5,6 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 	SeeSound "geneticguard/sight"
 	DeathSound "geneticguard/death"
 	AttackSound ""
-	Dropitem "BlakeClip"
 	Species "Enemies"
 	Obituary "%o was taken down by a High Security Genetic Guard."
 	Tag "High Security Genetic Guard"
@@ -121,12 +120,23 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "XDeath2")
+		Proceed:	
 			BS10 H 7 A_Scream
 			BS10 I 8 A_NoBlocking
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			BS10 J 6
 			BS10 KL 6
 			BS10 M -1 A_KillMaster
 			Stop
+		XDeath2:
+			BS10 H 7 A_Scream
+			BS10 I 8 A_NoBlocking
+			TNT1 A 0 A_DropItem("BlakeClip")
+			BS10 J 6
+			BS10 KL 6
+			BS10 M -1 A_KillMaster
+			Stop			
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
@@ -150,6 +160,12 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
 			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "Z")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
+			TNT1 A -1 A_KillMaster
+			stop
+		Z:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A -1 A_KillMaster
 			stop
 		Death.DukeIce:
@@ -169,6 +185,12 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "I")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
+			TNT1 A 0
+			stop
+		I:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 0
 			stop
 		Raise:
@@ -202,8 +224,14 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "F")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
+			TNT1 A 5 A_FadeOut
+			stop
+		F:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.LifeLeech: 
@@ -347,6 +375,12 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			"####" "#" 2 A_SetTranslucent(0.2,0)
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "G")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
+			"####" "#" 0 A_KillMaster
+			stop
+		G:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			"####" "#" 0 A_KillMaster
 			stop
 		Disintegrate:
@@ -377,6 +411,13 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "M")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			"####" "#" 0 A_KillMaster
+			stop
+		M:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			"####" "#" 0 A_KillMaster
 			stop
@@ -386,6 +427,13 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking		
 			"####" "#" 0 A_SpawnItem("WTNukeDeathWide")
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "N")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
+			"####" "#################" 3 A_Fadeout(0.05)
+			TNT1 A 0 A_KillMaster
+			stop
+		N:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			"####" "#################" 3 A_Fadeout(0.05)
 			TNT1 A 0 A_KillMaster
 			stop
@@ -402,8 +450,14 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("QuakeMediumGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "R")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			TNT1 A 5 A_FadeOut
-			Stop
+			stop
+		R:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
@@ -412,8 +466,14 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("Q2MediumColorGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "B")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			TNT1 A 5 A_FadeOut
-			Stop
+			stop
+		B:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.Hexen2RavenDamage:
 			TNT1 A 0 A_Jump(192,"Pain")
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawnerColor",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -431,6 +491,12 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawnerColor",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "H")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
+			TNT1 A 5 A_FadeOut
+			stop
+		H:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 5 A_FadeOut
 			stop			
 		Pain.ShrinkerDMG:
@@ -512,8 +578,14 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "E")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			TNT1 A 1
-			Stop
+			stop
+		E:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 1
+			stop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			BS10 A 0
@@ -543,8 +615,14 @@ Actor GeneticGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "EC")
+			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			TNT1 A 1
-			Stop
+			stop
+		EC:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 1
+			stop
 	}
 }
 

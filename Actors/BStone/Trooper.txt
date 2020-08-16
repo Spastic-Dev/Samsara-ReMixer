@@ -10,7 +10,6 @@ Actor StarTrooper : BlakeStoneHumanoid {
 	DeathSound "startrooper/death"
 	Obituary "%o couldn't match the skills of a S.T.A.R. Trooper."
 	Tag "S.T.A.R. Trooper"
-	Dropitem "BlakeClip"
 	Decal BulletChip
 	States {
 		Spawn:
@@ -205,13 +204,24 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			BSE3 S -1 Thing_Raise(0)
 			Stop
 		XDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon4", 1, "XDeath2")
+		Proceed:	
 			BSE3 G 6
 			BSE3 H 7 A_Scream
 			BSE3 I 8 A_NoBlocking
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			BSE3 J 6
 			BSE3 K -1
-			Stop	
+			Stop
+		XDeath2:				
+			BSE2 G 6
+			BSE2 H 7 A_Scream
+			BSE2 I 8 A_NoBlocking
+			TNT1 A 0 A_DropItem("BlakeClip")
+			BSE2 J 6
+			BSE2 K -1
+			Stop			
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
@@ -235,6 +245,12 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
 			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "Z")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
+			TNT1 A -1
+			stop
+		Z:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A -1
 			stop
 		Death.DukeIce:
@@ -253,6 +269,12 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "I")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
+			TNT1 A 0
+			stop
+		I:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 0
 			stop
 		Raise:
@@ -296,11 +318,17 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 A_JumpIfHealthLower(-20,1)
 			goto Death
 		Death.HLEgon:
-		Death.FreemanGibs:
+		Death.FreemanGibs:		
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "F")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
+			TNT1 A 5 A_FadeOut
+			stop
+		F:
+			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.LifeLeech: 
@@ -431,8 +459,14 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
 			TNT1 A 0 A_NoBlocking		
-			TNT1 A 5
-		   Stop	
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "FW")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
+			TNT1 A 5 
+			stop
+		FW:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 
+			stop	
 		Death.RottExplosive:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -440,15 +474,27 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 A_Jump(128, 2)
 			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
 			TNT1 AA 0
-			TNT1 A 5 A_NoBlocking
-			Stop
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "T")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
+			TNT1 A 5 A_FadeOut
+			stop
+		T:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 A_FadeOut
+			stop			
 		Death.RottDisintegrate:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_ChangeFlag(SOLID,0)		
 			TNT1 A 0 A_Scream
 			TNT1 A 1 A_SpawnItem("RGodModeDeath")
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "G")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			TNT1 A 5 A_FadeOut
-			Stop	
+			stop
+		G:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 A_FadeOut
+			stop	
 		Disintegrate:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
@@ -477,16 +523,28 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "M")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
+		M:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			"####" "#" 2 A_SetTranslucent(0.1,0)
+			stop			
 		Death.Nuke:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking		
 			"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "N")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			"####" "#################" 3 A_Fadeout(0.05)
 			stop
+		N:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			"####" "#################" 3 A_Fadeout(0.05)
+			stop			
 		Death.QuakeElectric:
 		Death.NotQuadded:
 		Death.QuakeExplosive:
@@ -499,8 +557,14 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "R")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			TNT1 A 5 A_FadeOut
-			Stop
+			stop
+		R:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 A_FadeOut
+			stop
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
@@ -508,8 +572,14 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "B")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			TNT1 A 5 A_FadeOut
-			Stop
+			stop
+		B:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.Hexen2RavenDamage:
 			TNT1 A 0 A_Jump(192,"Pain")
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -526,8 +596,14 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "H")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			TNT1 A 5 A_FadeOut
-			stop			
+			stop
+		H:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 5 A_FadeOut
+			stop
 		Pain.ShrinkerDMG:
 			BSE3 F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -591,8 +667,14 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "E")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			TNT1 A 1
-			Stop
+			stop
+		E:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 1
+			stop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			BSE3 A 0
@@ -621,8 +703,14 @@ Actor StarTrooper : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "EC")
+			TNT1 A 0 A_DropItem("BlakeRAWDrop1")
 			TNT1 A 1
-			Stop
+			stop
+		EC:
+			TNT1 A 0 A_DropItem("BlakeClip")
+			TNT1 A 1
+			stop
 	}
 }
 

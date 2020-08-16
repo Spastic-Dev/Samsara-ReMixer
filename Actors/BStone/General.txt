@@ -20,7 +20,7 @@ Actor BlakeStoneHumanoid {
 	DamageFactor "BlakeEnemyBullet", 0.0
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
-	Dropitem "BlakeClip"
+//	Dropitem "BlakeClip"
 	Decal BulletChip
 	var int user_scalex;
 	var int user_scaley;
@@ -73,3 +73,33 @@ ACTOR BlakeEnemyBulletD4 : BlakeEnemyBulletD1 { Damage (Random (1, 8)) }
 ACTOR BlakeEnemyBulletD5 : BlakeEnemyBulletD1 { Damage (Random (1, 4)) }
 ACTOR BlakeEnemyBulletD6 : BlakeEnemyBulletD1 { Damage (Random (1, 2)) }
 ACTOR BlakeEnemyBulletD7 : BlakeEnemyBulletD1 { Damage (1) }
+
+Actor BlakeSFPDrop : SamsaraSlotTwoDrop
+{
+	States
+	{
+	Spawn:
+		BWP2 A -1
+		Stop
+		}
+}
+
+Actor BlakeRAWDrop1 : SamsaraSlotFourDrop
+{
+	States
+	{
+	Spawn:
+		BWP3 A -1
+		Stop
+		}
+}
+
+Actor BlakeRAWDrop2 : SamsaraSlotFourDrop
+{
+	States
+	{
+	Spawn:
+		BWP4 A -1
+		Stop
+		}
+}		

@@ -20,7 +20,7 @@ Actor CMTrooper
 	PainChance "MarathonStun", 255
 	Dropitem "DefaultPinataPop"
 	Tag "Trooper"
-    DropItem Clip 24 1
+    DropItem "CMTrooperDrop" 24 1
 	Scale 0.25
 	var int user_scalex;
 	var int user_scaley;
@@ -694,3 +694,14 @@ actor CMTrooperLaser
 	  Loop
     }
 }
+
+Actor CMTrooperDrop : Ammo1Small
+{
+	Scale 0.30
+	States
+	{
+	Spawn:
+		C_TR M -1
+		Stop
+	}
+}	

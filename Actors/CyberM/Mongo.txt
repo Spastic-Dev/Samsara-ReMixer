@@ -22,7 +22,7 @@ Actor CMMongo
 	PainChance "MarathonStun", 255
 	Dropitem "DefaultPinataPop"
 	Tag "Mongo"
-    DropItem Shell 24 1
+//    DropItem "CMMongoDrop" 24 1
 	Scale 0.30
 	var int user_scalex;
 	var int user_scaley;
@@ -46,8 +46,8 @@ Actor CMMongo
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         C_MN E 6 A_FaceTarget
 		C_MN E 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("CM/FGFire")	
-        C_MN F 8 bright A_CustomMissile("CMFusionBall0", 32.0, 0.0, 0, 0)
+		TNT1 A 0 A_PlaySound("CM/MagicFire1")	
+        C_MN F 8 bright A_CustomMissile("CMMiniMongo", 32.0, 0.0, 0, 0)
         C_MN E 4
         Goto See
     Melee:
@@ -658,4 +658,23 @@ actor CMMongo_ShrinkEffect : CMMongo
 	}
 }
 
-Actor CMFusionBall0 : CMFusionBall { Speed 17 Scale 0.85 Damage (Random(Random(2,13),Random(7,18))*Random(2,1)) }
+actor CMMiniMongo
+{
+   Radius 9
+   Height 5
+   Speed 12
+   Damage (Random(7,18))
+   PROJECTILE
+   RenderStyle Add
+   Scale 0.45
+   DeathSound "CM/FGExp"
+    States
+    {
+   Spawn:
+      CMP1 ABCD 2 Bright
+      Loop
+   Death:
+      CMPX ABCDEFG 4 Bright
+      Stop
+    }
+}

@@ -20,7 +20,7 @@ Actor CMStynx
 	PainChance "MarathonStun", 255
 	Dropitem "DefaultPinataPop"
 	Tag "Stynx"
-    DropItem Clip 24
+    DropItem "CMStynxDrop" 24
 	Scale 0.25
 	var int user_scalex;
 	var int user_scaley;
@@ -685,3 +685,14 @@ actor CMStynx_ShrinkEffect : CMStynx
 			Stop
 	}
 }
+
+Actor CMStynxDrop : Ammo1Big
+{
+	Scale 0.30
+	States
+	{
+	Spawn:
+		C_YX K -1
+		Stop
+	}
+}	

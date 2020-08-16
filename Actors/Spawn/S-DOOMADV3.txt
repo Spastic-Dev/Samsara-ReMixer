@@ -145,7 +145,7 @@ ACTOR DoomImpSpawnerCoop replaces DoomImp
 		SetSW:
 			TNT1 A 0 A_Jump(82,"SetSW2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplysw1")
-			TNT1 A 1 A_SpawnItemEx("SWAssassin", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("SWRipperBaby", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetSW2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplysw2")
@@ -367,7 +367,7 @@ ACTOR DoomImpSpawnerCoop replaces DoomImp
 			Stop			
 		MultiplySW1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multiSWAssassin",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("multiSWRipperBaby",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW1")
 			Stop
 		MultiplySW2:

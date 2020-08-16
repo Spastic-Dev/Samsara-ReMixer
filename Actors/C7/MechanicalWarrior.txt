@@ -17,6 +17,7 @@ Actor C7MWarrior : C7Alien {
 	ActiveSound "c7mwar/see"
 	AttackSound ""
 	Dropitem "DefaultPinataPop"
+	DropItem "C7MWarriorDrop"
 	Obituary "%o was vaporized by a Mechanical Warrior."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
@@ -394,6 +395,20 @@ Actor C7MWarrior : C7Alien {
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop
+		Death.HLLaser:
+		Death.HLExplosive:
+		Death.HLRPGExplosive:	
+			TNT1 A 0 A_JumpIfHealthLower(-20,1)
+			goto Death
+		Death.HLEgon:
+		Death.FreemanGibs:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("HLGenericAlienGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_KillMaster
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			stop			
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
@@ -738,3 +753,13 @@ actor C7MWarrior_ShrinkEffect : C7MWarrior
 			Stop
 	}
 }
+
+Actor C7MWarriorDrop : SamsaraSlotFourDrop
+{
+	States
+	{
+	Spawn:
+		7DU2 A -1
+		Stop
+		}
+}		
