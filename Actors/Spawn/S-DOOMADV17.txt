@@ -234,8 +234,8 @@ ACTOR SpiderMastermindSpawnerCoop replaces SpiderMastermind
 			TNT1 A 1 A_SpawnItemEx("Q2Widow",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetHexen2:
-			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
-			TNT1 A 1 A_SpawnItemEx("Korax3Doom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
+			TNT1 A 1 A_SpawnItemEx("Hexen2Praevus",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetGoldeneye:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyGoldeneye")
@@ -660,6 +660,15 @@ ACTOR SpiderMastermindSpawnerCoop replaces SpiderMastermind
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiQ2SuperTank",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_3_2")
+			Goto BossWait
+		MultiplyHexen2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHexen2Praevus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto MultiplyHexen2_2
+		MultiplyHexen2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHexen2Praevus",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2_2")
 			Goto BossWait
 		MultiplyNull:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

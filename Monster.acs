@@ -1309,3 +1309,258 @@ Script "Samsara_Hexen2MissileDetector" (void)
 	SetActivatorToTarget(0);
 	SetResultValue(CheckInventory("Hexen2EnemyFireDetector"));
 }
+Script "Samsara_SetSpeed" (int input)
+{
+	SetActorProperty(0, APROP_Speed, input<<16);
+	SetResultValue(1);
+}
+Script "Hexen2_PraevusTeleport" (int mode)
+{
+	int fire;
+	int rotationspeed = 4550;
+	if(mode == 0)
+	{
+		while(CheckInventory("Hexen2PraevusTeleportToken"))
+		{
+			if(GetActorProperty(0,APROP_ScaleX) >= 0.025)
+			{
+				SetActorProperty(0,APROP_ScaleX, GetActorProperty(0,APROP_ScaleX)-0.025);
+				SetActorProperty(0,APROP_ScaleY, GetActorProperty(0,APROP_ScaleY)-0.025);
+			}
+			else
+			{
+				SetActorProperty(0,APROP_ScaleX, 0);
+				SetActorProperty(0,APROP_ScaleY, 0);
+			}
+			if(GetActorProperty(0,APROP_ScaleX) >= 0.2 && GetActorProperty(0,APROP_ScaleX) <= 0.3 && fire == 0 && GetActorClass(0) != "Hexen2PraevusShield")
+			{
+				fire = 1;
+				SpawnSpotForced("Hexen2PraevusTeleportFire",0,0,0);
+			}
+			Delay(1);
+		}
+	}
+	else if(mode == 1)
+	{
+		while(CheckInventory("Hexen2PraevusTeleportOutToken"))
+		{
+			if(GetActorProperty(0,APROP_ScaleX) < 0.2  && fire == 0 && GetActorClass(0) != "Hexen2PraevusShield")
+			{
+				fire = 1;
+				SpawnSpotForced("Hexen2PraevusTeleportFire",0,0,0);
+			}
+			if(GetActorProperty(0,APROP_ScaleX) < 1.0)
+			{
+				SetActorProperty(0,APROP_ScaleX, GetActorProperty(0,APROP_ScaleX)+0.025);
+				SetActorProperty(0,APROP_ScaleY, GetActorProperty(0,APROP_ScaleY)+0.025);
+			}
+			Delay(1);
+		}
+	}
+	else if(mode == 2)
+	{
+		while(CheckInventory("Hexen2PraevusTeleportRotationToken"))
+		{
+			SetActorAngle(0,GetActorAngle(0)+rotationspeed);
+			Delay(1);
+		}
+	}
+}
+
+Script "Hexen2_PraevusShield" (void)
+{
+	int delaytimer;
+	while(ClassifyActor(0) & ACTOR_ALIVE)
+	{
+		if(CheckInventory("Hexen2PraevusTeleportChildToken"))
+		{
+			if(!delaytimer)
+			{
+				delaytimer = 1;
+				GiveInventory("Hexen2PraevusTeleportShieldInToken",1);
+				GiveInventory("Hexen2PraevusTeleportToken",1);
+				Delay(26);
+				ACS_NamedExecuteAlways("Hexen2_PraevusTeleport",0,0,0,0);
+			}
+			if(CheckInventory("Hexen2PraevusTeleportChildOutToken"))
+			{
+				if(!CheckInventory("Hexen2PraevusTeleportOutToken"))
+				{
+					GiveInventory("Hexen2PraevusTeleportOutToken",1);
+					TakeInventory("Hexen2PraevusTeleportToken",1);
+					ACS_NamedExecuteAlways("Hexen2_PraevusTeleport",0,1,0,0);
+				}
+				if(GetActorProperty(0,APROP_ScaleX) >= 1.0)
+				{
+					delaytimer = 0;
+					SetActorProperty(0,APROP_ScaleX, 1.0);
+					SetActorProperty(0,APROP_ScaleY, 1.0);
+					GiveInventory("Hexen2PraevusTeleportShieldOutToken",1);
+					TakeInventory("Hexen2PraevusTeleportOutToken",1);
+					TakeInventory("Hexen2PraevusTeleportChildToken",1);
+					TakeInventory("Hexen2PraevusTeleportChildOutToken",1);
+					TakeInventory("Hexen2PraevusTeleportToken",1);
+					Delay(18);
+				}
+			}
+		}
+		Delay(1);
+	}
+}
+
+Script "Hexen2_PraevusLifeTime" (void)
+{
+	int dmgtime;
+	int oldhealth, spawnhealth;
+	While(ClassifyActor(0) & ACTOR_ALIVE)
+	{
+		oldhealth = GetActorProperty(0,APROP_Health);
+		spawnhealth = GetActorProperty(0,APROP_SpawnHealth);
+		//PrintBold(s:"Damage Time: ",d:dmgtime,s:" Health: ",d:oldhealth,s:" Spawn Health: ",d:spawnhealth);
+		if(oldhealth < FixedMul(spawnhealth,0.2) && dmgtime == 3)
+		{
+			dmgtime++;
+			SetActorState(0,"Recharge",true);
+		}
+		else if(oldhealth < FixedMul(spawnhealth,0.4) && dmgtime == 2)
+		{
+			dmgtime++;
+			SetActorState(0,"Recharge",true);
+		}
+		else if(oldhealth < FixedMul(spawnhealth,0.6) && dmgtime == 1)
+		{
+			dmgtime++;
+			SetActorState(0,"Recharge",true);
+		}
+		else if(oldhealth < FixedMul(spawnhealth,0.8) && dmgtime == 0)
+		{
+			dmgtime++;
+			SetActorState(0,"Recharge",true);
+		}
+		Delay(1);
+		if(oldhealth > GetActorProperty(0,APROP_Health))
+			PlaySound(0,GetActorProperty(0,APROP_PainSound),CHAN_VOICE,1.0,0,ATTN_NONE);
+	}
+}
+
+Script "Hexen2_BossDeath" (int mode)
+{
+	if(mode == 0)
+	{
+		int count;
+		int newtid = UniqueTid();
+		SpawnForced("Hexen2BossDeathCircle1",GetActorX(0),GetActorY(0),GetActorZ(0)+25.0,newtid,GetActorAngle(0));
+		While(count < 8)
+		{
+			SpawnForced("Hexen2BossDeathShaft",GetActorX(0),GetActorY(0),GetActorZ(0)+25.0,newtid,0);
+			count++;
+			Delay(7);
+		}
+		While(!(ClassifyActor(0) & ACTOR_WORLD))
+		{
+			//yes, the circle is supposed to spawn this, but we can only make this work by putting it here instead
+			//SpawnForced("Hexen2BossDeathStar",GetActorX(0),GetActorY(0),GetActorZ(0)+25.0,newtid,random(0,65536));
+			//SpawnProjectile(0,"Hexen2BossDeathStar",random(0,65536),30,0,0,newtid);
+			if(CheckInventory("Hexen2PraevusFlashToken"))
+			{
+				fadetobold(255,255,255,1.0,0.25);
+				Delay(16);
+				Thing_Remove(newtid);
+				fadetobold(255,255,255,0.0,0.25);
+				terminate;
+			}
+			Delay(2);
+		}
+	}
+	else if(mode == 1)
+	{
+		int beamdirection;
+		int beammaxscale = random(0.5,1.5);
+		int beamspeed = random(2,5);
+		int anglea = random(0,65536);
+		int angleb = random(3605,23655);
+		if(random(0,10) > 5)
+			beamdirection = 1;
+		while(true)
+		{
+			if(GetActorProperty(0,APROP_ScaleX) < beammaxscale)
+			{
+				SetActorProperty(0,APROP_ScaleX,GetActorProperty(0,APROP_ScaleX)+0.6);
+				SetActorProperty(0,APROP_ScaleY,GetActorProperty(0,APROP_ScaleY)+0.6);
+			}
+			else
+			{
+				SetActorProperty(0,APROP_ScaleX,beammaxscale);
+				SetActorProperty(0,APROP_ScaleY,beammaxscale);
+			}
+			
+			if(beamdirection)
+				anglea += beamspeed*182;
+			else
+				anglea -= beamspeed*182;
+			
+			SetActorAngle(0,FixedMul(cos(anglea),angleb));
+			SetActorPitch(0,FixedMul(sin(anglea),angleb));
+			Delay(2);
+		}
+	}
+	else if(mode == 2)
+	{
+		int stage;
+		while(!(ClassifyActor(0) & ACTOR_WORLD))
+		{
+			GiveInventory("Hexen2BossDeathStarSpawner",1);
+			if(stage == 0)
+			{
+				SetActorProperty(0,APROP_ScaleX,FixedMul(GetActorProperty(0,APROP_ScaleX),1.0275));
+				SetActorProperty(0,APROP_ScaleY,FixedMul(GetActorProperty(0,APROP_ScaleY),1.0275));
+				if(GetActorProperty(0,APROP_ScaleX) >= 2.5)
+				{
+					stage = 1;
+					SetActorProperty(0,APROP_ScaleX,2.5);
+					SetActorProperty(0,APROP_ScaleY,2.5);
+				}
+			}
+			else if(stage == 1)
+			{
+				SetActorProperty(0,APROP_ScaleX,GetActorProperty(0,APROP_ScaleX)-0.1);
+				SetActorProperty(0,APROP_ScaleY,GetActorProperty(0,APROP_ScaleY)-0.1);
+				if(GetActorProperty(0,APROP_ScaleX) < 1.5 || random(0,10) < 1)
+					stage = 2;
+			}
+			else if(stage == 2)
+			{
+				SetActorProperty(0,APROP_ScaleX,GetActorProperty(0,APROP_ScaleX)+(0.01*random(1,10)));
+				SetActorProperty(0,APROP_ScaleY,GetActorProperty(0,APROP_ScaleY)+(0.01*random(1,10)));
+				if(GetActorProperty(0,APROP_ScaleX) >= 2.5)
+				{
+					stage = 1;
+					SetActorProperty(0,APROP_ScaleX,2.5);
+					SetActorProperty(0,APROP_ScaleY,2.5);
+				}
+				else if(random(0,10) < 1)
+				{
+					stage = 1;
+				}
+			}
+			Delay(2);
+		}
+	}
+	else if(mode == 3)
+	{
+		int time; //implementing this to prevent the effect from going on too long
+		While(!(ClassifyActor(0) & ACTOR_WORLD) && time < 105)
+		{
+			time++;
+			SetActorVelocity(0,FixedMul(GetActorVelX(0),1.05),FixedMul(GetActorVelY(0),1.05),0,0,0);
+			if(GetActorProperty(0,APROP_ScaleX) < 2.0)
+			{
+				SetActorProperty(0,APROP_ScaleX,FixedMul(GetActorProperty(0,APROP_ScaleX),1.08));
+				SetActorProperty(0,APROP_ScaleY,FixedMul(GetActorProperty(0,APROP_ScaleY),1.08));
+			}
+			Delay(2);
+		}		
+		Thing_Remove(0);
+		terminate;
+	}
+}
