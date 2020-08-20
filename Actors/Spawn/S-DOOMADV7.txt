@@ -193,8 +193,13 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			TNT1 A 1 A_SpawnItemEx("Q2Tank",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetHexen2:
-			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
+			TNT1 A 0 A_Jump(32,"SetHexen2_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
 			TNT1 A 1 A_SpawnItemEx("Hexen2IronGolem",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+		SetHexen2_2:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2_2")
+			TNT1 A 1 A_SpawnItemEx("Hexen2CrystalGolem",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetGoldeneye:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyGoldeneye")
@@ -398,6 +403,16 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiQ2Tank", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
+			Stop
+		MultiplyHexen2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHexen2IronGolem", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
+			Stop
+		MultiplyHexen2_2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHexen2CrystalGolem", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2_2")
 			Stop
 		MultiplyNull:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
