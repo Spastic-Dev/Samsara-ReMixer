@@ -237,7 +237,7 @@ Actor Hexen2WereJaguar : Hexen2BestialBase
 		Sword:
 			HX12 A 0 A_Playsound("Hexen2/VorpalSwing", CHAN_BODY)
 			HX12 A 0 A_JumpIf(frandom(0.0,1.0) < 0.5, 2)
-			HX12 A 0 A_Playsound("Hexen2/Attack", CHAN_VOICE)
+			HX12 A 0 A_Playsound("Hexen2/Mezzo/Attack", CHAN_VOICE)
 			HX12 ABCDEFGH 2 A_FaceTarget
 			HX12 I 0 A_CustomMissile("Hexen2WereJaguarSword",36,0,0,CMF_AIMDIRECTION)		
 			HX12 IJKLM 2 A_FaceTarget
@@ -246,8 +246,9 @@ Actor Hexen2WereJaguar : Hexen2BestialBase
 		Clobber:
 			HX02 A 0 A_FaceTarget
 			HX02 A 0 A_JumpIf(frandom(0.0,1.0) > 0.5,2)
-			HX02 A 0 A_Playsound("Hexen2/Attack", CHAN_VOICE)
+			HX02 A 0 A_Playsound("Hexen2/Mezzo/Attack", CHAN_VOICE)
 			HX02 ABCDEF 2
+			HX02 G 0 A_Playsound("Hexen2/Mezzo/Slam", CHAN_VOICE)
 			HX02 G 0 A_CustomMissile("Hexen2MezzomanSlammer",0,0,0,CMF_AIMDIRECTION)
 			HX02 GHIJKLMNOP 2
 			HX02 A 0 ACS_NamedExecuteAlways("Hexen2_LastAttacked",0,17)
@@ -613,7 +614,7 @@ Actor Hexen2WerePanther : Hexen2WereJaguar
 		Sword:
 			HX12 A 0 A_Playsound("Hexen2/VorpalSwing", CHAN_BODY)
 			HX12 A 0 A_JumpIf(frandom(0.0,1.0) < 0.5, 2)
-			HX12 A 0 A_Playsound("Hexen2/Attack", CHAN_VOICE)
+			HX12 A 0 A_Playsound("Hexen2/Mezzo/Attack", CHAN_VOICE)
 			HX12 ABCDEFGH 2 A_FaceTarget
 			HX12 I 0 A_CustomMissile("Hexen2WerePantherSword",36,0,0,CMF_AIMDIRECTION)		
 			HX12 IJKLM 2 A_FaceTarget
@@ -656,7 +657,7 @@ Actor Hexen2SnowTiger : Hexen2WereJaguar
 		Sword:
 			HX12 A 0 A_Playsound("Hexen2/VorpalSwing", CHAN_BODY)
 			HX12 A 0 A_JumpIf(frandom(0.0,1.0) < 0.5, 2)
-			HX12 A 0 A_Playsound("Hexen2/Attack", CHAN_VOICE)
+			HX12 A 0 A_Playsound("Hexen2/Mezzo/Attack", CHAN_VOICE)
 			HX12 ABCDEFGH 2 A_FaceTarget
 			HX12 I 0 A_CustomMissile("Hexen2SnowTigerSword",36,0,0,CMF_AIMDIRECTION)		
 			HX12 IJKLM 2 A_FaceTarget
@@ -699,7 +700,7 @@ Actor Hexen2WereTiger : Hexen2WereJaguar
 		Sword:
 			HX12 A 0 A_Playsound("Hexen2/VorpalSwing", CHAN_BODY)
 			HX12 A 0 A_JumpIf(frandom(0.0,1.0) < 0.5, 2)
-			HX12 A 0 A_Playsound("Hexen2/Attack", CHAN_VOICE)
+			HX12 A 0 A_Playsound("Hexen2/Mezzo/Attack", CHAN_VOICE)
 			HX12 ABCDEFGH 2 A_FaceTarget
 			HX12 I 0 A_CustomMissile("Hexen2WereTigerSword",36,0,0,CMF_AIMDIRECTION)		
 			HX12 IJKLM 2 A_FaceTarget
