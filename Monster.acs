@@ -1564,3 +1564,49 @@ Script "Hexen2_BossDeath" (int mode)
 		terminate;
 	}
 }
+
+Script "Hexen2_LastAttacked" (int time)
+{
+	GiveInventory("Hexen2LastAttacked",1);
+	Delay(time);
+	TakeInventory("Hexen2LastAttacked",1);
+}
+
+Script "MM_SetSpeed" (int speed)
+{
+	SetActorProperty(0, APROP_Speed, speed*1.0);
+}
+
+Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
+{
+	switch(mode)
+	{
+		case 1: //Hexen2_MezzomanThrust
+			int oldTID, target;
+			oldTID = ActivatorTID();
+			target = UniqueTID();
+			Thing_ChangeTID(0, target);
+			SetActivatorToTarget(0);
+			int angle = GetActorAngle(0);
+			SetActivator(target);
+			Thing_ChangeTID(target, oldTID);
+			SetActivator(0, AAPTR_Tracer);
+			ThrustThingZ(0,25,0,1);
+			ThrustThing(angle,5,1,0);
+			break;
+		case 2: //mezzoman sword damage
+			SetActivatorToTarget(0);
+			SetResultValue(CheckInventory("Hexen2MezzomanBerserk")+1);
+			break;
+		case 3: //check velocity
+			int speedx, speedy, lasttimer, velocity, movement;
+			speedx = GetActorVelX(0);
+			speedy = GetActorVelY(0);
+			velocity = magnitudeTwo_f(speedx, speedy);
+			if(velocity > arg1 || velocity < -arg1)
+				SetResultValue(1);
+			else
+				SetResultValue(0);
+			break;
+	}
+}
