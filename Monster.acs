@@ -1579,10 +1579,10 @@ Script "MM_SetSpeed" (int speed)
 
 Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 {
+	int OldTID, target, newtid;
 	switch(mode)
 	{
 		case 1: //Hexen2_MezzomanThrust
-			int oldTID, target;
 			oldTID = ActivatorTID();
 			target = UniqueTID();
 			Thing_ChangeTID(0, target);
@@ -1607,6 +1607,50 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 				SetResultValue(1);
 			else
 				SetResultValue(0);
+			break;
+		case 4:
+			case 4:
+			SetActivatorToTarget(0);
+			if(ClassifyActor(0) & ACTOR_ALIVE)
+				SetResultValue(0);
+			else
+				SetResultValue(1);
+			break;
+		case 5:
+			oldtid = ActivatorTID();
+			newtid = UniqueTid();
+			Thing_ChangeTID(0, newtid);
+			SetActivatorToTarget(0);
+			int currentx = GetActorX(0);
+			int currenty = GetActorY(0);
+			int currentz = GetActorZ(0);
+			int thrustvspeed = 4;
+			int thrusthspeed = 2;
+			SetActivator(newtid);
+			Thing_ChangeTid(newtid, oldtid);
+			SetActivator(0, AAPTR_TRACER);
+			if(ClassifyActor(0) != ACTOR_WORLD)
+			{
+				Thing_Stop(0);
+				int targetx = GetActorX(0);
+				int targety = GetActorY(0);
+				int targetz = GetActorZ(0);	
+				int vectorx = targetx - currentx;
+				int vectory = targety - currenty;
+				int vectorz = targetz - currentz;
+				int vang = VectorAngle(vectorx, vectory);
+				ThrustThing((vang >> 8) + 128, 2, 0, 0);
+					
+				//int length = magnitudeTwo_f(vectorx,vectory);
+				int length = magnitudeTwo(vectorx>>16,vectory>>16);
+				int vpitch = VectorAngle(length<<16, vectorz);
+				int zthrust = sign(sin(vpitch))*thrustvspeed;
+				
+				//if(zthrust > 0) huh
+					ThrustThingZ(0, zthrust, thrusthspeed, 1);
+				//else
+					//ThrustThingZ(0, zthrust, 1, 1);
+			}
 			break;
 	}
 }
