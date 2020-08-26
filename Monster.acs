@@ -1311,7 +1311,7 @@ Script "Samsara_Hexen2MissileDetector" (void)
 }
 Script "Samsara_SetSpeed" (int input)
 {
-	SetActorProperty(0, APROP_Speed, input<<16);
+	SetActorProperty(0, APROP_Speed, input*1.0);
 	SetResultValue(1);
 }
 Script "Hexen2_PraevusTeleport" (int mode)
@@ -1572,11 +1572,6 @@ Script "Hexen2_LastAttacked" (int time)
 	TakeInventory("Hexen2LastAttacked",1);
 }
 
-Script "MM_SetSpeed" (int speed)
-{
-	SetActorProperty(0, APROP_Speed, speed*1.0);
-}
-
 Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 {
 	int OldTID, target, newtid;
@@ -1617,6 +1612,7 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 				SetResultValue(1);
 			break;
 		case 5:
+			int targetalliance = CheckFlag(0,"FRIENDLY");
 			oldtid = ActivatorTID();
 			newtid = UniqueTid();
 			Thing_ChangeTID(0, newtid);
@@ -1629,7 +1625,8 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 			SetActivator(newtid);
 			Thing_ChangeTid(newtid, oldtid);
 			SetActivator(0, AAPTR_TRACER);
-			if(ClassifyActor(0) != ACTOR_WORLD)
+			int traceralliance = CheckFlag(0,"FRIENDLY");
+			if(ClassifyActor(0) != ACTOR_WORLD && GetActorClass(0) != "Hexen2Famine" && GetActorClass(0) != "MultiHexen2Famine")
 			{
 				Thing_Stop(0);
 				int targetx = GetActorX(0);
@@ -1651,6 +1648,39 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 				//else
 					//ThrustThingZ(0, zthrust, 1, 1);
 			}
+			break;
+		case 6: // Set Fallen Angel Renderstyle
+			if(arg1 < 2)
+				SetActorProperty(0,APROP_RENDERSTYLE,64+(3*arg1));
+			else
+				{
+					int a;
+					While(ClassifyActor(0) & ACTOR_ALIVE)
+					{
+						if(a < 25)
+						{
+							until(a >= 25)
+							{
+								SetActorProperty(0,APROP_ALPHA,0.25+(a*0.01));
+								a++;
+								Delay(1);
+							}
+						}
+						else
+						{
+							until(a <= 0)
+							{
+								SetActorProperty(0,APROP_ALPHA,0.25+(a*0.01));
+								a--;
+								Delay(1);
+							}
+						}
+					}
+				}
+				break;
+		case 7:
+			SetActivator(0,AAPTR_MASTER);
+			SetResultValue(GetUserVariable(0,"user_golembeamrot"));
 			break;
 	}
 }

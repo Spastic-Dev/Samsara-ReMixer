@@ -1,0 +1,33 @@
+Actor Hexen2FallenAngel : Hexen2BestialBase
+{
+	Health 250
+	Speed 4
+	Height 48
+	Radius 20
+	+FLOAT
+	+NOGRAVITY
+	States
+	{
+		Spawn:
+			HX05 A 0
+			HX05 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			HX05 A 1 ACS_ExecuteAlways(668,0,1,0)
+			HX05 A 0 A_GiveInventory("AlreadySpawned",1)
+			//HX05 A 0 ACS_NamedExecuteAlways("Hexen2_Decorate_Monster",0,6,1) //unsure how used this is but from the one I've seen in game this would look like it
+			HX05 A 1 A_SetTranslucent(0.25)
+		Spawn2:
+			TNT1 A 0
+			HX05 A 0 A_PlaySound("Hexen2/Fangel/Ambi1",CHAN_BODY,frandom(0.5,1.0))
+			HX05 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 5 A_Look
+			Loop
+		See:
+			//HX05 A 0 ACS_NamedExecuteAlways("Hexen2_Decorate_Monster",0,6,0)
+			HX05 A 0 ACS_NamedExecuteAlways("Hexen2_Decorate_Monster",0,6,2)
+			Goto See2
+		See2:
+			HX06 A 2 A_Chase("","")
+			HX06 B 0 A_PlaySound("Hexen2/Fangel/Fly",CHAN_BODY,frandom(0.5,1.0))
+			HX06 BCDEFGHIJKLMOPQRST 2 A_Chase("","")
+			Loop
+	}
+}

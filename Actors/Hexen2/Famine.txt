@@ -7,6 +7,7 @@ Actor Hexen2Famine : Hexen2BossBase
 	Radius 48
 	Height 64
 	Mass 30000
+	Species "Hexen2Famine"
 	-NOPAIN
 	States
 	{
@@ -207,14 +208,14 @@ Actor Hexen2FaminePuller
 			Goto Remove
 			TNT1 A 0 A_Warp(AAPTR_MASTER,0,0,90,0,WARPF_NOCHECKPOSITION,1)
 			TNT1 A 0 A_SpawnItemEx("Hexen2FamineOrb",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_JumpIf(user_damagetime >= 9,1)
+			TNT1 A 0 A_JumpIf(user_damagetime >= 17,1)
 			Goto SpawnLoop+6
 			TNT1 A 0 A_SetUserVar("user_damagetime",0)
 			TNT1 A 0 A_CustomMissile("Hexen2FaminePullDamage",0,0,0)
 			TNT1 A 0 A_SetUserVar("user_damagetime",user_damagetime+1)
 			TNT1 A 0 A_CustomMissile("Hexen2FaminePullGetTracer",0,0,0)
 			TNT1 A 0 A_CustomMissile("Hexen2FaminePull",0,0,0)
-			TNT1 A 4
+			TNT1 A 2
 			Loop
 		Remove:
 			TNT1 A 1
@@ -227,6 +228,9 @@ Actor Hexen2FaminePullGetTracer : FastProjectile
 	Height 2
 	Radius 1
 	Speed 256
+	Species "Hexen2Famine"
+	+THRUSPECIES
+	+MTHRUSPECIES
 	+HITTRACER
 	States
 	{
@@ -245,6 +249,9 @@ Actor Hexen2FaminePullDamage : FastProjectile
 	Radius 1
 	Damage (2)
 	Speed 256
+	Species "Hexen2Famine"
+	+THRUSPECIES
+	+MTHRUSPECIES
 	States
 	{
 		Spawn:
@@ -352,7 +359,7 @@ Actor Hexen2FamineOrb
 	{
 	Spawn:
 		TNT1 A 0
-		HX00 A 4 BRIGHT 
+		HX00 A 2 BRIGHT 
 		Stop
 	}
 }	
@@ -366,6 +373,9 @@ Actor Hexen2FaminePull
 	Projectile
 	SeeSound ""
 	ActiveSound ""
+	Species "Hexen2Famine"
+	+THRUSPECIES
+	+MTHRUSPECIES
 	//+HITTRACER
 	States
 	{
