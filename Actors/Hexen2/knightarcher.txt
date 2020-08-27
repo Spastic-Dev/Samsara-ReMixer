@@ -535,7 +535,6 @@ Actor Hexen2KnightArcherDeathAnimation : Hexen2CorpseActor
 		Stop
 		}
 }	
-
 Actor Hexen2KnightArcherCorpse : Hexen2CorpseActor
 {
 	Radius 16
@@ -548,16 +547,42 @@ Actor Hexen2KnightArcherCorpse : Hexen2CorpseActor
 	States
 	{
 	Spawn:
-		HX01 V 4		
+		HX01 V 0 A_GiveInventory("Hexen2CorpseTimer", 1)
+		HX01 V 0 A_JumpIfInventory("Hexen2CorpseTimer", 0, "Decay")
+		HX01 V 35		
 		Loop
 	Death:
+		TNT1 A 0 A_TakeInventory("Hexen2CorpseTimer", 20)
 		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 		TNT1 A 0 A_RemoveMaster
 		TNT1 A 0 A_UnsetSolid
 		TNT1 A 0 A_NoBlocking	
 		TNT1 A 5 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_SpawnItemEx("Hexen2AKnightHead",0,0,0,random(-5,5),random(-5,5),frandom(2,6),Random(1,360),SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("Hexen2AKnightHead",0,0,0,random(-5,5),random(-5,5),frandom(2,6),Random(1,360),SXF_TRANSFERSCALE)
 		Stop
+	Decay:
+		"####" "#" 0 A_TakeInventory("Hexen2CorpseTimer", 20)
+		"####" "#" 3 A_SpawnItemEx("Hexen2RedFlash",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_SetScale(0.9,0.9)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_SetScale(0.8,0.8)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 A_SetScale(0.7,0.7)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 A_SetScale(0.6,0.6)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 A_SetScale(0.5,0.5)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 0 A_SetScale(0.4,0.4)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 0 A_SetScale(0.3,0.3)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 0 A_SetScale(0.2,0.2)
+		"####" "#" 3 A_SetTranslucent(0.1,0)
+		"####" "#" 0 A_SetScale(0.1,0.1)
+		Stop		
 		}
 }
 		
@@ -674,15 +699,41 @@ Actor Hexen2AKnightHead : Hexen2HeadActor
 			Loop
 		Death:
 		XDeath:
+			TNT1 A 0 A_TakeInventory("Hexen2CorpseTimer", 20)
 			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			Stop
 		FloorLoop:
+			HX00 A 0 A_GiveInventory("Hexen2CorpseTimer", 1)
 			HX00 A 0 A_SetAngle(0)
 			HX00 A 0 A_SetPitch(0)
-		    HX00 A 70
+			HX00 A 0 A_JumpIfInventory("Hexen2CorpseTimer", 0, "Decay")
+		    HX00 A 35
 			Loop
+		Decay:
+			"####" "#" 0 A_TakeInventory("Hexen2CorpseTimer", 20)
+			"####" "#" 3 A_SpawnItemEx("Hexen2RedFlash",0,10)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 A_SetScale(0.9,0.9)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 A_SetScale(0.8,0.8)
+			"####" "#" 0 A_NoBlocking
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 A_SetScale(0.7,0.7)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 A_SetScale(0.6,0.6)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 A_SetScale(0.5,0.5)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 0 A_SetScale(0.4,0.4)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 0 A_SetScale(0.3,0.3)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 0 A_SetScale(0.2,0.2)
+			"####" "#" 3 A_SetTranslucent(0.1,0)
+			"####" "#" 0 A_SetScale(0.1,0.1)
+			Stop			
 			}
 }
 

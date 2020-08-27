@@ -1314,6 +1314,10 @@ Script "Samsara_SetSpeed" (int input)
 	SetActorProperty(0, APROP_Speed, input*1.0);
 	SetResultValue(1);
 }
+Script "Samsara_RevertSpeed" (void)
+{
+	SetActorProperty(0, APROP_Speed, 2);
+}	
 Script "Hexen2_PraevusTeleport" (int mode)
 {
 	int fire;

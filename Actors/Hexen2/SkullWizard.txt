@@ -1,0 +1,493 @@
+Actor Hexen2SkullWizard : Hexen2HumanoidBase
+{
+	Health 150
+	Speed 2
+	Radius 19
+	Height 52
+	Mass 400
+	PainChance 255
+	PainThreshold 30
+	Species "Hexen2Wizard"
+	+MISSILEMORE
+	DeathSound "Hexen2/SkullWizard/Death"
+	PainSound "Hexen2/ShadowWizard/Pain"
+	States
+	{
+	Spawn:
+		HX08 ABCDEFGHI 2 A_Look
+		HX08 JLKMNOPQR 2 A_Look
+		Loop
+	Idle:
+		HX09 A 0 A_JumpIf(frandom(0.0,1.0) < 0.05, "Growl")	
+		HX09 ABCDE 2 A_Wander
+		HX09 FGHIJ 2 A_Wander
+		HX09 KLMNO 2 A_Wander
+		HX09 PQRS 2 A_Wander
+		Loop
+	See:	
+		HX09 A 0 A_JumpIf(frandom(0.0,1.0) < 0.10, "Growl")	
+		HX09 A 0 A_JumpIf(frandom(0.0,1.0) < 0.20, "WarpOut")
+		HX09 ABCDE 2 
+		HX09 FGHIJ 2 
+		HX09 KLMNO 2 
+		HX09 PQRS 2 
+		Loop
+	Pain:
+		HX03 A 1 A_Pain
+		HX03 BCDE 2
+		HX03 FGHIJ 2
+		HX03 KL 2
+		HX03 A 0 A_JumpIf(frandom(0.0,1.0) < 0.20, "WarpOut")
+		Goto See
+	Melee:
+		HX04 ABCDE 2 A_Wander
+		HX04 FGHIJ 2 A_Wander
+		HX04 KL 2 A_Wander
+	Push:
+		HX05 ABCD 2 A_FaceTarget
+		HX05 EFGHI 2 A_FaceTarget
+		HX05 J 0 A_PlaySound("Hexen2/Wizard/Push", CHAN_BODY)
+		HX05 J 2 A_CustomMissile("Hexen2SkullPush")
+		HX05 KLMNO 2 A_FaceTarget
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.50, "Shot")
+		Goto Trans
+	Missile:
+		HX04 ABCDE 2 A_Wander
+		HX04 FGHIJ 2 A_Wander
+		HX04 KL 2 A_Wander
+	Shot:
+		HX05 ABCD 2 A_FaceTarget
+		HX05 EFGHI 2 A_FaceTarget
+		HX05 J 0 A_JumpIfCloser(81, 10)
+		HX05 J 0 A_PlaySound("Hexen2/Wizard/FireMissile", CHAN_BODY)
+		HX05 J 2 A_CustomMissile("Hexen2SkullShot1")
+		HX05 KLMNO 2 A_FaceTarget
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.50, "Shot")
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.40, "WarpOut")
+		Goto Trans
+		HX05 J 0 A_PlaySound("Hexen2/Wizard/Push", CHAN_VOICE)
+		HX05 J 2 A_CustomMissile("Hexen2SkullPush")
+		HX05 KLMNO 2 A_FaceTarget
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.50, "Shot")
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.40, "WarpOut")
+		Goto Trans		
+	Trans:
+		HX07 ABCDEFG 2 
+		Goto See
+	WarpOut:
+		HX06 A 0 A_PlaySound("Hexen2/SkullWizard/BlinkSpeak", CHAN_VOICE)	
+		HX06 ABCDEFGH 2
+		HX06 A 0 A_SpawnItemEx("Hexen2RedFlash", 0, 0, 40)
+		HX06 A 0 A_SetTranslucent(0.8,0)
+		HX06 A 0 A_SetScale(0.8,0.8)		
+		HX06 A 0 A_PlaySound("Hexen2/Wizard/BlinkOut", CHAN_BODY)
+		HX06 A 0 A_SetInvulnerable
+		HX06 A 0 A_UnSetSolid
+		HX06 A 0 A_UnsetShootable			
+		HX06 A 0 A_SetTranslucent(0.6,0)
+		HX06 A 0 A_SetScale(0.6,0.6)		
+		HX06 A 0 A_SetTranslucent(0.4,0)
+		HX06 A 0 A_SetScale(0.4,0.4)		
+		HX06 A 0 A_SetTranslucent(0.2,0)
+		HX06 A 0 A_SetScale(0.2,0.2)
+		HX06 A 0 A_SetTranslucent(0.1,0)
+		HX06 A 0 A_SetScale(0.1,0.1)		
+		Goto WanderLoop
+	WanderLoop:
+		TNT1 A 1
+		TNT1 A 0 A_JumpIf(CallACS("Samsara_SetSpeed",16) == 1, 1)
+		TNT1 AAAAAAAAAAAAAA 7 A_Wander
+		TNT1 A 0 A_Jump(128,"WarpIn")
+		TNT1 AAAAAAAAAAAAAA 4 A_Wander
+		Goto WarpIn	
+	WarpIn:		
+		HX06 I 0 A_SpawnItemEx("Hexen2RedFlash", 0, 0, 40)
+		HX06 I 0 A_SetTranslucent(0.2,0)
+		HX06 I 0 A_SetScale(0.2,0.2)		
+		HX06 I 0 A_PlaySound("Hexen2/Wizard/BlinkIn", CHAN_BODY)
+		HX06 I 0 A_SetShootable
+		HX06 I 0 A_UnsetInvulnerable
+		HX06 I 0 A_SetSolid		
+		HX06 I 0 A_SetTranslucent(0.4,0)
+		HX06 I 0 A_SetScale(0.4,0.4)		
+		HX06 I 0 A_SetTranslucent(0.6,0)
+		HX06 I 0 A_SetScale(0.6,0.6)				
+		HX06 I 0 A_SetTranslucent(0.8,0)
+		HX06 I 0 A_SetScale(8.0,8.0)
+		HX06 I 0 A_SetTranslucent(1.0,0)
+		HX06 I 0 A_SetScale(1.0,1.0)
+		HX06 I 0 ACS_NamedExecuteAlways("Samsara_RevertSpeed")
+		HX06 IJKLMN 2
+		Goto See		
+	Growl:
+		HX09 A 0 A_PlaySound("Hexen2/SkullWizard/Growl", CHAN_VOICE)	
+		Goto See+1
+	Death:
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_SpawnItemEx ("Hexen2WhiteSmoke", 0, 0, 20,0,0,12)
+		TNT1 A 0 A_SpawnItemEx ("Hexen2WhiteSmoke", 0, 0, 20,0,8,8)
+		TNT1 A 0 A_SpawnItemEx ("Hexen2WhiteSmoke", 0, 0, 20,0,-8,8)
+		HX00 ABCDEFG 3 
+		HX00 G 0 A_SpawnItemEx("Hexen2WizardBook", 10, 10, 40, Random(1.0,1.5),Random(1.0,1.5),Random(1.0,1.5),0,SXF_NOCHECKPOSITION)
+		HX00 H 1 A_SpawnItemEx("Hexen2SkullWizardDeathAnimation", 10, 10, 40, Random(1.0,1.5),Random(1.0,1.5),Random(1.0,1.5),0,SXF_NOCHECKPOSITION)
+		HX00 I 0 A_SpawnItemEx("Hexen2WizardHead", 10, 10, 40, Random(1.0,1.5),Random(1.0,1.5),Random(1.0,1.5),0,SXF_NOCHECKPOSITION)
+		HX00 I 0 A_SpawnItemEx("Hexen2BlackSpiderSmallWizard", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION)
+		HX00 I 0 A_JumpIf(frandom(0.0,1.0) > 0.05, 2)
+		HX00 I 0 A_SpawnItemEx("Hexen2BlackSpiderSmallWizard", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION)		
+		TNT1 A 5 A_FadeOut
+		Stop	
+	}	
+}	
+	
+	
+Actor Hexen2ShadowWizard : Hexen2SkullWizard
+{
+	Health 650
+	Scale 1.2
+	Radius 21
+	Height 64
+	PainThreshold 130
+	+MISSILEEVENMORE
+	PainSound "Hexen2/ShadowWizard/Pain"
+	DeathSound "Hexen2/ShadowWizard/Death"
+	States
+	{
+	See:		
+		HX09 A 0 A_JumpIf(frandom(0.0,1.0) < 0.10, "Growl")		
+		HX09 A 0 A_JumpIf(frandom(0.0,1.0) < 0.30, "WarpOut")
+		HX09 ABCDE 2 A_Chase
+		HX09 FGHIJ 2 A_Chase
+		HX09 KLMNO 2 A_Chase
+		HX09 PQRS 2 A_Chase		
+		Loop
+	Pain:
+		HX03 A 1 A_Pain
+		HX03 BCDE 2
+		HX03 FGHIJ 2
+		HX03 KL 2
+		HX03 A 0 A_JumpIf(frandom(0.0,1.0) < 0.30, "WarpOut")
+		Goto See	
+	Melee:
+		HX04 ABCDE 2 A_Wander
+		HX04 FGHIJ 2 A_Wander
+		HX04 KL 2 A_Wander
+	Push:
+		HX05 ABCD 2 A_FaceTarget
+		HX05 EFGHI 2 A_FaceTarget
+		HX05 J 0 A_PlaySound("Hexen2/Wizard/Push", CHAN_BODY)
+		HX05 J 2 A_CustomMissile("Hexen2ShadowPush")
+		HX05 KLMNO 2 A_FaceTarget
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) <0.15, "Gate")
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.50, "Shot")
+		Goto Trans		
+	Missile:
+		HX04 ABCDE 2 A_Wander
+		HX04 FGHIJ 2 A_Wander
+		HX04 KL 2 A_Wander
+	Shot:
+		HX05 ABCD 2 A_FaceTarget
+		HX05 EFGHI 2 A_FaceTarget
+		HX05 J 0 A_JumpIfCloser(81, 10)
+		HX05 J 0 A_PlaySound("Hexen2/Wizard/FireMissile", CHAN_BODY)
+		HX05 J 2 A_CustomMissile("Hexen2SkullShot2")
+		HX05 KLMNO 2 A_FaceTarget
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.5, "Shot")
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.5, "WarpOut")
+		Goto Trans
+		HX05 J 0 A_PlaySound("Hexen2/Wizard/Push", CHAN_VOICE)
+		HX05 J 2 A_CustomMissile("Hexen2ShadowPush")
+		HX05 KLMNO 2 A_FaceTarget
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.15, "Gate")
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.50, "Shot")
+		HX05 A 0 A_JumpIf(frandom(0.0,1.0) < 0.60, "WarpOut")
+		Goto Trans		
+	Trans:
+		HX07 ABCDEFG 2 A_Wander
+		Goto See
+	Gate:
+		HX01 A 0 A_PlaySound("Hexen2/Wizard/Gate", CHAN_VOICE)
+		HX01 BDFHJLNPRT 2
+		HX02 A 0 A_PlaySound("Hexen2/ShadowWizard/GateSpeak", CHAN_VOICE)
+		HX02 A 1 A_SpawnItemEx("Hexen2BlackSpiderSmallWizard", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION)
+		HX02 A 0 A_JumpIf(frandom(0.0,1.0) <0.15, "Gate")
+		HX02 ACEGIJ 2 
+		Goto See
+	WarpOut:
+		HX06 A 0 A_PlaySound("Hexen2/ShadowWizard/BlinkSpeak", CHAN_VOICE)
+		HX06 ABCDEFGH 2
+		HX00 A 0 A_SpawnItemEx("Hexen2RedFlash", 0, 0, 40)
+		HX01 A 0 A_SetTranslucent(0.8,0)
+		HX01 A 0 A_SetScale(1.0,1.0)		
+		HX01 A 0 A_PlaySound("Hexen2/Wizard/BlinkOut", CHAN_BODY)
+		HX01 A 0 A_SetInvulnerable
+		HX01 A 0 A_UnSetSolid
+		HX01 A 0 A_UnsetShootable			
+		HX01 A 0 A_SetTranslucent(0.6,0)
+		HX01 A 0 A_SetScale(0.8,0.8)		
+		HX01 A 0 A_SetTranslucent(0.4,0)
+		HX01 A 0 A_SetScale(0.6,0.6)		
+		HX01 A 0 A_SetTranslucent(0.2,0)
+		HX01 A 0 A_SetScale(0.4,0.4)
+		HX01 A 0 A_SetTranslucent(0.1,0)
+		HX01 A 0 A_SetScale(0.2,0.2)		
+		Goto WanderLoop
+	WanderLoop:
+		TNT1 A 1
+		TNT1 A 0 A_JumpIf(CallACS("Samsara_SetSpeed",16) == 1, 1)
+		TNT1 AAAAAAAAAAAAAA 7 A_Wander
+		TNT1 A 0 A_Jump(128,"WarpIn")
+		TNT1 AAAAAAAAAAAAAA 4 A_Wander
+		Goto WarpIn	
+	WarpIn:		
+		HX06 I 0 A_SpawnItemEx("Hexen2RedFlash", 0, 0, 40)
+		HX06 I 0 A_SetTranslucent(0.1,0)
+		HX06 I 0 A_SetScale(0.2,0.2)		
+		HX06 I 0 A_PlaySound("Hexen2/Wizard/BlinkIn", CHAN_BODY)
+		HX06 I 0 A_SetShootable
+		HX06 I 0 A_UnsetInvulnerable
+		HX06 I 0 A_SetSolid		
+		HX06 I 0 A_SetTranslucent(0.2,0)
+		HX06 I 0 A_SetScale(0.4,0.4)		
+		HX06 I 0 A_SetTranslucent(0.4,0)
+		HX06 I 0 A_SetScale(0.6,0.6)	
+		HX06 I 0 A_SetTranslucent(0.6,0)
+		HX06 I 0 A_SetScale(0.8,0.8)		
+		HX06 I 0 A_SetTranslucent(0.8,0)
+		HX06 I 0 A_SetScale(1.0,1.0)
+		HX06 I 0 A_SetTranslucent(1.0,0)
+		HX06 I 0 A_SetScale(1.2,1.2)
+		HX06 I 0 ACS_NamedExecuteAlways("Samsara_RevertSpeed")
+		HX06 IJKLMN 2
+		Goto See
+	Growl:
+		HX09 A 0 A_PlaySound("Hexen2/ShadowWizard/Growl", CHAN_VOICE)
+		Goto See+1
+	Death:
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_SpawnItemEx ("Hexen2WhiteSmoke", 0, 0, 20,0,0,12)
+		TNT1 A 0 A_SpawnItemEx ("Hexen2WhiteSmoke", 0, 0, 20,0,8,8)
+		TNT1 A 0 A_SpawnItemEx ("Hexen2WhiteSmoke", 0, 0, 20,0,-8,8)
+		HX00 ABCDEFG 3 
+		HX00 G 0 A_SpawnItemEx("Hexen2WizardBook", 10, 10, 40, Random(1.0,1.5),Random(1.0,1.5),Random(1.0,1.5),0,SXF_NOCHECKPOSITION)
+		HX00 H 1 A_SpawnItemEx("Hexen2ShadowWizardDeathAnimation", 10, 10, 40, Random(1.0,1.5),Random(1.0,1.5),Random(1.0,1.5),0,SXF_NOCHECKPOSITION)
+		HX00 I 0 A_SpawnItemEx("Hexen2WizardHead2", 10, 10, 40, Random(1.0,1.5),Random(1.0,1.5),Random(1.0,1.5),0,SXF_NOCHECKPOSITION)
+		HX00 II 0 A_SpawnItemEx("Hexen2BlackSpiderSmallWizard", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION)
+		HX00 I 0 A_JumpIf(frandom(0.0,1.0) > 0.05, 3)
+		HX00 II 0 A_SpawnItemEx("Hexen2BlackSpiderSmallWizard", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION)		
+		TNT1 A 5 A_FadeOut
+		Stop		
+		}
+}	
+
+Actor Hexen2SkullWizardDeathAnimation : Hexen2CorpseActor
+{
+	Health 30
+	Radius 19
+	Height 52
+	Mass 400
+	States
+	{
+	Spawn:
+		HX00 HIJKL 3
+		HX00 MNO 3
+		HX00 A 0 A_SpawnItemEx("Hexen2SkullWizardCloak",0,0,0,velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)		
+		Stop
+	Death:	
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 A_RemoveMaster
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Stop	
+		}
+}
+
+Actor Hexen2SkullWizardCloak : Hexen2CorpseActor
+{
+	Radius 19
+	Height 10
+	Mass 400
+	Species "Hexen2Wizard"
+	States
+	{
+	Spawn:
+		HX00 O 0 A_GiveInventory("Hexen2CorpseTimer", 1)
+		HX00 O 0 A_JumpIfInventory("Hexen2CorpseTimer", 0, "Decay")	
+		HX00 O 35
+		Loop
+	Death:
+		TNT1 A 0 A_TakeInventory("Hexen2CorpseTimer", 20)
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 A_RemoveMaster
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Stop
+	Decay:
+		"####" "#" 0 A_TakeInventory("Hexen2CorpseTimer", 20)
+		"####" "#" 3 A_SpawnItemEx("Hexen2RedFlash",0,10)
+		"####" "#" 3 A_SetTranslucent(0.9,0)
+		"####" "#" 0 A_SetScale(0.9,0.9)
+		"####" "#" 3 A_SetTranslucent(0.8,0)
+		"####" "#" 0 A_SetScale(0.8,0.8)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 3 A_SetTranslucent(0.7,0)
+		"####" "#" 0 A_SetScale(0.7,0.7)
+		"####" "#" 3 A_SetTranslucent(0.6,0)
+		"####" "#" 0 A_SetScale(0.6,0.6)
+		"####" "#" 3 A_SetTranslucent(0.5,0)
+		"####" "#" 0 A_SetScale(0.5,0.5)
+		"####" "#" 3 A_SetTranslucent(0.4,0)
+		"####" "#" 0 A_SetScale(0.4,0.4)
+		"####" "#" 3 A_SetTranslucent(0.3,0)
+		"####" "#" 0 A_SetScale(0.3,0.3)
+		"####" "#" 3 A_SetTranslucent(0.2,0)
+		"####" "#" 0 A_SetScale(0.2,0.2)
+		"####" "#" 3 A_SetTranslucent(0.1,0)
+		"####" "#" 0 A_SetScale(0.1,0.1)
+		Stop		
+		}		
+}	
+
+Actor Hexen2ShadowWizardDeathAnimation : Hexen2SkullWizardDeathAnimation 
+{ 
+	Scale 1.2 
+	Radius 21 
+	Height 64 
+	States
+	{
+	Spawn:
+		HX00 HIJKL 3
+		HX00 MNO 3
+		HX00 A 0 A_SpawnItemEx("Hexen2ShadowWizardCloak",0,0,0,velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)		
+		Stop
+		}
+}
+Actor Hexen2ShadowWizardCloak : Hexen2SkullWizardCloak { Scale 1.2 Radius 21 Height 12 }
+
+Actor Hexen2WizardBook : Hexen2StoneGolemHead
+{
+	Radius 8
+	Height 5
+}
+
+Actor Hexen2WizardHead : Hexen2StoneGolemHead { }
+Actor Hexen2WizardHead2 : Hexen2WizardHead { Scale 1.2 }
+	
+Actor Hexen2SkullShot1 
+{
+	Projectile
+	Damage (Random(5,13))
+	Speed 11
+	Scale 0.9
+	Radius 4
+	Height 6
+	Health 1
+	+SHOOTABLE
+	SeeSound "Hexen2/SkullWizard/Scream"
+	States
+	{
+	Spawn:
+		HX00 A 2 BRIGHT
+		Loop
+	Death:
+		HX00 A 0 A_StopSound(CHAN_BODY)
+		HX00 A 0 A_PlaySound("Hexen2/Explode", CHAN_WEAPON)
+		TNT1 A 5 A_FadeOut
+		Stop
+		}
+}		
+	
+Actor Hexen2SkullShot2 : Hexen2SkullShot1 
+{ 
+	Damage (Random(10,18)) 
+	Scale 1.0
+	Radius 5
+	Height 10
+	SeeSound "Hexen2/ShadowWizard/Scream"
+}
+
+Actor Hexen2SkullPush : FastProjectile
+{
+	Projectile
+	Damage (10)
+	Speed 55
+	ProjectileKickBack 1000
+	Radius 5
+	Height 5
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		Stop
+	Death:
+	Xdeath:
+	Crash:
+		TNT1 A 1 A_RadiusGive("Hexen2SkullZThrust", 80, 1)
+		Stop
+		}
+}	
+Actor Hexen2ShadowPush : Hexen2SkullPush
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		Stop
+	Death:
+	Xdeath:
+	Crash:
+		TNT1 A 1 A_RadiusGive("Hexen2ShadowZThrust", 80, 1)
+		Stop	
+		}
+}
+		
+Actor Hexen2SkullZThrust : CustomInventory
+{
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+	States
+	{
+		Spawn:
+			TNT1 A 0 
+			TNT1 A 1
+			Stop
+		Pickup:
+			TNT1 A 0 
+			TNT1 A 0 A_JumpIf(health >= 10, "Thrust")
+			TNT1 A 1
+			stop
+		Thrust:
+			TNT1 A 1 ThrustThingZ(0,1000,0,1)
+			Stop
+			}
+}	
+
+Actor Hexen2ShadowZThrust : Hexen2SkullZThrust
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 
+			TNT1 A 1
+			Stop
+		Pickup:
+			TNT1 A 0 
+			TNT1 A 0 A_JumpIf(health >= 10, "Thrust")
+			TNT1 A 1
+			stop
+		Thrust:
+			TNT1 A 1 ThrustThingZ(0,2000,0,1)
+			Stop
+			}
+}
+
+Actor Hexen2BlackSpiderSmallWizard : Hexen2BlackSpiderSmall { +THRUSPECIES Species "Hexen2Wizard" Health 5 -COUNTKILL }			
