@@ -171,8 +171,8 @@ ACTOR CacodemonSpawnerCoop replaces Cacodemon
 			TNT1 A 1 A_SpawnItemEx("Q2Daedalus",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetHexen2:
-			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
-			TNT1 A 1 A_SpawnItemEx("Wraith3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
+			TNT1 A 1 A_SpawnItemEx("Hexen2FallenAngel",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 		SetGoldeneye:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyGoldeneye")
@@ -346,6 +346,11 @@ ACTOR CacodemonSpawnerCoop replaces Cacodemon
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiQ2Daedalus", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2_2")
+			Stop
+		MultiplyHexen2:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("MultiHexen2FallenAngel", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
 			Stop
 		MultiplyNull:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

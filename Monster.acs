@@ -1314,10 +1314,6 @@ Script "Samsara_SetSpeed" (int input)
 	SetActorProperty(0, APROP_Speed, input*1.0);
 	SetResultValue(1);
 }
-Script "Samsara_RevertSpeed" (void)
-{
-	SetActorProperty(0, APROP_Speed, 2);
-}	
 Script "Hexen2_PraevusTeleport" (int mode)
 {
 	int fire;
@@ -1578,7 +1574,7 @@ Script "Hexen2_LastAttacked" (int time)
 
 Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 {
-	int OldTID, target, newtid;
+	int OldTID, target, newtid, x, y, z, speedx, speedy, lasttimer, velocity, movement, length;
 	switch(mode)
 	{
 		case 1: //Hexen2_MezzomanThrust
@@ -1598,7 +1594,6 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 			SetResultValue(CheckInventory("Hexen2MezzomanBerserk")+1);
 			break;
 		case 3: //check velocity
-			int speedx, speedy, lasttimer, velocity, movement;
 			speedx = GetActorVelX(0);
 			speedy = GetActorVelY(0);
 			velocity = magnitudeTwo_f(speedx, speedy);
@@ -1642,8 +1637,7 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 				int vang = VectorAngle(vectorx, vectory);
 				ThrustThing((vang >> 8) + 128, 2, 0, 0);
 					
-				//int length = magnitudeTwo_f(vectorx,vectory);
-				int length = magnitudeTwo(vectorx>>16,vectory>>16);
+				length = magnitudeTwo(vectorx>>16,vectory>>16);
 				int vpitch = VectorAngle(length<<16, vectorz);
 				int zthrust = sign(sin(vpitch))*thrustvspeed;
 				
@@ -1665,6 +1659,7 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 						{
 							until(a >= 25)
 							{
+								if(CheckInventory("Hexen2FallenAngelLordAlphaToken") || GetActorProperty(0,APROP_Health) <= 50) { SetActorProperty(0,APROP_ALPHA,1.0); terminate; }
 								SetActorProperty(0,APROP_ALPHA,0.25+(a*0.01));
 								a++;
 								Delay(1);
@@ -1674,6 +1669,7 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 						{
 							until(a <= 0)
 							{
+								if(CheckInventory("Hexen2FallenAngelLordAlphaToken") || GetActorProperty(0,APROP_Health) <= 50) { SetActorProperty(0,APROP_ALPHA,1.0); terminate; }
 								SetActorProperty(0,APROP_ALPHA,0.25+(a*0.01));
 								a--;
 								Delay(1);
@@ -1685,6 +1681,89 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 		case 7:
 			SetActivator(0,AAPTR_MASTER);
 			SetResultValue(GetUserVariable(0,"user_golembeamrot"));
+			break;
+		case 8: // fallenangel's fly loop
+			int destx, desty, destz, cooldown;
+			int floatduration = 10;
+			Delay(15);
+			while(ClassifyActor(0) & ACTOR_ALIVE)
+			{
+				if(!CheckInventory("Hexen2FallenAngelAttackToken"))
+				{
+					speedx = GetActorVelX(0);
+					speedy = GetActorVelY(0);
+					velocity = magnitudeTwo_f(speedx, speedy);
+					x = GetActorX(0);
+					y = GetActorY(0);
+					z = GetActorZ(0);
+					if(!CheckInventory("Hexen2FallenAngelFindPlayerToken"))
+					{
+						if(velocity == 0 || CheckInventory("Hexen2FallenAngelFindSpotToken"))
+						{
+							if(newtid != 0)
+								Thing_Remove(newtid);
+								
+							TakeInventory("Hexen2FallenAngelFindSpotToken",1);
+							int vec = random(0,65536);
+							int dist = random(100,200);
+							newtid = UniqueTid();
+							SpawnForced("Hexen2FallenAngelSpot", x+(dist*cos(vec)), y+(dist*sin(vec)), z, newtid, 0);
+							destx = GetActorX(newtid);
+							desty = GetActorY(newtid);
+							destz = GetActorZ(newtid);
+							SetPointer(AAPTR_TARGET,newtid);
+							length = magnitudeTwo((destx-x)>>16,(desty-y)>>16);
+						}
+						length = magnitudeTwo((destx-x)>>16,(desty-y)>>16);
+						if(length < 20)
+						{
+							SetActorState(0,"LookForPlayer",true);
+						}
+					}
+					else
+					{
+						if(cooldown >= 17)
+						{
+							TakeInventory("Hexen2FallenAngelFindPlayerToken",1);
+							cooldown = 0;
+						}
+						else
+							cooldown++;
+					}	
+					if(floatduration >= 10)
+					{
+						SetActorVelocity(0,GetActorVelX(0),GetActorVelY(0),random(-2.0,2.0),0,0);
+						floatduration = 0;
+					}
+					floatduration++;
+				}
+				Delay(2);
+			}
+			break;
+		case 9: //fangel remove target
+			SetActivatorToTarget(0);
+			if(!(ClassifyActor(0) & ACTOR_ALIVE))
+				Thing_Remove(0);
+			break;
+		case 10: //fangel skip if not a valid target
+			SetActivatorToTarget(0);
+			if(ClassifyActor(0) & ACTOR_ALIVE)
+				SetResultValue(1);
+			else
+				SetResultValue(0);
+			break;
+		case 11: //fallen angel death particles
+			int particlecount;
+			while(ClassifyActor(0) != ACTOR_WORLD)
+			{
+				particlecount = 80;
+				until(particlecount == 0)
+				{
+					SpawnForced("Hexen2FallenAngelDeathPuffGenerator",GetActorX(0),GetActorY(0),GetActorZ(0),0,0);
+					particlecount--;
+				}
+				Delay(2);
+			}
 			break;
 	}
 }
