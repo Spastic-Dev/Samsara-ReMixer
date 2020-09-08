@@ -1,5 +1,5 @@
 Actor Ailoprobe : C7Alien {
-	Health 6
+	Health 25
 	Height 44
 	Speed 7
 	+FLOAT
@@ -270,7 +270,7 @@ Actor Ailoprobe : C7Alien {
 			goto Death
 		XdeathForBitterman:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
-			TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("Q2ColorGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
 			TNT1 A 5 A_FadeOut
 			Stop

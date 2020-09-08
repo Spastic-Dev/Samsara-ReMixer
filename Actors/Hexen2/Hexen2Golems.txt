@@ -1,5 +1,6 @@
 Actor Hexen2StoneGolem : Hexen2ConstructBase
 {
+	Tag "Stone Golem"
 	Health 200
 	Radius 24
 	Height 64
@@ -282,33 +283,10 @@ Actor Hexen2StoneGolemLegs : Hexen2CorpseActor
 	States
 	{
 	Spawn:
-		HX00 A 0 A_GiveInventory("Hexen2CorpseTimer", 1)
-		HX00 A 0 A_JumpIfInventory("Hexen2CorpseTimer", 0, "Decay")
+		HX00 AA 0 ACS_NamedExecuteAlways("Hexen2_CorpseRemove")
+	SpawnLoop:
 		HX00 A 35
 		Loop
-	Decay:
-		"####" "#" 0 A_TakeInventory("Hexen2CorpseTimer", 20)
-		"####" "#" 3 A_SpawnItemEx("Hexen2RedFlash",0,10)
-		"####" "#" 3 A_SetTranslucent(0.9,0)
-		"####" "#" 0 A_SetScale(0.9,0.9)
-		"####" "#" 3 A_SetTranslucent(0.8,0)
-		"####" "#" 0 A_SetScale(0.8,0.8)
-		"####" "#" 0 A_NoBlocking
-		"####" "#" 3 A_SetTranslucent(0.7,0)
-		"####" "#" 0 A_SetScale(0.7,0.7)
-		"####" "#" 3 A_SetTranslucent(0.6,0)
-		"####" "#" 0 A_SetScale(0.6,0.6)
-		"####" "#" 3 A_SetTranslucent(0.5,0)
-		"####" "#" 0 A_SetScale(0.5,0.5)
-		"####" "#" 3 A_SetTranslucent(0.4,0)
-		"####" "#" 0 A_SetScale(0.4,0.4)
-		"####" "#" 3 A_SetTranslucent(0.3,0)
-		"####" "#" 0 A_SetScale(0.3,0.3)
-		"####" "#" 3 A_SetTranslucent(0.2,0)
-		"####" "#" 0 A_SetScale(0.2,0.2)
-		"####" "#" 3 A_SetTranslucent(0.1,0)
-		"####" "#" 0 A_SetScale(0.1,0.1)
-		Stop
 	}
 }
 Actor Hexen2IronGolemLegs : Hexen2StoneGolemLegs { }
@@ -329,33 +307,10 @@ Actor Hexen2StoneGolemHead : Hexen2HeadActor
 	States
 	{
 	Spawn:
-		HX00 A 0 A_GiveInventory("Hexen2CorpseTimer", 1)
-		HX00 A 0 A_JumpIfInventory("Hexen2CorpseTimer", 0, "Decay")
+		HX00 AA 0 ACS_NamedExecuteAlways("Hexen2_CorpseRemove")
+	SpawnLoop:
 		HX00 A 35
 		Loop
-	Decay:
-		"####" "#" 0 A_TakeInventory("Hexen2CorpseTimer", 20)
-		"####" "#" 3 A_SpawnItemEx("Hexen2RedFlash",0,10)
-		"####" "#" 3 A_SetTranslucent(0.9,0)
-		"####" "#" 0 A_SetScale(0.9,0.9)
-		"####" "#" 3 A_SetTranslucent(0.8,0)
-		"####" "#" 0 A_SetScale(0.8,0.8)
-		"####" "#" 0 A_NoBlocking
-		"####" "#" 3 A_SetTranslucent(0.7,0)
-		"####" "#" 0 A_SetScale(0.7,0.7)
-		"####" "#" 3 A_SetTranslucent(0.6,0)
-		"####" "#" 0 A_SetScale(0.6,0.6)
-		"####" "#" 3 A_SetTranslucent(0.5,0)
-		"####" "#" 0 A_SetScale(0.5,0.5)
-		"####" "#" 3 A_SetTranslucent(0.4,0)
-		"####" "#" 0 A_SetScale(0.4,0.4)
-		"####" "#" 3 A_SetTranslucent(0.3,0)
-		"####" "#" 0 A_SetScale(0.3,0.3)
-		"####" "#" 3 A_SetTranslucent(0.2,0)
-		"####" "#" 0 A_SetScale(0.2,0.2)
-		"####" "#" 3 A_SetTranslucent(0.1,0)
-		"####" "#" 0 A_SetScale(0.1,0.1)
-		Stop
 	}
 }
 Actor Hexen2IronGolemHead : Hexen2StoneGolemHead { }
@@ -425,6 +380,7 @@ Actor Hexen2StoneGibsSpawner : Hexen2GibSpawner
 
 Actor Hexen2IronGolem : Hexen2StoneGolem
 {
+	Tag "Iron Golem"
 	Health 450
 	HitObituary "%o was PUNKED by an Iron Golem."
 	Obituary "%o was Vaporized by an Iron Golem."
@@ -532,6 +488,7 @@ Actor Hexen2GemPuffGenerator : Hexen2PuffGenerator { Translation "0:255=%[0.0,0.
 
 Actor Hexen2BronzeGolem : Hexen2IronGolem 
 {
+	Tag "Bronze Golem"
 	Health 650
 	var int user_golembeamrot;
 	Species "BronzeGolem"
@@ -837,6 +794,7 @@ Actor Hexen2BronzeGolemLaser : Hexen2ForceCubeMissile3
 
 Actor Hexen2CrystalGolem : Hexen2StoneGolem 
 { 
+	Tag "Crystal Golem"
 	Health 400 
 	Renderstyle Translucent 
 	Alpha 0.5

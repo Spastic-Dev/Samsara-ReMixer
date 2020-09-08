@@ -1,5 +1,6 @@
 Actor Hexen2BlackSpiderLarge
 {
+	Tag "Large Black Spider"
 	Health 75
 	Radius 16
 	Height 32
@@ -425,8 +426,8 @@ Actor Hexen2BlackSpiderLargeCorpse : Hexen2CorpseActor
 	States
 	{
 	Spawn:
-		HX05 R 0 A_GiveInventory("Hexen2CorpseTimer", 1)
-		HX05 R 0 A_JumpIfInventory("Hexen2CorpseTimer", 0, "Decay")
+		HX05 RR 0 ACS_NamedExecuteAlways("Hexen2_CorpseRemove")
+	SpawnLoop:
 		HX05 R 35
 		Loop
 	Death:
@@ -465,6 +466,7 @@ Actor Hexen2BlackSpiderLargeCorpse : Hexen2CorpseActor
 
 Actor Hexen2BlackSpiderSmall : Hexen2BlackSpiderLarge	
 {
+	Tag "Small Black Spider"
 	Health 30
 	Radius 12
 	Height 24
@@ -531,6 +533,7 @@ Actor Hexen2BlackSpiderSmallCorpse : Hexen2BlackSpiderLargeCorpse
 
 Actor Hexen2RedSpiderSmall : Hexen2BlackSpiderLarge
 {
+	Tag "Small Red Spider"
 	Health 70
 	Radius 12
 	Height 24
@@ -599,13 +602,11 @@ Actor Hexen2RedSpiderSmallCorpse : Hexen2BlackSpiderLargeCorpse
 	Speed 0
 	Scale 0.6
 	Mass 100
-	+SHOOTABLE
-	+PUSHABLE
-	+SLIDESONWALLS
 }	
 
 Actor Hexen2RedSpiderLarge : Hexen2BlackSpiderLarge
 {
+	Tag "Large Red Spider"
 	Health 175
 	States
 	{			
