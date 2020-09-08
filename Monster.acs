@@ -1767,3 +1767,32 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 			break;
 	}
 }
+
+Script "Hexen2_CorpseRemove" (void)
+{
+	int decaytimer = 10;
+	int scalex, scaley, alpha;
+	delay(700);
+	SpawnForced("Hexen2RedFlash",GetActorX(0),GetActorY(0),GetActorZ(0)+10.0,0,0);
+	SetActorProperty(0,APROP_RENDERSTYLE,STYLE_TRANSLUCENT);
+	SetActorProperty(0,APROP_Invulnerable,true); // would look weird to destroy a transparent, shrinking corpse
+	while(decaytimer > 0)
+	{
+		scalex = GetActorProperty(0,APROP_SCALEX);
+		scaley = GetActorProperty(0,APROP_SCALEY);
+		alpha = GetActorProperty(0,APROP_ALPHA);
+			
+		if(scalex >= 0.1)
+			SetActorProperty(0,APROP_SCALEX,scalex-0.1);
+		
+		if(scaley >= 0.1)
+			SetActorProperty(0,APROP_SCALEY,scaley-0.1);
+		
+		if(alpha >= 0.1)
+			SetActorProperty(0,APROP_ALPHA,alpha-0.1);
+			
+		decaytimer--;
+		Delay(3);
+	}
+	Thing_Remove(0);
+}

@@ -12,19 +12,19 @@ ACTOR ZombiemanSpawnerCoop replaces Zombieman
 		SetDoom:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
 			TNT1 A 1 A_SpawnItemEx("Zombieman3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
 			TNT1 A 1 A_SpawnItemEx("HereticImpLeader3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetHexen1:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
 			TNT1 A 1 A_SpawnItemEx("Ettin3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetChex:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
 			TNT1 A 1 A_SpawnItemEx("FlemoidusCommonus3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetWolf3D:
 			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
 			SODM1:
@@ -34,431 +34,436 @@ ACTOR ZombiemanSpawnerCoop replaces Zombieman
 			Wolf1:
 				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
 				TNT1 A 1 A_SpawnItemEx("WolfGuard",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				Stop
+				Goto DeathForInvasion
 			Wolf2:
 				TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
 				TNT1 A 1 A_SpawnItemEx("SODGuard",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				Stop
+				Goto DeathForInvasion
 		SetDuke3D:
 			TNT1 A 0 A_Jump(128,"SetDuke3D_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
 			TNT1 A 1 A_SpawnItemEx("AssaultTrooper",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetDuke3D_2:
 			TNT1 A 1 A_SpawnItemEx("MagnumPig",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop		
+			Goto DeathForInvasion		
 		SetMarathon:
 			TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(680,7) == 0, 5)
 			TNT1 A 1 A_Jump(200,4)
 			TNT1 A 1 A_Jump(200,3)
 			TNT1 A 1 A_Jump(200,2)
 			TNT1 A 1 A_SpawnItemEx("PfhorSuperFighterSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop			
+			Goto DeathForInvasion			
 			TNT1 A 0 A_Jump(46, "SetMarathon2", "SetMarathon5")
 			TNT1 A 0 A_Jump(14, "SetMarathon3", "SetMarathon6")
 			TNT1 A 0 A_Jump(128, "SetMarathon4")
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetMarathon2:
 			TNT1 A 1 A_SpawnItemEx("FighterMinorSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetMarathon3:
 			TNT1 A 1 A_SpawnItemEx("MSimulacrum",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetMarathon4:			
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMinorSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetMarathon5:
 			TNT1 A 1 A_SpawnItemEx("M1FighterMinorSpawner",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetMarathon6:
 			TNT1 A 1 A_SpawnItemEx("M2Simulacrum",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop			
+			Goto DeathForInvasion			
 		SetBStone:
 			TNT1 A 0 A_Jump(128, "SetBStone2")
 			TNT1 A 0 A_Jump(64, "SetBStone3")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBstone1")
 			TNT1 A 1 A_SpawnItemEx("Informant", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetBStone2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBstone2")
 			TNT1 A 1 A_SpawnItemEx("SectorGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetBStone3:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBstone3")
 			TNT1 A 1 A_SpawnItemEx("MutatedGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetRoTT:
 			TNT1 A 0 A_Jump(104,"SetRott2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRott")
 			TNT1 A 1 A_SpawnItemEx("LowGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetRott2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRott2")
 			TNT1 A 1 A_SpawnItemEx("LowGuard_Boo", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop		
+			Goto DeathForInvasion		
 		SetRR:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRR")
 			TNT1 A 1 A_SpawnItemEx("SkinnyOldCoot", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetErad:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyErad")
 			TNT1 A 1 A_SpawnItemEx("LSD", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetStrife:
 			//TNT1 A 0 A_Jump(180,"SetStrife_3")
 			TNT1 A 0 A_Jump(96,"SetStrife_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyStrife1")
 			TNT1 A 1 A_SpawnItemEx("StrifeAcolyte", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop	
+			Goto DeathForInvasion	
 		SetStrife_2:		
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyStrife2")
 			TNT1 A 1 A_SpawnItemEx("StrifeAcolyte2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop	
+			Goto DeathForInvasion	
 		SetStrife_3:
 			TNT1 A 1 A_SpawnItemEx("StrifeBetrayedRebel", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop			
+			Goto DeathForInvasion			
 		SetDarkF:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDarkF")
 			TNT1 A 1 A_SpawnItemEx("storm_trooper", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetCM:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM")
 			TNT1 A 1 A_SpawnItemEx("CMTrooper", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetC7:
 			TNT1 A 0 A_Jump(128,"SetC72")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC7")
 			TNT1 A 1 A_SpawnItemEx("AnimatedProbe", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetC72:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC72")
 			TNT1 A 1 A_SpawnItemEx("C7SectorProbe", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop			
+			Goto DeathForInvasion			
 		SetSW:
 			TNT1 A 0 A_Jump(96, "SetSW2")		
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW")
 			TNT1 A 1 A_SpawnItemEx("SWNinja", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetSW2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW2")
 		    TNT1 A 1 A_SpawnItemEx("SWHenchman", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetBlood:
 			TNT1 A 0 A_Jump(24,"SetBlood_3")
 		    TNT1 A 0 A_Jump(32,"SetBlood_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBlood")
 			TNT1 A 1 A_SpawnItemEx("BloodAcolyte", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetBlood_2:
 		    TNT1 A 1 A_SpawnItemEx("Cultist", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetBlood_3:
 		    TNT1 A 1 A_SpawnItemEx("BloodAcolyte_ExtraCrispy", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop		
+			Goto DeathForInvasion		
 		SetRmr:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRMR")
 			TNT1 A 1 A_SpawnItemEx("UNBluesuit", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetExhumed:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyExhumed")
 			TNT1 A 1 A_SpawnItemEx("RedMite", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop	
+			Goto DeathForInvasion	
 		SetIPOG:
 			TNT1 A 0 A_Jump(64,"SetIPOG2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG1")
 			TNT1 A 1 A_SpawnItemEx("IPOGTrooper", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetIPOG2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG2")
 			TNT1 A 1 A_SpawnItemEx("IPOGPrisoner", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetWitch:
 			TNT1 A 0 A_Jump(128,"SetWitch2","SetWitch3","SetWitch4")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch")
 			TNT1 A 1 A_SpawnItemEx("WTSkeleton", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetWitch2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch2")
 			TNT1 A 1 A_SpawnItemEx("ForestGoblin", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetWitch3:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch3")
 			TNT1 A 1 A_SpawnItemEx("WTBrownMidianWarriorHalberd", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetWitch4:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyWitch")
 			TNT1 A 1 A_SpawnItemEx("WTBrownMidianWarriorSpell", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetDisrup:
 			TNT1 A 0 A_Jump(32,"SetDisrup2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyDisrup")
 			TNT1 A 1 A_SpawnItemEx("DsrptSilverSpikeBall", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetDisrup2:	
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyDisrup2")
 			TNT1 A 1 A_SpawnItemEx("DisruptorMutantSoldier", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop		
+			Goto DeathForInvasion		
 		SetQuake1:
 			TNT1 A 0 A_Jump(128,"SetQuake1_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyQuake1")
 			TNT1 A 1 A_SpawnItemEx("QGrunt", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop		
+			Goto DeathForInvasion		
 		SetQuake1_2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1, "MultiplyQuake1_2")
 			TNT1 A 1 A_SpawnItemEx("Rottweiler", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop	
+			Goto DeathForInvasion	
 		SetDoom64:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom64")
 			TNT1 A 1 A_SpawnItemEx("Zombieman64", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetHL:
 			TNT1 A 0 A_Jump(128,"SetHL2","SetHL3","SetHL4")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
 			TNT1 A 1 A_SpawnItemEx("Headcrab", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetHL2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
 			TNT1 A 1 A_SpawnItemEx("Headcrab_Scientist", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop	
+			Goto DeathForInvasion	
 		SetHL3:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL3")
 			TNT1 A 1 A_SpawnItemEx("Headcrab_Barney", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetHL4:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL4")
 			TNT1 A 1 A_SpawnItemEx("Headcrab_Soldier", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetQuake2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
 			TNT1 A 1 A_SpawnItemEx("Q2LightGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop	
+			Goto DeathForInvasion	
 		SetHexen2:
 			TNT1 A 0 A_Jump(128,"SetHexen2_2")
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
 			TNT1 A 1 A_SpawnItemEx("Hexen2BlackSpiderSmall",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetHexen2_2:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2_2")
 			TNT1 A 1 A_SpawnItemEx("Hexen2BlackSpiderLarge",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetGoldeneye:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyGoldeneye")
 			TNT1 A 1 A_SpawnItemEx("Goldeneye_GreatGuard2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		SetNull:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Stop
+			Goto DeathForInvasion
 		MultiplyDoom:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiZombieman3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
-			Stop
+			Goto DeathForInvasion
 		MultiplyHeretic:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHereticImpLeader3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
-			Stop
+			Goto DeathForInvasion
 		MultiplyHexen1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiEttin3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen")
-			Stop
+			Goto DeathForInvasion
 		MultiplyChex:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiFlemoidusCommonus3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
-			Stop
+			Goto DeathForInvasion
 		MultiplyWolf1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiWolfGuard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf1")
-			Stop
+			Goto DeathForInvasion
 		MultiplyWolf2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiSODGuard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWolf2")
-			Stop
+			Goto DeathForInvasion
 		MultiplyDuke3D:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiAssaultTrooper",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDuke3D")
-			Stop
+			Goto DeathForInvasion
 		MultiplyBStone1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiInformant",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBStone1")
-			Stop
+			Goto DeathForInvasion
 		MultiplyBStone2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiSectorGuard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBStone2")
-			Stop
+			Goto DeathForInvasion
 		MultiplyBStone3:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiMutatedGuard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBStone3")
-			Stop
+			Goto DeathForInvasion
 		MultiplyRoTT:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiLowGuard",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRott")
-			Stop
+			Goto DeathForInvasion
 		MultiplyRoTT2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiLowGuard_Boo",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRott")
-			Stop
+			Goto DeathForInvasion
 		MultiplyRR:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiSkinnyOldCoot",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRR")
-			Stop
+			Goto DeathForInvasion
 		MultiplyErad:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiLSD",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyErad")
-			Stop
+			Goto DeathForInvasion
 		MultiplyStrife1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiStrifeAcolyte",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyStrife1")
-			Stop
+			Goto DeathForInvasion
 		MultiplyStrife2:		
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiStrifeAcolyte2",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyStrife2")
-			Stop		
+			Goto DeathForInvasion		
 		MultiplyDarkF:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multistorm_trooper",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDarkF")
-			Stop
+			Goto DeathForInvasion
 		MultiplyCM:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiCMTrooper",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyCM")
-			Stop
+			Goto DeathForInvasion
 		MultiplyC7:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiAnimatedProbe",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC7")
-			Stop
+			Goto DeathForInvasion
 		MultiplyC72:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiSectorProbe",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC72")
-			Stop			
+			Goto DeathForInvasion			
 		MultiplySW:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiSWNinja",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW")
-			Stop
+			Goto DeathForInvasion
 		MultiplySW2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiSWHenchman",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW2")
-			Stop
+			Goto DeathForInvasion
 		MultiplyBlood:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiBloodAcolyte",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyBlood")
-			Stop
+			Goto DeathForInvasion
 		MultiplyRmr:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiUNBluesuit",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRMR")
-			Stop
+			Goto DeathForInvasion
 		MultiplyExhumed:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiRedMite",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyExhumed")
-			Stop	
+			Goto DeathForInvasion	
 		MultiplyIPOG1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiIPOGTrooper",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG1")
-			Stop
+			Goto DeathForInvasion
 		MultiplyIPOG2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiIPOGPrisoner",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG2")
-			Stop
+			Goto DeathForInvasion
 		MultiplyWitch:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("WTSkeleton", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch")
-			Stop
+			Goto DeathForInvasion
 		MultiplyWitch2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiForestGoblin", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch2")
-			Stop	
+			Goto DeathForInvasion	
 		MultiplyWitch3:	
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiWTBrownMidianWarriorHalberd", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch3")
-			Stop
+			Goto DeathForInvasion
 		MultiplyWitch4:	
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiWTBrownMidianWarriorSpell", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch4")
-			Stop		
+			Goto DeathForInvasion		
 		MultiplyDisrup:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiDsrptSilverSpikeBall", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup")
-			Stop
+			Goto DeathForInvasion
 		MultiplyDisrup2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiDisruptorMutantSoldier", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDisrup2")
-			Stop			
+			Goto DeathForInvasion			
 		MultiplyQuake1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiQGrunt", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
-			Stop
+			Goto DeathForInvasion
 		MultiplyQuake1_2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiRottweiler", 0, 0, 0, random(-1,1),random(-1,1), 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1_2")
-			Stop			
+			Goto DeathForInvasion			
 		MultiplyDoom64:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiZombieman64",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom64")
-			Stop
+			Goto DeathForInvasion
 		MultiplyHL:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHeadcrab",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL")
-			Stop
+			Goto DeathForInvasion
 		MultiplyHL2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHeadcrab_Scientist",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL2")
-			Stop
+			Goto DeathForInvasion
 		MultiplyHL3:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHeadcrab_Barney",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL3")
-			Stop
+			Goto DeathForInvasion
 		MultiplyHL4:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiHeadcrab_Soldier",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHL4")
-			Stop
+			Goto DeathForInvasion
 		MultiplyQuake2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiQ2LightGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake2")
-			Stop	
+			Goto DeathForInvasion	
 		MultiplyNull:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("MultiBerzerkRobotYellow",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyNull")
+			Goto DeathForInvasion
+		DeathForInvasion:
+			TNT1 A 1 A_Die
+		Death:
+			TNT1 A 1
 			Stop
 	}		
 }

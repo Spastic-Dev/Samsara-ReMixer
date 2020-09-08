@@ -95,8 +95,8 @@ Actor AlienGrunt
 		FireMissile:
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL02 E 6 A_CustomMissile("HLHornet",48,16)
-			HL02 F 6 A_CustomMissile("HLHornet",48,16)
+			HL02 E 6 A_CustomMissile("HLHornetGrunt",48,16)
+			HL02 F 6 A_CustomMissile("HLHornetGrunt",48,16)
 			HL02 F 0 A_Jump(16,2)
 			TNT1 A 0 A_JumpIfTargetInLOS("FireMissile",160,JLOSF_DEADNOJUMP)
 			HL02 G 1
@@ -109,7 +109,7 @@ Actor AlienGrunt
 		FireMissile2:
 			HL03 C 0 A_FaceTarget
 			HL03 C 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL03 C 16 A_CustomMissile("HLHornetSeeker",48,16)
+			HL03 C 16 A_CustomMissile("HLHornetSeekerGrunt",48,16)
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_JumpIfTargetInLOS("FireMissile2",160,JLOSF_DEADNOJUMP)
 			HL03 D 1
@@ -838,3 +838,6 @@ ACTOR HornetGunDrop : SamsaraSlotOneDrop {
         stop
     }
 }
+
+Actor HLHornetGrunt : HLHornet { Damage (5) }
+Actor HLHornetSeekerGrunt : HLHornetSeeker { Damage (5) }

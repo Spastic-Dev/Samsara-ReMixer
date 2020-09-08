@@ -377,7 +377,10 @@ ACTOR AssaultCaptain
 			ASCA N 1 A_Fall     
 			ASCA A 0 A_SpawnItemEx("AssaultCaptainChoking",0, 0, 0, 0, 0, 0, 0,  SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
 			ASCA N 1
-			ASCA N 0 A_Die
+			ASCA N 0 A_Die("Faking")
+			Stop
+		Death.Faking:
+			TNT1 A 1
 			Stop
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -860,7 +863,6 @@ ACTOR MultiAssaultCaptain : AssaultCaptain
 
 Actor AssaultCaptainChoking : AssaultCaptain {
 	Health 5
-	GibHealth -73
 	SeeSound ""	
 	States {
 		Spawn:	
@@ -884,6 +886,7 @@ Actor AssaultCaptainChoking : AssaultCaptain {
 			ASCA N 8
 			ASCA P 6
 			TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
+			TNT1 A 0 A_ChangeFlag(VULNERABLE,1)
 			ASCA M 1 A_UnsetSolid
 			TNT1 A 0 A_Jump(128,"PermDeath")
 		   Goto Faking
@@ -897,18 +900,18 @@ Actor AssaultCaptainChoking : AssaultCaptain {
 			ASCA M 115
 			ASCA M 115
 			ASCA M 115
-			Goto Rising1
-		Rising1:
-			ASCA M 1 A_Die("Rising")
-			Wait
-		Death.Rising:
+			Goto Rising
+		Rising:
 			ASCA M 5 A_Fall
 			ASCA LKJI 5
-			ASCA I 0 A_SpawnItemEx("AssaultCaptainAltFake2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
+			ASCA I 0 A_SpawnItemEx("AssaultCaptainAltFake2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
+			TNT1 A 0 A_Die("Remove")
+			Stop
+		Death.Remove:
+			TNT1 A 1
 			Stop
 		PermDeath:
 			ASCA M 1 A_Die("Hemorrhage")
-			Wait
 		Death.Hemorrhage:
 			ASCA M 5 A_NoBlocking
 			ASTR M 0 A_SpawnItemEx("AssaultCaptainCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)

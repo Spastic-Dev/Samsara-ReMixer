@@ -131,6 +131,7 @@ Script 668 (int spawncode, int override)
 	Switch(spawncode)
 	{
 		case 1:
+			//ACS_NamedExecuteAlways("Samsara_MonsterSpawn",0,0,0,0); uncomment this for stronghold support, will deal with later
 			if(GetCVar("mm_skilloverride") < 5)
 			{
 				multitoken = GetCVar("mm_skilloverride");
@@ -150,7 +151,7 @@ Script 668 (int spawncode, int override)
 
 			break;
 
-		case 2:
+		case 2:	
 			If(!IsSinglePlayer())
 				Delay(5);
 				
@@ -220,13 +221,9 @@ Script 668 (int spawncode, int override)
 		case 3:
 		if(GetCVar("mm_multiply") > 1)
 		{
-			if(GetCvar("invasion") == 0||override == 1)
-			{
-				multitoken = GetCvar("mm_multiply");
-				GiveInventory("MultiplyToken", multitoken);
-				break;
-			}
-			else { break; }
+			multitoken = GetCvar("mm_multiply");
+			GiveInventory("MultiplyToken", multitoken);
+			break;
 		}
 		else { break; }
 	}
@@ -690,6 +687,14 @@ Script "ClassBasedSpawn_DISCONNECT" (int players) DISCONNECT
 			clients += 1;
 		}
 	}
+}
+
+Script "Samsara_InvasionChecker" (void)
+{
+	If(GetCvar("invasion"))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
 }
 
 Script "Samsara_OpposingForceSpawnCheck" (void)
