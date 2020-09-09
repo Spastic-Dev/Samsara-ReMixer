@@ -397,14 +397,18 @@ Script 669 (void)
 
 Script 670 OPEN
 {
-	While(GetCvar("invasion") > 0)
+	int spawnmode;
+	int oldmode;
+	while(true)
 	{
-		Until(GetInvasionState() == 4)
-		{
-			Delay(35);
-		}
-		ACS_Execute(669, 0, 0, 0, 0);
-		Delay(350);
+		spawnmode = GetCvar("mm_spawnmode");
+		if(oldmode != spawnmode && spawnmode == 3)
+			ACS_Execute(669, 0, 0, 0, 0);
+		else if(oldmode != spawnmode && spawnmode == 0)
+			ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0);
+			
+		Delay(1);
+		oldmode = spawnmode;
 	}
 }
 
@@ -424,11 +428,6 @@ Script "MarathonTeleport" (void)
 	}
 	else { terminate; }
 }
-
-/*Script 672 (void)
-{
-
-}*/
 
 Script 680 (int pick)
 {
@@ -499,8 +498,11 @@ Script 680 (int pick)
 
 int realindices[MAX_GAME_TYPES] = { 0, 3, 1, 4, 2, 5, 6, 22, 8, 7, 16, 11, 23, 10, 14, 17, 12, 19, 21, 20, 24, 15, 13, 18, 9, 25, 26, 27 };
 
-Script "ClassBasedSpawn_OPEN" Open
+Script "ExMixerClassBasedSpawn" (void)
 {
+	if(GetCvar("mm_spawnmode") != 0)
+		terminate;
+		
 	int clients = PlayerCount();
 	int playervalue;
 
@@ -537,157 +539,11 @@ Script "ClassBasedSpawn_OPEN" Open
 	}
 }
 
-Script "ClassBasedSpawn_RESPAWN" RESPAWN
-{
-	int clients = PlayerCount();
-	int playervalue;
-
-	for(int a = 0; a < MAX_GAME_TYPES; a++)
-	{
-		activesets[a] = false;
-	}
-
-	for(int p = 0; p < clients; p++)
-	{	
-		if(PlayerInGame(p) == true)
-		{
-			for(int b = 0; b < MAX_GAME_TYPES; b++)
-			{
-				if(PlayerClass(p) == b)
-				{
-					playervalue = realindices[b];
-				}
-			}
-					
-			for(int i = 0; i < MAX_GAME_TYPES; i++)
-			{
-				if(playervalue == i)
-				{
-					activesets[i] = true;
-					break;
-				}
-			}
-		}
-		else
-		{
-			clients += 1;
-		}
-	}
-}
-
-Script "ClassBasedSpawn_REOPEN" REOPEN
-{
-	int clients = PlayerCount();
-	int playervalue;
-
-	for(int a = 0; a < MAX_GAME_TYPES; a++)
-	{
-		activesets[a] = false;
-	}
-
-	for(int p = 0; p < clients; p++)
-	{	
-		if(PlayerInGame(p) == true)
-		{
-			for(int b = 0; b < MAX_GAME_TYPES; b++)
-			{
-				if(PlayerClass(p) == b)
-				{
-					playervalue = realindices[b];
-				}
-			}
-					
-			for(int i = 0; i < MAX_GAME_TYPES; i++)
-			{
-				if(playervalue == i)
-				{
-					activesets[i] = true;
-					break;
-				}
-			}
-		}
-		else
-		{
-			clients += 1;
-		}
-	}
-}
-
-Script "ClassBasedSpawn_ENTER" ENTER
-{
-	int clients = PlayerCount();
-	int playervalue;
-
-	for(int a = 0; a < MAX_GAME_TYPES; a++)
-	{
-		activesets[a] = false;
-	}
-
-	for(int p = 0; p < clients; p++)
-	{	
-		if(PlayerInGame(p) == true)
-		{
-			for(int b = 0; b < MAX_GAME_TYPES; b++)
-			{
-				if(PlayerClass(p) == b)
-				{
-					playervalue = realindices[b];
-				}
-			}
-					
-			for(int i = 0; i < MAX_GAME_TYPES; i++)
-			{
-				if(playervalue == i)
-				{
-					activesets[i] = true;
-					break;
-				}
-			}
-		}
-		else
-		{
-			clients += 1;
-		}
-	}
-}
-
-Script "ClassBasedSpawn_DISCONNECT" (int players) DISCONNECT
-{	
-	int clients = PlayerCount();
-	int playervalue;
-
-	for(int a = 0; a < MAX_GAME_TYPES; a++)
-	{
-		activesets[a] = false;
-	}
-
-	for(int p = 0; p < clients; p++)
-	{	
-		if(PlayerInGame(p) == true)
-		{
-			for(int b = 0; b < MAX_GAME_TYPES; b++)
-			{
-				if(PlayerClass(p) == b)
-				{
-					playervalue = realindices[b];
-				}
-			}
-					
-			for(int i = 0; i < MAX_GAME_TYPES; i++)
-			{
-				if(playervalue == i)
-				{
-					activesets[i] = true;
-					break;
-				}
-			}
-		}
-		else
-		{
-			clients += 1;
-		}
-	}
-}
+Script "ExMixerClassBasedSpawn_OPEN" Open { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
+Script "ExMixerClassBasedSpawn_RESPAWN" RESPAWN { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
+Script "ExMixerClassBasedSpawn_REOPEN" REOPEN { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
+Script "ExMixerClassBasedSpawn_ENTER" ENTER { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
+Script "ExMixerClassBasedSpawn_DISCONNECT" (int players) DISCONNECT { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
 
 Script "Samsara_InvasionChecker" (void)
 {
