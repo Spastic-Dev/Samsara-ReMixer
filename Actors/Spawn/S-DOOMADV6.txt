@@ -29,7 +29,7 @@ ACTOR SpectreSpawnerCoop replaces Spectre
 				Goto DeathForInvasion
 		SetHexen1:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
-			TNT1 A 1 A_SpawnItemEx("Centaur3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("CentaurLeader3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetChex:
 			TNT1 A 0 A_Jump(256,"Chex1","Chex2")
@@ -439,7 +439,7 @@ ACTOR SpectreSpawnerCoop replaces Spectre
 			Goto DeathForInvasion
 		MultiplyHexen1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiCentaur3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiCentaurLeader3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			Goto DeathForInvasion
 		MultiplyChex1:

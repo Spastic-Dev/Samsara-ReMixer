@@ -101,21 +101,8 @@ ACTOR ArachnotronSpawnerCoop replaces Arachnotron
 			TNT1 A 1 A_SpawnItemEx("CMTank",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetC7:
-			TNT1 A 0 A_Jump(96,"SetC7_2","SetC7_3","SetC7_4")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc71")
-			TNT1 A 1 A_SpawnItemEx("Nerraw",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		SetC7_2:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc72")
 			TNT1 A 1 A_SpawnItemEx("Otrebor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		SetC7_3:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc73")
-			TNT1 A 1 A_SpawnItemEx("Tenaj",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		SetC7_4:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc74")
-			TNT1 A 1 A_SpawnItemEx("Tymok",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait			
 		SetSW:
 			TNT1 A 0 A_Jump(48,"SetSW2")		
@@ -336,39 +323,12 @@ ACTOR ArachnotronSpawnerCoop replaces Arachnotron
 			Goto BossWait
 		Multiplyc71:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("Multinerraw",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiOtrebor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto Multiplyc71_2
 		MultiplyC71_2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multinerraw",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC71_2")
-			Goto BossWait
-		Multiplyc72:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("Multiotrebor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto Multiplyc72_2
-		MultiplyC72_2:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiOtrebor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC72_2")
-			Goto BossWait
-		Multiplyc73:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("Multitenaj",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto Multiplyc73_2
-		MultiplyC73_2:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multitenaj",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC73_2")
-			Goto BossWait
-		Multiplyc74:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("Multitymok",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto Multiplyc74_2
-		MultiplyC74_2:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multitymok",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC74_2")
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC71_2")
 			Goto BossWait
 		MultiplySW:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

@@ -15,7 +15,7 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
-			TNT1 A 1 A_SpawnItemEx("Snake3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("Beast3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetHexen1:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
@@ -107,10 +107,6 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc71")
 			TNT1 A 1 A_SpawnItemEx("Otrebor", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)			
 			Goto DeathForInvasion			
-		SetC7_2:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyc72")
-			TNT1 A 1 A_SpawnItemEx("EniramBoss", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)			
-			Goto DeathForInvasion
 		SetSW:
 			TNT1 A 0 A_Jump(128,"SetSW2","SetSW3")			
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplySW1")			
@@ -221,7 +217,7 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			Goto DeathForInvasion
 		MultiplyHeretic:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiSnake3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiBeast3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
 			Goto DeathForInvasion
 		MultiplyHexen1:
@@ -308,11 +304,6 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiOtrebor",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC71")
-			Goto DeathForInvasion
-		MultiplyC72:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multieniramboss",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyC72")
 			Goto DeathForInvasion
 		MultiplySW1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
