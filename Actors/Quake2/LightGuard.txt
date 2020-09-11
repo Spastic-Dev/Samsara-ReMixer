@@ -3844,3 +3844,63 @@ Actor HyperBlasterImpactParticle : HyperBlasterTrail
 	}
 }
 Actor GuardBoomerang : Q2IonBoomerang { Damage (5) }
+
+ACTOR LaserProjectile : FastProjectile
+{
+	Speed 256
+	Radius 5
+	Height 3
+	Damage (0)
+	+BLOODSPLATTER
+	+SKYEXPLODE
+	+DONTSPLASH
+	+CANNOTPUSH
+	+NODAMAGETHRUST	
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 16
+			Goto Death	
+		Death:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",9,16,32) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
+
+Actor LaserProjectile2 : LaserProjectile { Damage 0 }
+Actor LaserProjectileB : FastProjectile
+{
+	Speed 256
+	Height 5
+	Radius 3
+	Damage (Random(1,2))
+	Species "BrainProj"
+	+THRUSPECIES
+	+MTHRUSPECIES
+	States
+	{
+	Spawn:
+		TNT1 A 2
+		Loop
+	XDeath:
+		TNT1 A 1 A_PlaySound("Q2Weapons/LaserHit")
+		Stop
+	}
+}
+Actor LaserProjectileSegment : Q2EffectBase
+{
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	States
+	{
+	Spawn:
+		NULL A 0 
+		NULL A 0 A_Jump(256,"Fade")
+		stop
+	Fade:
+		"####" "#" 4
+		Stop
+	}
+}

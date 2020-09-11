@@ -693,9 +693,15 @@ Actor Q2BrainBetaClass : Q2Brain
 			BRN2 D 0 A_PlaySound("Q2Brain/OpenChest",0,0.5)
 			BRN2 DE 4 A_FaceTarget
 			BRN2 F 0 A_PlaySound("Q2Brain/Attack2",CHAN_BODY)
+		Pulling:
+			TNT1 A 0 A_JumpIf(CallACS("Hexen2_Decorate_Monster", 4), "StopPulling")
+			TNT1 A 0 A_JumpIfCloser(64,"StopPulling")
 			TNT1 A 0 A_CustomMissile("TentacleProjectileB",32)
 			TNT1 A 0 A_CustomMissile("TentacleProjectile",32)
 			TNT1 A 0 A_CustomMissile("TentacleProjectilePull",32)
+			BRN2 F 1
+			Loop
+		StopPulling:
 			BRN2 FGHIJKLMNOPQ 3 A_FaceTarget
 			Goto See
 		Missile2:
@@ -707,82 +713,82 @@ Actor Q2BrainBetaClass : Q2Brain
 		Missile2Loop: // it's nerf, or nothin'
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
 			TNT1 A 0 A_CustomMissile("LaserProjectileB",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_CustomMissile("LaserProjectileB",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
 			TNT1 A 0 A_CustomMissile("LaserProjectileB",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_CustomMissile("LaserProjectileB",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
 			TNT1 A 0 A_CustomMissile("LaserProjectileB",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_CustomMissile("LaserProjectileB",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			BRN2 F 1 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,-2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
-			TNT1 A 0 A_CustomMissile("LaserProjectile",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainLeft",48,-2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
+			TNT1 A 0 A_CustomMissile("LaserProjectileBrainRight",48,2)
 			TNT1 A 0 A_JumpIfCloser(72,"Missile2Stop")
 			TNT1 A 0 A_MonsterRefire(40,"Missile2Stop")
 			loop
@@ -1117,52 +1123,83 @@ actor Q2BrainBetaClass_Shrink : Q2Brain_Shrink
 	}
 }
 
-Actor TentacleProjectilePull : Loreshot
+Actor TentacleProjectilePull
 {
-	Speed 64
+	Speed 160
 	SeeSound ""
 	ActiveSound ""
+	Species "BrainProj"
+	Projectile
+	Damage (0)
+	Height 4
+	Radius 2
+	+BLOODLESSIMPACT
 	+MTHRUSPECIES
 	+THRUSPECIES
-	Species "BrainProj"
+	+HITTRACER
 	states
 	{
 		spawn:
-			TNT1 A 10
+			TNT1 AA 4
 			stop
 		Death:
 			TNT1 A 1
+			Stop
+		XDeath:
+			TNT1 A 0 A_JumpIf(CallACS("Hexen2_Decorate_Monster",5,32,2) == 1, 1)
+			TNT1 A 2
 			Stop
 	}
 }
 ACTOR TentacleProjectile : FastProjectile
 {
-	Speed 100
-	Damage 1
-	+STRIFEDAMAGE 
-	+NOTIMEFREEZE 
+	Speed 256
+	Radius 5
+	Height 3
+	Damage (0)
+	+EXTREMEDEATH
 	+BLOODSPLATTER
-	+MTHRUSPECIES
-	+THRUSPECIES
-	Species "BrainProj"
-	Height 5
-	Radius 3
+	+SKYEXPLODE
+	+DONTSPLASH
+	+CANNOTPUSH
+	+NODAMAGETHRUST	
 	States
 	{
-	Spawn:
-		TNT1 A 0 NoDelay A_ChangeFlag(PAINLESS,Random(0,128))
-	Moving:
-		TNT1 A 0 A_JumpIfCloser(5000,1)
-		Stop
-		TNT1 A 0 A_ChangeFlag("CLIENTSIDEONLY", false)
-		TNT1 A 0 A_SpawnItemEx(TentacleProjectileSegment,0,0,0,(MomX*0.01), (MomY*0.01), (MomZ*0.01), Angle, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEMOMENTUM | SXF_ABSOLUTEANGLE)
-		TNT1 A 0 A_ChangeFlag("CLIENTSIDEONLY", true)
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,"Moving")
-		stop
+		Spawn:
+			TNT1 A 0
+			TNT1 A 16
+			Goto Death	
+		Death:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",9,16,32) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
+ACTOR TentacleProjectile : FastProjectile
+{
+	Speed 256
+	Radius 5
+	Height 3
+	Damage (0)
+	Species "BrainProj"
+	+EXTREMEDEATH
+	+BLOODSPLATTER
+	+SKYEXPLODE
+	+DONTSPLASH
+	+CANNOTPUSH
+	+NODAMAGETHRUST	
+	+THRUSPECIES
+	+MTHRUSPECIES
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 16
+			Goto Death	
+		Death:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",12,16,39) == 1, 1)
+			TNT1 A 5
+			stop
 	}
 }
 Actor TentacleProjectileB : FastProjectile
@@ -1185,14 +1222,12 @@ Actor TentacleProjectileB : FastProjectile
 }
 Actor TentacleProjectileSegment : Q2EffectBase
 {
-	+NOTIMEFREEZE
-	-CLIENTSIDEONLY
+	+CLIENTSIDEONLY
 	RenderStyle Normal
 	States
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 A_ChangeFlag("CLIENTSIDEONLY", true)
 		NULL A 0 A_Jump(64,"Fade")
 		NULL B 0 A_Jump(128,"Fade")
 		NULL C 0 A_Jump(128,"Fade")
@@ -1203,69 +1238,37 @@ Actor TentacleProjectileSegment : Q2EffectBase
 		Stop
 	}
 }
-ACTOR LaserProjectile : FastProjectile
+ACTOR LaserProjectileBrainLeft : LaserProjectile
 {
-	Speed 100
-	Damage 0 
-	+NOTIMEFREEZE 
-	+BLOODSPLATTER
-	+MTHRUSPECIES
-	+THRUSPECIES
-	Species "BrainProj"
-	Height 5
-	Radius 3
-	States
-	{
-	Spawn:
-		TNT1 A 0 NoDelay A_ChangeFlag(PAINLESS,Random(0,128))	
-	Moving: 
-		TNT1 A 0 A_JumpIfCloser(5000,1)
-		Stop
-		TNT1 A 0 A_ChangeFlag("CLIENTSIDEONLY", false)
-		TNT1 A 0 A_SpawnItemEx(LaserProjectileSegment,0,0,0,(MomX*0.01), (MomY*0.01), (MomZ*0.01), Angle, SXF_ABSOLUTEPOSITION | SXF_ABSOLUTEMOMENTUM | SXF_ABSOLUTEANGLE)
-		TNT1 A 0 A_ChangeFlag("CLIENTSIDEONLY", true)
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,1) stop
-		TNT1 A 0 A_Warp(AAPTR_DEFAULT,MomX/5,MomY/5,MomZ/5,0,WARPF_ABSOLUTEOFFSET,"Moving")
-		stop
-	}
-}
-Actor LaserProjectile2 : LaserProjectile { Damage 0 }
-Actor LaserProjectileB : FastProjectile
-{
-	Speed 256
-	Height 5
-	Radius 3
-	Damage (Random(1,2))
 	Species "BrainProj"
 	+THRUSPECIES
 	+MTHRUSPECIES
 	States
 	{
-	Spawn:
-		TNT1 A 2
-		Loop
-	XDeath:
-		TNT1 A 1 A_PlaySound("Q2Weapons/LaserHit")
-		Stop
+		Spawn:
+			TNT1 A 0
+			TNT1 A 16
+			Goto Death	
+		Death:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",10,16,48) == 1, 1)
+			TNT1 A 5
+			stop
 	}
 }
-Actor LaserProjectileSegment : Q2EffectBase
+ACTOR LaserProjectileBrainRight : LaserProjectile
 {
-	+NOTIMEFREEZE
-	-CLIENTSIDEONLY
-	RenderStyle Add
+	Species "BrainProj"
+	+THRUSPECIES
+	+MTHRUSPECIES
 	States
 	{
-	Spawn:
-		NULL A 0 
-		NULL A 0 A_ChangeFlag("CLIENTSIDEONLY", true)
-		NULL A 0 A_Jump(256,"Fade")
-		stop
-	Fade:
-		"####" "#" 4
-		Stop
+		Spawn:
+			TNT1 A 0
+			TNT1 A 16
+			Goto Death	
+		Death:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",11,16,48) == 1, 1)
+			TNT1 A 5
+			stop
 	}
 }

@@ -1619,8 +1619,6 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 			int currentx = GetActorX(0);
 			int currenty = GetActorY(0);
 			int currentz = GetActorZ(0);
-			int thrustvspeed = 4;
-			int thrusthspeed = 2;
 			SetActivator(newtid);
 			Thing_ChangeTid(newtid, oldtid);
 			SetActivator(0, AAPTR_TRACER);
@@ -1635,14 +1633,14 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 				int vectory = targety - currenty;
 				int vectorz = targetz - currentz;
 				int vang = VectorAngle(vectorx, vectory);
-				ThrustThing((vang >> 8) + 128, 2, 0, 0);
+				ThrustThing((vang >> 8) + 128, arg1, 0, 0);
 					
 				length = magnitudeTwo(vectorx>>16,vectory>>16);
 				int vpitch = VectorAngle(length<<16, vectorz);
-				int zthrust = sign(sin(vpitch))*thrustvspeed;
+				int zthrust = sign(sin(vpitch))*arg2;
 				
 				//if(zthrust > 0) huh
-					ThrustThingZ(0, zthrust, thrusthspeed, 1);
+					ThrustThingZ(0, zthrust, arg2, 1);
 				//else
 					//ThrustThingZ(0, zthrust, 1, 1);
 			}
