@@ -661,28 +661,7 @@ actor Shambler_ShrinkEffect : Shambler
 	}
 }
 
-Actor Quake_LightningBolt : MageWandMissile
-{
-  Speed 200
-  Radius 3
-  Height 8
-  Damage 0
-//Alpha 0.8
-  SeeSound ""
-  -RIPPER
-  -CANNOTPUSH
-  -NODAMAGETHRUST
-  MissileType "LGBeam2"
-  states
-  {
-  Spawn:
-    TNT1 A 1
-    Goto Death
-  Death:
-    TNT1 A 3 bright
-    stop
-  }
-}
+Actor Quake_LightningBolt : LGBeamProjectile { Damage (10) }
 
 Actor ShamblerBolt : Quake_LightningBolt { DeathSound "Shambler/boom" }
 
