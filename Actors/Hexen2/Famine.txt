@@ -152,6 +152,8 @@ Actor Hexen2Famine : Hexen2BossBase
 			HX05 RSTUVWX 2 A_Wander //A_Recoil(-0.4)
 			HX05 J 0 A_PlaySound("Hexen2/Horse/Clop", CHAN_VOICE)		
 			HX05 J 0 A_JumpIfCloser(100, "PullEnd")
+			HX05 J 0 A_JumpIfCloser(1024, 1)
+			Goto PullEnd
 			HX05 J 0 A_JumpIf(CallACS("Hexen2_Decorate_Monster", 4), "PullEnd")
 			Goto PullLoop
 		PullEnd:
@@ -214,31 +216,10 @@ Actor Hexen2FaminePuller
 			TNT1 A 0 A_SetUserVar("user_damagetime",0)
 			TNT1 A 0 A_CustomMissile("Hexen2FaminePullDamage",0,0,0)
 			TNT1 A 0 A_SetUserVar("user_damagetime",user_damagetime+1)
-			TNT1 A 0 A_CustomMissile("Hexen2FaminePullGetTracer",0,0,0)
 			TNT1 A 0 A_CustomMissile("Hexen2FaminePull",0,0,0)
 			TNT1 A 2
 			Loop
 		Remove:
-			TNT1 A 1
-			stop
-	}
-}
-
-Actor Hexen2FaminePullGetTracer : FastProjectile
-{
-	Height 2
-	Radius 1
-	Speed 256
-	Species "Hexen2Famine"
-	+THRUSPECIES
-	+MTHRUSPECIES
-	+HITTRACER
-	States
-	{
-		Spawn:
-			TNT1 AA 2
-		Death:
-			TNT1 A 0 A_TransferPointer(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TRACER,AAPTR_TRACER)		
 			TNT1 A 1
 			stop
 	}
@@ -365,6 +346,39 @@ Actor Hexen2FamineOrb
 	}
 }	
 
+Actor Hexen2FaminePull : FastProjectile
+{
+	Speed 512
+	Radius 8
+	Height 4
+	Damagetype "Hexen2Electric"
+	Damage (0)
+	Species "Hexen2Famine"
+	+SKYEXPLODE
+	+DONTSPLASH
+	+CANNOTPUSH
+	+NODAMAGETHRUST	
+	+THRUSPECIES
+	+MTHRUSPECIES
+	+HITTRACER
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 AA 1
+			Goto Death	
+		Death:
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",7,32,0) == 1, 1)
+			TNT1 A 5
+			stop
+		Xdeath:
+			TNT1 A 0 A_JumpIf(CallACS("Hexen2_Decorate_Monster",5)==1,1)
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",7,32,0) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
+/*
 Actor Hexen2FaminePull
 {
 	Radius 8
@@ -421,8 +435,8 @@ Actor Hexen2FaminePull
 		Stop
 		}
 }	
-
-Actor Hexen2FamineBeamSegment1
+*/
+Actor Hexen2FamineBeamSegment
 {
 	+NOINTERACTION
 	+NOBLOCKMAP
@@ -434,16 +448,32 @@ Actor Hexen2FamineBeamSegment1
 	{
 		Spawn:
 			TNT1 A 0
+			TNT1 A 0 A_Jump(256,"Beam1","Beam2","Beam3","Beam4","Beam5","Beam6")
+		Beam1:
 			HX00 A 2 Bright
 			HX00 A 2 Bright A_Fadeout(0.1)
 			stop
+		Beam2:
+			HX00 B 2 Bright
+			HX00 B 2 Bright A_Fadeout(0.1)
+			stop
+		Beam3:
+			HX00 C 2 Bright
+			HX00 C 2 Bright A_Fadeout(0.1)
+			stop
+		Beam4:
+			HX00 D 2 Bright
+			HX00 D 2 Bright A_Fadeout(0.1)
+			stop
+		Beam5:
+			HX00 E 2 Bright
+			HX00 E 2 Bright A_Fadeout(0.1)
+			stop
+		Beam6:
+			HX00 F 2 Bright
+			HX00 F 2 Bright A_Fadeout(0.1)
+			stop
 	}
 }
-
-Actor Hexen2FamineBeamSegment2 : Hexen2FamineBeamSegment1 { }
-Actor Hexen2FamineBeamSegment3 : Hexen2FamineBeamSegment1 { }
-Actor Hexen2FamineBeamSegment4 : Hexen2FamineBeamSegment1 { }
-Actor Hexen2FamineBeamSegment5 : Hexen2FamineBeamSegment1 { }
-Actor Hexen2FamineBeamSegment6 : Hexen2FamineBeamSegment1 { }
 
 ACTOR Hexen2FaminePullingToken : Hexen2Boolean {}

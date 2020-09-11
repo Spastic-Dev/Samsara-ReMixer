@@ -833,11 +833,86 @@ Actor Hexen2FallenAngelSpellPuffGenerator : Hexen2PuffGenerator
 	}
 }
 
-ACTOR Hexen2FallenAngleBeam1 : Hexen2ForceCubeMissile1 { Damage(random(2,5)) }
-ACTOR Hexen2FallenAngleBeam2 : Hexen2ForceCubeMissile2 { Damage(random(2,5)) }
-ACTOR Hexen2FallenAngleBeam3 : Hexen2ForceCubeMissile3 { Damage(random(2,5)) }
-ACTOR Hexen2FallenAngleBeam4 : Hexen2ForceCubeMissile4 { Damage(random(2,5)) }
-ACTOR Hexen2FallenAngleBeam5 : Hexen2ForceCubeMissile5 { Damage(random(2,5)) }
+ACTOR Hexen2FallenAngleBeam1 : Hexen2ForceCubeMissile1 
+{ 
+	Damage(random(2,5)) 
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 AA 1
+			Goto Death
+		Death:
+			TNT1 A 0 A_PlaySound("Hexen2/ForceCubeBeamHit", CHAN_6)
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",1,32,37) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
+ACTOR Hexen2FallenAngleBeam2 : Hexen2ForceCubeMissile2 
+{ 
+	Damage(random(2,5)) 
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 AA 1
+			Goto Death
+		Death:
+			TNT1 A 0 A_PlaySound("Hexen2/ForceCubeBeamHit", CHAN_6)
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",2,32,37) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
+ACTOR Hexen2FallenAngleBeam3 : Hexen2ForceCubeMissile3 
+{ 
+	Damage(random(2,5)) 
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 AA 1
+			Goto Death
+		Death:
+			TNT1 A 0 A_PlaySound("Hexen2/ForceCubeBeamHit", CHAN_6)
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",3,32,37) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
+ACTOR Hexen2FallenAngleBeam4 : Hexen2ForceCubeMissile4 
+{ 
+	Damage(random(2,5)) 
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 AA 1
+			Goto Death
+		Death:
+			TNT1 A 0 A_PlaySound("Hexen2/ForceCubeBeamHit", CHAN_6)
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",4,32,37) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
+ACTOR Hexen2FallenAngleBeam5 : Hexen2ForceCubeMissile5 
+{ 
+	Damage(random(2,5))
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 AA 1
+			Goto Death
+		Death:
+			TNT1 A 0 A_PlaySound("Hexen2/ForceCubeBeamHit", CHAN_6)
+			TNT1 A 0 A_JumpIf(CallACS("Samsara_Laser",5,32,37) == 1, 1)
+			TNT1 A 5
+			stop
+	}
+}
 
 ACTOR Hexen2FallenAngelLordAlphaToken : Hexen2Boolean {}
 ACTOR Hexen2FallenAngelFindSpotToken : Hexen2Boolean {}
