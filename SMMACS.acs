@@ -399,16 +399,35 @@ Script 670 OPEN
 {
 	int spawnmode;
 	int oldmode;
+	int drawn;
 	while(true)
 	{
-		spawnmode = GetCvar("mm_spawnmode");
-		if(oldmode != spawnmode && spawnmode == 3)
-			ACS_Execute(669, 0, 0, 0, 0);
-		else if(oldmode != spawnmode && spawnmode == 0)
-			ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0);
-			
+		if(GetInvasionState() == 1 || GetInvasionState() == 5)
+		{
+			spawnmode = GetCvar("mm_spawnmode");
+			if(oldmode != spawnmode && spawnmode == 3)
+			{
+				ACS_Execute(669, 0, 0, 0, 0);
+				drawn = 1;
+			}
+			else if(oldmode != spawnmode && spawnmode == 0)
+			{
+				ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0);
+				drawn = 1;
+			}
+			else if(spawnmode == 1 || spawnmode == 2)
+				drawn = 1;
+				
+		}
+		else if(GetInvasionState() == 4)
+		{
+			oldmode = -1;
+			drawn = 0;
+		}
+		
 		Delay(1);
-		oldmode = spawnmode;
+		if(drawn == 1)
+			oldmode = spawnmode;
 	}
 }
 
