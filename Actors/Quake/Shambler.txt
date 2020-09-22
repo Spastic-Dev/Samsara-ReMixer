@@ -25,6 +25,7 @@ ACTOR Shambler
   PainChance "MightyBoot", 255
   PainChance "MarathonStun", 255
   Dropitem "DefaultPinataPop"
+  BloodType "Quake_NewParticles"
   var int user_scalex;
   var int user_scaley;
   States
@@ -86,14 +87,11 @@ ACTOR Shambler
 	   SHA6 C 2 A_FaceTarget
 	   SHA6 DME 5 Bright A_FaceTarget
 	   SHA6 F 2 A_CustomMissile("ShamblerBolt",40)
-	   TNT1 A 0 A_CustomBulletAttack(0, 0, 1, Random(5,10)+0,BLANKPUFF,800,CBAF_NORANDOM)
-	   SHA6 F 2 Bright A_CustomMissile("ShamblerBolt",40)
-	   SHA6 G 2 A_CustomMissile("ShamblerBolt",40)
-	   TNT1 A 0 A_CustomBulletAttack(0, 0, 1, Random(5,10)+0,BLANKPUFF,800,CBAF_NORANDOM)	   
-	   SHA6 G 2 Bright A_CustomMissile("ShamblerBolt",40)
-	   SHA6 H 2 A_CustomMissile("ShamblerBolt",40)
-	   TNT1 A 0 A_CustomBulletAttack(0, 0, 1, Random(5,10)+0,BLANKPUFF,800,CBAF_NORANDOM)	   	   
-	   SHA6 H 2 Bright A_CustomMissile("ShamblerBolt",40)
+	   SHA6 F 2 Bright A_CustomMissile("ShamblerBolt2",40)
+	   SHA6 G 2 A_CustomMissile("ShamblerBolt2",40)
+	   SHA6 G 2 Bright A_CustomMissile("ShamblerBolt2",40)
+	   SHA6 H 2 A_CustomMissile("ShamblerBolt2",40)
+	   SHA6 H 2 Bright A_CustomMissile("ShamblerBolt2",40)
 	   SHA6 IJKL 3 A_FaceTarget
 	   Goto see
 	 Pain:
@@ -662,8 +660,8 @@ actor Shambler_ShrinkEffect : Shambler
 }
 
 Actor Quake_LightningBolt : LGBeamProjectile { Damage (10) }
-
 Actor ShamblerBolt : Quake_LightningBolt { DeathSound "Shambler/boom" }
+Actor ShamblerBolt2 : ShamblerBolt { Damage (0) }
 
 Actor LGBeam2 {
     +ALWAYSPUFF
