@@ -1,3 +1,31 @@
+/*Weapon index
+1000 = Default, launches animation test
+1001 = PP7
+1002 = DD44 Dostovei
+1003 = Dual DD44 Dostovei
+1004 = Klobb
+1005 = Dual Klobb
+1006 = KF7 Soviet
+1007 = ZMG
+1008 = Dual ZMG
+1009 = D5K Deutsche
+1010 = Dual D5K Deutsche
+1011 = Phantom
+1012 = Dual Phantom
+1013 = AR33 Assault Rifle
+1014 = Dual AR33
+1015 = RCP-90
+1016 = Automatic Shotgun
+1017 = Sniper Rifle
+1018 = Cougar Magnum
+1019 = Dual Cougar Magnum
+1020 = Moonraker Laser
+1021 = Grenade Launcher
+1022 = Rocket Launcher
+1023 = Siberian Combo
+1024 = Xenia Combo
+*/
+
 Actor Goldeneye_EnemyBase
 {
 	Radius 14
@@ -15,6 +43,7 @@ Actor Goldeneye_EnemyBase
 	States
 	{
 		Spawn:
+			GE00 AAA 0 A_JumpIf(mass == 1000, "AnimationTest")
 			GE00 A 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 B 0 A_LookEx(0, 0, 0, 0, 90, "See") "####" "#" 0
 			GE00 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 C 0 A_LookEx(0, 0, 0, 0, 90, "See") "####" "#" 0
 			GE00 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 D 0 A_LookEx(0, 0, 0, 0, 90, "See") "####" "#" 0
@@ -78,640 +107,1169 @@ Actor Goldeneye_EnemyBase
 			GE03 P 6 A_LookEx(0, 0, 0, 0, 90, "See") GE03 A 0 A_Stop "####" "#" 0
 			Goto Spawn
 		IdleYawning:
-			GE31 A 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 B 0 A_Stop "####" "#" 0
-			GE31 B 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 C 0 A_Stop "####" "#" 0
-			GE31 C 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 D 0 A_Stop "####" "#" 0
-			GE31 D 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 E 0 A_Stop "####" "#" 0
-			GE31 E 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 F 0 A_Stop "####" "#" 0
-			GE31 F 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 G 0 A_Stop "####" "#" 0
-			GE31 G 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 H 0 A_Stop "####" "#" 0
-			GE31 H 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 I 0 A_Stop "####" "#" 0
-			GE31 I 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 J 0 A_Stop "####" "#" 0 
-			GE31 J 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 K 0 A_Stop "####" "#" 0
-			GE31 K 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 L 0 A_Stop "####" "#" 0
-			GE31 L 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 M 0 A_Stop "####" "#" 0
-			GE31 M 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 N 0 A_Stop "####" "#" 0
-			GE31 N 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 O 0 A_Stop "####" "#" 0
-			GE31 O 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 P 0 A_Stop "####" "#" 0
-			GE31 P 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 Q 0 A_Stop "####" "#" 0
-			GE31 Q 6 A_LookEx(0, 0, 0, 0, 90, "See") GE31 A 0 A_Stop "####" "#" 0
+			GE05 A 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 B 0 A_Stop "####" "#" 0
+			GE05 B 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 C 0 A_Stop "####" "#" 0
+			GE05 C 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 D 0 A_Stop "####" "#" 0
+			GE05 D 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 E 0 A_Stop "####" "#" 0
+			GE05 E 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 F 0 A_Stop "####" "#" 0
+			GE05 F 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 G 0 A_Stop "####" "#" 0
+			GE05 G 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 H 0 A_Stop "####" "#" 0
+			GE05 H 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 I 0 A_Stop "####" "#" 0
+			GE05 I 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 J 0 A_Stop "####" "#" 0 
+			GE05 J 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 K 0 A_Stop "####" "#" 0
+			GE05 K 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 L 0 A_Stop "####" "#" 0
+			GE05 L 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 M 0 A_Stop "####" "#" 0
+			GE05 M 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 N 0 A_Stop "####" "#" 0
+			GE05 N 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 O 0 A_Stop "####" "#" 0
+			GE05 O 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 P 0 A_Stop "####" "#" 0
+			GE05 P 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 Q 0 A_Stop "####" "#" 0
+			GE05 Q 6 A_LookEx(0, 0, 0, 0, 90, "See") GE05 A 0 A_Stop "####" "#" 0
 			Goto Spawn
 		IdleSwatFlies:
-			GE32 A 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 B 0 A_Stop "####" "#" 0
-			GE32 B 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 C 0 A_Stop "####" "#" 0
-			GE32 C 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 D 0 A_Stop "####" "#" 0
-			GE32 D 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 E 0 A_Stop "####" "#" 0
-			GE32 E 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 F 0 A_Stop "####" "#" 0
-			GE32 F 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 G 0 A_Stop "####" "#" 0
-			GE32 G 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 H 0 A_Stop "####" "#" 0
-			GE32 H 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 I 0 A_Stop "####" "#" 0
-			GE32 I 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 J 0 A_Stop "####" "#" 0 
-			GE32 J 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 K 0 A_Stop "####" "#" 0
-			GE32 K 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 L 0 A_Stop "####" "#" 0
-			GE32 L 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 M 0 A_Stop "####" "#" 0
-			GE32 M 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 N 0 A_Stop "####" "#" 0
-			GE32 N 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 O 0 A_Stop "####" "#" 0
-			GE32 O 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 P 0 A_Stop "####" "#" 0
-			GE32 P 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 Q 0 A_Stop "####" "#" 0
-			GE32 Q 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 R 0 A_Stop "####" "#" 0
-			GE32 R 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 S 0 A_Stop "####" "#" 0
-			GE32 S 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 T 0 A_Stop "####" "#" 0
-			GE32 T 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 U 0 A_Stop "####" "#" 0
-			GE32 U 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 V 0 A_Stop "####" "#" 0
-			GE32 V 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 W 0 A_Stop "####" "#" 0
-			GE32 W 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 X 0 A_Stop "####" "#" 0
-			GE32 X 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 Y 0 A_Stop "####" "#" 0
-			GE32 Y 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 Z 0 A_Stop "####" "#" 0
-			GE32 Z 6 A_LookEx(0, 0, 0, 0, 90, "See") GE32 A 0 A_Stop "####" "#" 0
+			GE04 A 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 B 0 A_Stop "####" "#" 0
+			GE04 B 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 C 0 A_Stop "####" "#" 0
+			GE04 C 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 D 0 A_Stop "####" "#" 0
+			GE04 D 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 E 0 A_Stop "####" "#" 0
+			GE04 E 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 F 0 A_Stop "####" "#" 0
+			GE04 F 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 G 0 A_Stop "####" "#" 0
+			GE04 G 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 H 0 A_Stop "####" "#" 0
+			GE04 H 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 I 0 A_Stop "####" "#" 0
+			GE04 I 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 J 0 A_Stop "####" "#" 0 
+			GE04 J 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 K 0 A_Stop "####" "#" 0
+			GE04 K 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 L 0 A_Stop "####" "#" 0
+			GE04 L 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 M 0 A_Stop "####" "#" 0
+			GE04 M 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 N 0 A_Stop "####" "#" 0
+			GE04 N 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 O 0 A_Stop "####" "#" 0
+			GE04 O 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 P 0 A_Stop "####" "#" 0
+			GE04 P 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 Q 0 A_Stop "####" "#" 0
+			GE04 Q 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 R 0 A_Stop "####" "#" 0
+			GE04 R 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 S 0 A_Stop "####" "#" 0
+			GE04 S 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 T 0 A_Stop "####" "#" 0
+			GE04 T 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 U 0 A_Stop "####" "#" 0
+			GE04 U 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 V 0 A_Stop "####" "#" 0
+			GE04 V 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 W 0 A_Stop "####" "#" 0
+			GE04 W 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 X 0 A_Stop "####" "#" 0
+			GE04 X 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 Y 0 A_Stop "####" "#" 0
+			GE04 Y 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 Z 0 A_Stop "####" "#" 0
+			GE04 Z 6 A_LookEx(0, 0, 0, 0, 90, "See") GE04 A 0 A_Stop "####" "#" 0
 			Goto Spawn
 		See:
-			GE06 A 6 A_Chase("","Missile") GE06 B 0 A_Recoil(-2) "####" "#" 0
-			GE06 B 6 A_Chase("","Missile") GE06 C 0 A_Recoil(-2) "####" "#" 0
-			GE06 C 6 A_Chase("","Missile") GE06 D 0 A_Recoil(-2) "####" "#" 0
-			GE06 D 6 A_Chase("","Missile") GE06 E 0 A_Recoil(-2) "####" "#" 0
-			GE06 E 6 A_Chase("","Missile") GE06 F 0 A_Recoil(-2) "####" "#" 0
-			GE06 F 6 A_Chase("","Missile") GE06 G 0 A_Recoil(-2) "####" "#" 0
+			GE00 A 0 A_JumpIf(mass == 1002, "SeeSingleDual")
+			GE00 A 0 A_JumpIf(mass == 1006||1016, "SeeTwoHand")
+			Goto SeeSingleDual
+		SeeSingleDual:
+			GE11 A 6 A_Chase("","Missile") GE11 B 0 A_Recoil(-2) "####" "#" 0
+			GE11 B 6 A_Chase("","Missile") GE11 C 0 A_Recoil(-2) "####" "#" 0
+			GE11 C 6 A_Chase("","Missile") GE11 D 0 A_Recoil(-2) "####" "#" 0
+			GE11 D 6 A_Chase("","Missile") GE11 E 0 A_Recoil(-2) "####" "#" 0
+			GE11 E 6 A_Chase("","Missile") GE11 F 0 A_Recoil(-2) "####" "#" 0
+			GE11 F 6 A_Chase("","Missile") GE11 G 0 A_Recoil(-2) "####" "#" 0
+			GE11 G 6 A_Chase("","Missile") GE11 A 0 A_Recoil(-2) "####" "#" 0
+			Loop
+		SeeTwoHand:
+			GE13 A 6 A_Chase("","Missile") GE13 B 0 A_Recoil(-2) "####" "#" 0
+			GE13 B 6 A_Chase("","Missile") GE13 C 0 A_Recoil(-2) "####" "#" 0
+			GE13 C 6 A_Chase("","Missile") GE13 D 0 A_Recoil(-2) "####" "#" 0
+			GE13 D 6 A_Chase("","Missile") GE13 E 0 A_Recoil(-2) "####" "#" 0
+			GE13 E 6 A_Chase("","Missile") GE13 F 0 A_Recoil(-2) "####" "#" 0
+			GE13 F 6 A_Chase("","Missile") GE13 A 0 A_Recoil(-2) "####" "#" 0
 			Loop
 		Missile:
 			GE00 A 0 A_Stop
+			GE00 A 0 A_JumpIf(mass == 1002, "FireDD44")
 			GE00 A 0 A_JumpIf(mass == 1006, "FireKF7")
+			GE00 A 0 A_JumpIf(mass == 1016, "FireAutoShotgun")
 			Goto FireKF7
+		FireDD44:
+			GE15 A 0 A_Jump(256, "FireDD44StepForward","FireDD44Kneel")
+			Goto FireDD44StepForward
+		FireDD44StepForward:
+			GE15 ABCDE 4 A_FaceTarget
+			GE15 F 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4))
+			GE15 G 4 A_FaceTarget
+			GE15 H 2 A_FaceTarget
+			GE15 H 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
+			GE15 IJKLMNOPQRSTUV 4
+			GE15 A 0
+			Goto See
+		FireDD44Kneel:
+			GE16 ABCDEFGHIJKLMNOP 4 A_FaceTarget
+			GE16 Q 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4))
+			GE16 RS 2 A_FaceTarget
+			GE16 T 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
+			TNT1 A 0 A_Jump(64,23)
+			GE16 UVW 4 A_FaceTarget
+			GE16 Q 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4))
+			GE16 RS 2 A_FaceTarget
+			GE16 T 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
+			TNT1 A 0 A_Jump(64,15)
+			GE16 UVW 4 A_FaceTarget
+			GE16 Q 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4))
+			GE16 RS 2 A_FaceTarget
+			GE16 T 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
+			TNT1 A 0 A_Jump(64,7)
+			GE16 UVW 4 A_FaceTarget
+			GE16 Q 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4))
+			GE16 RS 2 A_FaceTarget
+			GE16 T 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
+			GE16 UVWXYZ 4
+			GE17 ABCDEFGHIJKLMNOPQ 3
+			GE17 A 0
+			Goto See
+		/*FireDD44RollLeft:			Animation finicky, will attempt later
+			GE23 A 4 A_FaceTarget
+			GE23 B 4 A_FaceTarget
+			GE23 C 4 A_FaceTarget
+			GE23 D 4 A_FaceTarget
+			GE23 E 4 A_FaceTarget
+			GE23 F 4 A_FaceTarget
+			GE23 G 4 A_FaceTarget
+			GE23 H 4 A_FaceTarget
+			GE23 I 4 A_FaceTarget
+			GE23 J 4 A_FaceTarget
+			GE23 K 4 A_FaceTarget
+			GE23 L 4 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE23 M 4 A_FaceTarget
+			GE23 N 4 A_FaceTarget
+			GE23 O 4 A_FaceTarget
+			GE23 P 4 A_FaceTarget
+			GE23 Q 4 A_FaceTarget
+			GE23 R 4 A_FaceTarget
+			GE23 S 4 A_FaceTarget
+			GE23 T 4 A_FaceTarget
+			GE16 OP 4 A_FaceTarget
+			GE16 Q 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4))
+			GE16 RS 2 A_FaceTarget
+			GE16 T 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
+			GE16 UVWXYZ 4
+			GE17 ABCDEFGHIJKLMNOPQ 3
+			GE17 A 0
+			Goto See*/
 		FireKF7:
-			GE07 A 0 A_Jump(256, "FireKF7AimBow", "FireKF7AimHip", "FireKF7AimToFire", "FireCrouch", "FireJumpToLeft", "FireJumpToRight", "FireRollLeft", "FireRollRight")
+			GE18 A 0 A_Jump(256, "FireKF7AimBow", "FireKF7AimHip", "FireKF7AimToFire", "FireKF7Crouch", "FireKF7JumpToLeft", "FireKF7JumpToRight", "FireKF7RollLeft", "FireKF7RollRight")
 			Goto FireKF7AimBow
 		FireKF7AimBow:
-			GE07 ABC 6 A_FaceTarget
-			GE07 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE07 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE07 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE07 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE07 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE07 G 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE07 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE07 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE07 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE07 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE07 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE07 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE07 J 6
-			GE07 K 6
-			GE07 A 0
+			GE18 ABC 6 A_FaceTarget
+			GE18 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE18 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE18 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE18 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE18 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE18 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE18 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE18 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE18 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE18 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE18 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE18 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE18 J 6
+			GE18 K 6
+			GE18 A 0
 			Goto See
 		FireKF7AimHip:
-			GE08 ABC 6 A_FaceTarget
-			GE08 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE08 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE08 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE08 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE08 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE08 G 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE08 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE08 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE08 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE08 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE08 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE08 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE08 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE08 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE08 K 6
-			GE08 L 6
-			GE08 A 0
+			GE19 ABC 6 A_FaceTarget
+			GE19 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 K 6
+			GE19 L 6
+			GE19 A 0
 			Goto See
 		FireKF7AimToFire:
-			GE09 ABC 6 A_FaceTarget
-			GE09 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 G 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 L 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE09 M 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE09 M 6
-			GE09 N 6
-			GE09 A 0
+			GE20 ABC 6 A_FaceTarget
+			GE20 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 L 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 M 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 M 6
+			GE20 N 6
+			GE20 A 0
 			Goto See
-		FireCrouch:
-			GE10 ABC 6 A_FaceTarget
-			GE10 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 G 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 L 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE10 M 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE10 M 6
-			GE10 N 6
-			GE10 O 6
-			GE10 P 6
-			GE10 A 0
+		FireKF7Crouch:
+			GE21 ABC 6 A_FaceTarget
+			GE21 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 L 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 M 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 M 6
+			GE21 N 6
+			GE21 O 6
+			GE21 P 6
+			GE21 A 0
 			Goto See
-		FireJumpToLeft:
-			GE11 A 6 A_FaceTarget
-			GE11 B 6 A_FaceTarget
-			GE11 C 6 A_FaceTarget GE11 D 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
-			GE11 D 6 A_FaceTarget
-			GE11 E 6 A_FaceTarget
-			GE11 F 6 A_FaceTarget
-			GE11 G 6 A_FaceTarget
-			GE11 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE11 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE11 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE11 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE11 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE11 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE11 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE11 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE11 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE11 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE11 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE11 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE11 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE11 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			/*GE11 K 6
-			GE11 L 6
-			GE11 M 6 A_Stop GE11 N 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
-			GE11 N 6
-			GE11 O 6
-			GE11 P 6
-			GE11 Q 6
-			GE11 R 6
-			GE11 S 6*/
-			GE11 A 0
+		FireKF7JumpToLeft:
+			GE27 A 6 A_FaceTarget
+			GE27 B 6 A_FaceTarget
+			GE27 C 6 A_FaceTarget GE27 D 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE27 D 6 A_FaceTarget
+			GE27 E 6 A_FaceTarget
+			GE27 F 6 A_FaceTarget
+			GE27 G 6 A_FaceTarget
+			GE27 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			/*GE27 K 6
+			GE27 L 6
+			GE27 M 6 A_Stop GE27 N 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE27 N 6
+			GE27 O 6
+			GE27 P 6
+			GE27 Q 6
+			GE27 R 6
+			GE27 S 6*/
+			GE27 A 0
 			Goto See
-		FireJumpToRight:
-			GE12 A 6 A_FaceTarget
-			GE12 B 6 A_FaceTarget
-			GE12 C 6 A_FaceTarget GE12 D 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
-			GE12 D 6 A_FaceTarget
-			GE12 E 6 A_FaceTarget
-			GE12 F 6 A_FaceTarget
-			GE12 G 6 A_FaceTarget
-			GE12 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 L 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 M 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 M 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 N 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 N 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 O 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 O 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 P 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE12 P 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE12 Q 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			/*GE12 Q 6 
-			GE12 R 6
-			GE12 S 6
-			GE12 T 6 A_Stop GE12 U 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
-			GE12 U 6
-			GE12 V 6
-			GE12 W 6
-			GE12 X 6
-			GE12 Y 6
-			GE12 Z 6*/
-			GE12 A 0
-			Goto See
-		FireRollLeft:
-			GE27 A 2 A_FaceTarget
-			GE27 B 2 A_FaceTarget
-			GE27 C 2 A_FaceTarget
-			GE27 D 2 A_FaceTarget
-			GE27 E 2 A_FaceTarget
-			GE27 F 2 A_FaceTarget
-			GE27 G 2 A_FaceTarget
-			GE27 H 2 A_FaceTarget
-			GE27 I 2 A_FaceTarget
-			GE27 J 2 A_FaceTarget
-			GE27 K 2 A_FaceTarget
-			GE27 L 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
-			GE27 M 2 A_FaceTarget
-			GE27 N 2 A_FaceTarget
-			GE27 O 2 A_FaceTarget
-			GE27 P 2 A_FaceTarget
-			GE27 Q 2 A_FaceTarget
-			GE27 R 2 A_FaceTarget
-			GE27 S 2 A_FaceTarget
-			GE27 T 2 A_FaceTarget
-			GE27 U 2 A_FaceTarget
-			GE27 V 2 A_FaceTarget
-			GE27 W 6 A_FaceTarget
-			GE27 X 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 Y 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE27 Y 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 Z 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE27 Z 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 A 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE28 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 B 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE28 B 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 C 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE28 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 D 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE28 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE28 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+		FireKF7JumpToRight:
+			GE28 A 6 A_FaceTarget
+			GE28 B 6 A_FaceTarget
+			GE28 C 6 A_FaceTarget GE28 D 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE28 D 6 A_FaceTarget
+			GE28 E 6 A_FaceTarget
 			GE28 F 6 A_FaceTarget
+			GE28 G 6 A_FaceTarget
+			GE28 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 L 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 M 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 M 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 N 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 N 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 O 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 O 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 P 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 P 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 Q 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			/*GE28 Q 6 
+			GE28 R 6
+			GE28 S 6
+			GE28 T 6 A_Stop GE28 U 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE28 U 6
+			GE28 V 6
+			GE28 W 6
+			GE28 X 6
+			GE28 Y 6
+			GE28 Z 6*/
+			GE28 A 0
+			Goto See
+		FireKF7RollLeft:
+			GE23 A 2 A_FaceTarget
+			GE23 B 2 A_FaceTarget
+			GE23 C 2 A_FaceTarget
+			GE23 D 2 A_FaceTarget
+			GE23 E 2 A_FaceTarget
+			GE23 F 2 A_FaceTarget
+			GE23 G 2 A_FaceTarget
+			GE23 H 2 A_FaceTarget
+			GE23 I 2 A_FaceTarget
+			GE23 J 2 A_FaceTarget
+			GE23 K 2 A_FaceTarget
+			GE23 L 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE23 M 2 A_FaceTarget
+			GE23 N 2 A_FaceTarget
+			GE23 O 2 A_FaceTarget
+			GE23 P 2 A_FaceTarget
+			GE23 Q 2 A_FaceTarget
+			GE23 R 2 A_FaceTarget
+			GE23 S 2 A_FaceTarget
+			GE23 T 2 A_FaceTarget
+			GE23 U 2 A_FaceTarget
+			GE23 V 2 A_FaceTarget
+			GE23 W 6 A_FaceTarget
+			GE23 X 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE23 Y 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE23 Y 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE23 Z 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE23 Z 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 A 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 B 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 B 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 C 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 F 6 A_FaceTarget
 			TNT1 A 0
 			Goto See
-		FireRollRight:
-			GE29 A 2 A_FaceTarget
-			GE29 B 2 A_FaceTarget
-			GE29 C 2 A_FaceTarget
-			GE29 D 2 A_FaceTarget
-			GE29 E 2 A_FaceTarget
-			GE29 F 2 A_FaceTarget
-			GE29 G 2 A_FaceTarget
-			GE29 H 2 A_FaceTarget
-			GE29 I 2 A_FaceTarget
-			GE29 J 2 A_FaceTarget
-			GE29 K 2 A_FaceTarget
-			GE29 L 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
-			GE29 M 2 A_FaceTarget
-			GE29 N 2 A_FaceTarget
-			GE29 O 2 A_FaceTarget
-			GE29 P 2 A_FaceTarget
-			GE29 Q 2 A_FaceTarget
-			GE29 R 2 A_FaceTarget
-			GE29 S 2 A_FaceTarget
-			GE29 T 2 A_FaceTarget
-			GE29 U 2 A_FaceTarget
-			GE29 V 2 A_FaceTarget
-			GE29 W 6 A_FaceTarget
-			GE29 X 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE29 Y 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE29 Y 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE29 Z 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE29 Z 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE30 A 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE30 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE30 B 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE30 B 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE30 C 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE30 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE30 D 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE30 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE30 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE30 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE30 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
-			GE30 F 6 A_FaceTarget
+		FireKF7RollRight:
+			GE25 A 2 A_FaceTarget
+			GE25 B 2 A_FaceTarget
+			GE25 C 2 A_FaceTarget
+			GE25 D 2 A_FaceTarget
+			GE25 E 2 A_FaceTarget
+			GE25 F 2 A_FaceTarget
+			GE25 G 2 A_FaceTarget
+			GE25 H 2 A_FaceTarget
+			GE25 I 2 A_FaceTarget
+			GE25 J 2 A_FaceTarget
+			GE25 K 2 A_FaceTarget
+			GE25 L 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE25 M 2 A_FaceTarget
+			GE25 N 2 A_FaceTarget
+			GE25 O 2 A_FaceTarget
+			GE25 P 2 A_FaceTarget
+			GE25 Q 2 A_FaceTarget
+			GE25 R 2 A_FaceTarget
+			GE25 S 2 A_FaceTarget
+			GE25 T 2 A_FaceTarget
+			GE25 U 2 A_FaceTarget
+			GE25 V 2 A_FaceTarget
+			GE25 W 6 A_FaceTarget
+			GE25 X 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE25 Y 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE25 Y 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE25 Z 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE25 Z 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 A 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 B 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 B 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 C 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 F 6 A_FaceTarget
 			TNT1 A 0
 			Goto See
+		FireAutoShotgun:
+			GE18 A 0 //A_Jump(256, "FireAutoShotgunAimBow", "FireAutoShotgunAimHip", "FireAutoShotgunAimToFire", "FireAutoShotgunCrouch", "FireAutoShotgunJumpToLeft", "FireAutoShotgunJumpToRight", "FireAutoShotgunRollLeft", "FireAutoShotgunRollRight")
+			Goto FireAutoShotgunAimBow
+		FireAutoShotgunAimBow:
+			GE18 ABC 12 A_FaceTarget
+			GE18 D 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE18 E 2
+			GE18 E 8 A_Playsound("Goldeneye/ShotgunShot", CHAN_WEAPON)
+			GE18 F 8
+			GE18 G 8
+			GE18 H 8
+			GE18 I 8
+			GE18 J 8
+			GE18 K 8
+			GE18 A 0
+			Goto See
+		/*FireAutoShotgunAimHip:
+			GE19 ABC 6 A_FaceTarget
+			GE19 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 G 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE19 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 32, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE19 K 6
+			GE19 L 6
+			GE19 A 0
+			Goto See
+		FireAutoShotgunAimToFire:
+			GE20 ABC 6 A_FaceTarget
+			GE20 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 G 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 L 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE20 M 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE20 M 6
+			GE20 N 6
+			GE20 A 0
+			Goto See
+		FireAutoShotgunCrouch:
+			GE21 ABC 6 A_FaceTarget
+			GE21 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 F 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 G 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 L 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE21 M 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE21 M 6
+			GE21 N 6
+			GE21 O 6
+			GE21 P 6
+			GE21 A 0
+			Goto See
+		FireAutoShotgunJumpToLeft:
+			GE27 A 6 A_FaceTarget
+			GE27 B 6 A_FaceTarget
+			GE27 C 6 A_FaceTarget GE27 D 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE27 D 6 A_FaceTarget
+			GE27 E 6 A_FaceTarget
+			GE27 F 6 A_FaceTarget
+			GE27 G 6 A_FaceTarget
+			GE27 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 H 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE27 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE27 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			*GE27 K 6
+			GE27 L 6
+			GE27 M 6 A_Stop GE27 N 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE27 N 6
+			GE27 O 6
+			GE27 P 6
+			GE27 Q 6
+			GE27 R 6
+			GE27 S 6*
+			GE27 A 0
+			Goto See
+		FireAutoShotgunJumpToRight:
+			GE28 A 6 A_FaceTarget
+			GE28 B 6 A_FaceTarget
+			GE28 C 6 A_FaceTarget GE28 D 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE28 D 6 A_FaceTarget
+			GE28 E 6 A_FaceTarget
+			GE28 F 6 A_FaceTarget
+			GE28 G 6 A_FaceTarget
+			GE28 H 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 I 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 J 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 J 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 K 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 K 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 L 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 L 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 M 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 M 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 N 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 N 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 O 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 O 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 P 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE28 P 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE28 Q 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			*GE28 Q 6 
+			GE28 R 6
+			GE28 S 6
+			GE28 T 6 A_Stop GE28 U 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE28 U 6
+			GE28 V 6
+			GE28 W 6
+			GE28 X 6
+			GE28 Y 6
+			GE28 Z 6*
+			GE28 A 0
+			Goto See
+		FireAutoShotgunRollLeft:
+			GE23 A 2 A_FaceTarget
+			GE23 B 2 A_FaceTarget
+			GE23 C 2 A_FaceTarget
+			GE23 D 2 A_FaceTarget
+			GE23 E 2 A_FaceTarget
+			GE23 F 2 A_FaceTarget
+			GE23 G 2 A_FaceTarget
+			GE23 H 2 A_FaceTarget
+			GE23 I 2 A_FaceTarget
+			GE23 J 2 A_FaceTarget
+			GE23 K 2 A_FaceTarget
+			GE23 L 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE23 M 2 A_FaceTarget
+			GE23 N 2 A_FaceTarget
+			GE23 O 2 A_FaceTarget
+			GE23 P 2 A_FaceTarget
+			GE23 Q 2 A_FaceTarget
+			GE23 R 2 A_FaceTarget
+			GE23 S 2 A_FaceTarget
+			GE23 T 2 A_FaceTarget
+			GE23 U 2 A_FaceTarget
+			GE23 V 2 A_FaceTarget
+			GE23 W 6 A_FaceTarget
+			GE23 X 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE23 Y 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE23 Y 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE23 Z 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE23 Z 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 A 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 B 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 B 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 C 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 D 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE24 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE24 F 6 A_FaceTarget
+			TNT1 A 0
+			Goto See
+		FireAutoShotgunRollRight:
+			GE25 A 2 A_FaceTarget
+			GE25 B 2 A_FaceTarget
+			GE25 C 2 A_FaceTarget
+			GE25 D 2 A_FaceTarget
+			GE25 E 2 A_FaceTarget
+			GE25 F 2 A_FaceTarget
+			GE25 G 2 A_FaceTarget
+			GE25 H 2 A_FaceTarget
+			GE25 I 2 A_FaceTarget
+			GE25 J 2 A_FaceTarget
+			GE25 K 2 A_FaceTarget
+			GE25 L 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE25 M 2 A_FaceTarget
+			GE25 N 2 A_FaceTarget
+			GE25 O 2 A_FaceTarget
+			GE25 P 2 A_FaceTarget
+			GE25 Q 2 A_FaceTarget
+			GE25 R 2 A_FaceTarget
+			GE25 S 2 A_FaceTarget
+			GE25 T 2 A_FaceTarget
+			GE25 U 2 A_FaceTarget
+			GE25 V 2 A_FaceTarget
+			GE25 W 6 A_FaceTarget
+			GE25 X 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE25 Y 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE25 Y 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE25 Z 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE25 Z 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 A 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 B 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 B 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 C 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 D 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 D 4 Bright A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 E 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) GE26 F 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE26 F 6 A_FaceTarget
+			TNT1 A 0
+			Goto See*/
 		Pain:
-			GE00 A 0 A_Jump(256, "Pain.Crotch", "Pain.LeftArm", "Pain.RightArm")
-			Goto Pain.Crotch
+			GE00 A 0 A_Jump(256, "Pain.Neck","Pain.LeftShoulder","Pain.RightShoulder","Pain.LeftArm","Pain.RightArm","Pain.LeftHand","Pain.RightHand","Pain.Crotch","Pain.Butt","Pain.Butt2","Pain.LeftLeg","Pain.RightLeg")
+			Goto Pain.Neck
+		Pain.Neck:
+			GE35 A 6 A_ChangeFlag(NOPAIN, true)
+			GE35 B 6
+			GE35 C 6
+			GE35 D 6
+			GE35 E 6 A_Pain
+			GE35 F 6
+			GE35 G 6
+			GE35 H 6
+			GE35 I 6
+			GE35 J 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.LeftShoulder: //+
+			GE36 A 7 A_ChangeFlag(NOPAIN, true)
+			GE36 B 7
+			GE36 C 7
+			GE36 D 7 A_Pain
+			GE36 E 7 
+			GE36 F 7
+			GE36 G 7
+			GE36 H 7
+			GE36 I 7
+			GE36 J 7 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.RightShoulder:
+			GE37 A 6 A_ChangeFlag(NOPAIN, true)
+			GE37 B 6
+			GE37 C 6
+			GE37 D 6
+			GE37 E 6
+			GE37 F 6
+			GE37 G 6
+			GE37 H 6 A_Pain
+			GE37 I 6
+			GE37 J 6
+			GE37 K 6
+			GE37 L 6
+			GE37 M 6
+			GE37 N 6
+			GE37 O 6
+			GE37 P 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.LeftArm:
+			GE38 A 6 A_ChangeFlag(NOPAIN, true)
+			GE38 B 6
+			GE38 C 6
+			GE38 D 6
+			GE38 E 6 A_Pain
+			GE38 D 6
+			GE38 C 6
+			GE38 B 6
+			GE38 A 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.RightArm:
+			GE39 A 6 A_ChangeFlag(NOPAIN, true)
+			GE39 B 6
+			GE39 C 6
+			GE39 D 6
+			GE39 E 6 A_Pain
+			GE39 D 6
+			GE39 C 6
+			GE39 B 6
+			GE39 A 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.LeftHand:
+			GE40 A 6 A_ChangeFlag(NOPAIN, true)
+			GE40 B 6
+			GE40 C 6
+			GE40 D 6 A_Pain
+			GE40 E 6
+			GE40 F 6
+			GE40 G 6
+			GE40 H 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.RightHand:
+			GE41 A 6 A_ChangeFlag(NOPAIN, true)
+			GE41 B 6
+			GE41 C 6
+			GE41 D 6 
+			GE41 E 6
+			GE41 F 6 A_Pain
+			GE41 G 6
+			GE41 H 6
+			GE41 I 6
+			GE41 J 6
+			GE41 K 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
 		Pain.Crotch:		
-			GE15 A 6 A_ChangeFlag(NOPAIN, true)
-			GE15 B 6
-			GE15 C 6 A_Pain
-			GE15 B 6
-			GE15 A 6 A_ChangeFlag(NOPAIN, false)
+			GE42 A 6 A_ChangeFlag(NOPAIN, true)
+			GE42 B 6
+			GE42 C 6 A_Pain
+			GE42 B 6
+			GE42 A 6 A_ChangeFlag(NOPAIN, false)
 			Goto See
-		Pain.LeftArm:		
-			GE16 A 6 A_ChangeFlag(NOPAIN, true)
-			GE16 B 6
-			GE16 C 6
-			GE16 D 6
-			GE16 E 6 A_Pain
-			GE16 D 6
-			GE16 C 6
-			GE16 B 6
-			GE16 A 6 A_ChangeFlag(NOPAIN, false)
+		Pain.Butt:
+			GE43 A 6 A_ChangeFlag(NOPAIN, true)
+			GE43 B 6
+			GE43 C 6
+			GE43 D 6
+			GE43 E 6
+			GE43 F 6
+			GE43 G 6
+			GE43 H 6
+			GE43 I 6 A_Pain
+			GE43 J 6
+			GE43 K 6
+			GE43 L 6
+			GE43 M 6
+			GE43 N 6
+			GE43 O 6
+			GE43 P 6
+			GE43 Q 6
+			GE43 R 6 A_ChangeFlag(NOPAIN, false)
 			Goto See
-		Pain.RightArm:		
-			GE17 A 6 A_ChangeFlag(NOPAIN, true)
-			GE17 B 6
-			GE17 C 6
-			GE17 D 6
-			GE17 E 6 A_Pain
-			GE17 D 6
-			GE17 C 6
-			GE17 B 6
-			GE17 A 6 A_ChangeFlag(NOPAIN, false)
+		Pain.Butt2:
+			GE44 A 6 A_ChangeFlag(NOPAIN, true)
+			GE44 B 6
+			GE44 C 6
+			GE44 D 6
+			GE44 E 6
+			GE44 F 6
+			GE44 G 6 A_Pain
+			GE44 H 6
+			GE44 I 6 
+			GE44 J 6
+			GE44 K 6
+			GE44 L 6
+			GE44 M 6
+			GE44 N 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.LeftLeg:
+			GE45 A 6 A_ChangeFlag(NOPAIN, true)
+			GE45 B 6
+			GE45 C 6
+			GE45 D 6
+			GE45 E 6 A_Pain
+			GE45 F 6
+			GE45 G 6 
+			GE45 H 6
+			GE45 I 6 
+			GE45 J 6 A_ChangeFlag(NOPAIN, false)
+			Goto See
+		Pain.RightLeg:
+			GE46 A 6 A_ChangeFlag(NOPAIN, true)
+			GE46 B 6
+			GE46 C 6
+			GE46 D 6
+			GE46 E 6
+			GE46 F 6
+			GE46 G 6 A_Pain
+			GE46 H 6
+			GE46 I 6 
+			GE46 J 6
+			GE46 K 6
+			GE46 L 6
+			GE46 M 6
+			GE46 N 6 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Death:
 			GE00 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			GE00 A 0 A_Jump(256, "DeathCrossFeet", "DeathFaceGround", "DeathOnKnees", "DeathOnSide", "DeathFaceUp", "DeathFaceUpFlip", "DeathHeadShot", "DeathFlyBack", "DeathJumpBack", "DeathSprawlOut", "DeathFetalLeft", "DeathFetalRight", "DeathNeck", "DeathShoulderBack", "DeathStaggerBack")
-			Goto DeathCrossFeet
-		DeathCrossFeet:
-			GE22 A 0 A_ChangeFlag(NOPAIN, false)
-			GE22 A 4 A_Scream
-			GE22 B 4 A_NoBlocking
-			GE22 C 4 
-			GE22 D 4 
-			GE22 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE22 F 4
-			GE22 G 4 
-			GE22 H 4
-			GE22 I 4
-			GE22 J 4 
-			GE22 K 4
-			GE22 L 4 
-			GE22 M 4
-			GE22 N 4
-			GE22 O 4
-			GE22 P 4
-			GE22 Q 4
-			GE22 R 4
-			GE22 S 4
-			GE22 T 4
-			GE22 U 4
-			GE22 UUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
+			GE00 A 0 A_Jump(256, "DeathCrossFeet", "DeathFaceGround", "DeathOnKnees", "DeathOnSide", "DeathFaceUp", "DeathFaceUpFlip", "DeathHeadShot", "DeathFlyBack", "DeathJumpBack", "DeathSprawlOut", "DeathFetalLeft", "DeathFetalRight", "DeathNeck", "DeathShoulderBack", "DeathStaggerWall")
+			Goto DeathFaceGround
+		DeathFaceGround: //+
+			GE47 A 0 A_ChangeFlag(NOPAIN, false)
+			GE47 A 7
+			GE47 B 7 A_NoBlocking
+			GE47 C 3 
+			GE47 C 4 A_Scream
+			GE47 D 7
+			GE47 E 7
+			GE47 F 7
+			GE47 G 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE47 G 3 
+			GE47 H 7
+			GE47 I 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE47 J 7 
+			GE47 K 7 
+			GE47 L 7
+			GE47 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
 			stop
-		DeathFaceGround:
-			GE23 A 0 A_ChangeFlag(NOPAIN, false)
-			GE23 A 4 A_Scream
-			GE23 B 4 A_NoBlocking
-			GE23 C 4 
-			GE23 D 4 
-			GE23 E 4 
-			GE23 F 4 
-			GE23 G 4 
-			GE23 H 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE23 I 4
-			GE23 J 4 
-			GE23 K 4
-			GE23 KKKKKKKKKKKKKKKKKKKKKK 2 A_FadeOut(0.05)
-			stop
-		DeathOnKnees:
-			GE39 V 0 A_ChangeFlag(NOPAIN, false)
-			GE39 V 4 A_Scream
-			GE39 W 4 A_NoBlocking
-			GE39 X 4
-			GE39 Y 4
-			GE39 Z 4
-			GE40 A 4
-			GE40 B 4
-			GE40 C 4
-			GE40 D 4
-			GE40 E 4
-			GE40 F 4
-			GE40 G 4
-			GE40 H 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE40 I 4
-			GE40 J 4
-			GE40 JJJJJJJJJJJJJJJJJJJJJJ 2 A_FadeOut(0.05)
-			stop
-		DeathOnSide:
-			GE40 K 0 A_ChangeFlag(NOPAIN, false)
-			GE40 K 4 A_Scream
-			GE40 L 4 A_NoBlocking
-			GE40 M 4
-			GE40 N 4
-			GE40 O 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE40 P 4
-			GE40 Q 4
-			GE40 R 4
-			GE40 S 4
-			GE40 T 4
-			GE40 U 4
-			GE40 V 4
-			GE40 X 4
-			GE40 Y 4
-			GE40 Z 4
-			GE40 ZZZZZZZZZZZZZZZZZZZZZZ 2 A_FadeOut(0.05)
-			stop
-		DeathFaceUp:
-			GE33 A 0 A_ChangeFlag(NOPAIN, false)
-			GE33 A 4 A_Scream
-			GE33 B 4 A_NoBlocking
-			GE33 C 4 
-			GE33 D 4
-			GE33 E 4 
-			GE33 F 4
-			GE33 G 4
-			GE33 H 4
-			GE33 I 4
-			GE33 J 4
-			GE33 K 4
-			GE33 L 4
-			GE33 M 4
-			GE33 N 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE33 O 4
-			GE33 P 4
-			GE33 Q 4
-			GE33 R 4
-			GE33 S 4
-			GE33 T 4
-			GE33 U 4
-			GE33 V 4
-			GE33 W 4
-			GE33 X 4
-			GE33 Y 4
-			GE33 YYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
-			Stop
-		DeathFaceUpFlip:
-			GE33 Z 0 A_ChangeFlag(NOPAIN, false)
-			GE33 Z 4 A_Scream
-			GE34 A 4 A_NoBlocking
-			GE34 B 4
-			GE34 C 4
-			GE34 D 4
-			GE34 E 4
-			GE34 F 4
-			GE34 G 4
-			GE34 H 4
-			GE34 I 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE34 J 4
-			GE34 K 4 
-			GE34 L 4 
-			GE34 M 4
-			GE34 N 4
-			GE34 O 4
-			GE34 P 4 
-			GE34 Q 4
-			GE34 QQQQQQQQQQQQQQQQQQQQQQ 2 A_FadeOut(0.05)
-			Stop
-		DeathHeadShot:
-			GE36 P 0 A_ChangeFlag(NOPAIN, false)
-			GE36 P 4 A_Scream
-			GE36 Q 4 A_NoBlocking
-			GE36 R 4
-			GE36 S 4
-			GE36 T 4
-			GE36 U 4
-			GE36 V 4
-			GE36 W 4
-			GE36 X 4
-			GE36 Y 4
-			GE36 Z 4
-			GE37 A 4
-			GE37 B 4
-			GE37 C 4
-			GE37 D 4
-			GE37 E 4
-			GE37 F 4
-			GE37 G 4
-			GE37 H 4
-			GE37 I 4
-			GE37 J 4
-			GE37 K 4
-			GE37 L 4
-			GE37 M 4 
-			GE37 N 4
-			GE37 O 4
-			GE37 P 4
-			GE37 Q 4
-			GE37 R 4
-			GE37 S 4
-			GE37 T 4
-			GE37 TTTTTTTTTTTTTTTTTTTTT 2 A_FadeOut(0.05)
-			Stop
 		DeathFlyBack:
-			GE24 A 0 A_ChangeFlag(NOPAIN, false)
-			GE24 A 4 A_Scream
-			GE24 B 4 A_NoBlocking
-			GE24 C 4 
-			GE24 D 4 
-			GE24 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE24 F 4
-			GE24 G 4
-			GE24 H 4
-			GE24 I 4 
-			GE24 J 4
-			GE24 K 4
-			GE24 L 4
-			GE24 M 4 
-			GE24 MMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			GE48 A 0 A_ChangeFlag(NOPAIN, false)
+			GE48 A 4 A_Scream
+			GE48 B 4 A_NoBlocking
+			GE48 C 4 
+			GE48 D 4 
+			GE48 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE48 F 4
+			GE48 G 4
+			GE48 H 4
+			GE48 I 4 
+			GE48 J 4
+			GE48 K 4
+			GE48 L 4
+			GE48 M 4 
+			GE48 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			stop
-		DeathJumpBack:
-			GE37 U 0 A_ChangeFlag(NOPAIN, false)
-			GE37 U 4 A_Scream
-			GE37 V 4 A_NoBlocking
-			GE37 W 4 
-			GE37 X 4
-			GE37 Y 4
-			GE37 Z 4
-			GE38 A 4
-			GE38 B 4
-			GE38 C 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE38 D 4
-			GE38 E 4
-			GE38 F 4 
-			GE38 G 4
-			GE38 H 4
-			GE38 I 4
-			GE38 J 4
-			GE38 K 4
-			GE38 L 4
-			GE38 LLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
-			stop
-		DeathSprawlOut:
-			GE25 A 0 A_ChangeFlag(NOPAIN, false)
-			GE25 A 4 A_Scream
-			GE25 B 4 A_NoBlocking
-			GE25 C 4 
-			GE25 D 4 
-			GE25 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE25 F 4 
-			GE25 G 4
-			GE25 H 4
-			GE25 I 4
-			GE25 J 4
-			GE25 K 4
-			GE25 L 4
-			GE25 LLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
-			stop
-		DeathFetalLeft:
-			GE34 R 0 A_ChangeFlag(NOPAIN, false)
-			GE34 R 4 A_Scream
-			GE34 S 4 A_NoBlocking
-			GE34 T 4
-			GE34 U 4
-			GE34 V 4
-			GE34 W 4
-			GE34 X 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE34 Y 4
-			GE34 Z 4
-			GE35 A 4
-			GE35 B 4
-			GE35 C 4
-			GE35 D 4
-			GE35 E 4
-			GE35 F 4
-			GE35 G 4
-			GE35 H 4
-			GE35 I 4
-			GE35 J 4
-			GE35 K 4
-			GE35 L 4
-			GE35 M 4
-			GE35 N 4
-			GE35 O 4
-			GE35 P 4
-			GE35 PPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
-			Stop
-		DeathFetalRight:
-			GE35 Q 0 A_ChangeFlag(NOPAIN, false)
-			GE35 Q 4 A_Scream
-			GE35 R 4 A_NoBlocking
-			GE35 S 4
-			GE35 T 4
-			GE35 U 4
-			GE35 V 4
-			GE35 W 4
-			GE35 X 4
-			GE35 Y 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE35 Z 4
-			GE36 A 4
-			GE36 B 4
-			GE36 C 4
-			GE36 D 4
-			GE36 E 4
-			GE36 F 4
-			GE36 G 4
-			GE36 H 4
-			GE36 I 4
-			GE36 J 4
-			GE36 K 4
-			GE36 L 4
-			GE36 M 4 
-			GE36 N 4
-			GE36 O 4
-			GE36 OOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+		Death.GoldeneyeHead:
+		DeathHeadShot:
+			GE49 A 0 A_ChangeFlag(NOPAIN, false)
+			GE49 A 4 A_Scream
+			GE49 B 4 A_NoBlocking
+			GE49 C 4
+			GE49 D 4
+			GE49 E 4
+			GE49 F 4
+			GE49 G 4
+			GE49 H 4
+			GE49 I 4
+			GE49 J 4
+			GE49 K 4
+			GE49 L 4
+			GE49 M 4
+			GE49 N 4
+			GE49 O 4
+			GE49 P 4
+			GE49 Q 4
+			GE49 R 4
+			GE49 S 4
+			GE49 T 4
+			GE49 U 4
+			GE49 V 4
+			GE49 W 4
+			GE49 X 4 
+			GE49 Y 4
+			GE49 Z 4
+			GE50 A 4
+			GE50 B 4
+			GE50 C 4
+			GE50 D 4
+			GE50 E 4
+			GE50 EEEEEEEEEEEEEEEEEEEEEEE 2 A_FadeOut(0.05)
 			Stop
 		DeathNeck:
-			GE38 M 0 A_ChangeFlag(NOPAIN, false)
-			GE38 M 4 A_Scream
-			GE38 N 4 A_NoBlocking
-			GE38 O 4 
-			GE38 P 4
-			GE38 Q 4
-			GE38 R 4
-			GE38 S 4
-			GE38 T 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE38 U 4
-			GE38 V 4
-			GE38 W 4
-			GE38 X 4
-			GE38 Y 4
-			GE38 Z 4
-			GE39 A 4
-			GE39 B 4
-			GE39 C 4
-			GE39 D 4
-			GE39 E 4
-			GE39 F 4
-			GE39 G 4
-			GE39 H 4
-			GE39 I 4
-			GE39 J 4
-			GE39 K 4
-			GE39 L 4
-			GE39 M 4
-			GE39 N 4
-			GE39 O 4
-			GE39 P 4
-			GE39 Q 4
-			GE39 R 4
-			GE39 S 4
-			GE39 T 4
-			GE39 U 4
-			GE39 UUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
+			GE51 A 0 A_ChangeFlag(NOPAIN, false)
+			GE51 A 4 A_Scream
+			GE51 B 4 A_NoBlocking
+			GE51 C 4 
+			GE51 D 4
+			GE51 E 4
+			GE51 F 4
+			GE51 G 4
+			GE51 H 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE51 I 4
+			GE51 J 4
+			GE51 K 4
+			GE51 L 4
+			GE51 M 4
+			GE51 N 4
+			GE51 O 4
+			GE51 P 4
+			GE51 Q 4
+			GE51 R 4
+			GE51 S 4
+			GE51 T 4
+			GE51 U 4
+			GE51 V 4
+			GE51 W 4
+			GE51 X 4
+			GE51 Y 4
+			GE51 Z 4
+			GE52 A 4
+			GE52 B 4
+			GE52 C 4
+			GE52 D 4
+			GE52 E 4
+			GE52 F 4
+			GE52 G 4
+			GE52 H 4
+			GE52 I 4
+			GE52 IIIIIIIIIIIIIIIIIIIIIII 2 A_FadeOut(0.05)
 			Stop
-		DeathShoulderBack:
-			GE41 A 0 A_ChangeFlag(NOPAIN, false)
-			GE41 A 4 A_Scream
-			GE41 B 4 A_NoBlocking
-			GE41 C 4
-			GE41 D 4
-			GE41 E 4
-			GE41 F 4
-			GE41 G 4
-			GE41 H 4
-			GE41 I 4
-			GE41 J 4
-			GE41 K 4
-			GE41 L 4
-			GE41 M 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE41 N 4
-			GE41 O 4
-			GE41 OOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
-			Stop
-		DeathStaggerBack:
-			GE41 P 0 A_ChangeFlag(NOPAIN, false)
-			GE41 P 4 A_Scream
-			GE41 Q 4 A_NoBlocking
-			GE41 R 4
-			GE41 S 4
-			GE41 T 4
-			GE41 U 4
-			GE41 V 4
-			GE41 W 4
-			GE41 X 4
-			GE41 Y 4
-			GE41 Z 4
-			GE42 A 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE42 B 4
-			GE42 C 4
-			GE42 D 4
-			GE42 E 4
-			GE42 EEEEEEEEEEEEEEEEEEEEEE 2 A_FadeOut(0.05)
+		DeathOnKnees: //+
+			GE53 A 0 A_ChangeFlag(NOPAIN, false)
+			GE53 A 8 
+			GE53 B 8 A_NoBlocking
+			GE53 C 8 A_Scream
+			GE53 D 8
+			GE53 E 8
+			GE53 F 8
+			GE53 G 8
+			GE53 H 8
+			GE53 I 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE53 J 8
+			GE53 K 8
+			GE53 L 8
+			GE53 M 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE53 N 8
+			GE53 O 8
+			GE53 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			stop
+		DeathOnSide:
+			GE54 A 0 A_ChangeFlag(NOPAIN, false)
+			GE54 A 4 A_Scream
+			GE54 B 4 A_NoBlocking
+			GE54 C 4
+			GE54 D 4
+			GE54 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE54 F 4
+			GE54 G 4
+			GE54 H 4
+			GE54 I 4
+			GE54 J 4
+			GE54 K 4
+			GE54 L 4
+			GE54 M 4
+			GE54 N 4
+			GE54 O 4
+			GE54 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			stop
+		DeathShoulderBack:
+			GE55 A 0 A_ChangeFlag(NOPAIN, false)
+			GE55 A 4 A_Scream
+			GE55 B 4 A_NoBlocking
+			GE55 C 4
+			GE55 D 4
+			GE55 E 4
+			GE55 F 4
+			GE55 G 4
+			GE55 H 4
+			GE55 I 4
+			GE55 J 4
+			GE55 K 4
+			GE55 L 4
+			GE55 M 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE55 N 4
+			GE55 O 4
+			GE55 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			Stop
+		DeathSprawlOut: //+
+			GE56 A 0 A_ChangeFlag(NOPAIN, false)
+			GE56 A 7 
+			GE56 B 7 A_NoBlocking
+			GE56 C 7 A_Scream
+			GE56 D 7 
+			GE56 E 7 
+			GE56 F 2
+			GE56 F 5 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE56 G 7
+			GE56 H 7
+			GE56 I 7
+			GE56 J 7
+			GE56 K 7
+			GE56 L 7
+			GE56 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
+			stop
+		DeathCrossFeet:
+			GE57 A 0 A_ChangeFlag(NOPAIN, false)
+			GE57 A 4 A_Scream
+			GE57 B 4 A_NoBlocking
+			GE57 C 4 
+			GE57 D 4 
+			GE57 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE57 F 4
+			GE57 G 4 
+			GE57 H 4
+			GE57 I 4
+			GE57 J 4 
+			GE57 K 4
+			GE57 L 4 
+			GE57 M 4
+			GE57 N 4
+			GE57 O 4
+			GE57 P 4
+			GE57 Q 4
+			GE57 R 4
+			GE57 S 4
+			GE57 T 4
+			GE57 U 4
+			GE57 UUUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
+			stop
+		DeathFaceUp:
+			GE58 A 0 A_ChangeFlag(NOPAIN, false)
+			GE58 A 4 A_Scream
+			GE58 B 4 A_NoBlocking
+			GE58 C 4 
+			GE58 D 4
+			GE58 E 4 
+			GE58 F 4
+			GE58 G 4
+			GE58 H 4
+			GE58 I 4
+			GE58 J 4
+			GE58 K 4
+			GE58 L 4
+			GE58 M 4
+			GE58 N 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE58 O 4
+			GE58 P 4
+			GE58 Q 4
+			GE58 R 4
+			GE58 S 4
+			GE58 T 4
+			GE58 U 4
+			GE58 V 4
+			GE58 W 4
+			GE58 X 4
+			GE58 Y 4
+			GE58 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
+			Stop
+		DeathFaceUpFlip:
+			GE59 A 0 A_ChangeFlag(NOPAIN, false)
+			GE59 A 4 A_Scream
+			GE59 B 4 A_NoBlocking
+			GE59 C 4
+			GE59 D 4
+			GE59 E 4
+			GE59 F 4
+			GE59 G 4
+			GE59 H 4
+			GE59 I 4
+			GE59 J 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE59 K 4
+			GE59 L 4 
+			GE59 M 4 
+			GE59 N 4
+			GE59 O 4
+			GE59 P 4
+			GE59 Q 4 
+			GE59 R 4
+			GE59 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
+			Stop
+		DeathFetalLeft:
+			GE60 A 0 A_ChangeFlag(NOPAIN, false)
+			GE60 A 4 A_Scream
+			GE60 B 4 A_NoBlocking
+			GE60 C 4
+			GE60 D 4
+			GE60 E 4
+			GE60 F 4
+			GE60 G 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE60 H 4
+			GE60 I 4
+			GE60 J 4
+			GE60 K 4
+			GE60 L 4
+			GE60 M 4
+			GE60 N 4
+			GE60 O 4
+			GE60 P 4
+			GE60 Q 4
+			GE60 R 4
+			GE60 S 4
+			GE60 T 4
+			GE60 U 4
+			GE60 V 4
+			GE60 W 4
+			GE60 X 4
+			GE60 XXXXXXXXXXXXXXXXXXXXXXX 2 A_FadeOut(0.05)
+			Stop
+		DeathFetalRight:
+			GE61 A 0 A_ChangeFlag(NOPAIN, false)
+			GE61 A 4 A_Scream
+			GE61 B 4 A_NoBlocking
+			GE61 C 4
+			GE61 D 4
+			GE61 E 4
+			GE61 F 4
+			GE61 G 4
+			GE61 H 4
+			GE61 I 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE61 J 4
+			GE61 K 4
+			GE61 L 4
+			GE61 M 4
+			GE61 N 4
+			GE61 O 4
+			GE61 P 4
+			GE61 Q 4
+			GE61 R 4
+			GE61 S 4
+			GE61 T 4
+			GE61 U 4
+			GE61 V 4
+			GE61 W 4 
+			GE61 X 4
+			GE61 XXXXXXXXXXXXXXXXXXXXXXX 2 A_FadeOut(0.05)
+			Stop
+		DeathJumpBack:
+			GE62 A 0 A_ChangeFlag(NOPAIN, false)
+			GE62 A 4 A_Scream
+			GE62 B 4 A_NoBlocking
+			GE62 C 4 
+			GE62 D 4
+			GE62 E 4
+			GE62 F 4
+			GE62 G 4
+			GE62 H 4
+			GE62 I 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE62 J 4
+			GE62 K 4
+			GE62 L 4 
+			GE62 M 4
+			GE62 N 4
+			GE62 O 4
+			GE62 P 4
+			GE62 Q 4
+			GE62 R 4
+			GE62 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
+			stop
+		DeathStaggerWall:
+			GE63 A 0 A_ChangeFlag(NOPAIN, false)
+			GE63 A 4 A_Scream
+			GE63 B 4 A_NoBlocking
+			GE63 C 4
+			GE63 D 4
+			GE63 E 4
+			GE63 F 4
+			GE63 G 4
+			GE63 H 4
+			GE63 I 4
+			GE63 J 4
+			GE63 K 4
+			GE63 L 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE63 M 4
+			GE63 N 4
+			GE63 O 4
+			GE63 P 4
+			GE63 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
+			Stop
+		Death.Explosive:
+			GE00 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			GE00 A 0 A_Jump(256,"DeathExplosionBack","DeathExplosionBack2","DeathExplosionForward","DeathExplosionForwardRoll","DeathExplosionLeft","DeathExplosionLeft2","DeathExplosionRight")
+			Goto DeathExplosionBack
+		DeathExplosionBack:
+			GE64 A 0 A_ChangeFlag(NOPAIN, false)
+			GE64 A 4 A_Scream
+			GE64 B 4 A_NoBlocking
+			GE64 C 4
+			GE64 D 4
+			GE64 E 4
+			GE64 F 4
+			GE64 G 4
+			GE64 H 4
+			GE64 I 4
+			GE64 J 4
+			GE64 K 4
+			GE64 L 4
+			GE64 M 4
+			GE64 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionBack2:
+			GE65 A 0 A_ChangeFlag(NOPAIN, false)
+			GE65 A 4 A_Scream
+			GE65 B 4 A_NoBlocking
+			GE65 C 4
+			GE65 D 4
+			GE65 E 4
+			GE65 F 4
+			GE65 G 4
+			GE65 H 4
+			GE65 I 4
+			GE65 J 4
+			GE65 K 4
+			GE65 L 4
+			GE65 M 4
+			GE65 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionForward:
+			GE66 A 0 A_ChangeFlag(NOPAIN, false)
+			GE66 A 4 A_Scream
+			GE66 B 4 A_NoBlocking
+			GE66 C 4
+			GE66 D 4
+			GE66 E 4
+			GE66 F 4
+			GE66 G 4
+			GE66 H 4
+			GE66 I 4
+			GE66 J 4
+			GE66 K 4
+			GE66 L 4
+			GE66 M 4
+			GE66 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionForwardRoll:
+			GE67 A 0 A_ChangeFlag(NOPAIN, false)
+			GE67 A 4 A_Scream
+			GE67 B 4 A_NoBlocking
+			GE67 C 4
+			GE67 D 4
+			GE67 E 4
+			GE67 F 4
+			GE67 G 4
+			GE67 H 4
+			GE67 I 4
+			GE67 J 4
+			GE67 K 4
+			GE67 L 4
+			GE67 M 4
+			GE67 N 4
+			GE67 O 4
+			GE67 P 4
+			GE67 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionLeft:
+			GE68 A 0 A_ChangeFlag(NOPAIN, false)
+			GE68 A 4 A_Scream
+			GE68 B 4 A_NoBlocking
+			GE68 C 4
+			GE68 D 4
+			GE68 E 4
+			GE68 F 4
+			GE68 G 4
+			GE68 H 4
+			GE68 I 4
+			GE68 J 4
+			GE68 K 4
+			GE68 L 4
+			GE68 M 4
+			GE68 N 4
+			GE68 NNNNNNNNNNNNNNNNNNNNNNN 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionLeft2:
+			GE69 A 0 A_ChangeFlag(NOPAIN, false)
+			GE69 A 4 A_Scream
+			GE69 B 4 A_NoBlocking
+			GE69 C 4
+			GE69 D 4
+			GE69 E 4
+			GE69 F 4
+			GE69 G 4
+			GE69 H 4
+			GE69 I 4
+			GE69 J 4
+			GE69 K 4
+			GE69 L 4
+			GE69 M 4
+			GE69 N 4
+			GE69 O 4
+			GE69 P 4
+			GE69 Q 4
+			GE69 QQQQQQQQQQQQQQQQQQQQQQQ 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionRight:
+			GE70 A 0 A_ChangeFlag(NOPAIN, false)
+			GE70 A 4 A_Scream
+			GE70 B 4 A_NoBlocking
+			GE70 C 4
+			GE70 D 4
+			GE70 E 4
+			GE70 F 4
+			GE70 G 4
+			GE70 H 4
+			GE70 I 4
+			GE70 J 4
+			GE70 K 4
+			GE70 L 4
+			GE70 M 4
+			GE70 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
 		Unfinished:
 			GE00 A 0 A_Stop GE01 A 0 A_Stop GE02 A 0 A_Stop GE03 A 0 A_Stop GE04 A 0 A_Stop GE05 A 0 A_Stop
 			GE06 A 0 A_Stop GE07 A 0 A_Stop GE08 A 0 A_Stop GE09 A 0 A_Stop GE10 A 0 A_Stop GE11 A 0 A_Stop
@@ -728,10 +1286,315 @@ Actor Goldeneye_EnemyBase
 			GE72 A 0 A_Stop GE73 A 0 A_Stop GE74 A 0 A_Stop GE75 A 0 A_Stop GE76 A 0 A_Stop GE77 A 0 A_Stop
 			GE78 A 0 A_Stop GE79 A 0 A_Stop GE80 A 0 A_Stop GE81 A 0 A_Stop GE82 A 0 A_Stop GE83 A 0 A_Stop
 			stop
+		AnimationTest:
+			UNKN A 20
+			TNT1 A 0 A_Log("GuardIdle")
+			GE00 ABCDEFGHIJK 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("idleadjustcrotch")
+			GE01 ABCDEFGHIJ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("idlescratchbutt")
+			GE02 ABCDEFGHIJK 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("idlescratchleg")
+			GE03 ABCDEFGHIJKLMNOP 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("idleswatflies")
+			GE04 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("idleyawning")
+			GE05 ABCDEFGHIJKLMNOPQ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("walking")
+			GE06 ABCDEFGHIJ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("spotplayer")
+			GE07 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			GE08 ABCDEFGHIJKL 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("spotlookaround")
+			GE09 ABCDEFGHIJKLMNOPQR 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("spotstartled")
+			GE10 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("runwithgun")
+			GE11 ABCDEFGH 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("sprintgun")
+			GE12 ABCDEF 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("running")
+			GE13 ABCDEF 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("sidestepleft")
+			GE14 ABCDEFGHI 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("firestepforward")
+			GE15 ABCDEFGHIJKLMNOPQRSTUVW 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("firekneelonehanded")
+			GE16 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			GE17 ABCDEFGHIJKLMNOPQR 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("aimbow")
+			GE18 ABCDEFGHIJK 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("aimhip")
+			GE19 ABCDEFGHIJKL 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("aimtofire")
+			GE20 ABCDEFGHIJKLMN 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("crouchfire")
+			GE21 ABCDEFGHIJKLMNOP 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("runfire")
+			GE22 ABCDEFG 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("rollleftfire")
+			GE23 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			GE24 ABCDEFG 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("rollrightfire")	
+			GE25 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			GE26 ABCDEF 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("jumptoleftfire")
+			GE27 ABCDEFGHIJKLMNOPQRS 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("jumptorightfire")
+			GE28 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("firebothgunsstand")
+			GE29 ABCDEFGHIJKLMN 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("firebothgunskneel")
+			GE30 ABCDEFGHIJKLMNOPQ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("firebothgunscrosskneel")
+			GE31 ABCDEFGHIJKLMN 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("firewalkbothguns")
+			GE32 ABCDEFGHIJ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("runbothfire")
+			GE33 ABCDEFG 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("throwgrenade")
+			GE34 ABCDEFGHIJKLMNOPQR 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitneck")
+			GE35 ABCDEFGHIJ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitleftshoulder")
+			GE36 ABCDEFGHIJ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitrightshoulder")
+			GE37 ABCDEFGHIJKLMNOP 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitleftarm")
+			GE38 ABCDE 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitrightarm")
+			GE39 ABCDE 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitlefthand")
+			GE40 ABCDEFGH 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitrighthand")
+			GE41 ABCDEFGHIJK 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitcrotch")
+			GE42 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitbutt")
+			GE43 ABCDEFGHIJKLMNOPQR 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitbutt2")
+			GE44 ABCDEFGHIJKLMN 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitleftleg")
+			GE45 ABCDEFGHIJ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("hitrightleg")
+			GE46 ABCDEFGHIJKLMN 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathfaceground")
+			GE47 ABCDEFGHIJKL 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathflyback")
+			GE48 ABCDEFGHIJKLM 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathheadshot")
+			GE49 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			GE50 ABCDE 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathneck")
+			GE51 ABCDEFGHIJKLMNOPQRSTUVWXYZ 8
+			GE52 ABCDEFGHI 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathonknees")
+			GE53 ABCDEFGHIJKLMNO 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathonside")
+			GE54 ABCDEFGHIJKLMNO 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathshoulderback")
+			GE55 ABCDEFGHIJKLMNO 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathsprawlout")
+			GE56 ABCDEFGHIJKL 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathcrossfeet")
+			GE57 ABCDEFGHIJKLMNOPQRSTU 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathfaceup")
+			GE58 ABCDEFGHIJKLMNOPQRSTUVWXY 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathfaceupflip")
+			GE59 ABCDEFGHIJKLMNOPQR 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathfetalleft")
+			GE60 ABCDEFGHIJKLMNOPQRSTUVWXY 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathfetalright")
+			GE61 ABCDEFGHIJKLMNOPQRSTUVWXY 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathjumpback")
+			GE62 ABCDEFGHIJKLMNOPQR 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("deathstaggerwall")
+			GE63 ABCDEFGHIJKLMNOP 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("explosionback")
+			GE64 ABCDEFGHIJKLM 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("explosionback2")
+			GE65 ABCDEFGHIJKLM 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("explosionforward")
+			GE66 ABCDEFGHIJKLM 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("explosionforwardroll")
+			GE67 ABCDEFGHIJKLMNOP 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("explosionleft")
+			GE68 ABCDEFGHIJKLMN 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("explosionleft2")
+			GE69 ABCDEFGHIJKLMNOPQ 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("explosionright")
+			GE70 ABCDEFGHIJKLM 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("fall")
+			GE71 ABCDEFGHIJK 8
+			
+			UNKN A 20
+			TNT1 A 0 A_Log("Looping...")
+			Loop
 	}
 }
 
+Actor Goldeneye_EnemyBasePP7 : Goldeneye_EnemyBase { mass 1001 }
+Actor Goldeneye_EnemyBaseDD44 : Goldeneye_EnemyBase { mass 1002 }
+Actor Goldeneye_EnemyBaseDualDD44 : Goldeneye_EnemyBase { mass 1003 }
+Actor Goldeneye_EnemyBaseKlobb : Goldeneye_EnemyBase { mass 1004 }
+Actor Goldeneye_EnemyBaseDualKlobb : Goldeneye_EnemyBase { mass 1005 }
+Actor Goldeneye_EnemyBaseKF7 : Goldeneye_EnemyBase { mass 1006 }
+Actor Goldeneye_EnemyBaseZMG : Goldeneye_EnemyBase { mass 1007 }
+Actor Goldeneye_EnemyBaseDualZMG : Goldeneye_EnemyBase { mass 1008 }
+Actor Goldeneye_EnemyBaseD5K : Goldeneye_EnemyBase { mass 1009 }
+Actor Goldeneye_EnemyBaseDualD5K : Goldeneye_EnemyBase { mass 1010 }
+Actor Goldeneye_EnemyBasePhantom : Goldeneye_EnemyBase { mass 1011 }
+Actor Goldeneye_EnemyBaseDualPhantom : Goldeneye_EnemyBase { mass 1012 }
+Actor Goldeneye_EnemyBaseAR33 : Goldeneye_EnemyBase { mass 1013 }
+Actor Goldeneye_EnemyBaseDualAR33 : Goldeneye_EnemyBase { mass 1014 }
+Actor Goldeneye_EnemyBaseRCP90 : Goldeneye_EnemyBase { mass 1015 }
+Actor Goldeneye_EnemyBaseAutoShotgun : Goldeneye_EnemyBase { mass 1016 }
+Actor Goldeneye_EnemyBaseSniper : Goldeneye_EnemyBase { mass 1017 }
+Actor Goldeneye_EnemyBaseCougar : Goldeneye_EnemyBase { mass 1018 }
+Actor Goldeneye_EnemyBaseDualCougar : Goldeneye_EnemyBase { mass 1019 }
+Actor Goldeneye_EnemyBaseLaser : Goldeneye_EnemyBase { mass 1020 }
+Actor Goldeneye_EnemyBaseGrenadeL : Goldeneye_EnemyBase { mass 1021 }
+Actor Goldeneye_EnemyBaseRocketL : Goldeneye_EnemyBase { mass 1022 }
+Actor Goldeneye_EnemyBaseSCombo : Goldeneye_EnemyBase { mass 1023 }
+Actor Goldeneye_EnemyBaseXCombo : Goldeneye_EnemyBase { mass 1024 }
+
 Actor Goldeneye_KF7TracerEnemy : Goldeneye_BulletTracer
 {
-	Damage(3)
+	Damage(13)
+}
+
+Actor Goldeneye_KF7TracerFake : Goldeneye_BulletTracer
+{
+	Damage(0)
+	+THRUACTORS
 }
