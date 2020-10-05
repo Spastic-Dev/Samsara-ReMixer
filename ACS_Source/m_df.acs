@@ -1,0 +1,61 @@
+Script 2518 (void)
+{
+	SetActivator(0,AAPTR_TARGET);
+	If(CheckInventory("IsSamsaraClass") == 1)
+	{
+	Thing_Damage2(0,50000,"DarkSide");
+	terminate;
+	}
+}
+
+Script 2519 (void)
+{
+	SetActivator(0,AAPTR_MASTER);
+	ChangeCamera(0,0,0);
+	terminate;
+}
+
+Script 2527 (void)
+{
+
+	str ClassesAISTR[CLASSCOUNT] = {
+	"Doom_AI", "Chex_AI", "Corvus_AI", "Blaskowicz_AI", "Parias_AI", "Duke_AI", "SecurityOfficer_AI", "Ranger_AI", "IPFreeley_AI", "Blake_AI",
+	"Caleb_AI", "StrifeGuy_AI", "Doom64_AI", "Eleena_AI", "Corridor7_AI", "RMR_AI", "Katarn_AI", "POGreed_AI", "Jack_AI", "Grondoval_AI", 
+	"Freeman_AI", "LoWang_AI", "Cybermage_AI", "Jon_AI", "Leonard_AI", "Bitterman_AI"
+	};
+	for(int i = 0; i < 26; i++)
+	{
+		if(CheckInventory(gameClassesSTR[i]) > 0)
+		{
+			int oldtid = ActivatorTid();
+			int usertid = UniqueTid(0);
+			int dummytid = UniqueTid(0);
+		
+			if(CheckInventory("HalfLifeOpposingForce"))
+				SpawnSpotFacingForced("Shephard_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[i], 0, usertid);
+				
+			SpawnSpotForced("TranslationDummy",0,dummytid,0);
+			Thing_SetTranslation(dummytid, -1);
+			SetActivator(dummytid, AAPTR_Default);
+			Thing_SetTranslation(usertid, -1);
+			Thing_ChangeTid(usertid, 0);
+			break;
+		}
+	}
+}
+
+Script 2528 (void) // Jerec Death Effects need this script because of Zandronum being outdated
+{
+	SetActorProperty(0, APROP_RenderStyle, STYLE_STENCIL);
+	SetActorProperty(0, APROP_StencilColor, 0xFFFF00);
+}
+
+Script 2529 (void) // Decorate with Jerec's grip is kinda broken so I think I want to see what an ACS script can do about it
+{
+	SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+	Delay(20);
+	TakeInventory("AlreadyGripped", 1);
+	SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+}

@@ -1,0 +1,208 @@
+Script 2520 (int health) //geneworm orb
+{
+
+	Switch(health)
+	{
+		Case 1:
+		SetActorProperty(0,APROP_Health, 5760);
+		break;
+		Case 2:
+		SetActorProperty(0,APROP_Health, 4320);
+		break;
+		Case 3:
+		SetActorProperty(0,APROP_Health, 2880);
+		break;
+		Case 4:
+		SetActorProperty(0,APROP_Health, 1440);
+		break;
+	}
+}
+
+Str Painmods[5] = { "", "PainMod1", "PainMod2", "PainMod3", "PainMod4" };
+
+Script 2521 (void)
+{
+	int painmod = CheckInventory("GeneWormOrbToken");
+	If(GetActorProperty(0,APROP_HEALTH) < 1)
+	{
+		terminate;
+	}
+	If(GetActorProperty(0,APROP_HEALTH) <= 1440)
+	{
+		If(painmod != 4)
+		{
+		GiveInventory("GeneWormOrbToken",1);
+		painmod = CheckInventory("GeneWormOrbToken");
+		SetActorState(0,painmods[painmod],TRUE);
+		}
+		Else{}
+	}
+	Else If(GetActorProperty(0,APROP_HEALTH) <= 2880)
+	{
+		If(painmod != 3)
+		{
+		GiveInventory("GeneWormOrbToken",1);
+		painmod = CheckInventory("GeneWormOrbToken");
+		SetActorState(0,painmods[painmod],TRUE);
+		}
+		Else{}
+	}
+	Else If(GetActorProperty(0,APROP_HEALTH) <= 4320)
+	{
+		If(painmod != 2)
+		{
+		GiveInventory("GeneWormOrbToken",1);
+		painmod = CheckInventory("GeneWormOrbToken");
+		SetActorState(0,painmods[painmod],TRUE);
+		}
+		Else{}
+	}
+	Else If(GetActorProperty(0,APROP_HEALTH) <= 5760)
+	{
+		If(painmod != 1)
+		{
+		GiveInventory("GeneWormOrbToken",1);
+		painmod = CheckInventory("GeneWormOrbToken");
+		SetActorState(0,painmods[painmod],TRUE);
+		}
+		Else{}
+	}
+	Delay(1);
+	Restart;
+}
+
+Script 2522 (void)
+{
+	For(int i = 0; i < 700; i++)
+	{
+		If(GetActorProperty(0,APROP_HEALTH) <= 0)
+		{
+			SetActivator(0, AAPTR_MASTER);
+			SetActorState(0,"BigPain3",TRUE);
+			terminate;
+		}
+		If(i >= 699)
+		{
+			SetActorState(0,"Quit",TRUE);
+			SetActivator(0, AAPTR_MASTER);
+			SetActorState(0,"HealSelf",TRUE);
+			terminate;
+		}
+		Delay(1);
+	}
+}
+
+function void fadetobold(int a,int b,int c,int d,int e)
+{
+   for(int i=0;i<PlayerCount();i++)
+   {
+      SetActivator(0,AAPTR_PLAYER1>>i);
+      FadeTo(a,b,c,d,e);
+   }
+}
+Script 2523 (void)
+{
+	Delay(64);
+	AmbientSound("GeneWorm/PortalSuckin",127);
+	fadetobold(255,0,255,0.33,0.25);
+	Delay(16);
+	fadetobold(255,0,255,0.0,0.25);
+	Delay(80);
+	AmbientSound("GeneWorm/PortalSuckin",127);
+	fadetobold(255,0,255,0.5,0.25);
+	Delay(16);
+	fadetobold(255,0,255,0.0,0.25);
+	Delay(112);
+	AmbientSound("GeneWorm/PortalSuckin",127);
+	fadetobold(255,0,255,0.66,0.25);
+	Delay(16);
+	fadetobold(255,0,255,0.0,0.25);
+	Delay(80);
+	AmbientSound("GeneWorm/PortalSuckin",127);
+	fadetobold(255,0,255,0.75,0.25);
+	Delay(16);
+	fadetobold(255,0,255,0.0,0.25);
+	Delay(48);
+	AmbientSound("GeneWorm/PortalSuckin",127);
+	fadetobold(255,0,255,1.0,0.25);
+	Delay(16);
+	fadetobold(255,0,255,0.0,0.25);
+	terminate;
+}
+
+script 2524 (void)
+{
+	thing_damage2(0,2000,"headcrab");
+}
+
+Script 2525 (void)
+{
+	Delay(64);
+	fadetobold(0,255,0,1.0,0.25);
+	Delay(16);
+	fadetobold(0,255,0,0.0,0.25);
+	terminate;
+}
+
+script 2526 (int onoff)
+{
+	Switch(onoff)
+	{
+		Case 1:
+		While(GetActorProperty(0,APROP_ALPHA) > 0.10)
+		{
+			int alpha = GetActorProperty(0,APROP_ALPHA);
+			SetActorProperty(0,APROP_ALPHA,alpha-0.05);
+			delay(1);
+		}
+		break;
+		Case 2:
+		While(GetActorProperty(0,APROP_ALPHA) < 1.01)
+		{
+		    alpha = GetActorProperty(0,APROP_ALPHA);
+			SetActorProperty(0,APROP_ALPHA,alpha+0.05);
+			delay(1);
+		}
+		break;
+	}
+}
+
+Script "KingPinShield" (int duration)
+{
+	Delay(duration);
+	SetActorState(0, "LowerShield", true);
+}
+
+Script "Samsara_HLShockRoachPickupCondition" (void)
+{
+	int currentx = GetActorX(0);
+	int currenty = GetActorY(0);
+	int currentz = GetActorZ(0);
+	SetActivatorToTarget(0);
+	int targetx = GetActorX(0);
+	int targety = GetActorY(0);
+	int targetz = GetActorZ(0);
+	int distancex = abs(currentx - targetx)>>16;
+	int distancey = abs(currenty - targety)>>16;
+	int distancez = abs(currentz - targetz)>>16;
+	int distance = magnitudeTwo(distancex, distancey);	
+	
+	if(CheckInventory("IsSamsaraClass") && !CheckInventory("GotWeapon1") && distance < 32 && distancez <= 56)
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+}
+Script "Samsara_HLShockRoachPickup" (void)
+{
+	SetActivatorToTarget(0);
+	for(int a = 0; a < 26; a++)
+	{
+		if(CheckInventory(gameClassesSTR[a]) > 0)
+		{
+			GiveInventory(ClassWeapons[a][3], 1);
+			GiveInventory("GotWeapon1", 1);
+			if(a == 20)
+				ACS_ExecuteAlways(2685,0,11);
+		}	
+	}
+}

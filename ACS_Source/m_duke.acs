@@ -1,0 +1,86 @@
+Script 2313 (void)
+{
+	int i;
+	int bitten_num;
+	
+	GiveInventory("GettingSlimed",1);
+	ActivatorSound("slimer/attack",127);
+	DamageThing(6);
+	
+	for(i = 0; i < 6; i++){
+		bitten_num = strparam(s:"BITTEN_", d:i);
+		SetHudSize(320,200,0);SetFont(bitten_num);HudMessage(s:"A"; HUDMSG_PLAIN,200+PlayerNumber(),0,0.5,0.5,0.5);	
+		Delay(PROTOZOID_BITE);
+	}
+		
+	ActivatorSound("slimer/attack",127);
+	DamageThing(6);
+	
+	for(; i < 9; i++){
+		bitten_num = strparam(s:"BITTEN_", d:i);
+		SetHudSize(320,200,0);SetFont(bitten_num);HudMessage(s:"A"; HUDMSG_PLAIN,200+PlayerNumber(),0,0.5,0.5,0.5);	
+		Delay(PROTOZOID_BITE);
+	}
+	
+	ActivatorSound("slimer/attack",127);
+	
+	
+	bitten_num = strparam(s:"BITTEN_", d:i);
+	SetHudSize(320,200,0);SetFont(bitten_num);HudMessage(s:"A"; HUDMSG_PLAIN,200+PlayerNumber(),0,0.5,0.5,0.5);	
+	
+	Delay(10);
+	ACS_ExecuteAlways(2314,0,0,0,0);
+}
+
+script 2314 (void)
+{	
+	if(CheckInventory("Health") > 0 && CheckInventory("ProtozoidAttackOMG") != 1)
+	{
+		ActivatorSound("slimer/attack",127);
+		DamageThing(6);
+		SetHudSize(320,200,0);SetFont("BITTEN10");HudMessage(s:"A";HUDMSG_PLAIN,200+PlayerNumber(),0,0.5,0.5,0.5);
+		Delay(7);	
+		SetHudSize(320,200,0);SetFont("BITTEN_8");HudMessage(s:"A";HUDMSG_PLAIN,200+PlayerNumber(),0,0.5,0.5,0.5);
+		Delay(7);	
+		SetHudSize(320,200,0);SetFont("BITTEN_9");HudMessage(s:"A";HUDMSG_PLAIN,200+PlayerNumber(),0,0.5,0.5,0.7);
+		Delay(15);
+		restart;		
+	}
+	else if (CheckInventory("ProtozoidAttackOMG") == 1)
+	{
+		SetHudSize(320,200,0);SetFont("TNT1A0");HudMessage(s:""; HUDMSG_PLAIN,200+PlayerNumber(),0,0.5,0.5,0.5);
+		ActivatorSound("slimer/death",127);
+		GiveInventory("KillCount",1);
+		TakeInventory("GettingSlimed",1);
+		SpawnProjectile(0,"SlimerExploded",0,0,0,0,0);
+		Delay(2);
+		Terminate;
+	}
+	else if (CheckInventory("Health") < 1)
+	{
+		TakeInventory("GettingSlimed",1);
+		Delay(15);
+		SpawnProjectile(0,"Duke3D_Protozoid",0,0,0,0,0);
+		Delay(2);
+		Terminate;		
+	}
+}
+
+Script 4110 (void) CLIENTSIDE {
+	int i;
+	int spatOnNum;
+	
+	for(i = 0; i < 17; i++){
+		spatOnNum = strparam(s:"SPATON", d:i);
+		SetHudSize(214,200,0);SetFont(spatOnNum);HudMessage(s:"A";HUDMSG_PLAIN,100+PlayerNumber(),0,107.0,100.0,1.0);
+		Delay(3);
+	}
+	
+	spatOnNum = strparam(s:"SPATON", d:i);
+	
+	SetHudSize(214,200,0);SetFont(spatOnNum);HudMessage(s:"A";HUDMSG_PLAIN,100+PlayerNumber(),0,107.0,100.0,0.3);
+	Delay(3);
+	
+	SetHudSize(214,200,0);HudMessage(s:"";HUDMSG_PLAIN,100+PlayerNumber(),0,107.0,100.0,0.1);	
+	Delay(2);	
+}

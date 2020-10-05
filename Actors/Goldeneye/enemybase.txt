@@ -1608,3 +1608,52 @@ Actor Goldeneye_KF7EnemyDrop : SamsaraSlotTwoDrop
 			Stop
 		}
 }		
+
+ACTOR Goldeneye_HatShotToken : Inventory { Inventory.MaxAmount 1 }
+
+Actor Goldeneye_HatDrop 
+{
+	Height 4
+	Radius 2
+	Projectile
+	Damage (0)
+	Speed 0
+	Gravity 0.33
+	+BLOODLESSIMPACT
+	+THRUACTORS
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			GE00 A 0
+			GE00 A 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 A 0 ThrustThingZ(0,random(0,1),0,0)
+			GE00 A 0 A_SetAngle(random(0,360))
+			GE00 A 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 A 0 A_SetPitch(pitch-15)
+			GE00 A 0 A_SetAngle(angle-15)
+			GE00 A 0 A_CheckFloor("Death")
+			GE00 A 2
+			Loop
+		Death:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)
+			GE00 A 35
+			GE00 AAAAAAAAAAAAAAAAAAAAAAA 2 A_FadeOut(0.05)
+			Stop
+	}
+}
+
+Actor Goldeneye_BeretBlack : Goldeneye_HatDrop  {}
+Actor Goldeneye_BeretBlue : Goldeneye_HatDrop  {}
+Actor Goldeneye_BeretRed : Goldeneye_HatDrop  {}
+Actor Goldeneye_FurHatBlack : Goldeneye_HatDrop  {}
+Actor Goldeneye_FurHatBlue : Goldeneye_HatDrop  {}
+Actor Goldeneye_FurHatBrown : Goldeneye_HatDrop  {}
+Actor Goldeneye_HelmetGray : Goldeneye_HatDrop  {}
+Actor Goldeneye_HelmetGreen : Goldeneye_HatDrop  {}
+Actor Goldeneye_MoonHeadGear : Goldeneye_HatDrop  {}
+Actor Goldeneye_PeakedCap : Goldeneye_HatDrop  {}
+Actor Goldeneye_SideHatDarkGreen : Goldeneye_HatDrop  {}
+Actor Goldeneye_SideHatLightGreen : Goldeneye_HatDrop  {}

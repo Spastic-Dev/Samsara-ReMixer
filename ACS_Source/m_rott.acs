@@ -1,0 +1,257 @@
+Script 800 (void) {
+	int thisactor = ActivatorTID();
+	SetActivatorToTarget(0);
+	int target = ActivatorTID();
+	int xdiff = GetActorX(target) - GetActorX(thisactor);
+	int ydiff = GetActorY(target) - GetActorY(thisactor);
+	int faceangle = VectorAngle(xdiff, ydiff);
+	int angdiff = (GetActorAngle(thisactor) - faceangle) >> 8;
+	
+	if(angdiff > 12)
+		SetResultValue(true);
+	else if(angdiff < -12)
+		SetResultValue(false);
+	else
+		GiveActorInventory(thisactor, "ChargeSignal", 1);
+	SetResultValue(false);
+}
+
+Script 801 (int basetid, int type) {
+	switch(basetid) {
+		case KRIST_BASE:
+			if(!type) {
+				Thing_ChangeTID(0, basetid + krist_id);
+				krist_id++;
+			}
+			else if(type == 1)
+				AmbientSound("Krist/See", 127);
+			else {
+				SetActivatorToTarget(0);
+				GiveInventory("RoTT_BossDeathAnnouncer_Krist", 1);
+			}	
+		break;
+		case NME_BASE:
+			if(!type) {
+				Thing_ChangeTID(0, basetid + nme_id);
+				nme_id++;
+			}
+			else if(type == 1)
+				AmbientSound("NME/See", 127);
+			else {
+				SetActivatorToTarget(0);
+				GiveInventory("RoTT_BossDeathAnnouncer_NME", 1);
+			}	
+		break;
+		case TOM_BASE:
+			SetActivatorToTarget(0);
+			GiveInventory("RoTT_BossDeathAnnouncer_Tom", 1);
+		break;
+		case TOMSNAKE_BASE:
+			SetActivatorToTarget(0);
+			GiveInventory("RoTT_BossDeathAnnouncer_TomSnake", 1);
+		break;
+	}
+}
+
+// 802 is used by Half Life class
+
+Script 808 (void) {
+    SetActivatorToTarget(0);
+	if(GetActorProperty(0, APROP_HEALTH) <= 0)
+	  SetResultValue(1);
+	else
+	  SetResultValue(0);
+}
+
+Script 809 (void) {
+	int thisactor = ActivatorTID();
+	SetActivatorToTarget(0);
+	int target = ActivatorTID();
+	int xdiff = GetActorX(target) - GetActorX(thisactor);
+	int ydiff = GetActorY(target) - GetActorY(thisactor);
+	int faceangle = VectorAngle(xdiff, ydiff) - GetActorAngle(thisactor);
+	
+	SetActorAngle(thisactor, faceangle + 0.5);
+}
+
+Script 810 (int id, int mode) CLIENTSIDE {
+	if(!mode) {
+		switch (id) {
+			case KRIST_BASE:
+				Log(s:"\cfKrist Defeated!\c-");
+			break;
+			case NME_BASE:
+				Log(s:"\cfNME Defeated!\c-");
+			break;
+			case TOM_BASE:
+				Log(s:"\cfEl Oscuro Defeated!\c-");
+			break;
+			case TOMSNAKE_BASE:
+				Log(s:"\cfOscuro Defeated!\c-");
+			break;
+		}
+	}
+	else
+		LocalAmbientSound("RoTT/BossDeath", 35);
+}
+
+Script 811 (void) {
+	if(CheckInventory("OscuroVulnerable"))
+		terminate;
+	GiveInventory("OscuroVulnerable", 1);
+	
+	for(int i = 0; i < OSCURO_MODE_TIME; i++)
+		Delay(35);
+	TakeInventory("OscuroVulnerable", 1);
+}
+
+script 812 (void) {
+	int i;
+	int knifeNum;
+	
+	GiveInventory("NoWeapon", 1);
+	Setweapon("NoWeapon");
+	SetHudSize(214,200,0);
+	SetActorProperty(0,APROP_SPEED,0.1);
+	Setfont("NET1");
+	HudMessage(s:"A";0,602,0,107.0,100.0,0);
+
+	if (CheckInventory("RottKnife") == 1) {
+		GiveInventory("NoWeapon", 1);
+		Setweapon("NoWeapon");
+		Delay(15); // Give some time for the weapon to lower
+		SetHudSize(214,200,0);
+		
+		for(i = 1; i <= 7; i++){
+			knifeNum = strparam(s:"KNIFE", d:i);
+			Setfont(knifeNum);
+			HudMessage(s:"A";0,602,0,107.0,100.0,0);
+			delay(KNIFE_ANIM_TICS);
+		}
+		
+		Setfont("NET5");
+		HudMessage(s:"A";0,602,0,107.0,100.0,0);
+		delay(KNIFE_ANIM_TICS);
+		
+		
+		HudMessage(s:"";0,602,0,107.0,100.0,0);
+		delay(8);
+		SetActorProperty(0,APROP_SPEED,1.0);
+		TakeInventory("NoWeapon", 1);
+		SetWeapon(0);
+		Terminate;
+	}
+	else {
+		SetFont("SMALLFONT");
+		ACS_ExecuteAlways(813, 0, 0);
+		Print(s:"\cfSwing your mouse left and right to break free!");
+		terminate;
+	}
+ 
+}
+
+
+Script 813 (int currentweapon) {
+	int i;
+	int netNum;
+	
+    int a, b;
+    int input = GetPlayerInput(-1,INPUT_YAW);   
+        
+   
+    if(input >= 640)
+		a++;
+    
+    if(input <= -640)
+		b++;
+    
+	if(GetActorProperty(0, APROP_HEALTH) <= 0) {
+		HudMessage(s:"";0,602,0,107.0,100.0,0);
+		Terminate;
+	}
+	
+        if (a &&  b >= 22) {
+            SetHudSize(214,200,0);
+			
+			for(i = 2; i <= 5; i++){
+				netNum = strparam(s:"NET", d:i);
+				Setfont(netNum);
+				HudMessage(s:"A";0,602,0,107.0,100.0,0);
+				delay(NET_ANIM_TICS);
+			}
+				
+            SetActorProperty(0,APROP_SPEED,1.0);
+            HudMessage(s:"";0,602,0,107.0,100.0,0);
+			TakeInventory("NoWeapon", 1);
+			SetWeapon(currentweapon);
+			a = 0;
+			b = 0;
+            Terminate;
+        } 
+			
+	delay(1);
+	restart;
+}
+
+Script 814 ENTER {
+	HudMessage(s:"";0,602,0,107.0,100.0,0);
+}
+
+Script "LightningGuardSteal" (int action) // Lightning Guard steal script. Trust me, it's better this way
+{
+	Switch(action)
+	{
+	Case 1: // check to steal
+		SetActivator(0,AAPTR_TARGET);
+		for(int i = 0; i < CLASSCOUNT; i++)
+		{
+			if(CheckInventory(gameClassesSTR[i]) > 0)
+			{
+				for(int j = 0; j < 10; j++)
+				{
+					if(CheckInventory(ClassWeapons[i][j]) == true)
+					{
+						SetResultValue(1);
+						break;
+					}
+					else
+					{
+						SetResultValue(0);
+					}
+				}
+			}
+		}
+		break;
+	Case 2: //stealing mechanic
+		SetActivator(0,AAPTR_TARGET);
+		for(int k = 0; k < CLASSCOUNT; k++)
+		{
+			if(CheckInventory(gameClassesSTR[k]) > 0)
+			{
+				for(int l = 9; l > -1; l--)
+				{
+					//print(d:l);
+					if(CheckInventory(ClassWeapons[k][l]) == true)
+					{
+						//print(s:gameClassesSTR[k],s:" ",s:ClassWeapons[k][l]);
+						int result = (l+1);
+						int dummy = (l-3);
+						TakeInventory(SlotDummies[dummy],1);
+						TakeInventory(ClassWeapons[k][l], 1);
+						SetResultValue(result);
+						break;
+					}
+					else
+					{
+						//print(s:"Failure");
+						SetResultValue(0);
+					}
+				}
+			}
+		}
+		break;
+	Case 3: //death
+		SpawnSpotForced(StoleDummies[CheckInventory("StoleWeapon")-1],0,0,0);
+		break;
+	}
+}

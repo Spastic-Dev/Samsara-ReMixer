@@ -1,0 +1,15 @@
+Script "WidowKickThrust" (void)
+{
+	SetActivator(0, AAPTR_Target);
+	int monsterx = GetActorX(0);
+	int monstery = GetActorY(0);
+	int monsterz = GetActorZ(0);
+	int angle = GetActorAngle(0);
+	SetActivator(0, AAPTR_Target);
+	int targetx = GetActorX(0);
+	int targety = GetActorY(0);
+	int targetz = GetActorZ(0);
+	
+	ThrustThingZ(0, 60, 0, 0);
+	ThrustThing(angle*256/65536, 6, 0, 0);
+}

@@ -1,0 +1,479 @@
+#library "MONSTER"
+#include "zcommon.acs"
+#include "commonFuncs.h"
+
+#define KNIFE_ANIM_TICS 2
+#define NET_ANIM_TICS 5
+#define SHADOW_HOUND_BITE 5
+#define PROTOZOID_BITE 4
+
+#define KRIST_BASE 6000
+#define NME_BASE 7000
+#define TOM_BASE 8000
+#define TOMSNAKE_BASE 9000
+#define SUMOBURNTIC 16
+
+#define OSCURO_MODE_TIME 2
+
+#define MAXPLAYERS 64
+#define SKULLCOOLDOWNTID 1000
+
+#define CLASSCOUNT          28
+
+#define MAX_RING_MONST 128
+#define RING_MONST_BASE_TID		1000000		// base TIDs for SW ring monsters' objects
+
+int ringcounter;
+int krist_id = 0;
+int nme_id = 0;
+
+int serpringnum[MAX_RING_MONST];
+int ringdur[MAX_RING_MONST];
+int ringMonstTIDtrack[MAX_RING_MONST];		// track the TID-array index correspondence
+int ringMonstCount = 0;
+
+int sumofirecount[MAXPLAYERS];
+
+str gameClassesSTR[CLASSCOUNT] = {
+	"DoomguyClass", "ChexClass", "CorvusClass", "WolfenClass", "HexenClass", "DukeClass", "MarathonClass", "QuakeClass", "RottClass", "BlakeClass",
+	"CalebClass", "StrifeClass", "Doom64GuyClass", "EradClass", "C7Class", "RMRClass", "KatarnClass", "POGreedClass", "DisruptorClass", "WitchavenClass", 
+	"HalfLifeClass", "SWClass", "CMClass", "JonClass", "RRClass", "BittermanClass", "Hexen2Class", "BondClass"
+};
+
+int ClassWeapons[CLASSCOUNT][9] = 
+{
+    {   // Doomguy
+        "notapplicable",
+		"notapplicable",
+		"notapplicable",
+		" Chainsaw ",
+        "Super Shotgun",
+        " Chaingun ",
+        "Rocket Launcher",
+        "Plasma Rifle",
+        "B.F.G. 9000",
+    },
+    {   // Chexguy
+		"notapplicable",
+        "notapplicable",
+		"notapplicable",
+		"Super Bootspork",
+        "Super Large Zorcher",
+        "Rapid Zorcher",
+        "Zorch Propulsor",
+        "Phasing Zorcher",
+        "LAZ Device",
+    },
+    {   // Corvus
+		"notapplicable",
+        "notapplicable",
+		"notapplicable",
+		"Gauntlets of the Necromancer",
+        "Ethereal Crossbow",
+        "Dragon Claw",
+        "Phoenix Rod",
+        "Hellstaff",
+        "DSparilStaff",
+    },
+
+    {   // B.J.
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "BJSuperKnife",
+        "Machine Gun",
+        "  Chaingun  ",
+        " Rocket Launcher ",
+        " Flamethrower ",
+        "Spear of Destiny",
+    },
+
+    {   // Parias
+		"notapplicable",
+        "notapplicable",
+		"notapplicable",
+		"PortFlechette",
+        "Timon's Axe",
+        "Serpent Staff",
+        "Hammer of Retribution",
+        "Firestorm",
+        "Wraithverge",
+    },
+
+    {   // Duke
+		"notapplicable",
+        "notapplicable",
+		"notapplicable",
+		"Pipebombs",
+        "Explosive Shotgun",
+        "Chaingun Cannon",
+        "RPG",
+        "Freezethrower",
+        "Devastator",
+    },
+
+    {   // Security Officer
+		"Alien Weapon",
+        "Alien Weapon",
+		"Alien Weapon",
+		"KKV-7 SMG Flechette",
+        "Fusion Pistol",
+        "MA-75B Assault Rifle",
+        "SPNKR-XP SSM Launcher",
+        "TOZT-7 Napalm Unit",
+        "ONI-71 Wave Motion Cannon",
+    },
+	
+    {   // Ranger
+		"Laser Cannon",
+        "Laser Cannon",
+		"Laser Cannon",
+		"Mjolnir",
+        "Grenade Launcher",
+        "Nailgun",
+        "  Rocket Launcher  ",
+        "Super Nailgun",
+        "Thunderbolt",
+    },
+    {   // I.P. Freely
+		"Dark Staff",
+        "Excalibat",
+		"Split Missile",
+		"Heatseeker",
+        "Bazooka",
+        "MP40",		
+        " FireBomb ",
+        "DrunkMissiles",
+        "Flamewall",
+    },
+	{	// Blake Stone
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "BlakeRefill",
+        "Heavy Assault Rifle",
+        "Rapid Assault Rifle",
+        "Plasma Discharge Unit",
+        "Dual Neutron Disruptor",
+        "Anti-Plasma Cannon",
+	},
+	{	// Caleb
+		"VoodooDoll",
+		"VoodooDoll",
+		"Spraycan",
+        "Dynamite",
+        "SawedOff",
+        "Tommygun",
+        "NapalmLauncher",
+        "TeslaCannon",
+        "LifeLeech"	,
+	},
+    {   // Strifeguy
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "notapplicable",
+        "Mini Missile Launcher",
+        "Assault Gun",
+        " Grenade Launcher ",
+        "Flame Thrower",
+        " Mauler ",
+    },
+    {   // Doom 64 Guy
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "  Chainsaw  ",
+        " Super Shotgun ",
+        "   Chaingun   ",
+        "   Rocket Launcher   ",
+        " Plasma Rifle ",
+        " B.F.G. 9000 ",
+    },
+    {   // Eleena
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        " Arachnicator ",
+        "Pellet Bomb",
+        "  Dart Cannon  ",
+        "    Missile Launcher    ",
+        "Napalm Charge",
+		" Plasma Ball ",
+    },
+    {   // C7
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "M24CAW",
+        "AssaultShotgun",
+        "AlienDualBlaster",
+        "AlienPlasmaRifle",
+        "AlienAssaultCannon",
+        "AlienDisintegrator",
+	},
+    {   // RMR
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "DirtShark",
+        "ACR ADD-ON",
+        "Cyclops Particle Accelerator",
+        "RMR Grenade Launcher",
+        "RMR Railgun",
+        " RMR Plasma Cannon ",
+	},	
+    {   // Kyle Katarn
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "Thermal Detonator",
+        "Fusion Cutter",
+        "Imperial Repeater",
+        "Mortar Gun",
+        "Concussion Rifle",
+        "Assault Cannon",
+    },	
+	{	//Mooman
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+		" Toxic Mutant Gun ",
+		" Aldus Flamethrower ",
+		" Fast Chaingun ",
+		" Fast Rocket Launcher ",
+		" Laser Cannon ",
+		" Super Plasma Annihilator ",
+	},	
+	{	//Jack
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+		" 18mm Auto ",
+		" AM Blaster ",
+		"Phase Repeater",
+		" Lock-on Cannon ",
+		" AM Cyclone ",
+		" Disruptor Zodyac ",
+	},
+	//+Added
+	{	// Grondoval
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+		"Pike Axe",
+		"Ice Halberd",
+		"Fire Mace",
+		"Frozen two-hand sword",
+		"Spellbook",
+	},
+	{	//Freebutt
+		"HL Squeaks",
+		"HL Crossbow",
+		"HL Squeaks",
+		"Hornetgun",
+		"Assault Shotgun",
+		"MP5",
+		" RPG ",
+		"Gauss Cannon",
+		"E.G.O.N.",
+	},	
+    {   // Lo Wang
+		"SWRipperHeart",
+		"SWRipperHeart",
+		"SWRipperHeart",
+        "SWSticky",
+        "SWRiotgun",
+        "SWUzi",
+        "SWMissileLauncher",
+        " SWRailgun ",
+        "SWGuardianHead",
+	},	
+    {   // Cybermage
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "CMDarklightFoil",
+        "CMBlastRifle",
+        "CMSMG",
+        "CMRocketGun",
+        "CMHVBMG",
+        "CMPlasmaGun",
+	},	
+    {   // Jon
+		"Ring of RA",
+		"Ring of RA",
+		"Ring of RA",
+        " Anubis Mine ",
+        "PSFlamethrower",
+        "PSM60",
+        "PSCobraStaff",
+        "Sacred Manacle",
+        " Mummy Staff ",
+	},	
+    {   // Leonard
+		" Dyn 'O' Mites ",
+		" Hunting Rifle With Scope ",
+		" Dyn 'O' Mites ",
+        " RR Rip Saw ",
+        " Scattered Gun ",
+        " Ranch Rifle ",
+        " Chicken Crossbow ",
+        " Alien Bra Gun ",
+        " Alien Arm Cannon ",
+	},	
+	{   // Bitterman
+		"Q2IonRipper",
+		"Q2GrenadeLauncher",
+		"Q2ETFRifle",
+        "Q2MachineGun",
+        "Q2SuperShotgun",
+        "Q2Chaingun",
+        "Q2RocketLauncher",
+        "Q2HyperBlaster",
+        "Q2BFG10K",
+    },
+	{   // Demoness
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "Hexen2IceMace",
+        "Hexen2AcidRune",
+        "Hexen2SpellBookBoneShard",
+        "Hexen2FireRune",
+        "Hexen2RavenStaff",
+        "Hexen2TempestStaff",
+    },
+	{   // James Bond
+		"Goldeneye_SniperRifle",
+		"Goldeneye_SilencedD5K",
+		"notapplicable",
+        "Goldeneye_ThrowingKnives",
+        "Goldeneye_AutoShotgun",
+        "Goldeneye_AR33",
+        "Goldeneye_RocketLauncher",
+        "Goldeneye_RCP90",
+        "Goldeneye_Moonraker",
+    },
+};
+
+str SlotDummies[6] = {
+	"GotWeapon0",
+	"GotWeapon3",
+	"GotWeapon4",
+	"GotWeapon5",
+	"GotWeapon6",
+	"GotWeapon7",
+};
+
+str StoleDummies[9] = {
+	"SamsaraUniquePickup3",
+	"SamsaraUniquePickup1",
+	"SamsaraUniquePickup2",
+	"SamsaraSlotOneDrop",
+	"SamsaraSlotThreeDrop",
+	"SamsaraSlotFourDrop",
+	"SamsaraSlotFiveDrop",
+	"SamsaraSlotSixDrop",
+	"SamsaraSlotSevenDrop",
+};
+
+script "IsThisSky" (Void)
+{
+    if (CheckActorCeilingTexture(0, "F_SKY1") || CheckActorCeilingTexture(0, "F_SKY2") || CheckActorCeilingTexture(0, "F_SKY") || CheckActorCeilingTexture(0, "F_SKY001"))
+    {
+        SetResultValue(1);
+    }
+    else
+    {
+         SetResultValue(0);
+    }
+}
+
+script "spitz" (int value)
+{
+	printbold(d:value);
+}
+
+Script "LuckJump" (void)
+{
+	SetResultValue(random(0,256));
+}
+
+Script "Target_Angle" (void)
+{
+	int currentx = GetActorX(0);
+	int currenty = GetActorY(0);
+	int currentangle = GetActorAngle (0);
+	SetActivator(0, AAPTR_Target);
+	int vang = VectorAngle(GetActorX(0) - currentx, GetActorY(0) - currenty);
+	int angle = ((vang - currentangle) % 1.0) / -182;
+	//print(d:angle);
+	SetResultValue(angle);
+}
+
+Script "WarpLoop" (void) //for when I need to simplify specificy corpse code
+{
+	if(ClassifyActor(0) == ACTOR_WORLD)
+		terminate;
+
+	//int currentx = GetActorX(0);
+	//int currenty = GetActorY(0);
+	//int currentz = GetActorZ(0);
+	int oldTID, target, masterTID, oldmasterTID;
+	oldTID = ActivatorTID();
+	oldmasterTID = ActivatorTID();
+	target = UniqueTID();
+	Thing_ChangeTID(0, target);
+	SetActivator(0, AAPTR_Master);
+	masterTID = UniqueTID();
+	Thing_ChangeTID(0, masterTID);
+	int masterx = GetActorVelX(0);
+	int mastery = GetActorVelY(0);
+	int masterz = GetActorVelZ(0);
+	
+	SetActivator(target);
+	Thing_ChangeTID(target, oldTID);
+
+	/*if(abs(masterx - currentx) > (8<<16) || abs(mastery - currenty) > (8<<16) || abs(masterz - currentz) > (8<<16))
+	{
+		Warp(masterTID, 0, 0, 0, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	}*/
+	
+	if(abs(masterx) > 0 || abs(mastery) > 0 || abs(masterz) > 0)
+	{
+		Warp(masterTID, 0, 0, 0, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	}
+	
+	Thing_ChangeTID(masterTID, oldmasterTID);
+	Delay(4);
+	restart;
+}
+
+Script "MonsterProjectilePitch" (int x, int y, int z)
+{
+	SetActivator(0, AAPTR_Target);
+	int currentx = GetActorX(0);
+	int currenty = GetActorY(0);
+	int currentz = GetActorZ(0);
+	int vector2original = sqrt(x*x + y*y);
+	int vector2target = sqrt(currentx*currentx + currenty*currenty);
+	SetResultValue(VectorAngle(vector2target - vector2original, currentz - z));
+}
+
+Script "Samsara_SetSpeed" (int input)
+{
+	SetActorProperty(0, APROP_Speed, input*1.0);
+	SetResultValue(1);
+}
+
+#include "m_df.acs"
+#include "m_duke.acs"
+#include "m_ge.acs"
+#include "m_hexen2.acs"
+#include "m_hl.acs"
+#include "m_q2.acs"
+#include "m_rott.acs"
+#include "m_sw.acs"
+#include "m_witch.acs"

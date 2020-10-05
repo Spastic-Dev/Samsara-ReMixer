@@ -1,0 +1,197 @@
+Script 700 (int radius, int who, int actortype) // Form the ring
+{
+	int tid = ActivatorTID(); // Owner TID
+	int actor = "";
+	int arrIndex;
+	
+	switch (actortype)
+	{
+		case 0:
+			actor = "GuardCircleFire";
+		break;
+		case 1:
+			actor = "WizardCircleFire";
+		break;
+		case 2:
+			actor = "EvilSkull";
+		break;
+	}
+	
+	for(arrIndex = 0; arrIndex < ringMonstCount; arrIndex++)
+		if(ringMonstTIDtrack[arrIndex] == tid)
+			break;
+
+	if(arrIndex == ringMonstCount){	// not found, add it to the tracker array
+
+		if(arrIndex == MAX_RING_MONST){	// the ring monsters in excess won't have any ring
+			log(s:"Warning: MAX_RING_MONST (", d:MAX_RING_MONST, s:") has been exceeded\n");
+			terminate;
+	}
+		
+		ringMonstTIDtrack[arrIndex] = tid;
+		++ringMonstCount;
+	}
+	
+	for(int m = 0; m < 32; m++)
+		Thing_Remove(RING_MONST_BASE_TID + (32*arrIndex) + m);
+	
+	int cx, cy, cz;
+	
+	if(actortype == 2)
+	     cz = GetActorZ(tid) + 64.250;
+	else
+		 cz = GetActorZ(tid) + 32.125;
+	
+	int pang = GetActorAngle(tid) >> 8;
+	
+	for(int i = 0; i < 32; i++)
+	{
+		cx = GetActorX(tid) + radius*cos(pang<<8);
+		cy = GetActorY(tid) + radius*sin(pang<<8);	
+		pang += 8;
+		Spawn(actor, cx, cy, cz, RING_MONST_BASE_TID + (32*arrIndex) + i, 0); 
+	}
+	
+	if(!who)
+		ACS_executeAlways(701, 0, tid, pang, radius); // Align coords
+	else
+	{
+		if(actortype == 2) // Serpent God
+		{
+			ACS_ExecuteAlways(1787, 0, tid, pang, radius); // For monsters
+			ACS_ExecuteAlways(1789, 0, tid, arrIndex); // Tracks if any skulls are alive or not
+		}
+		else
+			ACS_ExecuteAlways(702, 0, tid, pang, radius); // For monsters
+	}
+}
+
+Script 701 (int tid, int pang, int radius) // Constantly rotate the ring
+{
+	int arrIndex;
+	
+	for(arrIndex = 0; ringMonstTIDtrack[arrIndex] != tid; arrIndex++)
+		;
+
+	if(!CheckActorInventory(tid, "RingTimer") || GetActorProperty(tid, APROP_HEALTH) <= 0)
+	{
+		for(int m = 0; m < 32; m++)
+			Thing_Remove(RING_MONST_BASE_TID + (32*arrIndex) + m);
+		Terminate;
+	}
+	
+	if(CheckActorInventory(tid, "HaveRing"))
+		Terminate;
+		
+	int cx, cy;
+	int cz = GetActorZ(tid) + 32.125;
+	
+	for(int i = 0; i < 32; i++)
+	{
+		pang += 8;
+		cx = GetActorX(tid) + radius*cos(pang<<8);
+		cy = GetActorY(tid) + radius*sin(pang<<8);		
+		SetActorPosition(RING_MONST_BASE_TID + (32*arrIndex) + i, cx, cy, cz, 0);
+	}
+	Delay(2);
+	Restart;
+}
+
+Script 702 (int tid, int pang, int radius) // Constantly rotate the ring (monsters)
+{
+	int arrIndex;
+	
+	for(arrIndex = 0; ringMonstTIDtrack[arrIndex] != tid; arrIndex++)
+		;
+	
+	if(GetActorProperty(tid, APROP_HEALTH) <= 0 | ringdur[arrIndex] >= 250)
+	{
+		for(int m = 0; m < 32; m++)
+			Thing_Remove(RING_MONST_BASE_TID + (32*arrIndex) + m);
+		TakeActorInventory(tid, "HasSkull", 1);
+		ringdur[arrIndex] = 0;
+		Terminate;
+	}
+		
+	int cx, cy;
+	int cz = GetActorZ(tid) + 32.125;
+	
+	for(int i = 0; i < 32; i++)
+	{
+		pang += 8;
+		cx = GetActorX(tid) + radius*cos(pang<<8);
+		cy = GetActorY(tid) + radius*sin(pang<<8);		
+		SetActorPosition(RING_MONST_BASE_TID + (32*arrIndex) + i, cx, cy, cz, 0);
+	}
+	Delay(2);
+	ringdur[arrIndex]++;
+	Restart;
+}
+
+Script 1787 (int tid, int pang, int radius) // Constantly rotate the ring (serpent god)
+{
+	int arrIndex;
+	
+	for(arrIndex = 0; ringMonstTIDtrack[arrIndex] != tid; arrIndex++)
+		;
+	
+	if(GetActorProperty(tid, APROP_HEALTH) <= 0)
+	{
+		for(int m = 0; m < 32; m++)
+			Thing_Damage(RING_MONST_BASE_TID + (32*arrIndex) + m, 999, MOD_EXIT);
+		Terminate;
+	}
+		
+	int cx, cy;
+	int cz = GetActorZ(tid) + 64.250;
+	
+	for(int i = 0; i < 32; i++)
+	{
+		pang += 8;
+		cx = GetActorX(tid) + radius*cos(pang<<8);
+		cy = GetActorY(tid) + radius*sin(pang<<8);		
+		SetActorPosition(RING_MONST_BASE_TID + (32*arrIndex) + i, cx, cy, cz, 0);
+	}
+	Delay(2);
+	Restart;
+}
+
+Script 1788 (void) // Skull cooldown giver
+{
+	for(int m = 0; m < MAXPLAYERS; m++)
+		GiveActorInventory(SKULLCOOLDOWNTID+m, "SkullJumpCooldown", 1);
+}
+
+Script 1789 (int tid, int arrIndex) // Skull Tracker
+{
+	if(GetActorProperty(tid, APROP_HEALTH) <= 0 || CheckActorInventory(tid, "HasSkull") == 0)
+	{
+		serpringnum[arrIndex] = 0;
+		Terminate;
+	}
+	
+	for(int i = 0; i < 32; i++)
+	{
+		if(GetActorProperty(RING_MONST_BASE_TID + (32*arrIndex) + i, APROP_HEALTH) <= 0)
+		{
+			if(!(serpringnum[arrIndex] & (1 << i)) )
+			{
+				TakeActorInventory(tid, "HasSkull", 1);				
+				serpringnum[arrIndex] |= (1 << i);
+			}
+		}
+	}
+	Delay(10);
+	Restart;
+}
+
+Script 4109 (void)
+{
+	sumofirecount[PlayerNumber()] = SUMOBURNTIC;
+	while(sumofirecount[PlayerNumber()] > 0)
+	{
+		Delay(2);
+		Thing_Damage(ActivatorTID(), random(1, 2), MOD_LAVA);
+		sumofirecount[PlayerNumber()]--;
+	}
+}

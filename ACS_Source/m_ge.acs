@@ -1,0 +1,89 @@
+str GuardTypes[14] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard2", "GreatGuard", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard" };
+str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mandy", "Marion", "Mark", "Martin", "Neil", "Pete", "Robin", "Sally", "Scott", "Shaun", "Stevee", "Steveh", "Vivien" };
+str HatTypes[13] = { "NoHat", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
+str GunTypes[24] = { "KF7", "AR33Dual", "AR33", "AutoShotgun", "CougarDual", "Cougar", "D5kDual", "D5k", "DD44Dual", "DD44", "GrenadeLauncher", "KlobbDual", "Klobb", "Laser", "PhantomDual", "Phantom", "PP7", "RCP90", "RocketLauncher", "SiberianCombo", "Sniper", "XeniaCombo", "ZMGDual", "ZMG" };
+
+Script "Goldeneye_HatShot" (void)
+{
+	if(CheckInventory("Goldeneye_HatShotToken"))
+		terminate;
+	
+	GiveInventory("Goldeneye_HatShotToken",1);
+	int a;
+	str thisclass = GetActorClass(0);
+	str pass, body, head, sunglasses, hat, thrownhat, gun, newclass;
+	if(strcmp(thisclass,"Goldeneye_",StrLen("Goldeneye_")) != 0)
+		terminate;
+		
+	pass = StrRight(thisclass, StrLen(thisclass)-StrLen("Goldeneye_"));
+	for(a = 0; a < 14; a++)
+	{
+		if(strcmp(GuardTypes[a],pass,StrLen(GuardTypes[a])) == 0)
+		{
+			body = GuardTypes[a];
+			break;
+		}
+	}
+	if(strlen(body) == 0)
+		terminate;
+		
+	newclass = StrParam(s:"Goldeneye_",s:body,s:"_");
+	pass = StrRight(thisclass,StrLen(thisclass)-StrLen(newclass));
+	for(a = 0; a < 29; a++)
+	{
+		if(strcmp(HeadTypes[a],pass,StrLen(HeadTypes[a])) == 0)
+		{
+			head = HeadTypes[a];
+			break;
+		}
+	}
+	newclass = StrParam(s:"Goldeneye_",s:body,s:"_",s:head);
+	pass = StrRight(thisclass,StrLen(thisclass)-StrLen(newclass));
+	
+	if(strcmp("-SG",pass,StrLen("-SG")) == 0)
+		sunglasses = "-SG";		
+	newclass = StrParam(s:"Goldeneye_",s:body,s:"_",s:head,s:sunglasses,s:"_");
+	
+	pass = StrRight(thisclass,StrLen(thisclass)-StrLen(newclass));	
+	if(strcmp(pass,HatTypes[0],StrLen(HatTypes[0])) == 0)
+		terminate;
+	for(a = 0; a < 13; a++)
+	{
+		if(strcmp(HatTypes[a],pass,StrLen(HatTypes[a])) == 0)
+		{
+			thrownhat = HatTypes[a];
+			hat = "NoHat";
+			break;
+		}
+	}
+	newclass = StrParam(s:"Goldeneye_",s:body,s:"_",s:head,s:sunglasses,s:"_",s:thrownhat,s:"_");
+	
+	pass = StrRight(thisclass,StrLen(thisclass)-StrLen(newclass));
+	for(a = 0; a < 24; a++)
+	{
+		if(strcmp(GunTypes[a],pass,StrLen(GunTypes[a])) == 0)
+		{
+			gun = GunTypes[a];
+			break;
+		}
+	}
+	newclass = StrParam(s:"Goldeneye_",s:body,s:"_",s:head,s:sunglasses,s:"_",s:hat,s:"_",s:gun);
+	
+	int hattid = ActivatorTid();
+	int newhattid = UniqueTid();
+	int hatlesstid = UniqueTid();
+	int health = GetActorProperty(0,APROP_Health);
+	Thing_ChangeTID(hattid, newhattid);
+	SpawnSpotFacingForced(newclass,newhattid,hatlesstid);
+	SpawnForced(StrParam(s:"Goldeneye_",s:thrownhat),GetActorX(0),GetActorY(0),GetActorZ(0) + 48.0,0,0);
+	SetActorProperty(hatlesstid,APROP_Health,health);
+	SetActivator(0,AAPTR_MASTER);
+	SetPointer(hatlesstid,0,AAPTR_MASTER);
+	SetActivator(newhattid);
+	SetActivator(0,AAPTR_TARGET);
+	SetPointer(hatlesstid,0,AAPTR_TARGET);
+	SetActivator(newhattid);
+	Thing_ChangeTID(newhattid, hattid);
+	Thing_ChangeTID(hatlesstid, hattid);
+	Thing_Remove(0);
+}
