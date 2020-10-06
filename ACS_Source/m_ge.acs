@@ -70,7 +70,14 @@ Script "Goldeneye_HatShot" (void)
 			thrownhat = HatTypes[a];
 			hat = "NoHat";
 			if(thrownhat == "HelmetGray" || thrownhat == "HelmetGreen")
+			{
 				SetResultValue(-1);
+				PlaySound(0,"Goldeneye/SlapperMetal",CHAN_7,1.0,0,ATTN_NORM);
+				if(random(0,1) == 1)
+				{
+					terminate;
+				}
+			}
 			else
 				SetResultValue(3);
 			break;
