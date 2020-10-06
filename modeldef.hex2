@@ -9657,28 +9657,349 @@ Model Hexen2FamineOrb
 
 Model Hexen2FamineBeamSegment
 {
-   Path "Models/Hexen2" 
-   Scale 1.0 0.5 0.5       
-   Model 0 "fambeam.md3"
-   Skin 0 "fambeam.pcx"
-   NOINTERPOLATION
-   //PITCHFROMMOMENTUM
-   INHERITACTORPITCH
-   ROTATING
-   Rotation-Vector 1 0 0
-   Rotation-Speed 0.5
+	Path "Models/Hexen2" 
+	Scale 1.0 0.5 0.5       
+	Model 0 "fambeam.md3"
+	Skin 0 "fambeam.pcx"
+	NOINTERPOLATION
+	//PITCHFROMMOMENTUM
+	INHERITACTORPITCH
+	ROTATING
+	Rotation-Vector 1 0 0
+	Rotation-Speed 0.5
    
-   FrameIndex HX00 A 0 0
-   RollOffset 60
-   FrameIndex HX00 B 0 0
-   RollOffset 120
-   FrameIndex HX00 C 0 0
-   RollOffset 180
-   FrameIndex HX00 D 0 0
-   RollOffset 240
-   FrameIndex HX00 E 0 0
-   RollOffset 300
-   FrameIndex HX00 F 0 0
+	FrameIndex HX00 A 0 0
+	RollOffset 60
+	FrameIndex HX00 B 0 0
+	RollOffset 120
+	FrameIndex HX00 C 0 0
+	RollOffset 180
+	FrameIndex HX00 D 0 0
+	RollOffset 240
+	FrameIndex HX00 E 0 0
+	RollOffset 300
+	FrameIndex HX00 F 0 0
+}
+
+Model Hexen2Death
+{
+   Path "Models/Hexen2"
+   Model 0 "dthhorse.md3"
+   Skin 0 "dthhorse.pcx"
+   Model 1 "dthrider.md3"
+   Skin 1 "dthrider.pcx"
+   Scale 1.0 1.0 1.0
+   NOINTERPOLATION
+   
+   FrameIndex HX00 A 0 0 //gallstart
+   FrameIndex HX00 A 1 0
+   FrameIndex HX00 B 0 1
+   FrameIndex HX00 B 1 1
+   FrameIndex HX00 C 0 2
+   FrameIndex HX00 C 1 2
+   FrameIndex HX00 D 0 3
+   FrameIndex HX00 D 1 3
+   FrameIndex HX00 E 0 4
+   FrameIndex HX00 E 1 4
+   FrameIndex HX00 F 0 5
+   FrameIndex HX00 F 1 5
+   FrameIndex HX00 G 0 6
+   FrameIndex HX00 G 1 6
+   FrameIndex HX00 H 0 7
+   FrameIndex HX00 H 1 7
+   FrameIndex HX00 I 0 8
+   FrameIndex HX00 I 1 8
+   FrameIndex HX00 J 0 9
+   FrameIndex HX00 J 1 9
+   FrameIndex HX00 K 0 10
+   FrameIndex HX00 K 1 10
+   FrameIndex HX00 L 0 11
+   FrameIndex HX00 L 1 11 //gallend
+   
+   FrameIndex HX01 A 0 0 //Rsickstart
+   FrameIndex HX01 A 1 12
+   FrameIndex HX01 B 0 1
+   FrameIndex HX01 B 1 13
+   FrameIndex HX01 C 0 2
+   FrameIndex HX01 C 1 14
+   FrameIndex HX01 D 0 3
+   FrameIndex HX01 D 1 15
+   FrameIndex HX01 E 0 4
+   FrameIndex HX01 E 1 16
+   FrameIndex HX01 F 0 5
+   FrameIndex HX01 F 1 17
+   FrameIndex HX01 G 0 6
+   FrameIndex HX01 G 1 18
+   FrameIndex HX01 H 0 7
+   FrameIndex HX01 H 1 19
+   FrameIndex HX01 I 0 8
+   FrameIndex HX01 I 1 20
+   FrameIndex HX01 J 0 9
+   FrameIndex HX01 J 1 21
+   FrameIndex HX01 K 0 10
+   FrameIndex HX01 K 1 22
+   FrameIndex HX01 L 0 11
+   FrameIndex HX01 L 1 23 //Rsickend
+}   
+
+Model MultiHexen2Death
+{
+   Path "Models/Hexen2"
+   Model 0 "dthhorse.md3"
+   Skin 0 "dthhorse.pcx"
+   Model 1 "dthrider.md3"
+   Skin 1 "dthrider.pcx"
+   Scale 1.0 1.0 1.0
+   NOINTERPOLATION
+   
+   FrameIndex HX00 A 0 0 //gallstart
+   FrameIndex HX00 A 1 0
+   FrameIndex HX00 B 0 1
+   FrameIndex HX00 B 1 1
+   FrameIndex HX00 C 0 2
+   FrameIndex HX00 C 1 2
+   FrameIndex HX00 D 0 3
+   FrameIndex HX00 D 1 3
+   FrameIndex HX00 E 0 4
+   FrameIndex HX00 E 1 4
+   FrameIndex HX00 F 0 5
+   FrameIndex HX00 F 1 5
+   FrameIndex HX00 G 0 6
+   FrameIndex HX00 G 1 6
+   FrameIndex HX00 H 0 7
+   FrameIndex HX00 H 1 7
+   FrameIndex HX00 I 0 8
+   FrameIndex HX00 I 1 8
+   FrameIndex HX00 J 0 9
+   FrameIndex HX00 J 1 9
+   FrameIndex HX00 K 0 10
+   FrameIndex HX00 K 1 10
+   FrameIndex HX00 L 0 11
+   FrameIndex HX00 L 1 11 //gallend
+   
+   FrameIndex HX01 A 0 0 //Rsickstart
+   FrameIndex HX01 A 1 12
+   FrameIndex HX01 B 0 1
+   FrameIndex HX01 B 1 13
+   FrameIndex HX01 C 0 2
+   FrameIndex HX01 C 1 14
+   FrameIndex HX01 D 0 3
+   FrameIndex HX01 D 1 15
+   FrameIndex HX01 E 0 4
+   FrameIndex HX01 E 1 16
+   FrameIndex HX01 F 0 5
+   FrameIndex HX01 F 1 17
+   FrameIndex HX01 G 0 6
+   FrameIndex HX01 G 1 18
+   FrameIndex HX01 H 0 7
+   FrameIndex HX01 H 1 19
+   FrameIndex HX01 I 0 8
+   FrameIndex HX01 I 1 20
+   FrameIndex HX01 J 0 9
+   FrameIndex HX01 J 1 21
+   FrameIndex HX01 K 0 10
+   FrameIndex HX01 K 1 22
+   FrameIndex HX01 L 0 11
+   FrameIndex HX01 L 1 23 //Rsickend
+}   
+
+Model Hexen2DeathBone
+{
+	Path "Models/Hexen2"
+	Model 0 "bone1.md3"
+	Skin 0 "bone1.pcx"
+	Scale 1.0 1.0 1.0
+	NOINTERPOLATION
+	
+	FrameIndex HX00 A 0 0
+	
+	Model 0 "bone2.md3"
+	Skin 0 "bone2.pcx"
+	
+	FrameIndex HX01 A 0 0
+	
+	Model 0 "bone6.md3"
+	Skin 0 "bone6.pcx"
+	
+	FrameIndex HX02 A 0 0	
+	
+	Model 0 "bone4.md3"
+	Skin 0 "bone4.pcx"
+	
+	FrameIndex HX03 A 0 0
+	
+	Model 0 "bone5.md3"
+	Skin 0 "bone5.pcx"
+	
+	FrameIndex HX04 A 0 0
+}
+
+Model Hexen2DeathSkull
+{
+	Path "Models/Hexen2"
+	Model 0 "bone3.md3"
+	Skin 0 "bone3.pcx"
+	Scale 1.5 1.5 1.5
+	NOINTERPOLATION	
+
+	FrameIndex HX00 A 0 0
+	FrameIndex HX00 B 0 1
+	FrameIndex HX00 C 0 2
+	FrameIndex HX00 D 0 3
+	FrameIndex HX00 E 0 4
+	FrameIndex HX00 F 0 5
+	FrameIndex HX00 G 0 6
+	FrameIndex HX00 H 0 7
+	FrameIndex HX00 I 0 8
+	FrameIndex HX00 J 0 9
+	FrameIndex HX00 K 0 10
+	FrameIndex HX00 L 0 11
+	FrameIndex HX00 M 0 12
+	FrameIndex HX00 N 0 13
+	FrameIndex HX00 O 0 14
+	FrameIndex HX00 P 0 15
+}	
+
+Model Hexen2DeathSkullTrail
+{
+	Path "Models/Hexen2"
+	Model 0 "bone3.md3"
+	Skin 0 "bone3.pcx"
+	Scale 0.5 0.5 0.5
+	NOINTERPOLATION	
+
+	FrameIndex HX00 A 0 0
+	FrameIndex HX00 B 0 1
+	FrameIndex HX00 C 0 2
+	FrameIndex HX00 D 0 3
+	FrameIndex HX00 E 0 4
+	FrameIndex HX00 F 0 5
+	FrameIndex HX00 G 0 6
+	FrameIndex HX00 H 0 7
+	FrameIndex HX00 I 0 8
+	FrameIndex HX00 J 0 9
+	FrameIndex HX00 K 0 10
+	FrameIndex HX00 L 0 11
+	FrameIndex HX00 M 0 12
+	FrameIndex HX00 N 0 13
+	FrameIndex HX00 O 0 14
+	FrameIndex HX00 P 0 15
+}
+
+Model Hexen2DeathFireball
+{
+	Path "Models/Hexen2"
+	Model 0 "fireball.md3"
+	Skin 0 "fireball.pcx"
+	Scale 1.0 1.0 1.0
+	AngleOffset -180
+	NOINTERPOLATION
+	
+	FrameIndex HX00 A 0 0
+	FrameIndex HX00 B 0 1
+	FrameIndex HX00 C 0 2
+	FrameIndex HX00 D 0 3
+	FrameIndex HX00 E 0 4
+	FrameIndex HX00 F 0 5
+	FrameIndex HX00 G 0 6
+	FrameIndex HX00 H 0 7
+	FrameIndex HX00 I 0 8
+	FrameIndex HX00 J 0 9
+}
+
+Model Hexen2DeathFireCircleSegment1
+{
+	Path "Models/Hexen2"
+	Model 0 "mumshot.md3"
+	Skin 0 "mumshot.pcx"
+	Scale 2.5 2.5 2.5
+	AngleOffset 90
+	NOINTERPOLATION
+	
+	FrameIndex HX02 A 0 36
+	FrameIndex HX02 B 0 37
+	FrameIndex HX02 C 0 38
+	FrameIndex HX02 D 0 39
+	FrameIndex HX02 E 0 40
+	FrameIndex HX02 F 0 41
+	FrameIndex HX02 G 0 42
+	FrameIndex HX02 H 0 43
+	FrameIndex HX02 I 0 44
+	FrameIndex HX02 J 0 45
+	FrameIndex HX02 K 0 46
+	FrameIndex HX02 L 0 47
+	FrameIndex HX02 M 0 48
+	FrameIndex HX02 N 0 49
+	FrameIndex HX02 O 0 50
+}
+
+Model Hexen2DeathFireCircleSegment2
+{
+	Path "Models/Hexen2"
+	Model 0 "mumshot.md3"
+	Skin 0 "mumshot.pcx"
+	Scale 2.5 2.5 2.5
+	AngleOffset 90
+	NOINTERPOLATION
+	
+	FrameIndex HX01 A 0 19
+	FrameIndex HX01 B 0 20
+	FrameIndex HX01 C 0 21
+	FrameIndex HX01 D 0 22
+	FrameIndex HX01 E 0 23
+	FrameIndex HX01 F 0 24
+	FrameIndex HX01 G 0 25
+	FrameIndex HX01 H 0 26
+	FrameIndex HX01 I 0 27
+	FrameIndex HX01 J 0 28
+	FrameIndex HX01 K 0 29
+	FrameIndex HX01 L 0 30
+	FrameIndex HX01 M 0 31
+	FrameIndex HX01 N 0 32
+	FrameIndex HX01 O 0 33
+	FrameIndex HX01 P 0 34
+	FrameIndex HX01 Q 0 35
+}
+
+Model Hexen2DeathFireCircleSegment3
+{
+	Path "Models/Hexen2"
+	Model 0 "mumshot.md3"
+	Skin 0 "mumshot.pcx"
+	Scale 2.5 2.5 2.5
+	AngleOffset 90
+	NOINTERPOLATION
+	
+	FrameIndex HX00 A 0 0
+	FrameIndex HX00 B 0 1
+	FrameIndex HX00 C 0 2
+	FrameIndex HX00 D 0 3
+	FrameIndex HX00 E 0 4 
+	FrameIndex HX00 F 0 5
+	FrameIndex HX00 G 0 6
+	FrameIndex HX00 H 0 7
+	FrameIndex HX00 I 0 8
+	FrameIndex HX00 J 0 9
+	FrameIndex HX00 K 0 10
+	FrameIndex HX00 L 0 11
+	FrameIndex HX00 M 0 12
+	FrameIndex HX00 N 0 13
+	FrameIndex HX00 O 0 14
+	FrameIndex HX00 P 0 15
+	FrameIndex HX00 Q 0 16
+	FrameIndex HX00 R 0 17
+}	
+
+Model Hexen2DeathShot
+{
+	Path "Models/Hexen2"
+	Model 0 "famshot.md3"
+	Skin 0 "famshot.pcx"
+	Scale -1.0 1.0 1.0
+	NOINTERPOLATION
+	PITCHFROMMOMENTUM
+	
+	FrameIndex HX00 A 0 0
 }
 
 Model Hexen2Praevus
