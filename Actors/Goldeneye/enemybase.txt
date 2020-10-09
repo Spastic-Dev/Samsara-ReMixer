@@ -180,8 +180,7 @@ Actor Goldeneye_EnemyBase
 			GE04 Z 6 A_LookEx(0, 0, 0, 0, 180, "See") GE04 A 0 A_Stop "####" "#" 0
 			Goto Spawn
 		See:
-			GE00 A 0 A_JumpIf(mass <= 1005, "SeeSingleDual")
-			GE00 A 0 A_JumpIf(mass == 1006||mass == 1016, "SeeTwoHand")
+			GE00 A 0 A_JumpIf(mass == 1006||mass == 1009||mass == 1011||mass == 1013||mass == 1015||mass == 1016||mass == 1017||mass == 1020||mass == 1021, "SeeTwoHand")
 			Goto SeeSingleDual
 		SeeSingleDual:
 			GE11 A 6 A_Chase("","Missile") GE11 B 0 A_Recoil(-2) "####" "#" 0
@@ -204,8 +203,10 @@ Actor Goldeneye_EnemyBase
 			GE00 A 0 A_Stop
 			GE00 A 0 A_JumpIf(mass == 1002, "FireDD44")
 			GE00 A 0 A_JumpIf(mass == 1003, "FireDD44Dual")
+			GE00 A 0 A_JumpIf(mass == 1004, "FireKlobb")
 			GE00 A 0 A_JumpIf(mass == 1006, "FireKF7")
 			GE00 A 0 A_JumpIf(mass == 1016, "FireAutoShotgun")
+			GE00 A 0 A_JumpIf(mass == 1017, "FireSniper")
 			Goto FireKF7
 		FireDD44:
 			GE15 A 0 A_Jump(256, "FireDD44StepForward","FireDD44Kneel")
@@ -360,6 +361,26 @@ Actor Goldeneye_EnemyBase
 			GE31 HHH 3 A_FaceTarget
 			GE31 I 2 BRIGHT A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 0, frandom(-4,4)) GE31 J 0 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)			
 			GE31 JKLM 6
+			Goto See
+		FireKlobb:
+			GE15 A 0 A_Jump(256, "FireKlobbStepForward","FireKlobbKneel")
+			Goto FireKlobbStepForward
+		FireKlobbStepForward:
+			GE15 ABCDE 4 A_FaceTarget
+			GE15 F 5 Bright A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) GE15 G 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 40, 0, frandom(-6,6)) "####" "#" 0 A_FaceTarget
+			GE15 G 5 Bright A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) GE15 H 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 40, 0, frandom(-6,6)) "####" "#" 0 A_FaceTarget
+			GE15 H 5 Bright A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) GE15 I 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 40, 0, frandom(-6,6)) "####" "#" 0 A_FaceTarget
+			GE15 IJKLMNOPQRSTUV 4
+			GE15 A 0
+			Goto See
+		FireKlobbKneel:
+			GE16 ABCDEFGHIJKLMNOP 4 A_FaceTarget
+			GE16 Q 5 Bright A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) GE16 R 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE16 R 5 Bright A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) GE16 S 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE16 S 5 Bright A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) GE16 U 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, 0, frandom(-4,4)) "####" "#" 0 A_FaceTarget
+			GE16 UVWXYZ 4
+			GE17 ABCDEFGHIJKLMNOPQ 3
+			GE17 A 0
 			Goto See			
 		FireKF7:
 			GE18 A 0 A_Jump(256, "FireKF7AimBow", "FireKF7AimHip", "FireKF7AimToFire", "FireKF7Crouch", "FireKF7JumpToLeft", "FireKF7JumpToRight", "FireKF7RollLeft", "FireKF7RollRight")
@@ -732,6 +753,164 @@ Actor Goldeneye_EnemyBase
 			GE26 F 6 A_FaceTarget
 			TNT1 A 0
 			Goto See*/
+		FireSniper:
+			GE18 A 0 A_Jump(256, "FireSniperAimBow", "FireSniperAimHip", "FireSniperAimToFire", "FireSniperCrouch", "FireSniperJumpToLeft", "FireSniperJumpToRight", "FireSniperRollLeft", "FireSniperRollRight")
+			Goto FireSniperAimBow
+		FireSniperAimBow:
+			GE18 ABC 6 A_FaceTarget
+			GE18 D 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 40, 0, frandom(-4,4))
+			GE18 E 2
+			GE18 G 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+			GE18 H 6
+			GE18 I 6
+			GE18 K 6
+			GE18 A 0
+			Goto See
+		FireSniperAimHip:
+			GE19 ABC 6 A_FaceTarget
+			GE19 D 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 40, 0, frandom(-4,4))
+			GE19 E 2
+			GE19 G 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+			GE19 I 6
+			GE19 K 6
+			GE19 L 6
+			GE19 A 0
+			Goto See
+		FireSniperAimToFire:
+			GE20 ABC 6 A_FaceTarget
+			GE20 D 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 40, 0, frandom(-4,4))
+			GE20 E 2
+			GE20 G 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+			GE20 I 6
+			GE20 K 6
+			GE20 M 6
+			GE20 N 6
+			GE20 A 0
+			Goto See
+		FireSniperCrouch:
+			GE21 ABC 6 A_FaceTarget
+			GE21 D 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 40, 0, frandom(-4,4))
+			GE21 E 2
+			GE21 G 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+			GE21 I 6
+			GE21 K 6
+			GE21 M 6
+			GE21 N 6
+			GE21 O 6
+			GE21 P 6
+			GE21 A 0
+			Goto See
+		FireSniperJumpToLeft:
+			GE27 A 6 A_FaceTarget
+			GE27 B 6 A_FaceTarget
+			GE27 C 6 A_FaceTarget GE27 D 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE27 D 6 A_FaceTarget
+			GE27 E 6 A_FaceTarget
+			GE27 F 6 A_FaceTarget
+			GE27 G 6 A_FaceTarget
+			GE27 H 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 40, 0, frandom(-4,4))
+			GE27 I 2
+			GE27 K 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+			/*GE27 K 6
+			GE27 L 6
+			GE27 M 6 A_Stop GE27 N 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE27 N 6
+			GE27 O 6
+			GE27 P 6
+			GE27 Q 6
+			GE27 R 6
+			GE27 S 6*/
+			GE27 A 0
+			Goto See
+		FireSniperJumpToRight:
+			GE28 A 6 A_FaceTarget
+			GE28 B 6 A_FaceTarget
+			GE28 C 6 A_FaceTarget GE28 D 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE28 D 6 A_FaceTarget
+			GE28 E 6 A_FaceTarget
+			GE28 F 6 A_FaceTarget
+			GE28 G 6 A_FaceTarget
+			GE28 H 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 40, 0, frandom(-4,4))
+			GE28 I 2 A_FaceTarget
+			GE28 K 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+//			GE28 L 4 
+			GE28 M 4 
+//			GE28 N 4 
+			GE28 O 4 
+			GE28 P 4 
+			/*GE28 Q 6 
+			GE28 R 6
+			GE28 S 6
+			GE28 T 6 A_Stop GE28 U 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE28 U 6
+			GE28 V 6
+			GE28 W 6
+			GE28 X 6
+			GE28 Y 6
+			GE28 Z 6*/
+			GE28 A 0
+			Goto See
+		FireSniperRollLeft:
+			GE23 A 2 A_FaceTarget
+			GE23 B 2 A_FaceTarget
+			GE23 C 2 A_FaceTarget
+			GE23 D 2 A_FaceTarget
+			GE23 E 2 A_FaceTarget
+			GE23 F 2 A_FaceTarget
+			GE23 G 2 A_FaceTarget
+			GE23 I 2 A_FaceTarget
+			GE23 K 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			GE23 M 2 A_FaceTarget
+			GE23 N 2 A_FaceTarget
+			GE23 O 2 A_FaceTarget
+			GE23 P 2 A_FaceTarget
+			GE23 Q 2 A_FaceTarget
+			GE23 R 2 A_FaceTarget
+			GE23 S 2 A_FaceTarget
+			GE23 T 2 A_FaceTarget
+			GE23 U 2 A_FaceTarget
+			GE23 V 2 A_FaceTarget
+			GE23 W 2 A_FaceTarget
+			GE23 X 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 28, 0, frandom(-4,4))
+			GE23 Y 2 A_FaceTarget
+			GE24 A 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+			GE24 C 4 A_FaceTarget
+			GE24 E 4 A_FaceTarget
+			GE24 F 6 A_FaceTarget
+			TNT1 A 0
+			Goto See
+		FireSniperRollRight:
+			GE25 A 2 A_FaceTarget
+			GE25 B 2 A_FaceTarget
+			GE25 C 2 A_FaceTarget
+			GE25 D 2 A_FaceTarget
+			GE25 E 2 A_FaceTarget
+			GE25 F 2 A_FaceTarget
+			GE25 G 2 A_FaceTarget
+			GE25 H 2 A_FaceTarget
+			GE25 I 2 A_FaceTarget
+			GE25 J 2 A_FaceTarget
+			GE25 K 2 A_FaceTarget
+			GE25 L 2 A_FaceTarget GE13 M 0 ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			GE25 M 2 A_FaceTarget
+			GE25 N 2 A_FaceTarget
+			GE25 O 2 A_FaceTarget
+			GE25 P 2 A_FaceTarget
+			GE25 Q 2 A_FaceTarget
+			GE25 R 2 A_FaceTarget
+			GE25 S 2 A_FaceTarget
+			GE25 T 2 A_FaceTarget
+			GE25 U 2 A_FaceTarget
+			GE25 V 2 A_FaceTarget
+			GE25 W 6 A_FaceTarget
+			GE25 X 2 Bright A_CustomMissile("Goldeneye_SniperTracer", 28, 0, frandom(-4,4))
+			GE25 Y 2 A_FaceTarget
+			GE26 A 8 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON)
+			GE26 C 4 
+			GE26 E 4
+			GE26 F 6
+			TNT1 A 0
+			Goto See			
 		Pain:
 			GE00 A 0 A_Jump(256, "Pain.Neck","Pain.LeftShoulder","Pain.RightShoulder","Pain.LeftArm","Pain.RightArm","Pain.LeftHand","Pain.RightHand","Pain.Crotch","Pain.Butt","Pain.Butt2","Pain.LeftLeg","Pain.RightLeg")
 			Goto Pain.Neck
@@ -1717,7 +1896,7 @@ Actor Goldeneye_EnemyBaseAR33 : Goldeneye_EnemyBase { mass 1013 }
 Actor Goldeneye_EnemyBaseDualAR33 : Goldeneye_EnemyBase { mass 1014 }
 Actor Goldeneye_EnemyBaseRCP90 : Goldeneye_EnemyBase { mass 1015 }
 Actor Goldeneye_EnemyBaseAutoShotgun : Goldeneye_EnemyBase { mass 1016 }
-Actor Goldeneye_EnemyBaseSniper : Goldeneye_EnemyBase { mass 1017 }
+Actor Goldeneye_EnemyBaseSniper : Goldeneye_EnemyBase { mass 1017 DropItem "Goldeneye_SniperEnemyDrop" }
 Actor Goldeneye_EnemyBaseCougar : Goldeneye_EnemyBase { mass 1018 }
 Actor Goldeneye_EnemyBaseDualCougar : Goldeneye_EnemyBase { mass 1019 }
 Actor Goldeneye_EnemyBaseLaser : Goldeneye_EnemyBase { mass 1020 }
@@ -1745,7 +1924,22 @@ Actor Goldeneye_KF7EnemyDrop : SamsaraSlotTwoDrop
 			GE00 Z -1
 			Stop
 		}
-}		
+}	
+
+Actor Goldeneye_SniperEnemyDrop : SamsaraUniquePickup1
+{
+	States
+	{
+		Spawn:
+			GE00 Z -1
+			Stop
+		}
+}
+
+Actor Goldeneye_KlobbTracerEnemy : Goldeneye_BulletTracer
+{
+	Damage(6)
+}	
 
 ACTOR Goldeneye_HatShotToken : Inventory { Inventory.MaxAmount 1 }
 
