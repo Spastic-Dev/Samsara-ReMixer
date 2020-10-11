@@ -1,7 +1,7 @@
 str GuardTypes[14] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard2", "GreatGuard", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard" };
 str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mandy", "Marion", "Mark", "Martin", "Neil", "Pete", "Robin", "Sally", "Scott", "Shaun", "Stevee", "Steveh", "Vivien" };
 str HatTypes[13] = { "NoHat", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
-str GunTypes[24] = { "KF7", "AR33Dual", "AR33", "AutoShotgun", "CougarDual", "Cougar", "D5kDual", "D5k", "DD44Dual", "DD44", "GrenadeLauncher", "KlobbDual", "Klobb", "Laser", "PhantomDual", "Phantom", "PP7", "RCP90", "RocketLauncher", "SiberianCombo", "Sniper", "XeniaCombo", "ZMGDual", "ZMG" };
+str GunTypes[24] = { "KF7", "DualAR33", "AR33", "AutoShotgun", "DualCougar", "Cougar", "DualD5k", "D5k", "DualDD44", "DD44", "GrenadeLauncher", "DualKlobb", "Klobb", "Laser", "DualPhantom", "Phantom", "PP7", "RCP90", "RocketLauncher", "SiberianCombo", "Sniper", "XeniaCombo", "DualZMG", "ZMG" };
 
 function int SetPointerExt(int assign_slot, int tid, int assign_to_tid) 
 {
@@ -114,4 +114,18 @@ Script "Goldeneye_HatShot" (void)
 	Thing_ChangeTID(hatlesstid, hattid);
 	Thing_Remove(0);
 	SetActivator(hattid,AAPTR_MASTER);
+}
+
+Script "GoldeneyePartPositioner" (void)
+{
+	while(true)
+	{
+		int activator = ActivatorTID();
+		int newtid = UniqueTID();
+		Thing_ChangeTID(activator, newtid);
+		SetActivator(0,AAPTR_Master);
+		SetActorPosition(newtid,GetActorX(0),GetActorY(0),GetActorZ(0),1);
+		Thing_ChangeTID(newtid, 0);
+		Delay(1);
+	}
 }
