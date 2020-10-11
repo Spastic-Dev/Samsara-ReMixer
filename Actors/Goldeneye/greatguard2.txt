@@ -1,4 +1,4 @@
-Actor Goldeneye_GreatGuard2_Alan_NoHat_KF7 : Goldeneye_EnemyBase { Mass 1006 DropItem "Goldeneye_KF7EnemyDrop" Tag "Siberian Guard (Arkangelsk)" }
+/*Actor Goldeneye_GreatGuard2_Alan_NoHat_KF7 : Goldeneye_EnemyBase { Mass 1006 DropItem "Goldeneye_KF7EnemyDrop" Tag "Siberian Guard (Arkangelsk)" }
 Actor Goldeneye_GreatGuard2_Alan_FurHatBrown_KF7 : Goldeneye_GreatGuard2_Alan_NoHat_KF7 {}
 Actor Goldeneye_GreatGuard2_B_NoHat_KF7 : Goldeneye_GreatGuard2_Alan_NoHat_KF7 {}
 Actor Goldeneye_GreatGuard2_B_FurHatBrown_KF7 : Goldeneye_GreatGuard2_Alan_NoHat_KF7 {}
@@ -101,4 +101,17 @@ Actor Goldeneye_GreatGuard2 : Goldeneye_EnemySpawner
 	DropItem "Goldeneye_GreatGuard2_Stevee_FurHatBrown_KF7", 256, 1
 	DropItem "Goldeneye_GreatGuard2_Steveh_NoHat_KF7", 256, 1
 	DropItem "Goldeneye_GreatGuard2_Steveh_FurHatBrown_KF7", 256, 1
+}*/
+
+Actor Goldeneye_GuardArkangelsk : Goldeneye_EnemyBase
+{
+	Mass 1006 
+	DropItem "Goldeneye_KF7EnemyDrop" 
+	Tag "Siberian Guard (Arkangelsk)"
+	States
+	{
+		Spawn:
+			GE00 AA 0 ACS_NamedExecuteAlways("GoldeneyeEnemyPartsPicker",0,1)
+			Goto Spawn2
+	}
 }

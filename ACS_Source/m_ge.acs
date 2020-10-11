@@ -116,16 +116,43 @@ Script "Goldeneye_HatShot" (void)
 	SetActivator(hattid,AAPTR_MASTER);
 }
 
-Script "GoldeneyePartPositioner" (void)
+Script "GoldeneyePartPositioner" (void) clientside
 {
-	while(true)
+	int angle;
+	while(ClassifyActor(0) != 1)
 	{
-		int activator = ActivatorTID();
-		int newtid = UniqueTID();
-		Thing_ChangeTID(activator, newtid);
-		SetActivator(0,AAPTR_Master);
-		SetActorPosition(newtid,GetActorX(0),GetActorY(0),GetActorZ(0),1);
-		Thing_ChangeTID(newtid, 0);
+		angle = GetActorAngle(0);
+		//SetActorPosition(newtid,GetActorX(0),GetActorY(0),GetActorZ(0),0);
+		Warp(AAPTR_MASTER,0,0,0,angle,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION);
 		Delay(1);
+	}
+}
+
+Script "GoldeneyeEnemyPartsPicker" (int type)
+{
+	int newtid = UniqueTID();
+	int bodytid = UniqueTID();
+	int headtid = UniqueTID();
+	int activator = ActivatorTID();
+	
+	Thing_ChangeTID(activator, newtid);
+	SpawnForced("Goldeneye_GreatGuard2",0,0,0,bodytid);
+	SetActivator(bodytid,AAPTR_DEFAULT);
+	SetPointer(AAPTR_MASTER,newtid);
+	SpawnForced("Goldeneye_Alan_NoShades",0,0,0,headtid);
+	SetActivator(headtid,AAPTR_DEFAULT);
+	SetPointer(AAPTR_MASTER,newtid);
+}
+
+Script "GoldeneyePartBroadcast" (int state)
+{
+	switch(state)
+	{
+		case 1:
+			SetActorState(0,"Spawn2",true);
+			break;
+		case 2:
+			SetActorState(0,"SeeTwoHand",true);
+			break;
 	}
 }
