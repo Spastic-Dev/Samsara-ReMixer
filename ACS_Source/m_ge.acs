@@ -1,6 +1,6 @@
 str GuardTypes[14] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard2", "GreatGuard", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard" };
-str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mandy", "Marion", "Mark", "Martin", "Neil", "Pete", "Robin", "Sally", "Scott", "Shaun", "Stevee", "Steveh", "Vivien" };
-str HatTypes[13] = { "NoHat", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
+str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mark", "Martin", "Neil", "Pete", "Robin", "Scott", "Shaun", "Stevee", "Steveh", "Mandy", "Marion", "Sally", "Vivien" };
+str HatTypes[13] = { "", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
 str GunTypes[24] = { "KF7", "DualAR33", "AR33", "AutoShotgun", "DualCougar", "Cougar", "DualD5k", "D5k", "DualDD44", "DD44", "GrenadeLauncher", "DualKlobb", "Klobb", "Laser", "DualPhantom", "Phantom", "PP7", "RCP90", "RocketLauncher", "SiberianCombo", "Sniper", "XeniaCombo", "DualZMG", "ZMG" };
 
 function int SetPointerExt(int assign_slot, int tid, int assign_to_tid) 
@@ -116,7 +116,7 @@ Script "Goldeneye_HatShot" (void)
 	SetActivator(hattid,AAPTR_MASTER);
 }
 
-Script "GoldeneyePartPositioner" (void) clientside
+Script "GoldeneyePartPositioner" (void)
 {
 	int angle;
 	while(ClassifyActor(0) != 1)
@@ -130,18 +130,43 @@ Script "GoldeneyePartPositioner" (void) clientside
 
 Script "GoldeneyeEnemyPartsPicker" (int type)
 {
+	str glasses;
+	int elitechance, hattype;
 	int newtid = UniqueTID();
 	int bodytid = UniqueTID();
 	int headtid = UniqueTID();
+	int hattid = UniqueTID();
 	int activator = ActivatorTID();
-	
 	Thing_ChangeTID(activator, newtid);
-	SpawnForced("Goldeneye_GreatGuard2",0,0,0,bodytid);
-	SetActivator(bodytid,AAPTR_DEFAULT);
-	SetPointer(AAPTR_MASTER,newtid);
-	SpawnForced("Goldeneye_Alan_NoShades",0,0,0,headtid);
+	//Spawn the parts
+	elitechance = 0; 
+	int eliterand = random(0,100);
+	if(elitechance > eliterand)
+		glasses = "_Shades";
+	else if(elitechance != -1)
+		glasses = "_NoShades";
+	else
+		glasses = "";			
+	int randomhead = random(0,24);
+	if(HeadTypes[randomhead] == "Joe2")
+		glasses = "";
+	SpawnForced(StrParam(s:"Goldeneye_",s:HeadTypes[randomhead],s:glasses),0,0,0,headtid);
 	SetActivator(headtid,AAPTR_DEFAULT);
-	SetPointer(AAPTR_MASTER,newtid);
+	SetPointer(AAPTR_MASTER,newtid);		
+	switch(type)
+	{
+		case 1:	
+			SpawnForced(StrParam(s:"Goldeneye_",s:GuardTypes[5]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			int randnum = random(0,100);
+			if(randnum >= 50) 
+				hattype = 6;
+			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
+			SetActivator(hattid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			break;
+	}
 }
 
 Script "GoldeneyePartBroadcast" (int state)
@@ -153,6 +178,21 @@ Script "GoldeneyePartBroadcast" (int state)
 			break;
 		case 2:
 			SetActorState(0,"SeeTwoHand",true);
+			break;
+		case 3:
+			SetActorState(0,"IdleAdjustCrotch",true);
+			break;
+		case 4:
+			SetActorState(0,"IdleScratchButt",true);
+			break;
+		case 5:
+			SetActorState(0,"IdleScratchLeg",true);
+			break;
+		case 6:
+			SetActorState(0,"IdleYawning",true);
+			break;
+		case 7:
+			SetActorState(0,"IdleSwatFlies",true);
 			break;
 	}
 }
