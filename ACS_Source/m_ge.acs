@@ -1,4 +1,4 @@
-str GuardTypes[14] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard2", "GreatGuard", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard" };
+str GuardTypes[14] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard", "GreatGuard2", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard" };
 str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mark", "Martin", "Neil", "Pete", "Robin", "Scott", "Shaun", "Stevee", "Steveh", "Mandy", "Marion", "Sally", "Vivien" };
 str HatTypes[13] = { "", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
 str GunTypes[24] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "GrenadeLauncher", "RocketLauncher", "SiberianCombo", "XeniaCombo" };
@@ -141,7 +141,7 @@ Script "GoldeneyePartCheckMaster" (void)
 Script "GoldeneyeEnemyPartsPicker" (int type)
 {
 	str glasses;
-	int elitechance, hattype, guntype;
+	int elitechance, hattype, guntype, randnum;
 	int newtid = UniqueTID();
 	int bodytid = UniqueTID();
 	int headtid = UniqueTID();
@@ -167,10 +167,10 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 	switch(type)
 	{
 		case 1:	
-			SpawnForced(StrParam(s:"Goldeneye_",s:GuardTypes[5]),0,0,0,bodytid);
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[6]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
-			int randnum = random(0,100);
+			randnum = random(0,100);
 			if(randnum >= 50) 
 				hattype = 6;
 			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
@@ -178,7 +178,55 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			SetPointer(AAPTR_MASTER,newtid);
 			
 			guntype = 5;
-			SetActorProperty(0,APROP_Mass,1000+(guntype+1));
+			SetActorProperty(0,APROP_Mass,1000+(1+guntype));
+			GiveInventory("Goldeneye_EnemyKF7Token",1);
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(headtid,0);
+			Thing_ChangeTID(hattid,0);
+			Thing_ChangeTID(guntid,0);
+			break;
+		case 2:	
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[5]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			if(randnum >= 66) 
+				hattype = 4;
+			else if(randnum >= 33) 
+				hattype = 1;
+			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
+			SetActivator(hattid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			
+			guntype = 5;
+			SetActorProperty(0,APROP_Mass,1000+(1+guntype));
+			GiveInventory("Goldeneye_EnemyKF7Token",1);
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(headtid,0);
+			Thing_ChangeTID(hattid,0);
+			Thing_ChangeTID(guntid,0);
+			break;
+		case 3:	
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[10]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			if(randnum >= 66) 
+				hattype = 11;
+			else if(randnum >= 33) 
+				hattype = 8;
+			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
+			SetActivator(hattid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			
+			guntype = 5;
+			SetActorProperty(0,APROP_Mass,1000+(1+guntype));
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);

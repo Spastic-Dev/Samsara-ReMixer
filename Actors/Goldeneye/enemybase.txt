@@ -46,7 +46,7 @@ Actor Goldeneye_EnemyBase
 		Spawn:
 			TNT1 AA 0
 		Spawn2:
-			TNT1 A 0 A_JumpIf(mass == 1000, "AnimationTest")
+			//TNT1 A 0 A_JumpIf(mass == 1000, "AnimationTest")
 			TNT1 A 0 A_JumpIf(mass <= 1005, "SpawnDual")
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_Spawn2",1)
 			TNT1 A 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
@@ -275,35 +275,6 @@ Actor Goldeneye_EnemyBase
 			TNT1 ABCDEFGHIJKLMNOPQ 3
 			TNT1 A 0
 			Goto See
-		/*FireDD44RollLeft:			Animation finicky, will attempt later
-			TNT1 A 4 A_FaceTarget
-			TNT1 B 4 A_FaceTarget
-			TNT1 C 4 A_FaceTarget
-			TNT1 D 4 A_FaceTarget
-			TNT1 E 4 A_FaceTarget
-			TNT1 F 4 A_FaceTarget
-			TNT1 G 4 A_FaceTarget
-			TNT1 H 4 A_FaceTarget
-			TNT1 I 4 A_FaceTarget
-			TNT1 J 4 A_FaceTarget
-			TNT1 K 4 A_FaceTarget
-			TNT1 L 4 A_FaceTarget TNT1 M 0 ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
-			TNT1 M 4 A_FaceTarget
-			TNT1 N 4 A_FaceTarget
-			TNT1 O 4 A_FaceTarget
-			TNT1 P 4 A_FaceTarget
-			TNT1 Q 4 A_FaceTarget
-			TNT1 R 4 A_FaceTarget
-			TNT1 S 4 A_FaceTarget
-			TNT1 T 4 A_FaceTarget
-			TNT1 OP 4 A_FaceTarget
-			TNT1 Q 2 Bright A_CustomMissile("Goldeneye_KF7TracerEnemy", 40, 0, frandom(-4,4))
-			TNT1 RS 2 A_FaceTarget
-			TNT1 T 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
-			TNT1 UVWXYZ 4
-			TNT1 ABCDEFGHIJKLMNOPQ 3
-			TNT1 A 0
-			Goto See*/
 		FireDD44Dual:
 			TNT1 A 0 A_Jump(256, "FireDD44StepForward", "FireDD44Kneel", "FireDD44DualStand", "FireDD44DualKneel", "FireDD44DualCrossKneel")
 			Goto FireDD44DualStand	
@@ -3181,27 +3152,27 @@ Actor Goldeneye_PartBase
 }
 
 //Bodies
-Actor Goldeneye_ArmorGuard : Goldeneye_PartBase {}
-Actor Goldeneye_BlueCamGuard : Goldeneye_PartBase {}
-Actor Goldeneye_CamGuard : Goldeneye_PartBase {}
-Actor Goldeneye_CommGuard : Goldeneye_PartBase {}
-Actor Goldeneye_GrayGuard : Goldeneye_PartBase {}
-Actor Goldeneye_GreatGuard : Goldeneye_PartBase {}
-Actor Goldeneye_GreatGuard2 : Goldeneye_PartBase {}
-Actor Goldeneye_Jaws : Goldeneye_PartBase {}
-Actor Goldeneye_Mayday : Goldeneye_PartBase {}
-Actor Goldeneye_Moonfemale : Goldeneye_PartBase {}
-Actor Goldeneye_Moonguard : Goldeneye_PartBase {}
-Actor Goldeneye_NavyGuard : Goldeneye_PartBase {}
-Actor Goldeneye_OddJob : Goldeneye_PartBase {}
-Actor Goldeneye_OliveGuard : Goldeneye_PartBase {}
-Actor Goldeneye_Ourumov : Goldeneye_PartBase {}
-Actor Goldeneye_RusGuard : Goldeneye_PartBase {}
-Actor Goldeneye_BaronSamedi : Goldeneye_PartBase {}
-Actor Goldeneye_Snowguard : Goldeneye_PartBase {}
-Actor Goldeneye_Trevelyan : Goldeneye_PartBase {}
-Actor Goldeneye_TrevGuard : Goldeneye_PartBase {}
-Actor Goldeneye_Xenia : Goldeneye_PartBase {}
+Actor Goldeneye_Body_ArmorGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_BlueCamGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_CamGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_CommGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_GrayGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_GreatGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_GreatGuard2 : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Jaws : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Mayday : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Moonfemale : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Moonguard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_NavyGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_OddJob : Goldeneye_PartBase {}
+Actor Goldeneye_Body_OliveGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Ourumov : Goldeneye_PartBase {}
+Actor Goldeneye_Body_RusGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_BaronSamedi : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Snowguard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Trevelyan : Goldeneye_PartBase {}
+Actor Goldeneye_Body_TrevGuard : Goldeneye_PartBase {}
+Actor Goldeneye_Body_Xenia : Goldeneye_PartBase {}
 
 //Heads
 Actor Goldeneye_Alan_NoShades : Goldeneye_PartBase {}
