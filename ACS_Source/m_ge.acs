@@ -1,7 +1,7 @@
 str GuardTypes[14] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard2", "GreatGuard", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard" };
 str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mark", "Martin", "Neil", "Pete", "Robin", "Scott", "Shaun", "Stevee", "Steveh", "Mandy", "Marion", "Sally", "Vivien" };
 str HatTypes[13] = { "", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
-str GunTypes[24] = { "KF7", "DualAR33", "AR33", "AutoShotgun", "DualCougar", "Cougar", "DualD5k", "D5k", "DualDD44", "DD44", "GrenadeLauncher", "DualKlobb", "Klobb", "Laser", "DualPhantom", "Phantom", "PP7", "RCP90", "RocketLauncher", "SiberianCombo", "Sniper", "XeniaCombo", "DualZMG", "ZMG" };
+str GunTypes[24] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "GrenadeLauncher", "RocketLauncher", "SiberianCombo", "XeniaCombo" };
 
 function int SetPointerExt(int assign_slot, int tid, int assign_to_tid) 
 {
@@ -118,24 +118,35 @@ Script "Goldeneye_HatShot" (void)
 
 Script "GoldeneyePartPositioner" (void)
 {
-	int angle;
+	ACS_NamedExecuteAlways("GoldeneyePartCheckMaster",0,0,0,0);
 	while(ClassifyActor(0) != 1)
 	{
-		angle = GetActorAngle(0);
 		//SetActorPosition(newtid,GetActorX(0),GetActorY(0),GetActorZ(0),0);
-		Warp(AAPTR_MASTER,0,0,0,angle,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION);
+		Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION);
 		Delay(1);
 	}
+}
+
+Script "GoldeneyePartCheckMaster" (void)
+{
+	int activator = ActivatorTid();
+	SetActivator(0,AAPTR_MASTER);
+	while(ClassifyActor(0) != 1)
+	{
+		Delay(1);
+	}
+	Thing_Remove(activator);
 }
 
 Script "GoldeneyeEnemyPartsPicker" (int type)
 {
 	str glasses;
-	int elitechance, hattype;
+	int elitechance, hattype, guntype;
 	int newtid = UniqueTID();
 	int bodytid = UniqueTID();
 	int headtid = UniqueTID();
 	int hattid = UniqueTID();
+	int guntid = UniqueTID();
 	int activator = ActivatorTID();
 	Thing_ChangeTID(activator, newtid);
 	//Spawn the parts
@@ -165,6 +176,16 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
 			SetActivator(hattid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
+			
+			guntype = 5;
+			SetActorProperty(0,APROP_Mass,1000+(guntype+1));
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(headtid,0);
+			Thing_ChangeTID(hattid,0);
+			Thing_ChangeTID(guntid,0);
 			break;
 	}
 }
@@ -180,19 +201,151 @@ Script "GoldeneyePartBroadcast" (int state)
 			SetActorState(0,"SeeTwoHand",true);
 			break;
 		case 3:
-			SetActorState(0,"IdleAdjustCrotch",true);
+			SetActorState(0,"SpawnDual",true);
 			break;
 		case 4:
-			SetActorState(0,"IdleScratchButt",true);
+			SetActorState(0,"IdleAdjustCrotch",true);
 			break;
 		case 5:
-			SetActorState(0,"IdleScratchLeg",true);
+			SetActorState(0,"IdleScratchButt",true);
 			break;
 		case 6:
-			SetActorState(0,"IdleYawning",true);
+			SetActorState(0,"IdleScratchLeg",true);
 			break;
 		case 7:
+			SetActorState(0,"IdleYawning",true);
+			break;
+		case 8:
 			SetActorState(0,"IdleSwatFlies",true);
+			break;
+		case 9:
+			SetActorState(0,"SeeSingleDual",true);
+			break;
+		case 10:
+			SetActorState(0,"Pain.Neck",true);
+			break;
+		case 11:
+			SetActorState(0,"Pain.LeftShoulder",true);
+			break;
+		case 12:
+			SetActorState(0,"Pain.RightShoulder",true);
+			break;
+		case 13:
+			SetActorState(0,"Pain.LeftArm",true);
+			break;
+		case 14:
+			SetActorState(0,"Pain.RightArm",true);
+			break;
+		case 15:
+			SetActorState(0,"Pain.LeftHand",true);
+			break;
+		case 16:
+			SetActorState(0,"Pain.RightHand",true);
+			break;
+		case 17:
+			SetActorState(0,"Pain.Crotch",true);
+			break;
+		case 18:
+			SetActorState(0,"Pain.Butt",true);
+			break;
+		case 19:
+			SetActorState(0,"Pain.Butt2",true);
+			break;
+		case 20:
+			SetActorState(0,"Pain.LeftLeg",true);
+			break;
+		case 21:
+			SetActorState(0,"Pain.RightLeg",true);
+			break;
+		case 22:
+			SetActorState(0,"DeathHeadShot",true);
+			break;
+		case 23:
+			SetActorState(0,"DeathNeck",true);
+			break;
+		case 24:
+			SetActorState(0,"DeathOnKnees",true);
+			break;
+		case 25:
+			SetActorState(0,"DeathOnSide",true);
+			break;
+		case 26:
+			SetActorState(0,"DeathShoulderBack",true);
+			break;
+		case 27:
+			SetActorState(0,"DeathCrossFeet",true);
+			break;
+		case 28:
+			SetActorState(0,"DeathSprawlOut",true);
+			break;
+		case 29:
+			SetActorState(0,"DeathFaceUp",true);
+			break;
+		case 30:
+			SetActorState(0,"DeathFaceUpFlip",true);
+			break;
+		case 31:
+			SetActorState(0,"DeathFetalLeft",true);
+			break;
+		case 32:
+			SetActorState(0,"DeathFetalRight",true);
+			break;
+		case 33:
+			SetActorState(0,"DeathJumpBack",true);
+			break;
+		case 34:
+			SetActorState(0,"DeathStaggerWall",true);
+			break;
+		case 35:
+			SetActorState(0,"DeathExplosionBack",true);
+			break;
+		case 36:
+			SetActorState(0,"DeathExplosionBack2",true);
+			break;
+		case 37:
+			SetActorState(0,"DeathExplosionForward",true);
+			break;
+		case 38:
+			SetActorState(0,"DeathExplosionForwardRoll",true);
+			break;
+		case 39:
+			SetActorState(0,"DeathExplosionLeft",true);
+			break;
+		case 40:
+			SetActorState(0,"DeathExplosionLeft2",true);
+			break;
+		case 41:
+			SetActorState(0,"DeathExplosionRight",true);
+			break;
+		case 42:
+			SetActorState(0,"DeathFaceGround",true);
+			break;
+		case 43:
+			SetActorState(0,"DeathFlyBack",true);
+			break;
+		case 44:
+			SetActorState(0,"FireKF7AimBow",true);
+			break;
+		case 45:
+			SetActorState(0,"FireKF7AimHip",true);
+			break;
+		case 46:
+			SetActorState(0,"FireKF7AimToFire",true);
+			break;
+		case 47:
+			SetActorState(0,"FireKF7Crouch",true);
+			break;
+		case 48:
+			SetActorState(0,"FireKF7JumpToLeft",true);
+			break;
+		case 49:
+			SetActorState(0,"FireKF7JumpToRight",true);
+			break;
+		case 50:
+			SetActorState(0,"FireKF7RollLeft",true);
+			break;
+		case 51:
+			SetActorState(0,"FireKF7RollRight",true);
 			break;
 	}
 }
