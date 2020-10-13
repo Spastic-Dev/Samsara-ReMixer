@@ -138,7 +138,7 @@ Script "GoldeneyePartCheckMaster" (void)
 	Thing_Remove(activator);
 }
 
-Script "GoldeneyeEnemyPartsPicker" (int type)
+Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 {
 	str glasses;
 	int elitechance, hattype, guntype, randnum;
@@ -150,7 +150,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 	int activator = ActivatorTID();
 	Thing_ChangeTID(0, newtid);
 	//Spawn the parts
-	elitechance = 0; 
+	elitechance = ec; 
 	int eliterand = random(0,100);
 	if(elitechance > eliterand)
 		glasses = "_Shades";
@@ -167,6 +167,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 	switch(type)
 	{
 		case 1:	
+			ec = 0;
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[6]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
@@ -190,6 +191,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			Thing_ChangeTID(newtid,activator);
 			break;
 		case 2:	
+			ec = 0;
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[5]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
@@ -202,7 +204,12 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			SetActivator(hattid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
 			
-			guntype = 5;
+			if(randnum >= 80)
+				guntype = 2;
+			else if(randnum >= 40)
+				guntype = 1;
+			else if(randnum >= 20)
+				guntype = 5;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -215,6 +222,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			Thing_ChangeTID(newtid,activator);
 			break;
 		case 3:	
+			ec = 0;
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[10]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
@@ -227,7 +235,12 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			SetActivator(hattid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
 			
-			guntype = 5;
+			if(randnum <=9)
+				guntype = 4;
+			else if(randnum <= 15)
+				guntype = 3;
+			else	
+				guntype = 5;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -240,6 +253,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			Thing_ChangeTID(newtid,activator);
 			break;
 		case 4:	
+			ec = 0;
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[12]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
@@ -262,6 +276,57 @@ Script "GoldeneyeEnemyPartsPicker" (int type)
 			Thing_ChangeTID(guntid,0);
 			Thing_ChangeTID(newtid,activator);
 			break;
+			
+		case 5:	
+			ec = 20;
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[1]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			if(glasses == "_Shades")
+			{
+				if(randnum >= 50)
+					hattype = 2;
+				else
+					hattype = 0;
+			}
+			else
+			{
+				if(randnum >= 50)
+					hattype = 5;
+				else 
+					hattype = 0;
+			}		
+			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
+			SetActivator(hattid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			
+			randnum = random(0,100);
+			if(glasses == "_Shades")
+			{
+				if(randnum >= 50)
+					guntype = 4;
+				else
+					guntype = 2;
+			}
+		else
+			{
+				if(randnum >= 50)
+					guntype = 3;
+				else
+					guntype = 5;
+			}	
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(guntid,AAPTR_Master);
+			SetActorProperty(0,APROP_Mass,1000+(1+guntype));
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(headtid,0);
+			Thing_ChangeTID(hattid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
+			break;			
 	}
 }
 
@@ -422,5 +487,50 @@ Script "GoldeneyePartBroadcast" (int state)
 		case 51:
 			SetActorState(0,"FireKF7RollRight",true);
 			break;
+		case 52:
+			SetActorState(0,"FireDD44StepForward",true);
+			break;		
+		case 53:
+			SetActorState(0,"FireDD44StepForwardEnd",true);
+			break;	
+		case 54:
+			SetActorState(0,"FireDD44Kneel",true);
+			break;	
+		case 55:
+			SetActorState(0,"FireDD44KneelEnd",true);
+			break;			
+		case 56:
+			SetActorState(0,"FireDD44DualStand",true);
+			break;	
+		case 57:
+			SetActorState(0,"FireDD44DualStandEnd",true);
+			break;	
+		case 58:
+			SetActorState(0,"FireDD44DualKneel",true);
+			break;	
+		case 59:
+			SetActorState(0,"FireDD44DualKneelEnd",true);
+			break;	
+		case 60:
+			SetActorState(0,"FireDD44DualCrossKneel",true);
+			break;	
+		case 61:
+			SetActorState(0,"FireDD44DualCrossKneelEnd",true);
+			break;	
+		case 62:
+			SetActorState(0,"FireKlobbStepForward",true);
+			break;		
+		case 63:
+			SetActorState(0,"FireKlobbKneel",true);
+			break;		
+		case 64:
+			SetActorState(0,"FireKlobbDualStand",true);
+			break;		
+		case 65:
+			SetActorState(0,"FireKlobbDualKneel",true);
+			break;	
+		case 66:
+			SetActorState(0,"FireKlobbDualCrossKneel",true);
+			break;				
 	}
 }
