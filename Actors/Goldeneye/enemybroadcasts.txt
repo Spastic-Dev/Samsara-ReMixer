@@ -1,19 +1,4 @@
-Actor Goldeneye_BroadCast_StateToken : CustomInventory
-{
-	-COUNTITEM
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.PickupMessage ""
-	Inventory.PickupSound ""
-	States
-	{
-		Pickup:
-			TNT1 A 0
-			TNT1 A 0 A_JumpIf(CallACS("GoldeneyePartBroadcast",0),1)
-			TNT1 A 0
-			stop
-	}
-}
-Actor Goldeneye_BroadCast_Spawn2 : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_Spawn2 : Goldeneye_SideBySide
 {
 	States
 	{
@@ -24,7 +9,7 @@ Actor Goldeneye_BroadCast_Spawn2 : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_BroadCast_SeeTwoHand : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_SeeTwoHand : Goldeneye_SideBySide
 {
 	States
 	{
@@ -35,7 +20,7 @@ Actor Goldeneye_BroadCast_SeeTwoHand : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_BroadCast_SpawnDual : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_SpawnDual : Goldeneye_SideBySide
 {
 	States
 	{
@@ -46,7 +31,7 @@ Actor Goldeneye_BroadCast_SpawnDual : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_BroadCast_IdleAdjustCrotch : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_IdleAdjustCrotch : Goldeneye_SideBySide
 {
 	States
 	{
@@ -57,7 +42,7 @@ Actor Goldeneye_BroadCast_IdleAdjustCrotch : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_BroadCast_IdleScratchButt : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_IdleScratchButt : Goldeneye_SideBySide
 {
 	States
 	{
@@ -68,7 +53,7 @@ Actor Goldeneye_BroadCast_IdleScratchButt : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_BroadCast_IdleScratchLeg : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_IdleScratchLeg : Goldeneye_SideBySide
 {
 	States
 	{
@@ -79,7 +64,7 @@ Actor Goldeneye_BroadCast_IdleScratchLeg : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_BroadCast_IdleYawning : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_IdleYawning : Goldeneye_SideBySide
 {
 	States
 	{
@@ -90,7 +75,7 @@ Actor Goldeneye_BroadCast_IdleYawning : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_BroadCast_IdleSwatFlies : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_BroadCast_IdleSwatFlies : Goldeneye_SideBySide
 {
 	States
 	{
@@ -101,7 +86,7 @@ Actor Goldeneye_BroadCast_IdleSwatFlies : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_SeeSingleDual : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_SeeSingleDual : Goldeneye_SideBySide
 {
 	States
 	{
@@ -112,7 +97,7 @@ Actor Goldeneye_Broadcast_SeeSingleDual : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_Neck : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_Neck : Goldeneye_SideBySide
 {
 	States
 	{
@@ -123,7 +108,7 @@ Actor Goldeneye_Broadcast_Neck : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_LeftShoulder : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_LeftShoulder : Goldeneye_SideBySide
 {
 	States
 	{
@@ -134,7 +119,7 @@ Actor Goldeneye_Broadcast_LeftShoulder : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_RightShoulder : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_RightShoulder : Goldeneye_SideBySide
 {
 	States
 	{
@@ -145,7 +130,7 @@ Actor Goldeneye_Broadcast_RightShoulder : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_LeftArm : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_LeftArm : Goldeneye_SideBySide
 {
 	States
 	{
@@ -156,7 +141,7 @@ Actor Goldeneye_Broadcast_LeftArm : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_RightArm : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_RightArm : Goldeneye_SideBySide
 {
 	States
 	{
@@ -167,7 +152,7 @@ Actor Goldeneye_Broadcast_RightArm : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_LeftHand : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_LeftHand : Goldeneye_SideBySide
 {
 	States
 	{
@@ -178,7 +163,7 @@ Actor Goldeneye_Broadcast_LeftHand : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_RightHand : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_RightHand : Goldeneye_SideBySide
 {
 	States
 	{
@@ -189,7 +174,7 @@ Actor Goldeneye_Broadcast_RightHand : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_Crotch : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_Crotch : Goldeneye_SideBySide
 {
 	States
 	{
@@ -200,7 +185,7 @@ Actor Goldeneye_Broadcast_Crotch : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_Butt : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_Butt : Goldeneye_SideBySide
 {
 	States
 	{
@@ -211,7 +196,7 @@ Actor Goldeneye_Broadcast_Butt : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_Butt2 : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_Butt2 : Goldeneye_SideBySide
 {
 	States
 	{
@@ -222,7 +207,7 @@ Actor Goldeneye_Broadcast_Butt2 : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_LeftLeg : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_LeftLeg : Goldeneye_SideBySide
 {
 	States
 	{
@@ -233,7 +218,7 @@ Actor Goldeneye_Broadcast_LeftLeg : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_RightLeg : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_RightLeg : Goldeneye_SideBySide
 {
 	States
 	{
@@ -244,7 +229,7 @@ Actor Goldeneye_Broadcast_RightLeg : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathHeadShot : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathHeadShot : Goldeneye_SideBySide
 {
 	States
 	{
@@ -255,7 +240,7 @@ Actor Goldeneye_Broadcast_DeathHeadShot : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathNeck : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathNeck : Goldeneye_SideBySide
 {
 	States
 	{
@@ -266,7 +251,7 @@ Actor Goldeneye_Broadcast_DeathNeck : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathOnKnees : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathOnKnees : Goldeneye_SideBySide
 {
 	States
 	{
@@ -277,7 +262,7 @@ Actor Goldeneye_Broadcast_DeathOnKnees : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathOnSide : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathOnSide : Goldeneye_SideBySide
 {
 	States
 	{
@@ -288,7 +273,7 @@ Actor Goldeneye_Broadcast_DeathOnSide : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathShoulderBack : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathShoulderBack : Goldeneye_SideBySide
 {
 	States
 	{
@@ -299,7 +284,7 @@ Actor Goldeneye_Broadcast_DeathShoulderBack : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathSprawlOut : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathSprawlOut : Goldeneye_SideBySide
 {
 	States
 	{
@@ -310,7 +295,7 @@ Actor Goldeneye_Broadcast_DeathSprawlOut : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathCrossFeet : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathCrossFeet : Goldeneye_SideBySide
 {
 	States
 	{
@@ -321,7 +306,7 @@ Actor Goldeneye_Broadcast_DeathCrossFeet : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathFaceUp : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathFaceUp : Goldeneye_SideBySide
 {
 	States
 	{
@@ -332,7 +317,7 @@ Actor Goldeneye_Broadcast_DeathFaceUp : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathFaceUpFlip : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathFaceUpFlip : Goldeneye_SideBySide
 {
 	States
 	{
@@ -343,7 +328,7 @@ Actor Goldeneye_Broadcast_DeathFaceUpFlip : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathFetalLeft : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathFetalLeft : Goldeneye_SideBySide
 {
 	States
 	{
@@ -354,7 +339,7 @@ Actor Goldeneye_Broadcast_DeathFetalLeft : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathFetalRight : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathFetalRight : Goldeneye_SideBySide
 {
 	States
 	{
@@ -365,7 +350,7 @@ Actor Goldeneye_Broadcast_DeathFetalRight : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathJumpBack : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathJumpBack : Goldeneye_SideBySide
 {
 	States
 	{
@@ -376,7 +361,7 @@ Actor Goldeneye_Broadcast_DeathJumpBack : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathStaggerWall : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathStaggerWall : Goldeneye_SideBySide
 {
 	States
 	{
@@ -387,7 +372,7 @@ Actor Goldeneye_Broadcast_DeathStaggerWall : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathExplosionBack : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathExplosionBack : Goldeneye_SideBySide
 {
 	States
 	{
@@ -398,7 +383,7 @@ Actor Goldeneye_Broadcast_DeathExplosionBack : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathExplosionBack2 : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathExplosionBack2 : Goldeneye_SideBySide
 {
 	States
 	{
@@ -409,7 +394,7 @@ Actor Goldeneye_Broadcast_DeathExplosionBack2 : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathExplosionForward : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathExplosionForward : Goldeneye_SideBySide
 {
 	States
 	{
@@ -420,7 +405,7 @@ Actor Goldeneye_Broadcast_DeathExplosionForward : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathExplosionForwardRoll : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathExplosionForwardRoll : Goldeneye_SideBySide
 {
 	States
 	{
@@ -431,7 +416,7 @@ Actor Goldeneye_Broadcast_DeathExplosionForwardRoll : Goldeneye_BroadCast_StateT
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathExplosionLeft : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathExplosionLeft : Goldeneye_SideBySide
 {
 	States
 	{
@@ -442,7 +427,7 @@ Actor Goldeneye_Broadcast_DeathExplosionLeft : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathExplosionLeft2 : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathExplosionLeft2 : Goldeneye_SideBySide
 {
 	States
 	{
@@ -453,7 +438,7 @@ Actor Goldeneye_Broadcast_DeathExplosionLeft2 : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathExplosionRight : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathExplosionRight : Goldeneye_SideBySide
 {
 	States
 	{
@@ -464,7 +449,7 @@ Actor Goldeneye_Broadcast_DeathExplosionRight : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathFaceGround : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathFaceGround : Goldeneye_SideBySide
 {
 	States
 	{
@@ -475,7 +460,7 @@ Actor Goldeneye_Broadcast_DeathFaceGround : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_DeathFlyBack : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_DeathFlyBack : Goldeneye_SideBySide
 {
 	States
 	{
@@ -486,7 +471,7 @@ Actor Goldeneye_Broadcast_DeathFlyBack : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7AimBow : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7AimBow : Goldeneye_SideBySide
 {
 	States
 	{
@@ -497,7 +482,7 @@ Actor Goldeneye_Broadcast_FireKF7AimBow : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7AimHip : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7AimHip : Goldeneye_SideBySide
 {
 	States
 	{
@@ -508,7 +493,7 @@ Actor Goldeneye_Broadcast_FireKF7AimHip : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7AimToFire : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7AimToFire : Goldeneye_SideBySide
 {
 	States
 	{
@@ -519,7 +504,7 @@ Actor Goldeneye_Broadcast_FireKF7AimToFire : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7Crouch : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7Crouch : Goldeneye_SideBySide
 {
 	States
 	{
@@ -530,7 +515,7 @@ Actor Goldeneye_Broadcast_FireKF7Crouch : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7JumpToRight : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7JumpToRight : Goldeneye_SideBySide
 {
 	States
 	{
@@ -541,7 +526,7 @@ Actor Goldeneye_Broadcast_FireKF7JumpToRight : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7JumpToLeft : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7JumpToLeft : Goldeneye_SideBySide
 {
 	States
 	{
@@ -552,7 +537,7 @@ Actor Goldeneye_Broadcast_FireKF7JumpToLeft : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7RollLeft : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7RollLeft : Goldeneye_SideBySide
 {
 	States
 	{
@@ -563,7 +548,7 @@ Actor Goldeneye_Broadcast_FireKF7RollLeft : Goldeneye_BroadCast_StateToken
 			stop
 	}
 }
-Actor Goldeneye_Broadcast_FireKF7RollRight : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKF7RollRight : Goldeneye_SideBySide
 {
 	States
 	{
@@ -575,7 +560,7 @@ Actor Goldeneye_Broadcast_FireKF7RollRight : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireDD44StepForward : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44StepForward : Goldeneye_SideBySide
 {
 	States
 	{
@@ -587,7 +572,7 @@ Actor Goldeneye_Broadcast_FireDD44StepForward : Goldeneye_BroadCast_StateToken
 	}
 }	
 
-Actor Goldeneye_Broadcast_FireDD44StepForwardEnd : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44StepForwardEnd : Goldeneye_SideBySide
 {
 	States
 	{
@@ -599,7 +584,7 @@ Actor Goldeneye_Broadcast_FireDD44StepForwardEnd : Goldeneye_BroadCast_StateToke
 	}
 }	
 
-Actor Goldeneye_Broadcast_FireDD44Kneel : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44Kneel : Goldeneye_SideBySide
 {
 	States
 	{
@@ -611,7 +596,7 @@ Actor Goldeneye_Broadcast_FireDD44Kneel : Goldeneye_BroadCast_StateToken
 	}
 }		
 
-Actor Goldeneye_Broadcast_FireDD44KneelEnd : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44KneelEnd : Goldeneye_SideBySide
 {
 	States
 	{
@@ -623,7 +608,7 @@ Actor Goldeneye_Broadcast_FireDD44KneelEnd : Goldeneye_BroadCast_StateToken
 	}
 }	
 
-Actor Goldeneye_Broadcast_FireDD44DualStand : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44DualStand : Goldeneye_SideBySide
 {
 	States
 	{
@@ -635,7 +620,7 @@ Actor Goldeneye_Broadcast_FireDD44DualStand : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireDD44DualStandEnd : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44DualStandEnd : Goldeneye_SideBySide
 {
 	States
 	{
@@ -647,7 +632,7 @@ Actor Goldeneye_Broadcast_FireDD44DualStandEnd : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireDD44DualKneel : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44DualKneel : Goldeneye_SideBySide
 {
 	States
 	{
@@ -659,7 +644,7 @@ Actor Goldeneye_Broadcast_FireDD44DualKneel : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireDD44DualKneelEnd : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44DualKneelEnd : Goldeneye_SideBySide
 {
 	States
 	{
@@ -671,7 +656,7 @@ Actor Goldeneye_Broadcast_FireDD44DualKneelEnd : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireDD44DualCrossKneel : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44DualCrossKneel : Goldeneye_SideBySide
 {
 	States
 	{
@@ -683,7 +668,7 @@ Actor Goldeneye_Broadcast_FireDD44DualCrossKneel : Goldeneye_BroadCast_StateToke
 	}
 }
 
-Actor Goldeneye_Broadcast_FireDD44DualCrossKneelEnd : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireDD44DualCrossKneelEnd : Goldeneye_SideBySide
 {
 	States
 	{
@@ -695,7 +680,7 @@ Actor Goldeneye_Broadcast_FireDD44DualCrossKneelEnd : Goldeneye_BroadCast_StateT
 	}
 }
 
-Actor Goldeneye_Broadcast_FireKlobbStepForward : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKlobbStepForward : Goldeneye_SideBySide
 {
 	States
 	{
@@ -707,7 +692,7 @@ Actor Goldeneye_Broadcast_FireKlobbStepForward : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireKlobbKneel : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKlobbKneel : Goldeneye_SideBySide
 {
 	States
 	{
@@ -719,7 +704,7 @@ Actor Goldeneye_Broadcast_FireKlobbKneel : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireKlobbDualStand : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKlobbDualStand : Goldeneye_SideBySide
 {
 	States
 	{
@@ -731,7 +716,7 @@ Actor Goldeneye_Broadcast_FireKlobbDualStand : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireKlobbDualKneel : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKlobbDualKneel : Goldeneye_SideBySide
 {
 	States
 	{
@@ -743,7 +728,7 @@ Actor Goldeneye_Broadcast_FireKlobbDualKneel : Goldeneye_BroadCast_StateToken
 	}
 }
 
-Actor Goldeneye_Broadcast_FireKlobbDualCrossKneel : Goldeneye_BroadCast_StateToken
+Actor Goldeneye_Broadcast_FireKlobbDualCrossKneel : Goldeneye_SideBySide
 {
 	States
 	{
