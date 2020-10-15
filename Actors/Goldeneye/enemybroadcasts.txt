@@ -847,3 +847,15 @@ Actor Goldeneye_Broadcast_ThrowGrenade : Goldeneye_SideBySide
 			stop
 	}
 }	
+
+Actor Goldeneye_BroadCast_Tesla : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(CallACS("GoldeneyePartBroadcast",76),1)
+			TNT1 A 0
+			stop
+	}
+}
