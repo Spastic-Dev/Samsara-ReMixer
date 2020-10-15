@@ -1,6 +1,11 @@
-Actor Goldeneye_CommGuard_ChrisNS_PeakedCap_DD44 : Goldeneye_EnemyBase { Mass 1002  Tag "Russian Commandant" }
-
-Actor Goldeneye_CommGuard : Goldeneye_EnemySpawner
+Actor Goldeneye_CommGuard : Goldeneye_EnemyBase
 {
-	DropItem "Goldeneye_commguard_ChrisNS_PeakedCap_DD44", 256, 1
+	Tag "Russian Commandant"
+	States
+	{
+		Spawn:
+			GE00 AA 0 ACS_NamedExecuteAlways("GoldeneyeEnemyPartsPicker",0,7)
+			TNT1 A 2
+			Goto Spawn2
+	}
 }
