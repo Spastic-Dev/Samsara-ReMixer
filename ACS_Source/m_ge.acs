@@ -443,6 +443,42 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(hattid,0);
 			Thing_ChangeTID(guntid,0);
 			Thing_ChangeTID(newtid,activator);
+			break;	
+		case 12:	
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[4]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			if(randnum >= 66) 
+				hattype = 10;
+			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
+			SetActivator(hattid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			randnum = random(0,100);
+			
+			if(randnum >= 80)
+				guntype = 2;
+			else if (randnum >= 60)
+				guntype = 3;
+			else if(randnum >= 40)
+				guntype = 1;
+			else if(randnum >= 20)
+				guntype = 5;
+			else 
+				guntype = 4;
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			GiveInventory("Goldeneye_HatShotToken",hattype);
+			GiveActorInventory(hattid,"Goldeneye_IsHat",1);
+			SetPointer(AAPTR_TRACER,hattid);
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(headtid,0);
+			Thing_ChangeTID(hattid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
 			break;			
 	}
 }
