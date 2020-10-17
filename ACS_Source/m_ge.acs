@@ -420,7 +420,9 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			randnum = random(0,100);
 			if(randnum >= 50)  
 				{ hattype = 8; SetActorProperty(newtid,APROP_Health,80); }
-			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);			
+			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);	
+			SetActivator(hattid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);			
 			randnum = random(0,100);
 			if(randnum >= 50) 
 				guntype = 12;
