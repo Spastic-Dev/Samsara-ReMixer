@@ -47,8 +47,7 @@ Script "GoldeneyePartPositioner" (void)
 	while(ClassifyActor(0) != 1)
 	{
 		//SetActorPosition(newtid,GetActorX(0),GetActorY(0),GetActorZ(0),0);
-		if(!Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION))
-			Thing_Remove(0);
+		Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION);
 		Delay(1);
 	}
 }
