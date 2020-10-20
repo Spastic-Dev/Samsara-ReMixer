@@ -126,7 +126,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 				guntype = 2;
 			else if(randnum >= 40)
 				guntype = 1;
-			else if(randnum >= 20)
+			else 
 				guntype = 5;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
@@ -288,7 +288,6 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
 			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[10]),0,0,0,hattid);
-			hattype = 10;
 			SetActivator(hattid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
 			randnum = random(0,100);
@@ -352,10 +351,14 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SetPointer(AAPTR_MASTER,newtid);
 			
 			randnum = random(0,100);
-			if(randnum >= 25)			
+			if(randnum >= 80)			
+				guntype = 11;
+			else if (randnum >= 75)
+				guntype = 10;	
+			else if (randnum >= 50)
 				guntype = 9;
-			else 
-				guntype = 8;	
+			else
+				guntype = 8;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -828,6 +831,48 @@ Script "GoldeneyePartBroadcast" (int state)
 			break;	
 		case 114:
 			SetActorState(0,"FireSniperRun",true);
-			break;						
+			break;	
+		case 115:
+			SetActorState(0,"FirePhantomAimBow",true);
+			break;	
+		case 116:
+			SetActorState(0,"FirePhantomAimHip",true);
+			break;	
+		case 117:
+			SetActorState(0,"FirePhantomAimToFire",true);
+			break;		
+		case 118:
+			SetActorState(0,"FirePhantomCrouch",true);
+			break;		
+		case 119:
+			SetActorState(0,"FirePhantomJumpToLeft",true);
+			break;		
+		case 120:
+			SetActorState(0,"FirePhantomJumpToRight",true);
+			break;	
+		case 121:
+			SetActorState(0,"FirePhantomRollLeft",true);
+			break;		
+		case 122:
+			SetActorState(0,"FirePhantomRollRight",true);
+			break;	
+		case 123:
+			SetActorState(0,"FirePhantomRun",true);
+			break;		
+		case 124:
+			SetActorState(0,"FirePhantomStepForward",true);
+			break;	
+		case 125:
+			SetActorState(0,"FirePhantomKneel",true);
+			break;	
+		case 126:
+			SetActorState(0,"FirePhantomDualStand",true);
+			break;		
+		case 127:
+			SetActorState(0,"FirePhantomDualKneel",true);
+			break;	
+		case 128:
+			SetActorState(0,"FirePhantomDualCrossKneel",true);
+			break;				
 	}
 }
