@@ -1662,3 +1662,15 @@ Actor Goldeneye_BroadCast_FireRCP90Run : Goldeneye_SideBySide
 			stop
 	}
 }
+
+Actor Goldeneye_BroadCast_ThrowHat : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(CallACS("GoldeneyePartBroadcast2",16),1)
+			TNT1 A 0
+			stop
+	}
+}

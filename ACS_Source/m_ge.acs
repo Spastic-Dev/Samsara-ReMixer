@@ -1,7 +1,7 @@
-str GuardTypes[15] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard", "GreatGuard2", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard", "SnowGuard" };
+str GuardTypes[21] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard", "GreatGuard2", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard", "SnowGuard", "Oddjob", "Jaws", "Mayday", "Xenia", "Trevelyan", "BaronSamedi" };
 str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mark", "Martin", "Neil", "Pete", "Robin", "Scott", "Shaun", "Stevee", "Steveh", "Mandy", "Marion", "Sally", "Vivien" };
 str HatTypes[13] = { "", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
-str GunTypes[26] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "DualRCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "DualLaser", "GrenadeLauncher", "RocketLauncher", "SiberianCombo", "XeniaCombo" };
+str GunTypes[27] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "DualRCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "DualLaser", "GrenadeLauncher", "RocketLauncher", "SiberianCombo", "XeniaCombo", "OddjobHat" };
 
 function int SetPointerExt(int assign_slot, int tid, int assign_to_tid) 
 {
@@ -64,7 +64,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	int activator = ActivatorTID();
 	Thing_ChangeTID(0, newtid);
 	//Spawn the parts
-	if(type != 6)
+	if(type != 6 && type != 13)
 	{
 		elitechance = ec; 
 		int eliterand = random(0,100);
@@ -486,7 +486,25 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(hattid,0);
 			Thing_ChangeTID(guntid,0);
 			Thing_ChangeTID(newtid,activator);
-			break;			
+			break;		
+		case 13:	
+			SetActorProperty(newtid,APROP_Health,600);
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[15]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			guntype = 26;
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
+			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
+			break;
 	}
 }
 
@@ -929,6 +947,9 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;	
 		case 15:
 			SetActorState(0,"FireRCP90Run",true);
-			break;				
+			break;	
+		case 16:
+			SetActorState(0,"ThrowHat",true);
+			break;	
 	}
 }	

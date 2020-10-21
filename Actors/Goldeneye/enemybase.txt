@@ -26,6 +26,7 @@
 224 = Rocket Launcher
 225 = Siberian Combo
 226 = Xenia Combo
+227 = Oddjob Hat Throw
 
 Use Goldeneye_GrenadeThrower Token for enemies who throw grenades
 */
@@ -237,6 +238,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_JumpIf(mass == 215, "FireRCP90")
 			TNT1 A 0 A_JumpIf(mass == 217, "FireAutoShotgun")
 			TNT1 A 0 A_JumpIf(mass == 218, "FireSniper")
+			TNT1 A 0 A_JumpIf(mass == 227, "ThrowHat")
 			Goto FireKF7
 		ThrowGrenade:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_ThrowGrenade",1)
@@ -2300,7 +2302,16 @@ Actor Goldeneye_EnemyBase
 			TNT1 E 6 A_Playsound("Goldeneye/SilencerShot", CHAN_WEAPON) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 F 6 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 A 0
-			Goto See			
+			Goto See
+		ThrowHat:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_ThrowHat",1)
+			TNT1 ABCDE 4 A_FaceTarget
+			TNT1 FG 4 A_FaceTarget
+			TNT1 H 0 A_CustomMissile("Goldeneye_OddJobHat", 30, 5, 0)
+			TNT1 H 0 A_Playsound("Goldeneye/KnifeThrow", CHAN_WEAPON)
+			TNT1 HIJKLMNOPQRSTUV 4
+			TNT1 A 0
+			Goto See
 		Pain:
 			TNT1 A 0 A_Jump(256, "Pain.Neck","Pain.LeftShoulder","Pain.RightShoulder","Pain.LeftArm","Pain.RightArm","Pain.LeftHand","Pain.RightHand","Pain.Crotch","Pain.Butt","Pain.Butt2","Pain.LeftLeg","Pain.RightLeg")
 			Goto Pain.Neck
@@ -3241,6 +3252,7 @@ Actor Goldeneye_EnemyBase
 			stop
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_RemoveChildren(true)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
 			TNT1 A 5 A_NoBlocking
 			Stop	
@@ -5306,7 +5318,18 @@ Actor Goldeneye_PartBase
 			GE22 E 6 
 			GE22 F 6 
 			GE22 A 0
-			Goto NoWhere			
+			Goto NoWhere	
+		ThrowHat:
+			GE15 ABCDE 4
+			GE15 FGH 4
+			GE15 H 2 
+			GE15 H 2 
+			GE15 IJKLMNOPQRSTUV 4
+			Goto NoWhere
+		FirePP7StepForwardEnd:	
+			GE15 IJKLMNOPQRSTUV 4
+			GE15 A 0
+			Goto Nowhere
 		Pain.Neck:
 			GE35 ABCDEFGHIJ 6
 			Goto Nowhere
