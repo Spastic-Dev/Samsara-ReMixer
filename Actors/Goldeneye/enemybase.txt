@@ -1,29 +1,33 @@
 /*Weapon index
-1000 = Default, launches animation test
-1001 = PP7
-1002 = DD44 Dostovei
-1003 = Dual DD44 Dostovei
-1004 = Klobb
-1005 = Dual Klobb
-1006 = KF7 Soviet
-1007 = ZMG
-1008 = Dual ZMG
-1009 = D5K Deutsche
-1010 = Dual D5K Deutsche
-1011 = Phantom
-1012 = Dual Phantom
-1013 = AR33 Assault Rifle
-1014 = Dual AR33
-1015 = RCP-90
-1016 = Automatic Shotgun
-1017 = Sniper Rifle
-1018 = Cougar Magnum
-1019 = Dual Cougar Magnum
-1020 = Moonraker Laser
-1021 = Grenade Launcher
-1022 = Rocket Launcher
-1023 = Siberian Combo
-1024 = Xenia Combo
+200 = Default, launches animation test
+201 = PP7
+202 = DD44 Dostovei
+203 = Dual DD44 Dostovei
+204 = Klobb
+205 = Dual Klobb
+206 = KF7 Soviet
+207 = ZMG
+208 = Dual ZMG
+209 = D5K Deutsche
+210 = Dual D5K Deutsche
+211 = Phantom
+212 = Dual Phantom
+213 = AR33 Assault Rifle
+214 = Dual AR33
+215 = RCP-90
+216 = Dual RCP-90
+217 = Automatic Shotgun
+218 = Sniper Rifle
+219 = Cougar Magnum
+220 = Dual Cougar Magnum
+221 = Moonraker Laser
+222 = Dual Moonraker
+223 = Grenade Launcher
+224 = Rocket Launcher
+225 = Siberian Combo
+226 = Xenia Combo
+
+Use Goldeneye_GrenadeThrower Token for enemies who throw grenades
 */
 
 Actor Goldeneye_EnemyBase
@@ -49,7 +53,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_SetShootable
 		Spawn2:
 			//TNT1 A 0 A_JumpIf(mass == 1000, "AnimationTest")
-			TNT1 A 0 A_JumpIf(mass <= 205||mass == 207||mass == 208||mass == 210||mass == 212||mass == 214||mass >= 218, "SpawnDual")
+			TNT1 A 0 A_JumpIf(mass <= 205||mass == 207||mass == 208||mass == 210||mass == 212||mass == 214||mass == 216||mass == 219||mass == 220||mass == 221||mass == 222||mass >=224, "SpawnDual")
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_Spawn2",1)
 			TNT1 A 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
 			TNT1 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
@@ -192,7 +196,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 Z 6 A_LookEx(0, 0, 0, 0, 180, "See") TNT1 A 0 A_Stop "####" "#" 0
 			Goto Spawn2
 		See:
-			TNT1 A 0 A_JumpIf(mass == 206||mass == 209||mass == 211||mass == 213||mass == 215||mass == 216||mass == 217||mass == 221, "SeeTwoHand")
+			TNT1 A 0 A_JumpIf(mass == 206||mass == 209||mass == 211||mass == 213||mass == 215||mass == 217||mass == 218||mass == 223, "SeeTwoHand")
 			Goto SeeSingleDual
 		SeeSingleDual:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_SeeSingleDual",1)
@@ -230,8 +234,9 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_JumpIf(mass == 211, "FirePhantom")
 			TNT1 A 0 A_JumpIf(mass == 212, "FirePhantomDual")
 			TNT1 A 0 A_JumpIf(mass == 213, "FireAR33")
-			TNT1 A 0 A_JumpIf(mass == 216, "FireAutoShotgun")
-			TNT1 A 0 A_JumpIf(mass == 217, "FireSniper")
+			TNT1 A 0 A_JumpIf(mass == 215, "FireRCP90")
+			TNT1 A 0 A_JumpIf(mass == 217, "FireAutoShotgun")
+			TNT1 A 0 A_JumpIf(mass == 218, "FireSniper")
 			Goto FireKF7
 		ThrowGrenade:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_ThrowGrenade",1)
@@ -358,7 +363,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0
 			Goto See
 		FireDD44Dual:
-			TNT1 A 0 A_Jump(256, "FireDD44StepForward", "FireDD44Kneel", "FireDD44DualStand", "FireDD44DualKneel", "FireDD44DualCrossKneel")
+			TNT1 A 0 A_Jump(256, "FireDD44StepForward", "FireDD44Kneel", "FireDD44DualStand", "FireDD44DualKneel", "FireDD44DualCrossKneel", "FireDD44DualWalk")
 			Goto FireDD44DualStand	
 		FireDD44DualStand:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireDD44DualStand",1)
@@ -437,6 +442,32 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireDD44DualCrossKneelEnd",1)
 			TNT1 JKLM 6
 			Goto See
+		FireDD44DualWalk:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireDD44DualWalk",1)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 B 6 BRIGHT A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 4 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 6 BRIGHT A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, -5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 4 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 G 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 0 A_Jump(64, "FireDD44DualWalkEnd")
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 B 6 BRIGHT A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 4 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 6 BRIGHT A_CustomMissile("Goldeneye_KF7TracerEnemy", 28, -5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 4 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 2 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 G 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)			
+		FireDD44DualWalkEnd:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireDD44DualWalkEnd",1)
+			TNT1 HI 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			Goto See
 		FireKlobb:
 			TNT1 A 0 A_Jump(256, "FireKlobbStepForward","FireKlobbKneel")
 			Goto FireKlobbStepForward
@@ -466,7 +497,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0
 			Goto See
 		FireKlobbDual:
-			TNT1 A 0 A_Jump(256, "FireKlobbStepForward", "FireKlobbKneel", "FireKlobbDualStand", "FireKlobbDualKneel", "FireKlobbDualCrossKneel")
+			TNT1 A 0 A_Jump(256, "FireKlobbStepForward", "FireKlobbKneel", "FireKlobbDualStand", "FireKlobbDualKneel", "FireKlobbDualCrossKneel", "FireKlobbDualWalk")
 			Goto FireKlobbDualStand	
 		FireKlobbDualStand:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireKlobbDualStand",1)
@@ -510,15 +541,29 @@ Actor Goldeneye_EnemyBase
 			TNT1 H 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
 			TNT1 I 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, 2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
 			TNT1 G 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
-			TNT1 H 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
-			TNT1 I 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, 2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
-			TNT1 G 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
+			TNT1 H 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
+			TNT1 I 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
+			TNT1 G 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, 2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
 			TNT1 H 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
 			TNT1 I 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, 2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
 			TNT1 G 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
 			TNT1 H 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 2, frandom(-9,9)) "####" "#" 0 A_FaceTarget
 			TNT1 I 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 28, -2, frandom(-9,9)) "####" "#" 0 A_FaceTarget					
 			TNT1 JKLM 6
+			Goto See
+		FireKlobbDualWalk:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireKlobbDualWalk",1)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 7 A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 40, 5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 B 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 7 A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", 40, 5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 7 A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 G 7 A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 H 7 BRIGHT A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 I 7 A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-9,9)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
 			Goto See
 		FireZMG:
 			TNT1 A 0 A_Jump(256, "FireZMGStepForward","FireZMGKneel")
@@ -557,7 +602,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0
 			Goto See
 		FireZMGDual:
-			TNT1 A 0 A_Jump(256, "FireZMGStepForward", "FireZMGKneel", "FireZMGDualStand", "FireZMGDualKneel", "FireZMGDualCrossKneel")
+			TNT1 A 0 A_Jump(256, "FireZMGStepForward", "FireZMGKneel", "FireZMGDualStand", "FireZMGDualKneel", "FireZMGDualCrossKneel", "FireZMGDualWalk")
 			Goto FireZMGDualStand	
 		FireZMGDualStand:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireZMGDualStand",1)
@@ -634,6 +679,28 @@ Actor Goldeneye_EnemyBase
 			TNT1 H 3 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 2, frandom(-3,3)) "####" "#" 0 A_FaceTarget
 			TNT1 I 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, -2, frandom(-3,3)) "####" "#" 0 A_FaceTarget			
 			TNT1 JKLM 6
+			Goto See
+		FireZMGDualWalk:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireZMGDualWalk",1)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 A 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 B 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 C 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 D 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 E 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 F 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 G 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 H 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 A 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 B 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 C 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 D 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 E 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 F 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 G 3 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 40, 5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 H 2 BRIGHT A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 I 2 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-3,3)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-1)
 			Goto See			
 		FireD5K:
 			TNT1 A 0 A_Jump(256, "FireD5KAimBow", "FireD5KAimHip", "FireD5KAimToFire", "FireD5KCrouch", "FireD5KJumpToLeft", "FireD5KJumpToRight", "FireD5KRollLeft", "FireD5KRollRight", "FireD5KRun")
@@ -837,7 +904,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0
 			Goto See	
 		FireD5KDual:
-			TNT1 A 0 A_Jump(256, "FireD5KStepForward", "FireD5KKneel", "FireD5KDualStand", "FireD5KDualKneel", "FireD5KDualCrossKneel")
+			TNT1 A 0 A_Jump(256, "FireD5KStepForward", "FireD5KKneel", "FireD5KDualStand", "FireD5KDualKneel", "FireD5KDualCrossKneel", "FireD5KDualWalk")
 			Goto FireD5KDualStand
 		FireD5KStepForward:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireD5KStepForward",1)
@@ -930,6 +997,28 @@ Actor Goldeneye_EnemyBase
 			TNT1 H 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 2, frandom(-2,2)) "####" "#" 0 A_FaceTarget
 			TNT1 I 4 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, -2, frandom(-2,2)) "####" "#" 0 A_FaceTarget					
 			TNT1 JKLM 6
+			Goto See
+		FireD5KDualWalk:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireD5KDualWalk",1)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 A 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 B 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 C 2 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 D 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 E 2 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 F 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 G 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 H 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 A 2 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 B 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 C 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 D 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 E 2 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 F 4 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 G 2 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 40, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 H 2 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 I 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-1)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-1)
 			Goto See			
 		FireKF7:
 			TNT1 A 0 A_Jump(256, "FireKF7AimBow", "FireKF7AimHip", "FireKF7AimToFire", "FireKF7Crouch", "FireKF7JumpToLeft", "FireKF7JumpToRight", "FireKF7RollLeft", "FireKF7RollRight", "FireKF7Run")
@@ -1310,9 +1399,9 @@ Actor Goldeneye_EnemyBase
 			TNT1 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 F 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 A 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 A 0
-			Goto See
+			Goto See			
 		FirePhantomDual:
-			TNT1 A 0 A_Jump(256, "FirePhantomStepForward", "FirePhantomKneel", "FirePhantomDualStand", "FirePhantomDualKneel", "FirePhantomDualCrossKneel")
+			TNT1 A 0 A_Jump(256, "FirePhantomStepForward", "FirePhantomKneel", "FirePhantomDualStand", "FirePhantomDualKneel", "FirePhantomDualCrossKneel", "FirePhantomDualWalk")
 			Goto FirePhantomDualStand
 		FirePhantomStepForward:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FirePhantomStepForward",1)
@@ -1405,7 +1494,29 @@ Actor Goldeneye_EnemyBase
 			TNT1 H 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 2, frandom(-6,6)) "####" "#" 0 A_FaceTarget
 			TNT1 I 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, -2, frandom(-6,6)) "####" "#" 0 A_FaceTarget					
 			TNT1 JKLM 6
-			Goto See				
+			Goto See
+		FirePhantomDualWalk:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FirePhantomDualWalk",1)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 H 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 G 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", 40, 5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 H 4 BRIGHT A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 I 4 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, -5, frandom(-6,6)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			Goto See			
 		FireAR33:
 			TNT1 A 0 A_Jump(256, "FireAR33AimBow", "FireAR33AimHip", "FireAR33AimToFire", "FireAR33Crouch", "FireAR33JumpToLeft", "FireAR33JumpToRight", "FireAR33RollLeft", "FireAR33RollRight", "FireAR33Run")
 			Goto FireAR33AimBow
@@ -1601,19 +1712,227 @@ Actor Goldeneye_EnemyBase
 			Goto See
 		FireAR33Run:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireAR33Run",1)
-			TNT1 A 6 A_FaceTarget TNT1 B 0 A_Recoil(-3)
-			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 C 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 D 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 E 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 F 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 A 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 A 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 C 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 D 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 E 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)			
+			TNT1 A 6 A_FaceTarget TNT1 B 0 A_Recoil(-2)
+			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 A 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 4 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 3 BRIGHT A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)			
 			TNT1 A 0
-			Goto See		
+			Goto See	
+		FireRCP90:
+			TNT1 A 0 A_Jump(256, "FireRCP90AimBow", "FireRCP90AimHip", "FireRCP90AimToFire", "FireRCP90Crouch", "FireRCP90JumpToLeft", "FireRCP90JumpToRight", "FireRCP90RollLeft", "FireRCP90RollRight", "FireRCP90Run")
+			Goto FireRCP90AimBow
+		FireRCP90AimBow:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90AimBow",1)
+			TNT1 ABC 6 A_FaceTarget
+			TNT1 D 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_Kf7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 E 2 A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 F 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 G 2 A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 D 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_Kf7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 E 2 A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 F 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 G 2 A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget			
+			TNT1 J 6
+			TNT1 K 6
+			TNT1 A 0
+			Goto See
+		FireRCP90AimHip:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90AimHip",1)
+			TNT1 ABC 6 A_FaceTarget
+			TNT1 D 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 E 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 F 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 G 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 J 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget			
+			TNT1 K 6
+			TNT1 L 6
+			TNT1 A 0
+			Goto See
+		FireRCP90AimToFire:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90AimToFire",1)
+			TNT1 ABC 6 A_FaceTarget
+			TNT1 D 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 E 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 F 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget			
+			TNT1 G 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 J 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 K 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 K 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 L 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 J 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 K 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 L 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget			
+			TNT1 L 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 M 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 M 6
+			TNT1 N 6
+			TNT1 A 0
+			Goto See
+		FireRCP90Crouch:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90Crouch",1)
+			TNT1 ABC 6 A_FaceTarget
+			TNT1 D 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 E 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 F 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 G 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 G 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 J 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 K 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 L 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 L 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 M 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget			
+			TNT1 M 6
+			TNT1 N 6
+			TNT1 O 6
+			TNT1 P 6
+			TNT1 A 0
+			Goto See
+		FireRCP90JumpToLeft:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90JumpToLeft",1)
+			TNT1 A 6 A_FaceTarget
+			TNT1 B 6 A_FaceTarget
+			TNT1 C 6 A_FaceTarget 
+			TNT1 D 0 //ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			TNT1 D 6 A_ChangeVelocity(0,6,0, CVF_Relative)
+			TNT1 E 6 A_FaceTarget
+			TNT1 F 6 A_FaceTarget
+			TNT1 G 6 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 J 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 H 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 J 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget			
+			TNT1 A 0
+			Goto See
+		FireRCP90JumpToRight:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90JumpToRight",1)
+			TNT1 A 6 A_FaceTarget
+			TNT1 B 6 A_FaceTarget
+			TNT1 C 6 A_FaceTarget 
+			TNT1 D 0 //ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			TNT1 D 6 A_ChangeVelocity(0,-6,0, CVF_Relative)
+			TNT1 E 6 A_FaceTarget
+			TNT1 F 6 A_FaceTarget
+			TNT1 G 6 A_FaceTarget
+			TNT1 H 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 I 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 I 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 J 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 J 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 K 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 K 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 L 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 L 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 M 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 M 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 N 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 N 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 O 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 O 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 P 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 P 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 Q 0 A_CustomMissile("Goldeneye_KF7TracerFake", 40, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 A 0
+			Goto See
+		FireRCP90RollLeft:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90RollLeft",1)
+			TNT1 A 2 A_FaceTarget
+			TNT1 B 2 A_FaceTarget
+			TNT1 C 2 A_FaceTarget
+			TNT1 D 2 A_FaceTarget
+			TNT1 E 2 A_FaceTarget
+			TNT1 F 2 A_FaceTarget
+			TNT1 G 2 A_FaceTarget
+			TNT1 H 2 A_FaceTarget
+			TNT1 I 2 A_FaceTarget
+			TNT1 J 2 A_FaceTarget
+			TNT1 K 2 A_FaceTarget
+			TNT1 L 2 A_FaceTarget 
+			TNT1 M 0 //ThrustThing(angle * 256 / 360 + 64, 4, 0, 0)
+			TNT1 M 2 A_ChangeVelocity(0,6,0, CVF_Relative)
+			TNT1 N 2 A_FaceTarget
+			TNT1 O 2 A_FaceTarget
+			TNT1 P 2 A_FaceTarget
+			TNT1 Q 2 A_FaceTarget
+			TNT1 R 2 A_FaceTarget
+			TNT1 S 2 A_FaceTarget
+			TNT1 T 2 A_FaceTarget
+			TNT1 U 2 A_FaceTarget
+			TNT1 V 2 A_FaceTarget
+			TNT1 W 6 A_FaceTarget
+			TNT1 X 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 Y 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 Y 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 Z 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 Z 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 A 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 Y 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 B 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 Z 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 A 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 B 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 C 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 D 2 A_FaceTarget
+			TNT1 E 2 A_FaceTarget
+			TNT1 F 6 A_FaceTarget
+			TNT1 A 0
+			Goto See
+		FireRCP90RollRight:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90RollRight",1)
+			TNT1 A 2 A_FaceTarget
+			TNT1 B 2 A_FaceTarget
+			TNT1 C 2 A_FaceTarget
+			TNT1 D 2 A_FaceTarget
+			TNT1 E 2 A_FaceTarget
+			TNT1 F 2 A_FaceTarget
+			TNT1 G 2 A_FaceTarget
+			TNT1 H 2 A_FaceTarget
+			TNT1 I 2 A_FaceTarget
+			TNT1 J 2 A_FaceTarget
+			TNT1 K 2 A_FaceTarget
+			TNT1 L 2 A_FaceTarget 
+			TNT1 M 0 //ThrustThing(angle * 256 / 360 + 192, 4, 0, 0)
+			TNT1 M 2 A_ChangeVelocity(0,-6,0, CVF_Relative)
+			TNT1 N 2 A_FaceTarget
+			TNT1 O 2 A_FaceTarget
+			TNT1 P 2 A_FaceTarget
+			TNT1 Q 2 A_FaceTarget
+			TNT1 R 2 A_FaceTarget
+			TNT1 S 2 A_FaceTarget
+			TNT1 T 2 A_FaceTarget
+			TNT1 U 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 Y 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 V 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 Z 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 W 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 A 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 X 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 B 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 Y 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 Z 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 A 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 B 2 Bright A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 28, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget
+			TNT1 C 2 A_FaceTarget 
+			TNT1 D 2 A_FaceTarget
+			TNT1 E 2 A_FaceTarget
+			TNT1 F 6 A_FaceTarget
+			TNT1 A 0
+			Goto See
+		FireRCP90Run:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireRCP90Run",1)
+			TNT1 A 6 A_FaceTarget TNT1 B 0 A_Recoil(-2)
+			TNT1 B 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 F 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 A 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 A 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 B 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 C 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 D 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)
+			TNT1 E 2 BRIGHT A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-1,1)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-2)			
+			TNT1 A 0
+			Goto See			
 		FireAutoShotgun:
 			TNT1 A 0 //A_Jump(256, "FireAutoShotgunAimBow", "FireAutoShotgunAimHip", "FireAutoShotgunAimToFire", "FireAutoShotgunCrouch", "FireAutoShotgunJumpToLeft", "FireAutoShotgunJumpToRight", "FireAutoShotgunRollLeft", "FireAutoShotgunRollRight")
 			Goto FireAutoShotgunAimBow
@@ -3256,6 +3575,30 @@ Actor Goldeneye_PartBase
 		FireDD44DualCrossKneelEnd:	
 			GE31 JKLM 6
 			Goto Nowhere
+		FireDD44DualWalk:
+			GE32 A 6 
+			GE32 B 6 BRIGHT 
+			GE32 C 4 
+			GE32 C 2 
+			GE32 D 6 
+			GE32 E 6 BRIGHT 
+			GE32 F 4 
+			GE32 F 2 
+			GE32 G 6 
+			GE32 A 6 
+			GE32 B 6 BRIGHT 
+			GE32 C 4 
+			GE32 C 2 
+			GE32 D 6 
+			GE32 E 6 BRIGHT 
+			GE32 F 4 
+			GE32 F 2 
+			GE32 G 6 
+			Goto NoWhere
+		FireDD44DualWalkEnd:
+			GE32 HI 6 
+			GE32 A 6 
+			Goto NoWhere			
 		FireKlobbStepForward:
 			GE15 ABCDE 4 
 			GE15 F 7 Bright
@@ -3328,6 +3671,19 @@ Actor Goldeneye_PartBase
 			GE31 I 7 BRIGHT			
 			GE31 JKLM 6
 			Goto Nowhere
+		FireKlobbDualWalk:	
+			GE32 A 6
+			GE32 A 7 
+			GE32 B 7 BRIGHT 
+			GE32 C 7 
+			GE32 D 7 BRIGHT 
+			GE32 E 7 
+			GE32 F 7 BRIGHT 
+			GE32 G 7 
+			GE32 H 7 BRIGHT 
+			GE32 I 7 
+			GE32 A 6 
+			Goto NoWhere			
 		FireZMGStepForward:
 			GE15 ABCDE 4 
 			GE15 F 3 Bright 
@@ -3431,6 +3787,27 @@ Actor Goldeneye_PartBase
 			GE31 H 3 BRIGHT 
 			GE31 I 2 BRIGHT 		
 			GE31 JKLM 6
+			Goto NoWhere
+		FireZMGDualWalk:
+			GE32 A 6 
+			GE32 A 3 
+			GE32 B 2 BRIGHT 
+			GE32 C 3
+			GE32 D 2 BRIGHT 
+			GE32 E 3 
+			GE32 F 2 BRIGHT 
+			GE32 G 3 
+			GE32 H 2 BRIGHT 
+			GE32 A 3 
+			GE32 B 2 BRIGHT 
+			GE32 C 3 
+			GE32 D 2 BRIGHT 
+			GE32 E 3 
+			GE32 F 2 BRIGHT 
+			GE32 G 3 
+			GE32 H 2 BRIGHT 
+			GE32 I 2 
+			GE32 A 6 
 			Goto NoWhere			
 		FireD5KAimBow:
 			GE18 ABC 6 
@@ -3702,7 +4079,28 @@ Actor Goldeneye_PartBase
 			GE31 H 2 BRIGHT 
 			GE31 I 4 BRIGHT 				
 			GE31 JKLM 6
-			Goto NoWhere		
+			Goto NoWhere
+		FireD5KDualWalk:
+			GE32 A 6 
+			GE32 A 4 
+			GE32 B 2 BRIGHT 
+			GE32 C 2 
+			GE32 D 2 BRIGHT 
+			GE32 E 2 
+			GE32 F 2 BRIGHT 
+			GE32 G 4 
+			GE32 H 2 BRIGHT 
+			GE32 A 2 
+			GE32 B 2 BRIGHT 
+			GE32 C 4 
+			GE32 D 2 BRIGHT
+			GE32 E 2 
+			GE32 F 4 BRIGHT 
+			GE32 G 2 
+			GE32 H 2 BRIGHT 
+			GE32 I 4 
+			GE32 A 6 
+			Goto NoWhere			
 		FireKF7AimBow:
 			GE18 ABC 6
 			GE18 D 4 Bright
@@ -4135,7 +4533,28 @@ Actor Goldeneye_PartBase
 			GE31 H 4 BRIGHT 
 			GE31 I 4 BRIGHT 
 			GE31 JKLM 6
-			Goto Nowhere					
+			Goto Nowhere
+		FirePhantomDualWalk:
+			GE32 A 6 
+			GE32 A 4 
+			GE32 B 4 BRIGHT 
+			GE32 C 4 
+			GE32 D 4 BRIGHT 
+			GE32 E 4 
+			GE32 F 4 BRIGHT 
+			GE32 G 4 
+			GE32 H 4 BRIGHT 
+			GE32 A 4 
+			GE32 B 4 BRIGHT 
+			GE32 C 4 
+			GE32 D 4 BRIGHT
+			GE32 E 4 
+			GE32 F 4 BRIGHT 
+			GE32 G 4 
+			GE32 H 4 BRIGHT 
+			GE32 I 4 
+			GE32 A 6 
+			Goto NoWhere			
 		FireAR33AimBow:
 			GE18 ABC 6
 			GE18 D 4 Bright
@@ -4327,7 +4746,199 @@ Actor Goldeneye_PartBase
 			GE22 D 4 BRIGHT 
 			GE22 E 3 BRIGHT 			
 			GE22 A 0
-			Goto NoWhere			
+			Goto NoWhere
+		FireRCP90AimBow:
+			GE18 ABC 6 
+			GE18 D 2 Bright 
+			GE18 E 2 
+			GE18 F 2 Bright 
+			GE18 G 2 
+			GE18 H 2 Bright 
+			GE18 I 2 
+			GE18 D 2 Bright 
+			GE18 E 2 
+			GE18 F 2 Bright 
+			GE18 G 2 
+			GE18 H 2 Bright 
+			GE18 I 2 			
+			GE18 J 6
+			GE18 K 6
+			GE18 A 0
+			Goto NoWhere
+		FireRCP90AimHip:
+			GE19 ABC 6 
+			GE19 D 2 Bright 
+			GE19 E 2 Bright 
+			GE19 F 2 Bright 
+			GE19 G 2 Bright 
+			GE19 H 2 Bright 
+			GE19 I 2 Bright 
+			GE19 H 2 Bright 
+			GE19 I 2 Bright 
+			GE19 J 2 Bright
+			GE19 K 6
+			GE19 L 6
+			GE19 A 0
+			Goto NoWhere
+		FireRCP90AimToFire:
+			GE20 ABC 6 
+			GE20 D 2 Bright 
+			GE20 E 2 Bright 
+			GE20 F 2 Bright 	
+			GE20 G 2 Bright 
+			GE20 H 2 Bright 
+			GE20 I 2 Bright 
+			GE20 J 2 Bright 
+			GE20 K 2 Bright 
+			GE20 I 2 Bright 
+			GE20 J 2 Bright 
+			GE20 K 2 Bright 
+			GE20 L 2 Bright 
+			GE20 M 6
+			GE20 N 6
+			GE20 A 0
+			Goto NoWhere
+		FireRCP90Crouch:
+			GE21 ABC 6 
+			GE21 D 2 Bright 
+			GE21 E 2 Bright 
+			GE21 F 2 Bright 
+			GE21 G 2 Bright 
+			GE21 H 2 Bright 
+			GE21 I 2 Bright 
+			GE21 J 2 Bright 
+			GE21 K 2 Bright 
+			GE21 L 2 Bright 
+			GE21 M 6
+			GE21 N 6
+			GE21 O 6
+			GE21 P 6
+			GE21 A 0
+			Goto NoWhere
+		FireRCP90JumpToLeft:
+			GE27 A 6 
+			GE27 B 6 
+			GE27 C 6 
+			GE27 D 6 
+			GE27 E 6 
+			GE27 F 6 
+			GE27 G 6 
+			GE27 H 2 Bright 
+			GE27 I 2 Bright 
+			GE27 J 2 Bright 
+			GE27 I 2 Bright 
+			GE27 H 2 Bright 
+			GE27 I 2 Bright 
+			GE27 J 2 Bright 
+			GE27 I 2 Bright 
+			GE27 H 2 Bright		
+			GE27 A 0
+			Goto NoWhere
+		FireRCP90JumpToRight:
+			GE28 A 6 
+			GE28 B 6 
+			GE28 C 6 
+			GE28 D 6 
+			GE28 E 6 
+			GE28 F 6 
+			GE28 G 6 
+			GE28 H 2 Bright 
+			GE28 I 2 Bright
+			GE28 J 2 Bright
+			GE28 K 2 Bright
+			GE28 L 2 Bright
+			GE28 M 2 Bright
+			GE28 N 2 Bright
+			GE28 O 2 Bright 
+			GE28 P 2 Bright 
+			GE28 A 0
+			Goto NoWhere
+		FireRCP90RollLeft:
+			GE23 A 2
+			GE23 B 2 
+			GE23 C 2
+			GE23 D 2 
+			GE23 E 2 
+			GE23 F 2 
+			GE23 G 2 
+			GE23 H 2 
+			GE23 I 2 
+			GE23 J 2 
+			GE23 K 2 
+			GE23 L 2 
+			GE23 M 2 
+			GE23 N 2 
+			GE23 O 2 
+			GE23 P 2 
+			GE23 Q 2 
+			GE23 R 2 
+			GE23 S 2 
+			GE23 T 2 
+			GE23 U 2 
+			GE23 V 2 
+			GE23 W 6 
+			GE23 X 2 Bright 
+			GE23 Y 2 Bright 
+			GE23 Z 2 Bright 
+			GE23 Y 2 Bright 
+			GE23 Z 2 Bright 
+			GE24 A 2 Bright 
+			GE24 B 2 Bright 
+			GE24 C 2 Bright 
+			GE24 D 2 
+			GE24 E 2 
+			GE24 F 6 
+			GE24 A 0
+			Goto NoWhere
+		FireRCP90RollRight:
+			GE25 A 2 
+			GE25 B 2 
+			GE25 C 2 
+			GE25 D 2 
+			GE25 E 2 
+			GE25 F 2 
+			GE25 G 2 
+			GE25 H 2 
+			GE25 I 2 
+			GE25 J 2 
+			GE25 K 2 
+			GE25 L 2 
+			GE25 M 2 
+			GE25 N 2 
+			GE25 O 2 
+			GE25 P 2 
+			GE25 Q 2 
+			GE25 R 2 
+			GE25 S 2 
+			GE25 T 2 
+			GE25 U 2 Bright 
+			GE25 V 2 Bright 
+			GE25 W 2 Bright 
+			GE25 X 2 Bright 
+			GE25 Y 2 Bright 
+			GE25 Z 2 Bright 
+			GE26 A 2 Bright
+			GE26 B 2 Bright 
+			GE26 C 2 
+			GE26 D 2 
+			GE26 E 2 
+			GE26 F 6 
+			GE26 A 0
+			Goto NoWhere
+		FireRCP90Run:
+			GE22 A 6 
+			GE22 B 2 BRIGHT 
+			GE22 C 2 BRIGHT 
+			GE22 D 2 BRIGHT 
+			GE22 E 2 BRIGHT 
+			GE22 F 2 BRIGHT 
+			GE22 A 2 BRIGHT 
+			GE22 B 2 BRIGHT 
+			GE22 C 2 BRIGHT 
+			GE22 D 2 BRIGHT 
+			GE22 E 2 BRIGHT			
+			GE22 A 0
+			Goto NoWhere						
 		FireAutoShotgun:
 			GE18 A 0 //A_Jump(256, "FireAutoShotgunAimBow", "FireAutoShotgunAimHip", "FireAutoShotgunAimToFire", "FireAutoShotgunCrouch", "FireAutoShotgunJumpToLeft", "FireAutoShotgunJumpToRight", "FireAutoShotgunRollLeft", "FireAutoShotgunRollRight")
 			Goto FireAutoShotgunAimBow
@@ -5081,6 +5692,11 @@ Actor Goldeneye_AR33TracerEnemy : Goldeneye_BulletTracer
 Actor Goldeneye_KlobbTracerEnemy : Goldeneye_BulletTracer
 {
 	Damage(6)
+}
+
+Actor Goldeneye_RCP90TracerEnemy : Goldeneye_BulletTracer
+{
+	Damage(20)
 }
 
 Actor Goldeneye_KF7EnemyDrop : SamsaraSlotTwoDrop
