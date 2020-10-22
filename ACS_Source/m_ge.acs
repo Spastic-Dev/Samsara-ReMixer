@@ -64,7 +64,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	int activator = ActivatorTID();
 	Thing_ChangeTID(0, newtid);
 	//Spawn the parts
-	if(type != 6 && type != 13)
+	if(type != 6 && type != 13 && type != 14)
 	{
 		elitechance = ec; 
 		int eliterand = random(0,100);
@@ -488,7 +488,9 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(newtid,activator);
 			break;		
 		case 13:	
-			SetActorProperty(newtid,APROP_Health,600);
+			SetActorProperty(newtid,APROP_Health,750);
+			SetActorProperty(newtid,APROP_HEIGHT,40);
+			SetActorProperty(newtid,APROP_Radius,14);			
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[15]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
@@ -504,10 +506,46 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(bodytid,0);
 			Thing_ChangeTID(guntid,0);
 			Thing_ChangeTID(newtid,activator);
-			break;
+			break;		
+		case 14:	
+			SetActorProperty(newtid,APROP_Health,600);
+			SetActorProperty(newtid,APROP_HEIGHT,68);
+			SetActorProperty(newtid,APROP_Radius,21);
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[16]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			guntype = 13;
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
+			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
+			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
+			break;				
 	}
 }
 
+Script "GoldeneyeEnemyDrops" (void)
+{
+	str dual = GunTypes[GetActorProperty(0,APROP_MASS)-201];
+	if(StrLeft(dual,4) == "Dual")
+	{
+		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,random(-5.0,5.0));
+		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,random(-5.0,5.0));
+	}	
+	else
+	{
+		SpawnForced(StrParam(s:"Goldeneye_",s:dual,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + 48.0,0,5);
+	}
+}	
+	
 Script "GoldeneyePartBroadcast" (int state)
 {
 	switch(state)
@@ -947,9 +985,27 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;	
 		case 15:
 			SetActorState(0,"FireRCP90Run",true);
-			break;	
+			break;		
 		case 16:
 			SetActorState(0,"ThrowHat",true);
+			break;		
+		case 17:
+			SetActorState(0,"FireAR33StepForward",true);
+			break;
+		case 18:
+			SetActorState(0,"FireAR33Kneel",true);
+			break;		
+		case 19:
+			SetActorState(0,"FireAR33DualStand",true);
 			break;	
+		case 20:
+			SetActorState(0,"FireAR33DualKneel",true);
+			break;
+		case 21:
+			SetActorState(0,"FireAR33DualCrossKneel",true);
+			break;		
+		case 22:
+			SetActorState(0,"FireAR33DualWalk",true);
+			break;			
 	}
 }	
