@@ -1,7 +1,7 @@
 str GuardTypes[21] = { "ArmorGuard", "BlueCamGuard", "CamGuard", "CommGuard", "GrayGuard", "GreatGuard", "GreatGuard2", "MoonFemale", "MoonGuard", "NavyGuard", "OliveGuard", "Ourumov", "RusGuard", "TrevGuard", "SnowGuard", "Oddjob", "Jaws", "Mayday", "Xenia", "Trevelyan", "BaronSamedi" };
 str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "Graeme", "Grant", "Jim", "Joel", "Joe2", "Joe", "Karl", "Ken", "Lee", "Mark", "Martin", "Neil", "Pete", "Robin", "Scott", "Shaun", "Stevee", "Steveh", "Mandy", "Marion", "Sally", "Vivien" };
 str HatTypes[13] = { "", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen" };
-str GunTypes[27] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "DualRCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "DualLaser", "GrenadeLauncher", "RocketLauncher", "SiberianCombo", "XeniaCombo", "OddjobHat" };
+str GunTypes[28] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "DualRCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "DualLaser", "GrenadeLauncher", "RocketLauncher", "SiberianCombo", "XeniaCombo", "OddjobHat", "SilverPP7"};
 
 function int SetPointerExt(int assign_slot, int tid, int assign_to_tid) 
 {
@@ -64,7 +64,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	int activator = ActivatorTID();
 	Thing_ChangeTID(0, newtid);
 	//Spawn the parts
-	if(type != 6 && type != 13 && type != 14)
+	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16)
 	{
 		elitechance = ec; 
 		int eliterand = random(0,100);
@@ -528,7 +528,49 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(bodytid,0);
 			Thing_ChangeTID(guntid,0);
 			Thing_ChangeTID(newtid,activator);
-			break;				
+			break;		
+		case 15:	
+			SetActorProperty(newtid,APROP_Health,700);
+			SetActorProperty(newtid,APROP_HEIGHT,56);
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[11]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			guntype = 27;
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:"PP7"),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
+			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
+			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
+			break;	
+		case 16:	
+			SetActorProperty(newtid,APROP_Health,500);
+			SetActorProperty(newtid,APROP_HEIGHT,56);
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[20]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+			randnum = random(0,100);
+			guntype = 2;
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:"DualDD44"),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
+			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
+			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
+			break;			
 	}
 }
 
@@ -539,6 +581,10 @@ Script "GoldeneyeEnemyDrops" (void)
 	{
 		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,random(-5.0,5.0));
 		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,random(-5.0,5.0));
+	}	
+	else if(StrLeft(dual,6) == "Silver")
+	{
+		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-6),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,random(-5.0,5.0));	
 	}	
 	else
 	{
@@ -1006,6 +1052,159 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;		
 		case 22:
 			SetActorState(0,"FireAR33DualWalk",true);
+			break;	
+		case 23:
+			SetActorState(0,"FireLaserStepForward",true);
+			break;	
+		case 24:
+			SetActorState(0,"FireLaserStepForwardEnd",true);
+			break;		
+		case 25:
+			SetActorState(0,"FireLaserDualStand",true);
+			break;		
+		case 26:
+			SetActorState(0,"FireLaserDualKneel",true);
+			break;	
+		case 27:
+			SetActorState(0,"FireLaserDualCrossKneel",true);
+			break;
+		case 28:
+			SetActorState(0,"FireLaserDualWalk",true);
+			break;	
+		case 29:
+			SetActorState(0,"RaiseFaceGround",true);
+			break;	
+		case 30:
+			SetActorState(0,"RaiseFlyBack",true);
+			break;	
+		case 31:
+			SetActorState(0,"RaiseHeadShot",true);
+			break;
+		case 32:
+			SetActorState(0,"RaiseNeck",true);
+			break;	
+		case 33:
+			SetActorState(0,"RaiseOnKnees",true);
+			break;	
+		case 34:
+			SetActorState(0,"RaiseOnSide",true);
+			break;
+		case 35:
+			SetActorState(0,"RaiseShoulderBack",true);
+			break;	
+		case 36:
+			SetActorState(0,"RaiseSprawlOut",true);
+			break;
+		case 37:
+			SetActorState(0,"RaiseCrossFeet",true);
+			break;	
+		case 38:
+			SetActorState(0,"RaiseFaceUp",true);
+			break;		
+		case 39:
+			SetActorState(0,"RaiseFaceUpFlip",true);
+			break;	
+		case 40:
+			SetActorState(0,"RaiseFetalLeft",true);
+			break;		
+		case 41:
+			SetActorState(0,"RaiseFetalRight",true);
+			break;		
+		case 42:
+			SetActorState(0,"RaiseJumpBack",true);
+			break;	
+		case 43:
+			SetActorState(0,"RaiseStaggerWall",true);
+			break;	
+		case 44:
+			SetActorState(0,"DeathFaceGroundForGood",true);
+			break;	
+		case 45:
+			SetActorState(0,"DeathFlyBackForGood",true);
+			break;	
+		case 46:
+			SetActorState(0,"DeathHeadShotForGood",true);
+			break;
+		case 47:
+			SetActorState(0,"DeathNeckForGood",true);
+			break;	
+		case 48:
+			SetActorState(0,"DeathOnKneesForGood",true);
+			break;	
+		case 49:
+			SetActorState(0,"DeathOnSideForGood",true);
+			break;
+		case 50:
+			SetActorState(0,"DeathShoulderBackForGood",true);
+			break;	
+		case 51:
+			SetActorState(0,"DeathSprawlOutForGood",true);
+			break;
+		case 52:
+			SetActorState(0,"DeathCrossFeetForGood",true);
+			break;	
+		case 53:
+			SetActorState(0,"DeathFaceUpForGood",true);
+			break;		
+		case 54:
+			SetActorState(0,"DeathFaceUpFlipForGood",true);
+			break;	
+		case 55:
+			SetActorState(0,"DeathFetalLeftForGood",true);
+			break;		
+		case 56:
+			SetActorState(0,"DeathFetalRightForGood",true);
+			break;		
+		case 57:
+			SetActorState(0,"DeathJumpBackForGood",true);
+			break;	
+		case 58:
+			SetActorState(0,"DeathStaggerWallForGood",true);
+			break;
+		case 59:
+			SetActorState(0,"SamediDeathFaceGround",true);
+			break;	
+		case 60:
+			SetActorState(0,"SamediDeathFlyBack",true);
+			break;	
+		case 61:
+			SetActorState(0,"SamediDeathHeadShot",true);
+			break;
+		case 62:
+			SetActorState(0,"SamediDeathNeck",true);
+			break;	
+		case 63:
+			SetActorState(0,"SamediDeathOnKnees",true);
+			break;	
+		case 64:
+			SetActorState(0,"SamediDeathOnSide",true);
+			break;
+		case 65:
+			SetActorState(0,"SamediDeathShoulderBack",true);
+			break;	
+		case 66:
+			SetActorState(0,"SamediDeathSprawlOut",true);
+			break;
+		case 67:
+			SetActorState(0,"SamediDeathCrossFeet",true);
+			break;	
+		case 68:
+			SetActorState(0,"SamediDeathFaceUp",true);
+			break;		
+		case 69:
+			SetActorState(0,"SamediDeathFaceUpFlip",true);
+			break;	
+		case 70:
+			SetActorState(0,"SamediDeathFetalLeft",true);
+			break;		
+		case 71:
+			SetActorState(0,"SamediDeathFetalRight",true);
+			break;		
+		case 72:
+			SetActorState(0,"SamediDeathJumpBack",true);
+			break;	
+		case 73:
+			SetActorState(0,"SamediDeathStaggerWall",true);
 			break;			
 	}
 }	
