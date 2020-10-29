@@ -6394,11 +6394,13 @@ Actor Goldeneye_Gun_DualPhantom : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_AR33 : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_DualAR33 : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_RCP90 : Goldeneye_PartBase  {}
+Actor Goldeneye_Gun_DualRCP90 : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_AutoShotgun : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_Sniper : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_Cougar : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_DualCougar : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_Laser : Goldeneye_PartBase  {}
+Actor Goldeneye_Gun_DualLaser : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_GrenadeL : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_RocketL : Goldeneye_PartBase  {}
 Actor Goldeneye_Gun_SCombo : Goldeneye_PartBase  {}
@@ -6573,8 +6575,22 @@ Actor Goldeneye_KF7EnemyDrop : SamsaraSlotTwoDrop
 	States
 	{
 		Spawn:
-			GE00 Z -1
-			Stop
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
 		}
 }	
 
@@ -6584,8 +6600,22 @@ Actor Goldeneye_AutoShotgunEnemyDrop : SamsaraSlotThreeDrop
 	States
 	{
 		Spawn:
-			GE00 Z -1
-			Stop
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
 		}
 }
 
@@ -6595,8 +6625,22 @@ Actor Goldeneye_AR33EnemyDrop : SamsaraSlotFourDrop
 	States
 	{
 		Spawn:
-			GE00 Z -1
-			Stop
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
 		}
 }
 
@@ -6605,8 +6649,22 @@ Actor Goldeneye_RocketLEnemyDrop : SamsaraSlotFiveDrop
 	States
 	{
 		Spawn:
-			GE00 Z -1
-			Stop
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
 		}
 }
 
@@ -6616,8 +6674,22 @@ Actor Goldeneye_RCP90EnemyDrop : SamsaraSlotSixDrop
 	States
 	{
 		Spawn:
-			GE00 Z -1
-			Stop
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
 		}
 }
 
@@ -6627,10 +6699,37 @@ Actor Goldeneye_LaserEnemyDrop : SamsaraSlotSevenDrop
 	States
 	{
 		Spawn:
-			GE00 Z -1
-			Stop
-		}
-}
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	  CheckBond:
+			TNT1 A 0 A_JumpIfInventory("Cell", 0, "CheckBond2")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_Moonraker", 1, 3)
+			TNT1 A 0 A_GiveInventory("Cell", 60)
+			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 7) & 3) == 1, "PickupSuccess")			
+			Goto CheckBond+4
+			TNT1 A 0 A_GiveInventory("Goldeneye_LaserDualToken", 1)
+			TNT1 A 0 A_GiveInventory("Cell", 60)
+			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
+			Goto PickupSuccess
+	  CheckBond2:
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_LaserDualToken", 1, "PickupFailure")
+			Goto CheckBond+1
+    }
+}			
 
 Actor Goldeneye_SniperEnemyDrop : SamsaraUniquePickup1
 {
@@ -6638,76 +6737,887 @@ Actor Goldeneye_SniperEnemyDrop : SamsaraUniquePickup1
 	States
 	{
 		Spawn:
-			GE00 Z -1
-			Stop
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
 		}
 }
 
 Actor Goldeneye_PP7EnemyDrop : AmmoBackpack //fake backpack. Gives the rewards a backpack would normally give, but does not expand ammo capacity
 {
 	Gravity 0.33
+	Inventory.PickupMessage "Found a PP7 and some ammo!"
 	States
 	{
-      Pickup:
-        TNT1 A 0 A_JumpIfInventory("MarathonClass", 1, "PickupMarathon")
-        TNT1 A 0 A_JumpIfInventory("HexenClass", 1, "PickupHexen")
-        TNT1 A 0 A_JumpIfInventory("WolfenClass", 1, "PickupWolfen")
-		TNT1 A 0 A_JumpIfInventory("BondClass", 1, "PickupBond")
-//		TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	Why?
-        TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
-        TNT1 A 1 A_GiveInventory("Clip", 10)
-		TNT1 A 0 A_GiveInventory("Shell", 4)
-		TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
-		TNT1 A 0 A_GiveInventory("Cell", 20)
-        stop	
-	  PickupWitchaven:
-        TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
-        TNT1 A 1 A_GiveInventory("Clip", 20)
-		TNT1 A 0 A_GiveInventory("Shell", 8)
-		TNT1 A 0 A_GiveInventory("RocketAmmo", 2)
-		TNT1 A 0 A_GiveInventory("Cell", 40)
-        stop
-      PickupWolfen:
-        TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
-        TNT1 A 1 A_GiveInventory("Clip", 20)
-		TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
-		TNT1 A 0 A_GiveInventory("Cell", 20)
-        stop	
-      PickupMarathon:
-        TNT1 A 0 A_PlaySound("marathon/itemget")
-        TNT1 A 0 A_SetBlend("Green", 0.4, 4)
-		TNT1 A 1 A_GiveInventory("Clip", 10)
-		TNT1 A 0 A_GiveInventory("Shell", 4)
-		TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
-		TNT1 A 0 A_GiveInventory("Cell", 20)
-        stop
-	  PickupBond:
-		TNT1 A 0 A_GiveInventory("Goldeneye_PP7DualToken", 1)
-		TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
-		TNT1 A 1 A_GiveInventory("Clip", 10)
-		TNT1 A 0 A_GiveInventory("Shell", 4)
-		TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
-		TNT1 A 0 A_GiveInventory("Cell", 20)
-		stop
-		}
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 1, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("HexenClass", 1, "PickupHexen")
+			TNT1 A 0 A_JumpIfInventory("WolfenClass", 1, "PickupWolfen")
+			TNT1 A 0 A_JumpIfInventory("BondClass", 1, "PickupBond")
+//			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	Why?
+			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
+			TNT1 A 1 A_GiveInventory("Clip", 10)
+			TNT1 A 0 A_GiveInventory("Shell", 4)
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
+			TNT1 A 0 A_GiveInventory("Cell", 20)
+			stop	
+		PickupWitchaven:
+			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
+			TNT1 A 1 A_GiveInventory("Clip", 20)
+			TNT1 A 0 A_GiveInventory("Shell", 8)
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 2)
+			TNT1 A 0 A_GiveInventory("Cell", 40)
+			stop
+		PickupWolfen:
+			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
+			TNT1 A 1 A_GiveInventory("Clip", 20)
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
+			TNT1 A 0 A_GiveInventory("Cell", 20)
+			stop	
+		PickupMarathon:
+			TNT1 A 0 A_PlaySound("marathon/itemget")
+			TNT1 A 0 A_SetBlend("Green", 0.4, 4)
+			TNT1 A 1 A_GiveInventory("Clip", 10)
+			TNT1 A 0 A_GiveInventory("Shell", 4)
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
+			TNT1 A 0 A_GiveInventory("Cell", 20)
+			stop
+		PickupBond:
+			TNT1 A 0 A_GiveInventory("Goldeneye_PP7DualToken", 1)
+			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
+			TNT1 A 1 A_GiveInventory("Clip", 10)
+			TNT1 A 0 A_GiveInventory("Shell", 4)
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
+			TNT1 A 0 A_GiveInventory("Cell", 20)
+			stop
+	}
 }		
 	
-Actor Goldeneye_DD44EnemyDrop : Ammo1Small { Gravity 0.33 }
+Actor Goldeneye_DD44EnemyDrop : Clip2
+{ 
+	Gravity 0.33 
+	Inventory.PickupMessage "Unloaded a DD44 (5 Rounds of Ammo 1)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}
 
-Actor Goldeneye_KlobbEnemyDrop : Ammo1Small { Gravity 0.33 }
+Actor Goldeneye_KlobbEnemyDrop : Clip2 
+{ 
+	Gravity 0.33 
+	Inventory.PickupMessage "Unloaded a Klobb (5 Rounds of Ammo 1)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}
 
-Actor Goldeneye_PhantomEnemyDrop : Ammo1Small { Gravity 0.33 }
+Actor Goldeneye_PhantomEnemyDrop : Ammo1Small 
+{ 
+	Gravity 0.33 
+	Inventory.PickupMessage "Unloaded a Phantom (10 Rounds of Ammo 1)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}
 
-Actor Goldeneye_GrenadeLEnemyDrop : Ammo3Big { Gravity 0.33 }
+Actor Goldeneye_GrenadeLEnemyDrop : Ammo3Big 
+{ 
+	Gravity 0.33 
+	Inventory.PickupMessage "Unloaded a Grenade Launcher (6 Rounds of Ammo 3)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}
 
-Actor Goldeneye_GrenadeEnemyDrop : Ammo3Small { Gravity 0.33 }
+Actor Goldeneye_ZMGEnemyDrop : Ammo1Small 
+{ 
+	Gravity 0.33 
+	Inventory.PickupMessage "Unloaded a ZMG (10 Rounds of Ammo 1)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}
 
-Actor Goldeneye_ZMGEnemyDrop : Ammo1Small { Gravity 0.33 }
+Actor Goldeneye_CougarEnemyDrop : Ammo2Small 
+{ 
+	Gravity 0.33 
+	Inventory.PickupMessage "Unloaded a Cougar Magnum (4 Rounds of Ammo 2)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}
 
-Actor Goldeneye_CougarEnemyDrop : Ammo2Small { Gravity 0.33 }
+Actor Goldeneye_D5KEnemyDrop : SamsaraUniquePickup2 
+{ 
+	Gravity 0.33 
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}	
 
-Actor Goldeneye_D5KEnemyDrop : SamsaraUniquePickup2 { Gravity 0.33 }		
+Actor Goldeneye_AR33MagEnemyDrop : Ammo1Big
+{ 
+	Gravity 0.33 
+	Inventory.PickupMessage "Found an AR33 Mag (30 Rounds of Ammo 1)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")	  
+			TNT1 A 0 A_JumpIfInventory("RRClass", 0, "PickupLeonard")
+			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
+			TNT1 A 0 A_JumpIfInventory("BittermanClass", 0, "PickupBitterman")	
+			TNT1 A 0 A_JumpIfInventory("DisruptorClass", 0, "PickupDisruptor")
+			TNT1 A 0 A_GiveInventory("Clip", 30)
+			TNT1 A 0 A_JumpIfInventory("QuakeModeOn",1,2)
+			TNT1 A 0 A_JumpIfInventory("QuakeClass", 0, "PickupQuake")
+			TNT1 A 0
+			stop
+		PickupRott:
+			TNT1 A 0 A_JumpIfInventory("HSMissiles", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("HSMissiles", 6)
+			Stop
+		PickupWitchaven:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 40)
+			stop
+		PickupLeonard:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupLeonard2")
+			TNT1 A 0 A_GiveInventory("Clip", 30)
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 30)
+			Stop
+		PickupLeonard2:
+			TNT1 A 0 A_JumpIfInventory("MotoGunAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 30)
+			stop
+		PickupBitterman:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupBitterman2")
+			TNT1 A 0 A_GiveInventory("Clip", 30)
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 15)
+			Stop
+		PickupBitterman2:
+			TNT1 A 0 A_JumpIfInventory("Q2Flechettes", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 15)
+			stop
+		PickupDisruptor:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupDisruptor2")
+			TNT1 A 0 A_GiveInventory("Clip", 30)
+			TNT1 A 0 A_GiveInventory("DisruptorHiFreq", 12)
+			Stop
+		PickupDisruptor2:
+			TNT1 A 0 A_JumpIfInventory("DisruptorHiFreq", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("DisruptorHiFreq", 12)
+			stop		
+		PickupFail:
+			GE00 Z 1
+			fail
+		PickupMarathon:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 30)
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			stop
+		PickupQuake:
+			TNT1 A 0 A_GiveInventory("LavaNails", 10)
+			stop		
+    }
+}			
 
+Actor Goldeneye_D5KMagEnemyDrop : Goldeneye_AR33MagEnemyDrop { Inventory.PickupMessage "Found a D5K Mag (30 Rounds of Ammo 1)." }
+Actor Goldeneye_KF7MagEnemyDrop : Goldeneye_AR33MagEnemyDrop { Inventory.PickupMessage "Found a KF7 Mag (30 Rounds of Ammo 1)." }
+Actor Goldeneye_PhantomMagEnemyDrop	: Ammo1Big 
+{
+	Gravity 0.33 
+	Inventory.PickupMessage "Found a Phantom Mag (50 Rounds of Ammo 1)."
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+	}
+}
+
+Actor Goldeneye_ZMGMagEnemyDrop : Ammo1Big 
+{
+	Gravity 0.33
+	Inventory.PickupMessage "Found a ZMG Mag (32 Rounds of Ammo 1)."	
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")	  
+			TNT1 A 0 A_JumpIfInventory("RRClass", 0, "PickupLeonard")
+			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
+			TNT1 A 0 A_JumpIfInventory("BittermanClass", 0, "PickupBitterman")	
+			TNT1 A 0 A_JumpIfInventory("DisruptorClass", 0, "PickupDisruptor")
+			TNT1 A 0 A_GiveInventory("Clip", 32)
+			TNT1 A 0 A_JumpIfInventory("QuakeModeOn",1,2)
+			TNT1 A 0 A_JumpIfInventory("QuakeClass", 0, "PickupQuake")
+			TNT1 A 0
+			stop
+		PickupRott:
+			TNT1 A 0 A_JumpIfInventory("HSMissiles", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("HSMissiles", 6)
+			Stop
+		PickupWitchaven:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 46)
+			stop
+		PickupLeonard:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupLeonard2")
+			TNT1 A 0 A_GiveInventory("Clip", 32)
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 32)
+			Stop
+		PickupLeonard2:
+			TNT1 A 0 A_JumpIfInventory("MotoGunAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 32)
+			stop
+		PickupBitterman:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupBitterman2")
+			TNT1 A 0 A_GiveInventory("Clip", 32)
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 16)
+			Stop
+		PickupBitterman2:
+			TNT1 A 0 A_JumpIfInventory("Q2Flechettes", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 16)
+			stop
+		PickupDisruptor:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupDisruptor2")
+			TNT1 A 0 A_GiveInventory("Clip", 32)
+			TNT1 A 0 A_GiveInventory("DisruptorHiFreq", 12)
+			Stop
+		PickupDisruptor2:
+			TNT1 A 0 A_JumpIfInventory("DisruptorHiFreq", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("DisruptorHiFreq", 12)
+			stop		
+		PickupFail:
+			GE00 Z 1
+			fail
+		PickupMarathon:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 32)
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			stop
+		PickupQuake:
+			TNT1 A 0 A_GiveInventory("LavaNails", 10)
+			stop
+	}
+}	
+
+Actor Goldeneye_KlobbMagEnemyDrop : Ammo1Small
+{
+	Gravity 0.33 
+	Inventory.PickupMessage "Found a Klobb Mag (20 Rounds of Ammo 1)."	
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
+			TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")
+			TNT1 A 0 A_JumpIfInventory("RRClass", 0, "PickupLeonard")
+			TNT1 A 0 A_JumpIfInventory("BittermanClass", 0, "PickupBitterman")
+			TNT1 A 0 A_GiveInventory("Clip", 20)
+			TNT1 A 0 A_JumpIfInventory("QuakeModeOn",1,2)
+			TNT1 A 0 A_JumpIfInventory("QuakeClass", 0, "PickupQuake")
+			TNT1 A 0
+			stop
+		PickupRott:
+			TNT1 A 0 A_JumpIfInventory("HSMissiles", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("HSMissiles", 4)
+			Stop
+		PickupWitchaven:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 24)
+			stop
+		PickupLeonard:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupLeonard2")
+			TNT1 A 0 A_GiveInventory("Clip", 20)
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 20)
+			Stop
+		PickupLeonard2:
+			TNT1 A 0 A_JumpIfInventory("MotoGunAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 20)
+			stop
+		PickupBitterman:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupBitterman2")
+			TNT1 A 0 A_GiveInventory("Clip", 20)
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 10)
+			Stop
+		PickupBitterman2:
+			TNT1 A 0 A_JumpIfInventory("Q2Flechettes", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 10)
+			stop
+		PickupFail:
+			GE00 Z 1
+			fail
+		PickupMarathon:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 20)
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			stop
+		PickupQuake:
+			TNT1 A 0 A_GiveInventory("LavaNails", 6)
+			stop		
+    }
+}
+
+Actor Goldeneye_DD44MagEnemyDrop : Ammo1Small
+{
+	Gravity 0.33 
+	Inventory.PickupMessage "Found a DD44 Mag (8 Rounds of Ammo 1)."	
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop			
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
+			TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")
+			TNT1 A 0 A_JumpIfInventory("RRClass", 0, "PickupLeonard")
+			TNT1 A 0 A_JumpIfInventory("BittermanClass", 0, "PickupBitterman")
+			TNT1 A 0 A_GiveInventory("Clip", 8)
+			TNT1 A 0 A_JumpIfInventory("QuakeModeOn",1,2)
+			TNT1 A 0 A_JumpIfInventory("QuakeClass", 0, "PickupQuake")
+			TNT1 A 0
+			stop
+		PickupRott:
+			TNT1 A 0 A_JumpIfInventory("HSMissiles", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("HSMissiles", 2)
+			Stop
+		PickupWitchaven:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 12)
+			stop
+		PickupLeonard:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupLeonard2")
+			TNT1 A 0 A_GiveInventory("Clip", 8)
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 8)
+			Stop
+		PickupLeonard2:
+			TNT1 A 0 A_JumpIfInventory("MotoGunAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 8)
+			stop
+		PickupBitterman:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupBitterman2")
+			TNT1 A 0 A_GiveInventory("Clip", 8)
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 4)
+			Stop
+		PickupBitterman2:
+			TNT1 A 0 A_JumpIfInventory("Q2Flechettes", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 4)
+			stop
+		PickupFail:
+			GE00 Z 1
+			fail
+		PickupMarathon:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 8)
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			stop
+		PickupQuake:
+			TNT1 A 0 A_GiveInventory("LavaNails", 3)
+			stop		
+    }
+}
+
+Actor Goldeneye_PP7MagEnemyDrop : Ammo1Small
+{
+	Gravity 0.33 
+	Inventory.PickupMessage "Found a PP7 Mag (7 Rounds of Ammo 1)."	
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
+			TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")
+			TNT1 A 0 A_JumpIfInventory("RRClass", 0, "PickupLeonard")
+			TNT1 A 0 A_JumpIfInventory("BittermanClass", 0, "PickupBitterman")
+			TNT1 A 0 A_GiveInventory("Clip", 7)
+			TNT1 A 0 A_JumpIfInventory("QuakeModeOn",1,2)
+			TNT1 A 0 A_JumpIfInventory("QuakeClass", 0, "PickupQuake")
+			TNT1 A 0
+			stop
+		PickupRott:
+			TNT1 A 0 A_JumpIfInventory("HSMissiles", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("HSMissiles", 2)
+			Stop
+		PickupWitchaven:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 10)
+			stop
+		PickupLeonard:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupLeonard2")
+			TNT1 A 0 A_GiveInventory("Clip", 7)
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 7)
+			Stop
+		PickupLeonard2:
+			TNT1 A 0 A_JumpIfInventory("MotoGunAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("MotoGunAmmo", 7)
+			stop
+		PickupBitterman:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupBitterman2")
+			TNT1 A 0 A_GiveInventory("Clip", 7)
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 3)
+			Stop
+		PickupBitterman2:
+			TNT1 A 0 A_JumpIfInventory("Q2Flechettes", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Q2Flechettes", 3)
+			stop
+		PickupFail:
+			GE00 Z 1
+			fail
+		PickupMarathon:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 7)
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			stop
+		PickupQuake:
+			TNT1 A 0 A_GiveInventory("LavaNails", 3)
+			stop		
+    }
+}
+
+Actor Goldeneye_RCP90MagEnemyDrop : Ammo4Big
+{
+	Gravity 0.33
+	Inventory.PickupMessage "Found an RCP90 Mag (80 Rounds of Ammo 4)."	
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("DukeClass", 0, "PickupDuke")	
+			TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")
+			TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupFail")
+			TNT1 A 0 A_JumpIfInventory("QuakeClass", 1, "PickupQuake")
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
+			TNT1 A 0 A_JumpIfInventory("DisruptorClass", 0, "PickupDisruptor")
+			TNT1 A 0 A_GiveInventory("Cell", 80)
+			stop
+		PickupDuke:
+			TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupDuke2")
+			TNT1 A 0 A_GiveInventory("Cell", 80)
+			TNT1 A 0 A_GiveInventory("ExpanderAmmo", 16)
+			TNT1 A 0 A_GiveInventory("ShrinkerAmmo", 3)
+			stop
+		PickupDuke2:
+			TNT1 A 0 A_JumpIfInventory("ExpanderAmmo", 0, "PickupDuke3")
+			TNT1 A 0 A_GiveInventory("Cell", 80)
+			TNT1 A 0 A_GiveInventory("ExpanderAmmo", 16)
+			TNT1 A 0 A_GiveInventory("ShrinkerAmmo", 3)
+			stop
+		PickupDuke3:
+			TNT1 A 0 A_JumpIfInventory("ShrinkerAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Cell", 80)
+			TNT1 A 0 A_GiveInventory("ExpanderAmmo", 16)
+			TNT1 A 0 A_GiveInventory("ShrinkerAmmo", 3)
+			stop
+		PickupRott:
+			TNT1 A 0 A_JumpIfInventory("DMissiles", 0, "Check1")
+			TNT1 A 0 A_JumpIfInventory("FWMissiles", 0, "Check2")
+			TNT1 A 0 A_JumpIfInventory("SMissiles", 0, "Check3")
+		RottSafe:	    
+			TNT1 A 0 A_GiveInventory("DMissiles", 16)
+			TNT1 A 0 A_GiveInventory("SMissiles", 8)
+			TNT1 A 0 A_GiveInventory("FWMissiles", 4)
+			Stop
+		PickupQuake:
+			TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupRanger2")
+			TNT1 A 0 A_GiveInventory("Cell", 80)
+			TNT1 A 0 A_GiveInventory("PlasmaCell", 3)
+			Stop
+		PickupRanger2:
+			TNT1 A 0 A_JumpIfInventory("PlasmaCell", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("PlasmaCell", 3)
+			Stop
+		Check1:
+			TNT1 A 0 A_JumpIfInventory("FWMissiles", 0, "PickupFail")
+			Goto RottSafe
+		Check2:
+			TNT1 A 0 A_JumpIfInventory("DMissiles", 0, "PickupFail")
+			Goto RottSafe	
+		Check3:
+			TNT1 A 0 A_JumpIfInventory("SMissiles", 0, "PickupFail")
+			Goto RottSafe	
+		PickupWitchaven:
+			TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Cell", 100)
+			stop
+		PickupDisruptor:
+			TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupDisruptor2")
+			TNT1 A 0 A_GiveInventory("Cell", 80)
+			TNT1 A 0 A_GiveInventory("DisruptorHiFreq", 80)
+			Stop
+		PickupDisruptor2:
+			TNT1 A 0 A_JumpIfInventory("DisruptorHiFreq", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("DisruptorHiFreq", 80)
+			stop		
+		PickupFail:
+			GE00 Z 1
+			fail
+		PickupMarathon:
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			TNT1 A 1 A_GiveInventory("Cell", 80)
+			stop		
+    }
+}			
+			
+Actor Goldeneye_AutoShotgunMagEnemyDrop : Ammo2Small
+{
+	Gravity 0.33 
+	Inventory.PickupMessage "Found a box of Shotgun Shells (5 Rounds of Ammo 2)."	
+	States
+	{
+		Spawn:
+			GE00 Z 0
+			GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+			GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+			GE00 Z 0 A_SetAngle(random(0,360))
+			GE00 Z 0 A_SetPitch(random(0,360))
+		SpawnLoop:
+			GE00 Z 0 A_SetPitch(pitch-15)
+			GE00 Z 0 A_SetAngle(angle-15)
+			GE00 Z 0 A_CheckFloor("FloorLoop")		
+			GE00 Z 1
+			Loop
+		FloorLoop:
+			GE00 A 0 A_Stop
+			GE00 A 0 A_SetPitch(0)		
+			GE00 Z 1
+			Loop
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")	  
+			TNT1 A 0 A_JumpIfInventory("HexenClass", 1, "PickupHexen")
+			TNT1 A 0 A_JumpIfInventory("WolfenClass", 1, "PickupWolfen")
+			TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
+			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
+			TNT1 A 0 A_JumpIfInventory("StrifeClass", 0, "PickupStrife")
+			TNT1 A 0 A_JumpIfInventory("Hexen2Class", 1, "PickupHexen")
+			TNT1 A 0 A_JumpIfInventory("DisruptorClass", 0, "PickupDisruptor")
+			TNT1 A 0 A_JumpIfInventory("SWClass", 0, "PickupSW")
+			TNT1 A 0 A_JumpIfInventory("BondClass", 0, "PickupBond")
+			TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Shell", 5)
+			stop
+		PickupRott:
+			TNT1 A 0 A_JumpIfInventory("RottMissiles", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("RottMissiles", 6)
+			Stop
+		PickupStrife:
+			TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupStrife2")
+			TNT1 A 0 A_GiveInventory("Shell", 5)
+			TNT1 A 0 A_GiveInventory("StrifePoisonAmmo", 2)
+			Stop
+		PickupStrife2:
+			TNT1 A 0 A_JumpIfInventory("StrifePoisonAmmo", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("StrifePoisonAmmo", 2)
+			Stop
+		PickupWitchaven:
+			TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Shell", 7)
+			stop
+		PickupSW:
+			TNT1 A 0 A_JumpIfInventory("Shell", 0, "Check1")
+		SWSafe:
+			TNT1 A 0 A_GiveInventory("Shell", 5)	  
+			TNT1 A 0 A_Jump(234,1)
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
+			Stop
+		Check1:
+			TNT1 A 0 A_JumpIfInventory("RocketAmmo", 0, "PickupFail")
+			Goto SWSafe	
+		PickupWolfen:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 25)
+			stop
+		PickupHexen:
+			TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Clip", 15)
+			stop
+		PickupMarathon:
+			TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupFail")
+			TNT1 A 0 A_SetBlend("Green", 0.3, 3)
+			TNT1 A 0 A_GiveInventory("Shell", 5)
+			stop
+		PickupBond:
+			TNT1 A 0 A_GiveInventory("Shell", 5)
+			Stop
+		PickupDisruptor:
+			TNT1 A 0 A_JumpIfInventory("Shell", 0, "PickupDisruptor2")
+			TNT1 A 0 A_GiveInventory("Shell", 5)
+			TNT1 A 0 A_GiveInventory("Cell", 8)
+			Stop
+		PickupDisruptor2:
+			TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupFail")
+			TNT1 A 0 A_GiveInventory("Cell", 8)
+			stop		
+		PickupFail:
+			GE00 Z 1
+			fail		
+    }
+}
+						
 Actor Goldeneye_HatShotToken : Inventory { Inventory.MaxAmount 12 }
 Actor Goldeneye_IsHat : Inventory { Inventory.MaxAmount 1 }
 Actor Goldeneye_GrenadeThrower : Inventory { Inventory.MaxAmount 1 }

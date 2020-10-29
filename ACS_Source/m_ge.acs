@@ -677,19 +677,38 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 
 Script "GoldeneyeEnemyDrops" (void)
 {
-	str dual = GunTypes[GetActorProperty(0,APROP_MASS)-201];
+	int x,y,z,guntype,randnum;
+	str mag;
+	x = GetActorVelX(0);
+	y = GetActorVelY(0);
+	z = GetActorVelZ(0);
+	guntype = GetActorProperty(0,APROP_MASS)-201;
+	str dual = GunTypes[guntype];
+	if(guntype <= 16 || guntype == 27)
+	{
+		randnum = random(0,100);
+		if (randnum <= 15)
+			mag = "mag";
+		else
+			mag = "";
+	}
+	else
+	{
+		mag = "";
+	}	
+		
 	if(StrLeft(dual,4) == "Dual")
 	{
-		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,5);
-		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,-10);
+		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+45.0),(y+0),(z+random(40.0,48.0)));
+		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-4),s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+-45.0),(y+0),(z+random(40.0,48.0)));
 	}	
 	else if(StrLeft(dual,6) == "Silver")
 	{
-		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-6),s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + random(40.0,48.0),0,5);	
+		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-6),s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+45.0),(y+0),(z+random(40.0,48.0)));	
 	}	
 	else
 	{
-		SpawnForced(StrParam(s:"Goldeneye_",s:dual,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + 48.0,0,5);
+		SpawnForced(StrParam(s:"Goldeneye_",s:dual,s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+45.0),(y+0),(z+random(40.0,48.0)));
 	}
 }	
 	
