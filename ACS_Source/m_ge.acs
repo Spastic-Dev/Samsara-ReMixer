@@ -175,9 +175,9 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			{
 				if(randnum <= 9)
 					guntype = 4;
-				else if(randnum <= 10)
+				else if(randnum <= 19)
 					guntype = 23;					
-				else if(randnum <= 14)
+				else if(randnum <= 33)
 					guntype = 3;
 				else	
 					guntype = 5;
@@ -209,9 +209,9 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			
 			randnum = random(0,100);
 			
-			if(randnum >=60)
+			if(randnum >=40)
 				guntype = 5;
-			else if (randnum >= 25)
+			else if (randnum >= 20)
 				guntype = 6;
 			else 
 				guntype = 7;
@@ -360,7 +360,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(newtid,activator);
 			break;
 		case 9:	
-			SetActorProperty(newtid,APROP_Health,180);
+			SetActorProperty(newtid,APROP_Health,360);
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[0]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
@@ -413,22 +413,26 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SetPointer(AAPTR_MASTER,newtid);
 			
 			randnum = random(0,100);
-				if(randnum >= 90) 
+				if (randnum >= 96)
+					guntype = 15;
+				else if (randnum >= 80) 
 					guntype = 7;
-				else if	(randnum >= 80)
+				else if	(randnum >= 72)
 					guntype = 6;
-				else if (randnum >= 70)
+				else if (randnum >= 64)
 					guntype = 12;
-				else if (randnum >= 60)
+				else if (randnum >= 56)
 					guntype = 8;
-				else if (randnum >= 50)
+				else if (randnum >= 48)
 					guntype = 4;
-				else if (randnum >= 40)
+				else if (randnum >= 32)
 					guntype = 2;
-				else if (randnum >= 30)
+				else if (randnum >= 24)
 					guntype = 1;
-				else if (randnum >= 20)
+				else if (randnum >= 16)
 					guntype = 14;
+				else if (randnum >= 8)
+					guntype = 16;
 				else 
 					guntype = 5;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
@@ -456,8 +460,14 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
 			SetActivator(hattid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
+			randnum = random(0,100);
 			
-			guntype = 12;
+			if(randnum >= 40)
+				guntype = 12;
+			else if(randnum >= 20)
+				guntype = 20;
+			else
+				guntype = 21;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -648,8 +658,14 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
 			SetActivator(hattid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
+			randnum = random(0,100);
 			
-			guntype = 12;
+			if(randnum >= 40)
+				guntype = 12;
+			else if(randnum >= 20)
+				guntype = 20;
+			else
+				guntype = 21;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -1226,6 +1242,81 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;
 		case 40:
 			SetActorState(0,"FireSniperRunEnd",true);
-			break;				
+			break;
+		case 41:
+			SetActorState(0,"FireAutoShotgunAimBow",true);
+			break;	
+		case 42:
+			SetActorState(0,"FireAutoShotgunAimHip",true);
+			break;		
+		case 43:
+			SetActorState(0,"FireAutoShotgunAimToFire",true);
+			break;	
+		case 44:
+			SetActorState(0,"FireAutoShotgunCrouch",true);
+			break;	
+		case 45:
+			SetActorState(0,"FireAutoShotgunJumpToLeft",true);
+			break;	
+		case 46:
+			SetActorState(0,"FireAutoShotgunJumpToRight",true);
+			break;		
+		case 47:
+			SetActorState(0,"FireAutoShotgunRollLeft",true);
+			break;	
+		case 48:
+			SetActorState(0,"FireAutoShotgunRollRight",true);
+			break;		
+		case 49:
+			SetActorState(0,"FireAutoShotgunRun",true);
+			break;	
+		case 50:
+			SetActorState(0,"FireAutoShotgunAimBowEnd",true);
+			break;	
+		case 51:
+			SetActorState(0,"FireAutoShotgunAimHipEnd",true);
+			break;	
+		case 52:
+			SetActorState(0,"FireAutoShotgunAimToFireEnd",true);
+			break;	
+		case 53:
+			SetActorState(0,"FireAutoShotgunCrouchEnd",true);
+			break;
+		case 54:
+			SetActorState(0,"FireAutoShotgunJumpToLeftEnd",true);
+			break;	
+		case 55:
+			SetActorState(0,"FireAutoShotgunRollLeftEnd",true);
+			break;	
+		case 56:
+			SetActorState(0,"FireAutoShotgunRollRightEnd",true);
+			break;	
+		case 57:
+			SetActorState(0,"FireAutoShotgunRunEnd",true);
+			break;
+		case 58:
+			SetActorState(0,"FireRCP90StepForward",true);
+			break;	
+		case 59:
+			SetActorState(0,"FireRCP90Kneel",true);
+			break;	
+		case 60:
+			SetActorState(0,"FireRCP90DualStand",true);
+			break;	
+		case 61:
+			SetActorState(0,"FireRCP90DualKneel",true);
+			break;	
+		case 62:
+			SetActorState(0,"FireRCP90DualCrossKneel",true);
+			break;
+		case 63:
+			SetActorState(0,"FireRCP90DualWalk",true);
+			break;	
+		case 64:
+			SetActorState(0,"FireRocketLauncherStepForwardEnd",true);
+			break;	
+		case 65:
+			SetActorState(0,"FireRocketLauncherKneelEnd",true);
+			break;					
 	}
 }	
