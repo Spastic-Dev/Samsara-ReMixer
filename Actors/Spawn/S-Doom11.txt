@@ -162,17 +162,13 @@ ACTOR LostSoulSpawnerCoop replaces LostSoul
 			TNT1 A 1 A_SpawnItemEx("BloodBat", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetRmr:
-			TNT1 A 0 A_Jump(128,"SetRMR1","SetRMR2")
+			TNT1 A 0 A_Jump(128,"SetRMR1")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrmr1")
 			TNT1 A 1 A_SpawnItemEx("RMRLaserDrone", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetRMR1:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrmr2")
 			TNT1 A 1 A_SpawnItemEx("RMRGrenadeDrone", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion
-		SetRMR2:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyrmr3")
-			TNT1 A 1 A_SpawnItemEx("RMRSpinner", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetExhumed:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyexhumed")
@@ -385,11 +381,6 @@ ACTOR LostSoulSpawnerCoop replaces LostSoul
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
 			TNT1 A 1 A_SpawnItemEx("multiRMRGrenadeDrone",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRMR2")
-			Goto DeathForInvasion
-		MultiplyRmr3:
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multiRMRSpinner",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyRMR3")
 			Goto DeathForInvasion
 		MultiplyExhumed:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

@@ -178,3 +178,39 @@ ACTOR MultiChicken3 : Chicken3
 	Species "Chicken"
 	+THRUSPECIES
 }
+
+
+Actor ArtiTomeEnemy : SamsaraUniquePickup1
+{
+	+FLOATBOB
+	States
+	{
+		Spawn:
+			PWBK A 350
+			Loop
+	}
+}
+
+Actor ArtiHealthEnemy : HealPack1
+{
+	Alpha 1.0
+	Scale 1.0
+	States
+	{
+		Spawn:
+			PNT2 ABC 4
+			Loop
+	}
+}
+
+Actor ArtiSuperHealthEnemy : HealPack2
+{
+	Scale 1.0
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			SPHL A 350
+			Loop
+		}
+}		

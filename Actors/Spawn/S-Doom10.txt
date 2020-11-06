@@ -181,7 +181,7 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			Goto BossWait
 		SetQuake1:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
-			TNT1 A 1 A_SpawnItemEx("Shambler",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)			
+			TNT1 A 1 A_SpawnItemEx("QHKnight",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)			
 			Goto BossWait			
 		SetDoom64:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom64")
@@ -211,7 +211,7 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			Goto BossWait
 		SetHexen2:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
-			TNT1 A 1 A_SpawnItemEx("Hexen2ShadowWizard",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("Hexen2BronzeGolem",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetGoldeneye:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyGoldeneye")
@@ -481,7 +481,7 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			Goto BossWait	
 		MultiplyQuake1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiShambler",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiQHKnight",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake1")
 			Goto BossWait			
 		MultiplyDoom64:

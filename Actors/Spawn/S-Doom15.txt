@@ -199,18 +199,14 @@ ACTOR ArchvileSpawnerCoop replaces Archvile
 		    TNT1 A 1 A_SpawnItemEx("DisruptorTerroristElite", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetQuake1:
-			TNT1 A 0 A_Jump(128,"SetQuake1_2","SetQuake1_3")
+			TNT1 A 0 A_Jump(128,"SetQuake1_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake11")
-			TNT1 A 1 A_SpawnItemEx("QMummy", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("Shambler", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetQuake1_2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake12")
-			TNT1 A 1 A_SpawnItemEx("QHKnight", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		SetQuake1_3:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake13")
 			TNT1 A 1 A_SpawnItemEx("QKStatue2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait			
+			Goto BossWait		
 		SetDoom64:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom64")
 			TNT1 A 1 A_SpawnItemEx("Archvile64", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
@@ -610,32 +606,22 @@ ACTOR ArchvileSpawnerCoop replaces Archvile
 			Goto BossWait
 		MultiplyQuake11:	
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiQMummy",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiShambler",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake11_2")
 			Goto MultiplyQuake11_2
 		MultiplyQuake11_2:	
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiQMummy",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiShambler",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake11_2")
 			Goto BossWait
 		MultiplyQuake12:	
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiQHKnight",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake12_2")
+			TNT1 A 1 A_SpawnItemEx("MultiQKStatue2",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake13_2")
 			Goto MultiplyQuake12_2
 		MultiplyQuake12_2:	
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiQHKnight",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake12_2")
-			Goto BossWait
-		MultiplyQuake13:	
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiQKStatue1",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake13_2")
-			Goto MultiplyQuake13_2
-		MultiplyQuake13_2:	
-			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiQKStatue1",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiQKStatue2",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyQuake13_2")
 			Goto BossWait
 		MultiplyDoom64:
