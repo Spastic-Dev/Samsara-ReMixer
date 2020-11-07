@@ -24,7 +24,7 @@ ACTOR ChaingunGuySpawnerCoop replaces ChaingunGuy
 			Goto DeathForInvasion
 		SetHexen1:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
-			TNT1 A 1 A_SpawnItemEx("Bishop3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("FireDemon3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetChex:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
@@ -283,7 +283,7 @@ ACTOR ChaingunGuySpawnerCoop replaces ChaingunGuy
 			Goto DeathForInvasion
 		MultiplyHexen1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("MultiBishop3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("MultiFireDemon3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			Goto DeathForInvasion
 		MultiplyHeretic:
