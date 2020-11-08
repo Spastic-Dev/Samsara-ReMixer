@@ -906,7 +906,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 E 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 F 4 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 A 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 A 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
-			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KGoldeneye_D5KTracerEnemyF7TracerFake", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
+			TNT1 B 4 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 C 0 A_CustomMissile("Goldeneye_KF7TracerFake", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 C 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 D 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 D 4 BRIGHT A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 E 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)
 			TNT1 E 4 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON) TNT1 F 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", 32, 5, frandom(-2,2)) "####" "#" 0 A_FaceTarget "####" "#" 0 A_Recoil(-3)			
@@ -3709,7 +3709,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)			
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.Shock:
@@ -3721,7 +3721,8 @@ Actor Goldeneye_EnemyBase
 		Death.LifeLeech:
 			TNT1 A 0 A_Jump(218, 2)
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
+			TNT1 A 0 A_Playsound("Goldeneye/Scream", CHAN_VOICE)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)			
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -3749,7 +3750,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 			TNT1 A 0 A_Fall
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut	
 			Stop	
 		Death.EradExplosive:
@@ -3796,7 +3797,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 0 A_Fall
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut	
 			Stop
 		Death.PSRAPower:
@@ -3818,7 +3819,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 			TNT1 A 0 A_Fall
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut	
 			Stop		
 		Death.LeonardDamage2:
@@ -3838,7 +3839,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
 			TNT1 A 0 A_Fall
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut	
 			Stop			
 		Death.SWFist:
@@ -3887,7 +3888,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 			TNT1 A 0 A_Fall
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut	
 			Stop
 		Death.ZorchPistol:
@@ -3916,7 +3917,7 @@ Actor Goldeneye_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
 			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			"####" "#" 0
 			stop
 		Death.DukeIce:
@@ -3935,17 +3936,17 @@ Actor Goldeneye_EnemyBase
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
+			"####" "#" 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
 			"####" "#" 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
 			TNT1 A 0
 			stop
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_NoBlocking
 			Stop	
 	    Death.RottExplosive:
@@ -3959,7 +3960,7 @@ Actor Goldeneye_EnemyBase
 		   TNT1 A 0 A_Jump(96, 2)
 		   TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
 		   TNT1 A 0 A_NoBlocking
-		   TNT1 A 0 A_RemoveChildren(true)
+		   TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 		   TNT1 A 0 A_KillMaster
 		   Stop
 	    Death.RottDisintegrate:
@@ -3967,7 +3968,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_SpawnItem("RGodModeDeath")
 			stop	
 		Disintegrate:
@@ -4002,7 +4003,7 @@ Actor Goldeneye_EnemyBase
 			"####" "#" 2 A_SetTranslucent(0.2,0)
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			stop
 		Death.Nuke:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_BroadCast_Nuke",1)
@@ -4014,7 +4015,7 @@ Actor Goldeneye_EnemyBase
 			"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 			"####" "#" 0 A_KillMaster
 			"####" "#################" 3 A_Fadeout(0.05)
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			stop
 		Death.QuakeElectric:
 		Death.NotQuadded:
@@ -4030,7 +4031,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut	
 			Stop
 		Death.BittermanDamage:
@@ -4042,7 +4043,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
 			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 5 A_FadeOut
 			Stop
 		Pain.Hexen2RavenDamage:
@@ -4060,7 +4061,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)
-			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_KillMaster
@@ -6623,7 +6624,7 @@ Actor Goldeneye_PartBase
 		Death.WTMeleeIce:
 		Death.WTRangedIce:
 		Death.Ice:
-			"####" "#" 0 A_GenericFreezeDeath
+			"####" "#" 0 ACS_NamedExecuteAlways("Goldeneye_TransferIceTranslation")
 			"####" "#" 70
 			"####" "#" 1
 			TNT1 A 0
@@ -8038,6 +8039,23 @@ Actor Goldeneye_SideBySide : CustomInventory
 			stop
 	}
 }
+
+Actor Goldeneye_RemoveChildren : CustomInventory
+{
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 Thing_Remove(0)
+			TNT1 A 0
+			stop
+	}
+}
+
 
 Actor Goldeneye_HatDrop 
 {

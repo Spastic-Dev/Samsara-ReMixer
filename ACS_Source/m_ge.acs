@@ -1320,3 +1320,13 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;					
 	}
 }	
+
+Script "Goldeneye_TransferIceTranslation" (void)
+{
+	int activator = ActivatorTID();
+	int newtid = UniqueTID();
+	Thing_ChangeTID(0, newtid);
+	SetActivator(0,AAPTR_Master);
+	Thing_SetTranslation(newtid, -1);
+	Thing_ChangeTID(newtid, activator);
+}
