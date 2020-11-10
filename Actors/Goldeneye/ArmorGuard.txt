@@ -11,3 +11,62 @@ Actor Goldeneye_ArmorGuard : Goldeneye_EnemyBase
 			Goto Spawn2
 	}
 }
+Actor Goldeneye_JetPackGuard : Goldeneye_EnemyBase
+{
+	Tag "Janus Marine (Jetpack)"
+	States
+	{
+		Spawn:
+			GE00 AA 0 A_UnsetShootable
+			GE00 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyPartsPicker",0,21)
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("NoPain",true)
+			TNT1 A 0 A_SetShootable
+			Goto Spawn2
+		See:
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_JetPackIgnition",1,"SeeContinue")
+			TNT1 A 0 A_GiveInventory("Goldeneye_JetPackIgnition",1)
+			TNT1 A 0 A_JumpIf(mass == 206||mass == 209||mass == 211||mass == 213||mass == 215||mass == 217||mass == 218||mass == 223, "IgnitionTwoHand")
+			Goto IgnitionDual
+		IgnitionTwoHand:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_IgnitionTwoHand",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("Goldeneye_JetPackLoop")
+			TNT1 ABCD 6
+			TNT1 EFGHIJ 6
+			TNT1 A 0 A_ChangeFlag("NoPain",false)
+			TNT1 A 0 A_ChangeFlag("NoGravity",true)
+			TNT1 A 0 A_ChangeFlag("Float",true)
+			Goto SeeContinue
+		IgnitionDual:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_IgnitionDual",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("Goldeneye_JetPackLoop")
+			TNT1 ABCD 6
+			TNT1 EFGHIJKLM 6
+			TNT1 A 0 A_ChangeFlag("NoPain",false)
+			TNT1 A 0 A_ChangeFlag("NoGravity",true)
+			TNT1 A 0 A_ChangeFlag("Float",true)
+			Goto SeeContinue
+		SeeContinue:
+			TNT1 A 0 A_JumpIf(mass == 206||mass == 209||mass == 211||mass == 213||mass == 215||mass == 217||mass == 218||mass == 223, "SeeTwoHand")
+			Goto SeeSingleDual
+		SeeSingleDual:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_SeeSingleDual",1)
+			TNT1 A 6 A_Chase("","Missile") TNT1 B 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 B 6 A_Chase("","Missile") TNT1 C 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 C 6 A_Chase("","Missile") TNT1 D 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 D 6 A_Chase("","Missile") TNT1 E 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 E 6 A_Chase("","Missile") TNT1 F 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 F 6 A_Chase("","Missile") TNT1 G 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 G 6 A_Chase("","Missile") TNT1 A 0 A_Recoil(-0.25) "####" "#" 0
+			Loop
+		SeeTwoHand:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_SeeTwoHand",1)
+			TNT1 A 6 A_Chase("","Missile") TNT1 B 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 B 6 A_Chase("","Missile") TNT1 C 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 C 6 A_Chase("","Missile") TNT1 D 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 D 6 A_Chase("","Missile") TNT1 E 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 E 6 A_Chase("","Missile") TNT1 F 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 F 6 A_Chase("","Missile") TNT1 A 0 A_Recoil(-0.25) "####" "#" 0
+			Loop
+	}
+}
