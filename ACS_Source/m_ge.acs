@@ -695,6 +695,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			break;		
 		case 20:
 			GiveActorInventory(newtid,"Goldeneye_GrenadeThrower",1);
+			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 3);
 			SetActorProperty(newtid,APROP_Health,2500);
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[19]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
@@ -720,7 +721,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(newtid,activator);
 			break;		
 		case 21:
-			SetActorProperty(newtid,APROP_Health,360);
+			SetActorProperty(newtid,APROP_Health,100);
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[0]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -1416,10 +1417,10 @@ Script "Goldeneye_TransferIceTranslation" (void)
 Script "Goldeneye_TracerDamage" (int type)
 {
 	SetActivatorToTarget(0);
-	int hitchance, guntype, guardtier, skillchance, gunchance, guardchance, randnum;
+	int hitchance, hitmul, guntype, skillchance, gunchance, randnum;
 	int skill = GameSkill()+1;
-	guardtier = CheckInventory("Goldeneye_GuardTierToken");
-    guardchance = 0.5*guardtier+1;
+	int guardtier = CheckInventory("Goldeneye_GuardTierToken");
+    int guardchance = guardtier+2;
 	guntype = GetActorProperty(0,APROP_MASS)-201;
 	switch(type)
 	{
@@ -1433,9 +1434,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		else 
 			gunchance = 0;
 			
-		hitchance = guardchance * (skillchance+gunchance);
+		hitmul = (skillchance+gunchance) * guardchance;
 		
-		PrintBold(d: hitchance);
+		hitchance = hitmul/2;		
 			
 		randnum = random(0,100);
 		
@@ -1454,9 +1455,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		else 
 			gunchance = 0;
 			
-		hitchance = guardchance * (skillchance+gunchance);
-		
-		PrintBold(d: hitchance);
+		hitmul = (skillchance+gunchance) * guardchance;
+
+		hitchance = hitmul/2;				
 			
 		randnum = random(0,100);
 		
@@ -1470,9 +1471,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		
 		gunchance = 10;
 		
-		hitchance = guardchance * (skillchance+gunchance);
+		hitmul = (skillchance+gunchance) * guardchance;
 		
-		PrintBold(d: hitchance);
+		hitchance = hitmul/2;
 			
 		randnum = random(0,100);
 		
@@ -1491,9 +1492,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		else
 			gunchance = 0;
 			
-		hitchance = guardchance * (skillchance+gunchance);
+		hitmul = (skillchance+gunchance) * guardchance;
 		
-		PrintBold(d: hitchance);
+		hitchance = hitmul/2;
 			
 		randnum = random(0,100);
 		
@@ -1507,9 +1508,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		
 		gunchance = 10;
 		
-		hitchance = guardchance * (skillchance+gunchance);
+		hitmul = (skillchance+gunchance) * guardchance;
 		
-		PrintBold(d: hitchance);
+		hitchance = hitmul/2;
 			
 		randnum = random(0,100);
 		
@@ -1526,9 +1527,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		else 
 			gunchance = 5;
 			
-		hitchance = guardchance * (skillchance+gunchance);
+		hitmul = (skillchance+gunchance) * guardchance;
 		
-		PrintBold(d: hitchance);
+		hitchance = hitmul/2;
 			
 		randnum = random(0,100);
 		
@@ -1542,9 +1543,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		
 		gunchance = 3;
 		
-		hitchance = guardchance * (skillchance+gunchance);
+		hitmul = (skillchance+gunchance) * guardchance;
 		
-		PrintBold(d: hitchance);
+		hitchance = hitmul/2;
 			
 		randnum = random(0,100);
 		
@@ -1563,9 +1564,9 @@ Script "Goldeneye_TracerDamage" (int type)
 		else
 			gunchance = 5;
 		
-		hitchance = guardchance * (skillchance+gunchance);
+		hitmul = (skillchance+gunchance) * guardchance;
 		
-		PrintBold(d: hitchance);
+		hitchance = hitmul/2;
 			
 		randnum = random(0,100);
 		
