@@ -1414,7 +1414,10 @@ Script "Goldeneye_TransferIceTranslation" (void)
 	Thing_ChangeTID(newtid, activator);
 }
 
-Script "Goldeneye_TracerDamage" (int type)
+int GunChances[28] = { 10, 10, 10, 15, 15, 5, 5, 5, 10, 10, 5, 5, 10, 0, 2, 2, 3, 15, 20, 15, 20, 15, 5, 5, 15, 3, 10, 15 };
+int TracerDamage[28] = { 13, 13, 13, 6, 6, 13, 10, 10, 10, 10, 14, 14, 14, 14, 18, 18, 12, 20, 25, 25, 25, 25, 10, 10, 6, 18, 5, 25 };
+
+Script "Goldeneye_TracerDamage" (void)
 {
 	SetActivatorToTarget(0);
 	int hitchance, hitmul, guntype, skillchance, gunchance, randnum;
@@ -1422,160 +1425,15 @@ Script "Goldeneye_TracerDamage" (int type)
 	int guardtier = CheckInventory("Goldeneye_GuardTierToken");
     int guardchance = guardtier+2;
 	guntype = GetActorProperty(0,APROP_MASS)-201;
-	switch(type)
-	{
-	case 1: // kf7 tracers
-		skillchance = 6*skill;
-		
-		if(guntype == 0 || guntype == 1||guntype == 2)
-			gunchance = 10;
-		else if(guntype == 5)
-			gunchance = 5;
-		else 
-			gunchance = 0;
-			
-		hitmul = (skillchance+gunchance) * guardchance;
-		
-		hitchance = hitmul/2;		
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(13);
-		else
-			SetResultValue(0);
-		break;
-	case 2: // D5K Tracers
-		skillchance = 4*skill;
-		
-		if(guntype == 6 || guntype == 8)
-			gunchance = 10;
-		else if(guntype == 7 || guntype == 9)
-			gunchance = 5;
-		else 
-			gunchance = 0;
-			
-		hitmul = (skillchance+gunchance) * guardchance;
-
-		hitchance = hitmul/2;				
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(10);
-		else
-			SetResultValue(0);
-		break;	
-	case 3: // klobb tracer
-		skillchance = 9*skill;
-		
-		gunchance = 10;
-		
-		hitmul = (skillchance+gunchance) * guardchance;
-		
-		hitchance = hitmul/2;
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(6);
-		else
-			SetResultValue(0);
-		break;	
-	case 4: // ar33 tracer
-		skillchance = 6*skill;
-		
-		if(guntype == 10 || guntype == 11)
-			gunchance = 5;
-		else if(guntype == 12)
-			gunchance = 10;
-		else
-			gunchance = 0;
-			
-		hitmul = (skillchance+gunchance) * guardchance;
-		
-		hitchance = hitmul/2;
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(14);
-		else
-			SetResultValue(0);
-		break;		
-	case 5: //sniper tracer
-		skillchance = 8*skill;
-		
-		gunchance = 10;
-		
-		hitmul = (skillchance+gunchance) * guardchance;
-		
-		hitchance = hitmul/2;
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(20);
-		else
-			SetResultValue(0);
-		break;	
-	case 6: // RCP90 Tracer
-		skillchance = 3*skill;
-		
-		if(guntype == 14)
-			gunchance = 10;
-		else 
-			gunchance = 5;
-			
-		hitmul = (skillchance+gunchance) * guardchance;
-		
-		hitchance = hitmul/2;
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(18);
-		else
-			SetResultValue(0);
-		break;				
-	case 7: // shotgun tracer
-		skillchance = 5*skill;
-		
-		gunchance = 3;
-		
-		hitmul = (skillchance+gunchance) * guardchance;
-		
-		hitchance = hitmul/2;
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(12);
-		else
-			SetResultValue(0);
-		break;
-	case 8: // cougar & laser
-		skillchance = 6*skill;
-		
-		if(guntype == 18 || guntype == 20)
-			gunchance = 15;
-		else if (guntype == 19 || guntype == 21)
-			gunchance = 10;
-		else
-			gunchance = 5;
-		
-		hitmul = (skillchance+gunchance) * guardchance;
-		
-		hitchance = hitmul/2;
-			
-		randnum = random(0,100);
-		
-		if(randnum <= hitchance)
-			SetResultValue(25);
-		else
-			SetResultValue(0);
-		break;		
-	}
+	gunchance = GunChances[guntype];
+	skillchance = 6*skill;			
+	hitmul = (skillchance+gunchance) * guardchance;
+	hitchance = hitmul/2;		
+	randnum = random(0,100);	
+	if(randnum <= hitchance)
+		SetResultValue(TracerDamage[guntype]);
+	else
+		SetResultValue(0);
 }
 
 Script "Goldeneye_JetPackLoop" (void)
