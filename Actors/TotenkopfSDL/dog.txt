@@ -1,0 +1,56 @@
+ACTOR TotenkopfDog : TotenkopfEnemy
+{
+	Health 1
+	Radius 12
+	Height 32
+	Speed 12
+	PainChance 0
+	SeeSound "totenkopf/dogsight"
+	DeathSound "totenkopf/dogdeath"
+	ActiveSound ""
+	Tag "Dog"
+	Obituary "%o was bitten by a dog."
+	States 
+	{
+		//Disabling wandering movement because this can break maps
+		Spawn:
+			TK33 A 2 A_Look
+			Loop
+		See:
+			"####" AAABBCCCDD 2 A_Chase
+			Loop
+		Melee:
+			"####" A 0 A_ChangeFlag("NOPAIN",0)
+			"####" E 5 A_FaceTarget
+			"####" F 5 A_FaceTarget
+			"####" G 0 A_CustomMeleeAttack(random(0,256)>>4,"totenkopf/dogbite","totenkopf/dogbite")
+			"####" G 5 
+			"####" E 5
+			"####" A 5
+			Goto See	
+		Death:
+		XDeath:
+			"####" H 7
+			"####" I 8 A_Scream
+			"####" J 7 A_NoBlocking
+			"####" K -1
+			Stop
+	}
+}
+
+ACTOR TotenkopfDog2 : TotenkopfDog
+{
+	States 
+	{
+		//Disabling wandering movement because this can break maps
+		Spawn:
+			TK34 A 2 A_Look
+			Loop
+	}
+}
+
+Actor TotenkopfDogSpawner : RandomSpawner
+{
+	DropItem "TotenkopfDog", 256, 1
+	DropItem "TotenkopfDog2", 256, 1
+}	

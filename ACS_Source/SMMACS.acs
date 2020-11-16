@@ -2,7 +2,7 @@
 #include "zcommon.acs"
 #include "commonFuncs.h"
 
-#define MAX_GAME_TYPES 28
+#define MAX_GAME_TYPES 29
 
 int SMMCVARINFO = 
 "Stuff";
@@ -14,19 +14,19 @@ str gameTypesStr[MAX_GAME_TYPES] =
 		{	"mm_doom", "mm_heretic", "mm_hexen1", "mm_chex", "mm_wolf3d", "mm_duke3d", "mm_marathon", "mm_bstone", 
 			"mm_rott", "mm_rr", "mm_erad", "mm_strife", "mm_darkf", "mm_cm", "mm_c7", "mm_sw", 
 			"mm_blood", "mm_rmr", "mm_ps", "mm_ipog", "mm_witch", "mm_disrup", "mm_quake1", "mm_doom64", "mm_halflife"
-			,"mm_quake2", "mm_hexen2", "mm_goldeneye"
+			,"mm_quake2", "mm_hexen2", "mm_goldeneye", "mm_totenkopf"
 };
 
 str gameSetsStr[MAX_GAME_TYPES] = {
 	"SetDoom", "SetHeretic", "SetHexen1", "SetChex", "SetWolf3D", "SetDuke3D", "SetMarathon", "SetBStone", "SetRoTT",
 	"SetRR", "SetErad", "SetStrife", "SetDarkF", "SetCM", "SetC7", "SetSW", "SetBlood", "SetRmr", "SetExhumed",
-	"SetIPOG", "SetWitch", "SetDisrup", "SetQuake1", "SetDoom64", "SetHL", "SetQuake2", "SetHexen2", "SetGoldeneye"
+	"SetIPOG", "SetWitch", "SetDisrup", "SetQuake1", "SetDoom64", "SetHL", "SetQuake2", "SetHexen2", "SetGoldeneye", "SetTotenkopf"
 };
 
 str gameClassesSTR[MAX_GAME_TYPES] = {
 	"DoomguyPlayer2", "CorvusPlayer2", "HexenPlayer2", "ChexWarrior2", "WolfenPlayer2", "DukePlayer2", "MarathonPlayer2", "BlakeStone2", "IPFreeley2",
 	"Leonard2", "Eleena2", "StrifeGuyPlayer2", "KatarnPlayer2", "CMPlayer2", "Corridor7Player2", "LoWangPlayer2", "Caleb2", "RebelMoonCommando2", "PSPlayer2",
-	"POGreedPlayer2", "GrondovalPlayer2", "DisruptorPlayer2", "QuakePlayer2", "Doom64GuyPlayer2", "HalfLifePlayer2", "Bitterman2", "Demoness2", "JamesBond2"
+	"POGreedPlayer2", "GrondovalPlayer2", "DisruptorPlayer2", "QuakePlayer2", "Doom64GuyPlayer2", "HalfLifePlayer2", "Bitterman2", "Demoness2", "JamesBond2", "TotenkopfPlayer2"
 };
 
 bool activesets[MAX_GAME_TYPES];
@@ -72,7 +72,8 @@ Script 667 OPEN
 		SetCVar("mm_halflife", true);	
 		SetCVar("mm_quake2", true);	
 		SetCVar("mm_hexen2", true);	
-		SetCVar("mm_goldeneye", true);	
+		SetCVar("mm_goldeneye", true);
+		SetCVar("mm_totenkopf", true);
 		SetCVar("mm_wolfmode", 2);
 		SetCVar("mm_randomcycle", 0);
 		SetCVar("mm_fakehitlerfire", true);
@@ -389,6 +390,11 @@ Script 669 (void)
 					if(!GetCVar("mm_goldeneye")||lastchosen == 28) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
 					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 28; }
 					break;
+				
+				case 29:
+					if(!GetCVar("mm_totenkopf")||lastchosen == 29) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 29; }
+					break;				
 			}
 		}
 		randomallclear = 1;
@@ -515,7 +521,7 @@ Script 680 (int pick)
 	SetResultValue(response);
 }
 
-int realindices[MAX_GAME_TYPES] = { 0, 3, 1, 4, 2, 5, 6, 22, 8, 7, 16, 11, 23, 10, 14, 17, 12, 19, 21, 20, 24, 15, 13, 18, 9, 25, 26, 27 };
+int realindices[MAX_GAME_TYPES] = { 0, 3, 1, 4, 2, 5, 6, 22, 8, 7, 16, 11, 23, 10, 14, 17, 12, 19, 21, 20, 24, 15, 13, 18, 9, 25, 26, 27, 28 };
 
 Script "ExMixerClassBasedSpawn" (void)
 {

@@ -1,0 +1,266 @@
+Actor TotenkopfTrooperFlamethrower : TotenkopfEnemy
+{
+	Health 400
+	Height 56
+	Speed 6
+	Seesound ""
+	ActiveSound ""
+	MaxTargetRange 512
+	DeathSound "Totenkopf/HeavyDeath"
+	Tag "SS Flamethrower Trooper"
+	DropItem "Totenkopf_FlamethrowerEnemyDrop"
+	Obituary "%o was burned by an SS Flamethrower Trooper."
+	+LOOKALLAROUND
+	States
+	{
+		Spawn:
+			TK30 A 1 A_Look
+			Loop
+		See:
+			"####" AAABBCCCDD 2 A_Chase
+			Loop
+		Missile:
+			"####" E 15 A_FaceTarget
+			"####" F 1 Bright A_FaceTarget
+		MissileHold:
+			"####" F 0 A_Playsound("Totenkopf/flamethrower", CHAN_WEAPON)
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 1 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 2 Bright
+			"####" G 0 A_Playsound("Totenkopf/flamethrower", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 2 Bright
+			"####" G 0 A_Playsound("Totenkopf/flamethrower", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 2 Bright
+			"####" G 0 A_Playsound("Totenkopf/flamethrower", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Flamethrower_Projectile_Heavy",44)
+			"####" G 2 Bright
+			"####" G 0 A_MonsterRefire(0,"See")
+			Loop
+		Death:
+		XDeath:
+			"####" H 0 A_Scream
+			"####" H 0 A_NoBlocking
+			"####" H 7
+			"####" I 8 
+			"####" J 7
+			"####" K -1 A_KillMaster
+			Stop
+	}
+}
+
+Actor Totenkopf_Flamethrower_Projectile_Heavy : Totenkopf_Flamethrower_Projectile { Damage (random(0,256)>>4) } 
+
+Actor TotenkopfTrooperChaingun : TotenkopfEnemy
+{
+	Health 400
+	Height 56
+	Speed 6
+	Seesound ""
+	ActiveSound ""
+	DeathSound "Totenkopf/HeavyDeath"
+	Tag "SS Chaingun Trooper"
+	DropItem "Totenkopf_ChaingunEnemyDrop"
+	Obituary "%o was shot by an SS Chaingun Trooper."
+	+LOOKALLAROUND
+	States
+	{
+		Spawn:
+			TK31 A 1 A_Look
+			Loop
+		See:
+			"####" AAABBCCCDD 2 A_Chase
+			Loop
+		Missile:
+			"####" E 15 A_FaceTarget
+			"####" F 1 Bright A_FaceTarget
+		MissileHold:
+			"####" F 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 1 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 2 Bright
+			"####" G 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 2 Bright
+			"####" G 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 2 Bright
+			"####" G 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" F 0 A_FaceTarget
+			"####" F 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" F 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" G 0 A_MonsterRefire(0,"See")
+			Loop
+		Death:
+		XDeath:
+			"####" H 0 A_Scream
+			"####" H 0 A_NoBlocking
+			"####" H 7
+			"####" I 8 
+			"####" J 7
+			"####" K -1 A_KillMaster
+			Stop
+	}
+}
+
+Actor Totenkopf_Tracer_ChaingunTrooper : Totenkopf_Tracer_Enemy 
+{ 
+	Damage (2+(random(0,256)%10)) 
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(random(0,4)!=3,3)
+			TNT1 A 0 A_ChangeFlag("NOEXTREMEDEATH",false)
+			TNT1 A 0 A_ChangeFlag("EXTREMEDEATH",true)
+			TNT1 A 0 A_ChangeVelocity(velx*128,vely*128,velz*128,CVF_REPLACE)
+		SpawnLoop:
+			TNT1 A 1
+			Loop
+		Death:
+		Crash:
+			TNT1 A 0 A_Playsound("Totenkopf/Ricochet", CHAN_BODY)
+			TNT1 A 0 A_JumpIf(CallACS("Totenkopf_Tracer",1,24,40) == 1, 1)
+			TK51 BCDE 2 Bright
+			Stop
+		XDeath:
+			TNT1 A 0 A_JumpIf(CallACS("Totenkopf_Tracer",1,24,40) == 1, 1)
+			TNT1 A 0 A_JumpIf(CallACS("Totenkopf_BloodGenerator_Offsets")==1,1)
+			TNT1 A 1 Bright
+			TNT1 A 0 A_GiveInventory("Totenkopf_BloodGenerator",1,AAPTR_TRACER)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor TotenkopfTrooperPanzerschreck : TotenkopfEnemy
+{
+	Health 400
+	Height 56
+	Speed 6
+	Seesound ""
+	ActiveSound ""
+	DeathSound "Totenkopf/HeavyDeath"
+	Tag "SS Panzerschreck Trooper"
+	DropItem "Totenkopf_PanzerschreckEnemyDrop"
+	Obituary "%o was blown up by an SS Panzerschreck Trooper."
+	+LOOKALLAROUND
+	+DONTHARMSPECIES
+	States
+	{
+		Spawn:
+			TK32 A 1 A_Look
+			Loop
+		See:
+			"####" AAABBCCCDD 2 A_Chase
+			Loop
+		Missile:
+			"####" E 10 A_FaceTarget
+			"####" F 10 A_FaceTarget
+			"####" G 0 A_Playsound("Totenkopf/missilefire", CHAN_WEAPON)
+			"####" G 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_Trooper",34,4,0)
+			"####" G 10 Bright
+			"####" F 10
+			Goto See
+		Death:
+		XDeath:
+			"####" H 0 A_Scream
+			"####" H 0 A_NoBlocking
+			"####" H 7
+			"####" I 8 
+			"####" J 7
+			"####" K -1
+			Stop
+	}
+}
+
+Actor Totenkopf_Panzerschreck_Projectile_Trooper : Totenkopf_Panzerschreck_Projectile
+{
+	States
+	{
+		Death:
+			TNT1 A 0 A_Explode(200,66)
+			TNT1 A 0 A_Playsound("Totenkopf/missilehit", CHAN_6)
+			TK53 FGH 6 Bright
+			Stop
+	}
+} 
+

@@ -1,0 +1,238 @@
+ACTOR TotenkopfDeathMutant : TotenkopfEnemy 
+{
+	Health 1450
+	Radius 32
+	Height 64
+	Speed 6
+	Mass 1000
+	PainChance 0
+	+FLOORCLIP
+    +NOTDMATCH
+	+DONTRIP	
+    +THRUGHOST
+	+MISSILEMORE
+	+LOOKALLAROUND
+	+BOSS
+	Tag "Panz Grosse"
+	Seesound "Totenkopf/Roar1"
+	Deathsound "Totenkopf/Growl"
+	Activesound "Totenkopf/Roar2"
+	Obituary "%o was annihilated by the Totenkopf Mutant."
+	States 
+	{
+		Spawn:
+			TK44 A 1 A_Look
+			Loop
+		See:
+			"####" AAABBCCCDD 2 A_Chase
+			Loop
+		Missile:
+			"####" E 10 A_FaceTarget
+			"####" F 10 Bright A_FaceTarget
+			"####" F 0 A_Playsound("Totenkopf/missilefire", CHAN_WEAPON)
+			"####" F 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_DeathMutant",40,0)
+		MissileHold:
+			"####" G 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 1 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 2 Bright
+			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 2 Bright
+			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 2 Bright
+			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(-16,-8))
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_DeathMutant",40,0,random(8,16))
+			"####" H 2 Bright
+			"####" H 0 A_MonsterRefire(0,"See")
+			Loop
+		Death:
+		XDeath:	
+			"####" A 1 A_Scream	
+			"####" A 0 A_SpawnItemEx("TotenkopfDeathMutantSpirit",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION)
+			"####" A 8
+			"####" I 7		
+			"####" J 8
+			"####" K 7 A_NoBlocking
+			"####" L -1
+			Stop
+		Raise:
+			"####" L 0
+			"####" K 7
+			"####" J 8
+			"####" I 7	
+			"####" A 8
+			"####" A 1 A_PlaySound("Totenkopf/Roar1",CHAN_VOICE)
+			Goto See
+	}
+}
+
+Actor TotenkopfDeathMutantSpirit : TotenkopfEnemy 
+{
+	Seesound ""
+	Deathsound ""
+	Activesound ""
+	Health 400
+	Speed 6
+	+FLOORCLIP
+    +NOTDMATCH
+	+DONTRIP	
+    +THRUGHOST
+	+MISSILEMORE
+	+LOOKALLAROUND
+	+BOSS
+	var int user_timer;
+	States
+	{
+		Spawn:
+			TK44 M 0
+		See:
+			TK44 M 0 A_JumpIf(user_timer == 175, "Revive")
+			TK44 M 0 A_SetUserVar("user_timer",user_timer+1)
+			TK44 M 1 Bright A_Chase
+			Loop
+		Melee:
+			"####" M 1 A_CustomMeleeAttack(3,0,0,0,0)
+			Goto See
+		Revive:
+			"####" N 0 A_NoBlocking
+			"####" N 6
+			"####" P 6
+			"####" P 6
+			"####" Q 6
+			"####" Q 0 A_RaiseMaster
+			Stop
+		Fade:
+		Death:
+			"####" N 0 A_NoBlocking
+			"####" N 6
+			"####" P 6
+			"####" P 6
+			"####" Q 6 A_KillMaster
+			Stop
+	}
+}
+
+Actor Totenkopf_Tracer_DeathMutant : Totenkopf_Tracer_Enemy 
+{ 
+	Damage (2+(random(0,256)%10)) 
+	Speed 32
+	+SEEKERMISSILE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TK58 A 1 A_SeekerMissile(0,8)
+			Loop
+		Death:
+		Crash:
+			TNT1 A 0 A_Playsound("Totenkopf/Ricochet", CHAN_BODY)
+			TK58 BCDE 2 Bright
+			Stop
+		XDeath:
+			TNT1 A 0 A_JumpIf(CallACS("Totenkopf_BloodGenerator_Offsets")==1,1)
+			TNT1 A 1 Bright
+			TNT1 A 0 A_GiveInventory("Totenkopf_BloodGenerator",1,AAPTR_TRACER)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Totenkopf_Tracer_Trail_DeathMutant
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			TK58 AA 1 Bright
+			Stop
+	}
+}
+
+Actor Totenkopf_Panzerschreck_Projectile_DeathMutant : Totenkopf_Panzerschreck_Projectile
+{
+	+SEEKERMISSILE
+	States
+	{
+		Spawn:
+			TK59 A 1 Bright A_SeekerMissile(0,8)
+			TK59 A 0 A_SpawnItemEx("Totenkopf_Panzerschreck_Smoke_DeathMutant",-16,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0 A_Explode(200,66)
+			TNT1 A 0 A_Playsound("Totenkopf/missilehit", CHAN_6)
+			TK59 FGH 6 Bright
+			Stop
+	}
+} 
+
+Actor Totenkopf_Panzerschreck_Smoke_DeathMutant
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			TK59 A 0
+			TK59 B 6
+			TK59 CDE 3
+			Stop
+	}
+}

@@ -7246,6 +7246,7 @@ Actor Goldeneye_PP7EnemyDrop : AmmoBackpack //fake backpack. Gives the rewards a
 			TNT1 A 0 A_JumpIfInventory("HexenClass", 1, "PickupHexen")
 			TNT1 A 0 A_JumpIfInventory("WolfenClass", 1, "PickupWolfen")
 			TNT1 A 0 A_JumpIfInventory("BondClass", 1, "PickupBond")
+			TNT1 A 0 A_JumpIfInventory("TotenkopfClass", 1, "PickupTotenkopf")
 //			TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	Why?
 			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
 			TNT1 A 1 A_GiveInventory("Clip", 10)
@@ -7282,6 +7283,14 @@ Actor Goldeneye_PP7EnemyDrop : AmmoBackpack //fake backpack. Gives the rewards a
 			TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
 			TNT1 A 0 A_GiveInventory("Cell", 20)
 			stop
+		PickupTotenkopf:
+			TNT1 A 0 A_GiveInventory("Totenkopf_PistolDual", 1)
+			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
+			TNT1 A 1 A_GiveInventory("Clip", 10)
+			TNT1 A 0 A_GiveInventory("Shell", 4)
+			TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
+			TNT1 A 0 A_GiveInventory("Cell", 20)
+			stop			
 	}
 }		
 	

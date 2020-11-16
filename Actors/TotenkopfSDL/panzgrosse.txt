@@ -1,0 +1,100 @@
+ACTOR TotenkopfPanzGrosse : TotenkopfEnemy 
+{
+	Health 4000
+	Radius 32
+	Height 64
+	Speed 6
+	Mass 1000
+	PainChance 0
+	+FLOORCLIP
+    +NOTDMATCH
+	+DONTRIP	
+    +THRUGHOST
+	+MISSILEMORE
+	+LOOKALLAROUND
+	+BOSS
+	Tag "Panz Grosse"
+	Seesound "Totenkopf/Boss4Sight"
+	Deathsound "Totenkopf/Boss4Death"
+	Activesound "Totenkopf/Boss4Taunt"
+	Obituary "%o was crushed by Panz Grosse."
+	States 
+	{
+		Spawn:
+			TK43 A 1 A_Look
+			Loop
+		See:
+			"####" AAABBCCCDD 2 A_Chase
+			Loop
+		Missile:
+			"####" E 15 A_FaceTarget
+			"####" F 0 A_Playsound("Totenkopf/missilefire", CHAN_WEAPON)
+			"####" F 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_Trooper",56,-16)
+			"####" F 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_Trooper",56,16)
+			"####" F 5 Bright A_FaceTarget
+		MissileHold:
+			"####" G 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 1 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" G 0 A_FaceTarget
+			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" G 2 Bright
+			"####" H 0 A_FaceTarget
+			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-4,4))
+			"####" H 2 Bright
+			"####" H 0 A_MonsterRefire(0,"See")
+			Loop
+		Death:
+		XDeath:	
+			"####" A 1 A_Scream	
+			"####" A 150
+			"####" I 7		
+			"####" J 8
+			"####" K 7 A_NoBlocking
+			"####" L -1 A_KillMaster
+			Stop
+	}
+}
