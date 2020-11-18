@@ -285,6 +285,11 @@ Actor HECU_Grunt1
 			HL12 EFG 4
 			HL12 G -1
 			Stop	
+		Death.TotenkopfFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+			TNT1 A 5 A_NoBlocking
+			Stop			
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
@@ -365,16 +370,29 @@ Actor HECU_Grunt1
 		Pain.Vodoo:
 			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
 			Goto Pain
+		Pain.Shock:
+		Pain.Tesla:
+			CBGS A 4 A_Pain
+			CBGS A 4
+			Goto See
+		Death.CalebFire:
+		Death.LifeLeech:
+			TNT1 A 0 A_Jump(218, 2)
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5
+			stop
+		Death.CalebNapalm:
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
-		Death.Dynamite:
-		Death.CalebNapalm:
-		Death.Shock:	  
-		Death.Vodoo:
-			TNT1 A 0 A_JumpIfHealthLower(-20,"XDeathForCaleb")
+		Death.Dynamite:	  
+		Death.Shock:	  	  
+			TNT1 A 0 A_JumpIfHealthLower(-50, "XDeathForCaleb")
 		Death.Tesla:
-		Death.CalebBullet:	
+		Death.CalebBullet:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			Goto Death
@@ -383,7 +401,7 @@ Actor HECU_Grunt1
 			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
-			Goto XDeath		
+			Goto XDeath			
 		Death.EradExplosive:
 		Death.EradNova:
 		Death.EradShock:
@@ -1971,16 +1989,29 @@ Actor HECU_Sarge : HECU_Commander1
 		Pain.Vodoo:
 			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
 			Goto Pain
+		Pain.Shock:
+		Pain.Tesla:
+			CBGS A 4 A_Pain
+			CBGS A 4
+			Goto See
+		Death.CalebFire:
+		Death.LifeLeech:
+			TNT1 A 0 A_Jump(218, 2)
+			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 5
+			stop
+		Death.CalebNapalm:
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
-		Death.Dynamite:
-		Death.CalebNapalm:
-		Death.Shock:	  
-		Death.Vodoo:
-			TNT1 A 0 A_JumpIfHealthLower(-20,"XDeathForCaleb")
+		Death.Dynamite:	  
+		Death.Shock:	  	  
+			TNT1 A 0 A_JumpIfHealthLower(-50, "XDeathForCaleb")
 		Death.Tesla:
-		Death.CalebBullet:	
+		Death.CalebBullet:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			Goto Death
@@ -1989,7 +2020,7 @@ Actor HECU_Sarge : HECU_Commander1
 			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
-			Goto XDeath		
+			Goto XDeath			
 		Death.EradExplosive:
 		Death.EradNova:
 		Death.EradShock:

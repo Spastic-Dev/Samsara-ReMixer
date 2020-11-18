@@ -338,7 +338,12 @@ Actor CMTrooper
 		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_FadeOut
-		stop		
+		stop	
+	Death.TotenkopfFire:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+		TNT1 A 5 A_NoBlocking
+		Stop		
 	Death.RottFire:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("BurningSkeleton")

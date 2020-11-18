@@ -67,6 +67,11 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			WH_5 ZYX 5
 			WH_5 WVUTSRQPONM 5
 			Goto See
+		Death.TotenkopfFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+			TNT1 A 5 A_NoBlocking
+			Stop			
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
@@ -725,6 +730,12 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			WH_4 X 5
 			WH_4 WVUTSRQPON 5
 			Goto See
+		Death.TotenkopfFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_NoBlocking
+			Stop			
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
@@ -1411,6 +1422,12 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			WH_6 X 5
 			WH_6 WVUTSRQPON 5
 			Goto See
+		Death.TotenkopfFire:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_NoBlocking
+			Stop			
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")

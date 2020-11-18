@@ -428,6 +428,11 @@ Actor Cultist
 		TNT1 A 0 A_RemoveChildren(true)
 		YCUL NMLKJIH 5
 		Goto See
+	Death.TotenkopfFire:
+	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+		TNT1 A 5 A_NoBlocking
+	    Stop		
 	Death.RottFire:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("BurningSkeleton")
@@ -4068,6 +4073,12 @@ Actor Zealot : Cultist
 		TNT1 A 5 A_SpawnItemEx("BloodBurningCorpse",0,0,0,0,0,0,0,32)
 		TNT1 A -1 A_KillMaster
 		Stop
+	Death.TotenkopfFire:
+	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+		TNT1 A 0 A_KillMaster
+		TNT1 A 5 A_NoBlocking
+	    Stop		
 	Death.RottFire:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("BurningSkeleton")
@@ -5305,6 +5316,12 @@ Actor BloodPriest : Zealot
 		TNT1 A 0 A_Jump(218, "XDeath")	
         TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		goto XDeath
+	Death.TotenkopfFire:
+	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+		TNT1 A 0 A_KillMaster
+		TNT1 A 5 A_NoBlocking
+	    Stop		
 	Death.RottFire:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("BurningSkeleton")
