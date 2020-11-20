@@ -31,7 +31,8 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 
 bool activesets[MAX_GAME_TYPES];
 
-#define MAX_MAPS		500
+#define MAX_MAPS				500
+#define SAMSARA_CHANGELIST		157
 
 int activeGameTypes[MAX_GAME_TYPES];
 global int 2:alreadyshowedbs;
@@ -101,10 +102,11 @@ Script 667 OPEN
 	
 	if (alreadyshowedbs == 0)
 	{
+		HudMessage(s:"ExMixer Changelist ",d:SAMSARA_CHANGELIST; HUDMSG_FADEOUT|HUDMSG_LOG, 93003, CR_GOLD, 1.5, 0.28, 2.0, 0.5);
 		if (GameType() == GAME_TITLE_MAP) { }
 		if (Singleplayer() == 1)
 		{
-			if(GetCvar("samsara_cvarinfo") == 0)
+			if(GetCvar("sams_cvarinfo") == 0)
 			{
 				Delay(2);
 				Hudmessage(s:SMMCVARINFO; HUDMSG_PLAIN|HUDMSG_LOG, 93000, CR_GRAY, 1.5, 0.25, 2.5);
