@@ -211,8 +211,13 @@ ACTOR FatsoSpawnerCoop replaces Fatso
 			Goto BossWait
 		SetHexen2:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2")
+			TNT1 A 0 A_Jump(128, "SetHexen2_2")
 			TNT1 A 1 A_SpawnItemEx("Hexen2BronzeGolem",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
+		SetHexen2_2:
+			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen2_2")
+			TNT1 A 1 A_SpawnItemEx("Hexen2MummyLord",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait			
 		SetGoldeneye:
 			//TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyGoldeneye")
 			TNT1 A 1 A_SpawnItemEx("Goldeneye_TrevGuard", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
