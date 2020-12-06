@@ -181,24 +181,27 @@ Actor DisruptorMutantSoldier : DisruptorHumanoid
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 5
 			stop
-		Death.CalebNapalm:
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
-		Death.Dynamite:	  
-		Death.Shock:	  	  
-			TNT1 A 0 A_JumpIfHealthLower(-50, "XDeathForCaleb")
+		Death.Dynamite:
+		Death.CalebNapalm:
+		Death.Shock:	  
+		Death.Vodoo:
+			TNT1 A 0 A_JumpIfHealthLower(-20,"XDeathForCaleb")
 		Death.Tesla:
-		Death.CalebBullet:
+		Death.CalebBullet:	
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			Goto Death
 		XDeathForCaleb:
 			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			Stop		
 		Death.EradExplosive:
 		Death.EradNova:
 		Death.EradShock:
@@ -230,16 +233,13 @@ Actor DisruptorMutantSoldier : DisruptorHumanoid
 			goto Death
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnDebris("DukeGibs1",true)
-			TNT1 A 0 A_SpawnDebris("DukeGibs2",true)
-			TNT1 A 0 A_SpawnDebris("DukeGibs3",true)
-			TNT1 A 0 A_SpawnDebris("DukeGibs4",true)
-			TNT1 A 0 A_SpawnDebris("DukeGibs5",true)
-			TNT1 A 0 A_SpawnDebris("DukeGibs6",true)
+			TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_PlaySound("duke/enemygib")
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_Jump(218,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			Goto XDeath
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			Stop
 		Death.PSRAPower:
 		Death.PSRAPowerCoop:
 		Death.PSExplosive:
@@ -252,10 +252,12 @@ Actor DisruptorMutantSoldier : DisruptorHumanoid
 			Goto Death
 		XDeathForJon:
 			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_SpawnItemEx("PSGibSpawner", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			Stop		
 		Death.LeonardDamage2:
 		Death.LeonardDamage3:
 			TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
@@ -266,29 +268,31 @@ Actor DisruptorMutantSoldier : DisruptorHumanoid
 			Goto Death
 		XDeathForLeonard:
 			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			Stop		
 		Death.SWFist:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
 			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_SpawnItemEx("SWFisted")
+			TNT1 A 0 A_SpawnItemEx("SWFisted", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
 			goto Death	
 		Death.SWKatana:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
 			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_SpawnItemEx("SWKatanad")
+			TNT1 A 0 A_SpawnItemEx("SWKatanad", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
 			goto Death	
 		Death.SWShuriken:
 			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_SpawnItemEx("SWShurikend")
+			TNT1 A 0 A_SpawnItemEx("SWShurikend", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
 			goto Death
 		Death.SWSticky:
-		Death.SWStickyCoop:	
+		Death.SWStickyCoop:		
 		Death.SWGrenade:
 		Death.SWNuke:
 		Death.SWRocket:
@@ -306,10 +310,12 @@ Actor DisruptorMutantSoldier : DisruptorHumanoid
 			goto Death
 		XDeathForWang:
 			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_Jump(218, "XDeath")	
+			TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
+			TNT1 A 0 A_Jump(218, 2)	
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
-			goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 5 A_FadeOut
+			Stop			
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")

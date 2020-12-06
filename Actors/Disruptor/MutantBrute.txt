@@ -185,6 +185,7 @@ Actor DisruptorMBrute : DisruptorAlien
 			Goto Death
 		XDeathForCaleb:
 			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)			
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 			Goto XDeath		
@@ -206,16 +207,23 @@ Actor DisruptorMBrute : DisruptorAlien
 			TNT1 A 0 A_GiveToTarget("EleenaGibTaunt",1)
 			Goto XDeath
 		Death.DukeExplosive:
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-			Goto Death
+			goto Death
 		Death.MightyBoot:
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-			Goto Death
+			goto Death
+		DukeGibStart:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_Jump(218,"XDeath")
+			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			Goto XDeath
 		Death.PSRAPower:
 		Death.PSRAPowerCoop:
 		Death.PSExplosive:
@@ -228,6 +236,7 @@ Actor DisruptorMBrute : DisruptorAlien
 			Goto Death
 		XDeathForJon:
 			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 			Goto XDeath		
@@ -241,6 +250,7 @@ Actor DisruptorMBrute : DisruptorAlien
 			Goto Death
 		XDeathForLeonard:
 			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("RRGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
 			Goto XDeath		
@@ -270,8 +280,22 @@ Actor DisruptorMBrute : DisruptorAlien
 			TNT1 A -1 A_KillMaster
 			Stop
 		Death.SWFist:
+			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_SpawnItemEx("SWFisted",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			goto Death	
 		Death.SWKatana:
+			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_SpawnItemEx("SWKatanad",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			goto Death	
 		Death.SWShuriken:
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_SpawnItemEx("SWShurikend",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			goto Death
 		Death.SWSticky:
 		Death.SWStickyCoop:	
 		Death.SWGrenade:
@@ -291,6 +315,7 @@ Actor DisruptorMBrute : DisruptorAlien
 			Goto Death
 		XDeathForWang:
 			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 			TNT1 A 0 A_Jump(218, "XDeath")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 			Goto XDeath	

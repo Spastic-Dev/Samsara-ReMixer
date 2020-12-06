@@ -171,12 +171,16 @@ Actor BlakeSentinel : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnDebris("DukeGibs5")
 			TNT1 A 0 A_SpawnDebris("DukeGibs6")
 			TNT1 A 0 A_PlaySound("duke/enemygib")
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_Jump(96, 2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop			
 		Death:
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon4", 1, "XDeath2")
+			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon3", 1, "XDeath2")
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")			
 			BSE2 G 6
 			BSE2 H 7 A_Scream
@@ -324,9 +328,12 @@ Actor BlakeSentinel : BlakeStoneHumanoid {
 		XDeathForCaleb:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop	
 		Death.EradExplosive:
 		Death.EradNova:
 		Death.EradShock:
@@ -356,9 +363,13 @@ Actor BlakeSentinel : BlakeStoneHumanoid {
 			Goto Death
 		XDeathForJon:
 			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_SpawnItemEx("PSGibSpawner")					
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop	
 		Death.LeonardDamage2:
 		Death.LeonardDamage3:
 			TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
@@ -370,9 +381,12 @@ Actor BlakeSentinel : BlakeStoneHumanoid {
 		XDeathForLeonard:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("RRGibSpawner")
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop	
 		Death.SWFist:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
 			TNT1 A 0 A_Jump(218, "Death")
@@ -410,9 +424,12 @@ Actor BlakeSentinel : BlakeStoneHumanoid {
 		XDeathForWang:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
-			TNT1 A 0 A_Jump(218, "XDeath")	
+			TNT1 A 0 A_Jump(218, 2)	
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
-			goto XDeath
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")

@@ -27,18 +27,18 @@ Actor TotenkopfGhost : TotenkopfEnemy
 			"####" AB 1 A_CustomMeleeAttack(3,0,0,0,0)
 			Goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			"####"A 0 A_ChangeFlag("NOPAIN",1)
+			"####"A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			"####" A 2 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
+			"####"A 0 A_Recoil(14)
 			"####" B 16 A_Pain
 			Goto See
 		Pain.MarathonStun:
-			TNT1 A 0 A_Stop
-			TNT1 A 0 A_GiveInventory("NothingSpeed")
-			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
+			"####"A 0 A_Stop
+			"####"A 0 A_GiveInventory("NothingSpeed")
+			"####"A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
 			"####" A 5 A_FaceTarget
-			TNT1 A 0 A_Gravity
+			"####"A 0 A_Gravity
 			"####" B 30 A_Pain
 			"####" A 70
 			Goto See			
@@ -137,7 +137,7 @@ Actor TotenkopfGhost : TotenkopfEnemy
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
 			"####" A 1 A_SetTranslucent(1,0)
-			TNT1 A -1
+			"####"A -1
 			stop		
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -156,18 +156,18 @@ Actor TotenkopfGhost : TotenkopfEnemy
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A -1
+			"####"A -1
 			stop		
 		Death.DukeExplosive:			
 		Death.DukeDamage:
 		Death.DukePistol:
-			TNT1 A 0 A_Jump(218,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
+			"####"A 0 A_Jump(218,"Death")
+			"####"A 0 A_GiveToTarget("DukeKillTaunt",1)
 			goto Death
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			TNT1 A 0 A_Jump(64,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			"####"A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			"####"A 0 A_Jump(64,"Death")
+			"####"A 0 A_GiveToTarget("DukeBootTaunt",1)
 			goto Death			
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)

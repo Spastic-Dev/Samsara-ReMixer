@@ -161,9 +161,12 @@ Actor WitchavenBrute : WitchavenEnemyBaseMelee
 		XDeathForCaleb:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop		
 		Death.EradExplosive:
 		Death.EradNova:
 		Death.EradShock:
@@ -202,9 +205,12 @@ Actor WitchavenBrute : WitchavenEnemyBaseMelee
 			TNT1 A 0 A_SpawnDebris("DukeGibs5")
 			TNT1 A 0 A_SpawnDebris("DukeGibs6")
 			TNT1 A 0 A_PlaySound("duke/enemygib")
-			TNT1 A 0 A_Jump(218,"XDeath")
+			TNT1 A 0 A_Jump(218,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			Goto XDeath
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop
 		Death.PSRAPower:
 		Death.PSRAPowerCoop:
 		Death.PSExplosive:
@@ -218,9 +224,12 @@ Actor WitchavenBrute : WitchavenEnemyBaseMelee
 		XDeathForJon:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("PSGibSpawner")
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
-			Goto XDeath		
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop		
 		Death.LeonardDamage2:
 		Death.LeonardDamage3:
 			TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
@@ -232,9 +241,12 @@ Actor WitchavenBrute : WitchavenEnemyBaseMelee
 		XDeathForLeonard:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("RRGibSpawner")
-			TNT1 A 0 A_Jump(96,"XDeath")
+			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
-			Goto XDeath	
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop	
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
@@ -279,10 +291,24 @@ Actor WitchavenBrute : WitchavenEnemyBaseMelee
 			TNT1 A -1 A_KillMaster
 			Stop
 		Death.SWFist:
+			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_SpawnItemEx("SWFisted")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			goto Death	
 		Death.SWKatana:
+			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_SpawnItemEx("SWKatanad")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			goto Death	
 		Death.SWShuriken:
+			TNT1 A 0 A_Jump(218, "Death")
+			TNT1 A 0 A_SpawnItemEx("SWShurikend")
+			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+			goto Death
 		Death.SWSticky:
-		Death.SWStickyCoop:	
+		Death.SWStickyCoop:		
 		Death.SWGrenade:
 		Death.SWNuke:
 		Death.SWRocket:
@@ -297,13 +323,16 @@ Actor WitchavenBrute : WitchavenEnemyBaseMelee
 		Death.SWBullet:	  
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			Goto Death
+			goto Death
 		XDeathForWang:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("SWEnemy_DemonGibSpawner")	
-			TNT1 A 0 A_Jump(218, "XDeath")	
+			TNT1 A 0 A_Jump(218, 2)	
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
-			goto XDeath
+			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
+			TNT1 A 5 A_FadeOut
+			Stop	
 		Death.QuakeElectric:
 		Death.NotQuadded:
 		Death.QuakeExplosive:

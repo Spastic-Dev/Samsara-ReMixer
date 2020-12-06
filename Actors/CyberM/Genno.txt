@@ -79,8 +79,9 @@ Actor CMGenno
 	Pain.Vodoo:
 		TNT1 A 0 A_GiveToTarget("Voodoo", 1)
 		Goto Pain			
-	Death.DukeDamage:
 	Death.DukeExplosive:
+		TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
+	Death.DukeDamage:
 	Death.DukePistol:
 		TNT1 A 0 A_Jump(218,"Death")
 		TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
@@ -88,8 +89,17 @@ Actor CMGenno
 	Death.MightyBoot:
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		TNT1 A 0 A_Jump(64,"Death")
-		TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)			
-		Goto Death
+		TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+		goto Death
+	DukeGibStart:
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner", 0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_PlaySound("duke/enemygib")
+		TNT1 A 0 A_Jump(218,2)
+		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		TNT1 A 0 A_Fall
+		TNT1 A 5 A_FadeOut
+		Stop
 	Pain.MightyBoot:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
@@ -165,22 +175,24 @@ Actor CMGenno
 	Death.VoodooPuff:
 	Death.DynamiteCoop:
 	Death.Dynamite:
-	Death.LifeLeech:
 	Death.CalebNapalm:
 	Death.Shock:	  
 	Death.Vodoo:
 		TNT1 A 0 A_JumpIfHealthLower(-20,"XDeathForCaleb")
 	Death.Tesla:
-	Death.CalebFire:	
+	Death.CalebFire:
 	Death.CalebBullet:	
 		TNT1 A 0 A_Jump(218, "Death")
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 		Goto Death
 	XDeathForCaleb:
-	    TNT1 A 0 A_UnsetSolid
-        TNT1 A 0 A_Jump(96,"XDeath")
-        TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
-		Goto XDeath		
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_Jump(96,2)
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
+		TNT1 A 0 A_Fall
+		TNT1 A 5 A_FadeOut
+		Stop	
 	Death.EradExplosive:
 	Death.EradNova:
 	Death.EradShock:
@@ -209,10 +221,13 @@ Actor CMGenno
 		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
 		Goto Death
 	XDeathForJon:
-	    TNT1 A 0 A_UnsetSolid
-        TNT1 A 0 A_Jump(96,"XDeath")
-        TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
-		Goto XDeath		
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_Jump(96,2)
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
+		TNT1 A 0 A_Fall
+		TNT1 A 5 A_FadeOut
+		Stop		
 	Death.LeonardDamage2:
 	Death.LeonardDamage3:
 		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
@@ -222,15 +237,32 @@ Actor CMGenno
 		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
 		Goto Death
 	XDeathForLeonard:
-	    TNT1 A 0 A_UnsetSolid
-        TNT1 A 0 A_Jump(96,"XDeath")
-        TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
-		Goto XDeath		
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_SpawnItemEx("RRGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_Jump(96,2)
+		TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
+		TNT1 A 0 A_Fall
+		TNT1 A 5 A_FadeOut
+		Stop		
 	Death.SWFist:
+		TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_SpawnItemEx("SWFisted",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+		goto Death	
 	Death.SWKatana:
+		TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_SpawnItemEx("SWKatanad",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+		goto Death	
 	Death.SWShuriken:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_SpawnItemEx("SWShurikend",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
+		goto Death
 	Death.SWSticky:
-	Death.SWStickyCoop:	
+	Death.SWStickyCoop:		
 	Death.SWGrenade:
 	Death.SWNuke:
 	Death.SWRocket:
@@ -242,15 +274,18 @@ Actor CMGenno
 	Death.SWFlame2Coop:
 	Death.SWFlame3:	
 		TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathForWang")
-    Death.SWBullet:	  
+	Death.SWBullet:	  
 		TNT1 A 0 A_Jump(218, "Death")
 		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
 		goto Death
 	XDeathForWang:
-	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_Jump(218, "XDeath")
-        TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
-		goto XDeath		
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_SpawnItemEx("SWEnemy_DemonGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
+		TNT1 A 0 A_Jump(218, 2)	
+		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
+		TNT1 A 0 A_Fall
+		TNT1 A 5 A_FadeOut
+		Stop		
 	Death.QuakeElectric:
 	Death.NotQuadded:
 	Death.QuakeExplosive:

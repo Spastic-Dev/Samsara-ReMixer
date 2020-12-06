@@ -246,20 +246,15 @@ ACTOR blaster_laser2_REM
 
 
 Actor StormTrooper_MonsterDrop : SamsaraSlotTwoDrop {
-	+DROPPED
 	States
     {
       Spawn:
 		IRIF A -1
 		Stop
-	  Pickup:
-		TNT1 A 0 A_GiveInventory("Shell", 16)
-		Goto "Super::Pickup"
     }
 }
 
 Actor DarkForces_GranDrop : SamsaraSlotOneDrop {
-	+DROPPED
 	States
     {
       Spawn:
@@ -269,7 +264,6 @@ Actor DarkForces_GranDrop : SamsaraSlotOneDrop {
 }
 
 Actor Trandoshan_ConcussionDrop : SamsaraSlotSixDrop {
-	+DROPPED
 	States {
 		Spawn:
 			ICON A -1

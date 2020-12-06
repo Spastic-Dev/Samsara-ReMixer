@@ -184,7 +184,7 @@ ACTOR SpiderMastermindSpawnerCoop replaces SpiderMastermind
 			Goto BossWait		
 		SetIPOG:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyipog")
-			TNT1 A 1 A_SpawnItemEx("IPOGSentinal",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("IPOGBrnourd",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetWitch:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyWitch")
@@ -581,11 +581,11 @@ ACTOR SpiderMastermindSpawnerCoop replaces SpiderMastermind
 			Goto BossWait
 		Multiplyipog:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("Multiipogsentinal",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("Multiipogbrnourd",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto Multiplyipog_2
 		MultiplyIPOG_2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multiIPOGSentinal",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("Multiipogbrnourd",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyIPOG_2")
 			Goto BossWait
 		MultiplyWitch:
