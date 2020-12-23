@@ -134,7 +134,7 @@ SWHenchman/die          SWHDTH
 SWHenchman/Act          SWHAMB
 
 SW/DarkNinja/FireBall/Loop	Sounds/SW/FIREBSTEAM1.WAV
-SW/DarkNinja/FlashBomb		Sounds/SW/SWGASPOP.WAV
+
 
 SWBunny/Act				RABAMB
 SWBunny/Att				RABATK1
