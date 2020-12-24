@@ -3713,12 +3713,13 @@ Actor Goldeneye_EnemyBase
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)			
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)	
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.Shock:
@@ -3735,6 +3736,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)			
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5
 			stop
@@ -8145,7 +8147,6 @@ Actor Goldeneye_RemoveChildren : CustomInventory
 		Pickup:
 			TNT1 A 0
 			TNT1 A 0 Thing_Remove(0)
-			TNT1 A 0
 			stop
 	}
 }
