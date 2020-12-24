@@ -12,7 +12,7 @@ Actor Bullsquid
 	Seesound "Bullsquid/see"	
 	Monster
 	Scale 0.9
-	Health 120
+	Health 100
 	Painchance 90
 	BloodColor "Khaki"
 	BloodType "HalfLifeAlienBlood"
@@ -118,12 +118,12 @@ Actor Bullsquid
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(128,"Whip")
 			HL00 ABCDE 2 A_FaceTarget
-			HL00 F 2 A_CustomMeleeAttack(random(5,7)*Random(2,1),"","")
+			HL00 F 2 A_CustomMeleeAttack(25,"","")
 			HL00 GHIJKLMNO 2
 			Goto See
 		Whip:
 			HL15 ABCDEFGH 2 A_FaceTarget
-			HL15 I 0 A_CustomMeleeAttack(random(5,7)*Random(2,1),"HLZombie/Claw","HLZombie/Miss")			
+			HL15 I 0 A_CustomMeleeAttack(35,"HLZombie/Claw","HLZombie/Miss")			
 			HL15 IJKLMNOPQRSTUV 2
 			Goto See
 		Missile:
@@ -944,7 +944,7 @@ Actor HLToxicSpit
 	Radius 8
     Height 8
     Speed 20
-    Damage (5+Random(1,0))
+    Damage (15)
     PROJECTILE
     -NOGRAVITY	
 	Scale 0.6

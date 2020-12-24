@@ -1,6 +1,6 @@
 Actor HLAbrams 
 {
-	Health 640
+	Health 750
 	Radius 48
 	Height 48
 	Mass 6000
@@ -693,14 +693,14 @@ Actor HLAbramsNoTarget : Inventory { Inventory.Maxamount 1 }
 
 Actor HLBullet_Abrams : HLBullet
 {
-	Damage (random(1,4))
+	Damage (10)
 	Species "HLAbramsGun"
 	+THRUSPECIES
 }
 
 Actor HLAbramsRocket : HLRPGRocket2
 {
-	Damage (random(15,40))
+	Damage (10)
 	Species "HLAbrams"
 	+THRUSPECIES
 	States
@@ -725,7 +725,7 @@ Actor HLAbramsRocket : HLRPGRocket2
 		goto SpawnLoop+1
 	Death:
 		TNT1 A 0 A_PlaySound("halflife/mp5_grenadehit",CHAN_BODY,1.0,0) //A_StopSound
-		TNT1 A 0 A_Explode(random(35,60),Random(80,126))
+		TNT1 A 0 A_Explode(60,120)
 		TNT1 A 5 A_SpawnItemEx("HLMegaExplosionBoom",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		stop
 	}

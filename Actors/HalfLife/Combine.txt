@@ -5,7 +5,7 @@ Actor Combine_Soldier_MP7
 	Radius 20
 	Monster
 	Scale 0.9
-	Health 100
+	Health 125
 	speed 8
 	+MISSILEMORE
 	+MISSILEEVENMORE
@@ -120,21 +120,21 @@ Actor Combine_Soldier_MP7
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)			
 			TNT1 A 0 A_PlaySound("combine/smg/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			HL13 A 0 A_FaceTarget
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/smg/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			HL13 A 0 A_FaceTarget
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/smg/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			TNT1 A 0 A_JumpIfTargetInLOS("KeepFiring",0,JLOSF_DEADNOJUMP)
@@ -184,7 +184,7 @@ Actor Combine_Soldier_MP7
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL14 ABCD 4 A_FaceTarget
-			HL14 E 3 A_CustomMeleeAttack(Random(1,10)*2,"","")
+			HL14 E 3 A_CustomMeleeAttack(10,"","")
 			HL14 FGH 3
 			Goto See
 		Pain:
@@ -1053,24 +1053,26 @@ Actor Combine_Soldier_Shotgun : Combine_Soldier_MP7
 			TNT1 A 0 A_JumpIfInventory("HECU_Shotgun_DummyReload",1,"FireLast")
 			TNT1 A 0 A_GiveInventory("HECU_Shotgun_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/shotgun/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 FGHI 3
 			Goto See
 		FireLast:
 			TNT1 A 0 A_GiveInventory("HECU_Shotgun_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/shotgun/firelast")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 FGHI 3
 			Goto See
@@ -1236,21 +1238,21 @@ Actor Combine_Soldier_AR2 : Combine_Soldier_MP7
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)			
 			TNT1 A 0 A_PlaySound("combine/ar2/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			HL13 A 0 A_FaceTarget
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/ar2/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			HL13 A 0 A_FaceTarget
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/ar2/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			TNT1 A 0 A_JumpIfTargetInLOS("KeepFiring",0,JLOSF_DEADNOJUMP)
@@ -1412,6 +1414,7 @@ actor Combine_Soldier_AR2_Dirty_ShrinkEffect : Combine_Soldier_MP7_ShrinkEffect 
 
 Actor Combine_Elite_AR2 : Combine_Soldier_AR2
 {
+	Health 175
 	States
 	{
 		Missile:
@@ -1423,21 +1426,21 @@ Actor Combine_Elite_AR2 : Combine_Soldier_AR2
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)			
 			TNT1 A 0 A_PlaySound("combine/ar2/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			HL13 A 0 A_FaceTarget
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/ar2/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			HL13 A 0 A_FaceTarget
 			TNT1 A 0 A_JumpIfInventory("HECU_MP5_DummyReload",50,"Reload")
 			TNT1 A 0 A_GiveInventory("HECU_MP5_DummyReload",1)	
 			TNT1 A 0 A_PlaySound("combine/ar2/fire")
-			TNT1 A 0 A_CustomMissile("HLBullet_Enemy",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
+			TNT1 A 0 A_CustomMissile("Combine_EnemyBullet",44,4,angle+random(-8.0,8.0),CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH,random(-8.0,8.0))
 			TNT1 A 0 A_SpawnItemEx("HLMGMuzzleFlash",28,4,38,0,0,0,0,SXF_NOCHECKPOSITION)
 			HL13 ABC 1
 			TNT1 A 0 A_JumpIfTargetInLOS("KeepFiring",0,JLOSF_DEADNOJUMP)
@@ -1608,3 +1611,5 @@ Actor Combine_Overwatch : RandomSpawner
 	DropItem "Combine_Elite_AR2", 255, 3
 	DropItem "Combine_Elite_AR2_Dirty", 255, 3
 }
+
+Actor Combine_EnemyBullet : HLBullet_Enemy { Damage (3) }
