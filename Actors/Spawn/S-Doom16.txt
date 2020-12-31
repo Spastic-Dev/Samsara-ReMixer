@@ -180,14 +180,14 @@ ACTOR CyberDemonSpawnerCoop replaces CyberDemon
 			TNT1 A 1 A_SpawnItemEx("RMRJCommando",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetExhumed:
-			TNT1 A 0 A_Jump(128,"SetExhumed2")
+			TNT1 A 0 A_Jump(64,"SetExhumed2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyexhumed1")
 			TNT1 A 1 A_SpawnItemEx("PSSet",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetExhumed2:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyexhumed2")
-			TNT1 A 1 A_SpawnItemEx("Kilmaatikahn",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
+			TNT1 A 1 A_SpawnItemEx("Selkis",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait	
 		SetIPOG:
 			TNT1 A 0 A_Jump(128,"SetIPOG2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"Multiplyipog1")
@@ -535,20 +535,20 @@ ACTOR CyberDemonSpawnerCoop replaces CyberDemon
 			Goto BossWait
 		Multiplyexhumed1:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("Multiselkis",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("Multipsset",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto Multiplyexhumed1_2
 		MultiplyExhumed1_2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multiSelkis",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("multipsset",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyExhumed1_2")
 			Goto BossWait	
 		Multiplyexhumed2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("Multikilmaatikahn",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 1 A_SpawnItemEx("Multiselkis",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto Multiplyexhumed2_2
 		MultiplyExhumed2_2:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-			TNT1 A 1 A_SpawnItemEx("multiKilmaatikahn",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("multiselkis",0,0,0,random(-1,1),random(-1,1),0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyExhumed2_2")
 			Goto BossWait
 		Multiplyipog1:
