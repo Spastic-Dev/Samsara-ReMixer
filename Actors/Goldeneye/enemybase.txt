@@ -246,6 +246,7 @@ Actor Goldeneye_EnemyBase
 			TNT1 A 0 A_JumpIf(mass == 216, "FireRCP90Dual")
 			TNT1 A 0 A_JumpIf(mass == 217, "FireAutoShotgun")
 			TNT1 A 0 A_JumpIf(mass == 218, "FireSniper")
+			TNT1 A 0 A_JumpIf(mass == 219, "FireCougar")
 			TNT1 A 0 A_JumpIf(mass == 221, "FireLaser")
 			TNT1 A 0 A_JumpIf(mass == 222, "FireLaserDual")
 			TNT1 A 0 A_JumpIf(mass == 224, "FireRocketLauncher")
@@ -2711,6 +2712,54 @@ Actor Goldeneye_EnemyBase
 			TNT1 F 6 A_FaceTarget "####" "#" 0 A_Recoil(-3)			
 			TNT1 A 0
 			Goto See	
+		FireCougar:
+			TNT1 A 0 A_Jump(256, "FireCougarStepForward", "FireCougarKneel")
+			Goto FireCougarStepForward
+		FireCougarStepForward:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireCougarStepForward",1)
+			TNT1 ABCDE 4 A_FaceTarget
+			TNT1 F 4 A_CustomMissile("Goldeneye_CougarTracerEnemy", 40, 5, 0)
+			TNT1 G 2 A_FaceTarget
+			TNT1 G 2 A_Playsound("Goldeneye/CougarShot", CHAN_WEAPON)
+			TNT1 H 4 A_FaceTarget
+			TNT1 A 0 A_Jump(128, "FireCougarStepForwardEnd")
+			TNT1 F 4 A_CustomMissile("Goldeneye_CougarTracerEnemy", 40, 5, 0)
+			TNT1 G 2 A_FaceTarget
+			TNT1 G 2 A_Playsound("Goldeneye/CougarShot", CHAN_WEAPON)
+			TNT1 H 4 A_FaceTarget
+			TNT1 A 0 A_Jump(192, "FireCougarStepForwardEnd")			
+			TNT1 F 4 A_CustomMissile("Goldeneye_CougarTracerEnemy", 40, 5, 0)
+			TNT1 G 2 A_FaceTarget
+			TNT1 G 2 A_Playsound("Goldeneye/CougarShot", CHAN_WEAPON)
+			TNT1 H 4 A_FaceTarget			
+		FireCougarStepForwardEnd:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireCougarStepForwardEnd",1)			
+			TNT1 IJKLMNOPQRSTUV 4
+			TNT1 A 0
+			Goto See
+		FireCougarKneel:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireCougarKneel",1)
+			TNT1 ABCDEFGHIJKLMNOP 4 A_FaceTarget
+			TNT1 Q 4 A_CustomMissile("Goldeneye_CougarTracerEnemy", 28, 5, 0)
+			TNT1 R 2 A_FaceTarget
+			TNT1 S 2 A_Playsound("Goldeneye/CougarShot", CHAN_WEAPON)
+			TNT1 T 4 A_FaceTarget
+			TNT1 A 0 A_Jump(128, "FireCougarKneelEnd")
+			TNT1 Q 4 A_CustomMissile("Goldeneye_CougarTracerEnemy", 28, 5, 0)
+			TNT1 R 2 A_FaceTarget
+			TNT1 S 2 A_Playsound("Goldeneye/CougarShot", CHAN_WEAPON)
+			TNT1 T 4 A_FaceTarget
+			TNT1 A 0 A_Jump(192, "FireCougarKneelEnd")
+			TNT1 Q 4 A_CustomMissile("Goldeneye_CougarTracerEnemy", 28, 5, 0)
+			TNT1 R 2 A_FaceTarget
+			TNT1 S 2 A_Playsound("Goldeneye/CougarShot", CHAN_WEAPON)
+			TNT1 T 4 A_FaceTarget			
+		FireCougarKneelEnd:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_FireCougarKneelEnd",1)			
+			TNT1 UVWXYZ 4
+			TNT1 ABCDEFGHIJKLMNOPQ 3
+			TNT1 A 0
+			Goto See			
 		FireRocketLauncher:
 			TNT1 A 0 A_JumpIfCloser(150, "See")
 			TNT1 A 0 A_Jump(256, "FireRocketLauncherStepForward","FireRocketLauncherKneel")
@@ -6342,6 +6391,45 @@ Actor Goldeneye_PartBase
 			GE22 F 6 	
 			GE22 A 0
 			Goto NoWhere
+		FireCougarStepForward:
+			GE15 ABCDE 4 
+			GE15 F 4 
+			GE15 G 2 
+			GE15 G 2 
+			GE15 H 4 
+			GE15 F 4 
+			GE15 G 2 
+			GE15 G 2 
+			GE15 H 4 
+			GE15 F 4 
+			GE15 G 2 
+			GE15 G 2 
+			GE15 H 4 
+		FireCougarStepForwardEnd:
+			GE15 A 0 
+			GE15 IJKLMNOPQRSTUV 4
+			GE15 A 0
+			Goto NoWhere
+		FireCougarKneel:
+			GE16 ABCDEFGHIJKLMNOP 4 
+			GE16 Q 4 
+			GE16 R 2 
+			GE16 S 2 
+			GE16 T 4 
+			GE16 Q 4 
+			GE16 R 2 
+			GE16 S 2 
+			GE16 T 4 
+			GE16 Q 4
+			GE16 R 2 
+			GE16 S 2
+			GE16 T 4 		
+		FireCougarKneelEnd:
+			GE16 A 0
+			GE16 UVWXYZ 4
+			GE17 ABCDEFGHIJKLMNOPQ 3
+			GE17 A 0
+			Goto NoWhere			
 		FireRocketLauncherStepForward:
 			GE15 ABCDE 4 
 			GE15 F 2 
@@ -6937,11 +7025,20 @@ Actor Goldeneye_RCP90TracerEnemy : Goldeneye_BulletTracer
 Actor Goldeneye_CougarTracerEnemy : Goldeneye_BulletTracer
 {
 	Damage(CallACS("Goldeneye_TracerDamage"))
+	+THRUACTORS
+	States
+	{
+		Spawn:
+			GE00 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 8, !XF_HURTSOURCE, false, 8)
+			GE00 A 1 Bright
+			loop
+		}	
 }
 
 Actor Goldeneye_LaserRayEnemy : Goldeneye_BulletTracer
 {
 	Damage(CallACS("Goldeneye_TracerDamage"))
+	+THRUACTORS
 	RenderStyle Translucent
     States
     {
@@ -6950,6 +7047,7 @@ Actor Goldeneye_LaserRayEnemy : Goldeneye_BulletTracer
 			TNT1 A 1
 			GE00 A 0 A_ChangeVelocity(velx*2,vely*2,velz*2,CVF_REPLACE)
 		SpawnLoop:
+			GE00 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 8, !XF_HURTSOURCE, false, 8)
             GE00 A 1 Bright
             loop
         Death:
