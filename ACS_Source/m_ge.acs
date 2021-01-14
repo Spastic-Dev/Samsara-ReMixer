@@ -65,7 +65,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	int activator = ActivatorTID();
 	Thing_ChangeTID(0, newtid);
 	//Spawn the parts
-	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 19 && type != 20)
+	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 19 && type != 20 && type != 22)
 	{
 		elitechance = ec; 
 		int eliterand = random(0,100);
@@ -177,6 +177,8 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			{
 				if(randnum <= 9)
 					guntype = 4;
+				else if(randnum <= 14)
+					guntype = 22;								
 				else if(randnum <= 19)
 					guntype = 23;					
 				else if(randnum <= 33)
@@ -760,7 +762,29 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(hattid,0);
 			Thing_ChangeTID(guntid,0);
 			Thing_ChangeTID(newtid,activator);
-			break;			
+			break;	
+		case 22:
+			SetActorProperty(newtid,APROP_Health,700);
+			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 2);
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[17]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+
+			guntype = 19;
+
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));	
+			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
+			break;				
 	}
 }
 
@@ -1408,6 +1432,81 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;	
 		case 71:
 			SetActorState(0,"FireCougarKneelEnd",true);
+			break;		
+		case 72:
+			SetActorState(0,"FireCougarDualStand",true);
+			break;		
+		case 73:
+			SetActorState(0,"FireCougarDualStandEnd",true);
+			break;		
+		case 74:
+			SetActorState(0,"FireCougarDualKneel",true);
+			break;		
+		case 75:
+			SetActorState(0,"FireCougarDualKneelEnd",true);
+			break;	
+		case 76:
+			SetActorState(0,"FireCougarDualCrossKneel",true);
+			break;	
+		case 77:
+			SetActorState(0,"FireCougarDualCrossKneelEnd",true);
+			break;	
+		case 78:
+			SetActorState(0,"FireCougarDualWalk",true);
+			break;			
+		case 79:
+			SetActorState(0,"FireCougarDualWalkEnd",true);
+			break;	
+		case 80:
+			SetActorState(0,"FireGrenadeLauncherAimHip",true);
+			break;	
+		case 81:
+			SetActorState(0,"FireGrenadeLauncherAimHipEnd",true);
+			break;
+		case 82:
+			SetActorState(0,"FireGrenadeLauncherAimBow",true);
+			break;	
+		case 83:
+			SetActorState(0,"FireGrenadeLauncherAimBowEnd",true);
+			break;
+		case 84:
+			SetActorState(0,"FireGrenadeLauncherAimToFire",true);
+			break;	
+		case 85:
+			SetActorState(0,"FireGrenadeLauncherAimToFireEnd",true);
+			break;		
+		case 86:
+			SetActorState(0,"FireGrenadeLauncherCrouch",true);
+			break;	
+		case 87:
+			SetActorState(0,"FireGrenadeLauncherCrouchEnd",true);
+			break;	
+		case 88:
+			SetActorState(0,"FireGrenadeLauncherJumpToLeft",true);
+			break;	
+		case 89:
+			SetActorState(0,"FireGrenadeLauncherJumpToLeftEnd",true);
+			break;		
+		case 90:
+			SetActorState(0,"FireGrenadeLauncherJumpToRight",true);
+			break;		
+		case 91:
+			SetActorState(0,"FireGrenadeLauncherRollLeft",true);
+			break;	
+		case 92:
+			SetActorState(0,"FireGrenadeLauncherRollLeftEnd",true);
+			break;		
+		case 93:
+			SetActorState(0,"FireGrenadeLauncherRollRight",true);
+			break;		
+		case 94:
+			SetActorState(0,"FireGrenadeLauncherRollRightEnd",true);
+			break;	
+		case 95:
+			SetActorState(0,"FireGrenadeLauncherRun",true);
+			break;		
+		case 96:
+			SetActorState(0,"FireGrenadeLauncherRunEnd",true);
 			break;				
 	}
 }	
