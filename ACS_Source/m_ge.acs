@@ -65,7 +65,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	int activator = ActivatorTID();
 	Thing_ChangeTID(0, newtid);
 	//Spawn the parts
-	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 19 && type != 20 && type != 22)
+	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 19 && type != 20 && type != 22 && type != 23)
 	{
 		elitechance = ec; 
 		int eliterand = random(0,100);
@@ -295,12 +295,14 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);		
 			randnum = random(0,100);
-			if(randnum >= 66) 
+			if(randnum >= 75) 
 				guntype = 5;
-			else if(randnum >= 33) 
+			else if(randnum >= 50) 
 				guntype = 3;
-			else
+			else if(randnum >= 25)
 				guntype = 17;
+			else
+				guntype = 24;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -509,14 +511,16 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			
 			if(randnum >= 80)
 				guntype = 2;
-			else if (randnum >= 60)
+			else if (randnum >= 70)
 				guntype = 3;
-			else if(randnum >= 40)
+			else if(randnum >= 60)
 				guntype = 1;
-			else if(randnum >= 20)
+			else if(randnum >= 40)
+				guntype = 23;
+			else if(randnum >= 30)
+				guntype = 22;
+			else
 				guntype = 5;
-			else 
-				guntype = 4;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
@@ -784,7 +788,29 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(bodytid,0);
 			Thing_ChangeTID(guntid,0);
 			Thing_ChangeTID(newtid,activator);
-			break;				
+			break;	
+		case 23:
+			SetActorProperty(newtid,APROP_Health,1200);
+			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 3);
+			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[18]),0,0,0,bodytid);
+			SetActivator(bodytid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);		
+
+			guntype = 25;
+
+			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
+			SetActivator(guntid,AAPTR_DEFAULT);
+			SetPointer(AAPTR_MASTER,newtid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));	
+			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
+			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
+			Thing_ChangeTID(bodytid,0);
+			Thing_ChangeTID(guntid,0);
+			Thing_ChangeTID(newtid,activator);
+			break;			
 	}
 }
 
@@ -819,6 +845,20 @@ Script "GoldeneyeEnemyDrops" (void)
 	{
 		SpawnForced(StrParam(s:"Goldeneye_",s:StrRight(dual, StrLen(dual)-6),s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+45.0),(y+0),(z+random(40.0,48.0)));	
 	}	
+	else if(StrRight(dual,5) == "Combo")
+	{
+		if(StrLeft(dual,1) == "X")
+		{
+			SpawnForced(StrParam(s:"Goldeneye_",s:GunTypes[14],s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+45.0),(y+0),(z+random(40.0,48.0)));
+			SpawnForced(StrParam(s:"Goldeneye_",s:GunTypes[22],s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+-45.0),(y+0),(z+random(40.0,48.0)));		
+		}
+		else
+		{
+			SpawnForced(StrParam(s:"Goldeneye_",s:GunTypes[3],s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+45.0),(y+0),(z+random(40.0,48.0)));
+			SpawnForced(StrParam(s:"Goldeneye_",s:GunTypes[17],s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+-45.0),(y+0),(z+random(40.0,48.0)));	
+		}	
+	}
+		
 	else
 	{
 		SpawnForced(StrParam(s:"Goldeneye_",s:dual,s:mag,s:"EnemyDrop"),GetActorX(0),GetActorY(0),GetActorZ(0) + (X+45.0),(y+0),(z+random(40.0,48.0)));
@@ -1507,6 +1547,75 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;		
 		case 96:
 			SetActorState(0,"FireGrenadeLauncherRunEnd",true);
+			break;
+		case 97:
+			SetActorState(0,"FireXeniaComboStand",true);
+			break;			
+		case 98:
+			SetActorState(0,"FireXeniaComboKneel",true);
+			break;			
+		case 99:
+			SetActorState(0,"FireXeniaComboCrossKneel",true);
+			break;		
+		case 100:
+			SetActorState(0,"FireXeniaComboWalk",true);
+			break;		
+		case 101:
+			SetActorState(0,"FireSniperStepForward",true);
+			break;	
+		case 102:
+			SetActorState(0,"FireSniperKneel",true);
+			break;		
+		case 103:
+			SetActorState(0,"FireSiberianComboStand",true);
+			break;		
+		case 104:
+			SetActorState(0,"FireSiberianComboKneel",true);
+			break;	
+		case 105:
+			SetActorState(0,"FireSiberianComboCrossKneel",true);
+			break;	
+		case 106:
+			SetActorState(0,"FireSiberianComboWalk",true);
+			break;				
+		case 107:
+			SetActorState(0,"SprintSingleDual",true);
+			break;		
+		case 108:
+			SetActorState(0,"FireKlobbDualRun",true);
+			break;	
+		case 109:
+			SetActorState(0,"FireZMGDualRun",true);
+			break;
+		case 110:
+			SetActorState(0,"FireD5KDualRun",true);
+			break;		
+		case 111:
+			SetActorState(0,"FireAR33DualRun",true);
+			break;				
+		case 112:
+			SetActorState(0,"FirePhantomDualRun",true);
+			break;			
+		case 113:
+			SetActorState(0,"FireRCP90DualRun",true);
+			break;	
+		case 114:
+			SetActorState(0,"FireXeniaComboRun",true);
+			break;		
+		case 115:
+			SetActorState(0,"FireSiberianComboRun",true);
+			break;		
+		case 116:
+			SetActorState(0,"FireDD44DualRun",true);
+			break;		
+		case 117:
+			SetActorState(0,"FireCougarDualRun",true);
+			break;		
+		case 118:
+			SetActorState(0,"FireLaserDualRun",true);
+			break;		
+		case 119:
+			SetActorState(0,"Walking",true);
 			break;				
 	}
 }	
