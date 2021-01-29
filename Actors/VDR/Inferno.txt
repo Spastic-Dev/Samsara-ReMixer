@@ -1,0 +1,102 @@
+ACTOR MMRandomizer_Inferno : Cacodemon3
+{ 
+	Health 400 
+	Radius 31 
+	Height 56 
+	Mass 400 
+	Speed 10
+	MeleeDamage 8
+	PainChance 128 
+	HitObituary "%o was vored by an inferno."
+	Obituary "%o got blasted by an inferno."
+	+FIRERESIST
+	+NOGRAVITY 
+	+FLOAT
+	+DONTFALL
+	+DONTHURTSPECIES
+	SeeSound "vdr/infsit" 
+	PainSound "vdr/infpai" 
+	DeathSound "vdr/infdth" 
+	ActiveSound "caco/active"
+	MeleeSound "vdr/melee"
+	BloodColor "Red"
+	States 
+	{ 
+		Spawn: 
+			VD69 A 10 Bright A_Look 
+			Loop 
+		See: 
+			VD69 BCD 3 Bright A_Chase 
+			Loop 
+		Missile: 
+			VD69 HI 5 Bright A_FaceTarget 
+			VD69 J 5 Bright A_CustomMissile("MMRandomizer_Lavaball",24,0,0,0)
+			Goto See
+		Melee: 
+			VD69 AFG 5 Bright A_FaceTarget 
+			VD69 E 5 Bright A_MeleeAttack
+			Goto See 
+		Pain: 
+			VD69 K 6 Bright A_Pain 
+			VD69 K 6 Bright
+			Goto See 
+		Death: 
+			VD69 L 6 Bright 
+			VD69 M 6 Bright A_Scream
+			VD69 N 6 Bright
+			VD69 N 0 Bright A_CustomMissile("MMRandomizer_Lavaball",32,0,45,2)
+			VD69 N 0 Bright A_CustomMissile("MMRandomizer_Lavaball",32,0,135,2)
+			VD69 N 0 Bright A_CustomMissile("MMRandomizer_Lavaball",32,0,225,2)
+			VD69 N 0 Bright A_CustomMissile("MMRandomizer_Lavaball",32,0,315,2)
+			VD69 O 6 Bright
+			VD69 P 6 Bright A_NoBlocking 
+			VD69 Q 6 Bright
+			Stop 
+   } 
+}
+
+
+ACTOR MMRandomizer_Lavaball
+{
+	Radius 8
+	Height 8
+	Speed 15
+	Damage 6
+	DamageType Fire
+	Projectile
+	RenderStyle Add
+	Alpha 0.95
+	+THRUGHOST
+	+FORCEXYBILLBOARD
+	SeeSound "imp/attack"
+	DeathSound "imp/shotx"
+	States
+	{
+		Spawn: 
+			VE25 AB 4 Bright A_SpawnItemEx("MMRandomizer_RedPuff",0,0,0,0,0,0,0,128,0)
+			loop
+		Death:
+			VE25 C 5 Bright A_Explode(32,96,!XF_HURTSOURCE)
+			VE25 DE 5 Bright
+			stop
+	}
+}
+
+
+ACTOR MMRandomizer_RedPuff
+{   
+	Radius 0
+	Height 1
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.85
+	States
+	{
+		Spawn:
+			NULL A 3 Bright
+			VE25 FGHIJ 3 Bright
+			Stop 
+	}
+}

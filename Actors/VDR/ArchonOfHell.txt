@@ -1,0 +1,155 @@
+Actor MMRandomizer_ArchonOfHell : BaronOfHell3
+{
+	Health 2500
+	Radius 24
+	Height 64
+	Mass 1000
+	Speed 8
+	PainChance 20
+	Monster
+	MeleeDamage 10
+	Obituary "%o was no match for an archon of hell."
+	HitObituary "%o was ripped apart by an archon of hell."
+	BloodColor "20 60 20"
+	+NOTARGET
+	+FLOORCLIP
+	+MISSILEMORE
+	+NORADIUSDMG
+	+BOSS
+	+DONTHURTSPECIES
+	SeeSound "vdr/ar2sit"
+	PainSound "VDR/superbaron/pain"
+	DeathSound "vdr/ar2dth"
+	ActiveSound "VDR/superbaron/act"
+	MeleeSound "baron/melee"
+	States
+	{
+		Spawn:
+			VD79 AB 10 A_Look
+			Loop
+		See:
+			VD79 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD79 B 0 A_Jump(128,15)
+			VD79 EF 8 Bright A_FaceTarget
+			VD79 G 0 Bright A_CustomMissile("BaronBall",28,0,0,0)
+			VD79 G 0 Bright A_CustomMissile("BaronBall",28,0,-4,0)
+			VD79 G 3 Bright A_CustomMissile("BaronBall",28,0,4,0)
+			VD79 H 3 Bright
+			VD79 H 0 A_Jump(64,8)
+			VD79 IJ 8 Bright A_FaceTarget
+			VD79 K 0 Bright A_CustomMissile("BaronBall",28,0,0,0)
+			VD79 K 0 Bright A_CustomMissile("BaronBall",28,0,-4,0)
+			VD79 K 3 Bright A_CustomMissile("BaronBall",28,0,4,0)
+			VD79 L 3 Bright
+			VD79 L 0 A_Jump(64,1)
+			Goto See
+			VD79 MN 8 Bright A_FaceTarget
+			VD79 O 0 Bright A_Jump(128,3)
+			VD79 O 4 Bright A_CustomMissile("MMRandomizer_ArchonComet",28,0,0,0)
+			VD79 P 4 Bright
+			Goto See
+			VD79 O 0 A_CustomMissile("BaronBall",28,0,-6,0)
+			VD79 O 0 A_CustomMissile("BaronBall",28,0,-4,0)
+			VD79 O 0 A_CustomMissile("BaronBall",28,0,-2,0)
+			VD79 O 0 A_CustomMissile("BaronBall",28,0,2,0)
+			VD79 O 0 A_CustomMissile("BaronBall",28,0,4,0)
+			VD79 O 3 Bright A_CustomMissile("BaronBall",28,0,6,0)
+			VD79 P 3 Bright
+			Goto See
+		Melee:
+			VD79 EF 8 Bright A_FaceTarget
+			VD79 G 3 Bright A_MeleeAttack
+			VD79 H 3 Bright
+			VD79 H 0 A_Jump(128,1)
+			Goto See
+			VD79 IJ 8 Bright A_FaceTarget
+			VD79 K 3 Bright A_MeleeAttack
+			VD79 L 3 Bright
+			VD79 L 0 A_Jump(64,1)
+			Goto See
+			VD79 MN 8 Bright A_FaceTarget
+			VD79 O 0 Bright A_MeleeAttack
+			VD79 O 3 Bright A_MeleeAttack
+			VD79 P 3 Bright
+			Goto See
+		Pain:
+			VD79 Q 2
+			VD79 Q 2 A_Pain
+			Goto See
+		Death:
+			VD79 R 6 Bright
+			VD79 S 6 Bright A_Scream
+			VD79 T 6 Bright
+			VD79 U 6 Bright A_NoBlocking
+			VD79 VW 6 Bright
+			VD79 X 6 Bright A_CustomMissile("MMRandomizer_ArchonSoul",86,0,0,2,90)
+			VD79 YZ 6 Bright
+			VD79 "[" 6 Bright A_Fall
+			VD79 "[" 0 A_KillMaster
+			Stop
+	}
+}
+
+Actor MMRandomizer_ArchonComet
+{
+	Radius 8
+	Height 12
+	Speed 25
+	Damage 20
+	Scale 1.0
+	Projectile
+	+THRUGHOST
+	SeeSound "vdr/firbfi"
+	DeathSound "vdr/hellex"
+	DontHurtShooter
+	DamageType Fire
+	States
+	{
+		Spawn:
+			VE37 AAAABBBBCCCC 1 Bright A_SpawnItemEx("MMRandomizer_ArchonCometTrail",0,0,0,0,0,0,0,128)
+			Loop
+		Death:
+			VE37 J 0 Bright A_SetTranslucent (0.67,1)
+			VE37 J 3 Bright
+			VE37 K 3 Bright A_Explode(128,128,0)
+			VE37 LMN 3 Bright
+			Stop
+	}
+}
+
+Actor MMRandomizer_ArchonSoul
+{
+	Radius 1
+	Height 1
+	Speed 3
+	Projectile
+	RenderStyle Add
+	Alpha 0.80
+	States
+	{
+		Spawn:
+			VE37 OPQR 6 Bright
+			Stop
+	}
+}
+
+Actor MMRandomizer_ArchonCometTrail
+{
+	Radius 3
+	Height 3
+	Scale 0.75
+	Speed 0
+	Projectile
+	RenderStyle Add
+	Alpha 0.67
+	States
+	{
+		Spawn:
+			TNT1 A 3 Bright
+			VE37 DEFGHI 3 Bright
+			Stop
+	}
+}
+

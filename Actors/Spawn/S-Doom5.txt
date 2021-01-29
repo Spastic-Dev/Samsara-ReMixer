@@ -10,8 +10,13 @@ ACTOR DemonSpawnerCoop replaces Demon
 			TNT1 A 1
 			Loop		
 		SetDoom:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(668,4)==1,"SetDoomRandom")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
 			TNT1 A 1 A_SpawnItemEx("DoomDemon3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetDoomRandom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("DoomDemonRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
@@ -839,6 +844,16 @@ ACTOR DemonSpawnerCoop replaces Demon
 			TNT1 A 1
 			Stop
 	}
+}
+
+actor DoomDemonRandomizer : RandomSpawner
+{
+	DropItem "DoomDemon3", 255, 6
+	DropItem "MMRandomizer_TriteHole", 255, 4
+	DropItem "MMRandomizer_BloodDemon", 255, 3
+	DropItem "MMRandomizer_MechDemon", 255, 3
+	DropItem "MMRandomizer_Satyr", 255, 2
+	DropItem "MMRandomizer_MechBloodDemon", 255, 2
 }
 
 ACTOR BloodDemonSpawnerCoop : DemonSpawnerCoop replaces BloodDemon

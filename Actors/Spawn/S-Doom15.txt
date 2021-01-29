@@ -24,9 +24,14 @@ ACTOR ArchvileSpawnerCoop replaces Archvile
 			TNT1 A 1 A_Die
 			Goto Death	
 		SetDoom:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(668,4)==1,"SetDoomRandom")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
-			TNT1 A 1 A_SpawnItemEx("Archvile3",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
+			TNT1 A 1 A_SpawnItemEx("Archvile3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetDoomRandom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("ArchvileRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
 			TNT1 A 1 A_SpawnItemEx("IronLich3Doom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
@@ -718,4 +723,11 @@ ACTOR ArchvileSpawnerCoop replaces Archvile
 			TNT1 A 1 A_BossDeath
 			stop
 	}
+}
+
+Actor ArchvileRandomizer : RandomSpawner
+{
+	DropItem "Archvile3", 255, 10
+	DropItem "MMRandomizer_Diabolist", 255, 5
+	DropItem "MMRandomizer_Hierophant", 255, 2
 }

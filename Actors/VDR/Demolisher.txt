@@ -1,0 +1,74 @@
+Actor MMRandomizer_Demolisher : SpiderMastermind3
+{
+	Obituary "%o felt the power of the Spider-Demolisher."
+	Health 6000 
+	Radius 96 
+	Height 100 
+	Mass 1000 
+	Speed 16 
+	PainChance 20 
+	Monster
+	+NOTARGET
+	+FLOORCLIP
+	+BOSS
+	+MISSILEEVENMORE
+	+NORADIUSDMG
+	SeeSound "vdr/demsit" 
+	PainSound "spider/pain" 
+	DeathSound "vdr/demdth" 
+	ActiveSound "spider/active" 
+	States 
+	{
+		Spawn: 
+			VD82 AB 10 A_Look 
+			Loop 
+		See: 
+			VD82 A 3 A_Metal 
+			VD82 ABB 3 A_Chase 
+			VD82 C 3 A_Metal 
+			VD82 CDD 3 A_Chase 
+			VD82 E 3 A_Metal 
+			VD82 EFF 3 A_Chase 
+			Loop 
+		Missile:
+			VD82 A 0 Bright A_Jump(128,20)
+			VD82 A 20 A_FaceTarget
+			VD82 T 1 Bright A_Playsound("weapons/bfgf")
+			VD82 T 4 Bright A_FaceTarget
+			VD82 T 4 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget
+			VD82 U 10 Bright A_CustomMissile("BFGBall",32,0,0)
+			VD82 T 0 Bright A_Jump(128,10)
+			VD82 T 1 Bright A_Playsound ("weapons/bfgf")
+			VD82 T 4 Bright A_FaceTarget
+			VD82 T 4 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget
+			VD82 T 5 Bright A_FaceTarget 
+			VD82 U 10 Bright A_CustomMissile("BFGBall",32,0,0)
+			VD82 T 0 Bright A_Jump(192,1)
+			Goto See
+			VD82 A 20 A_FaceTarget
+			VD82 G 0 Bright A_SPosAttackUseAtkSound
+			VD82 G 4 Bright A_SPosAttackUseAtkSound
+			VD82 H 0 Bright A_SPosAttackUseAtkSound
+			VD82 H 4 Bright A_SPosAttackUseAtkSound
+			VD82 H 1 Bright A_SpidRefire 
+			Goto Missile+21 
+		Pain: 
+			VD82 I 3 
+			VD82 I 3 A_Pain 
+			Goto See 
+		Death: 
+			VD82 J 20 Bright A_Scream 
+			VD82 K 10 Bright A_NoBlocking 
+			VD82 LMNOPQR 10 Bright
+			VD82 S 30 
+			VD82 S -1 A_BossDeath 
+			Stop 
+	} 
+}

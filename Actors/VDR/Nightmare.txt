@@ -1,0 +1,64 @@
+ACTOR MMRandomizer_Nightmare
+{
+    Health 100
+    Radius 20
+    Height 56
+    Speed 15
+    PainChance 144
+    Monster
+    +FLOORCLIP
+    +STEALTH
+    RenderStyle Add
+    Alpha 0.4
+    SeeSound "VDR/nightmare/sight"
+    PainSound "VDR/nightmare/pain"
+    DeathSound "VDR/nightmare/death"
+    ActiveSound "VDR/nightmare/active"
+    MeleeSound "VDR/nightmare/melee"
+    HitObituary "%o was tormented by a nightmare."
+    MeleeDamage 4
+    States
+    {
+		Spawn:
+			VD50 AB 10 A_Look
+			Loop
+		See:
+			VD50 A 0 A_UnSetShootable
+			VD50 AABBCCDD 3 A_Chase
+			VD50 D 0 A_Jump(32,1)
+			Loop
+			VD50 D 0 A_SpawnItemEx("MMRandomizer_NightmareWisp",0,0,0,0,0,0,0,128) 
+			Loop
+		Melee:
+			VD50 E 0 A_SetShootable
+			VD50 EF 9 A_FaceTarget
+			VD50 G 9 A_MeleeAttack
+			Goto See
+		Pain:
+			VD50 H 2 A_SetShootable
+			VD50 H 10 A_Pain
+			Goto See
+		Death:
+			VD50 I 3 A_ScreamAndUnblock
+			VD50 JKLMNO 3 
+			Stop
+    }
+}
+
+ACTOR MMRandomizer_NightmareWisp
+{
+	Radius 4
+	Height 8
+	Speed 0
+	Damage 0
+	RenderStyle Add
+	Alpha 0.4
+	Projectile
+	+NOCLIP
+	States
+	{
+		Spawn:
+			VD50 IJKLMNO 3
+			Stop
+	}
+}

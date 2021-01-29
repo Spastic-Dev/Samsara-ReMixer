@@ -1,0 +1,75 @@
+ACTOR MMRandomizer_Cacolantern : Cacodemon3
+{ 
+	Health 600 
+	Speed 8 
+	PainChance 128
+	Mass 400
+	Meleedamage 6 
+	REACTIONTIME 8 
+	BloodColor "FF FF 47"
+	+NOGRAVITY
+	+FLOAT
+	SeeSound "caco/sight"
+	PainSound "caco/pain"
+	DeathSound "caco/death"
+	ActiveSound "caco/active"
+	Missiletype MMRandomizer_CacolanternBall 
+	MissileHeight 30
+	HitObituary "%o admired the Cacolantern's teeth." 
+	Obituary "%o couldn't take %h eyes off the eye." 
+	States 
+	{ 
+		Spawn: 
+			VD67 A 10 bright A_Look 
+			Loop 
+		See: 
+			VD67 A 3 bright A_Chase 
+			Loop 
+		Missile: 
+			VD67 BC 5 bright A_FaceTarget 
+			VD67 D 5 bright A_ComboAttack
+			Goto See 
+		Pain: 
+			VD67 E 4 bright
+			VD67 E 4 bright A_Pain 
+			VD67 F 5 bright
+			Goto See 
+		Death: 
+			VD67 G 8 bright
+			VD67 H 8 bright A_Scream 
+			VD67 I 8 bright
+			VD67 J 8
+			VD67 K 8 A_NoBlocking 
+			VD67 L -1 A_SetFloorClip
+			Stop 
+		Raise: 
+			VD67 L 8 A_UnsetFloorClip
+			VD67 KJ 8
+			VD67 IHG 8 bright 
+			Goto See 
+	} 
+}
+
+actor MMRandomizer_CacolanternBall
+{
+    Radius 13
+    Height 8
+    Speed 20
+    Damage 9
+    Projectile
+    Renderstyle Add
+    Alpha 0.67
+    SeeSound "imp/attack"
+    DeathSound "imp/shotx"
+    Decal CacoScorch
+    States
+    {
+		Spawn:
+			VE23 ABCDEFGH 5 Bright
+			Loop
+		Death:
+			VE23 IJKL 4 Bright
+			Stop
+    }
+}
+

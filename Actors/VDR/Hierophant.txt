@@ -1,0 +1,267 @@
+Actor MMRandomizer_Hierophant
+{
+    Health 1400
+    Radius 24
+    Height 60
+    Mass 1000
+    Speed 10
+    PainChance 24
+    Monster
+    Obituary "%o was hexed by a Hierophant."
+    HitObituary "%o got shredded by a Hierophant."
+    SeeSound "vdr/Hiesit"
+    PainSound "vdr/Hiepai"
+    DeathSound "vdr/Hiedth"
+    ActiveSound "vdr/Hieact"
+    +NOTARGET
+    +FLOORCLIP
+    +MISSILEMORE
+    +NORADIUSDMG
+    +FLOAT
+    +NOGRAVITY
+    +DONTHURTSPECIES
+	+BOSS
+    var int user_i; // Iterator variable for Missile3 attack.
+    States
+    {
+		Spawn:
+			VD78 AC 10 A_Look
+			Loop
+		See:
+			VD78 AABBAACCDDCC 4 A_Chase
+			VD78 A 0 A_Jump(64, "Blur")
+			Loop
+		Blur:
+			VD78 A 1 A_PlaySound("vdr/blur")
+			VD78 AAAAAAAAAAAAAAAAAAAAAAAA 1 A_GiveInventory("MMRandomizer_Hiero_BlurChase")
+			Goto See
+		Missile:
+        MissileDecide:
+            VD78 A 0 A_Jump(256, "Missile1", "Missile2", "Missile3")
+        Missile1:
+            VD78 EF 7 Bright A_FaceTarget
+            VD78 G 0 Bright A_CustomMissile("MMRandomizer_HieroBall1", 26.0, 0, Random(-6, -1))
+            VD78 G 7 Bright A_CustomMissile("MMRandomizer_HieroBall1", 26.0, 0, Random(1, 6))
+            VD78 A 3 Bright
+            VD78 HI 7 Bright A_FaceTarget
+            VD78 J 0 Bright A_CustomMissile("MMRandomizer_HieroBall1", 26.0, 0, Random(-6, -1))
+            VD78 J 7 Bright A_CustomMissile("MMRandomizer_HieroBall1", 26.0, 0, Random(1, 6))
+            VD78 A 3 A_SpidRefire
+            VD78 A 0 A_Jump(64, "Missile1")
+            Goto See
+        Missile2:
+            VD78 EF 7 Bright A_FaceTarget
+            VD78 G 7 Bright A_CustomMissile("MMRandomizer_CurseBall", 26.0)
+            VD78 A 3 A_SpidRefire
+            VD78 A 0 A_Jump(128, "Missile1", "Missile3")
+            Goto See
+        Missile3:
+            VD78 KLM 5 Bright A_FaceTarget
+        Missile3LoopPrep:
+            VD78 A 0 A_SetUserVar("user_i", 0)
+        Missile3Loop:
+            VD78 N 1 Bright A_CustomMissile("MMRandomizer_HieroBall2")
+            VD78 O 1 Bright A_FaceTarget
+            VD78 A 0 A_SetUserVar("user_i", user_i + 1)
+            VD78 A 0 A_JumpIf(user_i < 15, "Missile3Loop")
+            VD78 L 5
+            Goto See
+		Melee:
+        LeftSlash:
+            VD78 EF 8 A_FaceTarget
+            VD78 G 3 A_CustomMeleeAttack(10 * Random(1, 8), "baron/melee")
+            VD78 A 3
+            VD78 A 0 A_Jump(128, "RightSlash")
+            Goto See
+        RightSlash:
+            VD78 HI 8 A_FaceTarget
+            VD78 J 3 A_CustomMeleeAttack(10 * Random(1, 8), "baron/melee")
+            VD78 A 3
+            Goto See
+		Pain:
+			VD78 P 2
+			VD78 P 2 A_Pain
+			Goto See
+		Death:
+			VD78 Q 6
+			VD78 R 6 A_Scream
+			VD78 S 6 A_NoBlocking
+			VD78 TUVW 6
+			VD78 X 0 A_KillMaster
+			VD78 X -1 A_SetFloorClip
+			Stop
+    }
+}
+
+Actor MMRandomizer_HieroFX // Blur effect.
+{
+    RenderStyle "Translucent"
+    Alpha 0.8
+    +NOINTERACTION
+    States
+    {
+		Spawn:
+			TNT1 A 3
+			VD78 A 5 A_FadeOut
+			Wait
+    }
+}
+
+Actor MMRandomizer_Hiero_BlurChase : CustomInventory
+{
+    States
+    {
+		Pickup:
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_HieroFX", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			TNT1 A 0 A_Chase
+			Stop
+    }
+}
+
+// -------------------------------------------------------------------------------------------
+//
+//   Hierophant -- Fireballs
+//
+// -------------------------------------------------------------------------------------------
+
+Actor MMRandomizer_HieroBall1 : BaronBall
+{
+    Speed 20
+    Damage 10
+    DamageType "Normal"
+    Decal "RevenantScorch"
+    +THRUGHOST
+    +FORCEXYBILLBOARD
+    States
+    {
+		Spawn:
+			VE35 AB 4 Bright
+			Loop
+		Death:
+			VE35 C 0 Bright A_SetTranslucent(0.75, 1)
+			VE35 C 3 Bright
+			VE35 D 3 Bright A_Explode(32, 32, 0)
+			VE35 EFG 3 Bright
+			Stop
+    }
+}
+
+Actor MMRandomizer_HieroBall2 : BishopFX
+{
+    Speed 16
+    Damage 6
+    DamageType "Normal"
+    Seesound "vdr/firmfi"
+    DeathSound "vdr/firex5"
+    Decal "PlasmaScorchLower"
+    +THRUGHOST
+    +FORCEXYBILLBOARD
+    States
+    {
+		Spawn:
+			VE35 HIJK 1 Bright A_Weave(3, 3, 1.0, 1.0)
+			VE35 H 0 Bright A_SeekerMissile(5, 6)
+			Loop
+		Death:
+			VE35 L 0 Bright A_SetTranslucent(0.75, 1)
+			VE35 LMNOPQ 3 Bright
+			Stop
+    }
+}
+
+Actor MMRandomizer_CurseBall : BaronBall
+{
+    Speed 20
+    Damage (20)
+    Alpha 0.9
+    SeeSound "vdr/curse1"
+    DeathSound "vdr/curse2"
+    Decal "MummyScorch"
+    +THRUGHOST
+    +FORCEXYBILLBOARD
+    +NODAMAGETHRUST
+    +SEEKERMISSILE
+    +HITMASTER
+    States
+    {
+		Spawn:
+			VE36 A 2 Bright A_SpawnItemEx("MMRandomizer_CurseTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			VE36 A 0 Bright A_SeekerMissile(6, 7)
+			VE36 B 2 Bright A_SpawnItemEx("MMRandomizer_CurseTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			VE36 B 0 Bright A_SeekerMissile(6, 7)
+			VE36 C 2 Bright A_SpawnItemEx("MMRandomizer_CurseTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			VE36 C 0 Bright A_SeekerMissile(6, 7)
+			VE36 D 2 Bright A_SpawnItemEx("MMRandomizer_CurseTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			VE36 D 0 Bright A_SeekerMissile(6, 7)
+			Loop
+		Death:
+			VE36 E 0 Bright A_SetTranslucent(0.8, 1)
+			VE36 E 3 ACS_NamedExecuteWithResult("Hiero_InflictCurse")
+			VE36 FGHI 3 Bright
+			Stop
+    }
+}
+
+Actor MMRandomizer_CurseTrail
+{
+    RenderStyle "Add"
+    Alpha 0.8
+    +FORCEXYBILLBOARD
+    +NOINTERACTION
+    States
+    {
+		Spawn:
+			TNT1 A 3
+			VE36 JLMNOPR 3 Bright
+			Stop
+    }
+}
+
+// -------------------------------------------------------------------------------------------
+//
+//   Hierophant -- The Deadly Curses!
+//
+// -------------------------------------------------------------------------------------------
+
+Actor PowerHieroWeaken : PowerDamage
+{
+    DamageFactor "Normal", 0.5
+}
+
+Actor PowerHieroAmpDMG : PowerProtection
+{
+    DamageFactor "Normal", 2.0
+}
+
+Actor PowerHieroSlow : PowerSpeed
+{
+    Speed 0.5
+}
+
+// --------------------------------------------------------------------------------------
+
+Actor MMRandomizer_HieroCurseGiver : PowerupGiver // Base class for the following actors.
+{
+    Inventory.MaxAmount 0
+    Powerup.Duration -10
+    +INVENTORY.AUTOACTIVATE
+    +INVENTORY.ALWAYSPICKUP
+}
+
+Actor MMRandomizer_HieroWeaken : MMRandomizer_HieroCurseGiver
+{
+    Powerup.Color "Cyan" 0.33
+    Powerup.Type "HieroWeaken"
+}
+
+Actor MMRandomizer_HieroAmpDMG : MMRandomizer_HieroCurseGiver
+{
+    Powerup.Color "Red" 0.33
+    Powerup.Type "HieroAmpDMG"
+}
+
+Actor MMRandomizer_HieroSlow : MMRandomizer_HieroCurseGiver
+{
+    Powerup.Color "Yellow" 0.33
+    Powerup.Type "HieroSlow"
+}

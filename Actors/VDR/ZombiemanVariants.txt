@@ -1,0 +1,120 @@
+ACTOR MMRandomizer_ZombiemanVariant1 : ZombieMan3
+{
+	States
+	{
+		Spawn:
+			VD00 AB 10 A_Look
+			Loop
+		See:
+			VD00 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD00 E 10 A_FaceTarget
+			VD00 F 8 A_PosAttack
+			VD00 E 8
+			Goto See
+		Pain:
+			VD00 G 3
+			VD00 G 3 A_Pain
+			Goto See
+		Death:
+			VD00 H 5
+			VD00 I 5 A_Scream
+			VD00 J 5 A_NoBlocking
+			POSS K 5
+			POSS L -1
+			Stop
+		XDeath:
+			VD00 M 5
+			POSS N 5 A_XScream
+			POSS O 5 A_NoBlocking
+			POSS PQRST 5
+			POSS U -1
+			Stop
+		Raise:
+			POSS LK 5
+			VD00 JIH 5
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_ZombiemanVariant2 : ZombieMan3
+{
+	States
+	{
+		Spawn:
+			VD01 AB 10 A_Look
+			Loop
+		See:
+			VD01 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD01 E 10 A_FaceTarget
+			VD01 F 8 A_PosAttack
+			VD01 E 8
+			Goto See
+		Pain:
+			VD01 G 3
+			VD01 G 3 A_Pain
+			Goto See
+		Death:
+			VD01 H 5
+			VD01 I 5 A_Scream
+			VD01 J 5 A_NoBlocking
+			POSS K 5
+			POSS L -1
+			Stop
+		XDeath:
+			VD01 M 5
+			POSS N 5 A_XScream
+			POSS O 5 A_NoBlocking
+			POSS PQRST 5
+			POSS U -1
+			Stop
+		Raise:
+			POSS LK 5
+			VD01 JIH 5
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_ZombiemanVariant3 : ZombieMan3
+{
+	States
+	{
+		Spawn:
+			VD02 AB 10 A_Look
+			Loop
+		See:
+			VD02 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD02 E 10 A_FaceTarget
+			VD02 F 8 A_PosAttack
+			VD02 E 8
+			Goto See
+		Pain:
+			VD02 G 3
+			VD02 G 3 A_Pain
+			Goto See
+		Death:
+			VD02 H 5 
+			VD00 I 5 A_Scream
+			VD00 J 5 A_NoBlocking
+			POSS K 5
+			POSS L -1
+			Stop
+		XDeath:
+			VD00 M 5
+			POSS N 5 A_XScream
+			POSS O 5 A_NoBlocking
+			POSS PQRST 5
+			POSS U -1
+			Stop
+		Raise:
+			POSS LK 5
+			VD00 JI 5
+			VD02 H 5
+			Goto See
+	}
+}

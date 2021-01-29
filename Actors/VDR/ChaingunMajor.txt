@@ -1,0 +1,167 @@
+Actor MMRandomizer_ChaingunMajor1 : ChaingunGuy
+{
+	Health 80
+	+MISSILEMORE
+	States
+	{
+		Spawn:
+			VD07 AB 10 A_Look
+			Loop
+		See:
+			VD07 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD07 E 10 A_FaceTarget
+			VD07 F 4 Bright A_CPosAttack
+			VD07 E 4 Bright A_CPosAttack
+			VD07 F 1 A_CPosRefire
+			Goto Missile+1
+		Pain:
+			VD07 G 3
+			VD07 G 3 A_Pain
+			Goto See
+		Death:
+			VD07 H 5
+			VD07 I 5 A_Scream
+			VD07 J 5 A_Fall
+			VD10 K 5
+			VD10 L -1
+			Stop
+		XDeath:
+			VD07 M 5
+			VD10 N 5 A_XScream
+			VD10 O 5 A_Fall
+			VD10 QRSTU 5
+			VD10 U -1
+			Stop
+		Raise:
+			VD10 L 5
+			VD07 KJIH 5
+			Goto See
+	}
+}
+
+Actor MMRandomizer_ChaingunMajor2 : MMRandomizer_ChaingunMajor1
+{
+	States
+	{
+		Spawn:
+			VD08 AB 10 A_Look
+			Loop
+		See:
+			VD08 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD08 E 10 A_FaceTarget
+			VD08 F 4 Bright A_CPosAttack
+			VD08 E 4 Bright A_CPosAttack
+			VD08 F 1 A_CPosRefire
+			Goto Missile+1
+		Pain:
+			VD08 G 3
+			VD08 G 3 A_Pain
+			Goto See
+		Death:
+			VD08 H 5
+			VD08 I 5 A_Scream
+			VD08 J 5 A_Fall
+			VD10 K 5
+			VD10 L -1
+			Stop
+		XDeath:
+			VD08 M 5
+			VD10 N 5 A_XScream
+			VD10 O 5 A_Fall
+			VD10 QRSTU 5
+			VD10 U -1
+			Stop
+		Raise:
+			VD10 LK 5
+			VD08 JIH 5
+			Goto See
+	}
+}
+
+Actor MMRandomizer_ChaingunMajor3 : MMRandomizer_ChaingunMajor1
+{
+	States
+	{
+		Spawn:
+			VD09 AB 10 A_Look
+			Loop
+		See:
+			VD09 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD09 E 10 A_FaceTarget
+			VD09 F 4 Bright A_CPosAttack
+			VD09 E 4 Bright A_CPosAttack
+			VD09 F 1 A_CPosRefire
+			Goto Missile+1
+		Pain:
+			VD09 G 3
+			VD09 G 3 A_Pain
+			Goto See
+		Death:
+			VD09 H 5
+			VD08 I 5 A_Scream
+			VD08 J 5 A_Fall
+			VD10 K 5
+			VD10 L -1
+			Stop
+		XDeath:
+			VD08 M 5
+			VD10 N 5 A_XScream
+			VD10 O 5 A_Fall
+			VD10 QRSTU 5
+			VD10 U -1
+			Stop
+		Raise:
+			VD10 LK 5
+			VD10 JI 5
+			VD09 H 5
+			Goto See
+	}
+}
+
+Actor MMRandomizer_ChaingunMajor4 : MMRandomizer_ChaingunMajor1
+{
+	States
+	{
+		Spawn:
+			VD10 AB 10 A_Look
+			Loop
+		See:
+			VD10 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD10 E 10 A_FaceTarget
+			VD10 F 4 Bright A_CPosAttack
+			VD10 E 4 Bright A_CPosAttack
+			VD10 F 1 A_CPosRefire
+			Goto Missile+1
+		Pain:
+			VD10 G 3
+			VD10 G 3 A_Pain
+			Goto See
+		Death:
+			VD10 H 5
+			VD10 I 5 A_Scream
+			VD10 J 5 A_Fall
+			VD10 K 5
+			VD10 L -1
+			Stop
+		XDeath:
+			VD10 M 5
+			VD10 N 5 A_XScream
+			VD10 O 5 A_Fall
+			VD10 QRSTU 5
+			VD10 U -1
+			Stop
+		Raise:
+			VD10 LK 5
+			VD10 JI 5
+			VD10 H 5
+			Goto See
+	}
+}

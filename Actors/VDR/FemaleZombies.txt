@@ -1,0 +1,193 @@
+ACTOR MMRandomizer_FemaleZombie : ZombieMan3
+{
+	Health 15
+	Speed 10
+	Seesound "vdr/fem/sight"
+	Painsound "vdr/fem/pain"
+	Activesound "vdr/fem/act"
+	Deathsound "vdr/fem/death"
+	States
+	{
+		Spawn:
+			VD11 AB 10 A_Look
+			Loop
+		See:
+			VD11 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD11 E 10 A_FaceTarget
+			VD11 F 8 A_PosAttack
+			VD11 E 8
+			Goto See
+		Pain:
+			VD11 G 3
+			VD11 G 3 A_Pain
+			Goto See
+		Death:
+			VD11 H 5 
+			VD11 I 5 A_Scream
+			VD11 J 5 A_NoBlocking
+			VD11 KLM 5
+			VD11 N -1
+			Stop
+		XDeath:
+			VD11 O 5
+			VD11 P 5 A_XScream
+			VD11 Q 5 A_NoBlocking
+			VD11 RSTUV 5
+			VD11 W -1
+			Stop
+		Raise:
+			VD11 NMLKJIH 5
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_FemaleSergeant : MMRandomizer_FemaleZombie
+{
+	Health 45
+	Seesound "vdr/fem/sight"
+	Painsound "vdr/fem/pain"
+	Activesound "vdr/fem/act"
+	Deathsound "vdr/fem/death"
+	States
+	{
+		Spawn:
+			VD12 AB 10 A_Look
+			Loop
+		See:
+			VD12 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD12 E 5 A_FaceTarget 
+			VD12 F 5 Bright A_PosAttack 
+			VD12 E 5 A_CPosRefire 
+			Goto See
+		Pain:
+			VD12 G 3
+			VD12 G 3 A_Pain
+			Goto See
+		Death:
+			VD12 H 5 
+			VD12 I 5 A_Scream
+			VD12 J 5 A_NoBlocking
+			VD12 KLM 5
+			VD12 N -1
+			Stop
+		XDeath:
+			VD12 O 5
+			VD12 P 5 A_XScream
+			VD12 Q 5 A_NoBlocking
+			VD12 RSTUV 5
+			VD12 W -1
+			Stop
+		Raise:
+			VD12 NMLKJIH 5
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_FemalePlasma : MMRandomizer_FemaleZombie
+{
+	Health 40
+	Seesound "vdr/fem/sight"
+	Painsound "vdr/fem/pain"
+	Activesound "vdr/fem/act"
+	Deathsound "vdr/fem/death"
+	AttackSound ""
+	DropItem MMRandomizer_CellDrop
+    MissileType PlasmaBall
+	States
+	{
+		Spawn:
+			VD13 AB 10 A_Look
+			Loop
+		See:
+			VD13 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD13 E 10 A_FaceTarget
+			VD13 F 5 A_MissileAttack
+			VD13 E 5 A_FaceTarget
+			VD13 F 5 A_MissileAttack
+			VD13 E 5 A_FaceTarget
+			VD13 F 5 A_MissileAttack
+			VD13 E 5 A_FaceTarget
+			VD13 F 5 A_MissileAttack
+			VD13 E 5 A_FaceTarget
+			VD13 F 5 A_MissileAttack
+			VD13 E 5 A_FaceTarget
+			VD13 F 5 A_MissileAttack
+			VD13 E 5 A_FaceTarget
+			VD13 F 5 A_MissileAttack
+			Goto See
+		Pain:
+			VD13 G 3
+			VD13 G 3 A_Pain
+			Goto See
+		Death:
+			VD13 H 5 
+			VD13 I 5 A_Scream
+			VD13 J 5 A_NoBlocking
+			VD13 KLM 5
+			VD13 N -1
+			Stop
+		XDeath:
+			VD13 O 5
+			VD13 P 5 A_XScream
+			VD13 Q 5 A_NoBlocking
+			VD13 RSTUV 5
+			VD13 W -1
+			Stop
+		Raise:
+			VD13 NMLKJIH 5
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_FemaleRail : MMRandomizer_FemaleZombie
+{
+	Health 55
+	Seesound "vdr/fem/sight"
+	Painsound "vdr/fem/pain"
+	Activesound "vdr/fem/act"
+	Deathsound "vdr/fem/death"
+	AttackSound ""
+	DropItem MMRandomizer_CellDrop
+    Decal RedRailScorch
+	States
+	{
+		Spawn:
+			VD14 AB 10 A_Look
+			Loop
+		See:
+			VD14 AABBCCDD 4 A_Chase
+			Loop
+		Missile: 
+			VD14 EE 10 A_FaceTarget 
+			VD14 F 5 A_CustomRailgun(15, 0, ac1819, FF6C00, 0, 1, 0, "BulletPuff", 4, 4)
+			VD14 E 4 A_FaceTarget 
+			Goto See 
+		Pain:
+			VD14 G 3
+			VD14 G 3 A_Pain
+			Goto See
+		Death:
+			VD14 H 5 
+			VD14 I 5 A_Scream
+			VD14 J 5 A_NoBlocking
+			VD14 KLM 5
+			VD14 N -1
+			Stop
+		XDeath:
+			VD14 O 5
+			VD14 P 5 A_XScream
+			VD14 Q 5 A_NoBlocking
+			VD14 RSTUV 5
+			VD14 W -1
+			Stop
+		Raise:
+			VD14 NMLKJIH 5
+			Goto See
+	}
+}

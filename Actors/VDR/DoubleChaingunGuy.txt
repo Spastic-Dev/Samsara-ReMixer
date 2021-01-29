@@ -1,0 +1,56 @@
+Actor MMRandomizer_DoubleChaingunGuy : Chaingunguy3
+{
+	Obituary "%o was ripped to bloody ribbons by a double-chaingunner."
+	Health 100
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 150
+	SeeSound "chainguy/sight"
+	AttackSound "chainguy/attack"
+	PainSound "chainguy/pain"
+	DeathSound "chainguy/death"
+	ActiveSound "chainguy/active"
+	DropItem "Chaingun", 256, 2
+	Monster
+	States
+	{
+		Spawn:
+			VD33 AB 10 A_Look
+			Loop
+		See:
+			VD33 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD33 E 10 A_FaceTarget
+			VD33 F 0 Bright A_CPosAttack
+			VD33 F 4 Bright A_CPosAttack
+			VD33 E 0 Bright A_CPosAttack
+			VD33 E 4 Bright A_CPosAttack
+			VD33 F 1 A_CPosRefire
+			Goto Missile+1
+		Pain:
+			VD33 G 3
+			VD33 G 3 A_Pain
+			Goto See
+		Death:
+			VD33 H 5
+			VD33 I 5 A_Scream
+			VD33 J 5 A_NoBlocking
+			VD33 KLM 5
+			VD33 N -1
+			Stop
+		XDeath:
+			VD33 O 5
+			VD33 P 5 A_XScream
+			VD33 Q 5 A_NoBlocking
+			VD33 RS 5
+			VD33 T -1
+			Stop
+		Raise:
+			VD33 NMLKJIH 5
+			Goto See
+	}
+}
+

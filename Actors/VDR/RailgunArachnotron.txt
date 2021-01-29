@@ -1,0 +1,51 @@
+Actor MMRandomizer_RailGunArachnotron : Arachnotron3
+{
+	Health 500
+	Radius 64
+	Height 64
+	Mass 600
+	Speed 12
+	PainChance 192
+	Monster
+	+FLOORCLIP
+	SeeSound "baby/sight"
+	PainSound "baby/pain"
+	DeathSound "baby/death"
+	ActiveSound "baby/active"
+	Obituary "%o was railed by an arachnotron."
+	Decal RedRailScorch
+	States
+	{
+		Spawn:
+			VD60 AB 10 A_Look
+			Loop
+		See:
+			VD60 A 20
+			VD60 A 3 A_BabyMetal
+			VD60 ABBCC 3 A_Chase
+			VD60 D 3 A_BabyMetal
+			VD60 DEEFF 3 A_Chase
+			Goto See+1
+		Missile:
+			VD60 A 16 A_FaceTarget
+			VD60 G 16 A_FaceTarget
+			VD60 H 4 A_CustomRailgun(15, 0, ac1819, FF6C00, 0, 1, 0, "BulletPuff", 4, 4)
+			VD60 G 8
+			Goto See+1
+		Pain:
+			VD60 I 3
+			VD60 I 3 A_Pain
+			Goto See+1
+		Death:
+			VD60 J 20 A_Scream
+			VD60 K 7 A_Fall
+			VD60 LMNO 7
+			VD60 P 0 A_KillMaster
+			VD60 P -1
+			Stop
+		Raise:
+			VD60 P 5
+			VD60 ONMLKJ 5
+			Goto See+1
+	}
+}

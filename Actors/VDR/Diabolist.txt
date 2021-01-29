@@ -1,0 +1,300 @@
+Actor MMRandomizer_Diabolist
+{
+	Obituary "%o was set ablaze by a Diabloist."
+	Health 1050
+	Radius 20
+	Height 56
+	Mass 500
+	Speed 15
+	PainChance 10
+	BloodColor "08 08 08"
+	Monster
+	+FIRERESIST
+	+FLOORCLIP
+	+NOTARGET
+	+NORADIUSDMG
+	+MISSILEMORE
+	+BOSS
+	+DONTHURTSPECIES
+	SeeSound "vdr/diabolus/diasit"
+	PainSound "vdr/diabolus/diapai"
+	DeathSound "vdr/diabolus/diadth"
+	ActiveSound "vdr/diabolus/diaact"
+	States
+	{
+		Spawn:
+			VD76 AB 10 A_Look
+			Loop
+		See:
+			VD76 AABBCCDDEEFF 2 A_Chase
+			Loop
+		Missile:
+			VD76 G 0 Bright A_Jump(128, "Missile2")
+			VD76 G 0 Bright A_FaceTarget
+			VD76 G 3 Bright A_FaceTarget
+			VD76 H 3 Bright A_FaceTarget
+			VD76 I 3 A_CustomMissile("MMRandomizer_DFire", 32, 0, 0)
+			VD76 H 3 Bright A_FaceTarget
+			VD76 G 3 Bright A_FaceTarget
+			VD76 H 3 Bright A_FaceTarget
+			VD76 I 3 Bright A_FaceTarget
+			VD76 H 3 Bright A_FaceTarget
+			VD76 G 3 Bright A_FaceTarget
+			VD76 H 3 Bright A_FaceTarget
+			VD76 I 3 Bright A_FaceTarget
+			VD76 H 3 Bright A_FaceTarget
+			VD76 G 3 Bright A_FaceTarget
+			VD76 H 3 Bright A_FaceTarget
+			VD76 I 3 Bright A_FaceTarget
+			VD76 G 3 Bright A_FaceTarget
+			VD76 H 3 Bright A_FaceTarget
+			VD76 I 3 Bright A_FaceTarget
+			VD76 G 0 Bright A_Jump(128, "Missile3")
+			Goto See
+		Missile2:
+			VD76 N 5 Bright A_FaceTarget
+			VD76 O 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 P 0 Bright A_FaceTarget
+			VD76 P 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 N 0 Bright A_FaceTarget
+			VD76 N 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 O 0 Bright A_FaceTarget
+			VD76 O 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 P 0 Bright A_FaceTarget
+			VD76 P 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 N 0 Bright A_FaceTarget
+			VD76 N 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 O 0 Bright A_FaceTarget
+			VD76 O 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 P 0 Bright A_FaceTarget
+			VD76 P 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 N 0 Bright A_FaceTarget
+			VD76 N 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 O 0 Bright A_FaceTarget
+			VD76 O 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 P 0 Bright A_FaceTarget
+			VD76 P 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 N 0 Bright A_FaceTarget
+			VD76 N 5 Bright A_CustomMissile("MMRandomizer_DFlare", 40, 0, Random(-4, 4))
+			VD76 O 0 Bright A_FaceTarget
+			VD76 P 5 Bright
+			VD76 P 0 Bright A_Jump(64,"Missile3")
+			VD76 P 0 Bright A_Jump(128,"Missile4")
+			Goto See
+		Missile3:
+			VD76 GHIJKLM 5 Bright A_FaceTarget
+			VD76 N 5 Bright A_FaceTarget
+			VD76 O 1 Bright A_Playsound("vdr/diabolus/firbfi")
+			VD76 O 4 Bright A_CustomMissile("MMRandomizer_DMissile",32,0,0)
+			VD76 P 5 Bright
+			VD76 P 0 Bright A_Jump (128,1)
+			Goto See
+		Missile4:
+			VD77 A 8 Bright A_FaceTarget
+			VD77 B 8 Bright A_FaceTarget
+			VD77 C 0 Bright A_CustomMissile("MMRandomizer_DTracer",0,-40,0)
+			VD77 C 8 Bright A_CustomMissile("MMRandomizer_DTracer",0,40,0)
+			Goto See
+		Pain:
+			VD76 Q 5
+			VD76 Q 5 A_Pain
+			Goto See
+		Death:
+			VD76 Q 7
+			VD76 R 7 A_Scream
+			VD76 S 7 A_NoBlocking
+			VD76 TUVW 7
+			VD76 XY 5
+			VD76 Z -1 A_KillMaster
+			Stop
+	}
+}
+
+Actor MMRandomizer_DFire
+{
+	Obituary "%o was set ablaze by a Diabloist."
+	Radius 0
+	Height 1
+	Speed 0
+	RenderStyle Add
+	DamageType Fire
+	Alpha 1.00
+	+NOGRAVITY
+	+SEEKERMISSILE
+	+NOTARGET
+	+NODAMAGETHRUST
+	States
+	{
+		Spawn:
+			VE31 A 2 Bright A_StartFire
+			TNT1 A 0 Bright A_Explode(4, 32)
+			VE31 B 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(4, 32)
+			VE31 A 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(4, 32)
+			VE31 B 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(4, 32)
+			VE31 C 2 Bright A_FireCrackle
+			TNT1 A 0 Bright A_Explode(4, 32)
+			VE31 B 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 C 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 B 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 C 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 D 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 C 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 D 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 C 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 D 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 E 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 D 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 E 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(5, 32)
+			VE31 D 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(4, 32)
+			VE31 E 2 Bright A_FireCrackle
+			TNT1 A 0 Bright A_Explode(4, 32)
+			VE31 F 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(3, 32)
+			VE31 E 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(3, 32)
+			VE31 F 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(3, 32)
+			VE31 E 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(2, 32)
+			VE31 F 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(2, 32)
+			VE31 G 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(2, 32)
+			VE31 H 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(1, 32)
+			VE31 G 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(1, 32)
+			VE31 H 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(1, 32)
+			VE31 G 2 Bright A_Fire
+			TNT1 A 0 Bright A_Explode(1, 32)
+			VE31 H 2 Bright A_Fire
+			Stop
+	}
+}
+
+ACTOR MMRandomizer_DFlare
+{
+	Radius 5
+	Height 5
+	Speed 25
+	Damage 4
+	SpawnID 252
+	RenderStyle Add
+	DamageType Fire
+	Alpha 0.85
+	Projectile
+	+THRUGHOST
+	Obituary "%o was set ablaze by a Diabloist."
+	Seesound "vdr/diabolus/firmfi"
+	DeathSound "vdr/diabolus/firex4"
+	States
+	{
+		Spawn:
+			VE31 IJ 3 Bright A_SpawnItemEx("MMRandomizer_MFlareFX", 0, 0, 0, 0, 0, 0, 0, 128)
+			Loop
+		Death:
+			VE31 KLMNO 3 Bright
+			Stop
+	}
+}
+
+Actor MMRandomizer_DMissile : CFlameMissile
+{
+	+THRUGHOST
+}
+
+Actor MMRandomizer_DTracer
+{
+	Radius 5
+	Height 5
+	Speed 15
+	ReactionTime 175
+	Damage 10
+	DamageType Fire
+	RenderStyle Add
+	Alpha 0.67
+	Projectile
+	+SEEKERMISSILE
+	+FLOORHUGGER
+	+THRUGHOST
+	-NOGRAVITY
+	Obituary "%o was set ablaze by a Diabloist."
+	Seesound "vdr/diabolus/diasht"
+	DeathSound "vdr/diabolus/firex3"
+	States
+	{
+		Spawn:
+			TNT1 A 1 Bright A_SeekerMissile(10, 15)
+			TNT1 A 0 Bright A_Countdown
+			TNT1 A 0 Bright A_SpawnItemEx("MMRandomizer_DTracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)
+			Loop
+		Death:
+			VE32 K 4 Bright
+			VE32 L 4 Bright A_Explode(64, 64)
+			VE32 MNO 3 Bright
+			Stop
+	}
+}
+
+Actor MMRandomizer_MFlareFX
+{
+	Radius 0
+	Height 1
+	Speed 0
+	Projectile
+	RenderStyle Add
+	Alpha 0.67
+	States
+	{
+		Spawn:
+			VE32 PQRSTU 4 Bright
+			Stop
+	}
+}
+
+Actor MMRandomizer_DTracerPuff
+{
+	Radius 1
+	Height 1
+	Speed 0
+	RenderStyle Add
+	DamageType Fire
+	Alpha 0.67
+	Projectile
+	+FLOORHUGGER
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			VE32 ABCDEFGHIJ 3 Bright A_Explode(4, 8)
+			stop
+	}
+}
+
+Actor MMRandomizer_DMissileTrail : CFlameFloor
+{
+	+THRUGHOST
+}
+
+Actor MMRandomizer_DMissileCircle : CircleFlame
+{
+	+THRUGHOST
+}
+

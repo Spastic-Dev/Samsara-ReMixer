@@ -10,8 +10,13 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 			TNT1 A 1
 			Loop		
 		SetDoom:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(668,4)==1,"SetDoomRandom")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
 			TNT1 A 1 A_SpawnItemEx("Revenant3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetDoomRandom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("RevenantRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
@@ -442,4 +447,12 @@ ACTOR RevenantSpawnerCoop replaces Revenant
 			TNT1 A 1
 			Stop
 	}
+}
+
+Actor RevenantRandomizer : RandomSpawner
+{
+	DropItem "MMRandomizer_MeleeRevenant", 255, 8
+	DropItem "Revenant3", 255, 6
+	DropItem "MMRandomizer_Ghoul", 255, 3
+	DropItem "MMRandomizer_Incarnate", 255, 3
 }

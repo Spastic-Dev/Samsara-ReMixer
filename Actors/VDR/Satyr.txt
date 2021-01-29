@@ -1,0 +1,51 @@
+actor MMRandomizer_Satyr
+{
+    Health 400
+    Radius 18
+    Height 48
+    Scale 0.75
+    Speed 8
+    PainChance 50
+    Mass 350
+    MONSTER 
+    +FLOORCLIP
+    SeeSound "VDR/satyr/sight"
+    PainSound "knight/pain"
+    DeathSound "VDR/satyr/death"
+    ActiveSound "knight/active"
+    MeleeSound "baron/melee"
+    HitObituary "%o was mauled by a satyr."
+    MeleeDamage 8
+    States
+    {
+		Spawn:
+			VD48 AB 10 A_Look
+			Loop
+		See:
+			VD48 AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+			VD48 EF 6 A_FaceTarget
+			VD48 G 6 A_MeleeAttack
+			VD48 PQ 5 A_FaceTarget
+			VD48 R 6 A_MeleeAttack
+			Goto See
+		Pain:
+			VD48 H 2
+			VD48 H 2 A_Pain
+			Goto See
+		Death:
+			VD48 I 5
+			VD48 J 5 A_Scream
+			VD48 K 6
+			VD48 L 7 A_Fall
+			VD48 M 4
+			VD48 N 4
+			VD48 O -1
+			Stop
+		Raise:
+			VD48 ONMLKJI 8
+			Goto See
+    }
+}
+

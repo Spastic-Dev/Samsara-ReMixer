@@ -1,0 +1,49 @@
+ACTOR MMRandomizer_RapidFireTrooper : Zombieman3
+{
+    Health 50
+    Radius 20
+    Height 56
+    Speed 8
+    PainChance 200
+    +FLOORCLIP
+    Obituary "%o was surprised by the zombie's weaponry."
+    Decal BulletChip
+    States
+    {
+	    Spawn:
+		    VD23 AB 10 A_Look
+		    Loop
+	    See:
+			VD23 AABBCCDD 4 A_Chase
+			Loop
+	    Missile:
+		    VD23 E 10 A_FaceTarget
+		    VD23 F 5 Bright A_PosAttack
+		    VD23 E 5 A_CPosRefire
+		    Goto Missile+1
+	    Pain:
+		    VD23 G 3
+		    VD23 G 3 A_Pain
+		    Goto See
+	    Death:
+		    VD23 H 5
+		    VD23 I 5 A_Scream
+		    VD23 J 5 A_Fall
+		    VD23 K 5
+		    VD23 L -1
+		    Stop
+		XDeath:
+		    VD23 M 5
+		    VD23 N 5 A_XScream
+		    VD23 N 5
+		    VD23 P 5 A_Fall
+		    VD23 QRST 5
+		    VD23 U -1
+		    Stop
+	    Raise:
+		    VD23 KJ 5
+		    VD23 IH 5
+		    Goto See
+    }
+}
+

@@ -1,0 +1,70 @@
+ACTOR MMRandomizer_ChainsawZombie : Zombieman3
+{ 
+    Health 30 
+    Radius 20 
+    Height 56 
+    Speed 16
+    MeleeDamage 1 
+    PainChance 200 
+    MONSTER 
+    +FLOORCLIP 
+    Obituary "%o was sliced by a madman zombie with a chainsaw!" 
+    SeeSound "grunt/sight" 
+    MeleeSound "weapons/sawhit" 
+    PainSound "grunt/pain" 
+    DeathSound "grunt/death" 
+    ActiveSound "grunt/active" 
+	AttackSound ""
+    DropItem Chainsaw
+    States 
+    { 
+		Spawn: 
+			VD34 A 4 A_Look 
+			VD34 A 4 A_PlayWeaponSound("weapons/sawidle") 
+			VD34 A 4 A_Look 
+			VD34 B 4 A_PlayWeaponSound("weapons/sawidle") 
+			VD34 B 4 A_Look 
+			VD34 B 4 A_PlayWeaponSound("weapons/sawidle") 
+			Loop 
+		See: 
+			VD34 A 4 A_Chase("Melee","") 
+			VD34 A 4 A_Chase("Melee","") 
+			VD34 B 0 A_PlayWeaponSound("weapons/sawidle") 
+			VD34 B 4 A_Chase("Melee","") 
+			VD34 B 4 A_Chase("Melee","") 
+			VD34 C 0 A_PlayWeaponSound("weapons/sawidle") 
+			VD34 C 4 A_Chase("Melee","") 
+			VD34 C 4 A_Chase("Melee","") 
+			VD34 D 0 A_PlayWeaponSound("weapons/sawidle") 
+			VD34 D 4 A_Chase("Melee","") 
+			VD34 D 4 A_Chase("Melee","") 
+			VD34 A 0 A_PlayWeaponSound("weapons/sawidle") 
+			Loop 
+		Melee: 
+			VD34 E 1 A_FaceTarget 
+			VD34 F 3 A_MeleeAttack 
+			Goto See 
+		Pain: 
+			VD34 G 5 
+			VD34 G 3 A_Pain 
+			Goto See 
+		Death: 
+			VD34 H 5 
+			VD34 I 5 A_Scream 
+			VD34 J 5 A_Fall 
+			VD34 KLM 5 
+			VD34 N -1 
+			Stop 
+		XDeath:
+			VD34 O 5
+			VD34 P 5 A_XScream
+			VD34 Q 5 A_Fall
+			VD34 RSTUV 5
+			VD34 W -1
+			Stop
+		Raise: 
+			VD34 NMLKJIH 5 
+			Goto See 
+    } 
+}
+

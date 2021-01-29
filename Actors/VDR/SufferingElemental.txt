@@ -1,0 +1,42 @@
+ACTOR MMRandomizer_SufferingElemental : PainElemental3
+{ 
+	Health 600
+	Speed 8
+	Radius 31
+	Height 56
+	PainChance 128
+	Mass 400
+	+NOGRAVITY
+	+FLOAT
+	+DROPOFF
+	SeeSound "Pain/Sight"
+	PainSound "Pain/Pain"
+	DeathSound "Pain/Death"
+	ActiveSound "Pain/Active"
+	States 
+	{
+		Spawn:
+			VD71 A 10 A_Look
+			Loop
+		See:
+			VD71 AABBCC 3 A_Chase
+			Loop
+		Missile: 
+			VD71 D 5 A_FaceTarget
+			VD71 E 5 A_FaceTarget
+			VD71 F 5 Bright A_FaceTarget
+			VD71 F 0 Bright A_PainAttack("MMRandomizer_Phantasm")
+			Goto See 
+	   Pain:
+			VD71 G 3
+			VD71 G 6 A_Pain
+			Goto See
+	   Death: 
+			VD71 H 8 Bright
+			VD71 I 8 Bright A_Scream
+			VD71 JK 8 Bright
+			VD71 L 8 Bright A_PainDie("MMRandomizer_Phantasm")
+			VD71 M 8 Bright
+			Stop
+	} 
+}

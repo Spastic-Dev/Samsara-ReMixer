@@ -10,8 +10,13 @@ ACTOR DoomImpSpawnerCoop replaces DoomImp
 			TNT1 A 1
 			Loop
 		SetDoom:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(668,4)==1,"SetDoomRandom")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
 			TNT1 A 1 A_SpawnItemEx("DoomImp3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetDoomRandom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("DoomImpRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
@@ -505,6 +510,26 @@ ACTOR DoomImpSpawnerCoop replaces DoomImp
 			TNT1 A 1
 			Stop
 	}
+}
+
+actor DoomImpRandomizer : RandomSpawner
+{
+	DropItem "DoomImp3", 255, 5
+	DropItem "MMRandomizer_VoidImp", 255, 5
+    DropItem "MMRandomizer_STImp", 255, 5
+	DropItem "MMRandomizer_ImpAbomination", 255, 5
+	DropItem "MMRandomizer_Shadow", 255, 3
+	DropItem "MMRandomizer_Roach", 255, 3
+	DropItem "MMRandomizer_SoulHarvester", 255, 3
+	DropItem "MMRandomizer_Vulgar", 255, 3
+	DropItem "MMRandomizer_StoneImp", 255, 3
+	DropItem "MMRandomizer_Hellion", 255, 3
+	DropItem "MMRandomizer_STDarkImp", 255, 2
+	DropItem "MMRandomizer_DarkDevil", 255, 2
+	DropItem "MMRandomizer_NamiDarkImp", 255, 2
+	DropItem "MMRandomizer_NetherDarkImp", 255, 2
+	DropItem "MMRandomizer_VoidDarkImp", 255, 2	
+	DropItem "MMRandomizer_CyberImp", 255, 2
 }
 
 ACTOR DarkImpSpawnerCoop : DoomImpSpawnerCoop replaces DarkImp

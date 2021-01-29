@@ -1,0 +1,51 @@
+ACTOR MMRandomizer_Annihilator : CyberDemon3
+{
+	Obituary "The Cyber Annihilator blew %o away with its rockets."
+	Health 5000 
+	Radius 40 
+	Height 110 
+	Mass 1000 
+	Speed 16 
+	PainChance 10 
+	Monster
+	+NOTARGET 
+	+FLOORCLIP 
+	+NORADIUSDMG 
+	+BOSS 
+	+MISSILEEVENMORE 
+	States 
+	{    
+		Spawn: 
+			VD80 AB 10 A_Look 
+			Loop 
+		See: 
+			VD80 A 3 A_Hoof
+			VD80 ABBCC 3 A_Chase 
+			VD80 D 3 A_Hoof
+			VD80 D 3 A_Chase 
+			Loop 
+		Missile:
+			VD80 E 6 A_FaceTarget 
+			VD80 F 0 Bright A_CustomMissile("Rocket",40,27,0)
+			VD80 F 12 Bright A_CustomMissile("Rocket",40,-27,0)
+			VD80 E 12 A_FaceTarget 
+			VD80 F 0 Bright A_CustomMissile ("Rocket",40,27,0)
+			VD80 F 12 Bright A_CustomMissile ("Rocket",40,-27,0) 
+			VD80 E 12 A_FaceTarget 
+			VD80 F 0 Bright A_CustomMissile ("Rocket",40,27,0)
+			VD80 F 12 Bright A_CustomMissile ("Rocket",40,-27,0)
+			Goto See
+		Pain: 
+			VD80 G 10 A_Pain 
+			Goto See 
+		Death: 
+			VD80 H 10 Bright
+			VD80 I 10 Bright A_Scream 
+			VD80 JKL 10 Bright
+			VD80 M 10 Bright A_NoBlocking 
+			VD80 NO 10 Bright
+			VD80 P 30 
+			VD80 P -1 A_KillMaster
+			Stop
+	} 
+}

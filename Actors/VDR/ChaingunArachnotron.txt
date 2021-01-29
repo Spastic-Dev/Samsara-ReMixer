@@ -1,0 +1,53 @@
+actor MMRandomizer_ChaingunArachnotron : Arachnotron3
+{
+	Obituary "%o was filled full of lead by an Arachnotron."
+	Health 450
+	Radius 64
+	Height 64
+	Mass 600
+	Speed 12
+	PainChance 128
+	SeeSound "VDR/CGunSpider/Sight"
+	PainSound "baby/pain"
+	DeathSound "VDR/CGunSpider/Death"
+	ActiveSound "baby/active"
+	AttackSound "grunt/attack"
+	Dropitem "ClipBox" 64
+	Decal "BulletChip"
+	Monster
+	+FLOORCLIP
+	states
+	{
+		Spawn:
+			VD59 AB 10 A_Look
+			Loop
+		See:
+			VD59 A 20
+			VD59 A 3 A_BabyMetal
+			VD59 ABBCC 3 A_Chase
+			VD59 D 3 A_BabyMetal
+			VD59 DEEFF 3 A_Chase
+			Goto See+1
+		Missile:
+			VD59 A 20 bright A_FaceTarget
+			VD59 G 4 bright A_CPosAttack
+			VD59 G 0 bright A_CPosAttack
+			VD59 H 4 bright
+			VD59 H 1 bright A_SpidRefire
+			Goto Missile+1
+		Pain:
+			VD59 I 3
+			VD59 I 3 A_Pain
+			Goto See+1
+		Death:
+			VD59 J 20 A_Scream
+			VD59 K 7 A_NoBlocking
+			VD59 LMNO 7
+			VD59 P 0 A_KillMaster
+			VD59 P -1
+			stop
+		Raise:
+			VD59 PONMLKJ 5
+			Goto See+1
+	}
+}

@@ -1,0 +1,194 @@
+ACTOR MMRandomizer_Ghoul : Revenant3
+{
+	Health 450
+	Radius 20
+	Height 56
+	Mass 500
+	Speed 8
+	PainChance 80
+	Monster
+	MeleeThreshold 196
+	+MISSILEMORE 
+	+FLOORCLIP
+	+DONTHURTSPECIES
+	+DONTHARMCLASS
+	SeeSound "skeleton/sight"
+	PainSound "skeleton/pain"
+	DeathSound "skeleton/death"
+	ActiveSound "skeleton/active"
+	MeleeSound "vdr/ghoul/melee"
+	HitObituary "%o felt the stinging power behind a Ghoul's fist!"
+	Obituary "%o couldn't evade a Ghoul's Toxic concoction!"
+	BloodColor Green
+	DamageFactor "Poison",0
+	DamageFactor "PoisonCloud",0
+	DamageFactor "GhoulCloud",0
+	PoisonDamage 128 //Poison Damage Duration from Melee About 4-5 Seconds
+	Decal BaronScorch
+	States
+	{
+		Spawn:
+			VD74 AB 10 A_Look
+			Loop
+		See:
+			VD74 AABBCCDDEEFF 2 A_Chase
+			Loop
+		Melee:
+			VD74 G 1 A_FaceTarget
+			VD74 G 6 A_PlaySound("vdr/ghoul/swing")
+			VD74 H 6 A_FaceTarget
+			VD74 I 6 A_CustomMeleeAttack(random(1,8)*6,"vdr/ghoul/melee","")
+			Goto See
+		Missile:
+			VD74 J 1 Bright A_FaceTarget
+			VD74 J 9 Bright A_FaceTarget
+			VD74 K 10 A_CustomMissile("MMRandomizer_GhoulMissile",62,11)
+			VD74 K 10 A_FaceTarget
+			Goto See
+		Pain:
+			VD74 L 5
+			VD74 L 5 A_Pain
+			Goto See
+		Death:
+			VD74 LM 7
+			VD74 N 7 A_Scream
+			TNT1 A 0 A_SpawnItemEX("MMRandomizer_GhoulDeathCloud",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION)
+			VD74 O 7 A_NoBlocking
+			VD74 P 7
+			VD74 Q -1
+			Stop
+		Raise:
+			VD74 Q 5
+			VD74 PONML 5
+			Goto See
+	}
+}
+ACTOR MMRandomizer_GhoulMissile : RevenantTracer
+{
+	Radius 11
+	Height 8
+	Speed 12
+	FastSpeed 15
+	Damage 3
+	Projectile 
+	+SEEKERMISSILE 
+	+RANDOMIZE
+	SeeSound "vdr/Ghoul/attack"
+	DeathSound "vdr/Ghoul/tracex"
+	RenderStyle Add
+	Decal BaronScorch
+	States
+	{
+		Spawn:
+			VE29 ABC 3 BRIGHT A_Tracer
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GasTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulCloud",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,64)
+			Loop
+		Death:
+			VE29 DEF 1 BRIGHT
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulCloud",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
+			VE29 G 2 BRIGHT
+			VE29 H 2 BRIGHT
+			VE29 I 2 BRIGHT
+			Stop
+	}
+}
+ACTOR MMRandomizer_GasTrail
+{
+	Radius 8
+	Height 6
+	Speed 8
+	FastSpeed 11
+	RenderStyle Add
+	Alpha 0.8
+	Projectile
+	+RANDOMIZE
+	States
+	{
+		Spawn:
+			VE29 PQRSTU 4 Bright
+			Stop
+	}
+}
+Actor MMRandomizer_GhoulDrip : Blood
+{
+	Translation "176:223=112:127"
+	States
+	{
+		Spawn:
+			BLUD ABCD 4
+			Stop
+	}
+}
+Actor MMRandomizer_GhoulCloud //: PoisonCloud (Heretic's Poison Clouds)
+{
+	Radius 20
+	Height 30
+	Mass 0x7fffffff
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+DROPOFF
+	+NODAMAGETHRUST
+	+DONTSPLASH
+	+FOILINVUL
+	+CANBLAST
+	+BLOODLESSIMPACT
+	+BLOCKEDBYSOLIDACTORS
+	+FORCERADIUSDMG
+	RenderStyle Add
+	Alpha 0.6
+	DeathSound "vdr/ghoul/cloud"
+	DamageType PoisonCloud
+	PoisonDamage 8
+	States
+	{
+		Spawn:
+			VE29 V 1 Bright
+			VE29 V 1 Bright A_Scream
+			VE29 VWWWXXXYYYZZZ 2 Bright A_Explode(1,40,false, false,40)
+			VE29 "[["  2 Bright A_Explode(1,40,false, false,40)
+			VE29 WWWXXXYYYZZZ 2 Bright A_Explode(1,40,false, false,40)
+			VE29 "[[" 2 Bright A_Explode(1,40,false, false,40)
+		Death: 
+			VE29 ZY 7 Bright
+			VE29 XV 6 Bright
+			Stop
+	}
+}
+Actor MMRandomizer_GhoulDeathCloud : MMRandomizer_GhoulCloud
+{
+	states
+	{
+		Spawn:
+			VE29 D 1 Bright
+			VE29 D 1 Bright A_Scream
+			VE29 V 1 Bright
+			VE29 V 1 Bright A_Scream
+			VE29 VWWWXXXYYYZZZ 2 Bright A_Explode(1,40,false, false,40)
+			VE29 "[["  2 Bright A_Explode(1,40,false, false,40)
+			VE29 WWWXXXYYYZZZ 2 Bright A_Explode(1,40,false, false,40)
+			VE29 "[[[[" 2 Bright A_Explode(1,40,false, false,40)
+			VE29 ZZZYYYXXXWWW 2 Bright A_Explode(1,40,false, false,40)
+			VE29 "[[" 2 Bright A_Explode(1,40,false, false,40)
+			VE29 ZZZYYYXXXWWW 2 Bright A_Explode(1,40,false, false,40)
+			VE29 XXXYYYZZZ 2 Bright A_Explode(1,40,false, false,40)
+			VE29 "[[" 2 Bright A_Explode(1,40,false, false,40)
+			VE29 WWWXXXYYYZZZ 2 Bright A_Explode(1,40,false, false,40)
+			VE29 "[[" 2 Bright A_Explode(1,40,false, false,40)
+		Death:
+			VE29 ZY 7 Bright
+			VE29 XV 6 Bright
+			Stop
+	}
+}

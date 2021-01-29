@@ -10,8 +10,13 @@ ACTOR ShotgunGuySpawnerCoop replaces ShotgunGuy
 			TNT1 A 1
 			Loop	
 		SetDoom:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(668,4)==1,"SetDoomRandom")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
 			TNT1 A 1 A_SpawnItemEx("ShotGunGuy3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetDoomRandom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("ShotgunguyRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
@@ -504,13 +509,25 @@ ACTOR ShotgunGuySpawnerCoop replaces ShotgunGuy
 	}
 }
 
+actor ShotgunguyRandomizer : RandomSpawner
+{
+	DropItem "Shotgunguy3", 255, 6
+	DropItem "MMRandomizer_ShotgunguyVariant1", 255, 6
+    DropItem "MMRandomizer_ShotgunguyVariant2", 255, 6
+	DropItem "MMRandomizer_ShotgunguyVariant3", 255, 6
+	DropItem "MMRandomizer_PlasmaZombie", 255, 4
+	DropItem "MMRandomizer_FemalePlasma", 255, 3
+	DropItem "MMRandomizer_SuperShotgunGuy", 255, 2
+	DropItem "MMRandomizer_ChainsawZombie", 255, 1
+}
+
 ACTOR SuperShotgunGuySpawnerCoop : ShotgunGuySpawnerCoop replaces SuperShotgunGuy 
 {
 	States
 	{
 		SetDoom:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
-			TNT1 A 1 A_SpawnItemEx("SuperShotGunGuy2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 1 A_SpawnItemEx("SuperShotgunGuy2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		MultiplyDoom:
 			TNT1 A 0 A_TakeInventory("MultiplyToken",1)

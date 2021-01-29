@@ -1,0 +1,55 @@
+Actor MMRandomizer_BloodDemon : DoomDemon3
+{              
+	Health 150 
+	PainChance 180 
+	Speed 10 
+	Radius 30 
+	Height 56 
+	Mass 400 
+	Damage 2
+	Monster 
+	+FLOORCLIP 
+	SeeSound "demon/sight" 
+	AttackSound "demon/melee" 
+	PainSound "demon/pain" 
+	DeathSound "demon/death" 
+	ActiveSound "demon/active" 
+	Obituary "%o was gored by a Blood Demon."
+	HitObituary "%o was mauled by a Blood Demon"
+	States 
+	{ 
+		Spawn: 
+			VD46 AB 10 A_Look 
+			Loop 
+		See: 
+			VD46 AABBCCDD 2 A_Chase 
+			Loop 
+		Melee: 
+			VD46 EF 8 A_FaceTarget 
+			VD46 G 8 A_SargAttack 
+			Goto See 
+		Missile: 
+			VD46 E 0 A_JumpIfCloser(224, 2)
+			Goto See
+			VD46 E 4 A_FaceTarget 
+			VD46 F 10 A_SkullAttack 
+			VD46 G 5 A_Gravity
+			Goto See 
+		Pain: 
+			VD46 H 2 
+			VD46 H 2 A_Pain 
+			Goto See 
+		Death: 
+			VD46 I 8 
+			VD46 J 8 A_Scream 
+			VD46 K 4 
+			VD46 L 4 A_Fall 
+			VD46 M 4 
+			VD46 N -1 
+			Stop 
+		Raise: 
+			VD46 N 5 
+			VD46 MLKJI 5 
+			Goto See 
+	} 
+} 

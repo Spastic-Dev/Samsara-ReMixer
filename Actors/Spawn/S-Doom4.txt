@@ -15,8 +15,13 @@ ACTOR ChaingunGuySpawnerCoop replaces ChaingunGuy
 			TNT1 A 0 ACS_ExecuteAlways(10001,0,2)
 			Goto Deciding		
 		SetDoom:
+			TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(668,4)==1,"SetDoomRandom")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
 			TNT1 A 1 A_SpawnItemEx("ChaingunGuy3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetDoomRandom:
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
+			TNT1 A 1 A_SpawnItemEx("ChaingunguyRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetHeretic:
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHeretic")
@@ -530,4 +535,17 @@ ACTOR ChaingunGuySpawnerCoop replaces ChaingunGuy
 			TNT1 A 1
 			Stop
 	}
+}
+
+actor ChaingunguyRandomizer : RandomSpawner
+{
+	DropItem "Chaingunguy3", 255, 4
+	DropItem "MMRandomizer_ChaingunGuyVariant1", 255, 4
+	DropItem "MMRandomizer_DoubleChaingunGuy", 255, 2
+	DropItem "MMRandomizer_ChaingunMajor1", 255, 1
+	DropItem "MMRandomizer_ChaingunMajor2", 255, 1
+	DropItem "MMRandomizer_ChaingunMajor3", 255, 1
+	DropItem "MMRandomizer_ChaingunMajor4", 255, 1
+	DropItem "MMRandomizer_ZombieRailGunner", 255, 2
+	DropItem "MMRandomizer_FemaleRail", 255, 1
 }

@@ -1,0 +1,119 @@
+ACTOR MMRandomizer_ShotgunGuyVariant1 : ShotgunGuy
+{
+	States
+	{
+		Spawn:
+			VD03 AB 10 A_Look
+			Loop
+		See:
+			VD03 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD03 E 10 A_FaceTarget
+			VD03 F 10 Bright A_SPosAttackUseAtkSound
+			VD03 E 10
+			Goto See
+		Pain:
+			VD03 G 3
+			VD03 G 3 A_Pain
+			Goto See
+		Death:
+			VD03 H 5
+			VD03 I 5 A_Scream
+			VD03 J 5 A_NoBlocking
+			SPOS K 5
+			SPOS L -1
+			Stop
+		XDeath:
+			VD03 M 5
+			SPOS N 5 A_XScream
+			SPOS O 5 A_NoBlocking
+			SPOS PQRST 5
+			SPOS U -1
+			Stop
+		Raise:
+			VD03 LK 5
+			VD03 JIH 5
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_ShotgunGuyVariant2 : ShotgunGuy
+{
+	States
+	{
+		Spawn:
+			VD04 AB 10 A_Look
+			Loop
+		See:
+			VD04 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD04 E 10 A_FaceTarget
+			VD04 F 10 Bright A_SPosAttackUseAtkSound
+			VD04 E 10
+			Goto See
+		Pain:
+			VD04 G 3
+			VD04 G 3 A_Pain
+			Goto See
+		Death:
+			VD04 H 5
+			VD04 I 5 A_Scream
+			VD04 J 5 A_NoBlocking
+			SPOS K 5
+			SPOS L -1
+			Stop
+		XDeath:
+			VD04 M 5
+			SPOS N 5 A_XScream
+			SPOS O 5 A_NoBlocking
+			SPOS PQRST 5
+			SPOS U -1
+			Stop
+		Raise:
+			SPOS LK 5
+			VD04 JIH 5
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_ShotgunGuyVariant3 : ShotgunGuy
+{
+	States
+	{	
+		Spawn:
+			VD05 AB 10 A_Look
+			Loop
+		See:
+			VD05 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD05 E 10 A_FaceTarget
+			VD05 F 10 Bright A_SPosAttackUseAtkSound
+			VD05 E 10
+			Goto See
+		Pain:
+			VD05 G 3
+			VD05 G 3 A_Pain
+			Goto See
+		Death:
+			VD05 H 5
+			VD05 I 5 A_Scream
+			VD05 J 5 A_NoBlocking
+			SPOS K 5
+			SPOS L -1
+			Stop
+		XDeath:
+			VD05 M 5
+			SPOS N 5 A_XScream
+			SPOS O 5 A_NoBlocking
+			SPOS PQRST 5
+			SPOS U -1
+			Stop
+		Raise:
+			SPOS LK 5
+			VD05 JIH 5
+			Goto See
+	}
+}

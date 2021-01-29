@@ -1,0 +1,73 @@
+ACTOR MMRandomizer_cyberImp : DoomImp3
+{
+	Health 100
+	Radius 20
+	Height 56
+	Mass 200
+	Speed 8
+	PainChance 150
+	SeeSound "VDR/CIMPSIT"
+	PainSound "VDR/CIMPPAIN"
+	DeathSound "VDR/CIMPDTH"
+	ActiveSound "VDR/CIMPACT"
+	HitObituary "%o was torn apart by a cyber imp."
+	Obituary "%o was fried by a cyber imp."
+	States
+	{
+		Spawn:
+			VD43 AB 10 A_Look
+			Loop
+		See:
+			VD43 AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+			VD43 EF 8 A_FaceTarget
+			VD43 F 6 A_Custommeleeattack(3 * random(3, 10), "imp/melee") 
+			Goto See
+		Missile:
+			VD43 EF 8 A_FaceTarget
+			VD43 G 6 A_Custommissile("PlasmaBall",36,4) 
+			Goto See
+		Pain:
+			VD43 H 2
+			VD43 H 2 A_Pain
+			Goto See
+		Death:
+			VD43 I 8
+			VD43 J 8 A_Scream
+			VD43 K 6
+			VD43 L 6 A_NoBlocking
+			VD43 M -1
+			Stop
+		XDeath:
+			VD43 N 5 A_CustomMissile("MMRandomizer_CyberArm",32,-10,270)
+			VD43 O 5 A_XScream
+			VD43 P 5
+			VD43 Q 5 A_NoBlocking
+			VD43 RST 5
+			VD43 U -1
+			Stop
+		Raise:
+			VD43 MLKJI 8
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_CyberArm
+{
+	Radius 8
+	Height 8
+	Speed 4
+	+DOOMBOUNCE
+	+DROPOFF
+	+MISSILE
+    States
+	{
+		Spawn:
+			VD43 VWXYZ 3
+			Loop
+		Death:
+			VD43 "[" -1
+			Loop
+	}
+} 

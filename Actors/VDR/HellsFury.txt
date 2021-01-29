@@ -1,0 +1,117 @@
+Actor MMRandomizer_HellsFury : BaronOfHell3
+{
+	Health 1200
+	Radius 24
+	Height 64
+	Speed 8
+	PainChance 50
+	Mass 1000
+	MONSTER
+	+FLOORCLIP
+	SeeSound "baron/sight"
+	ActiveSound "baron/active"
+	PainSound "baron/pain"
+	DeathSound "baron/death"
+	Obituary "%o felt the wrath of Hell's Fury"
+	HitObituary "%o got ripped apart by Hell's Fury"
+	MissileType MMRandomizer_HellsFuryBall
+	MeleeDamage 11
+	States
+	{
+		Spawn:
+			VD54 AB 10 A_Look
+			Loop
+		See:
+			VD54 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD54 E 0 A_Jump(96,4)
+			VD54 EF 8 A_FaceTarget
+			VD54 G 8 A_ComboAttack
+			Goto See
+			VD54 P 8 A_FaceTarget
+			VD54 Q 0 A_CustomMissile("MMRandomizer_SoulHarvesterBall", 60, 0, -45)
+			VD54 Q 0 A_CustomMissile("MMRandomizer_SoulHarvesterBall", 60, 0, 0)
+			VD54 Q 8 A_CustomMissile("MMRandomizer_SoulHarvesterBall", 60, 0, 45)
+			Goto See
+		Melee:
+			VD54 EF 8 A_FaceTarget
+			VD54 G 8 A_ComboAttack
+			Goto See
+		Pain:
+			VD54 H 2
+			VD54 H 2 A_Pain
+			Goto See
+		Death:
+			VD54 I 8 A_Scream
+			VD54 J 0 A_FaceTarget
+			VD54 J 0 A_Jump(51,5)
+			VD54 J 0 A_Jump(51,5)
+			VD54 J 0 A_Jump(51,5)
+			VD54 J 0 A_Jump(51,5)
+			VD54 J 0 A_SpawnItemEx("MMRandomizer_HellsFurySkull", 0, 0, 60, 5, 0, 0, 20, 128)
+			Goto Death+11
+			VD54 J 0 A_SpawnItemEx("MMRandomizer_HellsFurySkull", 0, 0, 60, 5, 0, 0, 10, 128)
+			Goto Death+11
+			VD54 J 0 A_SpawnItemEx("MMRandomizer_HellsFurySkull", 0, 0, 60, 5, 0, 0, 0, 128)
+			Goto Death+11
+			VD54 J 0 A_SpawnItemEx("MMRandomizer_HellsFurySkull", 0, 0, 60, 5, 0, 0, -10, 128)
+			Goto Death+11
+			VD54 J 0 A_SpawnItemEx("MMRandomizer_HellsFurySkull", 0, 0, 60, 5, 0, 0, -20, 128)
+			Goto Death+11
+			VD54 J 8 
+			VD54 K 8
+			VD54 L 8 A_Fall
+			VD54 MN 8
+			VD54 O 0 A_KillMaster
+			VD54 O -1
+			Stop
+		Raise:
+			VD54 NMLKJI 8
+			Goto See
+	}
+}
+
+Actor MMRandomizer_HellsFuryBall 
+{
+	Radius 6
+	Height 8
+	Speed 14
+	Damage 8
+	Projectile
+	RenderStyle Add
+	Alpha 0.7
+	SeeSound "imp/attack"
+	DeathSound "imp/shotx"
+	Decal BaronScorch
+	States
+	{
+		Spawn:
+			VE12 MN 5 Bright
+			Loop
+		Death:
+			VE12 OPQ 5 Bright
+			Stop
+	}
+}
+
+Actor MMRandomizer_HellsFurySkull
+{
+	Radius 5
+	Height 5
+	Speed 5
+	Mass 5000
+	+DROPOFF
+	+DOOMBOUNCE
+	+Missile
+	States
+	{
+		Spawn:
+			VE12 ABCDEFGHIJK 2
+			Loop
+		Death:
+			VE12 L -1
+			Loop
+	}
+}
+

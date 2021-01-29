@@ -1,0 +1,76 @@
+Actor MMRandomizer_Watcher
+{ 
+	Health 100
+	Radius 24 
+	Height 40 
+	Mass 150 
+	Speed 10 
+	PainChance 160
+	MeleeRange 40
+	MeleeDamage 4
+	Monster
+	SeeSound "vdr/watsit" 
+	PainSound "vdr/watpai" 
+	DeathSound "vdr/watdth" 
+	ActiveSound "vdr/watact" 
+	AttackSound "vdr/melee"
+	+NOGRAVITY 
+	+FLOAT
+	States 
+	{ 
+		Spawn: 
+			VD70 A 10 A_Look 
+			Loop 
+		See: 
+			VD70 A 3 A_Chase
+			Loop 
+		Missile: 
+			VD70 E 5 A_FaceTarget 
+			VD70 F 5 A_FaceTarget 
+			VD70 G 5 BRIGHT A_CustomMissile("MMRandomizer_WatcherShot",12,0,0) 
+			Goto See
+		Melee:
+			VD70 BCD 5 A_FaceTarget 
+			VD70 A 5 A_MeleeAttack
+			Goto See
+		Pain: 
+			VD70 H 3 
+			VD70 H 3 A_Pain 
+			Goto See 
+		Death: 
+			VD70 I 8 A_scream
+			VD70 JKLM 6 
+			VD70 N 6 A_noblocking
+			VD70 N 0 A_SetFloorClip
+			VD70 O -1 
+			Stop
+		Raise: 
+			VD70 ONMLKJI 8 
+			Goto See 
+	} 
+}
+
+Actor MMRandomizer_WatcherShot
+{
+	Radius 4
+	Height 8
+	Speed 20
+	Damage 3
+	RenderStyle Add
+	DamageType Electric
+	Alpha 0.67
+	Projectile
+	+THRUGHOST
+	+FORCEXYBILLBOARD
+	SeeSound "vdr/watatk"
+	DeathSound "vdr/wathit"
+	States
+	{
+		Spawn:
+			VE26 AB 4 Bright
+			Loop
+		Death:
+			VE26 CDE 4 Bright
+			Stop
+	}
+}

@@ -1,0 +1,55 @@
+ACTOR MMRandomizer_PlasmaZombie : Shotgunguy3
+{
+    Health 45
+    Radius 20
+    Height 56
+    Speed 8
+    PainChance 100
+    +FLOORCLIP
+    Obituary "%o got burned by a plasma zombie."
+    DropItem MMRandomizer_CellDrop
+    MissileType PlasmaBall
+	AttackSound ""
+    States
+    {
+		Spawn:
+			VD24 AB 10 A_Look
+			Loop
+		See:
+			VD24 AABBCCDD 4 A_Chase
+			Loop
+		Missile:
+			VD24 E 10 A_FaceTarget
+			VD24 F 5 A_MissileAttack
+			VD24 E 5 A_FaceTarget
+			VD24 F 5 A_MissileAttack
+			VD24 E 5 A_FaceTarget
+			VD24 F 5 A_MissileAttack
+			VD24 E 5 A_FaceTarget
+			VD24 F 5 A_MissileAttack
+			VD24 E 5 A_FaceTarget
+			VD24 F 5 A_MissileAttack
+			Goto See
+		Pain:
+			VD24 G 3
+			VD24 G 3 A_Pain
+			Goto See
+		Death:
+			VD24 H 5
+			VD24 I 5 A_Scream
+			VD24 J 5 A_Fall
+			VD24 K 5
+			VD24 L -1
+			Stop
+		XDeath:
+			VD24 O 5
+			VD24 P 5 A_XScream
+			VD24 Q 5 A_Fall
+			VD24 RSTU 5
+			VD24 V -1
+			Stop
+		Raise:
+			VD24 KJIH 5
+			Goto See
+    }
+}

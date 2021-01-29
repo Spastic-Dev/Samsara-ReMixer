@@ -1,0 +1,103 @@
+actor MMRandomizer_Vulgar : DoomImp3
+{
+	Obituary "%o was poisoned by a Vulgar."
+	HitObituary "A Vulgar had %o for lunch."
+	Health 70
+	Radius 20
+	Height 56
+	Mass 120
+	Speed 8
+	painchance 180
+	MeleeDamage 4
+	SeeSound "VDR/vulsit"
+	PainSound "VDR/vulpai"
+	DeathSound "VDR/vuldth"
+	ActiveSound "VDR/vulact"
+	MeleeSound "VDR/vulhit"
+	+DONTHURTSPECIES
+	+FLOORCLIP
+	states
+	{
+		Spawn:
+			VD41 AB 10 A_Look
+			Loop
+		See:
+			VD41 AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+		Missile:
+			VD41 E 8 A_FaceTarget
+			VD41 F 1 A_PlaySound("VDR/vulswg")
+			VD41 F 7 A_FaceTarget
+			VD41 G 6 A_MeleeAttack
+			Goto See
+		Missile:
+			VD41 EF 8 A_FaceTarget
+			VD41 G 6 A_CustomMissile("MMRandomizer_VulgarShot",37,0,0,0,0)
+			Goto See
+		Pain:
+			VD41 H 2
+			VD41 H 2 A_Pain
+			Goto See
+		Death:
+			VD41 I 8
+			VD41 J 8 A_Scream
+			VD41 KL 6
+			VD41 M 6 A_NoBlocking
+			VD41 N -1
+			Stop
+		XDeath:
+			VD41 O 5
+			VD41 P 5 A_XScream
+			VD41 Q 5
+			VD41 R 5 A_NoBlocking
+			VD41 STU 5
+			VD41 V -1
+			Stop
+		Raise:
+			VD41 ML 8
+			VD41 KJI 6
+			Goto See
+	}
+}
+
+ACTOR MMRandomizer_VulgarShot
+{
+	Radius 8
+	Height 16
+	Speed 10
+	Damage 4
+	PoisonDamage 32
+	Projectile
+	RenderStyle Add
+	Alpha 0.67
+	+THRUGHOST
+	Seesound "VDR/vulsh1"
+	DeathSound "VDR/vulsh2"
+	Decal "DoomImpScorch"
+	States
+	{
+		Spawn:
+			VE07 AAABBB 1 Bright A_SpawnItemEx("MMRandomizer_BarbTrail",0,0,0,0,0,0,0,128,0)
+			loop
+		Death:
+			VE07 CDEF 4 Bright
+			stop
+	}
+}
+
+ACTOR MMRandomizer_Barbtrail
+{   
+	Radius 0
+	Height 1
+	Projectile
+	RenderStyle Add
+	Alpha 0.75
+	States
+	{
+	    Spawn:
+			NULL A 1 Bright
+			VE07 GHIJKLM 2 Bright
+			Stop 
+	}
+}

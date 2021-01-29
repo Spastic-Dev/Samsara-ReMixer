@@ -1,0 +1,95 @@
+Actor MMRandomizer_Hellion
+{
+	Obituary "A Hellion burned %o to a crisp."
+	Health 70
+	Radius 20
+	Height 56
+	Mass 120
+	Speed 10
+	PainChance 24
+	SeeSound "VDR/hlnsit"
+	PainSound "VDR/hlnpai"
+	DeathSound "VDR/hlndth"
+	ActiveSound "VDR/hlnact"
+	Monster
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			VD44 AB 10 A_Look
+			Loop
+		See:
+			VD44 AABBCCDDEEFF 2 A_Chase
+			Loop
+		Missile:
+			VD44 G 0 A_VileStart
+			VD44 GHIJK 6 Bright A_FaceTarget
+			VD44 L 6 Bright A_CustomMissile("MMRandomizer_HellionBall",32,0,0,0,0)
+			VD44 L 2
+			Goto See
+		Pain:
+			VD44 M 2
+			VD44 M 2 A_Pain
+			Goto See
+		Death:
+			VD44 N 6
+			VD44 O 6 A_Scream
+			VD44 PQR 6
+			VD44 S 6 A_NoBlocking
+			VD44 T -1
+			Stop
+		XDeath:
+			VD44 U 5
+			VD44 V 5 A_XScream
+			VD44 W 5
+			VD44 X 5 A_NoBlocking
+			VD44 YZ 5
+			VD42 OP 5
+			VD42 Q -1
+			Stop
+		Raise:
+			VD44 TSRQPON 6
+			Goto See
+	}
+}
+
+Actor MMRandomizer_HellionBall : CacodemonBall
+{
+	Damage 8
+	Speed 15
+	Alpha 0.80
+	DamageType Fire
+	+THRUGHOST
+	+FORCEXYBILLBOARD
+	SeeSound "VDR/hlnatk"
+	DeathSound "VDR/hlnexp"
+	Decal DoomImpScorch
+	states
+	{
+		Spawn:
+			VE09 AB 3 Bright A_SpawnItemEx("MMRandomizer_HellionPuff",0,0,0,0,0,0,0,128)
+			Loop
+		Death:
+			VE09 JKLMN 3 Bright
+			Stop
+	}
+}
+
+Actor MMRandomizer_HellionPuff
+{   
+	Radius 3
+	Height 3
+	RenderStyle Add
+	Alpha 0.67
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+DONTSPLASH
+	+FORCEXYBILLBOARD
+	States
+	{
+		Spawn:
+			TNT1 A 3 Bright
+			VE09 CDEFGHI 3 Bright
+			Stop 
+	}
+}

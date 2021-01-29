@@ -1,0 +1,40 @@
+ACTOR MMRandomizer_ChaingunGuyVariant1 : Chaingunguy3
+{
+	States
+	{
+		Spawn:
+			VD06 AB 10 A_Look
+			Loop
+		See:
+			VD06 AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			VD06 E 10 A_FaceTarget
+			VD06 FE 4 Bright A_CPosAttack
+			VD06 F 1 A_CPosRefire
+			Goto Missile+1
+		Pain:
+			VD06 G 3
+			VD06 G 3 A_Pain
+			Goto See
+		Death:
+			VD06 H 5
+			VD06 I 5 A_Scream
+			VD06 J 5 A_NoBlocking
+			VD06 KL 5
+			CPOS M 5
+			CPOS N -1
+			Stop
+		XDeath:
+			CPOS O 5 
+			CPOS P 5 A_XScream
+			CPOS Q 5 A_NoBlocking
+			CPOS RS 5
+			CPOS T -1
+			Stop
+		Raise:
+			CPOS NM 5
+			VD06 LKJIH 5
+			Goto See
+	}
+}

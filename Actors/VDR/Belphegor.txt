@@ -1,0 +1,83 @@
+ACTOR MMRandomizer_Belphegor : BaronofHell3
+{ 
+	Health 1500 
+	Speed 8
+	Radius 24
+	Height 64
+	PainChance 50
+	Mass 1000
+	Meleedamage 15 
+	BloodColor "7D 9D 59"
+	SeeSound "baron/sight"
+	PainSound "baron/pain"
+	DeathSound "baron/death"
+	ActiveSound "baron/active"
+	MeleeSound "baron/melee"
+	ReactionTime 8 
+	+FLOORCLIP
+	Missiletype MMRandomizer_BelphegorBall 
+	Obituary "%o was incinerated by a Belphegor." 
+	HitObituary "the last thing %o saw was the Belphegor's abs." 
+	States 
+	{ 
+		Spawn: 
+			VD53 AB 10 A_Look 
+			Loop 
+		See: 
+			VD53 AABBCCDD 3 A_Chase 
+			Loop 
+		Missile: 
+			VD53 E 8 A_FaceTarget 
+			VD53 F 8 A_FaceTarget 
+			VD53 G 8 A_ComboAttack 
+			VD53 F 8 A_FaceTarget 
+			VD53 G 8 A_ComboAttack 
+			VD53 F 8 A_FaceTarget 
+			VD53 G 8 A_ComboAttack 
+			Goto See 
+		Melee: 
+			VD53 EF 8 A_FaceTarget 
+			VD53 G 8 A_ComboAttack 
+			Goto See 
+		Pain: 
+			VD53 H 2 
+			VD53 H 2 A_Pain 
+			Goto See 
+		Death: 
+			VD53 I 8 
+			VD53 J 8 A_Scream 
+			VD53 K 8 
+			VD53 L 8 A_NoBlocking 
+			VD53 MN 8 
+			VD53 O 0 A_KillMaster
+			VD53 O -1 
+			Stop 
+		Raise: 
+			VD53 ONMLKJI 8 
+			Goto See 
+	} 
+}
+
+actor MMRandomizer_BelphegorBall
+{
+    Radius 6
+    Height 8
+    Speed 20
+    Damage 10
+    Projectile
+    RenderStyle Add
+    Alpha 0.67
+    SeeSound "imp/attack"
+    DeathSound "imp/shotx"
+    Decal BaronScorch
+    States
+    {
+		Spawn:
+			BAL7 AB 5 Bright
+			Loop
+		Death:
+			BAL7 CDE 6 Bright
+			Stop
+    }
+}
+

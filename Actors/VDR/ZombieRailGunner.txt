@@ -1,0 +1,55 @@
+ACTOR MMRandomizer_ZombieRailGunner : Shotgunguy3
+{ 
+    Health 45 
+    Radius 20 
+    Height 56 
+    Speed 8
+    Damage 100
+    PainChance 200
+    MONSTER 
+    +FLOORCLIP 
+    Obituary "%o was killed by A Zombie Railgunner!" 
+    SeeSound "grunt/sight" 
+    PainSound "grunt/pain" 
+    DeathSound "grunt/death" 
+    ActiveSound "grunt/active" 
+	AttackSound ""
+    Decal RedRailScorch
+	DropItem MMRandomizer_CellDrop
+    States 
+    { 
+		Spawn: 
+			VD35 AB 10 A_Look 
+			Loop 
+		See: 
+			VD35 AABBCCDD 4 A_Chase 
+			Loop 
+		Missile: 
+			VD35 EE 10 A_FaceTarget 
+			VD35 F 5 A_CustomRailgun(15, 0, ac1819, FF6C00, 0, 1, 0, "BulletPuff", 4, 4)
+			VD35 E 4 A_FaceTarget 
+			Goto See 
+		Pain: 
+			VD35 G 5 
+			VD35 G 3 A_Pain 
+			Goto See 
+		Death: 
+			VD35 H 5 
+			VD35 I 5 A_Scream 
+			VD35 J 5 A_Fall 
+			VD35 K 5 
+			VD35 L -1 
+			Stop 
+		XDeath: 
+			VD35 O 5      
+			VD35 P 5 A_XScream       
+			VD35 Q 5 A_Fall        
+			VD35 RSTUV 5 
+			VD35 W -1 
+			Stop 
+		Raise: 
+			VD35 LKJIH 5 
+			Goto See 
+    } 
+}
+
