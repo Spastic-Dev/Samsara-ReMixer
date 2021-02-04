@@ -151,6 +151,26 @@ Script 668 (int spawncode, int override)
 				GiveInventory("InvisibleToken",1);
 				SetActorProperty(0,APROP_Alpha,0);
 			}
+			
+			if(GetCVar("mm_multiply") > 1 && !CheckInventory("MultiplyOverflowToken"))
+			{
+				int activator = ActivatorTid();
+				int newtid = UniqueTid();
+				for(int g = 1; g < GetCVar("mm_multiply"); g++)
+				{
+					SpawnForced(GetActorClass(activator),GetActorX(activator),GetActorY(activator),GetActorZ(activator),newtid,0);
+					SetActorAngle(newtid,GetActorAngle(activator));
+					GiveActorInventory(newtid, "MultiplyOverflowToken", 1);
+					GiveActorInventory(newtid, "ThruSpeciesToken", 1);
+					SetActorProperty(newtid,APROP_Species,GetActorClass(activator));
+					SetActorProperty(activator,APROP_Species,GetActorClass(activator));
+					GiveActorInventory(activator, "ThruSpeciesToken", 1);
+					ThrustThing(random(0,256), 2, 0, newtid);
+					Thing_ChangeTid(newtid, activator);
+				}
+				break;
+			}
+			else { break; }
 
 			break;
 
@@ -587,4 +607,152 @@ Script "Samsara_InvasionChecker" (void)
 Script "Samsara_OpposingForceSpawnCheck" (void)
 {
 	SetResultValue(ThingCountName("HalfLifeAdrianModeMapDummy",0));
+}
+
+/*ACTOR PinataDrop : RandomSpawner
+{
+	dropitem "Ammo1Small" 255 256
+	dropitem "Ammo2Small" 255 256
+	dropitem "AmmoBackpack" 255 64
+	dropitem "Ammo3Small" 255 128
+	dropitem "Ammo4Small" 255 128
+	dropitem "HealPack1" 255 128
+	dropitem "HealPack2" 255 64
+	dropitem "SamsaraSlotOneDrop" 255 32
+	dropitem "SamsaraSlotTwoDrop" 255 32
+	dropitem "Ammo1Big" 255 16
+	dropitem "Ammo2Big" 255 16
+	dropitem "Visor" 255 16
+	dropitem "ArmorPack" 255 16
+	dropitem "SamsaraSlotThreeDrop" 255 16
+	dropitem "Ammo3Big" 255 8
+	dropitem "Ammo4Big" 255 8
+	dropitem "ArmorPack" 255 8
+	dropitem "SuperHealt2" 70 8
+	dropitem "PartialInvisibility" 255 8
+	dropitem "SamsaraSlotFourDrop" 115 8
+	dropitem "MegaPack" 45 8
+	dropitem "SamsaraSlotFiveDrop" 110 4
+	dropitem "InvulnPowerup" 55 4
+	dropitem "BioSuit" 255 2
+	dropitem "SamsaraSlotSixDrop" 110 2
+	dropitem "SamsaraUniquePickup64" 100 2
+	dropitem "SamsaraSlotSevenDrop" 80 1
+	dropitem "HeXenBeaconItem" 105 1
+}*/
+
+int maxPinataCommonQuality = 9;
+int maxPinataUncommonQuality = 18;
+int maxPinataRareQuality = 19;
+int maxPinataEpicQuality = 11;
+int maxPinataLegendaryQuality = 15;
+
+str PinataDoomCommonQuality[9] = { "Ammo1Small", "Ammo2Small", "HealPack0", "ArmorScrap200", "HealPack1", "Ammo1Big", "Ammo2Big", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop" };
+str PinataDoomUncommonQuality[18] = { "Ammo3Small", "Ammo4Small", "HealPack1", "Ammo1Big", "Ammo2Big", "Visor", "BioSuit", "HealPack2", "SuperHealth2", "PartialInvisibility", "SamsaraSlotOneDrop", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop", "SamsaraSlotThreeDrop", "Ammo1Small", "Ammo2Small", "ArmorPack1", "AmmoBackpack" };
+str PinataDoomRareQuality[19] = { "Ammo1Big", "Ammo2Big", "HealthPack2", "SamsaraSlotOneDrop", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "Ammo3Big", "Ammo4Big", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "AmmoBackpack", "SuperHealth2", "ArmorPack2", "Ammo3Small", "Ammo4Small", "Megapack", "Visor", "BioSuit", "PartialInvisibility"};
+str PinataDoomEpicQuality[11] = { "AmmoBackpack", "SuperHealth2", "ArmorPack2", "Ammo3Big", "Ammo4Big", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "Megapack", "SamsaraSlotSevenDrop", "Ammo1Big", "Ammo2Big" };
+str PinataDoomLegendaryQuality[15] = { "AmmoBackpack", "Megapack", "SamsaraSlotSevenDrop", "Ammo3Big", "Ammo4Big", "RageRune", "SpreadRune", "StrengthRune", "ResistanceRune", "ProsperityRune", "DrainRune", "RegenerationRune", "HasteRune", "ReflectionRune", "HighJumpRune" };
+
+//f me
+int PinataDoomCommonQualityInt[9] = { 50, 50, 50, 50, 25, 10, 10, 5, 5 };
+int PinataDoomUncommonQualityInt[18] = { 50, 50, 50, 25, 25, 15, 15, 10, 10, 10, 15, 15, 10, 10, 10, 10, 10, 5 };
+int PinataDoomRareQualityInt[19] = { 50, 50, 30, 30, 30, 30, 25, 25, 15, 15, 10, 10, 10, 10, 10, 5, 5, 5 };
+int PinataDoomEpicQualityInt[11] = { 50, 50, 50, 50, 50, 30, 30, 25, 10, 5, 5 };
+int PinataDoomLegendaryQualityInt[15] = { 100, 50, 50, 30, 30, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+
+Script "Samsara_PinataHandler" (int health, int radius, int height)
+{
+	if(!GetCvar("mm_pinataparty"))
+		terminate;
+		
+	int spawneditems, randomchance, randomitem, newtid;
+	int maxitems = ((height*4)*(radius*radius))/4096;
+	if(health < 200)
+	{
+		newtid = UniqueTid();
+		While(spawneditems < maxitems)
+		{
+			randomchance = random(0,100);
+			randomitem = random(0,maxPinataCommonQuality-1);
+			if(randomchance < PinataDoomCommonQualityInt[randomitem])
+			{
+				SpawnForced(PinataDoomCommonQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
+				ThrustThing(random(0,256),2,0,newtid);
+				ThrustThingZ(newtid,random(17,35),0,1);
+				Thing_ChangeTid(newtid,0);
+				spawneditems++;
+			}
+		}
+	}
+	else if(health < 1000)
+	{
+		newtid = UniqueTid();
+		While(spawneditems < maxitems)
+		{
+			randomchance = random(0,100);
+			randomitem = random(0,maxPinataUncommonQuality-1);
+			if(randomchance < PinataDoomUncommonQualityInt[randomitem])
+			{
+				SpawnForced(PinataDoomUncommonQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
+				ThrustThing(random(0,256),2,0,newtid);
+				ThrustThingZ(newtid,random(17,35),0,1);
+				Thing_ChangeTid(newtid,0);
+				spawneditems++;
+			}
+		}
+	}
+	else if(health < 2500)
+	{
+		newtid = UniqueTid();
+		While(spawneditems < maxitems)
+		{
+			randomchance = random(0,100);
+			randomitem = random(0,maxPinataRareQuality-1);
+			if(randomchance < PinataDoomRareQualityInt[randomitem])
+			{
+				SpawnForced(PinataDoomRareQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
+				ThrustThing(random(0,256),2,0,newtid);
+				ThrustThingZ(newtid,random(17,35),0,1);
+				Thing_ChangeTid(newtid,0);
+				spawneditems++;
+			}
+		}
+	}
+	else if(health < 5000)
+	{
+		newtid = UniqueTid();
+		While(spawneditems < maxitems)
+		{
+			randomchance = random(0,100);
+			randomitem = random(0,maxPinataEpicQuality-1);
+			if(randomchance < PinataDoomEpicQualityInt[randomitem])
+			{
+				SpawnForced(PinataDoomEpicQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
+				ThrustThing(random(0,256),2,0,newtid);
+				ThrustThingZ(newtid,random(17,35),0,1);
+				Thing_ChangeTid(newtid,0);
+				spawneditems++;
+			}
+		}
+	}
+	else
+	{
+		newtid = UniqueTid();
+		While(spawneditems < maxitems)
+		{
+			randomchance = random(0,100);
+			randomitem = random(0,maxPinataLegendaryQuality-1);
+			if(randomchance < PinataDoomLegendaryQualityInt[randomitem])
+			{
+				if(SpawnForced(PinataDoomLegendaryQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0))
+				{
+					GiveActorInventory(newtid,"GravityToken",1);
+					ThrustThing(random(0,256),2,0,newtid);
+					ThrustThingZ(newtid,random(17,35),0,1);
+					Thing_ChangeTid(newtid,0);
+					spawneditems++;
+				}
+			}
+		}
+	}
 }

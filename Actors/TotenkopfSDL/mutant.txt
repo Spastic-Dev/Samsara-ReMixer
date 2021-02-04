@@ -21,6 +21,11 @@ Actor TotenkopfMutant : TotenkopfEnemy
 	States 
 	{
 		Spawn:
+			TK35 A 0
+			TK35 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK35 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK35 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK35 A 1 A_Look
 			Loop
 		See:
@@ -697,6 +702,11 @@ Actor TotenkopfMutant2 : TotenkopfMutant
 	States
 	{
 		Spawn:
+			TK36 A 0
+			TK36 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK36 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK36 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK36 A 1 A_Look
 			Loop
 		Pain.ShrinkerDMG:

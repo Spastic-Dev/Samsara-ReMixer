@@ -4,6 +4,11 @@ Actor TotenkopfScientist : TotenkopfGuard
 	States
 	{
 		Spawn:
+			TK37 A 0
+			TK37 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK37 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK37 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK37 A 1 A_LookEx(LOF_NOSEESOUND,0,0,0,0,"Alert")
 			Loop
 		XDeath:
@@ -578,6 +583,11 @@ Actor TotenkopfScientist2 : TotenkopfScientist
 	States
 	{
 		Spawn:
+			TK38 A 0
+			TK38 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK38 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK38 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK38 A 1 A_LookEx(LOF_NOSEESOUND,0,0,0,0,"Alert")
 			Loop
 		Pain.MightyBoot:

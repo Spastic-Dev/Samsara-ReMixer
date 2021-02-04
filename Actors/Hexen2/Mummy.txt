@@ -13,7 +13,11 @@ Actor Hexen2Mummy : Hexen2HumanoidBase
 	DeathSound "Hexen2/Mummy/Die"
 	States
 	{
-	Spawn:	
+	Spawn:
+		HX05 A 0
+		HX05 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		HX05 A 1 ACS_ExecuteAlways(668,0,1,0)
+		HX05 A 0 A_GiveInventory("AlreadySpawned",1)
 		HX05 A 0 A_TakeInventory("Hexen2MummyOneArmGone", 1)	
 		HX05 A 0 A_TakeInventory("Hexen2MummyBothArmsGone", 1)
 		HX05 A 0 A_TakeInventory("Hexen2MummyLegGone", 1)		

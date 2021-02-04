@@ -18,6 +18,11 @@ Actor TotenkopfMonk : TotenkopfEnemy
 	States 
 	{
 		Spawn:
+			TK48 A 0
+			TK48 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK48 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK48 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK48 A 1 A_Look
 			Loop
 		See:
@@ -309,6 +314,11 @@ Actor TotenkopfMonk2 : TotenkopfMonk
 	States 
 	{
 		Spawn:
+			TK46 A 0
+			TK46 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK46 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK46 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK46 A 1 A_Look
 			Loop
 		See:

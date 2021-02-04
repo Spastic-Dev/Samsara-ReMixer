@@ -16,6 +16,11 @@ Actor TotenkopfTrooperFlamethrower : TotenkopfEnemy
 	States
 	{
 		Spawn:
+			TK30 A 0
+			TK30 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK30 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK30 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK30 A 1 A_Look
 			Loop
 		See:
@@ -81,6 +86,7 @@ Actor TotenkopfTrooperFlamethrower : TotenkopfEnemy
 			Loop
 		Death:
 		XDeath:
+			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			"####" A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" H 0 A_Scream
@@ -755,6 +761,11 @@ Actor TotenkopfTrooperChaingun : TotenkopfEnemy
 	States
 	{
 		Spawn:
+			TK31 A 0
+			TK31 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK31 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK31 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK31 A 1 A_Look
 			Loop
 		See:
@@ -820,6 +831,7 @@ Actor TotenkopfTrooperChaingun : TotenkopfEnemy
 			Loop
 		Death:
 		XDeath:
+			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			"####" A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			"####" H 0 A_Scream
 			"####" H 0 A_NoBlocking
@@ -1524,6 +1536,11 @@ Actor TotenkopfTrooperPanzerschreck : TotenkopfEnemy
 	States
 	{
 		Spawn:
+			TK32 A 0
+			TK32 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TK32 A 1 ACS_ExecuteAlways(668,0,1,0)
+			TK32 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			TK32 A 1 A_Look
 			Loop
 		See:
@@ -1539,6 +1556,7 @@ Actor TotenkopfTrooperPanzerschreck : TotenkopfEnemy
 			Goto See
 		Death:
 		XDeath:
+			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			"####" A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			"####" H 0 A_Scream
 			"####" H 0 A_NoBlocking

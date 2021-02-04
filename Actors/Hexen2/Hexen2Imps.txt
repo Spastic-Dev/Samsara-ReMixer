@@ -38,6 +38,11 @@ Actor Hexen2FireImp : Hexen2BestialBase
 	States
 	{
 		Spawn:
+			HX02 A 0
+			HX02 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			HX02 A 1 ACS_ExecuteAlways(668,0,1,0)
+			HX02 A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
 			HX02 A 0 A_PlaySound("Hexen2/Imp/Fly", CHAN_BODY)
 			HX02 A 2 A_Look
 			HX02 B 2 A_Look

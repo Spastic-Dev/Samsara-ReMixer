@@ -19,7 +19,6 @@ ACTOR ClericBossReplacer : ArchvileSpawnerCoop replaces ClericBoss
 	states
 	{
 		SetHexen1:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			TNT1 A 1 A_SpawnItemEx("ClericBoss3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 	}
@@ -30,7 +29,6 @@ ACTOR FighterBossReplacer : ArchvileSpawnerCoop replaces FighterBoss
 	states
 	{
 		SetHexen1:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			TNT1 A 1 A_SpawnItemEx("FighterBoss3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 	}
@@ -41,7 +39,6 @@ ACTOR MageBossReplacer : ArchvileSpawnerCoop replaces MageBoss
 	states
 	{
 		SetHexen1:
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
 			TNT1 A 1 A_SpawnItemEx("MageBoss3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 	}
@@ -52,31 +49,11 @@ ACTOR HeresiarchReplacer : CyberDemonSpawnerCoop replaces Heresiarch
 	states
 	{
 		SetDoom:
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
-		TNT1 A 1 A_SpawnItemEx("Cyberdemon3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto BossWait
+			TNT1 A 1 A_SpawnItemEx("Cyberdemon3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
 		SetHexen1:
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen11")
-		TNT1 A 1 A_SpawnItemEx("Heresiarch3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto BossWait
-		MultiplyDoom:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiCyberdemon3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto MultiplyDoom_2
-		MultiplyDoom_2:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiCyberdemon3",0,0,0,random(-1,1),random(-1,1),0,0,288)
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom_2")
-		Goto BossWait
-		MultiplyHexen11:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiHeresiarch3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto MultiplyHexen11_2
-		MultiplyHexen11_2:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiHeresiarch3Doom",0,0,0,random(-1,1),random(-1,1),0,0,288)
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen11_2")
-		Goto BossWait
+			TNT1 A 1 A_SpawnItemEx("Heresiarch3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
 	} 
 }
 
@@ -85,31 +62,11 @@ ACTOR KoraxReplacer : SpiderMastermindSpawnerCoop replaces Korax
 	states
 	{
 		SetDoom:
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
-		TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto BossWait
+			TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
 		SetHexen1:
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen11")
-		TNT1 A 1 A_SpawnItemEx("Korax3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto BossWait
-		MultiplyDoom:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiSpiderMastermind3",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto MultiplyDoom_2
-		MultiplyDoom_2:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiSpiderMastermind3",0,0,0,random(-1,1),random(-1,1),0,0,288)
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom_2")
-		Goto BossWait
-		MultiplyHexen11:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiKorax3Doom",0,0,0,random(-1,1),random(-1,1),0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-		Goto MultiplyHexen11_2
-		MultiplyHexen11_2:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiKorax3Doom",0,0,0,random(-1,1),random(-1,1),0,0,288)
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen11_2")
-		Goto BossWait
+			TNT1 A 1 A_SpawnItemEx("Korax3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto BossWait
 	}  
 }
 
@@ -118,22 +75,10 @@ ACTOR PigReplacer : WolfensteinSSSpawnerCoop replaces Pig
 	states
 	{
 		SetDoom:
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
-		TNT1 A 1 A_SpawnItemEx("Nazi3",0,0,0,0,0,0,0,288)
-		Stop
+			TNT1 A 1 A_SpawnItemEx("Nazi3",0,0,0,0,0,0,0,288)
+			Stop
 		SetHexen1:
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
-		TNT1 A 1 A_SpawnItemEx("Pig3",0,0,0,0,0,0,0,288)
-		Stop
-		MultiplyDoom:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiNazi3",0,0,0,random(-1,1),random(-1,1),0,0,288)
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
-		Stop
-		MultiplyHexen1:
-		TNT1 A 0 A_TakeInventory("MultiplyToken",1)
-		TNT1 A 1 A_SpawnItemEx("MultiPig3",0,0,0,random(-1,1),random(-1,1),0,0,288)
-		TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyHexen1")
-		Stop
+			TNT1 A 1 A_SpawnItemEx("Pig3",0,0,0,0,0,0,0,288)
+			Stop
 	}
 }
