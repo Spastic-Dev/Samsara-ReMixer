@@ -2,7 +2,7 @@
 #include "zcommon.acs"
 #include "commonFuncs.h"
 
-#define MAX_GAME_TYPES 29
+#define MAX_GAME_TYPES 28
 
 int SMMCVARINFO = 
 "Stuff";
@@ -11,22 +11,22 @@ int SMMCHANGES =
 "Stuff";
 
 str gameTypesStr[MAX_GAME_TYPES] =
-		{	"mm_doom", "mm_heretic", "mm_hexen1", "mm_chex", "mm_wolf3d", "mm_duke3d", "mm_marathon", "mm_bstone", 
-			"mm_rott", "mm_rr", "mm_erad", "mm_strife", "mm_darkf", "mm_cm", "mm_c7", "mm_sw", 
-			"mm_blood", "mm_rmr", "mm_ps", "mm_ipog", "mm_witch", "mm_disrup", "mm_quake1", "mm_doom64", "mm_halflife"
-			,"mm_quake2", "mm_hexen2", "mm_goldeneye", "mm_totenkopf"
+		{	"mm_doom", "mm_chex", "mm_heretic", "mm_wolf3d", "mm_hexen1", "mm_duke3d", "mm_marathon", "mm_quake1", 
+			"mm_rott", "mm_bstone", "mm_blood", "mm_strife", "mm_erad", "mm_c7", "mm_rmr", "mm_darkf", "mm_ipog", 
+			"mm_disrup", "mm_witch", "mm_halflife", "mm_sw", "mm_cm", "mm_ps", "mm_rr", "mm_quake2", "mm_hexen2", 
+			"mm_goldeneye", "mm_totenkopf"
 };
 
 str gameSetsStr[MAX_GAME_TYPES] = {
-	"SetDoom", "SetHeretic", "SetHexen1", "SetChex", "SetWolf3D", "SetDuke3D", "SetMarathon", "SetBStone", "SetRoTT",
-	"SetRR", "SetErad", "SetStrife", "SetDarkF", "SetCM", "SetC7", "SetSW", "SetBlood", "SetRmr", "SetExhumed",
-	"SetIPOG", "SetWitch", "SetDisrup", "SetQuake1", "SetDoom64", "SetHL", "SetQuake2", "SetHexen2", "SetGoldeneye", "SetTotenkopf"
+	"SetDoom", "SetChex", "SetHeretic", "SetWolf3d", "SetHexen1", "SetDuke3D", "SetMarathon", "SetQuake1", "SetRoTT", "SetBStone",
+	"SetBlood", "SetStrife", "SetErad", "SetC7", "SetRmr", "SetDarkF", "SetIPOG", "SetDisrup", "SetWitch", "SetHL", "SetSW", "SetCM", 
+	"SetExhumed", "SetRR", "SetQuake2", "SetHexen2", "SetGoldeneye", "SetTotenkopf"
 };
 
 str gameClassesSTR[MAX_GAME_TYPES] = {
-	"DoomguyPlayer2", "CorvusPlayer2", "HexenPlayer2", "ChexWarrior2", "WolfenPlayer2", "DukePlayer2", "MarathonPlayer2", "BlakeStone2", "IPFreeley2",
-	"Leonard2", "Eleena2", "StrifeGuyPlayer2", "KatarnPlayer2", "CMPlayer2", "Corridor7Player2", "LoWangPlayer2", "Caleb2", "RebelMoonCommando2", "PSPlayer2",
-	"POGreedPlayer2", "GrondovalPlayer2", "DisruptorPlayer2", "QuakePlayer2", "Doom64GuyPlayer2", "HalfLifePlayer2", "Bitterman2", "Demoness2", "JamesBond2", "TotenkopfPlayer2"
+	"DoomguyPlayer2", "ChexWarrior2", "CorvusPlayer2", "WolfenPlayer2", "HexenPlayer2", "DukePlayer2", "MarathonPlayer2", "QuakePlayer2", "IPFreeley2", "BlakeStone2",
+	"Caleb2", "StrifeGuyPlayer2", "Eleena2", "Corridor7Player2", "RebelMoonCommando2", "KatarnPlayer2", "POGreedPlayer2", "DisruptorPlayer2", "GrondovalPlayer2", 
+	"HalfLifePlayer2", "LoWangPlayer2", "CMPlayer2", "PSPlayer2", "Leonard2", "Bitterman2", "Demoness2", "JamesBond2", "TotenkopfPlayer2"
 };
 
 bool activesets[MAX_GAME_TYPES];
@@ -69,7 +69,6 @@ Script 667 OPEN
 		SetCVar("mm_witch", true);				
 		SetCVar("mm_disrup", true);		
 		SetCVar("mm_quake1", true);		
-		SetCVar("mm_doom64", true);	
 		SetCVar("mm_halflife", true);	
 		SetCVar("mm_quake2", true);	
 		SetCVar("mm_hexen2", true);	
@@ -234,6 +233,21 @@ Script 668 (int spawncode, int override)
 						terminate;
 				}
 			}
+
+			if(activeGameTypes[setselect] == 0)
+			{
+				switch(GetCvar("mm_doommode")){
+					case 0:
+						SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+						terminate;
+					case 1:
+						SetActorState(0,"SetDoom64",true);
+						terminate;
+					case 2:
+						SetActorState(0,"SetDoomCombined",true);
+						terminate;						
+				}
+			}	
 		
 			// all the other game types
 			
@@ -276,152 +290,8 @@ Script 669 (void)
 		{
 			randnum = random(1, MAX_GAME_TYPES);
 			
-			switch(randnum){
-				case 1:
-					if(!GetCVar("mm_doom")||lastchosen == 1) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 1; }
-					break;
-					
-				case 2:
-					if(!GetCVar("mm_heretic")||lastchosen == 2) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 2; }
-					break;
-					
-				case 3:
-					if(!GetCVar("mm_hexen1")||lastchosen == 3) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 3; }
-					break;
-				
-				case 4:
-					if(!GetCVar("mm_chex")||lastchosen == 4) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 4; }
-					break;
-					
-				case 5:
-					if(!GetCVar("mm_wolf3d")||lastchosen == 5) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 5; }
-					break;
-					
-				case 6:
-					if(!GetCVar("mm_duke3d")||lastchosen == 6) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 6; }
-					break;
-					
-				case 7:
-					if(!GetCVar("mm_marathon")||lastchosen == 7) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 7; }
-					break;
-					
-				case 8:
-					if(!GetCVar("mm_bstone")||lastchosen == 8) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 8; }
-					break;
-					
-				case 9:
-					if(!GetCVar("mm_rott")||lastchosen == 9) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 9; }
-					break;
-					
-				case 10:
-					if(!GetCVar("mm_rr")||lastchosen == 10) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 10; }
-					break;
-					
-				case 11:
-					if(!GetCVar("mm_erad")||lastchosen == 11) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 11; }
-					break;	
-				
-				case 12:
-					if(!GetCVar("mm_strife")||lastchosen == 12) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 12; }
-					break;	
-					
-				case 13:
-					if(!GetCVar("mm_darkf")||lastchosen == 13) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 13; }
-					break;
-					
-				case 14:
-					if(!GetCVar("mm_cm")||lastchosen == 14) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 14; }
-					break;
-					
-				case 15:
-					if(!GetCVar("mm_c7")||lastchosen == 15) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 15; }
-					break;
-					
-				case 16:
-					if(!GetCVar("mm_sw")||lastchosen == 16) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 16; }
-					break;
-					
-				case 17:
-					if(!GetCVar("mm_blood")||lastchosen == 17) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 17; }
-					break;
-					
-				case 18:
-					if(!GetCVar("mm_rmr")||lastchosen == 18) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 18; }
-					break;
-					
-				case 19:
-					if(!GetCVar("mm_ps")||lastchosen == 19) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 19; }
-					break;
-					
-				case 20:
-					if(!GetCVar("mm_ipog")||lastchosen == 20) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 20; }
-					break;
-					
-				case 21:
-					if(!GetCVar("mm_witch")||lastchosen == 21) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 21; }
-					break;
-					
-				case 22:
-					if(!GetCVar("mm_disrup")||lastchosen == 22) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 22; }
-					break;
-
-				case 23:
-					if(!GetCVar("mm_quake1")||lastchosen == 23) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 23; }
-					break;					
-
-				case 24:
-					if(!GetCVar("mm_doom64")||lastchosen == 24) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 24; }
-					break;
-					
-				case 25:
-					if(!GetCVar("mm_halflife")||lastchosen == 25) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 25; }
-					break;
-					
-				case 26:
-					if(!GetCVar("mm_quake2")||lastchosen == 26) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 26; }
-					break;
-					
-				case 27:
-					if(!GetCVar("mm_hexen2")||lastchosen == 27) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 27; }
-					break;
-					
-				case 28:
-					if(!GetCVar("mm_goldeneye")||lastchosen == 28) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 28; }
-					break;
-				
-				case 29:
-					if(!GetCVar("mm_totenkopf")||lastchosen == 29) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = 29; }
-					break;				
-			}
+			if(!GetCVar(gameTypesStr[randnum])||lastchosen == randnum) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
+					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = randnum; }
 		}
 		randomallclear = 1;
 	}
@@ -547,8 +417,6 @@ Script 680 (int pick)
 	SetResultValue(response);
 }
 
-int realindices[MAX_GAME_TYPES] = { 0, 3, 1, 4, 2, 5, 6, 22, 8, 7, 16, 11, 23, 10, 14, 17, 12, 19, 21, 20, 24, 15, 13, 18, 9, 25, 26, 27, 28 };
-
 Script "ExMixerClassBasedSpawn" (void)
 {
 	if(GetCvar("mm_spawnmode") != 0)
@@ -570,22 +438,14 @@ Script "ExMixerClassBasedSpawn" (void)
 			{
 				if(PlayerClass(p) == b)
 				{
-					playervalue = realindices[b];
-				}
-			}
-					
-			for(int i = 0; i < MAX_GAME_TYPES; i++)
-			{
-				if(playervalue == i)
-				{
-					activesets[i] = true;
+					activesets[b] = true;
 					break;
 				}
 			}
 		}
 		else
 		{
-			clients += 1;
+			clients++;
 		}
 	}
 }

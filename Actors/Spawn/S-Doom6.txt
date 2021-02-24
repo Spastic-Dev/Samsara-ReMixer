@@ -16,6 +16,9 @@ ACTOR SpectreSpawnerCoop replaces Spectre
 		SetDoomRandom:
 			TNT1 A 1 A_SpawnItemEx("SpectreRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
+		SetDoomCombined:
+			TNT1 A 0 A_Jump(256, "SetDoom", "SetDoom64")
+			Goto SetDoom				
 		SetHeretic:
 			TNT1 A 0 A_Jump(256,"Heretic1","Heretic2","Heretic3")
 			Heretic1:

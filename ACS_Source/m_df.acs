@@ -20,7 +20,7 @@ Script 2527 (void)
 
 	str ClassesAISTR[CLASSCOUNT] = {
 	"Doom_AI", "Chex_AI", "Corvus_AI", "Blaskowicz_AI", "Parias_AI", "Duke_AI", "SecurityOfficer_AI", "Ranger_AI", "IPFreeley_AI", "Blake_AI",
-	"Caleb_AI", "StrifeGuy_AI", "Doom64_AI", "Eleena_AI", "Corridor7_AI", "RMR_AI", "Katarn_AI", "POGreed_AI", "Jack_AI", "Grondoval_AI", 
+	"Caleb_AI", "StrifeGuy_AI", "Eleena_AI", "Corridor7_AI", "RMR_AI", "Katarn_AI", "POGreed_AI", "Jack_AI", "Grondoval_AI", 
 	"Freeman_AI", "LoWang_AI", "Cybermage_AI", "Jon_AI", "Leonard_AI", "Bitterman_AI"
 	};
 	for(int i = 0; i < 26; i++)
@@ -33,6 +33,10 @@ Script 2527 (void)
 		
 			if(CheckInventory("HalfLifeOpposingForce"))
 				SpawnSpotFacingForced("Shephard_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[i], 0, usertid);
+			if(CheckInventory("Doom64Mode"))
+				SpawnSpotFacingForced("Doom64_AI", 0, usertid);
 			else
 				SpawnSpotFacingForced(ClassesAISTR[i], 0, usertid);
 				

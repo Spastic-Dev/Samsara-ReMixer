@@ -16,6 +16,9 @@ ACTOR ShotgunGuySpawnerCoop replaces ShotgunGuy
 		SetDoomRandom:
 			TNT1 A 1 A_SpawnItemEx("ShotgunguyRandomizer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
+		SetDoomCombined:
+			TNT1 A 0 A_Jump(256, "SetDoom", "SetDoom64")
+			Goto SetDoom				
 		SetHeretic:
 			TNT1 A 1 A_SpawnItemEx("MummyLeader3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
