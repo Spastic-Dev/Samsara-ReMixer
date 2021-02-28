@@ -33,15 +33,23 @@ actor HexenPlayer2 : HexenPlayer replaces HexenPlayer {
 		Missile:
 		Melee:
 			TNT1 A 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
-			TNT1 A 0 A_GiveInventory("ProtozoidAttackOMG",1)		
-			TNT1 A 0 A_JumpIfInventory("DaedolonMode", 1, "MissileMage")
+			TNT1 A 0 A_GiveInventory("ProtozoidAttackOMG",1)	
+			TNT1 A 0 A_JumpIfInventory("HexenClassMode", 2, "MissileFighter")
+			TNT1 A 0 A_JumpIfInventory("HexenClassMode", 1, "MissileMage")
 			CLER EFG 6
 			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)
 			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
 			Goto Spawn	
-		 MissileMage:
+		MissileMage:
 			MGE2 EF 6
-			Goto Spawn				
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn		
+		MissileFighter:
+			FGT2 EF 6
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn	
 		Death:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)															
@@ -61,7 +69,15 @@ actor HexenPlayer2 : HexenPlayer replaces HexenPlayer {
 			MGE2 L 6 A_NoBlocking
 			MGE2 MN 6
 			MGE2 N -1
-			Stop	 			
+			Stop	
+ 		DeathFighter:
+			FGT2 H 6
+			FGT2 I 6 A_PlaySound("Fighter/Death", CHAN_VOICE)
+			FGT2 JK 6
+			FGT2 L 6 A_NoBlocking
+			FGT2 MN 6
+			FGT2 N -1
+			Stop
 		XDeath:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)															
@@ -79,7 +95,14 @@ actor HexenPlayer2 : HexenPlayer replaces HexenPlayer {
 			MGE2 Q 5 A_NoBlocking
 			MGE2 RSTUVW 5
 			MGE2 X -1
-			Stop	  			
+			Stop
+		XDeathFighter:
+			FGT2 O 5 A_PlaySound("Fighter/XDeath", CHAN_BODY)
+			FGT2 P 5
+			FGT2 Q 5 A_NoBlocking
+			FGT2 RSTUVW 5
+			FGT2 X -1
+			Stop
 		Death.RottExplosive:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)
