@@ -61,6 +61,9 @@ ACTOR ArchvileSpawnerCoop replaces Archvile
 			Wolf2:
 				TNT1 A 1 A_SpawnItemEx("SubmarineWillyDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
+		SetWolfensteinRandom:
+			TNT1 A 0 A_Jump(256, "SODM1", "SODM2", "SetTotenkopf")
+			Goto SetWolf3D				
 		SetDuke3D:
 			TNT1 A 1 A_SpawnItemEx("PigCopTankArch",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait

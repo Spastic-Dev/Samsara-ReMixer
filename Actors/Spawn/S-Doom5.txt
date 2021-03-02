@@ -40,6 +40,9 @@ ACTOR DemonSpawnerCoop replaces Demon
 			Wolf2:
 				TNT1 A 1 A_SpawnItemEx("SODDog",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 				Goto DeathForInvasion
+		SetWolfensteinRandom:
+			TNT1 A 0 A_Jump(256, "SODM1", "SODM2", "SetTotenkopf")
+			Goto SetWolf3D					
 		SetDuke3D:
 		    TNT1 A 0 A_Jump(198,"SetDuke3D_2")
 			TNT1 A 1 A_SpawnItemEx("ProtectorDroneDoom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid) 
