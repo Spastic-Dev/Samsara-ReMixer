@@ -37,7 +37,6 @@
 			Slider "Monster Multiplier", "mm_multiply",  1, 20, 1
 			StaticText "General Options"
 			StaticText ""
-			Option "Doom EnemyMode", "mm_doommode", "DoomMode"
 			Option "Vanilla Doom Randomizer" , "mm_doomrandomizer", "OnOff"
 			Option "Rare Spawns" , "mm_rarespawns", "OnOff"
 			Option "Invulnerable Monsters Die", "mm_specpermdeath", "OnOff"
@@ -48,9 +47,16 @@
 			Option "No bats", "mm_nobats", "OnOff"
 			Option "Initialization Reset", "mm_init", "OnOff"
 			Option "Fake Hitler Fire", "mm_fakehitlerfire", "OnOff"
-			Option "Wolfenstein Enemy Mode", "mm_wolfmode", "WolfMode"
-			Option "Spawn Mode", "mm_spawnmode", "SpawnMode"
 			Slider "Random Sets Per Map", "mm_randomcycle", 1, 26, 1
+			Option "Spawn Mode", "mm_spawnmode", "SpawnMode"
+			
+			StaticText ""
+			StaticText "Enemy Modes"
+			StaticText ""
+			Option "Doom Enemy Mode", "mm_doommode", "DoomMode"
+			Option "Wolfenstein Enemy Mode", "mm_wolfmode", "WolfMode"
+			Option "Duke Nukem Enemy Mode", "mm_dukemode", "DukeMode"
+			Option "Half Life Enemy Mode", "mm_halflifemode", "HalfLifeMode"
 			/*StaticText ""
 			StaticText "Cycle Bans (only applies to random cycle)"
 			StaticText ""
@@ -82,19 +88,34 @@
 			Option "Ban Quake 2",           	   "mm_banquake2", "OnOff"*/
 	}
 
-	OptionValue Wolfmode
-	{
-			0, "Traditional"
-			1, "Spear of Destiny"
-			2, "Combined"
-			3, "Totenkopf SDL"
-			4, "All of the Above"
-	}
 	OptionValue DoomMode
 	{
-			0, "Doom 2"
-			1, "Doom 64"
-			2, "Combined"
+			0, "Class-Based"
+			1, "Doom"
+			2, "Doom 64"
+			3, "Combined"
+	}
+	OptionValue Wolfmode
+	{
+			0, "Class-Based"
+			1, "Traditional"
+			2, "Spear of Destiny"
+			3, "Totenkopf SDL"
+			4, "Spear and Traditional"
+			5, "Combined All"
+	}
+	OptionValue DukeMode
+	{
+			0, "Class-Based"
+			1, "Duke Nukem 3D"
+			2, "Life's a Beach"
+			3, "Combined"
+	}
+	OptionValue HalfLifeMode
+	{
+			0, "Class-Based"
+			1, "Half Life"
+			2, "Opposing Force"
 	}
 	OptionValue SpawnMode
 	{

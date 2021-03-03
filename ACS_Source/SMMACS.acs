@@ -29,6 +29,9 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 	"HalfLifePlayer2", "LoWangPlayer2", "CMPlayer2", "PSPlayer2", "Leonard2", "Bitterman2", "Demoness2", "JamesBond2"
 };
 
+str doomModes[2] = { "SetDoom", "SetDoom64" };
+str wolfModes[3] = { "SODM1", "SODM2", "SetTotenkopf" };
+
 bool activesets[MAX_GAME_TYPES];
 
 #define MAX_MAPS				500
@@ -173,7 +176,7 @@ Script 668 (int spawncode, int override)
 			break;
 
 		case 2:	
-			If(!IsSinglePlayer())
+			if(!isSinglePlayer())
 				Delay(5);
 				
 			Delay(1);
@@ -217,49 +220,79 @@ Script 668 (int spawncode, int override)
 			
 			setselect = random(0, numGameTypes - 1);
 			
-			// wolf3d
-			if(activeGameTypes[setselect] == 3)
+			//Doom
+			switch(activeGameTypes[setselect])
 			{
-				switch(GetCvar("mm_wolfmode")){
-					case 0:
-						SetActorState(0,"SODM1",true);
-						terminate;
-					case 1:
-						SetActorState(0,"SODM2",true);
-						terminate;
-					case 2:
-						SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
-						terminate;
-					case 3: 
-						SetActorState(0,"SetTotenkopf",true);
-						terminate;			
-					case 4:
-						SetActorState(0,"SetWolfensteinRandom",true);
-						terminate;							
-				}
+				//All other sets
+				default:
+					SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+					break;
+				case 0: // Doom
+					switch(GetCvar("mm_doommode"))
+					{
+						case 0:
+							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && ThingCountName("DoomguyPlayer2",0) > ThingCountName("Doom64GuyMapDummy",0))
+								SetActorState(0,doomModes[random(0,1)],true);
+							else
+								SetActorState(0,doomModes[ThingCountName("Doom64GuyMapDummy",0)],true);
+							terminate;
+						case 1:
+							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							terminate;
+						case 2:
+							SetActorState(0,"SetDoom64",true);
+							terminate;
+						case 3:
+							SetActorState(0,doomModes[random(0,1)],true);
+							terminate;						
+					}
+					break;
+				case 3: // Wolf3d
+					switch(GetCvar("mm_wolfmode"))
+					{
+						case 0: //doing this one the crude way
+							int thingcountWolfLost = ThingCountName("WolfLostMapDummy",0);
+							int thingcountTotenkopf = ThingCountName("TotenkopfMapDummy",0);
+							if((thingcountWolfLost > 0 && ThingCountName("WolfenPlayer2",0) > thingcountWolfLost) && (thingcountTotenkopf > 0 && ThingCountName("WolfenPlayer2",0) > thingcountTotenkopf))
+								SetActorState(0,wolfModes[random(0,2)],true);
+							else if(thingcountWolfLost > 0 && ThingCountName("WolfenPlayer2",0) > thingcountWolfLost)
+								SetActorState(0,wolfModes[random(0,1)],true);
+							else if(thingcountTotenkopf > 0 && ThingCountName("WolfenPlayer2",0) > thingcountTotenkopf)
+							{
+								if(random(0,1) == 1)
+									SetActorState(0,wolfModes[2],true);
+								else
+									SetActorState(0,wolfModes[0],true);
+							}
+							else if(thingcountWolfLost > 0 && thingcountTotenkopf > 0 && (thingcountWolfLost + thingcountTotenkopf) >= ThingCountName("WolfenPlayer2",0))
+								SetActorState(0,wolfModes[random(1,2)],true);
+							else if(thingcountWolfLost > 0)
+								SetActorState(0,wolfModes[1],true);
+							else if(thingcountTotenkopf > 0)
+								SetActorState(0,wolfModes[2],true);
+							else
+								SetActorState(0,wolfModes[0],true);
+							terminate;
+						case 1:
+							SetActorState(0,"SODM1",true);
+							terminate;
+						case 2:
+							SetActorState(0,"SODM2",true);
+							terminate;
+						case 3:
+							SetActorState(0,"SetTotenkopf",true);	
+							terminate;
+						case 4: 
+							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							terminate;			
+						case 5:
+							SetActorState(0,wolfModes[random(0,2)],true);
+							terminate;							
+					}
+					break;
 			}
-
-			if(activeGameTypes[setselect] == 0)
-			{
-				switch(GetCvar("mm_doommode")){
-					case 0:
-						SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
-						terminate;
-					case 1:
-						SetActorState(0,"SetDoom64",true);
-						terminate;
-					case 2:
-						SetActorState(0,"SetDoomCombined",true);
-						terminate;						
-				}
-			}	
-		
-			// all the other game types
-			
-			SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
 			break;
-
-		
+			
 		case 3:
 		if(GetCVar("mm_multiply") > 1)
 		{
@@ -458,7 +491,7 @@ Script "ExMixerClassBasedSpawn" (void)
 Script "ExMixerClassBasedSpawn_OPEN" Open { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
 Script "ExMixerClassBasedSpawn_RESPAWN" RESPAWN { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
 Script "ExMixerClassBasedSpawn_REOPEN" REOPEN { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
-Script "ExMixerClassBasedSpawn_ENTER" ENTER { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
+Script "ExMixerClassBasedSpawn_ENTER" ENTER { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0);}
 Script "ExMixerClassBasedSpawn_DISCONNECT" (int players) DISCONNECT { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
 
 Script "Samsara_InvasionChecker" (void)
@@ -472,6 +505,11 @@ Script "Samsara_InvasionChecker" (void)
 Script "Samsara_OpposingForceSpawnCheck" (void)
 {
 	SetResultValue(ThingCountName("HalfLifeAdrianModeMapDummy",0));
+}
+
+Script "Samsara_Doom64SpawnCheck" (void)
+{
+	SetResultValue(ThingCountName("Doom64GuyMapDummy",0));
 }
 
 /*ACTOR PinataDrop : RandomSpawner
