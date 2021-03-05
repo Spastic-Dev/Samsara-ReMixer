@@ -4,6 +4,7 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 	DeathSound "mutatedguard/death"
 	AttackSound "Bpistol2/Fire"
 	Tag "Mutated Guard"
+	DropItem "BlakeSFPDrop"
 	Obituary "%o didn't expect a Mutated Guard to wake up on %h."
 	Decal BulletChip
 	Species "Enemies"
@@ -110,25 +111,14 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 		Death:
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "XDeath2")
 		Proceed:	
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			BS15 H 9 A_Scream
 			BS15 I 8 A_NoBlocking
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			BS15 J 8
 			BS15 K 7
 			BS15 L -1
-			Stop
-		XDeath2:	
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			BS15 H 9 A_Scream
-			BS15 I 8 A_NoBlocking
-			TNT1 A 0 A_DropItem("BlakeClip")
-			BS15 J 8
-			BS15 K 7
-			BS15 L -1
-			Stop			
+			Stop		
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
@@ -152,12 +142,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
 			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "Z")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A -1
-			stop
-		Z:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A -1
 			stop
 		Death.DukeIce:
@@ -176,12 +160,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "I")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A 0
-			stop
-		I:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 0
 			stop
 		Raise:
@@ -216,12 +194,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "F")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A 5 A_FadeOut
-			stop
-		F:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.LifeLeech: 
@@ -373,14 +345,8 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_Jump(128, 2)
 			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
 			TNT1 AA 0
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "T")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			TNT1 A 5 A_FadeOut
-			stop
-		T:
-			TNT1 A 0 A_DropItem("BlakeClip")
-			TNT1 A 5 A_FadeOut
-			stop			
+			stop	
 		Death.RottDisintegrate:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_ChangeFlag(SOLID,0)		
@@ -422,28 +388,16 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "M")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			"####" "#" 2 A_SetTranslucent(0.1,0)
-			stop
-		M:
-			TNT1 A 0 A_DropItem("BlakeClip")
-			"####" "#" 2 A_SetTranslucent(0.1,0)
-			stop			
+			stop		
 		Death.Nuke:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking		
 			"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "N")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			"####" "#################" 3 A_Fadeout(0.05)
-			stop
-		N:
-			TNT1 A 0 A_DropItem("BlakeClip")
-			"####" "#################" 3 A_Fadeout(0.05)
-			stop			
+			stop		
 		Death.QuakeElectric:
 		Death.NotQuadded:
 		Death.QuakeExplosive:
@@ -456,12 +410,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "R")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A 5 A_FadeOut
-			stop
-		R:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 5 A_FadeOut
 			stop
 		Death.BittermanDamage:
@@ -471,12 +419,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "B")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A 5 A_FadeOut
-			stop
-		B:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.Hexen2RavenDamage:
@@ -495,14 +437,8 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "H")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
 			TNT1 A 5 A_FadeOut
-			stop
-		H:
-			TNT1 A 0 A_DropItem("BlakeClip")
-			TNT1 A 5 A_FadeOut
-			stop			
+			stop		
 		Pain.ShrinkerDMG:
 			BS15 M 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -566,12 +502,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "E")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A 1
-			stop
-		E:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 1
 			stop
 		Death.ExpanderDMGCoop:
@@ -602,12 +532,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "EC")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A 1
-			stop
-		EC:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 1
 			stop
 	}
