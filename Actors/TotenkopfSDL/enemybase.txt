@@ -49,6 +49,7 @@ Actor Totenkopf_PistolEnemyDrop : Goldeneye_PP7EnemyDrop
 			TNT1 A 0 A_PlaySound("Totenkopf/getweapon")
 			TNT1 A 0 A_GiveInventory("Totenkopf_IHaveDualPistols")
 			TNT1 A 1 A_GiveInventory("Clip", 3)
+			TNT1 A 1 A_GiveInventory("Totenkopf_GimmeDat", 1)
 			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 0, 1) & 1) == 1, "PickupSuccess")
 			stop	
 		PickupMarathon:
@@ -66,12 +67,6 @@ Actor Totenkopf_PistolEnemyDrop : Goldeneye_PP7EnemyDrop
 			TNT1 A 0 A_GiveInventory("Goldeneye_PP7DualToken", 1)
 			TNT1 A 0 A_PlaySound("Goldeneye/Weaponup")
 			TNT1 A 1 A_GiveInventory("Clip", 7)
-			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 0, 1) & 1) == 1, "PickupSuccess")
-			stop
-		PickupTotenkopf:
-			TNT1 A 0 A_JumpIfInventory("Clip",0,"PickupFailure")
-			TNT1 A 0 A_GiveInventory("Totenkopf_PistolDual", 1)
-			TNT1 A 0 A_PlaySound("Totenkopf/getweapon")
 			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 0, 1) & 1) == 1, "PickupSuccess")
 			stop
 		PickupSuccess:
