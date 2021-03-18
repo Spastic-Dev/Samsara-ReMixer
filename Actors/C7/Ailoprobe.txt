@@ -177,6 +177,7 @@ Actor Ailoprobe : C7Alien {
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
 			Goto Death
 		XDeathForJon:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)			
 			TNT1 A 0 A_Jump(96, 2)
@@ -194,6 +195,7 @@ Actor Ailoprobe : C7Alien {
 			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
 			Goto Death
 		XDeathForLeonard:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("RRGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_Jump(96,2)
@@ -237,6 +239,7 @@ Actor Ailoprobe : C7Alien {
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
 			goto Death
 		XDeathForWang:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("SWEnemy_DemonGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 			TNT1 A 0 A_Jump(218, 2)	
@@ -265,6 +268,7 @@ Actor Ailoprobe : C7Alien {
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
 			Goto Death.DukeDamage
 		DukeGibStart:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnDebris("DukeGibs1",True)
 			TNT1 A 0 A_SpawnDebris("DukeGibs2",True)
@@ -304,6 +308,7 @@ Actor Ailoprobe : C7Alien {
 			TNT1 A 0
 			Goto Death
 		XDeathCaleb:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)			
 			TNT1 A 0 A_Jump(96, 2)	
