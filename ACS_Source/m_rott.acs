@@ -20,7 +20,8 @@ Script 801 (int basetid, int type) {
 	switch(basetid) {
 		case KRIST_BASE:
 			if(!type) {
-				Thing_ChangeTID(0, basetid + krist_id);
+				//What the hell is this? You should NEVER EVER assign arbitrary tids to monsters at run time!
+				//Thing_ChangeTID(0, basetid + krist_id);
 				krist_id++;
 			}
 			else if(type == 1)
@@ -32,7 +33,7 @@ Script 801 (int basetid, int type) {
 		break;
 		case NME_BASE:
 			if(!type) {
-				Thing_ChangeTID(0, basetid + nme_id);
+				//Thing_ChangeTID(0, basetid + nme_id);
 				nme_id++;
 			}
 			else if(type == 1)
