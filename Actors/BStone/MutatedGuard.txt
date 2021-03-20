@@ -94,6 +94,7 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
 			Goto Death.DukeDamage
 		DukeGibStart:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnDebris("DukeGibs1")
 			TNT1 A 0 A_SpawnDebris("DukeGibs2")
@@ -229,6 +230,7 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			Goto Death
 		XDeathForCaleb:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
 			TNT1 A 0 A_Jump(96,2)
@@ -265,6 +267,7 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
 			Goto Death
 		XDeathForJon:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("PSGibSpawner")					
 			TNT1 A 0 A_Jump(96,2)
@@ -282,6 +285,7 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
 			Goto Death
 		XDeathForLeonard:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("RRGibSpawner")
 			TNT1 A 0 A_Jump(96,2)
@@ -325,6 +329,7 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
 			goto Death
 		XDeathForWang:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
 			TNT1 A 0 A_Jump(218, 2)	
@@ -352,12 +357,6 @@ Actor MutatedGuard : BlakeStoneHumanoid {
 			TNT1 A 0 A_ChangeFlag(SOLID,0)		
 			TNT1 A 0 A_Scream
 			TNT1 A 1 A_SpawnItem("RGodModeDeath")
-			TNT1 A 0 A_JumpIfInTargetInventory("GotWeapon2", 1, "G")
-			TNT1 A 0 A_DropItem("BlakeSFPDrop")
-			TNT1 A 5 A_FadeOut
-			stop
-		G:
-			TNT1 A 0 A_DropItem("BlakeClip")
 			TNT1 A 5 A_FadeOut
 			stop	
 		Disintegrate:
