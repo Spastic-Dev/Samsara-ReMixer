@@ -306,6 +306,17 @@ ACTOR ACommanderRocket
 	}
 }
 
+ACTOR ACommanderRocketBeach : ACommanderRocket
+{
+	Obituary "%o was blown to bits by an Assault Commander"
+	States
+	{
+		Spawn:
+			RPGX W 1 bright A_SpawnItemEx("DukeRocketPuff",0,0,0,0,0,0,0,160)
+			loop
+	}
+}
+
 ACTOR OverlordRocket : ACommanderRocket
 {
 	Radius 16
@@ -341,6 +352,17 @@ ACTOR CyEmperorRocket : ACommanderRocket
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
 			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,160)
 			stop
+	}
+}
+
+ACTOR CyEmperorRocketBeach : CyEmperorRocket
+{
+	Obituary "%o was dealt with by the Cycloid Emperor's coconuts"
+	States
+	{
+		Spawn:
+			RPGX W 1 bright
+			loop
 	}
 }
 

@@ -49,7 +49,10 @@ ACTOR ChaingunGuySpawnerCoop replaces ChaingunGuy
 			Goto DeathForInvasion
 		SetDuke3D_2:
 			TNT1 A 1 A_SpawnItemEx("PiginaDress",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion		
+			Goto DeathForInvasion	
+		SetDukeLAB:
+			TNT1 A 1 A_SpawnItemEx("SeaMonster",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
 		SetMarathon:
 			TNT1 A 0 A_Jump(230,"Mara2","Mara4")
 			TNT1 A 0 A_Jump(128,"Mara3")			

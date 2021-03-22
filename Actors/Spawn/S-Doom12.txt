@@ -46,7 +46,14 @@ ACTOR PainElementalSpawnerCoop replaces PainElemental
 			Goto DeathForInvasion
 		SetDuke3D_2:
 			TNT1 A 1 A_SpawnItemEx("ReconPatrolVehicle",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion		
+			Goto DeathForInvasion	
+		SetDukeLAB:
+			TNT1 A 0 A_Jump(160,"SetDukeLAB_2")
+			TNT1 A 1 A_SpawnItemEx("BeachCommander",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetDukeLAB_2:
+			TNT1 A 1 A_SpawnItemEx("ReconPatrolVehicle",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion	
 		SetMarathon:
 			TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(680,7) == 0, 5)
 			TNT1 A 1 A_Jump(200,4)

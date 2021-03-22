@@ -31,6 +31,7 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 
 str doomModes[2] = { "SetDoom", "SetDoom64" };
 str wolfModes[3] = { "SODM1", "SODM2", "SetTotenkopf" };
+str dukeModes[2] = { "SetDuke3D", "SetDukeLAB" };
 
 bool activesets[MAX_GAME_TYPES];
 
@@ -288,6 +289,26 @@ Script 668 (int spawncode, int override)
 						case 5:
 							SetActorState(0,wolfModes[random(0,2)],true);
 							terminate;							
+					}
+					break;
+				case 5:
+					switch(GetCvar("mm_dukemode"))
+					{
+						case 0:
+							if(ThingCountName("DukeLabMapDummy",0) > 0 && ThingCountName("DukePlayer2",0) > ThingCountName("DukeLabMapDummy",0))
+								SetActorState(0,dukeModes[random(0,1)],true);
+							else
+								SetActorState(0,dukeModes[ThingCountName("DukeLabMapDummy",0)],true);
+							terminate;
+						case 1:
+							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							terminate;
+						case 2:
+							SetActorState(0,"SetDukeLAB",true);
+							terminate;
+						case 3:
+							SetActorState(0,dukeModes[random(0,1)],true);
+							terminate;						
 					}
 					break;
 			}
