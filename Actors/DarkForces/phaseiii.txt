@@ -92,7 +92,7 @@ ACTOR phase3_DF : enemy_base
 			PHA3 U 0 A_ChangeFlag("FLOAT",0)			
 			TNT1 A 0 A_Jump(10,"JetPack")
 			PHA3 ABCDE 4 A_Chase
-			Goto See+2
+			Goto See2+2
 		JetPack:
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 		    TNT1 A 0 A_ChangeFlag("FLOAT", 1)
@@ -115,7 +115,7 @@ ACTOR phase3_DF : enemy_base
 			PHA3 U 0 A_ChangeFlag("FLOAT",0)						
 			PHA3 RPO 1 A_Chase("","")
 			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
-			Goto See
+			Goto See2
 		Missile:
 			PHA3 F 0 A_Jump(30,"MRocket")
 			PHA3 AA 4 A_FaceTarget
@@ -154,7 +154,7 @@ ACTOR phase3_DF : enemy_base
 			PHA3 N 8 BRIGHT A_CustomMissile("Phase3Missile",46,0,12,32,random(-1,1))
 			PHA3 S 0 A_PlaySound("katarn/asssho2",CHAN_AUTO,1.0,0,0.45)
 			PHA3 MLK 8 A_FaceTarget
-			Goto See
+			Goto See2
 		RocketFlying:
 			PHA3 KKLLMM 4 A_FaceTarget
 			PHA3 S 0 BRIGHT A_CustomMissile("Phase3Missile",46,0,-12,32,random(-1,1))
@@ -182,7 +182,7 @@ ACTOR phase3_DF : enemy_base
 		Pain:
 			PHA3 F 3
 			PHA3 G 3 A_Pain
-			Goto See
+			Goto See2
 		Death:
 		XDeath:
 	        TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
