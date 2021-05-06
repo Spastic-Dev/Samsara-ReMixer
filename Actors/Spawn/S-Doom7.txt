@@ -186,6 +186,9 @@ ACTOR HellKnightSpawnerCoop replaces HellKnight
 			Goto DeathForInvasion
 		SetTotenkopf:
 			TNT1 A 1 A_SpawnItemEx("TotenkopfTrooperPanzerschreck", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto DeathForInvasion	
+		SetCatacomb:
+			TNT1 A 1 A_SpawnItemEx("CatacombAbyss_BlueDemon", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto DeathForInvasion			
 		SetNull:
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)

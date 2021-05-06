@@ -1,0 +1,356 @@
+Actor CatacombTrilogy_EnemyBase // base for the enemies. Enemy behavior is very standardized across the catacomb games, almost like it's really old or something =P
+{
+	MONSTER
+	Radius 20
+	Height 50	
+	Mass 400
+	PainChance 255
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+LOOKALLAROUND
+	PainSound "Catacomb/Monster/Pain"
+	DeathSound "Catacomb/Monster/Die"	
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "WolfEnemyBullet", 0.0
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Obituary "Our savior %o has fallen to (insert enemy name here)."
+	Tag "Some guy I guess idk"
+	var int user_scalex;
+	var int user_scaley;	
+}	
+
+Actor CatacombAbyss_Troll : Catacomb3D_Troll
+{
+	Health 120
+	DeathSound "Catacomb/Monster/Die"	
+}	
+
+Actor CatacombAbyss_Zombie : CatacombTrilogy_EnemyBase 
+{
+	Health 50
+	Speed 10
+	Obituary "Our savior %o has fallen to a Zombie."
+	Tag "Zombie"
+	-SHOOTABLE
+	-SOLID
+	States
+	{
+		Spawn:
+			TNT1 A 2 A_Look
+			Loop
+		See:
+			CT08 A 0 A_SetSolid
+			CT08 A 0 A_SetShootable
+			CT08 ABCD 10 
+		See2:
+			CT08 EEFFGG 4 A_Chase
+			Loop
+		Pain:
+			CT08 J 2
+			CT08 J 2 A_Pain
+			Goto See2
+		Melee:
+			CT08 H 8 A_FaceTarget
+			CT08 I 8 A_CustomMeleeAttack(5, "Catacomb/XTerm", "Catacomb/XTerm", "CatacombDamage", true)
+			Goto See2
+		XDeath:
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT08 J 10 A_Scream
+			CT08 K 10 A_NoBlocking
+			CT08 L -1
+			Stop
+		}
+}		
+
+Actor CatacombAbyss_Orc : CatacombTrilogy_EnemyBase
+{
+	Health 50
+	Speed 10
+	Obituary "Our savior %o has fallen to an Orc."
+	Tag "Orc"	
+	States
+	{
+		Spawn:
+			CT03 KL 10 A_Look
+			Loop
+		See:
+			CT03 KKLLMMNN 4 A_Chase
+			Loop
+		Pain:
+			CT03 Q 2
+			CT03 Q 2 A_Pain
+			Goto See		
+		Melee:
+			CT03 O 8 A_FaceTarget
+			CT03 P 8 A_CustomMeleeAttack(5, "Catacomb/XTerm", "Catacomb/XTerm", "CatacombDamage", true)
+			Goto See
+		XDeath:
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT03 Q 5 A_Scream
+			CT03 R 5 A_NoBlocking
+			CT03 S 5
+			CT03 T -1
+			Stop
+	}
+}	
+
+Actor CatacombAbyss_Mage : CatacombTrilogy_EnemyBase
+{
+	Health 50
+	Speed 15
+	Tag "Red Mage"
+	States
+	{
+		Spawn:
+			CT04 G 2 A_Look
+			Loop
+		See:
+			CT04 GGGGGGHHHHHH 2 A_Chase
+			Loop
+		Missile:
+			TNT1 G 0 A_ChangeFlag("NOPAIN",0)
+			CT04 IIII 2 Bright A_FaceTarget
+			CT04 I 2 Bright A_CustomMissile("Catacomb_MageBall",32,0,0,8)
+			CT04 G 25
+			CT04 G 0 A_CPosRefire
+			CT04 G 0 A_Jump(50,"See")
+			Goto Missile
+		Pain:
+			CT04 JJ 2
+			CT04 J 1 A_Pain
+			Goto Missile	
+		Death:
+		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT04 K 10 A_Scream
+			CT04 L 0 A_NoBlocking
+			CT04 L -1
+			Stop
+	}
+}	
+
+Actor CatacombAbyss_WaterTroll : CatacombTrilogy_EnemyBase //replaces Spectre
+{
+	Health 150
+	Speed 10
+	-SHOOTABLE
+	-SOLID	
+	Obituary "Our savior %o has fallen to a Water Troll."
+	Tag "Water Troll"		
+	States
+	{
+		Spawn:
+			TNT1 A 2 A_Look
+			Loop		
+		See:
+			CT13 AB 7
+			CT13 C 0 A_SetShootable
+			CT13 C 0 A_SetSolid
+			CT13 CDE 7 
+			Goto SeeLoop
+		SeeLoop:
+			CT13 F 0 A_Jump(96, "Submerge")
+			CT13 FFGGHHII 4 A_Chase
+			Loop
+		Submerge:
+			CT13 EDC 7
+			CT13 C 0 A_UnSetShootable
+			CT13 C 0 A_UnSetSolid
+			CT13 BA 7
+			Goto UnderwaterChase
+		UnderwaterChase:
+//			CT13 A 0 A_Jump(48, "See")
+			CT13 A 0 A_JumpIfCloser(64, "See")
+			CT13 A 2 A_Chase
+			Loop
+		Pain:
+			CT13 M 4 
+			CT13 M 4 A_Pain
+			Goto SeeLoop
+		Melee:
+			CT13 JK 5 A_FaceTarget
+			CT13 L 5 A_CustomMeleeAttack(15, "Catacomb/XTerm", "Catacomb/XTerm", "CatacombDamage", true)
+			Goto SeeLoop
+		Death:
+		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT13 M 5 A_Scream
+			CT13 N 5 A_NoBlocking
+			CT13 OPA 5 
+			TNT1 A -1
+			Stop
+	}
+}	
+
+Actor CatacombAbyss_EvilEye : CatacombTrilogy_EnemyBase //replaces CacoDemon
+{
+	Radius 30
+	Health 150
+	Height 56
+	Speed 8
+	-SOLID
+	+FLOAT
+	+NOGRAVITY
+	Tag "Evil Eye"
+	Obituary "Our savior %o has fallen to an Evil Eye."	
+	BloodColor "fc 54 54"
+	States
+	{
+		Spawn:
+			CT10 ABC 8 A_Look
+		See:
+			CT10 AAAAABBBBBCCCCC 4 A_Chase
+			Loop
+		Missile:
+			CT10 A 0 A_PlaySound("Catacomb/Zappers", CHAN_BODY)
+			CT10 A 0 A_Jump(128, 5)
+			CT10 A 0 A_Jump(205, 5)
+			CT10 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_CustomMissile("CatacombAbyss_EyeShot", 32,0,0)
+			Goto See
+		Pain:
+			CT10 D 4
+			CT10 E 4 A_Pain
+			Goto See
+		XDeath:
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT10 D 5 A_Scream
+			CT10 E 5 A_NoBlocking
+			CT10 FGH 5
+			TNT1 A -1
+			Stop
+	}
+}	
+
+Actor CatacombAbyss_BlueDemon : CatacombTrilogy_EnemyBase //replaces HellKnight
+{
+	Health 500
+	Speed 25
+	Radius 24
+	Height 64
+	Obituary "Our savior %o has fallen to an Demon."
+	Tag "Blue Demon"	
+	BloodColor "54 fc fc"
+	States
+	{
+		Spawn:
+			CT09 AB 10 A_Look
+            Loop
+		See:
+            CT09 AABBCCDD 3 A_Chase
+            Loop
+		Pain:
+            CT09 H 2
+            CT09 H 2 A_Pain
+            Goto See
+		Melee:
+			CT09 EF 4 A_FaceTarget
+			CT09 G 4 A_CustomMeleeAttack(35, "Catacomb/XTerm", "Catacomb/XTerm", "CatacombDamage", true)
+			Goto See
+		XDeath:
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT09 H 5 A_Scream
+			CT09 I 5 A_NoBlocking
+			CT09 J 5
+			CT09 K -1 A_KillMaster
+			Stop
+		}
+}	
+
+Actor CatacombAbyss_SkeletonWarrior : CatacombTrilogy_EnemyBase
+{
+	Health 120
+	Speed 10
+	Obituary "Our savior %o has fallen to a Skeleton Warrior."
+	Tag "Skeleton Warrior"	
+	+NOBLOOD
+	States
+	{
+		Spawn:
+			CT12 AB 10 A_Look
+			Loop
+		See:
+			CT12 AABBCCDD 4 A_Chase
+			Loop
+		Pain:
+			CT12 H 2
+			CT12 H 2 A_Pain
+			Goto See		
+		Melee:
+			CT12 EF 4 A_FaceTarget
+			CT12 G 4 A_CustomMeleeAttack(10, "Catacomb/XTerm", "Catacomb/XTerm", "CatacombDamage", true)
+			Goto See
+		XDeath:
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT12 H 10 A_Scream
+			CT12 I 10 A_NoBlocking
+			CT12 J -1
+			Stop
+		}
+}	
+
+Actor CatacombAbyss_EyeShot : Catacomb_MagicMissileProjectile 
+{ 
+	Damage (Random(1,3))
+	Speed 15
+	States
+	{
+		Spawn:
+			CT10 IJ 2 BRIGHT
+			Loop
+		Death:
+			TNT1 A 5
+			Stop
+	}		
+}
+
+Actor CatacombAbyss_Wraith : CatacombTrilogy_EnemyBase 
+{
+	Health 50 
+	Speed 25
+	-SOLID
+	-SHOOTABLE
+	+NOBLOOD
+	Tag "Wraith"
+	Obituary "Our savior %o has fallen to a Wraith."	
+	States
+	{
+		Spawn:
+			TNT1 A 1 A_Look
+			Loop
+		See:
+			CT11 GFE 8
+			CT11 A 0 A_SetShootable
+			CT11 A 0 A_SetSolid
+			CT11 A 8 
+			Goto See2
+		See2:
+			CT11 AABB 2 A_Chase
+			Loop
+		Pain:
+			CT11 E 4 
+			CT11 E 4 A_Pain
+			Goto See2
+		Melee:
+			CT11 C 8 A_FaceTarget
+			CT11 D 8 A_CustomMeleeAttack(3, "Catacomb/XTerm", "Catacomb/XTerm", "CatacombDamage", true)
+			Goto See2
+		Death:
+		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			CT11 E 5 A_Scream
+			CT11 F 5 A_NoBlocking
+			CT11 G 5
+			TNT1 A -1
+			Stop
+	}
+}	

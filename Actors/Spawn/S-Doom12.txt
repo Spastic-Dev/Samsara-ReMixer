@@ -159,7 +159,10 @@ ACTOR PainElementalSpawnerCoop replaces PainElemental
 			Goto DeathForInvasion
 		SetTotenkopf:
 			TNT1 A 1 A_SpawnItemEx("TotenkopfMonk", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto DeathForInvasion			
+			Goto DeathForInvasion
+		SetCatacomb:
+			TNT1 A 1 A_SpawnItemEx("FakeHitler",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
 		SetNull:
 			TNT1 A 1 A_SpawnItemEx("EvilOttoWeak",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion

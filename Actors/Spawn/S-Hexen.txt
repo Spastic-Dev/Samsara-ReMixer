@@ -10,8 +10,24 @@ ACTOR Demon2Replacer : BaronOfHellSpawnerCoop replaces Demon2 {}
 ACTOR EttinReplacer : ZombiemanSpawnerCoop replaces Ettin {}
 ACTOR FireDemonReplacer : LostSoulSpawnerCoop replaces FireDemon {}
 ACTOR IceGuyReplacer : RevenantSpawnerCoop replaces IceGuy {}
-ACTOR SerpentReplacer : ShotgunGuySpawnerCoop replaces Serpent {} 
-ACTOR SerpentLeaderReplacer : ChaingunGuySpawnerCoop replaces SerpentLeader {}
+ACTOR SerpentReplacer : ShotgunGuySpawnerCoop replaces Serpent 
+{
+	States
+	{
+		SetCatacomb:
+			TNT1 A 1 A_SpawnItemEx("CatacombAbyss_WaterTroll",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto DeathForInvasion	
+	}		
+} 
+ACTOR SerpentLeaderReplacer : ChaingunGuySpawnerCoop replaces SerpentLeader
+{
+	States
+	{
+		SetCatacomb:
+			TNT1 A 1 A_SpawnItemEx("CatacombAbyss_WaterTroll",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
+			Goto DeathForInvasion	
+	}		
+} 
 ACTOR WraithReplacer : CacodemonSpawnerCoop replaces Wraith {}
 ACTOR WraithBuriedReplacer : PainElementalSpawnerCoop replaces WraithBuried {}
 ACTOR ClericBossReplacer : ArchvileSpawnerCoop replaces ClericBoss

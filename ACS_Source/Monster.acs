@@ -18,7 +18,7 @@
 #define MAXPLAYERS 64
 #define SKULLCOOLDOWNTID 1000
 
-#define CLASSCOUNT          27
+#define CLASSCOUNT          28
 
 #define MAX_RING_MONST 128
 #define RING_MONST_BASE_TID		1000000		// base TIDs for SW ring monsters' objects
@@ -37,7 +37,7 @@ int sumofirecount[MAXPLAYERS];
 str gameClassesSTR[CLASSCOUNT] = {
 	"DoomguyClass", "ChexClass", "CorvusClass", "WolfenClass", "HexenClass", "DukeClass", "MarathonClass", "QuakeClass", "RottClass", "BlakeClass",
 	"CalebClass", "StrifeClass", "EradClass", "C7Class", "RMRClass", "KatarnClass", "POGreedClass", "DisruptorClass", "WitchavenClass", 
-	"HalfLifeClass", "SWClass", "CMClass", "JonClass", "RRClass", "BittermanClass", "Hexen2Class", "BondClass"
+	"HalfLifeClass", "SWClass", "CMClass", "JonClass", "RRClass", "BittermanClass", "Hexen2Class", "BondClass", "CatacombClass"
 };
 
 int ClassWeapons[CLASSCOUNT][9] = 
@@ -151,8 +151,8 @@ int ClassWeapons[CLASSCOUNT][9] =
 		"notapplicable",
 		"notapplicable",
         "BlakeRefill",
-        "Heavy Assault Rifle",
-        "Rapid Assault Rifle",
+        "Heavy Assault Weapon",
+        "Rapid Assault Weapon",
         "Plasma Discharge Unit",
         "Dual Neutron Disruptor",
         "Anti-Plasma Cannon",
@@ -251,7 +251,7 @@ int ClassWeapons[CLASSCOUNT][9] =
 		"notapplicable",
 		"notapplicable",
 		"notapplicable",
-		"Pike Axe",
+		"Battle Axe",
 		"Ice Halberd",
 		"Fire Mace",
 		"Frozen two-hand sword",
@@ -328,7 +328,7 @@ int ClassWeapons[CLASSCOUNT][9] =
 		"notapplicable",
 		"notapplicable",
         "Hexen2IceMace",
-        "Hexen2AcidRune",
+        "Hexen2SpellBookMagicMissile",
         "Hexen2SpellBookBoneShard",
         "Hexen2FireRune",
         "Hexen2RavenStaff",
@@ -345,6 +345,17 @@ int ClassWeapons[CLASSCOUNT][9] =
         "Goldeneye_RCP90",
         "Goldeneye_Moonraker",
     },
+	{   // Petton Everhail
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "Catacomb_WavesQuickSpell",
+        "Catacomb_BurstsQuickSpell",
+        "Catacomb_ZappersQuickSpell",
+        "Catacomb_NukesQuickSpell",
+        "Catacomb_BoltsQuickSpell",
+        "Catacomb_Hourglass",
+    },		
 };
 
 str SlotDummies[6] = {
