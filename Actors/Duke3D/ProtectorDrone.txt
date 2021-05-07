@@ -681,26 +681,29 @@ Actor ProtectorDroneCorpse
 	}
 }
 
-actor AlienShrinkerAttack
+actor AlienShrinkerAttack : ShrinkMissile
 {
-  Radius 11
-  Height 8
-  Speed 25
-  damage 5
-  Projectile
-  +RANDOMIZE
-  DeathSound "shrinker/hit"
-  scale 0.6
-  decal Scorch
-  States
-  {
-  Spawn:
-    PR_D ABCD 2 bright
-    loop
-  Death:
-    PR_D EFGH 4 bright
-    stop
-  }
+	/*Radius 11
+	Height 8
+	Speed 25
+	damage 5
+	Projectile
+	+RANDOMIZE
+	DeathSound "shrinker/hit"
+	DamageType "ShrinkerDMG"
+	Damage 0
+	ExplosionDamage 0
+	scale 0.6
+	decal Scorch
+	States
+	{
+		Spawn:
+			PR_D ABCD 2 bright
+			loop
+		Death:
+			PR_D EFGH 4 bright
+			stop
+	}*/
 }
 
 ACTOR NewProtectorDrone
