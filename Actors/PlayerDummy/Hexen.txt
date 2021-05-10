@@ -63,22 +63,6 @@ actor HexenPlayer2 : HexenPlayer replaces HexenPlayer {
 			CLER NOP 6
 			CLER Q -1
 			Stop
-		DeathMage:
-			MGE2 H 6
-			MGE2 I 6 A_PlaySound("Mage/Death", CHAN_VOICE)
-			MGE2 JK 6
-			MGE2 L 6 A_NoBlocking
-			MGE2 MN 6
-			MGE2 N -1
-			Stop	
- 		DeathFighter:
-			FGT2 H 6
-			FGT2 I 6 A_PlaySound("Fighter/Death", CHAN_VOICE)
-			FGT2 JK 6
-			FGT2 L 6 A_NoBlocking
-			FGT2 MN 6
-			FGT2 N -1
-			Stop
 		XDeath:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)															
@@ -91,20 +75,6 @@ actor HexenPlayer2 : HexenPlayer replaces HexenPlayer {
 			CLER UVWXYZ 5
 			CLER [ -1
 			Stop		
-		 XDeathMage:
-			MGE2 O 5 A_PlaySound("Mage/XDeath", CHAN_BODY)
-			MGE2 P 5
-			MGE2 Q 5 A_NoBlocking
-			MGE2 RSTUVW 5
-			MGE2 X -1
-			Stop
-		XDeathFighter:
-			FGT2 O 5 A_PlaySound("Fighter/XDeath", CHAN_BODY)
-			FGT2 P 5
-			FGT2 Q 5 A_NoBlocking
-			FGT2 RSTUVW 5
-			FGT2 X -1
-			Stop
 		Death.RottExplosive:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)
