@@ -137,7 +137,8 @@ Script 668 (int spawncode, int override)
 	Switch(spawncode)
 	{
 		case 1:
-			//ACS_NamedExecuteAlways("Samsara_MonsterSpawn",0,0,0,0); uncomment this for stronghold support, will deal with later
+			if(SpawnForced("StrRainDrop",0,0,0,0))
+				ACS_NamedExecuteAlways("Samsara_MonsterSpawn",0,0,0,0); //uncomment this for stronghold support, will deal with later
 			if(GetCVar("mm_skilloverride") < 5)
 			{
 				multitoken = GetCVar("mm_skilloverride");
@@ -336,8 +337,9 @@ Script 669 (void)
 	int randomvalue;
 	int randnum;
 	int erroramount = 0;
-	int lastchosen = 0;
-	
+	int randombit;
+	int randomtotal;
+
 	if (GetCVar("mm_spawnmode") == 3)
 	{
 		selectloop = 0;
@@ -348,10 +350,14 @@ Script 669 (void)
 		
 		While (selectloop < randomvalue)
 		{
-			randnum = random(1, MAX_GAME_TYPES);
+			randombit = 1;
+			randnum = random(0, MAX_GAME_TYPES-1);
+			for(int b = 0; b < randnum; b++) { randombit *= 2; }
+			//PrintBold(s:gameTypesStr[randnum],s:" ",d:randombit,s:" ",d:randomtotal);
 			
-			if(!GetCVar(gameTypesStr[randnum])||lastchosen == randnum) { if(erroramount > 100){ selectloop = randnum; break; } else{erroramount++;} }
-					else { activesets[randnum-1] = true; selectloop++; erroramount = 0; lastchosen = randnum; }
+			if(!GetCVar(gameTypesStr[randnum])||randomtotal & randombit) { if(erroramount > 128){ selectloop = randnum; break; } else{erroramount++;} }
+					else { /*PrintBold(s:"Your set: ",s:gameTypesStr[randnum],s:" Amount of tries: ",d:erroramount);*/ activesets[randnum] = true; selectloop++; erroramount = 0; randomtotal += randombit; }
+			
 		}
 		randomallclear = 1;
 	}
