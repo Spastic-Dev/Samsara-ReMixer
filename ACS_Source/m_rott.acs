@@ -252,7 +252,8 @@ Script "LightningGuardSteal" (int action) // Lightning Guard steal script. Trust
 		}
 		break;
 	Case 3: //death
-		SpawnSpotForced(StoleDummies[CheckInventory("StoleWeapon")-1],0,0,0);
+		if(CheckInventory("StoleWeapon")-1 >= 0)
+			SpawnSpotForced(StoleDummies[CheckInventory("StoleWeapon")-1],0,0,0);
 		break;
 	}
 }
