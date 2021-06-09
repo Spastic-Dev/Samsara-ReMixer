@@ -3043,9 +3043,9 @@ Actor Catacomb3D_Nemesis : Catacomb3D_Enemybase //replaces Cyberdemon
             CT07 AAABBB 3 BRIGHT A_Chase
             Loop
 		Pain:
-            CT07 C 4 BRIGHT A_CustomMissile("Catacomb_NemesisSkull",32,0,0,8)
-            CT07 C 4 BRIGHT A_Pain
-            Goto See
+            CT07 D 4 BRIGHT
+            CT07 D 4 BRIGHT A_Pain
+            Goto Missile
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			CT07 AABB 2 Bright A_FaceTarget
@@ -3264,6 +3264,9 @@ Actor Catacomb3D_NemesisClone : Catacomb3D_Nemesis
 	+NOPAIN
 	States
 	{
+		See:		
+            CT07 AAABBB 3 BRIGHT A_Chase
+            Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			CT07 AABB 2 Bright A_FaceTarget
