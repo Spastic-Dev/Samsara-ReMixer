@@ -182,13 +182,13 @@ ACTOR WolfensteinSSSpawnerCoop replaces WolfensteinSS
 		SetCatacomb:
 			TNT1 A 0 A_Jump(128, "SetCatacomb2", "SetCatacomb3")
 			TNT1 A 1 A_SpawnItemEx("Hovertank3D_RedDemon", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto DeathForInvasion			
+			Goto DeathForInvasion
 		SetCatacomb2:
 			TNT1 A 1 A_SpawnItemEx("Hovertank3D_Squid", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto DeathForInvasion
 		SetCatacomb3:	
 			TNT1 A 1 A_SpawnItemEx("Hovertank3D_Hovertank", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto DeathForInvasion				
+			Goto DeathForInvasion
 		SetNull:
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
