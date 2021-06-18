@@ -1,0 +1,46 @@
+Script "RR_DoylePiss" (void)
+{
+	int inprange = 0;
+	int newtid = UniqueTid();
+	int montid = UniqueTid();
+	SpawnSpotFacingForced("PatrolPoint",0,newtid);
+	ACS_NamedExecuteWithResult("RR_DoylePatrolPointMove",newtid,0,0,0);
+	SetActivator(0,AAPTR_Target);
+	TakeInventory("RRDoylePissOff",1);
+	Thing_ChangeTid(0,montid);
+	Thing_SetGoal(montid,newtid,0,0);
+	//Thing_ChangeTid(newtid,0);
+	Thing_ChangeTid(montid,0);
+			
+	while(!inprange && !CheckInventory("RRDoylePissOff"))
+	{
+		int distancex = abs(GetActorX(newtid) - GetActorX(0))>>16;
+		int distancey = abs(GetActorY(newtid) - GetActorY(0))>>16;
+		int distancez = abs(GetActorZ(newtid) - GetActorZ(0))>>16;
+		int distance = magnitudeTwo(distancex, distancey);	
+				
+		if(distance <= 52 && distancez <= 52)
+		{
+			Thing_Remove(newtid);
+			SetActorState(0,"Pee",1);
+				inprange = 1;
+		}
+				
+		Delay(1);
+	}
+}
+
+Script "RR_DoylePatrolPointMove" (int newtid)
+{
+	int ptid = UniqueTid();
+	Thing_ChangeTid(0,ptid);
+	SetActivator(newtid,AAPTR_DEFAULT);
+	SetPointer(AAPTR_Tracer,ptid);
+	Thing_ChangeTid(ptid,0);
+	
+	while(ClassifyActor(0) != ACTOR_WORLD)
+	{
+		Warp(AAPTR_TRACER,0,0,0,0,WARPF_USEPTR|WARPF_NOCHECKPOSITION);
+		Delay(3);
+	}
+}

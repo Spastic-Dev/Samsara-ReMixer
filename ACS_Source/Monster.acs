@@ -468,6 +468,24 @@ Script "Samsara_SetSpeed" (int input)
 	SetResultValue(1);
 }
 
+Script "SamsaraMixer_PlayerDeath" Death
+{
+	int ptid = UniqueTid();
+	Thing_ChangeTid(0,ptid);
+	SetActivator(0,AAPTR_Target);
+	switch(CheckInventory("SamsaraMixerMonsterDeathScriptToken"))
+	{
+		case 1:
+			SetActivator(ptid,AAPTR_Default);
+			Thing_ChangeTid(ptid,0);
+			ACS_NamedExecuteWithResult("RR_DoylePiss",0,0,0,0);
+			break;
+		default:
+			Thing_ChangeTid(ptid,0);
+			break;		
+	}
+}
+
 #include "m_df.acs"
 #include "m_duke.acs"
 #include "m_ge.acs"
@@ -475,6 +493,7 @@ Script "Samsara_SetSpeed" (int input)
 #include "m_hl.acs"
 #include "m_q2.acs"
 #include "m_rott.acs"
+#include "m_rr.acs"
 #include "m_sw.acs"
 #include "m_vdr.acs"
 #include "m_witch.acs"
