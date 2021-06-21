@@ -21,8 +21,6 @@ Actor BloodBeast
 	DeathSound "BeastDie"
 	ActiveSound "BeastAct"
 	Obituary "%o would rather die than be cursed by a beast."
-	MeleeRange 32
-	MeleeDamage 9
 	PainChance "CalebFire", 0
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
@@ -61,12 +59,12 @@ Actor BloodBeast
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BESC ABC 6 A_FaceTarget
 		TNT1 A 0 A_PlaySound("BeastSlash")
-		BESC D 5 A_MeleeAttack
+		BESC D 5 A_CustomMeleeAttack(50, "Pitchfork/Flesh", none)
 		TNT1 A 0 A_JumpIfCloser(64, 1)
 		Goto See
 		BESC EFG 6 A_FaceTarget
 		TNT1 A 0 A_PlaySound("BeastSlash")
-		BESC H 5 A_MeleeAttack
+		BESC H 5 A_CustomMeleeAttack(50, "Pitchfork/Flesh", none)
 		BESC IJ 6 A_FaceTarget
 		Goto See
 	Pain.LifeLeech:
@@ -962,7 +960,7 @@ Actor BloodBeastStompBoom
 		Goto Death
 	Death:
 		TNT1 A 0 Radius_Quake(9,90,5,50,0)		
-		TNT1 A 5 A_Explode(60,400,0)
+		TNT1 A 5 A_Explode(150,240,0)
 		stop
 	}
 }
@@ -1038,11 +1036,8 @@ Actor BloodBeastStompBoom_Boss : BloodBeastStompBoom {
 			TNT1 A 0 A_Die
 			Goto Death
 		Death:
-			TNT1 A 0 Radius_Quake(20,200,5,200,0)		
-			TNT1 A 1 A_Explode(Random(5,10),400+Random(400,0),0)
-			TNT1 AA 1 A_Explode(Random(10,15),800+Random(400,0),0)
-			TNT1 AAA 1 A_Explode(15+Random(5,0),1200+Random(400,0),0)
-			TNT1 A 20
-			stop
+			TNT1 A 0 Radius_Quake(9,90,5,50,0)		
+			TNT1 A 5 A_Explode(150,240,0)
+			stop			
 	}
 }

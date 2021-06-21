@@ -5,9 +5,8 @@ Actor BloodRat
 	Height 8
 	Radius 10
 	Speed 12
-	Health 30
+	Health 2
 	MeleeRange 32
-	MeleeDamage 2
 	Species "Monster"
 	Seesound    "BloodRat/See"
 	Deathsound  "BloodRat/Die"
@@ -69,7 +68,7 @@ Actor BloodRat
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BRAT AA 1 A_FaceTarget
-		TNT1 A 0 A_MeleeAttack
+		TNT1 A 0 A_CustomMeleeAttack(4)
 		BRAT A 20
 		Goto See
 	Death:

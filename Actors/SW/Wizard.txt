@@ -1,6 +1,6 @@
 Actor SWWizard
 {
-  Health 105
+  Health 200
   Radius 20
   Height 56
   Speed 5
@@ -49,12 +49,12 @@ Actor SWWizard
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	WIZR E 5 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Guardian/Melee")
-	WIZR F 6 A_CustomMeleeAttack(Random(16,24)/Random(2,1), "Guardian/Hit", "")
+	WIZR F 6 A_CustomMeleeAttack(Random(20,40), "Guardian/Hit", "")
 	WIZR G 4
     Goto See
   Missile:
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-    TNT1 A 0 A_Jump(128, "Green")
+ //   TNT1 A 0 A_Jump(128, "Green")
 //	TNT1 A 0 A_JumpIfCloser(512, "Decide")
   Blue:
     WIZR II 5 A_FaceTarget
@@ -116,7 +116,10 @@ Actor SWWizard
 	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    
 	TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 	TNT1 A 0 A_NoBlocking
-	TNT1 A 5 A_SpawnItemEx("SWHumanGibSpawner")
+    TNT1 A 0 A_Jump(242,"J")	
+	TNT1 A 0 A_SpawnItemEx("SWGuardianHead", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
+  J:
+	TNT1 A 5 A_SpawnItemEx("SWEnemy_HumanGibSpawner")
 	TNT1 A -1
 	Stop
   Raise:
@@ -553,9 +556,12 @@ Actor SWWizardCorpse
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
-			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
-			stop
+			TNT1 A 0 A_Jump(242,"J")	
+			TNT1 A 0 A_SpawnItemEx("SWGuardianHead", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
+		  J:
+			TNT1 A 5 A_SpawnItemEx("SWHumanGibSpawner")
+			TNT1 A -1
+			Stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -879,7 +885,7 @@ actor SWWizard_ShrinkEffect : SWWizard
 
 Actor GuardianFireEnemyWeak : GuardianFireEnemy { 
 	Speed 22
-	Damage (Random(6,12))
+	Damage (Random(5,20))
 	DamageType ""
 	States {
 		Death:
@@ -905,17 +911,17 @@ Actor WizardFlamePillarSpawner : FlamePillarSpawner
 Actor WizardPillar : DarkNinjaPillar
 {
 	DamageType ""
-	Damage (7)
+	Damage (Random(16,33))
 	Speed 28
 	States
 	{
 		Spawn:
 			GHEP EF 3 Bright A_SpawnItem("PillarTinyTrail")
 			TNT1 A 0 A_PlaySound("Weapons/FlamePillar")
-			TNT1 A 0 A_Explode(6, 96, 0)
+			TNT1 A 0 A_Explode(Random(20,30), 96, 0)
 			TNT1 A 0 A_SpawnItem("WizardPillarTrail")
 			GHEP GH 3 Bright A_SpawnItem("PillarTinyTrail")
-			TNT1 A 0 A_Explode(6, 96, 0)
+			TNT1 A 0 A_Explode(Random(20,30), 96, 0)
 			TNT1 A 0 A_PlaySound("Weapons/FlamePillar")
 			TNT1 A 0 A_SpawnItem("WizardPillarTrail")
 			Loop
@@ -1006,7 +1012,7 @@ Actor WizardCircleFire
 	Height 10
 	DamageType ""
 	Speed 8
-	Damage (2)
+	Damage (Random(8,25))
 	+THRUSPECIES	
 	States
 	{
@@ -1023,7 +1029,6 @@ Actor TIDAssigned : Inventory {	inventory.maxamount 1 }
 
 Actor GuardianFireEnemyG : GuardianFireEnemy
 {
-	Damage (Random(12,23))
 	Height 9
 	Radius 6
 	Scale 0.4
@@ -1118,7 +1123,7 @@ Actor WizardSpread2G_R : WizardSpread2_R { Damage (16) }
 
 Actor SWWizardGray : SWWizard
 {
-  Health 450
+  Health 200
   PainChance 70
   +BOSSDEATH
   States
@@ -1144,12 +1149,12 @@ Actor SWWizardGray : SWWizard
   Melee:
 	WIZ2 E 5 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Guardian/Melee")
-	WIZ2 F 6 A_CustomMeleeAttack(Random(16,24), "Guardian/Hit", "")
+	WIZ2 F 6 A_CustomMeleeAttack(Random(20,40), "Guardian/Hit", "")
 	WIZ2 G 4
     Goto See
   Missile:
-    TNT1 A 0 A_Jump(128, "Green")
-	TNT1 A 0 A_JumpIfCloser(512, "Decide")
+//    TNT1 A 0 A_Jump(128, "Green")
+//	TNT1 A 0 A_JumpIfCloser(512, "Decide")
   Blue:
     WIZ2 II 5 A_FaceTarget
 	TNT1 A 0 A_CustomMissile("GuardianFireEnemyWeak", 48, -6)
@@ -1195,7 +1200,10 @@ Actor SWWizardGray : SWWizard
 	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    
 	TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 	TNT1 A 0 A_NoBlocking
-	TNT1 A 5 A_SpawnItemEx("SWHumanGibSpawner")
+    TNT1 A 0 A_Jump(242,"J")	
+	TNT1 A 0 A_SpawnItemEx("SWGuardianHead", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
+  J:
+	TNT1 A 5 A_SpawnItemEx("SWEnemy_HumanGibSpawner")
 	TNT1 A -1 A_KillMaster
 	Stop
   Raise:
@@ -1656,9 +1664,12 @@ Actor SWWizardGrayCorpse
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
-			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
-			stop
+			TNT1 A 0 A_Jump(242,"J")	
+			TNT1 A 0 A_SpawnItemEx("SWGuardianHead", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
+		  J:
+			TNT1 A 5 A_SpawnItemEx("SWHumanGibSpawner")
+			TNT1 A -1
+			Stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -1984,7 +1995,7 @@ actor SWWizardGray_ShrinkEffect : SWWizardGray
 
 Actor SWWizardRed : SWWizardGray
 {
-  Health 710
+  Health 200
   PainChance 50
   States
   {
@@ -2009,12 +2020,12 @@ Actor SWWizardRed : SWWizardGray
   Melee:
 	WIZ3 E 5 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Guardian/Melee")
-	WIZ3 F 6 A_CustomMeleeAttack(Random(16,24)+Random(12,0), "Guardian/Hit", "")
+	WIZ3 F 6 A_CustomMeleeAttack(Random(20,40), "Guardian/Hit", "")
 	WIZ3 G 4
     Goto See
   Missile:
-    TNT1 A 0 A_Jump(128, "Green")
-	TNT1 A 0 A_JumpIfCloser(512, "Decide")
+//    TNT1 A 0 A_Jump(128, "Green")
+//	TNT1 A 0 A_JumpIfCloser(512, "Decide")
   Blue:
     WIZ3 II 5 A_FaceTarget
 	TNT1 A 0 A_CustomMissile("GuardianFireEnemyStrong", 48, -6)	
@@ -2060,7 +2071,10 @@ Actor SWWizardRed : SWWizardGray
 	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    
 	TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 	TNT1 A 0 A_NoBlocking
-	TNT1 A 5 A_SpawnItemEx("SWHumanGibSpawner")
+    TNT1 A 0 A_Jump(242,"J")	
+	TNT1 A 0 A_SpawnItemEx("SWGuardianHead", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
+  J:
+	TNT1 A 5 A_SpawnItemEx("SWEnemy_HumanGibSpawner")
 	TNT1 A -1 A_KillMaster
 	Stop
   Raise:
@@ -2409,9 +2423,12 @@ Actor SWWizardRedCorpse
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
-			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
-			stop
+			TNT1 A 0 A_Jump(242,"J")	
+			TNT1 A 0 A_SpawnItemEx("SWGuardianHead", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
+		  J:
+			TNT1 A 5 A_SpawnItemEx("SWHumanGibSpawner")
+			TNT1 A -1
+			Stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)

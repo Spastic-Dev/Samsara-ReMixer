@@ -51,7 +51,7 @@ Actor BloodGargoyle
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Stop	
 		BGAR EFG 3 A_FaceTarget
-		BGAR H 3 A_CustomMeleeAttack(5*random(1,7),"GargoyleMelee")
+		BGAR H 3 A_CustomMeleeAttack(16,"GargoyleMelee")
 		BGAR I 8 A_FaceTarget
 		Goto See
 	Missile:
@@ -917,7 +917,7 @@ ACTOR GargoyleBone
 	Speed 16
 	FastSpeed 24
 	SeeSound "Cultists/Toss"
-	Damage (Random(3,12)*Random(2,1))
+	Damage (10+Random(0,10))
 	PROJECTILE
 	+RANDOMIZE
 	States 

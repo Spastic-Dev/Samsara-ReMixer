@@ -1,6 +1,6 @@
 Actor SWNinja
 {
-	Health 70
+	Health 40
 	Radius 20
 	Height 56
 	Speed 8
@@ -68,13 +68,13 @@ Actor SWNinja
 		TNT1 A 0 A_Jump(96, "Shuriken")
 		NINJ E 4 A_FaceTarget
 		TNT1 A 0 A_SpawnItemEx("SWBulletCasingSpawner",cos(-pitch)*30,15,28+sin(-pitch)*30)		
-		NINJ F 4 Bright A_CustomBulletAttack(4.8, 3.2, 1, random(3,5), "BulletPuffSW", 0, CBAF_NORANDOM)
+		NINJ F 4 Bright A_CustomBulletAttack(4.8, 3.2, 1, random(5,7), "BulletPuffSW", 0, CBAF_NORANDOM)
 		NINJ E 4 A_FaceTarget
 		TNT1 A 0 A_SpawnItemEx("SWBulletCasingSpawner",cos(-pitch)*30,15,28+sin(-pitch)*30)		
-		NINJ F 4 Bright A_CustomBulletAttack(4.8, 3.2, 1, random(3,5), "BulletPuffSW", 0, CBAF_NORANDOM)
+		NINJ F 4 Bright A_CustomBulletAttack(4.8, 3.2, 1, random(5,7), "BulletPuffSW", 0, CBAF_NORANDOM)
 		NINJ E 4 A_FaceTarget
 		TNT1 A 0 A_SpawnItemEx("SWBulletCasingSpawner",cos(-pitch)*30,15,28+sin(-pitch)*30)		
-		NINJ F 4 Bright A_CustomBulletAttack(4.8, 3.2, 1, random(3,5), "BulletPuffSW", 0, CBAF_NORANDOM)
+		NINJ F 4 Bright A_CustomBulletAttack(4.8, 3.2, 1, random(5,7), "BulletPuffSW", 0, CBAF_NORANDOM)
 		NINJ E 4
 		Goto See
 	Shuriken:
@@ -1101,7 +1101,6 @@ actor SWNinja_ShrinkEffect : SWNinja
 actor ShurikenShotNinja : SWThrownShuriken
 {
 	Obituary "%o was killed by a pesky ninja."
-	Damage (random(6,8))
 	DamageType ""
 	BounceSound "sw/shuriken_clank"
 	States
@@ -1153,7 +1152,7 @@ Actor NinjaBodyFlyBrown
 
 Actor NinjaRed : SWNinja 
 {
-  Health 300
+  Health 160
   AttackSound "Ninja/Uzi2"
   Obituary "%o was killed by a red belt ninja."
   PainChance 96
@@ -2288,7 +2287,6 @@ Actor NinjaBodyFlyRed : NinjaBodyFlyBrown
 
 Actor HeavyMissileWeak : HeavyMissile
 {
-	Damage (14*Random((Random(2,3)),1))
 	Speed 24
 	Obituary "%o was killed by a red belt ninja."
 	SeeSound "Weapons/MissileLaunch"
@@ -2296,7 +2294,7 @@ Actor HeavyMissileWeak : HeavyMissile
 	States
 	{
 		Death:
-			TNT1 A 0 A_Explode(16*Random(2,1), 128)
+			TNT1 A 0 A_Explode(Random(40,60), 128)
 			TNT1 A 0 A_PlaySound("Weapons/MissileHitX")
 			TNT1 A 5 A_SpawnItem("BigMissileExplosion")
 			Stop
@@ -2306,6 +2304,7 @@ Actor HeavyMissileWeak : HeavyMissile
 Actor HeavyMissileSeekingWeak : HeavyMissileWeak
 {
 	Obituary "%o was killed by an orange belt ninja."
+	Damage (Random(15,30))
 	+SEEKERMISSILE
 	Speed 22	
 	States
@@ -2324,7 +2323,7 @@ Actor HeavyMissileSeekingWeak : HeavyMissileWeak
 
 Actor NinjaOrange : NinjaRed 
 {
-	Health 375
+	Health 160
 	+DONTRIP
 	+FLOORCLIP
 	+NOINFIGHTING
@@ -3300,7 +3299,7 @@ Actor NinjaBodyFlyOrange : NinjaBodyFlyBrown
 Actor NinjaGray : NinjaRed 
 {
 	Tag "Evil Ninja"
-	Health 425
+	Health 160
 	AttackSound "Ninja/Uzi2"
 	Obituary "%o was killed by a gray belt ninja."
 	PainChance 96
@@ -4260,7 +4259,7 @@ Actor SWGrenadeWeak
 	Speed 28
 	Radius 7
 	Height 12
-	Damage (Random(7,11)*Random(3,1))
+	Damage (Random(15,30))
 	scale 0.6
 	Reactiontime 255
 	DamageType ""
@@ -4276,7 +4275,7 @@ Actor SWGrenadeWeak
 		Loop
 	Death:
 		SP20 A 0 Radius_Quake(2,45,0,9,0)
-		TNT1 A 0 A_Explode(8*Random((Random(2,3)),1),60+Random((Random(80,20)),0))
+		TNT1 A 0 A_Explode(70,60)
 		SP20 A 0 A_PlaySound("sw/grenade_boom",CHAN_BODY)
 		SP20 B 1 bright A_SpawnItemEx("SWGrenadeWeakBoom")
 		SP20 CD 1 bright A_SpawnItemEx("SWGrenadeWeakMiniBoom",random(-30,30),random(-30,30))
@@ -4348,7 +4347,7 @@ Actor NinjaBodyFlyGray : NinjaBodyFlyBrown
 Actor NinjaDark : NinjaRed 
 {
 	Tag "Shadow Ninja"
-	Health 650
+	Health 160
 	Mass 160
 	AttackSound "Ninja/Uzi2"
 	Obituary "%o was killed by a dark ninja."
@@ -5437,7 +5436,7 @@ Actor NinjaBodyFlyDark : NinjaBodyFlyBrown
 Actor DarkNinjaSpread
 {
 	PROJECTILE
-	Damage (18*Random(2,1))
+	Damage (0)
 	Speed 28
 	Radius 9
 	Height 10
@@ -5463,6 +5462,7 @@ Actor DarkNinjaSpread
 			TNT1 A 0 A_CustomMissile("DarkNinjaSpread2", 0, 0, 270, CMF_AIMDIRECTION | CMF_TRACKOWNER)			
 			Loop
 		Death:
+			TNT1 A 0 A_Explode(Random(100,150), 256)
 			TNT1 A 0 A_StopSound(5)
 			TNT1 A 0 A_PlaySound("Weapons/MissileHitX")
 			DNIN EFGHI 5 Bright
@@ -5472,7 +5472,6 @@ Actor DarkNinjaSpread
 
 Actor DarkNinjaSpread2 : DarkNinjaSpread
 {
-	Damage (8)
 	Speed 32
 	Xscale 0.8
 	YScale 0.6
@@ -5501,16 +5500,17 @@ Actor DarkNinjaPillar : PillarOfFlame
 {
     DamageType ""
 	Speed 32
+	Damage (Random(25,50))
 	Scale 0.55
 	States
 	{
 		Spawn:
 			GHEP EF 3 Bright A_SpawnItem("PillarTinyTrail")
-			TNT1 A 0 A_Explode(40/Random(2,1), 84, 0)
+			TNT1 A 0 A_Explode(Random(30,45), 84, 0)
 			TNT1 A 0 A_PlaySound("Weapons/FlamePillar")
 			TNT1 A 0 A_SpawnItem("DarkNinjaPillarTrail")
 			GHEP GH 3 Bright A_SpawnItem("PillarTinyTrail")
-			TNT1 A 0 A_Explode(20, 84, 0)
+			TNT1 A 0 A_Explode(Random(30,45), 84, 0)
 			TNT1 A 0 A_PlaySound("Weapons/FlamePillar")
 			TNT1 A 0 A_SpawnItem("DarkNinjaPillarTrail")
 			Loop

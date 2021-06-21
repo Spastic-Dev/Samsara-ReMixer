@@ -1,7 +1,7 @@
 Actor Butcher 
 {
 	Tag "Bloated Butcher"
-	Health 400
+	Health 308
 	Radius 20
 	Height 56
 	Speed 5
@@ -46,7 +46,7 @@ Actor Butcher
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BBUT GH 6 A_FaceTarget
-		BBUT I 5 A_CustomMeleeAttack(6*random(1,5),"butcher/cleaver","butcher/cleaver","Normal",1)
+		BBUT I 5 A_CustomMeleeAttack(9,"butcher/cleaver","butcher/cleaver","Normal",1)
 		BBUT J 7 A_FaceTarget
 		Goto See
 	Missile:
@@ -876,7 +876,7 @@ Actor ButcherVomit
 	Radius 8
 	Height 6
 	Speed 20
-	Damage 5
+	Damage (15+Random(0,7))
 	Scale 0.45
 	Alpha 0.3
 	PROJECTILE
@@ -898,7 +898,7 @@ ACTOR ButcherCleaver
 	Radius 6
 	Height 8
 	Speed 8
-	Damage (Random(4,26)/Random(2,1))
+	Damage (10+Random(0,10))
 	PROJECTILE
 	+RANDOMIZE
 	Scale 0.65

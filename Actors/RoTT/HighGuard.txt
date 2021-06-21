@@ -1,5 +1,5 @@
 ACTOR HighGuard : RoTTHumanoid {
-   Health 80
+   Health 50
    Speed 5
    SCALE 0.60
    SeeSound "hguardsee"
@@ -38,10 +38,10 @@ ACTOR HighGuard : RoTTHumanoid {
 		HIGH N 8 
 	KeepFiring:
 		TNT1 A 0 A_FaceTarget
-		HIGH O 3 Bright A_CustomBulletAttack(13.0,0,1,4,"RottPuff",0)
+		HIGH O 3 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
 		HIGH P 3
 		TNT1 A 0 A_FaceTarget
-		HIGH O 3 Bright A_CustomBulletAttack(13.0,0,1,4,"RottPuff",0)
+		HIGH O 3 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
 		HIGH P 1 A_GiveInventory("AttackDecider_2", 1)
 		HIGH P 2 A_JumpIfInventory("DoAttack", 1, "Repeat")
 		Goto See

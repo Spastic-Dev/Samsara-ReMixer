@@ -1,7 +1,7 @@
 Actor GillBeast
 {
 	Tag "Gill Beast"
-	Health 225
+	Health 200
 	Radius 20
 	Height 64
 	Speed 7
@@ -22,7 +22,6 @@ Actor GillBeast
 	ActiveSound "gillbeastact"
 	Obituary "%o was eaten by a Gill Beast."
 	BloodType "NashGore_Blood_Monolith"		
-	MeleeDamage 6
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -43,7 +42,7 @@ Actor GillBeast
 		TMT1 A 0 A_Recoil(-4)	
 		TNT1 A 0 A_PlaySound("HellHound/BiteHit")
 		GILB A 6 A_FaceTarget
-		GILB B 5 A_MeleeAttack
+		GILB B 5 A_CustomMeleeAttack(9,"Pitchfork/Flesh", none)
 		GILB C 7 A_FaceTarget
 		Goto See
 	Pain:

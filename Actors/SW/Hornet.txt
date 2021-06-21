@@ -1,6 +1,6 @@
 actor SWHornetWasp {
 	MONSTER
-	Health 1
+	Health 4
 	SeeSound ""
 	AttackSound ""
 	PainSound ""
@@ -53,7 +53,7 @@ actor SWHornetWasp {
         Loop
 	  Melee:
 		TNT1 A 0 A_FaceTarget
-		TNT1 A 0 A_CustomMeleeAttack(3,"hornetw/att","")
+		TNT1 A 0 A_CustomMeleeAttack(Random(5,10),"hornetw/att","")
 		Goto WanderAround
 	  WanderAround:
 		TNT1 A 0 A_Jump(128,"DerpAround","See")

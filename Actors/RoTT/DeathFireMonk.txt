@@ -1,5 +1,5 @@
 ACTOR MonkDeathFire {
-   Health 325
+   Health 250
    Radius 20
    Height 60
    Speed 4
@@ -570,7 +570,7 @@ actor MonkMissile {
     Radius 11
     Height 8
     Speed 30
-    Damage (random(10, 30))
+    Damage (0)
     Damagetype "Flame"
     SCALE 0.50
     PROJECTILE
@@ -584,7 +584,7 @@ actor MonkMissile {
 			DMNK ABCD 2 Bright A_CustomMissile("MissileTrail",0,0,0,0)     
 			Loop
 		Death:  
-			EXPL A 2 Bright A_Explode(30,90)
+			EXPL A 2 Bright A_Explode(50,90)
 			EXPL BCDEFGHIJKLMNOPQRST 2 Bright
 			Stop
     }

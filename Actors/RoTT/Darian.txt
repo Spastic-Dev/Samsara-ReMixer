@@ -1,5 +1,5 @@
 ACTOR GeneralDarian : RoTTHumanoid {
-   Health 750
+   Health 2300
    Height 64
    Speed 5
    Mass 5000
@@ -368,7 +368,7 @@ ACTOR GeneralDarian : RoTTHumanoid {
 
 actor DarianMissile : BcraftMissile {
     Speed 28
-    Damage (3*random(4, 8))
+    Damage (0)
 	Scale 0.5
 	ActiveSound "missile/fly"
     States {
@@ -379,11 +379,10 @@ actor DarianMissile : BcraftMissile {
         MISS AAAAAAAAAAAAAA 1 Bright A_CustomMissile("MissileTrail",0,0,0,0)
         Loop
     Death:
-		TNT1 A 0 A_Explode(32, 96, 0)
         EXPL AAB 1 Bright
 		TNT1 A 0 A_RadiusThrust(2000, 96)
 		EXPL BCC 1 Bright
-		TNT1 A 0 A_Explode(32, 96, 0)
+		TNT1 A 0 A_Explode(50, 96, 0)
 		EXPL DDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTT 1 Bright
         Stop
     }

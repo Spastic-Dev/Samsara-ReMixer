@@ -1,6 +1,6 @@
 Actor MasterZilla
 {
-	Health 5500
+	Health 6000
 	Radius 30
 	Height 80
 	Mass 5000
@@ -404,7 +404,7 @@ Actor MasterRailgun : FastProjectile
 	Speed 600
 	Radius 10
 	Height 8
-	Damage (random(2,12))
+	Damage (random(37,50))
 	Alpha 0.6
 	Renderstyle Add
 	Obituary "%o was railed by Master Zilla"
@@ -418,7 +418,7 @@ Actor MasterRailgun : FastProjectile
 			TNT1 A 1
 			Loop
 		Death:
-			TNT1 A 0 A_Explode(random(9,64), 128)		
+			TNT1 A 0 A_Explode(random(10,25), 128)		
 			TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("SWRailgunParticles", random(-8, 8), random(-8, 8), random(-2, 2), random(-4, 4), random(-4, 4), random(-2, 2), random(0, 359))
 			WMI4 ABCDEFGHIJKLMNOPQ 1 Bright	
 			Stop
@@ -426,7 +426,6 @@ Actor MasterRailgun : FastProjectile
 }
 Actor MasterNormalRocket : HeavyMissile
 {
-	Damage (20)
 	Radius 8
 	Height 8
 	Speed 18
@@ -439,17 +438,11 @@ Actor MasterNormalRocket : HeavyMissile
 	Spawn:
 		SP51 A 1 Bright A_CustomMissile("HeavyRocketTrail",0,0,0)
 		Loop
-	Death:
-		SP51 A 0 A_Explode(50,128)
-		SP51 A 0 A_SpawnItemEx("BigMissileExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-		TNT1 A 10 Radius_Quake(5,12,0,25,0)
-		Stop
 	}
 } 
 
 Actor MasterSeekerRocket : HeavyMissileGuided
 {
-	Damage (15*Random(2,1))
 	Radius 8
 	Height 8
 	Speed 18
@@ -470,11 +463,5 @@ Actor MasterSeekerRocket : HeavyMissileGuided
 		HROC A 1 Bright A_SeekerMissile(20,10,0,256)
 		HROC A 1 Bright A_CustomMissile("HeavyRocketTrail",0,0,0)
 		Loop
-	Death:
-		TNT1 A 0 A_StopSound(5)
-		HROC A 0 A_Explode(43,128)
-		HROC A 0 A_SpawnItemEx("BigMissileExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-		TNT1 A 10 Radius_Quake(5,12,0,25,0)
-		Stop
 	}
 }

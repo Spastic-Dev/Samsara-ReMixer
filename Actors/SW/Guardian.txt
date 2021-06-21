@@ -1,6 +1,6 @@
 Actor SWGuardian
 {
-  Health 825
+  Health 200
   Radius 24
   Height 64
   Speed 9
@@ -50,7 +50,7 @@ Actor SWGuardian
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	GUAR E 5 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Guardian/Melee")
-	GUAR F 6 A_CustomMeleeAttack(random(30,50), "Guardian/Hit", "")
+	GUAR F 6 A_CustomMeleeAttack(random(20,40), "Guardian/Hit", "")
 	GUAR G 4
     Goto See
   Missile:
@@ -93,7 +93,7 @@ Actor SWGuardian
     GUAR L 6 A_NoBlocking
     GUAR MNOPQ 6
     GUAR R 0 A_KillMaster
-    GUAR R 0 A_SpawnItemEx("GuardianCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+    GUAR R 0 A_SpawnItemEx("SWGuardianCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 	TNT1 A -1
 	stop  
   XDeath:
@@ -537,9 +537,12 @@ Actor SWGuardianCorpse
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
-			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
-			stop
+			TNT1 A 0 A_Jump(242,"J")	
+			TNT1 A 0 A_SpawnItemEx("SWGuardianHead", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
+		  J:
+			TNT1 A 5 A_SpawnItemEx("SWEnemy_DemonGibSpawner")
+			TNT1 A -1
+			Stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
 			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
@@ -818,7 +821,7 @@ actor SWGuardian_ShrinkEffect : SWGuardian
 Actor GuardianFireEnemy : GuardHeadFire
 {
     DamageType ""
-	Damage (12/random(1,(2+Random(1,0))))
+	Damage (Random(5,20))
 	Height 9
 	Radius 4
 	Scale 0.27

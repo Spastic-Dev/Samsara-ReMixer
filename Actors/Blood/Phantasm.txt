@@ -1,6 +1,6 @@
 Actor BloodPhantasm
 { 
-	Health 200
+	Health 260
 	Speed 10
 	FastSpeed 3
 	Radius 31
@@ -101,7 +101,7 @@ Actor BloodPhantasm
 		TNT1 A 0 A_SetTranslucent(1,0)
 		TNT1 A 0 A_SetShootable
 		PHAN FFFGGGHHH 2 A_FaceTarget
-		PHAN I 2 A_CustomMeleeAttack(Random(12,48),"Phantasm/Swing","")
+		PHAN I 2 A_CustomMeleeAttack(20,"Phantasm/Swing","")
 		PHAN IIJJJJJJ 2 
 		Goto See
 	Pursue:
@@ -404,7 +404,7 @@ Actor DSPHAMt
 	Radius 6
 	Height 8
 	Speed 15
-	Damage (random(6,25)+Random(15,0))
+	Damage (25+Random(0,10))
 	Scale 0.6
 	PROJECTILE
 	+SEEKERMISSILE

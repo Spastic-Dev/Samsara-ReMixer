@@ -1,6 +1,6 @@
 Actor HellHound
 {
-	Health 80
+	Health 180
 	Radius 20
 	Height 48
 	Speed 10
@@ -45,7 +45,7 @@ Actor HellHound
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HOUN H 4 A_FaceTarget
 		HOUN I 5 A_FaceTarget
-		HOUN C 6 A_CustomMeleeAttack(2*random(2, 4), "hellhound/bite", "Hellhound/bitehit")
+		HOUN C 6 A_CustomMeleeAttack(10, "hellhound/bite", "Hellhound/bitehit")
 		Goto See
 	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
@@ -844,7 +844,7 @@ ACTOR HellHoundFire
 	Speed 10
 	Scale 0.18
 	DamageType "Fire"
-	Damage (random(2,4)/Random(2,1))
+	Damage (8)
 	PROJECTILE
 	+RANDOMIZE
 	+RIPPER

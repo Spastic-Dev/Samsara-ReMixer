@@ -10,7 +10,7 @@ Actor ExplosiveDiskJr  {
     Radius 18
     Height 14
     Scale 0.74
-	Health 20
+	Health 2
 	Species "Enemies"
     Tag "Explosive Disk Jr."	
 	ActiveSound ""
@@ -40,11 +40,11 @@ Actor ExplosiveDiskJr  {
 		 KeepFiring:
 		   TNT1 A 0 A_FaceTarget
 		   TNT1 A 0 A_PlaySound("OP_FIRE",CHAN_WEAPON)
-		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
 		   RNME O 3
 		   TNT1 A 0 A_FaceTarget
 		   TNT1 A 0 A_PlaySound("OP_FIRE",CHAN_WEAPON)		   
-		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
 		   RNME O 1 A_GiveInventory("AttackDecider_2", 1)
 		   RNME O 2 A_JumpIfInventory("DoAttack", 1, "Repeat")
 		   Goto See
@@ -198,7 +198,7 @@ Actor ExplosiveDiskSr  {
     Radius 12
     Height 15
 	Scale 0.92
-	Health 120
+	Health 2
     Tag "Explosive Disk"	
 	ActiveSound ""
 	DeathSound "NME/Hit"
@@ -230,13 +230,13 @@ Actor ExplosiveDiskSr  {
 	    KeepFiring:
 		   TNT1 A 0 A_FaceTarget
 		   TNT1 A 0 A_PlaySound("E_BIGEMP",CHAN_WEAPON)
-		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
 		   RNME O 3
 		   TNT1 A 0 A_FaceTarget
-		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
 		   RNME O 3
 		   TNT1 A 0 A_FaceTarget
-		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,1,"RottPuff",0)		   
+		   RNME N 3 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)	   
 		   RNME O 1 A_GiveInventory("AttackDecider_2", 1)
 		   RNME O 2 A_JumpIfInventory("DoAttack", 1, "Repeat")
 		   Goto See

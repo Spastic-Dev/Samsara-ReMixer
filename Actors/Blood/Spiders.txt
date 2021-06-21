@@ -1,6 +1,6 @@
 Actor MotherSpider 
 {
-	Health 675
+	Health 450
 	Radius 48
 	Height 56
 	Speed 12
@@ -63,7 +63,7 @@ Actor MotherSpider
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		SPDF A 5 A_FaceTarget
-		SPDF B 5 A_CustomMeleeAttack(4*random(3,6),"","")
+		SPDF B 5 A_CustomMeleeAttack(8,"","")
 		SPDW A 5
 		Goto See
 	Pain:
@@ -752,7 +752,7 @@ actor MotherSpider_ShrinkEffect : MotherSpider
 Actor BloodSpider1
 {
 	Tag "Spider"
-	Health 15
+	Health 16
 	Radius 18
 	Height 20
 	Speed 10
@@ -801,14 +801,14 @@ Actor BloodSpider1
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BL74 A 5 A_FaceTarget
 		TNT1 A 0 A_JumpIfCloser(64, "Blindness")		
-		BL74 G 5 A_CustomMeleeAttack(2*random(1,4))
+		BL74 G 5 A_CustomMeleeAttack(8)
 		BL74 A 5
 		Goto See
 	Blindness:	
 		TNT1 A 0 A_Jump(168,2)
 		TNT1 A 0 A_GiveToTarget("BloodSpiderShadowEffect",1)
 		TNT1 A 0
-		BL74 G 5 A_CustomMeleeAttack(2*random(1,4))
+		BL74 G 5 A_CustomMeleeAttack(8)
 		BL74 A 5
 		Goto See	
 	Pain:
@@ -1180,7 +1180,7 @@ Actor BloodSpider1
 Actor BloodSpider2 : BloodSpider1
 {
 	Tag "Spider"
-	Health 10
+	Health 3
 	Radius 15
 	Height 20
 	Speed 10
@@ -1226,7 +1226,7 @@ Actor BloodSpider2 : BloodSpider1
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BL76 A 5 A_FaceTarget
-		BL76 G 5 A_CustomMeleeAttack(2*random(1,4))
+		BL76 G 5 A_CustomMeleeAttack(8)
 		BL76 A 5
 		Goto See
 	Pain:
