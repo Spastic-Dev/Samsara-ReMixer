@@ -1,4 +1,4 @@
-Script 2518 (void)
+Script "DFDarkSide" (void) //2518
 {
 	SetActivator(0,AAPTR_TARGET);
 	If(CheckInventory("IsSamsaraClass") == 1)
@@ -8,17 +8,18 @@ Script 2518 (void)
 	}
 }
 
-Script 2519 (void)
+Script "DF2519" (void) //2519
 {
 	SetActivator(0,AAPTR_MASTER);
 	ChangeCamera(0,0,0);
 	terminate;
 }
 
-Script 2527 (void)
+Script "DFSummonClone" (void) //2527
 {
 
-	str ClassesAISTR[CLASSCOUNT] = {
+	str ClassesAISTR[CLASSCOUNT] =
+	{
 	"Doom_AI", "Chex_AI", "Corvus_AI", "Blaskowicz_AI", "Parias_AI", "Duke_AI", "SecurityOfficer_AI", "Ranger_AI", "IPFreeley_AI", "Blake_AI",
 	"Caleb_AI", "StrifeGuy_AI", "Eleena_AI", "Corridor7_AI", "RMR_AI", "Katarn_AI", "POGreed_AI", "Jack_AI", "Grondoval_AI", 
 	"Freeman_AI", "LoWang_AI", "Cybermage_AI", "Jon_AI", "Leonard_AI", "Bitterman_AI"
@@ -50,13 +51,13 @@ Script 2527 (void)
 	}
 }
 
-Script 2528 (void) // Jerec Death Effects need this script because of Zandronum being outdated
+Script "DFJerecDeathFX" (void) // Jerec Death Effects need this script because of Zandronum being outdated -- 2528
 {
 	SetActorProperty(0, APROP_RenderStyle, STYLE_STENCIL);
 	SetActorProperty(0, APROP_StencilColor, 0xFFFF00);
 }
 
-Script 2529 (void) // Decorate with Jerec's grip is kinda broken so I think I want to see what an ACS script can do about it
+Script "DFJerecGrip" (void) // Decorate with Jerec's grip is kinda broken so I think I want to see what an ACS script can do about it -- 2529
 {
 	SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
 	Delay(20);

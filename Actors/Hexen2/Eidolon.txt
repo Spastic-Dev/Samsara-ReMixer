@@ -19,7 +19,7 @@ Actor Hexen2Eidolon : Hexen2BossBase
 		Spawn:
 			HX04 A 0
 			HX04 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			HX04 A 1 ACS_ExecuteAlways(668,0,1,0)
+			HX04 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			HX04 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 			HX04 ABCDEFGHIJKLMNOP 2 A_Look

@@ -65,11 +65,11 @@ ACTOR SebastianKrist : RoTTHumanoid {
 	   Spawn:
 			KRIS A 0
 			KRIS A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			KRIS A 1 ACS_ExecuteAlways(668,0,1,0)
+			KRIS A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			KRIS A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 	        TNT1 A 0
-		    TNT1 A 0 ACS_ExecuteAlways(801, 0, Krist_ID, 0)
+		    TNT1 A 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 0)
 	   SpawnLoop:
 		    KRIS A 10 A_Look
 		    Loop
@@ -79,7 +79,7 @@ ACTOR SebastianKrist : RoTTHumanoid {
 	   See:
 		    TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "SeenPlayer")
 		    TNT1 A 0 A_GiveInventory("SawPlayer", 1)
-//		    TNT1 A 0 ACS_ExecuteAlways(801, 0, Krist_ID, 1)
+//		    TNT1 A 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 1)
 		    TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 		    TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
 		    TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
@@ -97,14 +97,14 @@ ACTOR SebastianKrist : RoTTHumanoid {
 	   TurnLeft:
 		    TNT1 A 0 A_PlaySound("Krist/Turn", 6)
 	   LeftLoop:
-	        TNT1 A 0 ACS_ExecuteWithResult(800, 0)
+	        TNT1 A 0 ACS_NamedExecuteWithResult("RoTTKrist", 0)
 		    KRIS QQ 1 A_SetAngle(angle - 8)
 		    TNT1 A 0 A_JumpIfInventory("ChargeSignal", 1, "Straight")
 	        Loop
 	   TurnRight:
 	        TNT1 A 0 A_PlaySound("Krist/Turn", 6)
 	   RightLoop:
-	        TNT1 A 0 ACS_ExecuteWithResult(800, 0)
+	        TNT1 A 0 ACS_NamedExecuteWithResult("RoTTKrist", 0)
 		    KRIS BB 1 A_SetAngle(angle + 8)
 		    TNT1 A 0 A_JumpIfInventory("ChargeSignal", 1, "Straight")
 	        Loop
@@ -218,7 +218,7 @@ ACTOR SebastianKrist : RoTTHumanoid {
 			TNT1 A 0
 		Death:
 		XDeath:
-			TNT1 A 0 ACS_ExecuteAlways(801, 0, Krist_ID, 2)
+			TNT1 A 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_GiveToTarget("RoTT_BossDeathPlayer", 1)
 			TNT1 A 0 A_FaceTarget
@@ -366,7 +366,7 @@ ACTOR SebastianKrist : RoTTHumanoid {
 		Death.ZorchKamikaze:
 		Death.PhasingZorch:
 		Death.ZorchSpectral:
-			"####" "#" 0 ACS_ExecuteAlways(801, 0, Krist_ID, 2)
+			"####" "#" 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 2)
 			"####" "#" 0 A_GiveToTarget("RoTT_BossDeathPlayer", 1)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Stop
@@ -425,13 +425,13 @@ ACTOR SebastianKrist : RoTTHumanoid {
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
 			goto Death
 		Death.RottDisintegrate:
-			"####" "#" 0 ACS_ExecuteAlways(801, 0, Krist_ID, 2)
+			"####" "#" 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 2)
 			"####" "#" 0 A_GiveToTarget("RoTT_BossDeathPlayer", 1)
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking				
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Stop
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
@@ -439,30 +439,30 @@ ACTOR SebastianKrist : RoTTHumanoid {
 			"####" "#" 0 A_KillMaster			
 			"####" "#" 0 A_SpawnItem("RGodModeDeathBig")
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Disintegrate:
-			"####" "#" 0 ACS_ExecuteAlways(801, 0, Krist_ID, 2)
+			"####" "#" 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 2)
 			"####" "#" 0 A_GiveToTarget("RoTT_BossDeathPlayer", 1)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -472,25 +472,25 @@ ACTOR SebastianKrist : RoTTHumanoid {
 			"####" "#" 3 A_SpawnItem("DisintEffectLarge",0,10)
 			"####" "#" 0 A_KillMaster			
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Death.Nuke:
-			"####" "#" 0 ACS_ExecuteAlways(801, 0, Krist_ID, 2)
+			"####" "#" 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 2)
 			"####" "#" 0 A_GiveToTarget("RoTT_BossDeathPlayer", 1)
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -507,7 +507,7 @@ ACTOR SebastianKrist : RoTTHumanoid {
 		Death.WTMeleeIce:
 		Death.WTRangedIce:
 	    Death.Ice:
-			"####" "#" 0 ACS_ExecuteAlways(801, 0, Krist_ID, 2)
+			"####" "#" 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Krist_ID, 2)
 			"####" "#" 0 A_GiveToTarget("RoTT_BossDeathPlayer", 1)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
@@ -530,7 +530,7 @@ Actor KristTurnDecider : CustomInventory {
 	States {
 		Pickup:
 		Use:
-			TNT1 A 0 A_JumpIf(1 == ACS_ExecuteWithResult(800, 0), "TurnRight")
+			TNT1 A 0 A_JumpIf(1 == ACS_NamedExecuteWithResult("RoTTKrist", 0), "TurnRight")
 			TNT1 A 0 A_JumpIfInventory("ChargeSignal", 1, "Straight")
 		TurnLeft:
 			TNT1 A 0 A_FaceTarget
@@ -554,7 +554,7 @@ Actor KristTurnDecider_F : KristTurnDecider {
 			TNT1 A 0 A_TakeInventory("PlayTurnLeftAnim", 1)
 			TNT1 A 0 A_TakeInventory("PlayTurnRightAnim", 1)
 			TNT1 A 0 A_TakeInventory("ChargeSignal", 1)
-			TNT1 A 0 A_JumpIf(1 == ACS_ExecuteWithResult(800, 0, 1), "TurnRight")
+			TNT1 A 0 A_JumpIf(1 == ACS_NamedExecuteWithResult("RoTTKrist", 0, 1), "TurnRight")
 			TNT1 A 0 A_JumpIfInventory("ChargeSignal", 1, "Straight")
 		TurnLeft:
 			TNT1 A 0 A_FaceTarget
@@ -578,7 +578,7 @@ Actor AngleShifter : CustomInventory {
 	States {
 		Pickup:
 		Use:
-			TNT1 A 0 ACS_ExecuteAlways(809, 0)
+			TNT1 A 0 ACS_NamedExecuteAlways("RoTTKristAngle", 0)
 		Stop
 	}
 }

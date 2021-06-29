@@ -1,6 +1,5 @@
-Script 2520 (int health) //geneworm orb
+Script "HLGeneWorm1" (int health) //geneworm orb -- 2520
 {
-
 	Switch(health)
 	{
 		Case 1:
@@ -20,7 +19,7 @@ Script 2520 (int health) //geneworm orb
 
 Str Painmods[5] = { "", "PainMod1", "PainMod2", "PainMod3", "PainMod4" };
 
-Script 2521 (void)
+Script "HLGeneWorm2" (void) //2521
 {
 	int painmod = CheckInventory("GeneWormOrbToken");
 	If(GetActorProperty(0,APROP_HEALTH) < 1)
@@ -71,7 +70,7 @@ Script 2521 (void)
 	Restart;
 }
 
-Script 2522 (void)
+Script "HLGeneWorm3" (void) //2522
 {
 	For(int i = 0; i < 700; i++)
 	{
@@ -100,7 +99,8 @@ function void fadetobold(int a,int b,int c,int d,int e)
       FadeTo(a,b,c,d,e);
    }
 }
-Script 2523 (void)
+
+Script "HLGeneWorm4" (void) //2523
 {
 	Delay(64);
 	AmbientSound("GeneWorm/PortalSuckin",127);
@@ -130,12 +130,12 @@ Script 2523 (void)
 	terminate;
 }
 
-script 2524 (void)
+script "HL2524" (void) //2524
 {
 	thing_damage2(0,2000,"headcrab");
 }
 
-Script 2525 (void)
+Script "HLGeneWorm5" (void) //2525
 {
 	Delay(64);
 	fadetobold(0,255,0,1.0,0.25);
@@ -144,7 +144,7 @@ Script 2525 (void)
 	terminate;
 }
 
-script 2526 (int onoff)
+script "HLSetAlpha" (int onoff) //2526
 {
 	Switch(onoff)
 	{
@@ -202,7 +202,7 @@ Script "Samsara_HLShockRoachPickup" (void)
 			GiveInventory(ClassWeapons[a][3], 1);
 			GiveInventory("GotWeapon1", 1);
 			if(a == 20)
-				ACS_ExecuteAlways(2685,0,11);
+				ACS_NamedExecuteAlways("HL2685",0,11);
 		}	
 	}
 }

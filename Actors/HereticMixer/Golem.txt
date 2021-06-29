@@ -7,7 +7,7 @@ ACTOR Mummy3 : Mummy2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
 			MUMM A 0
 			Goto "Super::Spawn"
@@ -196,35 +196,35 @@ ACTOR Mummy3 : Mummy2
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking	
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Stop
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
 			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
 			"####" "#" 0 A_SpawnItem("RGodModeDeathSmall")
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Disintegrate:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -233,21 +233,21 @@ ACTOR Mummy3 : Mummy2
 			"####" "#" 0 A_Stop
 			"####" "#" 3 A_SpawnItem("DisintEffectSmall",0,10)
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Death.Nuke:
@@ -312,7 +312,7 @@ ACTOR Mummy3 : Mummy2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
@@ -342,7 +342,7 @@ ACTOR Mummy3 : Mummy2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
@@ -542,7 +542,7 @@ ACTOR MummyGhost3 : MummyGhost2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
 			MUMM A 0
 			Goto "Super::Spawn"
@@ -731,35 +731,35 @@ ACTOR MummyGhost3 : MummyGhost2
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking	
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Stop
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
 			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
 			"####" "#" 0 A_SpawnItem("RGodModeDeathSmall")
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Disintegrate:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -768,21 +768,21 @@ ACTOR MummyGhost3 : MummyGhost2
 			"####" "#" 0 A_Stop
 			"####" "#" 3 A_SpawnItem("DisintEffectSmall",0,10)
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Death.Nuke:
@@ -847,7 +847,7 @@ ACTOR MummyGhost3 : MummyGhost2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
@@ -877,7 +877,7 @@ ACTOR MummyGhost3 : MummyGhost2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
@@ -1039,7 +1039,7 @@ ACTOR MummyLeader3 : MummyLeader2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
 			MUMM A 0
 			Goto "Super::Spawn"
@@ -1228,35 +1228,35 @@ ACTOR MummyLeader3 : MummyLeader2
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking	
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Stop
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
 			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
 			"####" "#" 0 A_SpawnItem("RGodModeDeathSmall")
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Disintegrate:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -1265,21 +1265,21 @@ ACTOR MummyLeader3 : MummyLeader2
 			"####" "#" 0 A_Stop
 			"####" "#" 3 A_SpawnItem("DisintEffectSmall",0,10)
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Death.Nuke:
@@ -1344,7 +1344,7 @@ ACTOR MummyLeader3 : MummyLeader2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
@@ -1374,7 +1374,7 @@ ACTOR MummyLeader3 : MummyLeader2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
@@ -1537,7 +1537,7 @@ ACTOR MummyLeaderGhost3 : MummyLeaderGhost2
 		Spawn:
 			MUMM A 0
 			MUMM A 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
-			MUMM A 1 ACS_ExecuteAlways(668,0,1,0)
+			MUMM A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			MUMM A 0 A_GiveInventory("AlreadySpawned",1)
 			MUMM A 0
 			Goto "Super::Spawn"
@@ -1726,35 +1726,35 @@ ACTOR MummyLeaderGhost3 : MummyLeaderGhost2
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_NoBlocking	
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Stop
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
 			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
 			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
 			"####" "#" 0 A_SpawnItem("RGodModeDeathSmall")
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Disintegrate:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Scream
 			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -1763,21 +1763,21 @@ ACTOR MummyLeaderGhost3 : MummyLeaderGhost2
 			"####" "#" 0 A_Stop
 			"####" "#" 3 A_SpawnItem("DisintEffectSmall",0,10)
 			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_ExecuteAlways(2530,0,1)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop
 		Death.Nuke:
@@ -1842,7 +1842,7 @@ ACTOR MummyLeaderGhost3 : MummyLeaderGhost2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
@@ -1872,7 +1872,7 @@ ACTOR MummyLeaderGhost3 : MummyLeaderGhost2
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_ExecuteWithResult(215,36,2)
+			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)

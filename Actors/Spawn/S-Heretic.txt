@@ -254,7 +254,7 @@ ACTOR IronlichReplacer : ArchVileSpawnerCoop replaces Ironlich
 			TNT1 A 1 A_SpawnItemEx("ClericBoss3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
 		SetChex:
-			//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(680,4) == 1, "SetChex_2")
+			//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",4) == 1, "SetChex_2")
 			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyChex")
 			TNT1 A 1 A_SpawnItemEx("OldFlemoidusMaximus",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait

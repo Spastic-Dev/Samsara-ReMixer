@@ -188,10 +188,10 @@ ACTOR SSDrop : SamsaraSlotFourDrop
 			TNT1 A 0 A_JumpIfInventory("WolfenClass",1,"BJPickup")
 			TNT1 A 0 A_JumpIfInventory("HalfLifeClass", 1, "CheckHL")	
 			TNT1 A 0 A_JumpIfInventory("SWClass", 1, "CheckSW")
-			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 4, 1) & 1) == 1, "PickupSuccess")
+			TNT1 A 0 A_JumpIf((ACS_NamedExecuteWithResult("SamsaraGiveWeapon", 4, 1) & 1) == 1, "PickupSuccess")
 			goto PickupFailure
 		BJPickup:
-			TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(229, 2, 1) & 1) == 1, "PickupSuccess")
+			TNT1 A 0 A_JumpIf((ACS_NamedExecuteWithResult("SamsaraGiveWeapon", 2, 1) & 1) == 1, "PickupSuccess")
 			goto PickupFailure
     }
 }

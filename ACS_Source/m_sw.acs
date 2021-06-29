@@ -1,4 +1,4 @@
-Script 700 (int radius, int who, int actortype) // Form the ring
+Script "SWRingForm" (int radius, int who, int actortype) // Form the ring --700
 {
 	int tid = ActivatorTID(); // Owner TID
 	int actor = "";
@@ -53,20 +53,20 @@ Script 700 (int radius, int who, int actortype) // Form the ring
 	}
 	
 	if(!who)
-		ACS_executeAlways(701, 0, tid, pang, radius); // Align coords
+		ACS_NamedExecuteAlways("SWRingRotate", 0, tid, pang, radius); // Align coords
 	else
 	{
 		if(actortype == 2) // Serpent God
 		{
-			ACS_ExecuteAlways(1787, 0, tid, pang, radius); // For monsters
-			ACS_ExecuteAlways(1789, 0, tid, arrIndex); // Tracks if any skulls are alive or not
+			ACS_NamedExecuteAlways("SWRingRotateSerpent", 0, tid, pang, radius); // For monsters
+			ACS_NamedExecuteAlways("SWSkullTracker", 0, tid, arrIndex); // Tracks if any skulls are alive or not
 		}
 		else
-			ACS_ExecuteAlways(702, 0, tid, pang, radius); // For monsters
+			ACS_NamedExecuteAlways("SWRingRotateMonster", 0, tid, pang, radius); // For monsters
 	}
 }
 
-Script 701 (int tid, int pang, int radius) // Constantly rotate the ring
+Script "SWRingRotate" (int tid, int pang, int radius) // Constantly rotate the ring -- 701
 {
 	int arrIndex;
 	
@@ -97,7 +97,7 @@ Script 701 (int tid, int pang, int radius) // Constantly rotate the ring
 	Restart;
 }
 
-Script 702 (int tid, int pang, int radius) // Constantly rotate the ring (monsters)
+Script "SWRingRotateMonster" (int tid, int pang, int radius) // Constantly rotate the ring (monsters) -- 702
 {
 	int arrIndex;
 	
@@ -128,7 +128,7 @@ Script 702 (int tid, int pang, int radius) // Constantly rotate the ring (monste
 	Restart;
 }
 
-Script 1787 (int tid, int pang, int radius) // Constantly rotate the ring (serpent god)
+Script "SWRingRotateSerpent" (int tid, int pang, int radius) // Constantly rotate the ring (serpent god) -- 1787
 {
 	int arrIndex;
 	
@@ -156,13 +156,13 @@ Script 1787 (int tid, int pang, int radius) // Constantly rotate the ring (serpe
 	Restart;
 }
 
-Script 1788 (void) // Skull cooldown giver
+Script "SWSkullCooldown" (void) // Skull cooldown giver -- 1788
 {
 	for(int m = 0; m < MAXPLAYERS; m++)
 		GiveActorInventory(SKULLCOOLDOWNTID+m, "SkullJumpCooldown", 1);
 }
 
-Script 1789 (int tid, int arrIndex) // Skull Tracker
+Script "SWSkullTracker" (int tid, int arrIndex) // Skull Tracker -- 1789
 {
 	if(GetActorProperty(tid, APROP_HEALTH) <= 0 || CheckActorInventory(tid, "HasSkull") == 0)
 	{
@@ -185,7 +185,7 @@ Script 1789 (int tid, int arrIndex) // Skull Tracker
 	Restart;
 }
 
-Script 4109 (void)
+Script "SWSumoBurn" (void) //4109
 {
 	sumofirecount[PlayerNumber()] = SUMOBURNTIC;
 	while(sumofirecount[PlayerNumber()] > 0)

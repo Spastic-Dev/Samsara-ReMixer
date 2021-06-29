@@ -45,7 +45,7 @@ global int 3:randomallclear;
 
 str skill[5] = { "Kindergarten", "Easy", "Normal", "MajorDamage", "TotalCarnage" };
 
-Script 667 OPEN 
+Script "ReMixerInit" OPEN //667
 {
 	randomallclear = 0;
 	if (!GetCVar("mm_init"))
@@ -101,7 +101,7 @@ Script 667 OPEN
 			SetCVar(gameTypesClass[a], false);
 		}*/
 	}
-	ACS_Execute(669, 0, 0, 0, 0);
+	ACS_NamedExecute("RandomCycle", 0, 0, 0, 0);
 	
 	if (alreadyshowedbs == 0)
 	{
@@ -124,7 +124,7 @@ Script 667 OPEN
 	SpawnForced("SamsaraMixerCompendiumToken",0,0,0,0,0);
 }
 
-Script 668 (int spawncode, int override)
+Script "ReMixerSpawnScript" (int spawncode, int override) //668
 {
 	int map;
 	int setselect;
@@ -331,7 +331,7 @@ Script 668 (int spawncode, int override)
 	}
 }
 
-Script 669 (void)
+Script "RandomCycle" (void) //669
 {
 	int selectloop;	
 	int randomvalue;
@@ -363,7 +363,7 @@ Script 669 (void)
 	}
 }
 
-Script 670 OPEN
+Script "ReMixerInvasion" OPEN //670
 {
 	int spawnmode;
 	int oldmode;
@@ -375,7 +375,7 @@ Script 670 OPEN
 			spawnmode = GetCvar("mm_spawnmode");
 			if(oldmode != spawnmode && spawnmode == 3)
 			{
-				ACS_Execute(669, 0, 0, 0, 0);
+				ACS_NamedExecute("RandomCycle", 0, 0, 0, 0);
 				drawn = 1;
 			}
 			else if(oldmode != spawnmode && spawnmode == 0)
@@ -399,10 +399,10 @@ Script 670 OPEN
 	}
 }
 
-Script 671 (void)
+Script "MarathonSkillCheck" (void) //671
 {
 	int checkskill;
-	checkskill = ACS_ExecuteWithResult (680, 3);
+	checkskill = ACS_NamedExecuteWithResult ("ReMixerCVarCheck", 3);
 
 	SetActorState(0,skill[checkskill],true);
 }
@@ -416,7 +416,7 @@ Script "MarathonTeleport" (void)
 	else { terminate; }
 }
 
-Script 680 (int pick)
+Script "ReMixerCVarCheck" (int pick) //680
 {
 	int response;
 

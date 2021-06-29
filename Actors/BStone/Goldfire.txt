@@ -22,7 +22,7 @@ Actor GoldFire : BlakeStoneHumanoid {
 		Spawn:
 			BSE5 A 0
 			BSE5 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			BSE5 A 1 ACS_ExecuteAlways(668,0,1,0)
+			BSE5 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			BSE5 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 			BSE5 A 5 A_Look

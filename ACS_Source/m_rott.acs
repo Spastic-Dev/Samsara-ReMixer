@@ -1,4 +1,5 @@
-Script 800 (void) {
+Script "RoTTKrist" (void) //800
+{
 	int thisactor = ActivatorTID();
 	SetActivatorToTarget(0);
 	int target = ActivatorTID();
@@ -16,23 +17,28 @@ Script 800 (void) {
 	SetResultValue(false);
 }
 
-Script 801 (int basetid, int type) {
-	switch(basetid) {
+Script "RoTTBossScript" (int basetid, int type) //801
+{
+	switch(basetid)
+	{
 		case KRIST_BASE:
-			if(!type) {
+			if(!type)
+			{
 				//What the hell is this? You should NEVER EVER assign arbitrary tids to monsters at run time!
 				//Thing_ChangeTID(0, basetid + krist_id);
 				krist_id++;
 			}
 			else if(type == 1)
 				AmbientSound("Krist/See", 127);
-			else {
+			else
+			{
 				SetActivatorToTarget(0);
 				GiveInventory("RoTT_BossDeathAnnouncer_Krist", 1);
 			}	
 		break;
 		case NME_BASE:
-			if(!type) {
+			if(!type)
+			{
 				//Thing_ChangeTID(0, basetid + nme_id);
 				nme_id++;
 			}
@@ -56,7 +62,8 @@ Script 801 (int basetid, int type) {
 
 // 802 is used by Half Life class
 
-Script 808 (void) {
+Script "RoTT808" (void) //808
+{
     SetActivatorToTarget(0);
 	if(GetActorProperty(0, APROP_HEALTH) <= 0)
 	  SetResultValue(1);
@@ -64,7 +71,8 @@ Script 808 (void) {
 	  SetResultValue(0);
 }
 
-Script 809 (void) {
+Script "RoTTKristAngle" (void) //809
+{
 	int thisactor = ActivatorTID();
 	SetActivatorToTarget(0);
 	int target = ActivatorTID();
@@ -75,7 +83,8 @@ Script 809 (void) {
 	SetActorAngle(thisactor, faceangle + 0.5);
 }
 
-Script 810 (int id, int mode) CLIENTSIDE {
+Script "RoTTBossDeathBroadcast" (int id, int mode) CLIENTSIDE //810
+{
 	if(!mode) {
 		switch (id) {
 			case KRIST_BASE:
@@ -96,7 +105,8 @@ Script 810 (int id, int mode) CLIENTSIDE {
 		LocalAmbientSound("RoTT/BossDeath", 35);
 }
 
-Script 811 (void) {
+Script "RoTTOscuroModeSwitch" (void) //811
+{
 	if(CheckInventory("OscuroVulnerable"))
 		terminate;
 	GiveInventory("OscuroVulnerable", 1);
@@ -106,7 +116,8 @@ Script 811 (void) {
 	TakeInventory("OscuroVulnerable", 1);
 }
 
-script 812 (void) {
+script "RoTTNet" (void) //812
+{
 	int i;
 	int knifeNum;
 	
@@ -117,13 +128,15 @@ script 812 (void) {
 	Setfont("NET1");
 	HudMessage(s:"A";0,602,0,107.0,100.0,0);
 
-	if (CheckInventory("RottKnife") == 1) {
+	if (CheckInventory("RottKnife") == 1)
+	{
 		GiveInventory("NoWeapon", 1);
 		Setweapon("NoWeapon");
 		Delay(15); // Give some time for the weapon to lower
 		SetHudSize(214,200,0);
 		
-		for(i = 1; i <= 7; i++){
+		for(i = 1; i <= 7; i++)
+		{
 			knifeNum = strparam(s:"KNIFE", d:i);
 			Setfont(knifeNum);
 			HudMessage(s:"A";0,602,0,107.0,100.0,0);
@@ -142,9 +155,10 @@ script 812 (void) {
 		SetWeapon(0);
 		Terminate;
 	}
-	else {
+	else
+	{
 		SetFont("SMALLFONT");
-		ACS_ExecuteAlways(813, 0, 0);
+		ACS_NamedExecuteAlways("RoTTNetMouse", 0, 0);
 		Print(s:"\cfSwing your mouse left and right to break free!");
 		terminate;
 	}
@@ -152,7 +166,8 @@ script 812 (void) {
 }
 
 
-Script 813 (int currentweapon) {
+Script "RoTTNetMouse" (int currentweapon) //813
+{
 	int i;
 	int netNum;
 	
@@ -194,7 +209,8 @@ Script 813 (int currentweapon) {
 	restart;
 }
 
-Script 814 ENTER {
+Script "RoTT814" ENTER //814
+{
 	HudMessage(s:"";0,602,0,107.0,100.0,0);
 }
 
