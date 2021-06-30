@@ -749,6 +749,29 @@ ACTOR QZombieRise : Qzombie
 		"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 		"####" "#################" 3 A_Fadeout(0.05)
 		stop
+	  Death.Hexen2Damage:
+	  Death.Hexen2Fire:
+	  Death.Hexen2Electric:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		Goto XDeathForDemoness
+	  Death.Hexen2Extreme:
+	  Death.Hexen2ElectricExtreme:
+	  XDeathForDemoness:
+		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 5 A_FadeOut
+		stop		
+	  Death.BittermanDamage:
+		TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
+		goto XdeathForBitterman
+	  XdeathForBitterman:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Fall
+		TNT1 A 5 A_FadeOut
+		Stop		
 	}
 }
 
