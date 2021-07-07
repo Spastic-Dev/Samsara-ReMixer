@@ -453,6 +453,18 @@ Script "Hexen2_Decorate_Monster" (int mode, int arg1, int arg2)
 				Delay(2);
 			}
 			break;
+		case 12: //Eidolon projectile pitch for A_SpawnItemEx
+			x = GetActorX(0);
+			y = GetActorY(0);
+			z = GetActorZ(0)+188.0;
+			SetActivatorToTarget(0);
+			int targX = GetActorX(0);
+			int targY = GetActorY(0);
+			int targZ = GetActorZ(0)-32.0;
+			int eidodistance = magnitudeThree_f(x - targX, y - targY, z - targZ);
+			int eidopitch = VectorAngle(eidodistance, z - targZ);
+			SetResultValue(eidopitch/182);
+			break;
 	}
 }
 
