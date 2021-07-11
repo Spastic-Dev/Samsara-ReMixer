@@ -128,7 +128,7 @@ Actor Srifeng
         C_SF J 10 A_Scream
         C_SF K 2 A_Fall
         C_SF K 3
-        C_SF K -1
+        C_SF K -1 A_KillMaster
         Stop
     Raise:
         C_SF K 5
@@ -387,6 +387,7 @@ Actor Srifeng
 		"####" "#" 2 A_SetTranslucent(0.2,0)
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 2 A_SetTranslucent(0.1,0)
+		TNT1 A 1 A_KillMaster
 		stop
 	Disintegrate:
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -418,6 +419,7 @@ Actor Srifeng
 		"####" "#" 2 A_SetTranslucent(0.2,0)
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 2 A_SetTranslucent(0.1,0)
+		TNT1 A 1 A_KillMaster
         stop
 	Death.Nuke:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
@@ -427,6 +429,7 @@ Actor Srifeng
 		"####" "#" 0 A_KillMaster
 		"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 		"####" "#################" 3 A_Fadeout(0.05)
+		TNT1 A 1 A_KillMaster
 		stop	
 	Pain.ShrinkerDMG:
 		C_SF I 0
