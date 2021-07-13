@@ -339,12 +339,13 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(newtid,activator);
 			break;
 		case 8:	
+			SetActorProperty(newtid,APROP_Health,180);
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[2]),0,0,0,bodytid);
 			SetActivator(bodytid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
 			randnum = random(0,100);
 			if(randnum >= 50)  
-				{ hattype = 8; SetActorProperty(newtid,APROP_Health,80); }
+				{ hattype = 8; SetActorProperty(newtid,APROP_Health,200); }
 			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);	
 			SetActivator(hattid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);			
