@@ -1,6 +1,6 @@
 Actor WitchavenSpider : WitchavenEnemyBaseMelee
 {
-	Health 60
+	Health 15
 	Scale 0.42
 	PainChance 0
 	+NOPAIN
@@ -30,7 +30,7 @@ Actor WitchavenSpider : WitchavenEnemyBaseMelee
 	Melee:
 		WH_Y C 4 A_FaceTarget
 		WH_Y D 3 A_FaceTarget
-		WH_Y E 5 A_CustomMeleeAttack(8/Random(2,1),"","","Poison")
+		WH_Y E 5 A_CustomMeleeAttack(Random(3,15),"","","Poison")
 		Goto See
 	Death:
 	XDeath:

@@ -1,6 +1,6 @@
 Actor WTSkeleton : WitchavenEnemyBaseMelee
 {
-	Health 33
+	Health 25
 	Scale 0.35	
 	+NOBLOOD
 	SeeSound "wtskele/see"
@@ -29,7 +29,7 @@ Actor WTSkeleton : WitchavenEnemyBaseMelee
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		WH_F FG 4 A_FaceTarget
 		WH_F H 3 A_FaceTarget
-		WH_F I 5 A_CustomMeleeAttack(8/Random(2,1),"wtskele/melee","")
+		WH_F I 5 A_CustomMeleeAttack(Random(3,15),"wtskele/melee","")
 		WH_F J 2
 		Goto See
 	Pain:

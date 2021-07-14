@@ -59,15 +59,64 @@ Actor WitchavenEnemyBaseRanged {
 	var int user_scaley;
 }
 
-Actor Witchaven_PikeAxeMonsterDrop : SamsaraSlotThreeDrop {
+Actor Witchaven_PikeAxeMonsterDrop : SamsaraSlotTwoDrop {
 	Scale 0.23
-	+DROPPED
 	States
     {
       Spawn:
         WH77 UUVVWWXXYYZZ 2
 		WH78 AABB 2
         Loop
+    }
+}
+
+Actor Witchaven_BattleAxeMonsterDrop : SamsaraSlotThreeDrop {
+	Scale 1.0
+	States
+    {
+      Spawn:
+		PWHB A -1
+        Stop
+    }
+}
+
+Actor Witchaven_ShortSwordMonsterDrop : SamsaraSlotOneDrop {
+	Scale 1.0
+	States
+    {
+      Spawn:
+		PWHH A -1
+        Stop
+    }
+}
+
+Actor Witchaven_HalberdMonsterDrop : SamsaraSlotFourDrop {
+	Scale 1.0
+	States
+    {
+      Spawn:
+		PWHD A -1
+        Stop
+    }
+}
+
+Actor Witchaven_GreatSwordMonsterDrop : SamsaraSlotSixDrop {
+	Scale 1.0
+	States
+    {
+      Spawn:
+		PWHG A -1
+        Stop
+    }
+}
+
+Actor Witchaven_MorningStarMonsterDrop : SamsaraSlotFiveDrop {
+	Scale 1.0
+	States
+    {
+      Spawn:
+		PWHC A -1
+        Stop
     }
 }
 

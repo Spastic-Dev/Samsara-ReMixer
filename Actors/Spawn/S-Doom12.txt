@@ -130,8 +130,12 @@ ACTOR PainElementalSpawnerCoop replaces PainElemental
 			TNT1 A 1 A_SpawnItemEx("IPOGSentrySphere", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion	
 		SetWitch:
+			TNT1 A 0 A_Jump(128, "SetWitch2")
 			TNT1 A 1 A_SpawnItemEx("WitchavenScaryScreamer", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
+		SetWitch2:
+			TNT1 A 1 A_SpawnItemEx("Witchaven2Guardian", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
 		SetDisrup:
 			TNT1 A 0 A_Jump(128,"SetDisrup2")
 			TNT1 A 1 A_SpawnItemEx("DisruptorAcidBloater", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)

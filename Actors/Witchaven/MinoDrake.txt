@@ -1,6 +1,6 @@
 Actor MinoDrake : WitchavenEnemyBaseMelee
 {
-	Health 420
+	Health 200
 	Speed 15
 	Scale 0.75
 	MeleeRange 86
@@ -12,6 +12,7 @@ Actor MinoDrake : WitchavenEnemyBaseMelee
 	Obituary "%o was sliced by a Drake."	
 	HitObituary "%o was sliced by a Drake."
 	Tag "Mino Drake"
+	DropItem "Witchaven_BattleAxeMonsterDrop",128,1
 	States
 	{
 	Spawn:
@@ -28,7 +29,7 @@ Actor MinoDrake : WitchavenEnemyBaseMelee
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		WH_S E 6 A_FaceTarget
-		WH_S I 0 A_CustomMeleeAttack(random(20,45)/Random(2,1),"ggen/metal_l","ggen/swing5")		
+		WH_S I 0 A_CustomMeleeAttack(random(25,30),"ggen/metal_l","ggen/swing5")		
 		WH_S F 5 A_FaceTarget
 		WH_S G 4
 		Goto See

@@ -1,6 +1,6 @@
 Actor BrownOgre : WitchavenEnemyBaseMelee
 {
-    Health 130
+    Health 40
     Scale 0.60	
 	SeeSound "wtogre/see"
 	ActiveSound "wtogre/see"
@@ -25,10 +25,10 @@ Actor BrownOgre : WitchavenEnemyBaseMelee
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_N F 6 A_FaceTarget
-			WH_N F 0 A_CustomMeleeAttack(10/Random(2,1),"wtogre/punch","")			
+			WH_N F 0 A_CustomMeleeAttack(Random(10,15),"wtogre/punch","")			
 			WH_N G 5 A_FaceTarget
 			WH_N H 6 A_FaceTarget
-			WH_N F 0 A_CustomMeleeAttack(10/Random(2,1),"wtogre/punch","")			
+			WH_N F 0 A_CustomMeleeAttack(Random(10,15),"wtogre/punch","")			
 			WH_N G 5 A_FaceTarget			
 			Goto See
 		Pain:
@@ -664,7 +664,7 @@ actor BrownOgre_ShrinkEffect : BrownOgre
 Actor GreenOgre : BrownOgre
 {
 	Tag "Green Ogre"
-    Health 180
+    Health 120
     States {
 		Spawn:
 			WH_C A 0
@@ -680,10 +680,10 @@ Actor GreenOgre : BrownOgre
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_C F 6 A_FaceTarget
-			WH_C F 0 A_CustomMeleeAttack(20/Random(2,1),"wtogre/punch","")
+			WH_C F 0 A_CustomMeleeAttack(Random(10,15),"wtogre/punch","")
 			WH_C G 5 A_FaceTarget
 			WH_C H 6 A_FaceTarget
-			WH_C F 0 A_CustomMeleeAttack(20/Random(2,1),"wtogre/punch","")
+			WH_C F 0 A_CustomMeleeAttack(Random(10,15),"wtogre/punch","")
 			WH_C G 5 A_FaceTarget			
 			Goto See
 		Pain:
@@ -1169,7 +1169,7 @@ actor GreenOgre_ShrinkEffect : GreenOgre
 Actor RedOgre : BrownOgre
 {
 	Tag "Red Ogre"
-    Health 230
+    Health 40
     States {
 		Spawn:
 			WH_B A 0
@@ -1185,10 +1185,10 @@ Actor RedOgre : BrownOgre
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_B F 6 A_FaceTarget
-			WH_B F 0 A_CustomMeleeAttack(25/Random(2,1),"wtogre/punch","")
+			WH_B F 0 A_CustomMeleeAttack(Random(10,15),"wtogre/punch","")
 			WH_B G 5 A_FaceTarget
 			WH_B H 6 A_FaceTarget
-			WH_B F 0 A_CustomMeleeAttack(25/Random(2,1),"wtogre/punch","")
+			WH_B F 0 A_CustomMeleeAttack(Random(10,15),"wtogre/punch","")
 			WH_B G 5 A_FaceTarget			
 			Goto See
 		Pain:
@@ -1670,3 +1670,5 @@ actor RedOgre_ShrinkEffect : RedOgre
 			Stop
 	}
 }
+
+Actor WTRandomOgre : RandomSpawner { DropItem "BrownOgre" DropItem "RedOgre" DropItem "GreenOgre" } 
