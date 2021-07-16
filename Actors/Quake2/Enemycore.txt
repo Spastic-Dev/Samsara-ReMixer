@@ -490,7 +490,9 @@ Actor Q2SoldierBase : Zombieman
 	Death.Vodoo:
 		TNT1 A 0 A_JumpIfHealthLower(-20,"XDeathForCaleb")
 	Death.Tesla:
-	Death.CalebFire:	
+		Goto Death.CalebBullet
+	Death.CalebFire:
+		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
 	Death.CalebBullet:	
 		TNT1 A 0 A_Jump(218, "Death")
 		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
@@ -548,7 +550,9 @@ Actor Q2SoldierBase : Zombieman
 	Death.PSExplosiveCoop:
 		TNT1 A 0 A_JumpIfHealthLower(-30, "XDeathForJon")
 	Death.PSBullet:
+		Goto Death.PSFire+1
 	Death.PSFire:	
+		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
 		TNT1 A 0 A_Jump(218, "Death")
 		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
 		Goto Death
@@ -600,10 +604,12 @@ Actor Q2SoldierBase : Zombieman
 	Death.SWRailgun:
 	Death.SWRailgunCoop:
 	Death.SWNukeCoop:
+		Goto Death.SWFlame3+1
 	Death.SWFlame:
 	Death.SWFlame2:
 	Death.SWFlame2Coop:
 	Death.SWFlame3:	
+		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
 		TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathForWang")
 	Death.SWBullet:	  
 		TNT1 A 0 A_Jump(218, "Death")
@@ -633,8 +639,11 @@ Actor Q2SoldierBase : Zombieman
 		TNT1 A 0 A_Jump(192,"Pain")
 		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		Goto Pain
-	 Death.Hexen2Damage:
 	 Death.Hexen2Fire:
+		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
+		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
+		Goto Burn
+	 Death.Hexen2Damage:
 	 Death.Hexen2Electric:
 		TNT1 A 0 A_JumpIfHealthLower(-50,"XDeathForDemoness")
 		Goto Death

@@ -118,6 +118,19 @@ Actor Q2Mutant : Q2SoldierBase
 		"----" A 25 A_StopSound(CHAN_BODY)
 //		"----" A 6 A_TakeInventory(ResurrectedToken,1)
 		Goto See
+	Death.RottFire:
+	Death.TotenkopfFire:		
+    Death.PhosFireCoop:
+	Death.WolfenFlamethrower:
+	Death.HexGreenFire:
+	Death.QuakeFire:
+	Death.PGFire:
+	Death.WTRangedFire:
+	Death.FireExplosive:
+	Death.MarathonPlasmaFire:
+	Burn:
+		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
+		Goto Death
 	Death.RottDisintegrate:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
