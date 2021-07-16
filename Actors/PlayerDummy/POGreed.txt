@@ -27,48 +27,82 @@ Actor POGreedPlayer2 : POGreedPlayer replaces POGreedPlayer {
 			TNT1 A -1
 			stop	
 		Death:
-		DeathAnim:	  
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)	  				
-			TNT1 A 0 A_TakeInventory("IPOGAtt2",999)
-			TNT1 A 0 A_TakeInventory("IPOGAtt3",999)
-			TNT1 A 0 A_TakeInventory("IPOGAtt4",999)				
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			GPL0 G 5 A_PlayerScream
-			GPL0 H 5 A_NoBlocking
-			GPL0 IJKLM 5
-			GPL0 N -1
-			stop			
+			Goto DeathAnim		
 	    XDeath:
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)	  						
-			TNT1 A 0 A_TakeInventory("IPOGAtt2",999)
-			TNT1 A 0 A_TakeInventory("IPOGAtt3",999)
-			TNT1 A 0 A_TakeInventory("IPOGAtt4",999)	  
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
-			GPL0 G 5 A_PlayerScream
-			GPL0 H 5 A_NoBlocking
-			GPL0 IJKLM 5
-			GPL0 N -1
-			stop			
+			Goto DeathAnim	
 		Pain:
 			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
 			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)
 			Goto Super::Pain
-		Missile:
-			TNT1 A 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
-			TNT1 A 0 A_GiveInventory("ProtozoidAttackOMG",1)		
-			GPL0 D 12
-			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)
-			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
-			Goto Spawn
 		Melee:
 			TNT1 A 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
-			TNT1 A 0 A_GiveInventory("ProtozoidAttackOMG",1)		
-			GPL0 E 6 bright
+			TNT1 A 0 A_GiveInventory("ProtozoidAttackOMG",1)	
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",4,"MeleeDominatrix")
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",3,"MeleeSpecimen")
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",2,"MeleeLizard")
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",1,"MeleeCyborg")
+			GPL0 D 3
+			GPL0 E 3 Bright
 			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
 			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
-			Goto Spawn		
+			Goto Spawn
+		MeleeCyborg:
+			GPL2 D 6 Bright
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		MeleeLizard:
+			GPL3 D 6 Bright
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		MeleeSpecimen:
+			GPL4 D 6 Bright
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		MeleeDominatrix:
+			GPL5 D 6 Bright
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		Missile:
+			TNT1 A 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
+			TNT1 A 0 A_GiveInventory("ProtozoidAttackOMG",1)	
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",4,"MissileDominatrix")
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",3,"MissileSpecimen")
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",2,"MissileLizard")
+			TNT1 A 0 A_JumpIfInventory("IPoGMode",1,"MissileCyborg")
+			GPL0 F 6
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		MissileCyborg:
+			GPL2 E 6
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		MissileLizard:
+			GPL3 E 6
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		MissileSpecimen:
+			GPL4 E 6
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
+		MissileDominatrix:
+			GPL5 E 6
+			TNT1 A 0 A_TakeInventory("ProtozoidAttackOMG",1)		
+			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
+			Goto Spawn
 		Death.RottExplosive:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)
