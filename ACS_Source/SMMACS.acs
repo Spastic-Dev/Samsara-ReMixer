@@ -365,6 +365,9 @@ Script "RandomCycle" (void) //669
 
 Script "ReMixerInvasion" OPEN //670
 {
+	if(GetPlayerAccountName(0) == 0)
+		terminate;
+		
 	int spawnmode;
 	int oldmode;
 	int drawn;
