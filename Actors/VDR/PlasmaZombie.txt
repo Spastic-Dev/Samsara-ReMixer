@@ -8,7 +8,7 @@ ACTOR MMRandomizer_PlasmaZombie : Shotgunguy3
     +FLOORCLIP
     Obituary "%o got burned by a plasma zombie."
     DropItem MMRandomizer_CellDrop
-    MissileType PlasmaBall
+    MissileType PlasmaZombieBall
 	AttackSound ""
     States
     {
@@ -645,4 +645,21 @@ actor MMRandomizer_PlasmaZombie_ShrinkEffect : MMRandomizer_PlasmaZombie
 			"####" "#" 1 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 			Stop
 	}
+}
+
+actor PlasmaZombieBall : PlasmaBall
+{
+    Decal DoomPlasmaScorch
+    SeeSound "baby/attack"
+    DeathSound "baby/shotx"
+    States
+    {
+      Spawn:
+        DPLM AB 6 bright
+        loop
+
+      Death:
+        DPLE ABCDE 4 bright
+        stop
+    }
 }
