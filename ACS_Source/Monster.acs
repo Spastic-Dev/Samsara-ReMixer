@@ -462,6 +462,22 @@ Script "MonsterProjectilePitch" (int x, int y, int z)
 	SetResultValue(VectorAngle(vector2target - vector2original, currentz - z));
 }
 
+Script "MonsterFaceTargetPitch" (int zoff)
+{
+	if(zoff == 0)
+		zoff = GetActorProperty(0,APROP_Height)/2;
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0)+zoff;
+	SetActivatorToTarget(0);
+	int targX = GetActorX(0);
+	int targY = GetActorY(0);
+	int targZ = GetActorZ(0)-32.0;
+	int distance = magnitudeThree_f(x - targX, y - targY, z - targZ);
+	int pitch = VectorAngle(distance, z - targZ);
+	SetResultValue(-pitch/182);
+}
+
 Script "Samsara_SetSpeed" (int input)
 {
 	SetActorProperty(0, APROP_Speed, input*1.0);
