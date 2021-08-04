@@ -29,25 +29,27 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 	"HalfLifePlayer2", "LoWangPlayer2", "CMPlayer2", "PSPlayer2", "Leonard2", "Bitterman2", "Demoness2", "JamesBond2", "PettonEverhail2"
 };
 
-str doomModes[2] = { "SetDoom", "SetDoom64" };
+str doomModes[3] = { "SetDoom", "SetDoom64", "SetDoomRandom" };
 str wolfModes[3] = { "SODM1", "SODM2", "SetTotenkopf" };
 str dukeModes[2] = { "SetDuke3D", "SetDukeLAB" };
 
-bool activesets[MAX_GAME_TYPES];
+int activeSets = 0;
+int pickFromSets[MAX_GAME_TYPES];
+int maxSetsEnabled = 0;
+int monsterProcessing = 0;
+int pickClear = 0;
 
 #define MAX_MAPS				500
 #define SAMSARA_CHANGELIST		208
 
 int activeGameTypes[MAX_GAME_TYPES];
 global int 2:alreadyshowedbs;
-global int 3:randomallclear;
 //global int 4:lastchosen;
 
 str skill[5] = { "Kindergarten", "Easy", "Normal", "MajorDamage", "TotalCarnage" };
 
 Script "ReMixerInit" OPEN //667
 {
-	randomallclear = 0;
 	if (!GetCVar("mm_init"))
 	{
 		SetCVar("mm_doom", true);
@@ -95,13 +97,7 @@ Script "ReMixerInit" OPEN //667
 		SetCVar("mm_maratele", true);
 		
 		SetCVar("mm_init", true);
-		
-		/*for(int a = 0; a < MAX_GAME_TYPES; a++)
-		{
-			SetCVar(gameTypesClass[a], false);
-		}*/
 	}
-	ACS_NamedExecute("RandomCycle", 0, 0, 0, 0);
 	
 	if (alreadyshowedbs == 0)
 	{
@@ -137,6 +133,8 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 	Switch(spawncode)
 	{
 		case 1:
+			if(GetCvar("sams_runninginzdoom"))
+				SetActorFlag(0,"INTERPOLATEANGLES",1);
 			//if(SpawnForced("StrongHoldLoaded",0,0,0,0))
 				//ACS_NamedExecuteWithResult("Samsara_MonsterSpawn",0,0,0,0); //uncomment this for stronghold support, will deal with later
 			if(GetCVar("mm_skilloverride") < 5)
@@ -178,57 +176,26 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 
 			break;
 
-		case 2:	
-			if(!isSinglePlayer())
-				Delay(5);
+		case 2:
+			while(pickClear == 0 || PlayerCount() == 0)
+				Delay(1);
 				
-			Delay(1);
-				
-			if(GetCvar("mm_spawnmode") == 0 || GetCvar("mm_spawnmode") == 3)
+			if(!SinglePlayer())
+				Delay(1);
+													
+			if(maxSetsEnabled == 0)
 			{
-				for(int a = 0; a < MAX_GAME_TYPES; a++){
-				if(activesets[a])
-					activeGameTypes[numGameTypes++] = a;
-				}
-				
-				if(GetCvar("mm_spawnmode") == 3)
-				{
-					if(numGameTypes == 0){
-					SetActorState(0,"SetNull",true);
-					break;
-					}
-				
-					if(GetCvar("mm_randomcycle") > 0)
-					{
-						until (randomallclear == 1) { Delay(5); }
-					}
-				}
+				SetActorState(0,"SetNull",true);
+				terminate;
 			}
-			else if(GetCvar("mm_spawnmode") == 1)
-			{
-				for(int b = 0; b < MAX_GAME_TYPES; b++){
-					gameTypeMap = strparam(s:gameTypesStr[b], d:map);;
-					
-					if(GetCvar(gameTypeMap))
-						activeGameTypes[numGameTypes++] = b;
-				}
-			}		
-			else
-			{
-				for(int c = 0; c < MAX_GAME_TYPES; c++){					
-					if(GetCvar(gameTypesStr[c]))
-						activeGameTypes[numGameTypes++] = c;
-					}
-			}
-			
-			setselect = random(0, numGameTypes - 1);
-			
-			//Doom
-			switch(activeGameTypes[setselect])
+				
+			setselect = random(1, maxSetsEnabled) - 1;
+						
+			switch(pickFromSets[setselect])
 			{
 				//All other sets
 				default:
-					SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+					SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 					break;
 				case 0: // Doom
 					switch(GetCvar("mm_doommode"))
@@ -246,8 +213,11 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 							SetActorState(0,"SetDoom64",true);
 							terminate;
 						case 3:
-							SetActorState(0,doomModes[random(0,1)],true);
-							terminate;						
+							SetActorState(0,"SetDoomRandom",true);
+							terminate;
+						case 4:
+							SetActorState(0,doomModes[(GetCvar("mm_doomrandomizer") * random(0,1)) + random(0,1)],true);
+							terminate;
 					}
 					break;
 				case 3: // Wolf3d
@@ -324,42 +294,6 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 			break;
 		}
 		else { break; }
-		
-		case 4:
-			SetResultValue(GetCvar("mm_doomrandomizer"));
-			break;
-	}
-}
-
-Script "RandomCycle" (void) //669
-{
-	int selectloop;	
-	int randomvalue;
-	int randnum;
-	int erroramount = 0;
-	int randombit;
-	int randomtotal;
-
-	if (GetCVar("mm_spawnmode") == 3)
-	{
-		selectloop = 0;
-		randomvalue = GetCvar("mm_randomcycle");
-		for(int a = 0; a < MAX_GAME_TYPES; a++){					
-			activesets[a] = 0;
-		}
-		
-		While (selectloop < randomvalue)
-		{
-			randombit = 1;
-			randnum = random(0, MAX_GAME_TYPES-1);
-			for(int b = 0; b < randnum; b++) { randombit *= 2; }
-			//PrintBold(s:gameTypesStr[randnum],s:" ",d:randombit,s:" ",d:randomtotal);
-			
-			if(!GetCVar(gameTypesStr[randnum])||randomtotal & randombit) { if(erroramount > 128){ selectloop = randnum; break; } else{erroramount++;} }
-					else { /*PrintBold(s:"Your set: ",s:gameTypesStr[randnum],s:" Amount of tries: ",d:erroramount);*/ activesets[randnum] = true; selectloop++; erroramount = 0; randomtotal += randombit; }
-			
-		}
-		randomallclear = 1;
 	}
 }
 
@@ -486,44 +420,110 @@ Script "ReMixerCVarCheck" (int pick) //680
 	SetResultValue(response);
 }
 
-Script "ExMixerClassBasedSpawn" (void)
-{
-	if(GetCvar("mm_spawnmode") != 0)
+Script "ReMixer_PickSets" (int type)
+{	
+	if(monsterProcessing == 1)
 		terminate;
 		
 	int clients = PlayerCount();
-	int playervalue;
+	int bitindex, a, b, p;
 
-	for(int a = 0; a < MAX_GAME_TYPES; a++)
+	activeSets = 0;
+	monsterProcessing = 1;
+	pickClear = 0;
+	maxSetsEnabled = 0;
+	for(a = 0; a < MAX_GAME_TYPES; a++)
+		pickFromSets[a] = -1;
+		
+	switch(GetCvar("mm_spawnmode"))
 	{
-		activesets[a] = false;
-	}
-
-	for(int p = 0; p < clients; p++)
-	{	
-		if(PlayerInGame(p) == true)
-		{
-			for(int b = 0; b < MAX_GAME_TYPES; b++)
-			{
-				if(PlayerClass(p) == b)
+		case 0:
+			for(p = 0; p < clients; p++)
+			{	
+				if(PlayerInGame(p) == true)
 				{
-					activesets[b] = true;
-					break;
+					for(b = 0; b < MAX_GAME_TYPES; b++)
+					{
+						bitindex = pow(2,b);
+						if(PlayerClass(p) == b)
+						{
+							if(!(activesets & bitindex))
+							{
+								activesets += bitindex;
+								pickFromSets[maxSetsEnabled] = b;
+								maxSetsEnabled++;
+							}
+						}
+					}
+				}
+				else
+				{
+					clients++;
 				}
 			}
-		}
-		else
-		{
-			clients++;
-		}
+			break;
+		case 1:
+			for(b = 0; b < MAX_GAME_TYPES; b++)
+			{
+				str gameTypeMap = strparam(s:gameTypesStr[b], d:GetLevelInfo(LEVELINFO_LEVELNUM));;
+					
+				if(GetCvar(gameTypeMap))
+				{
+					bitindex = pow(2,b);
+					if(!(activesets & bitindex))
+					{
+						activesets += bitindex;
+						pickFromSets[maxSetsEnabled] = b;
+						maxSetsEnabled++;
+					}
+				}
+			}
+			break;
+		case 2:
+			for(b = 0; b < MAX_GAME_TYPES; b++)
+			{
+				if(GetCvar(gameTypesStr[b]))
+				{
+					bitindex = pow(2,b);
+					if(!(activesets & bitindex))
+					{
+						activesets += bitindex;
+						pickFromSets[maxSetsEnabled] = b;
+						maxSetsEnabled++;
+					}
+				}
+			}
+			break;
+		case 3:
+			int selectloop = 0;	
+			int randomvalue = GetCvar("mm_randomcycle");
+			int randnum;
+			int erroramount = 0;
+			int randombit;
+			int randomtotal;
+			
+			While (selectloop < randomvalue)
+			{
+				randombit = 1;
+				randnum = random(0, MAX_GAME_TYPES-1);
+				for(b = 0; b < randnum; b++) { randombit *= 2; }
+				//PrintBold(s:gameTypesStr[randnum],s:" ",d:randombit,s:" ",d:randomtotal);
+				
+				if(!GetCVar(gameTypesStr[randnum])||randomtotal & randombit) { if(erroramount > 128){ selectloop = randnum; break; } else{erroramount++;} }
+						else { pickFromSets[maxSetsEnabled] = randnum; maxSetsEnabled++; selectloop++; erroramount = 0; randomtotal += randombit; }
+				
+			}
+			break;
 	}
+	pickClear = 1;
+	monsterProcessing = 0;
 }
 
-Script "ExMixerClassBasedSpawn_OPEN" Open { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
-Script "ExMixerClassBasedSpawn_RESPAWN" RESPAWN { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
-Script "ExMixerClassBasedSpawn_REOPEN" REOPEN { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
-Script "ExMixerClassBasedSpawn_ENTER" ENTER { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0);}
-Script "ExMixerClassBasedSpawn_DISCONNECT" (int players) DISCONNECT { ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0); }
+Script "ReMixer_PickSets_OPEN" Open { ACS_NamedExecuteWithResult("ReMixer_PickSets",1,0,0,0); }
+Script "ReMixer_PickSets_RESPAWN" RESPAWN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
+Script "ReMixer_PickSets_REOPEN" REOPEN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
+Script "ReMixer_PickSets_ENTER" ENTER { ACS_NamedExecuteAlways("ReMixer_PickSets",0,0,0,0);}
+Script "ReMixer_PickSets_DISCONNECT" (int player) DISCONNECT { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 
 Script "Samsara_InvasionChecker" (void)
 {
@@ -542,38 +542,6 @@ Script "Samsara_Doom64SpawnCheck" (void)
 {
 	SetResultValue(ThingCountName("Doom64GuyMapDummy",0));
 }
-
-/*ACTOR PinataDrop : RandomSpawner
-{
-	dropitem "Ammo1Small" 255 256
-	dropitem "Ammo2Small" 255 256
-	dropitem "AmmoBackpack" 255 64
-	dropitem "Ammo3Small" 255 128
-	dropitem "Ammo4Small" 255 128
-	dropitem "HealPack1" 255 128
-	dropitem "HealPack2" 255 64
-	dropitem "SamsaraSlotOneDrop" 255 32
-	dropitem "SamsaraSlotTwoDrop" 255 32
-	dropitem "Ammo1Big" 255 16
-	dropitem "Ammo2Big" 255 16
-	dropitem "Visor" 255 16
-	dropitem "ArmorPack" 255 16
-	dropitem "SamsaraSlotThreeDrop" 255 16
-	dropitem "Ammo3Big" 255 8
-	dropitem "Ammo4Big" 255 8
-	dropitem "ArmorPack" 255 8
-	dropitem "SuperHealt2" 70 8
-	dropitem "PartialInvisibility" 255 8
-	dropitem "SamsaraSlotFourDrop" 115 8
-	dropitem "MegaPack" 45 8
-	dropitem "SamsaraSlotFiveDrop" 110 4
-	dropitem "InvulnPowerup" 55 4
-	dropitem "BioSuit" 255 2
-	dropitem "SamsaraSlotSixDrop" 110 2
-	dropitem "SamsaraUniquePickup64" 100 2
-	dropitem "SamsaraSlotSevenDrop" 80 1
-	dropitem "HeXenBeaconItem" 105 1
-}*/
 
 int maxPinataCommonQuality = 9;
 int maxPinataUncommonQuality = 18;

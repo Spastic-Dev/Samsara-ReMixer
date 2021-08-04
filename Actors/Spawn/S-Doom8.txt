@@ -13,8 +13,7 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 	{
 		Spawn:
 			TNT1 A 1
-			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,0)
-			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,2)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2)			
 		BossWait:
 			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
 		BossWaitLoop:
@@ -24,7 +23,6 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 1 A_Die
 			Goto Death
 		SetDoom:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerSpawnScript",4)==1,"SetDoomRandom")
 			TNT1 A 1 A_SpawnItemEx("BaronOfHell3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto BossWait
 		SetDoomRandom:
@@ -44,10 +42,7 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			Goto BossWait
 		SetDoomRandom5:
 			TNT1 A 1 A_SpawnItemEx("MMRandomizer_Belphegor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto BossWait
-		SetDoomCombined:
-			TNT1 A 0 A_Jump(256, "SetDoom", "SetDoom64")
-			Goto SetDoom				
+			Goto BossWait			
 		SetHeretic:
 			TNT1 A 1 A_SpawnItemEx("Beast3Doom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
@@ -193,7 +188,7 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			Goto Bosswait	
 		SetCatacomb2:
 			TNT1 A 1 A_SpawnItemEx("CatacombArmageddon_TwoHeadedDemon", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto Bosswait		
+			Goto Bosswait	
 		SetNull:
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto Bosswait
