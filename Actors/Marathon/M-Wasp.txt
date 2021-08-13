@@ -5,7 +5,7 @@ ACTOR MWasp
 	Height 50
 	Speed 5.83
 	Mass 100
-//	PainChance 255
+	PainChance 0
 	Gravity 0.15
 	MinMissileChance 10
 	Scale 0.30
@@ -14,7 +14,6 @@ ACTOR MWasp
     +NOTDMATCH
     +NOICEDEATH
 	+DONTRIP
-	+NOPAIN
 	+MISSILEMORE
 	+MISSILEEVENMORE
 	+QUICKTORETALIATE
@@ -276,9 +275,9 @@ ACTOR MWasp
 			TNT1 A 5 A_FadeOut
 			Stop
 		Pain.Hexen2RavenDamage:
-			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_Jump(192,"See")
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawnerColor",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			Goto Pain
+			Goto See
 		Death.Hexen2Damage:
 		Death.Hexen2Fire:
 		Death.Hexen2Electric:
@@ -446,7 +445,7 @@ ACTOR MWasp2
 	Height 50
 	Speed 5.83
 	Mass 100
-//	PainChance 255
+	PainChance 0
 	Gravity 0.15
 	MinMissileChance 10
 	Scale 0.30
@@ -454,7 +453,6 @@ ACTOR MWasp2
 	+FLOORCLIP
     +NOTDMATCH
     +NOICEDEATH
-	+NOPAIN
 	+DONTRIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
@@ -467,7 +465,7 @@ ACTOR MWasp2
 	DeathSound "mwasp/death"
 	ActiveSound "mwasp/active"
 	AttackSound ""
-	Dropitem "DefaultPinataPop"
+	//Dropitem "DefaultPinataPop"
 	Obituary "%o was blinded by a Wasp's acid spit."
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5

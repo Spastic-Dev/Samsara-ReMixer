@@ -12,7 +12,6 @@ Actor Hovertank3D_EnemyBase
     +THRUGHOST
 	+MISSILEMORE
 	+LOOKALLAROUND
-	+NOPAIN
 	DeathSound "Hovertank3D/Die"	
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
@@ -39,6 +38,9 @@ Actor Hovertank3D_RedDemon : Hovertank3D_EnemyBase
 		See:
 			HT00 AABBCCDD 4 A_Chase
 			Loop
+		Pain: 
+			HT00 E 4
+			Goto See
 		Melee:
 			HT00 E 12 A_FaceTarget
 			HT00 F 12 A_CustomMeleeAttack(10, "", "", "CatacombDamage", true)
@@ -70,10 +72,10 @@ Actor Hovertank3D_RedDemon : Hovertank3D_EnemyBase
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
 			TNT1 A 0 A_GiveToTarget("HealthBonus",1)
-			Goto Pain		
+			Goto See		
 		Pain.Vodoo:
 			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-			Goto Pain
+			Goto See
 		Death.HLLaser:
 		Death.HLExplosive:
 		Death.HLRPGExplosive:	
@@ -334,9 +336,9 @@ Actor Hovertank3D_RedDemon : Hovertank3D_EnemyBase
 			TNT1 A 5 A_FadeOut	
 			Stop
 		Pain.Hexen2RavenDamage:
-			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_Jump(192,"See")
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			Goto Pain
+			Goto See
 		Death.Hexen2Damage:
 		Death.Hexen2Fire:
 		Death.Hexen2Electric:
@@ -638,6 +640,9 @@ Actor Hovertank3D_Squid : Hovertank3D_EnemyBase
 		See:
 			HT01 AABBCCDD 4 A_Chase
 			Loop
+		Pain: 
+			HT00 E 4
+			Goto See			
 		Melee:
 			HT01 ABC 4 A_FaceTarget
 			HT01 D 4 A_CustomMeleeAttack(10, "", "", "CatacombDamage", true)
@@ -673,10 +678,10 @@ Actor Hovertank3D_Squid : Hovertank3D_EnemyBase
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
 			TNT1 A 0 A_GiveToTarget("HealthBonus",1)
-			Goto Pain		
+			Goto See		
 		Pain.Vodoo:
 			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-			Goto Pain
+			Goto See
 		Death.HLLaser:
 		Death.HLExplosive:
 		Death.HLRPGExplosive:	
@@ -937,9 +942,9 @@ Actor Hovertank3D_Squid : Hovertank3D_EnemyBase
 			TNT1 A 5 A_FadeOut	
 			Stop
 		Pain.Hexen2RavenDamage:
-			TNT1 A 0 A_Jump(192,"Pain")
+			TNT1 A 0 A_Jump(192,"See")
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			Goto Pain
+			Goto See
 		Death.Hexen2Damage:
 		Death.Hexen2Fire:
 		Death.Hexen2Electric:
@@ -1262,23 +1267,7 @@ Actor Hovertank3D_Hovertank : Hovertank3D_EnemyBase
 			HT02 C 5 A_NoBlocking
 			HT02 DE 5
 			HT02 F -1
-			Stop
-		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			HT02 A 2 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
-			HT02 A 16 A_Pain
-			Goto See
-		Pain.MarathonStun:
-			TNT1 A 0 A_Stop
-			TNT1 A 0 A_GiveInventory("NothingSpeed")
-			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-			HT02 A 5 A_FaceTarget
-			TNT1 A 0 A_Gravity
-			HT02 A 30 A_Pain
-			HT02 A 70
-			Goto See		
+			Stop		
 		Death.SWFist:
 		Death.SWKatana:
 		Death.SWShuriken:
@@ -1297,7 +1286,7 @@ Actor Hovertank3D_Hovertank : Hovertank3D_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -1312,10 +1301,10 @@ Actor Hovertank3D_Hovertank : Hovertank3D_EnemyBase
 			Goto Death
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
-			Goto Pain		
+			Goto See		
 		Pain.Vodoo:
 			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-			Goto Pain  								
+			Goto See  								
 		Death.EradDisc:
 		Death.EradShock:
 		Death.EradPiercingDart:

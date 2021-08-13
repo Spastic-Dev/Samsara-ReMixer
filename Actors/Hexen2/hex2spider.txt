@@ -8,6 +8,8 @@ Actor Hexen2BlackSpiderLarge
 	Speed 12
 	Monster
 	GibHealth 20
+	PainChance 48
+	Scale 1.1
 	Species "Enemies"
 	BloodType "Hexen2BloodColor"
 	BloodColor darkolivegreen
@@ -50,7 +52,7 @@ Actor Hexen2BlackSpiderLarge
 			HX03 ABC 1 A_FaceTarget
 			HX03 E 0 ThrustThingZ(0,Random(30,40),0,0)	
 			HX03 E 0 ThrustThing(angle * 256 / 360, Random(10,20), 0, 0)
-			HX03 DEFGHIJKLMNOPQRSTU 1 
+			HX03 DEFGHIJKLMN 2 
 			HX00 A 0 A_JumpIfCloser(120,"See")
 			HX03 I 0 A_CustomMeleeAttack((10),none,none,"Hexen2Damage")
 			Goto See
@@ -69,7 +71,12 @@ Actor Hexen2BlackSpiderLarge
 			HX04 ABCDEFGHIJKLM 1
 			HX04 M 0 A_CustomMeleeAttack(random(1,9),none,none,"Hexen2Damage")
 			HX04 M 0 A_FaceTarget
-			Goto See				
+			Goto See	
+		Pain:
+			HX03 O 1 A_Pain
+			HX03 PQRSTU 1
+			HX04 ABC 1
+			Goto See
 		Death:
 	//		TNT1 A 0 A_JumpIfHealthLower(-20,"XDeath")
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -158,7 +165,7 @@ Actor Hexen2BlackSpiderLarge
 			"####" "#" 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			"####" "#" 16 A_Pain
-			Goto See
+			Goto Pain
 		Pain.MarathonStun:
 			TNT1 A 0 A_Stop
 			TNT1 A 0 A_GiveInventory("NothingSpeed")
@@ -166,7 +173,7 @@ Actor Hexen2BlackSpiderLarge
 			"####" "#" 5 A_FaceTarget
 			"####" "#" 30 A_Pain
 			"####" "#" 70
-			Goto See		
+			Goto Pain		
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
 			TNT1 A 0 A_GiveToTarget("HealthBonus",1)
@@ -468,9 +475,10 @@ Actor Hexen2BlackSpiderSmall : Hexen2BlackSpiderLarge
 {
 	Tag "Small Black Spider"
 	Health 30
-	Radius 12
-	Height 24
-	Scale 0.6
+	Radius 13
+	Height 26
+	PainChance 64
+	Scale 0.7
 	States
 	{
 	Death:
@@ -534,10 +542,11 @@ Actor Hexen2BlackSpiderSmallCorpse : Hexen2BlackSpiderLargeCorpse
 Actor Hexen2RedSpiderSmall : Hexen2BlackSpiderLarge
 {
 	Tag "Small Red Spider"
-	Health 70
-	Radius 12
-	Height 24
-	Scale 0.6	
+	Health 50
+	Radius 15
+	Height 30
+	PainChance 64
+	Scale 0.9
 	States
 	{				
 		Death:
@@ -608,6 +617,9 @@ Actor Hexen2RedSpiderLarge : Hexen2BlackSpiderLarge
 {
 	Tag "Large Red Spider"
 	Health 175
+	Radius 19
+	Height 40	
+	Scale 1.4
 	States
 	{			
 		Death:

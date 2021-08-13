@@ -13,7 +13,7 @@ Actor CatacombTrilogy_EnemyBase // base for the enemies. Enemy behavior is very 
 	+MISSILEMORE
 	+LOOKALLAROUND
 	PainSound "Catacomb/Monster/Pain"
-	DeathSound "Catacomb/Monster/Die"	
+	DeathSound "Catacomb/Monster/Die3"	
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
 	DamageFactor "WolfEnemyBullet", 0.0
@@ -2472,6 +2472,7 @@ Actor CatacombAbyss_EvilEye : CatacombTrilogy_EnemyBase //replaces CacoDemon
 	-SOLID
 	+FLOAT
 	+NOGRAVITY
+	+DROPOFF
 	Tag "Evil Eye"
 	Obituary "Our savior %o has fallen to an Evil Eye."	
 	BloodColor "fc 54 54"
@@ -3772,7 +3773,7 @@ Actor CatacombAbyss_SkeletonWarrior : CatacombTrilogy_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -3986,6 +3987,7 @@ Actor CatacombAbyss_Wraith : CatacombTrilogy_EnemyBase
 	-SOLID
 	-SHOOTABLE
 	+NOBLOOD
+	+DROPOFF
 	Tag "Wraith"
 	Obituary "Our savior %o has fallen to a Wraith."	
 	States
@@ -4052,7 +4054,7 @@ Actor CatacombAbyss_Wraith : CatacombTrilogy_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:

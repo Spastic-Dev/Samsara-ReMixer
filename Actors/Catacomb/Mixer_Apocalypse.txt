@@ -5,6 +5,7 @@ Actor CatacombApocalypse_CyberMage : CatacombTrilogy_EnemyBase
 	+FLOAT
 	+NOGRAVITY
 	+NOBLOOD
+	+DROPOFF
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
@@ -77,7 +78,7 @@ Actor CatacombApocalypse_CyberMage : CatacombTrilogy_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -779,7 +780,7 @@ Actor CatacombApocalypse_CyberAnt : CatacombTrilogy_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -976,7 +977,6 @@ Actor CatacombApocalypse_TimeLord : CatacombTrilogy_EnemyBase //replaces CacoDem
 	+NOBLOOD
 	+FLOAT
 	+NOGRAVITY
-	+NOPAIN
 	Tag "Time Lord"
 	Obituary "Our savior %o has fallen to a Time Lord."	
 	States
@@ -1020,7 +1020,7 @@ Actor CatacombApocalypse_TimeLord : CatacombTrilogy_EnemyBase //replaces CacoDem
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
 			TNT1 A 0 A_GiveToTarget("HealthBonus",1)
-			Goto Pain		
+			Goto See		
 		Death.SWFist:
 		Death.SWKatana:
 		Death.SWShuriken:
@@ -1039,7 +1039,7 @@ Actor CatacombApocalypse_TimeLord : CatacombTrilogy_EnemyBase //replaces CacoDem
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -1054,10 +1054,10 @@ Actor CatacombApocalypse_TimeLord : CatacombTrilogy_EnemyBase //replaces CacoDem
 			Goto Death
 		Pain.LifeLeech:
 			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
-			Goto Pain		
+			Goto See		
 		Pain.Vodoo:
 			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-			Goto Pain  								
+			Goto See  								
 		Death.EradDisc:
 		Death.EradShock:
 		Death.EradPiercingDart:
@@ -1310,7 +1310,7 @@ Actor CatacombApocalypse_CyberDemon : CatacombTrilogy_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -1488,6 +1488,7 @@ Actor CatacombApocalypse_MantaRay : CatacombTrilogy_EnemyBase
 	Radius 30
 	Height 48
 	+FLOAT
+	+DROPOFF
 	+NOGRAVITY
 	Tag "Devil Ray"
 	Obituary "Our savior %o has fallen to a Devil Ray."
@@ -2182,7 +2183,7 @@ Actor CatacombApocalypse_CyberPox : CatacombTrilogy_EnemyBase
 			CT27 H 5 BRIGHT A_Scream
 			CT27 I 5 BRIGHT A_NoBlocking
 			CT27 HIHI 5 BRIGHT
-			CT27 J 0 BRIGHT A_PlaySound("Catacomb/Explosion", CHAN_BODY)
+			CT27 J 0 BRIGHT A_PlaySound("Catacomb/BigExplosion", CHAN_BODY)
 			CT27 J 5 A_Explode(120, 120, 1, false)
 			CT27 K -1  A_KillMaster
 			Stop
@@ -2825,8 +2826,10 @@ Actor CatacombApocalypse_Spectre : CatacombTrilogy_EnemyBase
 	-SOLID
 	-SHOOTABLE
 	+NOPAIN
+	+NORADIUSDMG
 	Tag "Oil Monster"
 	BloodColor "39 39 39"
+	DeathSound "Catacomb/BigExplosion"
 	Obituary "Our savior %o has fallen to an Oil Monster."
 	States
 	{
@@ -2840,6 +2843,7 @@ Actor CatacombApocalypse_Spectre : CatacombTrilogy_EnemyBase
 			Loop
 		Rise:
 			CT29 C 8 A_ChangeFlag(NOPAIN, 0)
+			CT29 C 0 A_ChangeFlag(NORADIUSDMG, 0)
 			CT29 D 8 A_SetSolid
 			CT29 E 8 A_SetShootable
 			Goto UpLoop
@@ -2866,7 +2870,7 @@ Actor CatacombApocalypse_Spectre : CatacombTrilogy_EnemyBase
 		Pain:
 			CT29 F 2
 			CT29 F 2 A_Pain
-			Goto See
+			Goto UpLoop
 		Death:
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -3580,7 +3584,7 @@ Actor CatacombApocalypse_WalkingTank : CatacombTrilogy_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
@@ -3849,7 +3853,7 @@ Actor CatacombApocalypse_SentryEye : CatacombTrilogy_EnemyBase
 		Death.SWFlame3:
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Super::Death
+			goto Death
 		Death.Vodoo:
 		Death.VoodooPuff:
 		Death.DynamiteCoop:
