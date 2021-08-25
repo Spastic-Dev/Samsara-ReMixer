@@ -26,6 +26,7 @@ Actor Hexen2Eidolon : Hexen2BossBase
 			Loop
 		See:
 			TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "See2")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_GiveInventory("SawPlayer", 1)		
 			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
@@ -39,7 +40,8 @@ Actor Hexen2Eidolon : Hexen2BossBase
 			HX06 NOPQRSTUVWXYZ 2
 			HX07 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
 			HX08 ABCDEFGH 2
-			HX08 H 0 A_TakeInventory("Hexen2EidolonLightningToken",1)
+			HX05 A 0 A_TakeInventory("Hexen2EidolonLightningToken",1)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		See2:
 			HX05 A 2 A_Chase	HX05 B 0 A_Blast(BF_DONTWARN|BF_NOIMPACTDAMAGE,128,64,8,"Hexen2EidolonRepulseFlash","")
 			HX05 B 2 A_Chase	HX05 C 0 A_Blast(BF_DONTWARN|BF_NOIMPACTDAMAGE,128,64,8,"Hexen2EidolonRepulseFlash","")		HX05 C 0 A_PlaySound("Hexen2/Eidolon/Stomp",CHAN_BODY,1.0,0,ATTN_NONE)
@@ -102,6 +104,7 @@ Actor Hexen2Eidolon : Hexen2BossBase
 			HX00 ABCDEFGHI 2
 			Goto See2
 		Death:
+			HX09 A 0 A_JumpIf(ceilingz < (floorz + 256),"ForceDeath")
 			HX09 A 0 A_Scream
 			HX09 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
 			HX10 ABCD 2
@@ -119,6 +122,27 @@ Actor Hexen2Eidolon : Hexen2BossBase
 			HX06 A 0 A_SpawnItemEx("Hexen2EidolonBig",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
 			HX06 A 0 A_TakeInventory("Hexen2EidolonLightningToken",1)
 			stop
+		ForceDeath:
+			HX06 A 0 Radius_Quake(5,280,0,8,0)
+			HX06 A 0 A_Scream
+			HX06 A 0 A_GiveInventory("Hexen2EidolonLightningToken",1)
+			HX06 A 0 A_CustomMissile("Hexen2EidolonThunderStorm",40)
+			HX06 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
+			HX07 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
+			HX08 ABCDEFGH 2
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 A_Playsound("Hexen2/HugeExplosion", CHAN_6)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_NoGravity
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 ACS_NamedExecuteAlways("Hexen2_BossDeath")
+			TNT1 A 0 A_GiveInventory("Hexen2PraevusFlashToken",1)
+			TNT1 A 105
+			TNT1 A 0 A_KillMaster
+			Stop
 	}
 }
 
@@ -148,11 +172,13 @@ Actor Hexen2EidolonBig : Hexen2Eidolon
 	Speed 10 
 	Health 10000 
 	Scale 2.55
+	Painchance 25
 	States
 	{
 		Spawn:
 			HX06 A 0
 		Roar:
+			HX06 A 0 A_ChangeFlag("INVULNERABLE",1)
 			HX06 A 0 A_ChangeFlag("NOPAIN",1)
 			HX06 A 0 A_PlaySound("Hexen2/Eidolon/Roar",CHAN_VOICE,1.0,0,ATTN_NONE)
 			HX06 ABCDEFGHIJKLM 2
@@ -161,8 +187,9 @@ Actor Hexen2EidolonBig : Hexen2Eidolon
 			HX06 NOPQRSTUVWXYZ 2
 			HX07 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
 			HX08 ABCDEFGH 2
-			HX06 A 0 A_ChangeFlag("NOPAIN",0)
-			HX08 A 0 A_TakeInventory("Hexen2EidolonLightningToken",1)
+			HX05 A 0 A_ChangeFlag("INVULNERABLE",0)
+			HX05 A 0 A_ChangeFlag("NOPAIN",0)
+			HX05 A 0 A_TakeInventory("Hexen2EidolonLightningToken",1)
 			Goto See
 		See:
 			HX05 AB 2 A_Chase
@@ -256,6 +283,34 @@ Actor Hexen2EidolonBig : Hexen2Eidolon
 			HX01 P 0 A_CustomMissile("Hexen2EidolonPolyMorph",100,20)
 			HX01 QRST 2
 			Goto See2
+		Death:
+			HX06 A 0 Radius_Quake(5,280,0,8,0)
+			HX06 A 0 A_Scream
+			HX06 A 0 A_GiveInventory("Hexen2EidolonLightningToken",1)
+			HX06 A 0 A_CustomMissile("Hexen2EidolonThunderStorm",40)
+			HX06 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
+			HX07 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
+			HX08 ABCDEFGH 2
+		Shake:
+			HX08 H 0 A_JumpIf(scalex <= 1.0, "Explode")
+			HX08 HGFE 2 A_SetScale(scalex+frandom(-0.1,0.05))
+			HX08 D 0 A_JumpIf(scalex <= 1.0, "Explode")
+			HX08 DCBA 2 A_SetScale(scalex+frandom(-0.1,0.05))
+			Loop
+		Explode:
+			TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
+			TNT1 A 0 A_Playsound("Hexen2/HugeExplosion", CHAN_6)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_RemoveChildren(true)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_NoGravity
+			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 ACS_NamedExecuteAlways("Hexen2_BossDeath")
+			TNT1 A 0 A_GiveInventory("Hexen2PraevusFlashToken",1)
+			TNT1 A 105
+			TNT1 A 0 A_KillMaster
+			Stop
 	}
 }
 
@@ -391,7 +446,7 @@ ACTOR Hexen2EidolonLightning : FastProjectile
 	//		TNT1 A 0 A_ChangeFlag("CLIENTSIDEONLY", false)
 			TNT1 A 0 A_Jump(32,2)
 			TNT1 A 0 A_SetDamageType("Hexen2ElectricExtreme")
-			TNT1 A 0 A_Explode(CallACS("Hexen2_IntelligenceMultiplier",10),16,!XF_HURTSOURCE,0,16)
+			TNT1 A 0 A_Explode(100,16,!XF_HURTSOURCE,0,16)
 			TNT1 A 0 A_SpawnItemEx("Hexen2PraevusLightningHit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Stop
 			stop	
@@ -403,7 +458,7 @@ ACTOR Hexen2EidolonLightningToken : Hexen2Boolean {}
 Actor Hexen2EidolonFireBreath
 {
 	Projectile
-	Speed 6
+	Speed 8
 	DamageType "Hexen2Fire"
 	Height 16
 	Radius 4
@@ -467,7 +522,7 @@ Actor Hexen2EidolonPolyMorph : MorphProjectile
 	Speed 12
 	Height 8
 	Radius 4
-	MorphProjectile.PlayerClass "ChickenPlayer"
+	MorphProjectile.PlayerClass "Hexen2SheepPlayer"
 	MorphProjectile.MonsterClass "Hexen2_Sheep"
 	MorphProjectile.MorphStyle MRF_UNDOBYTOMEOFPOWER
 	MorphProjectile.MorphFlash "Hexen2EidolonPolyMorphTeleport"

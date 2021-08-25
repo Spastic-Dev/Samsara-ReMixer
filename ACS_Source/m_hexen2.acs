@@ -137,6 +137,7 @@ Script "Hexen2_BossDeath" (int mode)
 {
 	if(mode == 0)
 	{
+		PlaySound(0,"Hexen2/Horseman/Flashdie",CHAN_BODY,1.0,0,ATTN_NORM);
 		int count;
 		int newtid = UniqueTid();
 		SpawnForced("Hexen2BossDeathCircle1",GetActorX(0),GetActorY(0),GetActorZ(0)+25.0,newtid,GetActorAngle(0));
