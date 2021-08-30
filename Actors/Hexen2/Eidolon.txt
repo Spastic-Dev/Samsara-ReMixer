@@ -470,9 +470,14 @@ Actor Hexen2EidolonFireBreath
 			HX38 "[" 1
 			Stop
 		Death:
-			HX38 XYZ 1
+			HX38 X 1 A_Explode(60,60,0,0)
+			HX38 YZ 1
 			HX38 "[" 1
 			Stop
+		XDeath:	
+			HX38 XYZ 1
+			HX38 "[" 1
+			Stop			
 	}
 }
 
@@ -486,6 +491,7 @@ Actor Hexen2EidolonFireBall
 	Height 16
 	Radius 4
 	Scale 2.0
+	Damage (Random(150,200))
 	Renderstyle Translucent
 	Alpha 0.5
 	States
@@ -494,10 +500,12 @@ Actor Hexen2EidolonFireBall
 			HX00 A 4 A_SpawnItemEx("Hexen2EidolonFireBallSmoke")
 			Loop
 		Death:
-			HX37 ABCDEFGHI 2 Bright
+			HX37 A 2 Bright A_Explode(Random(120, 160), 120, 0, 0)
+			HX37 BCDEFGHI 2 Bright
 			Stop
 		XDeath:
-			HX37 ABCDEFGHI 2 Bright
+			HX37 A 2 Bright A_Explode(Random(120, 160), 120, 0, 0)
+			HX37 BCDEFGHI 2 Bright
 			Stop
 	}
 }
