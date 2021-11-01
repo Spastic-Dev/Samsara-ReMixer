@@ -42,14 +42,23 @@ Script "Goldeneye_HatShot" (void)
 	Thing_Remove(0);
 }
 
-Script "GoldeneyePartPositioner" (void)
+Script "GoldeneyeEnemyLoop" (void)
 {
-	while(ClassifyActor(0) != 1)
+	int oldX, oldY, oldZ;
+	While(ClassifyActor(0) > 1)
 	{
-		//SetActorPosition(newtid,GetActorX(0),GetActorY(0),GetActorZ(0),0);
-		Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION);
+		if(GetActorX(0) != oldX && GetActorY(0) != oldY && GetActorZ(0) != oldZ)
+		{
+			oldX = GetActorX(0);	oldY = GetActorY(0);	oldZ = GetActorZ(0);
+			GiveInventory("Goldeneye_UpdateChildren",1);
+		}
 		Delay(1);
 	}
+}
+
+Script "GoldeneyePartPositioner" (void)
+{
+	Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION);
 }
 
 Script "GoldeneyeEnemyPartsPicker" (int type, int ec)

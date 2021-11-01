@@ -9525,6 +9525,34 @@ Actor Goldeneye_RemoveChildren : CustomInventory
 	}
 }
 
+Actor Goldeneye_UpdateChildren : CustomInventory
+{
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_GiveToChildren("Goldeneye_UpdateChild",1)
+			stop
+	}
+}
+
+Actor Goldeneye_UpdateChild : CustomInventory
+{
+	-COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage ""
+	Inventory.PickupSound ""
+	States
+	{
+		Pickup:
+			TNT1 A 0 ACS_NamedExecuteWithResult("GoldeneyePartPositioner")
+			stop
+	}
+}
 
 Actor Goldeneye_HatDrop 
 {
