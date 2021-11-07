@@ -47,7 +47,7 @@ Script "GoldeneyeEnemyLoop" (void)
 	int oldX, oldY, oldZ;
 	While(ClassifyActor(0) > 1)
 	{
-		if(GetActorX(0) != oldX && GetActorY(0) != oldY && GetActorZ(0) != oldZ)
+		if(GetActorX(0) != oldX || GetActorY(0) != oldY || GetActorZ(0) != oldZ)
 		{
 			oldX = GetActorX(0);	oldY = GetActorY(0);	oldZ = GetActorZ(0);
 			GiveInventory("Goldeneye_UpdateChildren",1);
