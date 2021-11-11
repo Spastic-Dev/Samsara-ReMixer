@@ -7,6 +7,8 @@ Actor Goldeneye_Trevelyan : Goldeneye_EnemyBase
 	Height 64
 	Health 2500
 	+MISSILEMORE
+	+NODAMAGE
+	+NOPAIN
 	+MISSILEEVENMORE
 	+BOSS
 	States
@@ -21,5 +23,707 @@ Actor Goldeneye_Trevelyan : Goldeneye_EnemyBase
 			TNT1 A 0 A_GiveInventory("AlreadySpawned",1)
 			TNT1 A 0 A_SetShootable
 			Goto Spawn2
+		Spawn2:
+			TNT1 A 0 A_SetTranslucent(0,0)
+			TNT1 A 80
+			TNT1 A 0 ACS_NamedExecuteAlways("SamsaraBossMonologue",0,29)
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_Monologue",1)
+			TNT1 A 0 A_SetTranslucent(0.1,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.2,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.3,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.4,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.5,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.6,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.7,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.8,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 A 0 A_SetTranslucent(0.9,0)
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
+			TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
+			TNT1 A 50 A_SetTranslucent(1,0)
+			//TNT1 A 0 A_PlaySoundEx("dsparil/active","SoundSlot5",0,2)
+			TNT1 A 100
+			TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)		
+			TNT1 A 5 A_Look
+			Wait	
+		Idle:
+			//TNT1 A 0 A_JumpIf(mass == 1000, "AnimationTest")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)	
+			TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+			TNT1 A 0 A_SetShootable
+			TNT1 A 0 A_JumpIf(mass <= 205||mass == 207||mass == 208||mass == 210||mass == 212||mass == 214||mass == 216||mass == 219||mass == 220||mass == 222||mass >=224, "SpawnDual")
+			TNT1 A 0 A_Jump(36, "Walking")
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_Spawn2",1)
+			TNT1 A 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 G 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 H 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 I 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 J 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 J 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 I 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 H 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 G 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			TNT1 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 
+			TNT1 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			Loop		
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)
+			TNT1 A 0 A_Jump(256, "DeathCrossFeet", "DeathFaceGround", "DeathOnKnees", "DeathOnSide", "DeathFaceUp", "DeathFaceUpFlip", "DeathHeadShot", "DeathFlyBack", "DeathJumpBack", "DeathSprawlOut", "DeathFetalLeft", "DeathFetalRight", "DeathNeck", "DeathShoulderBack", "DeathStaggerWall")
+			Goto DeathFaceGround
+		DeathFaceGround: //+
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFaceGround",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 7
+			TNT1 B 7 A_NoBlocking
+			TNT1 C 3 
+			TNT1 C 4 A_Scream
+			TNT1 D 7
+			TNT1 E 7
+			TNT1 F 7
+			TNT1 G 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 G 3 
+			TNT1 H 7
+			TNT1 I 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 J 7 
+			TNT1 K 7 
+			TNT1 L 7
+			TNT1 L 1 A_KillMaster
+			TNT1 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
+			stop
+		DeathFlyBack:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFlyBack",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4 
+			TNT1 D 4 
+			TNT1 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4 
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4 
+			TNT1 M 1 A_KillMaster
+			TNT1 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			stop
+		Death.GoldeneyeHead:
+		DeathHeadShot:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathHeadShot",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 R 4
+			TNT1 S 4
+			TNT1 T 4
+			TNT1 U 4
+			TNT1 V 4
+			TNT1 W 4
+			TNT1 X 4 
+			TNT1 Y 4
+			TNT1 Z 4
+			TNT1 A 4
+			TNT1 B 4
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 E 1 A_KillMaster
+			TNT1 EEEEEEEEEEEEEEEEEEEEEEE 2 A_FadeOut(0.05)
+			Stop
+		DeathNeck:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathNeck",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4 
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 R 4
+			TNT1 S 4
+			TNT1 T 4
+			TNT1 U 4
+			TNT1 V 4
+			TNT1 W 4
+			TNT1 X 4
+			TNT1 Y 4
+			TNT1 Z 4
+			TNT1 A 4
+			TNT1 B 4
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 I 1 A_KillMaster
+			TNT1 IIIIIIIIIIIIIIIIIIIIIII 2 A_FadeOut(0.05)
+			Stop
+		DeathOnKnees: //+
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathOnKnees",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 8 
+			TNT1 B 8 A_NoBlocking
+			TNT1 C 8 A_Scream
+			TNT1 D 8
+			TNT1 E 8
+			TNT1 F 8
+			TNT1 G 8
+			TNT1 H 8
+			TNT1 I 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 J 8
+			TNT1 K 8
+			TNT1 L 8
+			TNT1 M 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 N 8
+			TNT1 O 8
+			TNT1 O 1 A_KillMaster
+			TNT1 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			stop
+		DeathOnSide:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathOnSide",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 O 1 A_KillMaster
+			TNT1 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			stop
+		DeathShoulderBack:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathShoulderBack",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 O 1 A_KillMaster
+			TNT1 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			Stop
+		DeathSprawlOut: //+
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathSprawlOut",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 7 
+			TNT1 B 7 A_NoBlocking
+			TNT1 C 7 A_Scream
+			TNT1 D 7 
+			TNT1 E 7 
+			TNT1 F 2
+			TNT1 F 5 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 G 7
+			TNT1 H 7
+			TNT1 I 7
+			TNT1 J 7
+			TNT1 K 7
+			TNT1 L 7
+			TNT1 L 1 A_KillMaster
+			TNT1 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
+			stop
+		DeathCrossFeet:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathCrossFeet",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4 
+			TNT1 D 4 
+			TNT1 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 F 4
+			TNT1 G 4 
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4 
+			TNT1 K 4
+			TNT1 L 4 
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 R 4
+			TNT1 S 4
+			TNT1 T 4
+			TNT1 U 4
+			TNT1 U 1 A_KillMaster
+			TNT1 UUUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
+			stop
+		DeathFaceUp:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFaceUp",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4 
+			TNT1 D 4
+			TNT1 E 4 
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 R 4
+			TNT1 S 4
+			TNT1 T 4
+			TNT1 U 4
+			TNT1 V 4
+			TNT1 W 4
+			TNT1 X 4
+			TNT1 Y 4
+			TNT1 Y 1 A_KillMaster
+			TNT1 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
+			Stop
+		DeathFaceUpFlip:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFaceUpFlip",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 K 4
+			TNT1 L 4 
+			TNT1 M 4 
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4 
+			TNT1 R 4
+			TNT1 R 1 A_KillMaster
+			TNT1 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
+			Stop
+		DeathFetalLeft:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFetalLeft",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 R 4
+			TNT1 S 4
+			TNT1 T 4
+			TNT1 U 4
+			TNT1 V 4
+			TNT1 W 4
+			TNT1 X 4
+			TNT1 X 1 A_KillMaster
+			TNT1 XXXXXXXXXXXXXXXXXXXXXXX 2 A_FadeOut(0.05)
+			Stop
+		DeathFetalRight:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFetalRight",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 R 4
+			TNT1 S 4
+			TNT1 T 4
+			TNT1 U 4
+			TNT1 V 4
+			TNT1 W 4 
+			TNT1 X 4
+			TNT1 X 1 A_KillMaster
+			TNT1 XXXXXXXXXXXXXXXXXXXXXXX 2 A_FadeOut(0.05)
+			Stop
+		DeathJumpBack:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathJumpBack",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4 
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4 
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 R 4
+			TNT1 R 1 A_KillMaster
+			TNT1 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
+			stop
+		DeathStaggerWall:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathStaggerWall",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 P 1 A_KillMaster
+			TNT1 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
+			Stop
+		XDeath:
+		Death.Explosive:
+			TNT1 A 0 ThrustThingZ(0,4,0,0)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)
+			TNT1 A 0 A_Jump(256,"DeathExplosionBack","DeathExplosionBack2","DeathExplosionForward","DeathExplosionForwardRoll","DeathExplosionLeft","DeathExplosionLeft2","DeathExplosionRight")
+			Goto DeathExplosionBack
+		DeathExplosionBack:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathExplosionBack",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 M 1 A_KillMaster
+			TNT1 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionBack2:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathExplosionBack2",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 M 1 A_KillMaster
+			TNT1 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionForward:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathExplosionForward",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 M 1 A_KillMaster
+			TNT1 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionForwardRoll:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathExplosionForwardRoll",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 P 1 A_KillMaster
+			TNT1 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionLeft:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathExplosionLeft",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 N 1 A_KillMaster
+			TNT1 NNNNNNNNNNNNNNNNNNNNNNN 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionLeft2:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathExplosionLeft2",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 N 4
+			TNT1 O 4
+			TNT1 P 4
+			TNT1 Q 4
+			TNT1 Q 1 A_KillMaster
+			TNT1 QQQQQQQQQQQQQQQQQQQQQQQ 2 A_FadeOut(0.05)
+			Stop
+		DeathExplosionRight:
+			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathExplosionRight",1)
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 4 A_Scream
+			TNT1 B 4 A_NoBlocking
+			TNT1 C 4
+			TNT1 D 4
+			TNT1 E 4
+			TNT1 F 4
+			TNT1 G 4
+			TNT1 H 4
+			TNT1 I 4
+			TNT1 J 4
+			TNT1 K 4
+			TNT1 L 4
+			TNT1 M 4
+			TNT1 M 1 A_KillMaster
+			TNT1 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			Stop
 	}
 }	
