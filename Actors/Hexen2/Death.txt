@@ -81,6 +81,7 @@ Actor Hexen2Death : Hexen2BossBase
 			"####" "################################################################" 2
 			"####" "#" 0 A_GiveInventory("Hexen2PraevusFlashToken",1)
 			"####" "####" 2
+			"####" "#" -1 A_KillMaster
 			Stop			
 			}
 }
@@ -299,7 +300,7 @@ Actor Hexen2DeathFireBall : Hexen2ImpFireBall
 			Loop
 		Death:
 			TNT1 A 0 A_PlaySound("Hexen2/FireRuneEnd", CHAN_VOICE)
-			TNT1 A 0 A_SpawnItemEx("Hexen2DeathFireCircleSpawner")
+			TNT1 A 0 A_SpawnItemEx("Hexen2DeathFireCircleSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION)
 			TNT1 A 1
 			Stop
 		}
