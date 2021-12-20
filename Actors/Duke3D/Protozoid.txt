@@ -210,11 +210,9 @@ actor Duke3D_Protozoid
     goto See
   Melee:
     TNT1 A 0 A_JumpIfInTargetInventory("GettingSlimed",1,"See2")
-	TNT1 A 0 A_JumpIfInTargetInventory("AmAlreadyChoked",1,"See2")	
-	TNT1 A 0 A_JumpIfInTargetInventory("NoWeapon",1,"See2")		
-	TNT1 A 1 A_GiveToTarget("GettingSlimedItem",1)
-	TNT1 A 1 A_Die("SlimeTime")
-    Wait
+	TNT1 A 0 A_SpawnItemEx("ProtozoidHitBox",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
+	TNT1 A 1 Thing_Remove(0)
+    Stop
   Death:
   XDeath:
 	TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    
@@ -223,10 +221,6 @@ actor Duke3D_Protozoid
     TNT1 AAAAA 0 A_SpawnDebris("SlimerDukeGibs")
     TNT1 A 5 A_NoBlocking
     TNT1 A -1
-    stop
-  Death.SlimeTime:
-    TNT1 A 0 A_UnsetSolid
-    TNT1 A 5 A_FadeOut
     stop	
   Death.ZorchPistol:
   Death.Zorch:
@@ -323,17 +317,6 @@ actor Duke3D_Protozoid
   }
 }
 
-ACTOR GettingSlimedItem : CustomInventory
-{
-  +INVENTORY.AUTOACTIVATE
-  Inventory.MaxAmount 500
-  States
-  {
-  Use:
-    TNT1 A 0 ACS_NamedExecuteAlways("DukeSlimer1",0,0,0,0)
-    Stop
-  }
-}
 actor SlimerDukeGibs : NewDukeGibs1
 {
   Scale 0.55
@@ -374,4 +357,29 @@ actor SlimerExploded
   }
 }
 
-actor GettingSlimed : Inventory { inventory.amount 1 inventory.maxamount 1 }
+Actor ProtozoidHitBox
+{
+	Height 48
+	Radius 24
+	Health 1
+	+NOBLOOD
+	+ISMONSTER
+	-SOLID
+	+SHOOTABLE
+	+COUNTKILL
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay ACS_NamedExecuteWithResult("DukeProtozoidDamage",0,0,0,0)
+			TNT1 A 0 A_GiveToTarget("GettingSlimed",1)
+		SpawnLoop:	
+			TNT1 A 1 A_Warp(AAPTR_TARGET,8*cos(CallACS("DukeProtozoidPitch")),0,36-(8*sin(CallACS("DukeProtozoidPitch"))),0,WARPF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0 A_SpawnItemEx("SlimerExploded",24,0,0,1,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 2
+			Stop
+	}
+}
+
+Actor GettingSlimed : Boolean {}

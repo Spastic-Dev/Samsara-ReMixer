@@ -310,29 +310,13 @@ Script "ReMixerInvasion" OPEN //670
 		if(GetInvasionState() == 1 || GetInvasionState() == 5)
 		{
 			spawnmode = GetCvar("mm_spawnmode");
-			if(oldmode != spawnmode && spawnmode == 3)
+			if(oldmode != spawnmode)
 			{
-				ACS_NamedExecute("RandomCycle", 0, 0, 0, 0);
-				drawn = 1;
-			}
-			else if(oldmode != spawnmode && spawnmode == 0)
-			{
-				ACS_NamedExecuteAlways("ExMixerClassBasedSpawn",0,0,0,0);
-				drawn = 1;
-			}
-			else if(spawnmode == 1 || spawnmode == 2)
-				drawn = 1;
-				
+				ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0);
+			}		
 		}
-		else if(GetInvasionState() == 4)
-		{
-			oldmode = -1;
-			drawn = 0;
-		}
-		
 		Delay(1);
-		if(drawn == 1)
-			oldmode = spawnmode;
+		oldmode = spawnmode;
 	}
 }
 
@@ -420,7 +404,7 @@ Script "ReMixerCVarCheck" (int pick) //680
 	SetResultValue(response);
 }
 
-Script "ReMixer_PickSets" (int type)
+Script "ReMixer_PickSets" (void)
 {	
 	if(monsterProcessing == 1)
 		terminate;
@@ -519,7 +503,7 @@ Script "ReMixer_PickSets" (int type)
 	monsterProcessing = 0;
 }
 
-Script "ReMixer_PickSets_OPEN" Open { ACS_NamedExecuteWithResult("ReMixer_PickSets",1,0,0,0); }
+Script "ReMixer_PickSets_OPEN" Open { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 Script "ReMixer_PickSets_RESPAWN" RESPAWN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 Script "ReMixer_PickSets_REOPEN" REOPEN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 Script "ReMixer_PickSets_ENTER" ENTER { ACS_NamedExecuteAlways("ReMixer_PickSets",0,0,0,0);}
