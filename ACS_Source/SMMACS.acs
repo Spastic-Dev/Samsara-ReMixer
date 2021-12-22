@@ -32,6 +32,7 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 str doomModes[3] = { "SetDoom", "SetDoom64", "SetDoomRandom" };
 str wolfModes[3] = { "SODM1", "SODM2", "SetTotenkopf" };
 str dukeModes[2] = { "SetDuke3D", "SetDukeLAB" };
+str hlModes[2] =   { "SetHL", "SetHLOP" };
 
 int activeSets = 0;
 int pickFromSets[MAX_GAME_TYPES];
@@ -50,6 +51,7 @@ str skill[5] = { "Kindergarten", "Easy", "Normal", "MajorDamage", "TotalCarnage"
 
 Script "ReMixerInit" OPEN //667
 {
+	pickClear = 0;
 	if (!GetCVar("mm_init"))
 	{
 		SetCVar("mm_doom", true);
@@ -205,19 +207,19 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 								SetActorState(0,doomModes[random(0,1)],true);
 							else
 								SetActorState(0,doomModes[ThingCountName("Doom64GuyMapDummy",0)],true);
-							terminate;
+							break;
 						case 1:
 							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
-							terminate;
+							break;
 						case 2:
 							SetActorState(0,"SetDoom64",true);
-							terminate;
+							break;
 						case 3:
 							SetActorState(0,"SetDoomRandom",true);
-							terminate;
+							break;
 						case 4:
 							SetActorState(0,doomModes[(GetCvar("mm_doomrandomizer") * random(0,1)) + random(0,1)],true);
-							terminate;
+							break;
 					}
 					break;
 				case 3: // Wolf3d
@@ -245,22 +247,22 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 								SetActorState(0,wolfModes[2],true);
 							else
 								SetActorState(0,wolfModes[0],true);
-							terminate;
+							break;
 						case 1:
 							SetActorState(0,"SODM1",true);
-							terminate;
+							break;
 						case 2:
 							SetActorState(0,"SODM2",true);
-							terminate;
+							break;
 						case 3:
 							SetActorState(0,"SetTotenkopf",true);	
-							terminate;
+							break;
 						case 4: 
 							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
-							terminate;			
+							break;			
 						case 5:
 							SetActorState(0,wolfModes[random(0,2)],true);
-							terminate;							
+							break;							
 					}
 					break;
 				case 5:
@@ -270,17 +272,34 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 							if(ThingCountName("DukeLabMapDummy",0) > 0 && ThingCountName("DukePlayer2",0) > ThingCountName("DukeLabMapDummy",0))
 								SetActorState(0,dukeModes[random(0,1)],true);
 							else
-								SetActorState(0,dukeModes[ThingCountName("DukeLabMapDummy",0)],true);
-							terminate;
+								SetActorState(0,dukeModes[ThingCountName("DukeLabMapDummy",0)>0],true);
+							break;
 						case 1:
 							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
-							terminate;
+							break;
 						case 2:
 							SetActorState(0,"SetDukeLAB",true);
-							terminate;
+							break;
 						case 3:
 							SetActorState(0,dukeModes[random(0,1)],true);
-							terminate;						
+							break;						
+					}
+					break;
+				case 19:
+					switch(GetCvar("mm_halflifemode"))
+					{
+						case 0:
+							if(ThingCountName("HalfLifeAdrianModeMapDummy",0) > 0 && ThingCountName("HalfLifePlayer2",0) > ThingCountName("HalfLifeAdrianModeMapDummy",0))
+								SetActorState(0,hlModes[random(0,1)],true);
+							else
+								SetActorState(0,hlModes[ThingCountName("HalfLifeAdrianModeMapDummy",0)>0],true);
+							break;
+						case 1:
+							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							break;
+						case 2:
+							SetActorState(0,"SetHLOP",true);
+							break;
 					}
 					break;
 			}
@@ -503,9 +522,9 @@ Script "ReMixer_PickSets" (void)
 	monsterProcessing = 0;
 }
 
-Script "ReMixer_PickSets_OPEN" Open { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
+//Script "ReMixer_PickSets_OPEN" Open { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 Script "ReMixer_PickSets_RESPAWN" RESPAWN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
-Script "ReMixer_PickSets_REOPEN" REOPEN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
+//Script "ReMixer_PickSets_REOPEN" REOPEN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 Script "ReMixer_PickSets_ENTER" ENTER { ACS_NamedExecuteAlways("ReMixer_PickSets",0,0,0,0);}
 Script "ReMixer_PickSets_DISCONNECT" (int player) DISCONNECT { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 
@@ -517,7 +536,7 @@ Script "Samsara_InvasionChecker" (void)
 		SetResultValue(0);
 }
 
-Script "Samsara_OpposingForceSpawnCheck" (void)
+/*Script "Samsara_OpposingForceSpawnCheck" (void)
 {
 	SetResultValue(ThingCountName("HalfLifeAdrianModeMapDummy",0));
 }
@@ -525,7 +544,7 @@ Script "Samsara_OpposingForceSpawnCheck" (void)
 Script "Samsara_Doom64SpawnCheck" (void)
 {
 	SetResultValue(ThingCountName("Doom64GuyMapDummy",0));
-}
+}*/
 
 int maxPinataCommonQuality = 9;
 int maxPinataUncommonQuality = 18;

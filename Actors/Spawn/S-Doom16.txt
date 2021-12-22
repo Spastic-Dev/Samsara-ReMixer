@@ -192,6 +192,7 @@ ACTOR CyberDemonSpawnerCoop replaces CyberDemon
 			TNT1 A 1 A_SpawnItemEx("Cyberdemon64", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait		
 		SetHL:
+		SetHLOP:
 			TNT1 A 0 A_Jump(128,"SetHL2","SetHL3")
 			TNT1 A 1 A_SpawnItemEx("HLPitWorm",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
@@ -246,6 +247,8 @@ ACTOR CyberDemonSpawnerCoop replaces CyberDemon
 			Goto BossWait
 		BossWait:
 			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+		BossWaitLoop:
 			TNT1 A 1
 			Loop
 		BossRemove:
