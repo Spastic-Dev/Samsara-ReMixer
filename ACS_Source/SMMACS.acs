@@ -156,6 +156,11 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 				SetActorProperty(0,APROP_Alpha,0);
 			}
 			
+			if(GetCVAR("mm_dropmode") == 1)
+			{
+				GiveInventory("WeaponDropToken", 1);
+			}	
+			
 			if(GetCVar("mm_multiply") > 1 && !CheckInventory("MultiplyOverflowToken"))
 			{
 				int activator = ActivatorTid();
@@ -207,7 +212,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 								SetActorState(0,doomModes[random(0,1)],true);
 							else
 								SetActorState(0,doomModes[ThingCountName("Doom64GuyMapDummy",0)],true);
-							break;
+							break;					
 						case 1:
 							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && ThingCountName("DoomguyPlayer2",0) > ThingCountName("Doom64GuyMapDummy",0))
 								SetActorState(0,doomModes[random(0,2)],true);
@@ -321,6 +326,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 			break;
 		}
 		else { break; }
+		case 4:
+			if(GetCVAR("mm_dropmode") == 1)
+			{
+				GiveInventory("WeaponDropToken", 1);
+			}
+		else { break; }	
 	}
 }
 
