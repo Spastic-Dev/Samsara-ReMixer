@@ -137,10 +137,10 @@ Script "Hexen2_BossDeath" (int mode)
 {
 	if(mode == 0)
 	{
-		PlaySound(0,"Hexen2/Horseman/Flashdie",CHAN_BODY,1.0,0,ATTN_NORM);
 		int count;
 		int newtid = UniqueTid();
 		SpawnForced("Hexen2BossDeathCircle1",GetActorX(0),GetActorY(0),GetActorZ(0)+25.0,newtid,GetActorAngle(0));
+		PlaySound(newtid,"Hexen2/Horseman/Flashdie",CHAN_BODY,1.0,0,ATTN_NORM);
 		While(count < 8)
 		{
 			SpawnForced("Hexen2BossDeathShaft",GetActorX(0),GetActorY(0),GetActorZ(0)+25.0,newtid,0);
@@ -154,6 +154,7 @@ Script "Hexen2_BossDeath" (int mode)
 			//SpawnProjectile(0,"Hexen2BossDeathStar",random(0,65536),30,0,0,newtid);
 			if(CheckInventory("Hexen2PraevusFlashToken"))
 			{
+				StopSound(newtid,CHAN_BODY);
 				fadetobold(255,255,255,1.0,0.25);
 				Delay(16);
 				Thing_Remove(newtid);
