@@ -553,7 +553,8 @@ Actor Hexen2FallenAngelLord : Hexen2FallenAngel
 			HX05 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 5 A_Look
 			Loop
 		See:
-			//HX05 A 0 ACS_NamedExecuteAlways("Hexen2_Decorate_Monster",0,6,0)
+			TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "See2")
+			TNT1 A 0 A_GiveInventory("SawPlayer", 1)
 			HX05 A 0 ACS_NamedExecuteAlways("Hexen2_Decorate_Monster",0,6,2)
 			HX05 A 0 ACS_NamedExecuteAlways("Hexen2_Decorate_Monster",0,8)
 			Goto See2

@@ -36,6 +36,7 @@ str hlModes[2] =   { "SetHL", "SetHLOP" };
 
 int activeSets = 0;
 int pickFromSets[MAX_GAME_TYPES];
+int amountOfGameTypes[MAX_GAME_TYPES];
 int maxSetsEnabled = 0;
 int monsterProcessing = 0;
 int pickClear = 0;
@@ -43,7 +44,6 @@ int pickClear = 0;
 #define MAX_MAPS				500
 #define SAMSARA_CHANGELIST		208
 
-int activeGameTypes[MAX_GAME_TYPES];
 global int 2:alreadyshowedbs;
 //global int 4:lastchosen;
 
@@ -207,14 +207,15 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 				case 0: // Doom
 					switch(GetCvar("mm_doommode"))
 					{
+						int doomguys = amountOfGameTypes[pickFromSets[setselect]];
 						case 0:
-							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && ThingCountName("DoomguyPlayer2",0) > ThingCountName("Doom64GuyMapDummy",0))
+							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && doomguys > ThingCountName("Doom64GuyMapDummy",0))
 								SetActorState(0,doomModes[random(0,1)],true);
 							else
 								SetActorState(0,doomModes[ThingCountName("Doom64GuyMapDummy",0)],true);
 							break;					
 						case 1:
-							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && ThingCountName("DoomguyPlayer2",0) > ThingCountName("Doom64GuyMapDummy",0))
+							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && doomguys > ThingCountName("Doom64GuyMapDummy",0))
 								SetActorState(0,doomModes[random(0,2)],true);
 							else if(ThingCountName("Doom64GuyMapDummy",0) == 0)
 								SetActorState(0,doomModes[0 + 2*random(0,1)],true);
@@ -222,7 +223,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 								SetActorState(0,doomModes[1],true);
 							break;
 						case 2:
-							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 							break;
 						case 3:
 							SetActorState(0,"SetDoom64",true);
@@ -236,23 +237,25 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					}
 					break;
 				case 3: // Wolf3d
+					int blazkos = amountOfGameTypes[pickFromSets[setselect]];
 					switch(GetCvar("mm_wolfmode"))
 					{
 						case 0: //doing this one the crude way
 							int thingcountWolfLost = ThingCountName("WolfLostMapDummy",0);
 							int thingcountTotenkopf = ThingCountName("TotenkopfMapDummy",0);
-							if((thingcountWolfLost > 0 && ThingCountName("WolfenPlayer2",0) > thingcountWolfLost) && (thingcountTotenkopf > 0 && ThingCountName("WolfenPlayer2",0) > thingcountTotenkopf))
+							//PrintBold(s:"Wolfenstein players: ",d:blazkos,s:" Totenkopf tokens: ",d:thingcountTotenkopf);
+							if((thingcountWolfLost > 0 && blazkos > thingcountWolfLost) && (thingcountTotenkopf > 0 && blazkos > thingcountTotenkopf))
 								SetActorState(0,wolfModes[random(0,2)],true);
-							else if(thingcountWolfLost > 0 && ThingCountName("WolfenPlayer2",0) > thingcountWolfLost)
+							else if(thingcountWolfLost > 0 && blazkos > thingcountWolfLost)
 								SetActorState(0,wolfModes[random(0,1)],true);
-							else if(thingcountTotenkopf > 0 && ThingCountName("WolfenPlayer2",0) > thingcountTotenkopf)
+							else if(thingcountTotenkopf > 0 && blazkos > thingcountTotenkopf)
 							{
 								if(random(0,1) == 1)
 									SetActorState(0,wolfModes[2],true);
 								else
 									SetActorState(0,wolfModes[0],true);
 							}
-							else if(thingcountWolfLost > 0 && thingcountTotenkopf > 0 && (thingcountWolfLost + thingcountTotenkopf) >= ThingCountName("WolfenPlayer2",0))
+							else if(thingcountWolfLost > 0 && thingcountTotenkopf > 0 && (thingcountWolfLost + thingcountTotenkopf) >= blazkos)
 								SetActorState(0,wolfModes[random(1,2)],true);
 							else if(thingcountWolfLost > 0)
 								SetActorState(0,wolfModes[1],true);
@@ -271,7 +274,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 							SetActorState(0,"SetTotenkopf",true);	
 							break;
 						case 4: 
-							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 							break;			
 						case 5:
 							SetActorState(0,wolfModes[random(0,2)],true);
@@ -279,16 +282,17 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					}
 					break;
 				case 5:
+					int dukes = amountOfGameTypes[pickFromSets[setselect]];
 					switch(GetCvar("mm_dukemode"))
 					{
 						case 0:
-							if(ThingCountName("DukeLabMapDummy",0) > 0 && ThingCountName("DukePlayer2",0) > ThingCountName("DukeLabMapDummy",0))
+							if(ThingCountName("DukeLabMapDummy",0) > 0 && dukes > ThingCountName("DukeLabMapDummy",0))
 								SetActorState(0,dukeModes[random(0,1)],true);
 							else
 								SetActorState(0,dukeModes[ThingCountName("DukeLabMapDummy",0)>0],true);
 							break;
 						case 1:
-							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 							break;
 						case 2:
 							SetActorState(0,"SetDukeLAB",true);
@@ -299,16 +303,17 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					}
 					break;
 				case 19:
+					int halflifes = amountOfGameTypes[pickFromSets[setselect]];
 					switch(GetCvar("mm_halflifemode"))
 					{
 						case 0:
-							if(ThingCountName("HalfLifeAdrianModeMapDummy",0) > 0 && ThingCountName("HalfLifePlayer2",0) > ThingCountName("HalfLifeAdrianModeMapDummy",0))
+							if(ThingCountName("HalfLifeAdrianModeMapDummy",0) > 0 && halflifes > ThingCountName("HalfLifeAdrianModeMapDummy",0))
 								SetActorState(0,hlModes[random(0,1)],true);
 							else
 								SetActorState(0,hlModes[ThingCountName("HalfLifeAdrianModeMapDummy",0)>0],true);
 							break;
 						case 1:
-							SetActorState(0,gameSetsStr[activeGameTypes[setselect]],true);
+							SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 							break;
 						case 2:
 							SetActorState(0,"SetHLOP",true);
@@ -446,7 +451,7 @@ Script "ReMixer_PickSets" (void)
 {	
 	if(monsterProcessing == 1)
 		terminate;
-		
+				
 	int clients = PlayerCount();
 	int bitindex, a, b, p;
 
@@ -455,8 +460,11 @@ Script "ReMixer_PickSets" (void)
 	pickClear = 0;
 	maxSetsEnabled = 0;
 	for(a = 0; a < MAX_GAME_TYPES; a++)
+	{
 		pickFromSets[a] = -1;
-		
+		amountOfGameTypes[b] = -1;
+	}
+	
 	switch(GetCvar("mm_spawnmode"))
 	{
 		case 0:
@@ -473,6 +481,7 @@ Script "ReMixer_PickSets" (void)
 							{
 								activesets += bitindex;
 								pickFromSets[maxSetsEnabled] = b;
+								amountOfGameTypes[b]++;
 								maxSetsEnabled++;
 							}
 						}
@@ -496,6 +505,7 @@ Script "ReMixer_PickSets" (void)
 					{
 						activesets += bitindex;
 						pickFromSets[maxSetsEnabled] = b;
+						amountOfGameTypes[b]++;
 						maxSetsEnabled++;
 					}
 				}
@@ -511,6 +521,7 @@ Script "ReMixer_PickSets" (void)
 					{
 						activesets += bitindex;
 						pickFromSets[maxSetsEnabled] = b;
+						amountOfGameTypes[b]++;
 						maxSetsEnabled++;
 					}
 				}
