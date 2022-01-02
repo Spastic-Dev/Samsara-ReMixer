@@ -42,7 +42,7 @@ int monsterProcessing = 0;
 int pickClear = 0;
 
 #define MAX_MAPS				500
-#define SAMSARA_CHANGELIST		208
+#define SAMSARA_CHANGELIST		271
 
 global int 2:alreadyshowedbs;
 //global int 4:lastchosen;
@@ -205,9 +205,9 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 					break;
 				case 0: // Doom
+					int doomguys = amountOfGameTypes[pickFromSets[setselect]];	
 					switch(GetCvar("mm_doommode"))
 					{
-						int doomguys = amountOfGameTypes[pickFromSets[setselect]];
 						case 0:
 							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && doomguys > ThingCountName("Doom64GuyMapDummy",0))
 								SetActorState(0,doomModes[random(0,1)],true);
@@ -303,7 +303,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					}
 					break;
 				case 19:
-					int halflifes = amountOfGameTypes[pickFromSets[setselect]];
+					int halflifes = amountOfGameTypes[pickFromSets[pickFromSets[setselect]]];
 					switch(GetCvar("mm_halflifemode"))
 					{
 						case 0:
@@ -462,7 +462,7 @@ Script "ReMixer_PickSets" (void)
 	for(a = 0; a < MAX_GAME_TYPES; a++)
 	{
 		pickFromSets[a] = -1;
-		amountOfGameTypes[b] = -1;
+		amountOfGameTypes[a] = 0;
 	}
 	
 	switch(GetCvar("mm_spawnmode"))
