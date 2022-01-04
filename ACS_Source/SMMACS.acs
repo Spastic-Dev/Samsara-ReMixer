@@ -184,12 +184,9 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 			break;
 
 		case 2:
-			while(pickClear == 0 || PlayerCount() == 0)
+			until(pickClear && (SinglePlayer() || timer() > 20) && PlayerCount() > 0)
 				Delay(1);
-				
-			if(!SinglePlayer())
-				Delay(1);
-													
+										
 			if(maxSetsEnabled == 0)
 			{
 				SetActorState(0,"SetNull",true);
@@ -238,12 +235,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					break;
 				case 3: // Wolf3d
 					int blazkos = amountOfGameTypes[pickFromSets[setselect]];
+					//PrintBold(s:"Blazkos: ",d:blazkos,s:", Dummies: ",d:ThingCountName("TotenkopfMapDummy",0)+ThingCountName("WolfLostMapDummy",0));
 					switch(GetCvar("mm_wolfmode"))
 					{
 						case 0: //doing this one the crude way
 							int thingcountWolfLost = ThingCountName("WolfLostMapDummy",0);
 							int thingcountTotenkopf = ThingCountName("TotenkopfMapDummy",0);
-							//PrintBold(s:"Wolfenstein players: ",d:blazkos,s:" Totenkopf tokens: ",d:thingcountTotenkopf);
 							if((thingcountWolfLost > 0 && blazkos > thingcountWolfLost) && (thingcountTotenkopf > 0 && blazkos > thingcountTotenkopf))
 								SetActorState(0,wolfModes[random(0,2)],true);
 							else if(thingcountWolfLost > 0 && blazkos > thingcountWolfLost)
@@ -451,7 +448,7 @@ Script "ReMixer_PickSets" (void)
 {	
 	if(monsterProcessing == 1)
 		terminate;
-				
+			
 	int clients = PlayerCount();
 	int bitindex, a, b, p;
 
@@ -481,9 +478,9 @@ Script "ReMixer_PickSets" (void)
 							{
 								activesets += bitindex;
 								pickFromSets[maxSetsEnabled] = b;
-								amountOfGameTypes[b]++;
 								maxSetsEnabled++;
 							}
+							amountOfGameTypes[b]++;
 						}
 					}
 				}
@@ -505,7 +502,6 @@ Script "ReMixer_PickSets" (void)
 					{
 						activesets += bitindex;
 						pickFromSets[maxSetsEnabled] = b;
-						amountOfGameTypes[b]++;
 						maxSetsEnabled++;
 					}
 				}
@@ -521,7 +517,6 @@ Script "ReMixer_PickSets" (void)
 					{
 						activesets += bitindex;
 						pickFromSets[maxSetsEnabled] = b;
-						amountOfGameTypes[b]++;
 						maxSetsEnabled++;
 					}
 				}
@@ -555,7 +550,7 @@ Script "ReMixer_PickSets" (void)
 //Script "ReMixer_PickSets_OPEN" Open { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 Script "ReMixer_PickSets_RESPAWN" RESPAWN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 //Script "ReMixer_PickSets_REOPEN" REOPEN { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
-Script "ReMixer_PickSets_ENTER" ENTER { ACS_NamedExecuteAlways("ReMixer_PickSets",0,0,0,0);}
+Script "ReMixer_PickSets_ENTER" ENTER { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0);}
 Script "ReMixer_PickSets_DISCONNECT" (int player) DISCONNECT { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 
 Script "Samsara_InvasionChecker" (void)
