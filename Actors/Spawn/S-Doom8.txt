@@ -1,14 +1,16 @@
-ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
+ACTOR BaronOfHellSpawner replaces BaronOfHell
 {
 	Health 0x7fffffff
-	Height 0
-	Radius 0
-	MONSTER
+	Height 64
+	Radius 24
+	Mass 0x7fffffff
+	+INVULNERABLE
 	-COUNTKILL
-	-SOLID
-	+NOCLIP
+	+ISMONSTER
 	+NOTDMATCH
+	+SHOOTABLE
 	+BOSSDEATH
+	+SOLID
 	States
 	{
 		Spawn:
@@ -48,8 +50,6 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 1 A_SpawnItemEx("OldFlemoidusMaximusDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		SetWolf3D:
-		SODM1:
-		SODM2:
 			TNT1 A 0 A_Jump(256,"Wolf1","Wolf2")
 			Wolf1:
 				TNT1 A 1 A_SpawnItemEx("HansGrosseDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
@@ -57,9 +57,12 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			Wolf2:
 				TNT1 A 1 A_SpawnItemEx("GretelGrosseDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
+		SetSpear:
+			TNT1 A 1 A_SpawnItemEx("GeneralleutnantStahlkopfDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
 		SetWolfensteinRandom:
-			TNT1 A 0 A_Jump(256, "SODM1", "SODM2", "SetTotenkopf")
-			Goto SetWolf3D					
+			TNT1 A 0 A_Jump(256, "SetWolf3D", "SetSpear", "SetTotenkopf")
+			Goto SetWolf3D				
 		SetDuke3D:
 		SetDukeLAB:
 			TNT1 A 1 A_SpawnItemEx("MiniBattlelordDoom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
@@ -189,8 +192,11 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotGreen",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto Bosswait
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
 			TNT1 A 2
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
 		BossWaitLoop:
 			TNT1 A 1
 			Loop
@@ -204,8 +210,18 @@ ACTOR BaronOfHellSpawnerCoop replaces BaronOfHell
 	}
 }
 
-ACTOR BelphegorSpawnerCoop : BaronofHellSpawnerCoop replaces Belphegor 
+ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor 
 {
+	Health 0x7fffffff
+	Height 64
+	Radius 24
+	Mass 0x7fffffff
+	+INVULNERABLE
+	-COUNTKILL
+	+ISMONSTER
+	+SOLID
+	+NOTDMATCH
+	+SHOOTABLE
 	-BOSSDEATH
 	States
 	{

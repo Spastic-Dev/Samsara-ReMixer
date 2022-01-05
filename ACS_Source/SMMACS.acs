@@ -30,7 +30,7 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 };
 
 str doomModes[3] = { "SetDoom", "SetDoom64", "SetDoomRandom" };
-str wolfModes[3] = { "SODM1", "SODM2", "SetTotenkopf" };
+str wolfModes[3] = { "SetWolf3D", "SetSpear", "SetTotenkopf" };
 str dukeModes[2] = { "SetDuke3D", "SetDukeLAB" };
 str hlModes[2] =   { "SetHL", "SetHLOP" };
 
@@ -40,6 +40,7 @@ int amountOfGameTypes[MAX_GAME_TYPES];
 int maxSetsEnabled = 0;
 int monsterProcessing = 0;
 int pickClear = 0;
+int maxAltSets = 4;
 
 #define MAX_MAPS				500
 #define SAMSARA_CHANGELIST		271
@@ -51,7 +52,7 @@ str skill[5] = { "Kindergarten", "Easy", "Normal", "MajorDamage", "TotalCarnage"
 
 Script "ReMixerInit" OPEN //667
 {
-	pickClear = 0;
+	//pickClear = 0;
 	if (!GetCVar("mm_init"))
 	{
 		SetCVar("mm_doom", true);
@@ -129,6 +130,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 	int multitoken;
 	int gameTypeMap;
 	int numGameTypes = 0;
+	int altSetSelect;
 	
 	map = GetLevelInfo(LEVELINFO_LEVELNUM);
 	
@@ -184,9 +186,9 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 			break;
 
 		case 2:
-			until(pickClear && (SinglePlayer() || timer() > 20) && PlayerCount() > 0)
+			until(pickClear && (SinglePlayer() || timer() > 5) && PlayerCount() > 0)
 				Delay(1);
-										
+												
 			if(maxSetsEnabled == 0)
 			{
 				SetActorState(0,"SetNull",true);
@@ -202,22 +204,25 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 					break;
 				case 0: // Doom
-					int doomguys = amountOfGameTypes[pickFromSets[setselect]];	
 					switch(GetCvar("mm_doommode"))
 					{
 						case 0:
-							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && doomguys > ThingCountName("Doom64GuyMapDummy",0))
-								SetActorState(0,doomModes[random(0,1)],true);
-							else
-								SetActorState(0,doomModes[ThingCountName("Doom64GuyMapDummy",0)],true);
+							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							{
+								altSetSelect = random(0,maxAltSets);
+								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+									break;
+							}
+							SetActorState(0,doomModes[altSetSelect],true);
 							break;					
 						case 1:
-							if(ThingCountName("Doom64GuyMapDummy",0) > 0 && doomguys > ThingCountName("Doom64GuyMapDummy",0))
-								SetActorState(0,doomModes[random(0,2)],true);
-							else if(ThingCountName("Doom64GuyMapDummy",0) == 0)
-								SetActorState(0,doomModes[0 + 2*random(0,1)],true);
-							else
-								SetActorState(0,doomModes[1],true);
+							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							{
+								altSetSelect = random(0,maxAltSets);
+								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+									break;
+							}
+							SetActorState(0,doomModes[altSetSelect + (2 * random(0,altSetSelect==0))],true);
 							break;
 						case 2:
 							SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
@@ -234,33 +239,17 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					}
 					break;
 				case 3: // Wolf3d
-					int blazkos = amountOfGameTypes[pickFromSets[setselect]];
-					//PrintBold(s:"Blazkos: ",d:blazkos,s:", Dummies: ",d:ThingCountName("TotenkopfMapDummy",0)+ThingCountName("WolfLostMapDummy",0));
 					switch(GetCvar("mm_wolfmode"))
 					{
 						case 0: //doing this one the crude way
-							int thingcountWolfLost = ThingCountName("WolfLostMapDummy",0);
-							int thingcountTotenkopf = ThingCountName("TotenkopfMapDummy",0);
-							if((thingcountWolfLost > 0 && blazkos > thingcountWolfLost) && (thingcountTotenkopf > 0 && blazkos > thingcountTotenkopf))
-								SetActorState(0,wolfModes[random(0,2)],true);
-							else if(thingcountWolfLost > 0 && blazkos > thingcountWolfLost)
-								SetActorState(0,wolfModes[random(0,1)],true);
-							else if(thingcountTotenkopf > 0 && blazkos > thingcountTotenkopf)
+							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
 							{
-								if(random(0,1) == 1)
-									SetActorState(0,wolfModes[2],true);
-								else
-									SetActorState(0,wolfModes[0],true);
+								altSetSelect = random(0,maxAltSets);
+								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+									break;
 							}
-							else if(thingcountWolfLost > 0 && thingcountTotenkopf > 0 && (thingcountWolfLost + thingcountTotenkopf) >= blazkos)
-								SetActorState(0,wolfModes[random(1,2)],true);
-							else if(thingcountWolfLost > 0)
-								SetActorState(0,wolfModes[1],true);
-							else if(thingcountTotenkopf > 0)
-								SetActorState(0,wolfModes[2],true);
-							else
-								SetActorState(0,wolfModes[0],true);
-							break;
+							SetActorState(0,wolfModes[altSetSelect],true);
+							break;				
 						case 1:
 							SetActorState(0,"SODM1",true);
 							break;
@@ -279,14 +268,16 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					}
 					break;
 				case 5:
-					int dukes = amountOfGameTypes[pickFromSets[setselect]];
 					switch(GetCvar("mm_dukemode"))
 					{
 						case 0:
-							if(ThingCountName("DukeLabMapDummy",0) > 0 && dukes > ThingCountName("DukeLabMapDummy",0))
-								SetActorState(0,dukeModes[random(0,1)],true);
-							else
-								SetActorState(0,dukeModes[ThingCountName("DukeLabMapDummy",0)>0],true);
+							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							{
+								altSetSelect = random(0,maxAltSets);
+								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+									break;
+							}
+							SetActorState(0,dukeModes[altSetSelect],true);
 							break;
 						case 1:
 							SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
@@ -300,14 +291,16 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 					}
 					break;
 				case 19:
-					int halflifes = amountOfGameTypes[pickFromSets[pickFromSets[setselect]]];
 					switch(GetCvar("mm_halflifemode"))
 					{
 						case 0:
-							if(ThingCountName("HalfLifeAdrianModeMapDummy",0) > 0 && halflifes > ThingCountName("HalfLifeAdrianModeMapDummy",0))
-								SetActorState(0,hlModes[random(0,1)],true);
-							else
-								SetActorState(0,hlModes[ThingCountName("HalfLifeAdrianModeMapDummy",0)>0],true);
+							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							{
+								altSetSelect = random(0,maxAltSets);
+								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+									break;
+							}
+							SetActorState(0,hlModes[altSetSelect],true);
 							break;
 						case 1:
 							SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
@@ -480,7 +473,26 @@ Script "ReMixer_PickSets" (void)
 								pickFromSets[maxSetsEnabled] = b;
 								maxSetsEnabled++;
 							}
-							amountOfGameTypes[b]++;
+							switch(b)
+							{
+								default: break;
+								case 0: 
+									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_doom64")))
+										amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_doom64");
+									break;
+								case 3: 
+									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_wolfmode")))
+										amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_wolfmode");
+									break;
+								case 5: 
+									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_dkclab")))
+										amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_dkclab");
+									break;
+								case 19: 
+									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_shephardmode")))
+										amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_shephardmode");
+									break;
+							}						
 						}
 					}
 				}
@@ -504,6 +516,29 @@ Script "ReMixer_PickSets" (void)
 						pickFromSets[maxSetsEnabled] = b;
 						maxSetsEnabled++;
 					}
+					if(PlayerClass(p) == b && PlayerInGame(p))
+					{
+						switch(b)
+						{
+							default: break;
+							case 0: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_doom64")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_doom64");
+								break;
+							case 3: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_wolfmode")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_wolfmode");
+								break;
+							case 5: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_dkclab")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_dkclab");
+								break;
+							case 19: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_shephardmode")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_shephardmode");
+								break;
+						}
+					}
 				}
 			}
 			break;
@@ -518,6 +553,29 @@ Script "ReMixer_PickSets" (void)
 						activesets += bitindex;
 						pickFromSets[maxSetsEnabled] = b;
 						maxSetsEnabled++;
+					}
+					if(PlayerClass(p) == b && PlayerInGame(p))
+					{
+						switch(b)
+						{
+							default: break;
+							case 0: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_doom64")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_doom64");
+								break;
+							case 3: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_wolfmode")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_wolfmode");
+								break;
+							case 5: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_dkclab")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_dkclab");
+								break;
+							case 19: 
+								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"sams_cl_shephardmode")))
+									amountOfGameTypes[b] += 1<<GetUserCvar(p,"sams_cl_shephardmode");
+								break;
+						}
 					}
 				}
 			}
@@ -538,8 +596,38 @@ Script "ReMixer_PickSets" (void)
 				//PrintBold(s:gameTypesStr[randnum],s:" ",d:randombit,s:" ",d:randomtotal);
 				
 				if(!GetCVar(gameTypesStr[randnum])||randomtotal & randombit) { if(erroramount > 128){ selectloop = randnum; break; } else{erroramount++;} }
-						else { pickFromSets[maxSetsEnabled] = randnum; maxSetsEnabled++; selectloop++; erroramount = 0; randomtotal += randombit; }
-				
+				else 
+				{ 
+					pickFromSets[maxSetsEnabled] = randnum; 
+					maxSetsEnabled++; 
+					selectloop++; 
+					erroramount = 0; 
+					randomtotal += randombit; 
+					
+					if(PlayerClass(p) == randnum && PlayerInGame(p))
+					{
+						switch(randnum)
+						{
+							default: break;
+							case 0: 
+								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"sams_cl_doom64")))
+									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"sams_cl_doom64");
+								break;
+							case 3: 
+								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"sams_cl_wolfmode")))
+									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"sams_cl_wolfmode");
+								break;
+							case 5: 
+								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"sams_cl_dkclab")))
+									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"sams_cl_dkclab");
+								break;
+							case 19: 
+								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"sams_cl_shephardmode")))
+									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"sams_cl_shephardmode");
+								break;
+						}
+					}
+				}
 			}
 			break;
 	}
@@ -553,23 +641,10 @@ Script "ReMixer_PickSets_RESPAWN" RESPAWN { ACS_NamedExecuteWithResult("ReMixer_
 Script "ReMixer_PickSets_ENTER" ENTER { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0);}
 Script "ReMixer_PickSets_DISCONNECT" (int player) DISCONNECT { ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0); }
 
-Script "Samsara_InvasionChecker" (void)
+Script "RemixerInvasionChecker" (void)
 {
-	If(GetCvar("invasion"))
-		SetResultValue(1);
-	else
-		SetResultValue(0);
+	SetResultValue(GetInvasionState() != -1);
 }
-
-/*Script "Samsara_OpposingForceSpawnCheck" (void)
-{
-	SetResultValue(ThingCountName("HalfLifeAdrianModeMapDummy",0));
-}
-
-Script "Samsara_Doom64SpawnCheck" (void)
-{
-	SetResultValue(ThingCountName("Doom64GuyMapDummy",0));
-}*/
 
 int maxPinataCommonQuality = 9;
 int maxPinataUncommonQuality = 18;
