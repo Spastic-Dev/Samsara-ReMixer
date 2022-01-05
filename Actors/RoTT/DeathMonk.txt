@@ -173,9 +173,7 @@ ACTOR MonkDrain {
 			TNT1 A 0 A_NoBlocking		
 			TNT1 A 5 A_KillMaster
 			Stop	
-		Death.RottExplosive:
-			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
-			Goto Death				
+		Death.RottExplosive:		
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("RottGibbedMan")
