@@ -39,8 +39,10 @@ ACTOR CacodemonSpawner replaces Cacodemon
 			TNT1 A 1 A_SpawnItemEx("SuperCycloptis2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetWolf3D:
-		SetSpear:
 			TNT1 A 1 A_SpawnItemEx("FakeHitler",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		SetSpear:
+			TNT1 A 1 A_SpawnItemEx("FireDrone",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
 		SetWolfensteinRandom:
 			TNT1 A 0 A_Jump(256, "SetWolf3D", "SetSpear", "SetTotenkopf")
