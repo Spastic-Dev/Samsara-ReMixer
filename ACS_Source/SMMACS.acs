@@ -643,6 +643,7 @@ Script "ReMixer_PickSets_DISCONNECT" (int player) DISCONNECT { ACS_NamedExecuteW
 
 Script "RemixerInvasionChecker" (void)
 {
+	if(GetPlayerAccountName(0) == 0) { SetResultValue(0); terminate; }
 	SetResultValue(GetInvasionState() != -1);
 }
 
