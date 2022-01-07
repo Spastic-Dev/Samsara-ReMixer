@@ -2,21 +2,121 @@
 // HERETIC
 //==============================================================================
 
-ACTOR HereticImpReplacer : LostSoulSpawner replaces HereticImp {}
-ACTOR HereticImpLeaderReplacer : LostSoulSpawner replaces HereticImpLeader {} 
-ACTOR WizardReplacer : CacoDemonSpawner replaces Wizard {}
-ACTOR MummyReplacer : ZombiemanSpawner replaces Mummy {}
-ACTOR MummyGhostReplacer : SpectreSpawner replaces MummyGhost {}
-ACTOR MummyLeaderReplacer : ShotgunGuySpawner replaces MummyLeader {}
-ACTOR MummyLeaderGhostReplacer : ChaingunGuySpawner replaces MummyLeaderGhost {}
-ACTOR KnightReplacer : DoomImpSpawner replaces Knight {}
-ACTOR KnightGhostReplacer : DemonSpawner replaces KnightGhost {}
-ACTOR IronlichReplacer : ArchVileSpawner replaces Ironlich {}
-ACTOR ClinkReplacer : DemonSpawner replaces Clink {}
-ACTOR BeastReplacer : HellKnightSpawner replaces Beast {}
-ACTOR SnakeReplacer : RevenantSpawner replaces Snake {}
+ACTOR HereticImpReplacer : LostSoulSpawner replaces HereticImp {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("HereticImp3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR HereticImpLeaderReplacer : DoomImpSpawner replaces HereticImpLeader {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("HereticImpLeader3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR WizardReplacer : CacoDemonSpawner replaces Wizard {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("Wizard3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR MummyReplacer : ZombiemanSpawner replaces Mummy {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("Mummy3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR MummyGhostReplacer : SpectreSpawner replaces MummyGhost {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("MummyGhost3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR MummyLeaderReplacer : ShotgunGuySpawner replaces MummyLeader {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("MummyLeader3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR MummyLeaderGhostReplacer : SpectreSpawner replaces MummyLeaderGhost {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("MummyLeaderGhost3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR KnightReplacer : ChaingunguySpawner replaces Knight {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("Knight3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR KnightGhostReplacer : SpectreSpawner replaces KnightGhost {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("KnightGhost3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR IronlichReplacer : ArchVileSpawner replaces Ironlich {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("IronLich3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto BossWait		
+	}		
+}
+ACTOR ClinkReplacer : DemonSpawner replaces Clink {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("Clink3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR BeastReplacer : HellKnightSpawner replaces Beast {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("Beast3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
+ACTOR SnakeReplacer : RevenantSpawner replaces Snake {
+	States
+	{
+		SetHeretic:
+			TNT1 A 1 A_SpawnItemEx("Snake3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion		
+	}		
+}
 ACTOR MinotaurReplacer : CyberDemonSpawner replaces Minotaur {}
-ACTOR Sorcerer1Replacer : SpiderMastermindSpawner replaces Sorcerer1 {}
+ACTOR Sorcerer1Replacer : SpiderMastermindSpawner replaces Sorcerer1 {
+	States
+	{
+		Death:
+			TNT1 A 1
+			TNT1 A 1 A_SpawnItemEx("Sorcerer2Replacer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Stop
+	}
+}
+
 ACTOR Sorcerer2Replacer replaces Sorcerer2
 {
 	Health 0x7fffffff
