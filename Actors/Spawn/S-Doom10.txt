@@ -5,7 +5,7 @@ ACTOR FatsoSpawner replaces Fatso
 	Radius 48
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+NOTDMATCH
 	+SHOOTABLE
@@ -25,7 +25,6 @@ ACTOR FatsoSpawner replaces Fatso
 		SetDoomRandom:
 			TNT1 A 0 A_Jump(128,"SetDoomRandom2")
 			TNT1 A 0 A_Jump(96,"SetDoomRandom3")
-			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyDoom")
 			TNT1 A 1 A_SpawnItemEx("Fatso3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto BossWait		
 		SetDoomRandom2:
@@ -197,6 +196,7 @@ ACTOR FatsoSpawner replaces Fatso
 		BossWait:
 			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
 			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
 			TNT1 A 0 A_UnSetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
@@ -204,11 +204,10 @@ ACTOR FatsoSpawner replaces Fatso
 			TNT1 A 1
 			Loop
 		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death
+			TNT1 A 1 Thing_Remove(0)
+			Stop
 		Death:
-			TNT1 A 1 A_BossDeath
-			TNT1 A 5
+			TNT1 A 6 A_BossDeath
 			stop
 	}
 }
@@ -220,7 +219,7 @@ ACTOR HectebusSpawner : FatsoSpawner replaces Hectebus
 	Radius 48
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH

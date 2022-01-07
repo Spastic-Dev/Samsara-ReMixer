@@ -3,6 +3,9 @@ ACTOR FighterMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -16,45 +19,28 @@ ACTOR FighterMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FighterMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FighterMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -64,6 +50,9 @@ ACTOR FighterMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -79,51 +68,31 @@ ACTOR FighterMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FighterMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FighterMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FighterMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -133,6 +102,9 @@ ACTOR PfhorSuperFighterSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -146,37 +118,23 @@ ACTOR PfhorSuperFighterSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("PfhorSuperFighter",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("PfhorSuperFighterHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("PfhorSuperFighter",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("PfhorSuperFighterUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("PfhorSuperFighterNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -186,6 +144,9 @@ ACTOR ProjectileFighterMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -199,45 +160,28 @@ ACTOR ProjectileFighterMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -247,6 +191,9 @@ ACTOR ProjectileFighterMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -262,51 +209,31 @@ ACTOR ProjectileFighterMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("ProjectileFighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("ProjectileFighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -316,6 +243,9 @@ ACTOR M1FighterMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -329,45 +259,28 @@ ACTOR M1FighterMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1FighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1FighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1FighterMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1FighterMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1FighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1FighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -377,6 +290,9 @@ ACTOR M1FighterMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -392,51 +308,31 @@ ACTOR M1FighterMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1FighterMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1FighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1FighterMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1FighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1FighterMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1FighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1FighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -446,6 +342,9 @@ ACTOR M1ProjectileFighterMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -459,45 +358,28 @@ ACTOR M1ProjectileFighterMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -507,6 +389,9 @@ ACTOR M1ProjectileFighterMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -522,51 +407,31 @@ ACTOR M1ProjectileFighterMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1ProjectileFighterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -576,6 +441,9 @@ ACTOR TrooperMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -589,45 +457,28 @@ ACTOR TrooperMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("TrooperMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("TrooperMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("TrooperMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("TrooperMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("TrooperMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("TrooperMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -637,6 +488,9 @@ ACTOR TrooperMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -652,39 +506,31 @@ ACTOR TrooperMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("TrooperMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("TrooperMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("TrooperMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("TrooperMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("TrooperMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
+		MajorDamage:
+			TNT1 A 1 A_SpawnItemEx("TrooperMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
+		TotalCarnage:
+			TNT1 A 1 A_SpawnItemEx("TrooperMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -694,6 +540,9 @@ ACTOR M2SuperTrooperSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -707,37 +556,23 @@ ACTOR M2SuperTrooperSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2SuperTrooperITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2SuperTrooperHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2SuperTrooper",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2SuperTrooperUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2SuperTrooperNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -747,6 +582,9 @@ ACTOR M1TrooperMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -760,45 +598,28 @@ ACTOR M1TrooperMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1TrooperMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1TrooperMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1TrooperMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1TrooperMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1TrooperMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1TrooperMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -808,6 +629,9 @@ ACTOR M1TrooperMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -823,51 +647,31 @@ ACTOR M1TrooperMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1TrooperMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1TrooperMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1TrooperMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1TrooperMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1TrooperMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1TrooperMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1TrooperMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -877,6 +681,9 @@ ACTOR SewageFlicktaSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -890,37 +697,23 @@ ACTOR SewageFlicktaSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SewageFlicktaITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SewageFlicktaHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SewageFlickta",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SewageFlicktaUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SewageFlicktaNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -930,6 +723,9 @@ ACTOR WaterFlicktaSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -943,37 +739,23 @@ ACTOR WaterFlicktaSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("WaterFlicktaITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("WaterFlicktaHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("WaterFlickta",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("WaterFlicktaUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("WaterFlicktaNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -983,6 +765,9 @@ ACTOR LavaFlicktaSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -996,37 +781,23 @@ ACTOR LavaFlicktaSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("LavaFlicktaITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("LavaFlicktaHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("LavaFlickta",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("LavaFlicktaUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("LavaFlicktaNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -1036,6 +807,9 @@ ACTOR DroneMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1049,45 +823,28 @@ ACTOR DroneMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DroneMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DroneMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DroneMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("DroneMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("DroneMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DroneMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -1097,6 +854,9 @@ ACTOR DroneMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1112,51 +872,31 @@ ACTOR DroneMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("DroneMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("DroneMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("DroneMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("DroneMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DroneMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DroneMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DroneMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -1166,6 +906,9 @@ ACTOR M1EnforcerMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1179,45 +922,28 @@ ACTOR M1EnforcerMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1EnforcerMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -1227,6 +953,9 @@ ACTOR M1EnforcerMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1242,51 +971,31 @@ ACTOR M1EnforcerMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1EnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1EnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -1296,6 +1005,9 @@ ACTOR M2EnforcerMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1308,50 +1020,42 @@ ACTOR M2EnforcerMinorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMinor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1360,6 +1064,9 @@ ACTOR M2EnforcerMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1372,57 +1079,47 @@ ACTOR M2EnforcerMajorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1431,6 +1128,9 @@ ACTOR M2EliteEnforcerMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1443,50 +1143,42 @@ ACTOR M2EliteEnforcerMinorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMinor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1495,6 +1187,9 @@ ACTOR M2EliteEnforcerMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1507,57 +1202,47 @@ ACTOR M2EliteEnforcerMajorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMajor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteEnforcerMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1566,6 +1251,9 @@ ACTOR CyborgMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1578,50 +1266,42 @@ ACTOR CyborgMinorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("CyborgMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("CyborgMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("CyborgMinor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("CyborgMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("CyborgMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("CyborgMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1630,6 +1310,9 @@ ACTOR CyborgMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1642,57 +1325,47 @@ ACTOR CyborgMajorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("CyborgMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("CyborgMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("CyborgMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("CyborgMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("CyborgMajor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("CyborgMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("CyborgMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1701,6 +1374,9 @@ ACTOR FlameCyborgMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1712,51 +1388,43 @@ ACTOR FlameCyborgMinorSpawner
 			TNT1 A 0 ACS_NamedExecuteAlways("MarathonSkillCheck",0)
 		Deciding:
 			TNT1 A 1
-			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
+			Loop	
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMinor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1765,6 +1433,9 @@ ACTOR FlameCyborgMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1777,57 +1448,47 @@ ACTOR FlameCyborgMajorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("FlameCyborgMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("FlameCyborgMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1836,6 +1497,9 @@ ACTOR MotherofAllCyborgsSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1848,43 +1512,37 @@ ACTOR MotherofAllCyborgsSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
+		Kindergarten:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		Easy:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		Normal:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgs",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
 		BossWaitLoop:
 			TNT1 A 1
 			Loop
 		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
-		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgs",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllCyborgsNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Death:
-			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1893,6 +1551,9 @@ ACTOR HunterMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1905,50 +1566,42 @@ ACTOR HunterMinorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("HunterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("HunterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("HunterMinor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("HunterMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("HunterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("HunterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -1957,6 +1610,9 @@ ACTOR HunterMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -1969,57 +1625,48 @@ ACTOR HunterMajorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("HunterMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("HunterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("HunterMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("HunterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
+
 			TNT1 A 1 A_SpawnItemEx("HunterMajor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("HunterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("HunterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -2028,6 +1675,9 @@ ACTOR MotherofAllHuntersSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2040,43 +1690,37 @@ ACTOR MotherofAllHuntersSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
+		Kindergarten:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		Easy:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		Normal:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllHunters",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
 		BossWaitLoop:
 			TNT1 A 1
 			Loop
 		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
-		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllHunters",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("MotherofAllHuntersNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Death:
-			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -2085,6 +1729,9 @@ ACTOR M1HunterMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2097,50 +1744,42 @@ ACTOR M1HunterMinorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1HunterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1HunterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1HunterMinor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1HunterMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1HunterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1HunterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -2149,6 +1788,9 @@ ACTOR M1HunterMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2161,57 +1803,47 @@ ACTOR M1HunterMajorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1HunterMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1HunterMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1HunterMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1HunterMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1HunterMajor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1HunterMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1HunterMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -2220,6 +1852,9 @@ ACTOR M1JuggernautSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2232,43 +1867,37 @@ ACTOR M1JuggernautSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
+		Kindergarten:
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		Easy:
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		Normal:
+			TNT1 A 1 A_SpawnItemEx("M1Juggernaut",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		MajorDamage:
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
+		TotalCarnage:
+			TNT1 A 1 A_SpawnItemEx("M1JuggernautNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Goto BossWait
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
 		BossWaitLoop:
 			TNT1 A 1
 			Loop
 		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
-		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("M1JuggernautITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("M1JuggernautHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("M1Juggernaut",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("M1JuggernautUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 1 A_SpawnItemEx("M1JuggernautNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			Goto BossWait
-		Death:
-			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -2277,6 +1906,9 @@ ACTOR JuggernautMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2289,50 +1921,42 @@ ACTOR JuggernautMinorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("JuggernautMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("JuggernautMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("JuggernautMinor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("JuggernautMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("JuggernautMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("JuggernautMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -2341,6 +1965,9 @@ ACTOR JuggernautMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2353,57 +1980,47 @@ ACTOR JuggernautMajorSpawner
 		Deciding:
 			TNT1 A 1
 			Loop
-		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("Samsara_InvasionChecker") == 1, "BossRemove")
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death	
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("JuggernautMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("JuggernautMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("JuggernautMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("JuggernautMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 				Goto BossWait
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("JuggernautMajor",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("JuggernautMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("JuggernautMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			Goto BossWait
-		Death:
+		BossWait:
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
 			TNT1 A 1
-			TNT1 A 1 A_KillMaster
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -2412,6 +2029,9 @@ ACTOR SphtMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2425,45 +2045,28 @@ ACTOR SphtMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2473,6 +2076,9 @@ ACTOR SphtMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2488,51 +2094,31 @@ ACTOR SphtMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2542,6 +2128,9 @@ ACTOR M2EliteSphtSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2555,37 +2144,23 @@ ACTOR M2EliteSphtSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteSphtITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteSphtHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteSpht",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteSphtUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M2EliteSphtNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2595,6 +2170,9 @@ ACTOR M1SphtMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2608,45 +2186,28 @@ ACTOR M1SphtMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1SphtMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1SphtMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1SphtMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1SphtMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1SphtMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1SphtMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2656,6 +2217,9 @@ ACTOR M1SphtMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2671,51 +2235,31 @@ ACTOR M1SphtMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1SphtMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1SphtMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1SphtMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("M1SphtMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1SphtMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1SphtMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("M1SphtMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2725,6 +2269,9 @@ ACTOR SphtKrMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2738,45 +2285,28 @@ ACTOR SphtKrMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtKrMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtKrMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtKrMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
 			TNT1 A 0 A_Jump(128,"Major2")
 			Major1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtKrMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Major2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtKrMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtKrMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2786,6 +2316,9 @@ ACTOR SphtKrMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2801,51 +2334,31 @@ ACTOR SphtKrMajorSpawner
 		Kindergarten:
 			TNT1 A 0 A_Jump(128,"Kinder2")
 			Kinder1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtKrMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Kinder2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtKrMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Easy:
 			TNT1 A 0 A_Jump(64,"Easy2")
 			Easy1:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtKrMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 			Easy2:
-				TNT1 A 0 A_UnsetSolid
-				TNT1 A 0 A_NoBlocking
 				TNT1 A 1 A_SpawnItemEx("SphtKrMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-				TNT1 A 1 A_Die
-				Goto Death
+				Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtKrMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtKrMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("SphtKrMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2855,6 +2368,9 @@ ACTOR DrinniolMinorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2868,37 +2384,23 @@ ACTOR DrinniolMinorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMinorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMinorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMinor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMinorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMinorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -2908,6 +2410,9 @@ ACTOR DrinniolMajorSpawner
 	Health 0x7fffffff
 	Height 0
 	Radius 0
+	Mass 0x7fffffff
+	+INVULNERABLE
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -2921,37 +2426,23 @@ ACTOR DrinniolMajorSpawner
 			TNT1 A 1
 			Loop
 		Kindergarten:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMajorITYTD",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Easy:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMajorHNTR",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Normal:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMajor",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		MajorDamage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMajorUV",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		TotalCarnage:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
 			TNT1 A 1 A_SpawnItemEx("DrinniolMajorNightmare",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 1 A_Die
-			Goto Death
+			Goto DeathForInvasion
 		Death:
-			BZBL A 70
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }

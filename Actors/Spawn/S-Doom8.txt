@@ -5,7 +5,7 @@ ACTOR BaronOfHellSpawner replaces BaronOfHell
 	Radius 24
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+NOTDMATCH
 	+SHOOTABLE
@@ -194,6 +194,7 @@ ACTOR BaronOfHellSpawner replaces BaronOfHell
 		BossWait:
 			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
 			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
 			TNT1 A 0 A_UnSetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
@@ -201,12 +202,11 @@ ACTOR BaronOfHellSpawner replaces BaronOfHell
 			TNT1 A 1
 			Loop
 		BossRemove:
-			TNT1 A 1 A_Die
-			Goto Death
-		Death:
-			TNT1 A 1
-			TNT1 A 1 A_BossDeath
+			TNT1 A 1 Thing_Remove(0)
 			Stop
+		Death:
+			TNT1 A 6 A_BossDeath
+			stop
 	}
 }
 
@@ -217,7 +217,7 @@ ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor
 	Radius 24
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH

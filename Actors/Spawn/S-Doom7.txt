@@ -5,7 +5,7 @@ ACTOR HellKnightSpawner replaces HellKnight
 	Radius 24
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -124,12 +124,8 @@ ACTOR HellKnightSpawner replaces HellKnight
 			TNT1 A 1 A_SpawnItemEx("SWWizardRed", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion			
 		SetBlood:
-			//TNT1 A 0 A_Jump(64,"SetBlood2")
 			TNT1 A 1 A_SpawnItemEx("Butcher", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion
-		SetBlood2:
-			TNT1 A 1 A_SpawnItemEx("Butcher", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion		
+			Goto DeathForInvasion	
 		SetRmr:
 			TNT1 A 1 A_SpawnItemEx("BlacksuitStriker", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
@@ -199,10 +195,9 @@ ACTOR HellKnightSpawner replaces HellKnight
 		SetNull:
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
-		DeathForInvasion:
-			TNT1 A 1 A_Die
 		Death:
-			TNT1 A 1
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }

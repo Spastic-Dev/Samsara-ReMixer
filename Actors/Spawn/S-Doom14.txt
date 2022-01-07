@@ -5,7 +5,7 @@ ACTOR RevenantSpawner replaces Revenant
 	Radius 20
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -212,10 +212,9 @@ ACTOR RevenantSpawner replaces Revenant
 		SetNull:
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotBlue",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
-		DeathForInvasion:
-			TNT1 A 1 A_Die
 		Death:
-			TNT1 A 1
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }

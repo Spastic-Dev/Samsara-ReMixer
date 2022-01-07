@@ -5,7 +5,7 @@ ACTOR DemonSpawner replaces Demon
 	Radius 30
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
@@ -323,10 +323,9 @@ ACTOR DemonSpawner replaces Demon
 		SetNull:
 			TNT1 A 1 A_SpawnItemEx("BerzerkRobotYellow",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Goto DeathForInvasion
-		DeathForInvasion:
-			TNT1 A 1 A_Die
 		Death:
-			TNT1 A 1
+		DeathForInvasion:
+			TNT1 A 1 Thing_Remove(0)
 			Stop
 	}
 }
@@ -348,7 +347,7 @@ ACTOR BloodDemonSpawner : DemonSpawner replaces BloodDemon
 	Radius 30
 	Mass 0x7fffffff
 	+INVULNERABLE
-	-COUNTKILL
+	+COUNTKILL
 	+ISMONSTER
 	+SOLID
 	+NOTDMATCH
