@@ -502,6 +502,29 @@ Script "SamsaraMixer_PlayerDeath" Death
 	}
 }
 
+Script "ReMixer_Korax" (void)
+{
+	int executedDoors;
+	//Currently necessitated by Zandronum
+	if(GetActorProperty(0,APROP_Health) > 50000000)
+		terminate;
+	while(true)
+	{
+		if(!executedDoors && GetActorProperty(0,APROP_Health) < GetActorProperty(0,APROP_SpawnHealth) / 2)
+		{
+			executedDoors = 1;
+			ACS_Execute(249,0,0,0,0);
+			ACS_Execute(252,0,0,0,0);
+		}
+		if(random(0,512)==0)
+			ACS_Execute(random(250,251),0,0,0,0);
+		else if(random(0,512)==1)
+			ACS_Execute(random(253,254),0,0,0,0);
+			
+		Delay(1);
+	}
+}
+
 #include "m_df.acs"
 #include "m_duke.acs"
 #include "m_ge.acs"
