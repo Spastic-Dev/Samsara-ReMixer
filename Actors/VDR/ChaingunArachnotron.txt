@@ -280,7 +280,6 @@ actor MMRandomizer_ChaingunArachnotron : Arachnotron3
 			"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 			"####" "#" 0 A_SpawnItemEx("MMRandomizer_ChaingunArachnotron_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
-			TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 			TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 			TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -309,7 +308,7 @@ actor MMRandomizer_ChaingunArachnotron_Shrink : MMRandomizer_ChaingunArachnotron
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN
