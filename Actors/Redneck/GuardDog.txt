@@ -96,7 +96,7 @@ Actor GuardDog
 		Goto See
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid	
 		JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -109,7 +109,7 @@ Actor GuardDog
 		Stop 	
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		GDOD A 4 A_Scream
 		GDOD BCD 4
 		GDOD E 4 A_NoBlocking
@@ -859,7 +859,7 @@ Actor GuardDog_Blood : GuardDog
 		Goto See
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid	
 		JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -872,7 +872,7 @@ Actor GuardDog_Blood : GuardDog
 		Stop 	
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		RR13 A 4 A_Scream
 		RR13 BCD 4
 		RR13 E 4 A_NoBlocking

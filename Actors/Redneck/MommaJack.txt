@@ -338,7 +338,7 @@ ACTOR BigJackelope
     Death:
     XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid			
 		JA_M A 0 A_PlaySound("leonard/xdeath",CHAN_AUTO,1.0,0,ATTN_NONE)
 		JA_M A 0 A_CustomMissile("BigJackelopeGib",0+Random(30,80),0+Random(55,-55),0+Random(0,360))
