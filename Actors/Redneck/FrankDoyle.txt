@@ -271,7 +271,7 @@ Actor BlueFrankDoyle
 		Goto Death
 	XDeathForCaleb:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 		Goto XDeath		
@@ -306,12 +306,7 @@ Actor BlueFrankDoyle
 		goto Death
 	DukeGibStart:
 		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnDebris("DukeGibs1")
-		TNT1 A 0 A_SpawnDebris("DukeGibs2")
-		TNT1 A 0 A_SpawnDebris("DukeGibs3")
-		TNT1 A 0 A_SpawnDebris("DukeGibs4")
-		TNT1 A 0 A_SpawnDebris("DukeGibs5")
-		TNT1 A 0 A_SpawnDebris("DukeGibs6")
+		TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_PlaySound("duke/enemygib")
 		TNT1 A 0 A_Jump(96,"XDeath")
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
@@ -328,7 +323,7 @@ Actor BlueFrankDoyle
 		Goto Death
 	XDeathForJon:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("PSGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 		Goto XDeath		
@@ -384,7 +379,7 @@ Actor BlueFrankDoyle
 		goto Death
 	XDeathForWang:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
+		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 		TNT1 A 0 A_Jump(218, "XDeath")	
         TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		goto XDeath
@@ -396,7 +391,7 @@ Actor BlueFrankDoyle
 	   Stop	
 	Death.RottExplosive:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("RottGibbedMan",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 1
 		TNT1 A 0 A_Jump(128, 2)
 		TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
@@ -1240,7 +1235,7 @@ Actor BlackFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForCaleb:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 		Goto XDeath		
@@ -1273,7 +1268,7 @@ Actor BlackFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForJon:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("PSGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 		Goto XDeath		
@@ -1329,7 +1324,7 @@ Actor BlackFrankDoyle : BlueFrankDoyle
 		goto Death
 	XDeathForWang:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
+		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 		TNT1 A 0 A_Jump(218, "XDeath")	
         TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		goto XDeath
@@ -1380,12 +1375,7 @@ Actor BlackFrankDoyle : BlueFrankDoyle
 		goto Death
 	DukeGibStart:
 		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnDebris("DukeGibs1")
-		TNT1 A 0 A_SpawnDebris("DukeGibs2")
-		TNT1 A 0 A_SpawnDebris("DukeGibs3")
-		TNT1 A 0 A_SpawnDebris("DukeGibs4")
-		TNT1 A 0 A_SpawnDebris("DukeGibs5")
-		TNT1 A 0 A_SpawnDebris("DukeGibs6")
+		TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_PlaySound("duke/enemygib")
 		TNT1 A 0 A_Jump(96,"XDeath")
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
@@ -2123,7 +2113,7 @@ Actor GreenFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForCaleb:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 		Goto XDeath		
@@ -2156,7 +2146,7 @@ Actor GreenFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForJon:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("PSGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 		Goto XDeath		
@@ -2212,7 +2202,7 @@ Actor GreenFrankDoyle : BlueFrankDoyle
 		goto Death
 	XDeathForWang:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
+		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 		TNT1 A 0 A_Jump(218, "XDeath")	
         TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		goto XDeath
@@ -2263,12 +2253,7 @@ Actor GreenFrankDoyle : BlueFrankDoyle
 		goto Death
 	DukeGibStart:
 		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnDebris("DukeGibs1")
-		TNT1 A 0 A_SpawnDebris("DukeGibs2")
-		TNT1 A 0 A_SpawnDebris("DukeGibs3")
-		TNT1 A 0 A_SpawnDebris("DukeGibs4")
-		TNT1 A 0 A_SpawnDebris("DukeGibs5")
-		TNT1 A 0 A_SpawnDebris("DukeGibs6")
+		TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_PlaySound("duke/enemygib")
 		TNT1 A 0 A_Jump(96,"XDeath")
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
@@ -3007,7 +2992,7 @@ Actor RedFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForCaleb:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 		Goto XDeath		
@@ -3040,7 +3025,7 @@ Actor RedFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForJon:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("PSGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 		Goto XDeath		
@@ -3096,7 +3081,7 @@ Actor RedFrankDoyle : BlueFrankDoyle
 		goto Death
 	XDeathForWang:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
+		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 		TNT1 A 0 A_Jump(218, "XDeath")	
         TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		goto XDeath
@@ -3147,12 +3132,7 @@ Actor RedFrankDoyle : BlueFrankDoyle
 		goto Death
 	DukeGibStart:
 		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnDebris("DukeGibs1")
-		TNT1 A 0 A_SpawnDebris("DukeGibs2")
-		TNT1 A 0 A_SpawnDebris("DukeGibs3")
-		TNT1 A 0 A_SpawnDebris("DukeGibs4")
-		TNT1 A 0 A_SpawnDebris("DukeGibs5")
-		TNT1 A 0 A_SpawnDebris("DukeGibs6")
+		TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_PlaySound("duke/enemygib")
 		TNT1 A 0 A_Jump(96,"XDeath")
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
@@ -3891,7 +3871,7 @@ Actor BrownFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForCaleb:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 		Goto XDeath		
@@ -3924,7 +3904,7 @@ Actor BrownFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForJon:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("PSGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 		Goto XDeath		
@@ -3980,7 +3960,7 @@ Actor BrownFrankDoyle : BlueFrankDoyle
 		goto Death
 	XDeathForWang:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
+		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 		TNT1 A 0 A_Jump(218, "XDeath")	
         TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		goto XDeath
@@ -4031,12 +4011,7 @@ Actor BrownFrankDoyle : BlueFrankDoyle
 		goto Death
 	DukeGibStart:
 		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnDebris("DukeGibs1")
-		TNT1 A 0 A_SpawnDebris("DukeGibs2")
-		TNT1 A 0 A_SpawnDebris("DukeGibs3")
-		TNT1 A 0 A_SpawnDebris("DukeGibs4")
-		TNT1 A 0 A_SpawnDebris("DukeGibs5")
-		TNT1 A 0 A_SpawnDebris("DukeGibs6")
+		TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_PlaySound("duke/enemygib")
 		TNT1 A 0 A_Jump(96,"XDeath")
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
@@ -4785,7 +4760,7 @@ Actor DarkGreenFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForCaleb:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("CalebGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("CalebDMTaunt1",1)
 		Goto XDeath		
@@ -4818,7 +4793,7 @@ Actor DarkGreenFrankDoyle : BlueFrankDoyle
 		Goto Death
 	XDeathForJon:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("PSGibSpawner")
+		TNT1 A 0 A_SpawnItemEx("PSGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         TNT1 A 0 A_Jump(96,"XDeath")
         TNT1 A 0 A_GiveToTarget("JonDMTaunt1",1)
 		Goto XDeath		
@@ -4874,7 +4849,7 @@ Actor DarkGreenFrankDoyle : BlueFrankDoyle
 		goto Death
 	XDeathForWang:
 	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner")	
+		TNT1 A 0 A_SpawnItemEx("SWHumanGibSpawner",0,0,0,0,0,0,0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
 		TNT1 A 0 A_Jump(218, "XDeath")	
         TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		goto XDeath
@@ -4925,12 +4900,7 @@ Actor DarkGreenFrankDoyle : BlueFrankDoyle
 		goto Death
 	DukeGibStart:
 		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnDebris("DukeGibs1")
-		TNT1 A 0 A_SpawnDebris("DukeGibs2")
-		TNT1 A 0 A_SpawnDebris("DukeGibs3")
-		TNT1 A 0 A_SpawnDebris("DukeGibs4")
-		TNT1 A 0 A_SpawnDebris("DukeGibs5")
-		TNT1 A 0 A_SpawnDebris("DukeGibs6")
+		TNT1 A 0 A_SpawnItemEx("DukeGib_ColorSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_PlaySound("duke/enemygib")
 		TNT1 A 0 A_Jump(96,"XDeath")
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
