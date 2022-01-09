@@ -21,6 +21,7 @@ Actor GuardDog
     activesound "guarddog/bark"
     Monster	
     BloodType "LeonardBlood_RR"	
+	Bloodcolor "ba 2c 10"
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
@@ -521,6 +522,7 @@ Actor GuardDogCorpse
 	Radius 16
 	Mass 5000
 	BloodType "LeonardBlood_RR"
+	Bloodcolor "ba 2c 10"
 	DamageFactor "ZorchPistol", 0.0
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
@@ -543,7 +545,7 @@ Actor GuardDogCorpse
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
@@ -1141,6 +1143,7 @@ Actor GuardDog_Blood_Corpse
 	Radius 16
 	Mass 5000
 	BloodType "LeonardBlood_RR"
+	Bloodcolor "ba 2c 10"
 	DamageFactor "ZorchPistol", 0.0
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
@@ -1163,7 +1166,7 @@ Actor GuardDog_Blood_Corpse
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
