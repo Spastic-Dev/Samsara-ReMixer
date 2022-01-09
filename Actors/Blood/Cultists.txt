@@ -827,7 +827,7 @@ Actor BloodCultistCorpse1
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -935,7 +935,7 @@ Actor BloodCultistCorpse2
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -2043,7 +2043,7 @@ Actor BloodFanaticCorpse1
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -2151,7 +2151,7 @@ Actor BloodFanaticCorpse2
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -3172,7 +3172,7 @@ Actor BloodAcolyteCorpse1
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -3280,7 +3280,7 @@ Actor BloodAcolyteCorpse2
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -4436,7 +4436,7 @@ Actor BloodZealotCorpse1
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -4544,7 +4544,7 @@ Actor BloodZealotCorpse2
 	DamageFactor "Zorch", 0.0
 	DamageFactor "ZorchKamikaze", 0.0
 	DamageFactor "PhasingZorch", 0.0
-	DamageFactor "ZorchSpectral", 0.0
+	DamageFactor "ZorchSpectral", 0.0	
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -5463,7 +5463,6 @@ Actor BloodPriest : Zealot
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("BloodPriest_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -5552,7 +5551,7 @@ actor BloodPriest_Shrink : BloodPriest
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN

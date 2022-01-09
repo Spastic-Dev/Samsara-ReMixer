@@ -616,7 +616,6 @@ Actor BlueVixen
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("BlueVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -811,7 +810,7 @@ actor BlueVixen_Shrink : BlueVixen
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN
@@ -1407,7 +1406,6 @@ Actor RedVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("RedVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -1602,7 +1600,7 @@ actor RedVixen_Shrink : RedVixen
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN
@@ -2199,7 +2197,6 @@ Actor GreenVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("GreenVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -2394,7 +2391,7 @@ actor GreenVixen_Shrink : GreenVixen
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN
@@ -2916,7 +2913,6 @@ Actor BrownVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("BrownVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -3111,7 +3107,7 @@ actor BrownVixen_Shrink : BrownVixen
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN
@@ -3707,7 +3703,6 @@ Actor DarkGreenVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("DarkGreenVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -3902,7 +3897,7 @@ actor DarkGreenVixen_Shrink : DarkGreenVixen
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN
@@ -4498,7 +4493,6 @@ Actor SpecialVixen : BlueVixen {
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("SpecialVixen_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
 		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
 		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
@@ -4693,7 +4687,7 @@ actor SpecialVixen_Shrink : SpecialVixen
 	+NORADIUSDMG
 	+VULNERABLE
 	+QUICKTORETALIATE
-	+COUNTKILL
+	-COUNTKILL
 	-NOGRAVITY
 	+NODAMAGE
 	+NOPAIN
