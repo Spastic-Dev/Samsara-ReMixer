@@ -21,7 +21,7 @@ ACTOR MMRandomizer_MechBloodDemon : MMRandomizer_MechDemon
 	DamageFactor "PoisonBolt", 0.5		
     //MeleeSound "VDR/mechdemon/melee"
 	Obituary "%o was gored by a Mechanical Blood Demon."
-	HitObituary "%o was mauled and chewed up by a Mechanical Blood Demon"
+	HitObituary "%o was mauled and chewed up by a Mechanical Blood Demon."
     States 
     { 
 		Spawn: 
@@ -66,6 +66,8 @@ ACTOR MMRandomizer_MechBloodDemon : MMRandomizer_MechDemon
 			VD47 H 70
 			Goto See				
 		Death: 
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD47 I 8 
 			VD47 I 0 A_FaceTarget
 			VD47 J 0 A_SpawnItemEx("MMRandomizer_MechBloodDemonArm", 10, 0, 32, 0, 8, 0, 0, 128)

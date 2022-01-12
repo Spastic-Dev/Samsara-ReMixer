@@ -53,6 +53,8 @@ Actor MMRandomizer_SoulHarvester
 			VD40 G 70
 			Goto See				
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD40 O 7 A_Scream
 			VD40 PQR 7 
 			VD40 S 6 A_SpawnItemEx("MMRandomizer_SoulHarvesterGhost", 0, 0, 32, 0, 0, 0, 0, 128)
@@ -61,6 +63,8 @@ Actor MMRandomizer_SoulHarvester
 			VD40 W -1
 			Stop
 		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD40 X 6 A_Xscream
 			VD40 Y 6 A_SpawnItemEx("MMRandomizer_SoulHarvesterGhost", 0, 0, 32, 0, 0, 0, 0, 128)
 			VD40 Z 6

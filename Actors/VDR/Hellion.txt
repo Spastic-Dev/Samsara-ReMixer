@@ -50,6 +50,8 @@ Actor MMRandomizer_Hellion
 			VD44 M 70
 			Goto See			
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD44 N 6
 			VD44 O 6 A_Scream
 			VD44 PQR 6
@@ -57,6 +59,8 @@ Actor MMRandomizer_Hellion
 			VD44 T -1
 			Stop
 		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD44 U 5
 			VD44 V 5 A_XScream
 			VD44 W 5

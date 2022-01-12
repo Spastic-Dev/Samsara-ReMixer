@@ -43,6 +43,8 @@ ACTOR MMRandomizer_MeleeRevenant
 			VD73 L 5 A_Pain
 			Goto See
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD73 LM 7
 			VD73 N 7 A_Scream
 			VD73 O 7 A_NoBlocking

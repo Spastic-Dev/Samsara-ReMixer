@@ -54,7 +54,8 @@ ACTOR MMRandomizer_Incarnate : Revenant3
 			VD75 L 5
 			VD75 L 5 A_Pain
 			Goto See
-		Death:
+		Death:		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD75 L 0 A_Jump(192,7)
 			VD75 LM 7
 			VD75 N 7 A_Scream
@@ -78,6 +79,8 @@ ACTOR MMRandomizer_Incarnate : Revenant3
 			VD75 Q -1 Thing_Raise(0)
 			Stop
 		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD64 L 10 Bright A_Playsound("vdr/incarnate/explode")
 			VD64 MN 5 Bright
 			VD64 O 5 Bright A_NoBlocking

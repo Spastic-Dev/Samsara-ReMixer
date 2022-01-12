@@ -47,6 +47,8 @@ actor MMRandomizer_Arachnorb
 			VD66 I 2 A_Pain
 			Goto See
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD66 D 0 A_ChangeFlag("FLOATBOB",0)
 			VD66 D 0 A_Scream
 			VD66 D 6 A_Fall

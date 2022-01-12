@@ -51,6 +51,8 @@ ACTOR MMRandomizer_PlasmaZombie : Shotgunguy3
 			VD24 G 70
 			Goto See										
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD24 H 5
 			VD24 I 5 A_Scream
 			VD24 J 5 A_Fall
@@ -58,6 +60,8 @@ ACTOR MMRandomizer_PlasmaZombie : Shotgunguy3
 			VD24 L -1
 			Stop
 		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD24 O 5
 			VD24 P 5 A_XScream
 			VD24 Q 5 A_Fall

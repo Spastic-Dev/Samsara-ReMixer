@@ -94,6 +94,8 @@ ACTOR MMRandomizer_Cryocubus : Fatso3
 			VD62 J 70
 			Goto See						
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD62 K 6
 			VD62 L 6 A_Scream
 			VD62 M 6 A_NoBlocking

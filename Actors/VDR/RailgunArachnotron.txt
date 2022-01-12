@@ -52,6 +52,8 @@ Actor MMRandomizer_RailGunArachnotron : Arachnotron3
 			VD60 I 70
 			Goto See				
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD60 J 20 A_Scream
 			VD60 K 7 A_Fall
 			VD60 LMNO 7

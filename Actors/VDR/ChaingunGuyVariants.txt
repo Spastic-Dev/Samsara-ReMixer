@@ -35,6 +35,8 @@ ACTOR MMRandomizer_ChaingunGuyVariant1 : Chaingunguy3
 			VD06 G 70
 			Goto See			
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD06 H 5
 			VD06 I 5 A_Scream
 			VD06 J 5 A_NoBlocking
@@ -43,6 +45,8 @@ ACTOR MMRandomizer_ChaingunGuyVariant1 : Chaingunguy3
 			CPOS N -1
 			Stop
 		XDeath:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			CPOS O 5 
 			CPOS P 5 A_XScream
 			CPOS Q 5 A_NoBlocking

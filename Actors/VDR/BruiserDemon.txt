@@ -90,6 +90,8 @@ Actor MMRandomizer_BruiserDemon : BaronOfHell3
 			VD56 N 5 Bright A_Pain
 			Goto See
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD57 A 6 Bright A_Scream
 			VD57 BCD 4 Bright 
 			VD57 EFG 4 Bright

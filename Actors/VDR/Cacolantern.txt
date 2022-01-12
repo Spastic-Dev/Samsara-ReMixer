@@ -51,6 +51,8 @@ ACTOR MMRandomizer_Cacolantern : Cacodemon3
 			VD67 D 70
 			Goto See				
 		Death: 
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD67 G 8 bright
 			VD67 H 8 bright A_Scream 
 			VD67 I 8 bright

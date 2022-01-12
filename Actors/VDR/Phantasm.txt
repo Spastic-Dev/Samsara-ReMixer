@@ -48,6 +48,7 @@ actor MMRandomizer_Phantasm : LostSoul3
 			VD64 E 3 BRIGHT A_Pain
 			Goto See
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			VD64 F 6 BRIGHT
 			VD64 F 6 BRIGHT A_Scream
 			VD64 FFFFFFFFFFFF 3 BRIGHT A_SpawnItemEx("MMRandomizer_PhantasmPuff", random(-15,15), random(-15,15), random(12, 24), 0, 0, 1)

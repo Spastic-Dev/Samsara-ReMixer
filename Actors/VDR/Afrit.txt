@@ -80,6 +80,8 @@ Actor MMRandomizer_Afrit
 			VD72 H 70
 			Goto See			
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_NoGravity
 			VD72 I 6 Bright A_Scream
 			VD72 J 5 Bright A_NoBlocking

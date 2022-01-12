@@ -95,6 +95,8 @@ Actor MMRandomizer_ArchonOfHell : BaronOfHell3
 			VD79 Q 70
 			Goto See			
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD79 R 6 Bright
 			VD79 S 6 Bright A_Scream
 			VD79 T 6 Bright

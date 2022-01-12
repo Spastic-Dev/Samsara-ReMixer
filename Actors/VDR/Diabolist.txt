@@ -117,6 +117,8 @@ Actor MMRandomizer_Diabolist
 			VD76 Q 70
 			Goto See			
 		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD76 Q 7
 			VD76 R 7 A_Scream
 			VD76 S 7 A_NoBlocking

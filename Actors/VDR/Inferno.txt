@@ -41,6 +41,8 @@ ACTOR MMRandomizer_Inferno : Cacodemon3
 			VD69 K 6 Bright
 			Goto See 
 		Death: 
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD69 L 6 Bright 
 			VD69 M 6 Bright A_Scream
 			VD69 N 6 Bright

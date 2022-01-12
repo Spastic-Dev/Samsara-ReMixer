@@ -56,6 +56,8 @@ Actor MMRandomizer_Watcher
 			VD70 H 70
 			Goto See			
 		Death: 
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD70 I 8 A_scream
 			VD70 JKLM 6 
 			VD70 N 6 A_noblocking
