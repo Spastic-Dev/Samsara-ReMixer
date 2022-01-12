@@ -338,7 +338,7 @@ ACTOR BlueBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -368,7 +368,7 @@ ACTOR BlueBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -618,7 +618,7 @@ actor BlueBeachPig_Shrink : BlueBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -1003,7 +1003,7 @@ ACTOR RedBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -1033,7 +1033,7 @@ ACTOR RedBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -1283,7 +1283,7 @@ actor RedBeachPig_Shrink : RedBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -1668,7 +1668,7 @@ ACTOR GreenBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -1698,7 +1698,7 @@ ACTOR GreenBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -1948,7 +1948,7 @@ actor GreenBeachPig_Shrink : GreenBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -2333,7 +2333,7 @@ ACTOR GrayBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -2363,7 +2363,7 @@ ACTOR GrayBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -2613,7 +2613,7 @@ actor GrayBeachPig_Shrink : GrayBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -2998,7 +2998,7 @@ ACTOR DarkGrayBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -3028,7 +3028,7 @@ ACTOR DarkGrayBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -3278,7 +3278,7 @@ actor DarkGrayBeachPig_Shrink : DarkGrayBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -3663,7 +3663,7 @@ ACTOR DarkBlueBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -3693,7 +3693,7 @@ ACTOR DarkBlueBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -3943,7 +3943,7 @@ actor DarkBlueBeachPig_Shrink : DarkBlueBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -4328,7 +4328,7 @@ ACTOR BrownBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -4358,7 +4358,7 @@ ACTOR BrownBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -4608,7 +4608,7 @@ actor BrownBeachPig_Shrink : BrownBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -4993,7 +4993,7 @@ ACTOR YellowBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -5023,7 +5023,7 @@ ACTOR YellowBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -5273,7 +5273,7 @@ actor YellowBeachPig_Shrink : YellowBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
@@ -5658,7 +5658,7 @@ ACTOR DarkGreenBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -5688,7 +5688,7 @@ ACTOR DarkGreenBeachPig : PigCop
 			TNT1 A 0 A_SetScale (1.0, 1.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
@@ -5938,7 +5938,7 @@ actor DarkGreenBeachPig_Shrink : DarkGreenBeachPig
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
-			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
