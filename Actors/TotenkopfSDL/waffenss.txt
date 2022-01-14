@@ -1735,13 +1735,10 @@ Actor TotenkopfWaffenSSOfficer : TotenkopfWaffenSS
 			TK29 A 1 A_LookEx(LOF_NOSEESOUND,0,0,0,0,"Alert")
 			Loop
 		See:
-			"####" A 0 A_Jump(224,6)
-			"####" A 0 A_JumpIfTargetInLOS(2,0)
-			"####" A 0 A_JumpIf(CallACS("Totenkopf_ActiveSound",2)==1,1)
-			"####" A 0
-			Goto See+5
-			"####" A 0 A_JumpIf(CallACS("Totenkopf_ActiveSound",0)==1,1)
-			"####" A 0 A_ActiveSound
+			"####" A 0 A_JumpIfTargetInLOS(2,360)
+			"####" A 0 ACS_NamedExecuteWithResult("Totenkopf_ActiveSound",2)
+			Goto See+3
+			"####" A 0 ACS_NamedExecuteWithResult("Totenkopf_ActiveSound",0)
 			"####" BBBCCDDDEE 2 A_Chase("Missile","Missile",CHF_NOPLAYACTIVE)
 			Loop
 		Pain.MightyBoot:
