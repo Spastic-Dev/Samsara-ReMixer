@@ -112,10 +112,6 @@ Actor Disruptor18MMDrop : SamsaraSlotTwoDrop
 		SQ72 Q -1
 		Stop
       Pickup:
-		TNT1 A 0 A_JumpIfInventory("HalfLifeClass", 1, "CheckHL")		  
-	    TNT1 A 0 A_JumpIfInventory("RottClass", 1, "CheckRott")	 
-		TNT1 A 0 A_JumpIfInventory("BondClass", 1, "CheckBond")	
-		TNT1 A 0 A_JumpIfInventory("WolfenClass", 1, "CheckWolfen")
 		TNT1 A 0 A_JumpIfInventory("DisruptorClass", 1, "PickupDisrup")
         TNT1 A 0 A_JumpIf((ACS_NamedExecuteWithResult("SamsaraGiveWeapon", 2, 1) & 1) == 1, "PickupSuccess")
         goto PickupFailure		
