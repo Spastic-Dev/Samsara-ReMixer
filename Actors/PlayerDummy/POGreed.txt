@@ -189,3 +189,359 @@ Actor POGreed_AI
 		stop
 	}
 }
+
+Actor POGreed2_AI 
+{
+	obituary "%o was killed by Tobias Locke!"
+    radius 14
+    height 56
+    health 1000	
+    mass 220
+    speed 8
+	monster
+	+FLOORCLIP
+	-FRIENDLY
+	Scale 0.42
+	Maxstepheight 8
+	cameraheight 45
+    painsound "GPLPAIN"
+    deathsound "GPLDEATH"
+    activesound "G_Cyborg/Idle"
+	Species "Enemies"
+	States
+    {	
+    Spawn:
+		GPL2 B 5 A_Look
+		loop
+	See:
+		GPL2 CCCCBBBBAAAABBBB 1 A_FastChase
+		Loop
+    Missile:
+		TNT1 A 0 A_Jump(48, "FireSlot4")
+		GPL2 B 1 A_FaceTarget
+		GPL2 VV 0 A_PlayWeaponSound("greed/plasmashot")  
+		GPL2 D 2 Bright
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-2,-8)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-1,-4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,1,4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,2,8)
+		GPL2 B 24 A_FaceTarget
+		GPL2 B 1 A_FaceTarget
+		GPL2 B 1 A_FaceTarget
+		TNT1 A 0 A_Jump(128, "See")
+		goto Missile
+	FireSlot4:
+		GPL2 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL2 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL2 T 0 A_Jump(8,"See")
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL2 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL2 T 0 A_Jump(8,"See")
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL2 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL2 T 0 A_Jump(8,"See")
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL2 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL2 T 0 A_Jump(8,"See")
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL2 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL2 T 0 A_Jump(8,"See")
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 B 2 A_FaceTarget
+		GPL2 T 0 A_CPOSRefire
+		goto FireSlot4	
+	Pain:
+		GPL2 F 1 A_Pain
+		goto See
+	Pain.LifeLeech:
+		TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
+		TNT1 A 0 A_GiveToTarget("HealthBonus",1)
+		Goto Pain	
+	Death:
+		GPL2 F 5 A_Scream		
+		GPL2 G 5 A_NoBlocking
+		GPL2 HIJKL 5
+		GPL2 M -1
+		stop
+	}
+}
+
+Actor POGreed3_AI 
+{
+	obituary "%o was killed by Xith!"
+    radius 14
+    height 56
+    health 1000	
+    mass 220
+    speed 8
+	monster
+	+FLOORCLIP
+	-FRIENDLY
+	Scale 0.42
+	Maxstepheight 8
+	cameraheight 45
+    painsound "GPLPAIN"
+    deathsound "GPLDEATH"
+    activesound "G_Lizard/Idle"
+	Species "Enemies"
+	States
+    {	
+    Spawn:
+		GPL3 B 5 A_Look
+		loop
+	See:
+		GPL3 CCCCBBBBAAAABBBB 1 A_FastChase
+		Loop
+    Missile:
+		TNT1 A 0 A_Jump(48, "FireSlot4")
+		GPL3 B 1 A_FaceTarget
+		GPL3 VV 0 A_PlayWeaponSound("greed/plasmashot")  
+		GPL3 D 2 Bright
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-2,-8)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-1,-4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,1,4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,2,8)
+		GPL3 B 24 A_FaceTarget
+		GPL3 B 1 A_FaceTarget
+		GPL3 B 1 A_FaceTarget
+		TNT1 A 0 A_Jump(128, "See")
+		goto Missile
+	FireSlot4:
+		GPL3 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL3 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL3 T 0 A_Jump(8,"See")
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL3 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL3 T 0 A_Jump(8,"See")
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL3 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL3 T 0 A_Jump(8,"See")
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL3 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL3 T 0 A_Jump(8,"See")
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL3 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL3 T 0 A_Jump(8,"See")
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 B 2 A_FaceTarget
+		GPL3 T 0 A_CPOSRefire
+		goto FireSlot4	
+	Pain:
+		GPL3 F 1 A_Pain
+		goto See
+	Pain.LifeLeech:
+		TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
+		TNT1 A 0 A_GiveToTarget("HealthBonus",1)
+		Goto Pain	
+	Death:
+		GPL3 F 5 A_PlayerScream		
+		GPL3 G 5 A_NoBlocking
+		GPL3 HIJ 5
+		GPL3 K -1
+		stop
+	}
+}
+
+Actor POGreed4_AI 
+{
+	obituary "%o was killed by Specimen 7!"
+    radius 14
+    height 56
+    health 1000	
+    mass 220
+    speed 8
+	monster
+	+FLOORCLIP
+	-FRIENDLY
+	Scale 0.42
+	Maxstepheight 8
+	cameraheight 45
+    painsound "GPLPAIN"
+    deathsound "GPLDEATH"
+    activesound "G_Specimen/Idle"
+	Species "Enemies"
+	States
+    {	
+    Spawn:
+		GPL4 B 5 A_Look
+		loop
+	See:
+		GPL4 CCCCBBBBAAAABBBB 1 A_FastChase
+		Loop
+    Missile:
+		TNT1 A 0 A_Jump(48, "FireSlot4")
+		GPL4 B 1 A_FaceTarget
+		GPL4 VV 0 A_PlayWeaponSound("greed/plasmashot")  
+		GPL4 D 2 Bright
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-2,-8)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-1,-4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,1,4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,2,8)
+		GPL4 B 24 A_FaceTarget
+		GPL4 B 1 A_FaceTarget
+		GPL4 B 1 A_FaceTarget
+		TNT1 A 0 A_Jump(128, "See")
+		goto Missile
+	FireSlot4:
+		GPL4 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL4 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL4 T 0 A_Jump(8,"See")
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL4 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL4 T 0 A_Jump(8,"See")
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL4 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL4 T 0 A_Jump(8,"See")
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL4 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL4 T 0 A_Jump(8,"See")
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL4 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL4 T 0 A_Jump(8,"See")
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 B 2 A_FaceTarget
+		GPL4 T 0 A_CPOSRefire
+		goto FireSlot4	
+	Pain:
+		GPL4 F 1 A_Pain
+		goto See
+	Pain.LifeLeech:
+		TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
+		TNT1 A 0 A_GiveToTarget("HealthBonus",1)
+		Goto Pain	
+	Death:
+		GPL4 F 5 A_Scream		
+		GPL4 G 5 A_NoBlocking
+		GPL4 HIJKL 5
+		GPL4 M -1
+		stop
+	}
+}
+
+Actor POGreed5_AI 
+{
+	obituary "%o was killed by Theola Nom!"
+    radius 14
+    height 56
+    health 1000	
+    mass 220
+    speed 8
+	monster
+	+FLOORCLIP
+	-FRIENDLY
+	Scale 0.42
+	Maxstepheight 8
+	cameraheight 45
+    painsound "GPLPAIN"
+    deathsound "GPLDEATH"
+    activesound "G_Dominatrix/Idle"
+	Species "Enemies"
+	States
+    {	
+    Spawn:
+		GPL5 B 5 A_Look
+		loop
+	See:
+		GPL5 CCCCBBBBAAAABBBB 1 A_FastChase
+		Loop
+    Missile:
+		TNT1 A 0 A_Jump(48, "FireSlot4")
+		GPL5 B 1 A_FaceTarget
+		GPL5 VV 0 A_PlayWeaponSound("greed/plasmashot")  
+		GPL5 D 2 Bright
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-2,-8)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,-1,-4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,1,4)
+		GW20 A 0 A_CustomMissile("PGShotgunPlasmaBallCoop",0,2,8)
+		GPL5 B 24 A_FaceTarget
+		GPL5 B 1 A_FaceTarget
+		GPL5 B 1 A_FaceTarget
+		TNT1 A 0 A_Jump(128, "See")
+		goto Missile
+	FireSlot4:
+		GPL5 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL5 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL5 T 0 A_Jump(8,"See")
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL5 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL5 T 0 A_Jump(8,"See")
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL5 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL5 T 0 A_Jump(8,"See")
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL5 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL5 T 0 A_Jump(8,"See")
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 SS 0 A_PlayWeaponSound("greed/chaingun") 
+		GPL5 D 1 Bright A_CustomBulletAttack(2, 2, 1, random(8,12), "PGBulletPuff",0,CBAF_NORANDOM)
+		GPL5 T 0 A_Jump(8,"See")
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 B 2 A_FaceTarget
+		GPL5 T 0 A_CPOSRefire
+		goto FireSlot4	
+	Pain:
+		GPL5 F 1 A_Pain
+		goto See
+	Pain.LifeLeech:
+		TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
+		TNT1 A 0 A_GiveToTarget("HealthBonus",1)
+		Goto Pain	
+	Death:
+		GPL5 F 5 A_Scream		
+		GPL5 G 5 A_NoBlocking
+		GPL5 HIJKL 5
+		GPL5 M -1
+		stop
+	}
+}
