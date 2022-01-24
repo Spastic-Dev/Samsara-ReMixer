@@ -15,40 +15,87 @@ Script "DF2519" (void) //2519
 	terminate;
 }
 
-Script "DFSummonClone" (void) //2527
+str ClassesAISTR[CLASSCOUNT] =
 {
-
-	str ClassesAISTR[CLASSCOUNT] =
-	{
 	"Doom_AI", "Chex_AI", "Corvus_AI", "Blaskowicz_AI", "Parias_AI", "Duke_AI", "SecurityOfficer_AI", "Ranger_AI", "IPFreeley_AI", "Blake_AI",
 	"Caleb_AI", "StrifeGuy_AI", "Eleena_AI", "Corridor7_AI", "RMR_AI", "Katarn_AI", "POGreed_AI", "Jack_AI", "Grondoval_AI", 
 	"Freeman_AI", "LoWang_AI", "Cybermage_AI", "Jon_AI", "Leonard_AI", "Bitterman_AI", "Demoness_AI", "JamesBond_AI", "PettonEverhail_AI"
-	};
-	for(int i = 0; i < 26; i++)
+};
+
+Script "DFSummonClone" (void) //2527
+{
+	int oldtid = ActivatorTid();
+	int usertid = UniqueTid();
+	int dummytid = UniqueTid();
+	
+	switch(PlayerClass(PlayerNumber()))
 	{
-		if(CheckInventory(gameClassesSTR[i]) > 0)
-		{
-			int oldtid = ActivatorTid();
-			int usertid = UniqueTid(0);
-			int dummytid = UniqueTid(0);
-		
-			if(CheckInventory("HalfLifeOpposingForce"))
-				SpawnSpotFacingForced("Shephard_AI", 0, usertid);
-			else
-				SpawnSpotFacingForced(ClassesAISTR[i], 0, usertid);
+		default: SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid); break;
+		case 0:
 			if(CheckInventory("Doom64Mode"))
 				SpawnSpotFacingForced("Doom64_AI", 0, usertid);
 			else
-				SpawnSpotFacingForced(ClassesAISTR[i], 0, usertid);
-				
-			SpawnSpotForced("TranslationDummy",0,dummytid,0);
-			Thing_SetTranslation(dummytid, -1);
-			SetActivator(dummytid, AAPTR_Default);
-			Thing_SetTranslation(usertid, -1);
-			Thing_ChangeTid(usertid, 0);
+				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
 			break;
-		}
+		case 3:
+			if(CheckInventory("WolfenMode")==1)
+				SpawnSpotFacingForced("Blaskowicz_SOD_AI", 0, usertid);
+			else if(CheckInventory("WolfenMode")==2)
+				SpawnSpotFacingForced("Blaskowicz_Totenkopf_AI ", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
+			break;
+		case 4:
+			if(CheckInventory("HexenMode")==1)
+				SpawnSpotFacingForced("Daedalon_AI", 0, usertid);
+			else if(CheckInventory("HexenMode")==2)
+				SpawnSpotFacingForced("Baratus_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
+			break;
+		case 5:
+			if(CheckInventory("DukeLabToken")==1)
+				SpawnSpotFacingForced("Duke_LAB_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
+			break;
+		case 8:
+			if(CheckInventory("RoTTMode")==1)
+				SpawnSpotFacingForced("TaradinoCassatt_AI ", 0, usertid);
+			else if(CheckInventory("RoTTMode")==2)
+				SpawnSpotFacingForced("ThiBarret_AI", 0, usertid);
+			else if(CheckInventory("RoTTMode")==3)
+				SpawnSpotFacingForced("LoreleiNi_AI", 0, usertid);
+			else if(CheckInventory("RoTTMode")==4)
+				SpawnSpotFacingForced("DougWendt_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
+			break;
+		case 16:
+			if(CheckInventory("IPoGMode")==1)
+				SpawnSpotFacingForced("POGreed2_AI ", 0, usertid);
+			else if(CheckInventory("IPoGMode")==2)
+				SpawnSpotFacingForced("POGreed3_AI", 0, usertid);
+			else if(CheckInventory("IPoGMode")==3)
+				SpawnSpotFacingForced("POGreed4_AI", 0, usertid);
+			else if(CheckInventory("IPoGMode")==4)
+				SpawnSpotFacingForced("POGreed5_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
+			break;
+		case 19:
+			if(CheckInventory("HalfLifeOpposingForce"))
+				SpawnSpotFacingForced("Shephard_AI", 0, usertid);
+			else
+				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
+			break;
 	}
+
+	SpawnSpotForced("TranslationDummy",0,dummytid,0);
+	Thing_SetTranslation(dummytid, -1);
+	SetActivator(dummytid, AAPTR_Default);
+	Thing_SetTranslation(usertid, -1);
+	Thing_ChangeTid(usertid, 0);
 }
 
 Script "DFJerecDeathFX" (void) // Jerec Death Effects need this script because of Zandronum being outdated -- 2528
