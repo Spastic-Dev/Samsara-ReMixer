@@ -386,8 +386,26 @@ Actor Daedolon_AI
 		goto Missile
 	FireSlot2:
 		MGE2 E 1 A_FaceTarget
-		CLER VV 0
-		MGE2 F 2 Bright A_CustomMissile("MageWandMissile2")
+		CLER VV 0 
+		TNT1 A 0 A_PlayWeaponSound("MageShardsFire")
+		TNT1 A 0 A_CustomMissile("FrostMissile",36,6,14,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",34,4,9,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",32,0,5,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",36,-6,-14,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",34,-4,-9,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",32,0,-5,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",38,0,0,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",41,0,0,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",44,0,0,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",30,0,0,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",29,0,0,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",28,0,0,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",42,1,4,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",30,1,4,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",42,-1,-4,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",30,-1,-4,CMF_AIMDIRECTION)
+		TNT1 A 0 A_CustomMissile("FrostMissile",38)
+		MGE2 F 2 Bright 
 		MGE2 E 30 A_FaceTarget
 		MGE2 E 1 A_FaceTarget
 		MGE2 E 1 A_FaceTarget
