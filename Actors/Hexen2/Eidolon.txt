@@ -230,8 +230,10 @@ Actor Hexen2Eidolon : Hexen2BossBase
 			HX01 QRST 2
 			Goto See2
 		Pain:
+			HX00 A 0 A_ChangeFlag("NOPAIN",1)
 			HX00 A 0 A_Pain
 			HX00 ABCDEFGHI 2
+			HX00 A 0 A_ChangeFlag("NOPAIN",0)
 			Goto See2
 		Death:
 			HX09 A 0 A_JumpIf(ceilingz < (floorz + 256),"ForceDeath")
