@@ -44,21 +44,36 @@ Script "Goldeneye_HatShot" (void)
 
 Script "GoldeneyeEnemyLoop" (void)
 {
-	int oldX, oldY, oldZ;
+	int oldX, oldY, oldZ, oldAngle, oldScaleX, oldScaleY;
 	While(ClassifyActor(0) > 1)
 	{
-		if(GetActorX(0) != oldX || GetActorY(0) != oldY || GetActorZ(0) != oldZ)
+		if(GetActorX(0) != oldX || GetActorY(0) != oldY || GetActorZ(0) != oldZ || GetActorAngle(0) != oldAngle)
 		{
-			oldX = GetActorX(0);	oldY = GetActorY(0);	oldZ = GetActorZ(0);
-			GiveInventory("Goldeneye_UpdateChildren",1);
+			oldX = GetActorX(0);	oldY = GetActorY(0);	oldZ = GetActorZ(0);	oldAngle = GetActorAngle(0);
+			GiveInventory("Goldeneye_UpdateChildrenPosition",1);
+		}
+		if(GetActorProperty(0,APROP_ScaleX) != oldScaleX || GetActorProperty(0,APROP_ScaleY) != oldScaleY)
+		{
+			oldScaleX = GetActorProperty(0,APROP_ScaleX);	oldScaleY = GetActorProperty(0,APROP_ScaleY);
+			GiveInventory("Goldeneye_UpdateChildrenScale",1);
 		}
 		Delay(1);
 	}
 }
 
-Script "GoldeneyePartPositioner" (void)
+Script "GoldeneyePartPositioner" (int type)
 {
-	Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION);
+	switch(type)
+	{
+		case 0: Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_USEPTR|WARPF_COPYINTERPOLATION); break;
+		case 1:
+			int myTid = UniqueTid();
+			Thing_ChangeTid(0,myTid);
+			SetActivator(0,AAPTR_Master);
+			SetActorProperty(myTid,APROP_ScaleX,GetActorProperty(0,APROP_ScaleX));
+			SetActorProperty(myTid,APROP_ScaleY,GetActorProperty(0,APROP_ScaleY));
+			break;
+	}
 }
 
 Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
@@ -1627,7 +1642,13 @@ Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
 			break;		
 		case 119:
 			SetActorState(0,"Walking",true);
-			break;				
+			break;
+		case 121:
+			SetActorState(0,"ExpanderDeath",true);
+			break;
+		case 122:
+			SetActorState(0,"Shrink",true);
+			break;
 	}
 }	
 
@@ -1671,12 +1692,13 @@ Script "Goldeneye_TracerDamage" (void)
 
 Script "Goldeneye_JetPackLoop" (void)
 {
-	While(ClassifyActor(0) != 1)
+	While(GetActorProperty(0,APROP_Health) > 0)
 	{
 		int smoketid = UniqueTid();
 		int actorangle = GetActorAngle(0);
 		SpawnForced("Goldeneye_JetPackSmoke",GetActorX(0)+(FixedMul(cos(actorangle),-8.0)),GetActorY(0)+(FixedMul(sin(actorangle),-8.0)),GetActorZ(0)+28.0,smoketid,random(0,1.0));
 		SetActorVelocity(smoketid,random(-2.0,2.0),random(-2.0,2.0),random(-3.0,-2.0),0,0);
+		if(random(0,3)==0) { ThrustThingZ(0,5,0,1); }
 		Thing_ChangeTid(smoketid,0);
 		Delay(2);
 	}

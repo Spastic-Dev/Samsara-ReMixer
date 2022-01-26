@@ -21,6 +21,8 @@ Actor Goldeneye_JetPackGuard : Goldeneye_EnemyBase
 {
 	Tag "Janus Marine (Jetpack)"
 	Health 100
+	Speed 2
+	FloatSpeed 2
 	+MISSILEMORE
 	States
 	{
@@ -39,6 +41,7 @@ Actor Goldeneye_JetPackGuard : Goldeneye_EnemyBase
 			TNT1 A 0 A_JumpIfInventory("Goldeneye_JetPackIgnition",1,"SeeContinue")
 			TNT1 A 0 A_GiveInventory("Goldeneye_JetPackIgnition",1)
 			TNT1 A 0 A_JumpIf(mass == 206||mass == 209||mass == 211||mass == 213||mass == 215||mass == 217||mass == 218||mass == 223, "IgnitionTwoHand")
+			TNT1 A 1
 			Goto IgnitionDual
 		IgnitionTwoHand:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_IgnitionTwoHand",1)
@@ -48,37 +51,83 @@ Actor Goldeneye_JetPackGuard : Goldeneye_EnemyBase
 			TNT1 A 0 A_ChangeFlag("NoPain",false)
 			TNT1 A 0 A_ChangeFlag("NoGravity",true)
 			TNT1 A 0 A_ChangeFlag("Float",true)
+			TNT1 A 0 A_ChangeFlag("NoDropOff",false)
 			Goto SeeContinue
 		IgnitionDual:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_IgnitionDual",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Goldeneye_JetPackLoop")
 			TNT1 ABCD 6
 			TNT1 EFGHIJKLM 6
+			TNT1 A 0 A_PrintBold("Float")
 			TNT1 A 0 A_ChangeFlag("NoPain",false)
 			TNT1 A 0 A_ChangeFlag("NoGravity",true)
 			TNT1 A 0 A_ChangeFlag("Float",true)
+			TNT1 A 0 A_ChangeFlag("NoDropOff",false)
 			Goto SeeContinue
 		SeeContinue:
 			TNT1 A 0 A_JumpIf(mass == 206||mass == 209||mass == 211||mass == 213||mass == 215||mass == 217||mass == 218||mass == 223, "SeeTwoHand")
+			TNT1 A 1
 			Goto SeeSingleDual
 		SeeSingleDual:
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_SeeSingleDual",1)
-			TNT1 A 6 A_Chase("","Missile") TNT1 B 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 B 6 A_Chase("","Missile") TNT1 C 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 C 6 A_Chase("","Missile") TNT1 D 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 D 6 A_Chase("","Missile") TNT1 E 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 E 6 A_Chase("","Missile") TNT1 F 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 F 6 A_Chase("","Missile") TNT1 G 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 G 6 A_Chase("","Missile") TNT1 A 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 A 0 A_GiveToChildren("Goldeneye_BroadCast_SpawnDual",1)
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
 			Loop
 		SeeTwoHand:
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_SeeTwoHand",1)
-			TNT1 A 6 A_Chase("","Missile") TNT1 B 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 B 6 A_Chase("","Missile") TNT1 C 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 C 6 A_Chase("","Missile") TNT1 D 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 D 6 A_Chase("","Missile") TNT1 E 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 E 6 A_Chase("","Missile") TNT1 F 0 A_Recoil(-0.25) "####" "#" 0
-			TNT1 F 6 A_Chase("","Missile") TNT1 A 0 A_Recoil(-0.25) "####" "#" 0
+			TNT1 A 0 A_GiveToChildren("Goldeneye_BroadCast_Spawn2",1)
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
+			TNT1 AAAAAA 1 A_Chase("","Missile")
 			Loop
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_JumpIf(mass == 203 || mass == 205 || mass == 208 || mass == 210 || mass == 212 || mass == 214 || mass == 216 || mass == 220 || mass == 222 || mass == 225 || mass == 226, 3)			
+			TNT1 A 0 A_JumpIf(mass == 201, "FirePP7")
+			TNT1 A 0 A_JumpIf(mass == 202, "FireDD44")
+			TNT1 A 0 A_JumpIf(mass == 203, "FireDD44Dual")
+			TNT1 A 0 A_JumpIf(mass == 204, "FireKlobb")
+			TNT1 A 0 A_JumpIf(mass == 205, "FireKlobbDual")
+			TNT1 A 0 A_JumpIf(mass == 206, "FireKF7")
+			TNT1 A 0 A_JumpIf(mass == 207, "FireZMG")
+			TNT1 A 0 A_JumpIf(mass == 208, "FireZMGDual")
+			TNT1 A 0 A_JumpIf(mass == 209, "FireD5K")
+			TNT1 A 0 A_JumpIf(mass == 210, "FireD5KDual")
+			TNT1 A 0 A_JumpIf(mass == 211, "FirePhantom")
+			TNT1 A 0 A_JumpIf(mass == 212, "FirePhantomDual")
+			TNT1 A 0 A_JumpIf(mass == 213, "FireAR33")
+			TNT1 A 0 A_JumpIf(mass == 214, "FireAR33Dual")
+			TNT1 A 0 A_JumpIf(mass == 215, "FireRCP90")
+			TNT1 A 0 A_JumpIf(mass == 216, "FireRCP90Dual")
+			TNT1 A 0 A_JumpIf(mass == 217, "FireAutoShotgun")
+			TNT1 A 0 A_JumpIf(mass == 218, "FireSniper")
+			TNT1 A 0 A_JumpIf(mass == 219, "FireCougar")
+			TNT1 A 0 A_JumpIf(mass == 220, "FireCougarDual")
+			TNT1 A 0 A_JumpIf(mass == 221, "FireLaser")
+			TNT1 A 0 A_JumpIf(mass == 222, "FireLaserDual")
+			TNT1 A 0 A_JumpIf(mass == 223, "FireGrenadeLauncher")
+			TNT1 A 0 A_JumpIf(mass == 224, "FireRocketLauncher")
+			TNT1 A 0 A_JumpIf(mass == 225, "FireSiberianCombo")
+			TNT1 A 0 A_JumpIf(mass == 226, "FireXeniaCombo")
+		    TNT1 A 0 A_JumpIf(mass == 227, "ThrowHat")
+			TNT1 A 0 A_JumpIf(mass == 228, "FireSilverPP7")
+			Goto FireKF7
+		FireD5K:
+			TNT1 A 0 A_Jump(256, "FireD5KAimHip", "FireD5KAimToFire")
+			Goto FireD5KAimBow
+		FireD5KDual:
+			Goto FireD5KDualStand
+		FirePhantom:
+			TNT1 A 0 A_Jump(256, "FirePhantomAimHip", "FirePhantomAimToFire")
+			Goto FirePhantomAimBow
+		FirePhantomDual:
+			Goto FirePhantomDualStand
 	}
 }
