@@ -2043,7 +2043,7 @@ Actor Catacomb3D_Bat : Catacomb3D_Enemybase // replaces LostSoul
 {
 	Health 10
 	Radius 20
-	Height 16
+	Height 18
 	Speed 16
 	PainChance 0
 	+FLOAT
@@ -2433,8 +2433,9 @@ Actor Catacomb3D_RedDemon : Catacomb3D_Enemybase// replaces BaronOfHell
 {
 	Health 500
 	Speed 25
-	Radius 24
+	Radius 30
 	Height 64
+	+DONTRIP
 	Obituary "Our savior %o has fallen to a Demon."
 	Tag "Red Demon"
 	States
@@ -2443,6 +2444,7 @@ Actor Catacomb3D_RedDemon : Catacomb3D_Enemybase// replaces BaronOfHell
 			CT02 A 0
 			CT02 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			CT02 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			CT16 A 0 A_GiveInventory("IsFatButBiped", 1)
 			CT02 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:		
 			CT02 AB 10 A_Look
@@ -3090,6 +3092,7 @@ Actor Catacomb3D_Nemesis : Catacomb3D_Enemybase //replaces Cyberdemon
 	+BOSS
 	+BOSSDEATH
 	+NOBLOOD
+	+DONTRIP
 	DeathSound "Catacomb/Boss/Die"
 	Obituary "Our savior %o has fallen to Nemesis."
 	Tag "Nemesis"	
@@ -3319,7 +3322,7 @@ Actor Catacomb3D_Nemesis : Catacomb3D_Enemybase //replaces Cyberdemon
 
 Actor Catacomb_NemesisSkull : Catacomb_MagicMissileProjectile
 {
-	Damage (25)
+	Damage (55)
 	Speed 30
 	SeeSound "Catacomb/Door"
 	States
@@ -3334,12 +3337,21 @@ Actor Catacomb3D_NemesisClone : Catacomb3D_Nemesis
 {
 	Health 900
 	Speed 5
+	Scale 1.0
+	Radius 19
+	Height 56
+	-BOSS
+	-BOSSDEATH
 	+NOPAIN
 	States
 	{
 		See:		
             CT07 AAABBB 3 BRIGHT A_Chase
             Loop
+		Pain:
+            CT07 D 4 BRIGHT
+            CT07 D 4 BRIGHT A_Pain
+            Goto Missile
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			CT07 AABB 2 Bright A_FaceTarget

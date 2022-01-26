@@ -258,6 +258,7 @@ Actor Catacomb_CybermageBall : Catacomb_MagicMissileProjectile
 {
 	Damage(7)
 	SeeSound "Catacomb/MMisFire"
+	DamageType "Plasma"
 	Speed 20
 	States
 	{
@@ -972,6 +973,7 @@ Actor Catacomb_CyberantBall : Catacomb_MagicMissileProjectile
 	Damage(7)
 	SeeSound "Catacomb/MMisFire"
 	Speed 20
+	DamageType "Plasma"
 	States
 	{
 		Spawn:
@@ -987,11 +989,12 @@ Actor Catacomb_CyberantBall : Catacomb_MagicMissileProjectile
 Actor CatacombApocalypse_TimeLord : CatacombTrilogy_EnemyBase //replaces CacoDemon
 {
 	Radius 30
-	Health 250
+	Health 750
 	Height 56
 	Speed 25
 	+NOBLOOD
 	+FLOAT
+	+DONTRIP
 	+NOGRAVITY
 	Tag "Time Lord"
 	Obituary "Our savior %o has fallen to a Time Lord."	
@@ -1012,13 +1015,91 @@ Actor CatacombApocalypse_TimeLord : CatacombTrilogy_EnemyBase //replaces CacoDem
 			CT28 A 0 A_PlaySound("Catacomb/Zappers", CHAN_BODY)
 			CT28 A 0 A_Jump(128, 10)
 			CT28 A 0 A_Jump(205, 5)
-			CT28 KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 3 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			CT28 K 3 A_Wander 
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_TimeLordShot", 32,0,0)
+			CT28 K 3
 			Goto See
 		XDeath:
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			CT28 K 5 A_Scream
 			CT28 K 0 A_NoBlocking
+			CT28 K 0 A_NoGravity
 			TNT1 AAAAAAAAAA 3 A_SpawnItemEx("Catacomb_Explosion", Random(-10,20), 0, Random(-10,20), 0, 0, 0, 0, SXF_NOCHECKPOSITION, 96)
 			TNT1 A -1 A_KillMaster
 			Stop
@@ -1238,7 +1319,8 @@ Actor CatacombApocalypse_TimeLord : CatacombTrilogy_EnemyBase //replaces CacoDem
 Actor Catacomb_Explosion 
 {
 	+CLIENTSIDEONLY
-	+NOINTERACTION
+	+SPAWNFLOAT
+	+NOGRAVITY
 	Scale 1.5
 	Radius 8
 	Height 8
@@ -1250,7 +1332,7 @@ Actor Catacomb_Explosion
 	}
 }
 
-Actor CatacombApocalypse_TimeLordShot : Catacomb_FireballProjectileV2
+Actor CatacombApocalypse_TimeLordShot : Catacomb_MagicMissileProjectile2X
 {
 	Damage (Random(4,5))
 	Speed 20
@@ -1260,9 +1342,10 @@ Actor CatacombApocalypse_CyberDemon : CatacombTrilogy_EnemyBase
 {
 	PainChance 48
 	Health 320
-	Radius 21
+	Radius 30
 	Height 64
 	Speed 20
+	+DONTRIP
 	+NOBLOOD
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
@@ -2167,6 +2250,7 @@ Actor Catacomb_DevilRayWave : Catacomb_MagicMissileProjectile
 	-THRUACTORS
 	Damage (15)
 	Speed 20
+	DamageType "Explosive"
 	States
 	{
 		Spawn:
@@ -2181,11 +2265,12 @@ Actor Catacomb_DevilRayWave : Catacomb_MagicMissileProjectile
 Actor CatacombApocalypse_CyberPox : CatacombTrilogy_EnemyBase
 {
 	Health 250
-	Radius 30
+	Radius 32
 	Height 64
 	Speed 10
 	BloodColor "fc fc fc"
 	Tag "Cyber Pox"
+	+DONTRIP
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
@@ -2196,6 +2281,7 @@ Actor CatacombApocalypse_CyberPox : CatacombTrilogy_EnemyBase
 		Spawn:
 			CT27 A 0
 			CT27 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			CT27 A 0 A_GiveInventory("NoHeadshots",1)
 			CT27 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			CT27 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:			
@@ -3532,6 +3618,7 @@ Actor Catacomb_SmogProjectile : Catacomb_MagicMissileProjectile
 {
 	Damage (7)
 	Speed 25
+	DamageType "Plasma"
 	States
 	{
 		Spawn:
@@ -3547,13 +3634,14 @@ Actor CatacombApocalypse_WalkingTank : CatacombTrilogy_EnemyBase
 {
 	Health 400
 	Speed 15
-	Radius 30 
+	Radius 32 
 	Height 56
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
 	DamageFactor "PoisonBolt", 0		
 	+NOBLOOD
+	+DONTRIP
 	Tag "Walking Tank"
 	Obituary "Our savior %o has fallen to a Walking Tank."
 	States
@@ -3820,7 +3908,7 @@ Actor Catacomb_TankBall : Catacomb_CyberantBall
 
 Actor CatacombApocalypse_SentryEye : CatacombTrilogy_EnemyBase
 {
-	Health 150
+	Health 450
 	Speed 8
 	Radius 15
 	Height 32
@@ -3828,6 +3916,7 @@ Actor CatacombApocalypse_SentryEye : CatacombTrilogy_EnemyBase
 	-SOLID
 	+NOGRAVITY
 	+NOBLOOD
+	+DONTRIP
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
@@ -3848,10 +3937,75 @@ Actor CatacombApocalypse_SentryEye : CatacombTrilogy_EnemyBase
 			CT24 AAABBBCCC 2 A_Chase
 			Loop
 		Missile:
-			CT24 A 0 A_PlaySound("Catacomb/Zappers", CHAN_BODY)
-			CT24 A 0 A_Jump(128, 5)
-			CT24 A 0 A_Jump(205, 5)
-			CT24 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_CustomMissile("CatacombApocalypse_EyeShot", 24,0,0)
+			CT28 A 0 A_PlaySound("Catacomb/Zappers", CHAN_BODY)
+			CT28 A 0 A_Jump(128, 10)
+			CT28 A 0 A_Jump(205, 5)
+			CT24 A 2 A_Wander
+			CT24 A 2 A_Wander 
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0  A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
+			TNT1 A 0 A_CustomMissile("CatacombApocalypse_EyeShot", 16,0,0)
+			CT24 A 2 A_Wander
 			Goto See
 		Pain:
 			CT24 DE 2
@@ -4077,7 +4231,7 @@ Actor CatacombApocalypse_SentryEye : CatacombTrilogy_EnemyBase
 	}
 }				
 
-Actor CatacombApocalypse_EyeShot : CatacombAbyss_EyeShot { Damage (5) }
+Actor CatacombApocalypse_EyeShot : CatacombAbyss_EyeShot { Damage (5) DamageType "Plasma" }
 
 Actor CatacombApocalypse_Wizard : CatacombTrilogy_EnemyBase
 {
@@ -5399,6 +5553,7 @@ Actor CatacombApocalypse_Nemesis : CatacombTrilogy_Enemybase //replaces Cyberdem
 	+BOSS
 	+BOSSDEATH
 	+NOBLOOD
+	+DONTRIP
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
@@ -5766,7 +5921,8 @@ Actor CatacombApocalypse_Nemesis : CatacombTrilogy_Enemybase //replaces Cyberdem
 
 Actor CatacombApocalypse_NemesisSkull : Catacomb_MagicMissileProjectile
 {
-	Damage (Random(45,55))
+	Damage (Random(90,110))
+	DamageType "Plasma"
 	States
 	{
 		Spawn:

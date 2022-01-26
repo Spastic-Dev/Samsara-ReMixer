@@ -1921,9 +1921,10 @@ Actor CatacombArmageddon_TwoHeadedDemon : CatacombTrilogy_EnemyBase
 {
 	PainChance 48
 	Health 500
-	Radius 21
+	Radius 34
 	Height 64
 	Speed 25
+	+DONTRIP
 	Tag "Two-Headed Demon"
 	Obituary "Our savior %o has fallen to a Two-Headed Demon."
 	States
@@ -1932,6 +1933,7 @@ Actor CatacombArmageddon_TwoHeadedDemon : CatacombTrilogy_EnemyBase
 			CT16 A 0
 			CT16 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			CT16 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			CT16 A 0 A_GiveInventory("IsFatButBiped", 1)
 			CT16 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:		
 			CT16 AB 10 A_Look
@@ -3874,11 +3876,12 @@ actor CatacombArmageddon_Pox_ShrinkEffect : CatacombArmageddon_Pox
 Actor CatacombArmageddon_Treant : CatacombTrilogy_EnemyBase //replaces Fatso
 {
 	Health 240
-	Radius 30
+	Radius 32
 	Height 56
 	Speed 5
 	Tag "Treant"
 	+NOBLOOD
+	+DONTRIP
 	DamageType "Fire"
 	Obituary "Our savior %o has fallen to a Treant."
 	States
@@ -6125,6 +6128,7 @@ Actor CatacombArmageddon_Nemesis : CatacombTrilogy_Enemybase //replaces Cyberdem
 	+BOSS
 	+BOSSDEATH
 	+NOBLOOD
+	+DONTRIP
 	DeathSound "Catacomb/Boss/Die"
 	Obituary "Our savior %o has fallen to Nemesis."
 	Tag "Nemesis"	
@@ -6351,4 +6355,4 @@ Actor CatacombArmageddon_Nemesis : CatacombTrilogy_Enemybase //replaces Cyberdem
 	}
 }	
 
-Actor CatacombArmageddon_NemesisSkull : Catacomb_NemesisSkull { Damage (40) }
+Actor CatacombArmageddon_NemesisSkull : Catacomb_NemesisSkull { Damage (100) }
