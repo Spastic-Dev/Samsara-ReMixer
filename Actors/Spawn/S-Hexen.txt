@@ -94,6 +94,7 @@ ACTOR MageBossReplacer : ArchvileSpawner replaces MageBoss
 	}
 }
 
+Actor HeresiarchScriptTokens : Counter {}
 ACTOR HeresiarchReplacer : CyberDemonSpawner replaces Heresiarch 
 {
 	states
@@ -104,6 +105,23 @@ ACTOR HeresiarchReplacer : CyberDemonSpawner replaces Heresiarch
 		SetHexen1:
 			TNT1 A 1 A_SpawnItemEx("Heresiarch3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
 			Goto BossWait
+		BossWait:
+			TNT1 A 0 A_GiveInventory("HeresiarchScriptTokens",special)
+			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
+			TNT1 A 2
+			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
+			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
+		BossWaitLoop:
+			TNT1 A 1
+			Loop
+		BossRemove:
+			TNT1 A 1 Thing_Remove(0)
+			Stop
+		Death:
+			TNT1 A 6 ACS_ExecuteWithResult(CallACS("HeresiarchScriptTokens"))
+			stop
 	} 
 }
 
