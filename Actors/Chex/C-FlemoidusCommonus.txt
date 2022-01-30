@@ -22,14 +22,10 @@ actor FlemoidusCommonus3 : FlemoidusCommonus2
 	  See:
 		POSC AABBCCDD 4 A_Chase
 		Loop
-	  Missile:
-		stop
 	  Melee:
-        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		POSC E 10 A_FaceTarget
-		POSC E 0 A_PlaySound ("cqgrunt/attack")
-		POSC F 8 A_CustomMeleeAttack(random[posattack](1,5)*3, "", "", "Flem")
-		POSC E 8
+		POSC F 10 A_CustomMeleeAttack(random[posattack](1,5)*3, "", "", "Flem")
 		Goto See
 	  Raise:
 		POSC KJIH 5
