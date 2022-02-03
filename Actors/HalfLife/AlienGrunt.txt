@@ -841,5 +841,27 @@ ACTOR HornetGunDrop : SamsaraSlotOneDrop {
     }
 }
 
-Actor HLHornetGrunt : HLHornet { Damage (8) }
-Actor HLHornetSeekerGrunt : HLHornetSeeker { Damage (8) }
+Actor HLHornetGrunt : HLHornet 
+{ 
+	Damage (5) 
+	States
+	{
+		Crash:
+		XDeath:		
+		Death:
+			TNT1 A 5 A_SpawnItemEx("HLHornetDeath",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			stop
+	}
+}
+Actor HLHornetSeekerGrunt : HLHornetSeeker 
+{ 
+	Damage (5) 
+	States
+	{
+		Crash:
+		XDeath:		
+		Death:
+			TNT1 A 5 A_SpawnItemEx("HLHornetSeekerDeath",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			stop
+	}
+}
