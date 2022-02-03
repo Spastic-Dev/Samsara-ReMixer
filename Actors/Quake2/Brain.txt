@@ -7,7 +7,6 @@ Actor Q2Brain : Q2HeavyBase
 	MeleeSound "Infantry/Melee"
 	Health 300
 	Speed 5
-	MeleeDamage 4
 	MeleeRange 80
 	PainChance 60
 	Mass 200
@@ -38,9 +37,9 @@ Actor Q2Brain : Q2HeavyBase
 		BRN1 ABCD 3 A_FaceTarget
 		BRN1 E 0 A_PlaySound("Q2Brain/Attack",CHAN_BODY)
 		BRN1 EF 2 A_FaceTarget
-		BRN1 G 2 A_MeleeAttack
+		BRN1 G 2 A_CustomMeleeAttack(Random(15,20))
 		BRN1 HIJKL 3 A_FaceTarget
-		BRN1 M 3 A_MeleeAttack
+		BRN1 M 3 A_CustomMeleeAttack(Random(15,20))
 		BRN1 NOPQR 3 A_FaceTarget
 		Goto See
 	Melee2:
@@ -48,7 +47,7 @@ Actor Q2Brain : Q2HeavyBase
 		BRN2 D 0 A_PlaySound("Q2Brain/OpenChest",0,0.5)
 		BRN2 DE 4 A_FaceTarget
 		BRN2 F 0 A_PlaySound("Q2Brain/Attack2",CHAN_BODY)
-		TNT1 AA 0 A_MeleeAttack
+		TNT1 AA 0 A_CustomMeleeAttack(Random(10,15))
 		BRN2 FGHIJKLMNOPQ 3 A_FaceTarget
 		Goto See
 	Missile:
@@ -1644,6 +1643,7 @@ ACTOR LaserProjectileBrainRight : LaserProjectile
 	Species "BrainProj"
 	+THRUSPECIES
 	+MTHRUSPECIES
+	Damage (0)
 	States
 	{
 		Spawn:

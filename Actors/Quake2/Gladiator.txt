@@ -1152,7 +1152,7 @@ Actor Q2GladiatorShield : BrainShield { Species "GladiatorProj" }
 Actor Q2PhalanxMissile : Q2Rocket
 {
 	Speed 20
-	Damage (30)
+	Damage (20)
 	-ROCKETTRAIL +BRIGHT +THRUSPECIES
 	DeathSound "Phalanx/Explode"
 	Decal Scorch
@@ -1165,7 +1165,7 @@ Actor Q2PhalanxMissile : Q2Rocket
 		Q2PX ABC 1 Light(ROCKET) A_PlaySound("Q2Weapons/RocketFly",CHAN_VOICE,0.66,1)
 		Loop
 	Death:
-		TNT1 A 0 A_Explode
+		TNT1 A 0 A_Explode(75, 64, !XF_HURTSOURCE)
 		TNT1 A 5 A_SpawnItem(Q2Explosion)
 		Stop
 	}
