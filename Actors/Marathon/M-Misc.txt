@@ -1531,6 +1531,25 @@ ACTOR AttackReps : Counter {}
 ACTOR MarathonDukeGib : Inventory { Inventory.MaxAmount 1 }
 ACTOR TeleportIn : Inventory { Inventory.MaxAmount 1 }
 
+Actor MarathonFigherDrop {
+	Height 5
+	Radius 5
+	+NOCLIP
+	+FLOORCLIP
+	States {
+		Spawn:
+			TNT1 A 0 
+			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,4,0)
+			TNT1 A 15
+			TNT1 A 0 A_JumpIfInventory("WeaponDropToken", 1, "Spawn2")
+			TNT1 A 1 Bright 
+			Stop
+		Spawn2:
+			TNT1 A 1 Bright A_DropItem("MarathonSGDrop", 1, 256)
+			Stop
+	}
+}
+
 Actor MarathonSGDrop : SamsaraSlotTwoDrop
 {
 	Gravity 0.25
