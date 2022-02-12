@@ -614,8 +614,13 @@ ACTOR JerecTrick : jerec
 			JER5 Y 4
 			Goto Spawn2+2
 		LastStand:
-			JER5 Y 4
-			JER5 X 4 A_SpawnItemEx("JerecLastStand",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERPOINTERS) 
+			JER5 YX 4
+			JER5 X 4
+			TNT1 A 0 A_Die("LastStand")
+			Goto Death.LastStand
+		Death.LastStand:
+			TNT1 A 1 A_NoBlocking
+			TNT1 A 0 A_SpawnItemEx("JerecLastStand",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERPOINTERS) 	
 			stop
 		Death:
 		XDeath:	
