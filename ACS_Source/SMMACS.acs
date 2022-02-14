@@ -10,6 +10,8 @@ int SMMCVARINFO =
 int SMMCHANGES =
 "Stuff";
 
+str SAMSARA_CHANGELIST = "1.0";
+
 str gameTypesStr[MAX_GAME_TYPES] =
 		{	"mm_doom", "mm_chex", "mm_heretic", "mm_wolf3d", "mm_hexen1", "mm_duke3d", "mm_marathon", "mm_quake1", 
 			"mm_rott", "mm_bstone", "mm_blood", "mm_strife", "mm_erad", "mm_c7", "mm_rmr", "mm_darkf", "mm_ipog", 
@@ -43,7 +45,6 @@ int pickClear = 0;
 int maxAltSets = 4;
 
 #define MAX_MAPS				500
-#define SAMSARA_CHANGELIST		23
 
 global int 2:alreadyshowedbs;
 //global int 4:lastchosen;
@@ -104,7 +105,7 @@ Script "ReMixerInit" OPEN //667
 	
 	if (alreadyshowedbs == 0)
 	{
-		HudMessage(s:"ReMixer RC",d:SAMSARA_CHANGELIST; HUDMSG_FADEOUT|HUDMSG_LOG, 93003, CR_GOLD, 1.5, 0.28, 2.0, 0.5);
+		HudMessage(s:"ReMixer ",s:SAMSARA_CHANGELIST; HUDMSG_FADEOUT|HUDMSG_LOG, 93003, CR_GOLD, 1.5, 0.28, 2.0, 0.5);
 		if (GameType() == GAME_TITLE_MAP) { }
 		if (Singleplayer() == 1)
 		{
@@ -234,7 +235,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override) //668
 							SetActorState(0,"SetDoomRandom",true);
 							break;
 						case 5:
-							SetActorState(0,doomModes[(GetCvar("mm_doomrandomizer") * random(0,1)) + random(0,1)],true);
+							SetActorState(0,doomModes[random(0,2)],true);
 							break;
 					}
 					break;

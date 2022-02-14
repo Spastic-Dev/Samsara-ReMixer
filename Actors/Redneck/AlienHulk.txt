@@ -1459,9 +1459,9 @@ Actor AlienHulkRevive
     height 24
     speed 0
     mass 700
-	+Solid
-	+Shootable
+	Monster
 	+NOBLOODDECALS
+	-COUNTKILL
 	BloodType "LeonardBlood_RR"
 	Bloodcolor "ba 2c 10"
 	PainChance "ShrinkerDMG", 0
@@ -1827,9 +1827,3 @@ Actor AlienHulkRevive_Blue : AlienHulkRevive
 }  
 
 Actor AlienHulk_2Revived_Blue : AlienHulk_2Revived { Tag "Alien Hulk" +LOOKALLAROUND Health 600 }
-
-Actor AlienHulkSpawner : RandomSpawner
-{
-	DropItem "AlienHulk", 255, 24
-	DropItem "AlienHulk_Blue", 255, 1
-}

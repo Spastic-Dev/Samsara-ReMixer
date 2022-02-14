@@ -4859,14 +4859,40 @@ actor SpecialVixen_ShrinkEffect : SpecialVixen
 	}
 }
 
-Actor AlienVixen : RandomSpawner 
+Actor AlienVixen
 { 
-	DropItem "DarkGreenVixen", 255, 3
-	DropItem "GreenVixen", 255, 3
-	DropItem "BrownVixen", 255, 3
-	DropItem "BlueVixen", 255, 2
-	DropItem "RedVixen", 255, 1
-	DropItem "SpecialVixen", 255, 1
+	Radius 12
+	Height 56
+	+SOLID
+	-SHOOTABLE
+	+ISMONSTER
+	-COUNTKILL
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_UnsetSolid
+			TNT1 A 0 A_Jump(192,"DarkGreen","Green","Brown")
+			TNT1 A 0 A_Jump(128,"Blue")
+			TNT1 A 0 A_Jump(256,"Red","Special")
+		DarkGreen:
+			TNT1 A 1 A_SpawnItemEx("DarkGreenVixen", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Stop
+		Green:
+			TNT1 A 1 A_SpawnItemEx("GreenVixen", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Stop
+		Brown:
+			TNT1 A 1 A_SpawnItemEx("BrownVixen", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Stop
+		Blue:
+			TNT1 A 1 A_SpawnItemEx("BlueVixen", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Stop
+		Red:
+			TNT1 A 1 A_SpawnItemEx("RedVixen", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Stop
+		Special:
+			TNT1 A 1 A_SpawnItemEx("SpecialVixen", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			Stop
+	}
 }
 
 Actor VixenTaunt : Inventory { inventory.MaxAmount 1 inventory.Amount 1 }
