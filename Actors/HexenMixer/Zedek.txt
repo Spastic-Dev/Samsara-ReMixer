@@ -243,6 +243,7 @@ ACTOR FighterBoss3 : FighterBoss2
 	Death.Ice:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_KillMaster
 		PLAF X 0 A_PlaySoundEx("freeze/zedek","soundslot6",0,0)
 		PLAF X 0 A_UnsetShootable
 		PLAF X 0 A_GenericFreezeDeath
@@ -251,8 +252,7 @@ ACTOR FighterBoss3 : FighterBoss2
 		PLAF XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
 		PLAF X 0 A_IceGuyDie
 		PLAF X 1 A_IceGuyDie
-		TNT1 A 30 A_KillMaster
-		TNT1 A -1 
+		TNT1 A 30
 		stop	
 	Death.PhosFireCoop:
 	Death.WolfenFlamethrower:

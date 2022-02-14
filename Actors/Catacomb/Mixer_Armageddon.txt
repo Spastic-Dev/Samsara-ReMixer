@@ -255,8 +255,7 @@ Actor CatacombArmageddon_Zombie : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
+			TNT1 A -1
 			stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -1153,7 +1152,6 @@ Actor CatacombArmageddon_Skeleton : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
 			stop		
 		Death.DukeIce:
@@ -1499,8 +1497,7 @@ Actor CatacombArmageddon_Bat : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
+			TNT1 A -1
 			stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -2169,8 +2166,7 @@ Actor CatacombArmageddon_TwoHeadedDemon : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
+			TNT1 A -1 A_KillMaster
 			stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -2184,11 +2180,11 @@ Actor CatacombArmageddon_TwoHeadedDemon : CatacombTrilogy_EnemyBase
 		Death.Ice:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0
 			stop
 	    Death.RottDisintegrate:
 			TNT1 A 0 A_ChangeFlag("SOLID", 0)
@@ -2829,8 +2825,7 @@ Actor CatacombArmageddon_GiantAnt1 : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
+			TNT1 A -1 A_KillMaster
 			stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -2844,11 +2839,11 @@ Actor CatacombArmageddon_GiantAnt1 : CatacombTrilogy_EnemyBase
 		Death.Ice:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0
 			stop
 	    Death.RottDisintegrate:
 			TNT1 A 0 A_ChangeFlag("SOLID", 0)
@@ -3470,9 +3465,8 @@ Actor CatacombArmageddon_Pox : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
-			stop
+			TNT1 A -1 A_KillMaster
+			Stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
@@ -3485,11 +3479,11 @@ Actor CatacombArmageddon_Pox : CatacombTrilogy_EnemyBase
 		Death.Ice:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0
 			stop
 	    Death.RottDisintegrate:
 			TNT1 A 0 A_ChangeFlag("SOLID", 0)
@@ -4016,7 +4010,6 @@ Actor CatacombArmageddon_Treant : CatacombTrilogy_EnemyBase //replaces Fatso
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1 A_KillMaster
 			stop		
 		Death.DukeIce:
@@ -4032,11 +4025,11 @@ Actor CatacombArmageddon_Treant : CatacombTrilogy_EnemyBase //replaces Fatso
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
 			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A -1 A_KillMaster
 			stop		
 		Death.DukeExplosive:			
 		Death.DukeDamage:
@@ -4391,8 +4384,7 @@ Actor CatacombArmageddon_Succubus : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
+			TNT1 A -1 A_KillMaster
 			stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -4406,11 +4398,11 @@ Actor CatacombArmageddon_Succubus : CatacombTrilogy_EnemyBase
 		Death.Ice:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_NoBlocking
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0
 			stop
 	    Death.RottDisintegrate:
 			TNT1 A 0 A_ChangeFlag("SOLID", 0)
@@ -5058,8 +5050,7 @@ Actor CatacombArmageddon_Viper : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
+			TNT1 A -1
 			stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -5716,8 +5707,7 @@ Actor CatacombArmageddon_Bunny : CatacombTrilogy_EnemyBase
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" -1
+			TNT1 A -1
 			stop
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -6279,8 +6269,7 @@ Actor CatacombArmageddon_Nemesis : CatacombTrilogy_Enemybase //replaces Cyberdem
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" 0 A_KillMaster
+			TNT1 A -1 A_KillMaster
 			stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)

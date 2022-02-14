@@ -570,11 +570,11 @@ ACTOR CentaurLeader3 : CentaurLeader2
 		Death.Ice:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_KillMaster
 			CENT U 0 A_UnsetSolid
 			CENT U 70 A_GenericFreezeDeath
 			CENT U 0 A_IceGuyDie
 			CENT U 1 A_IceGuyDie
-			TNT1 A -1 A_KillMaster
 			stop
 		Death.DukeDamage:
 		Death.DukePistol:

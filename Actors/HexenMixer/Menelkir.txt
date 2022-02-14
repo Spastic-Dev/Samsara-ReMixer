@@ -230,6 +230,7 @@ ACTOR MageBoss3 : MageBoss2
 	Death.Ice:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_NoBlocking
+		TNT1 A 0 A_KillMaster
 		MAGE Y 0 A_UnsetShootable
 		MAGE Y 0 A_PlaySoundEx("freeze/menelkir","soundslot6",0,0)
 		MAGE Y 0 A_GenericFreezeDeath
@@ -238,8 +239,7 @@ ACTOR MageBoss3 : MageBoss2
 		MAGE YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
 		MAGE Y 0 A_IceGuyDie
 		MAGE Y 1 A_IceGuyDie
-		TNT1 A 30 A_KillMaster
-		TNT1 A -1 
+		TNT1 A 30
 		stop	
 	Death.PhosFireCoop:
 	Death.WolfenFlamethrower:

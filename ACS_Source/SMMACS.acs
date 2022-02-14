@@ -765,3 +765,12 @@ Script "Samsara_PinataHandler" (int health, int radius, int height)
 }
 
 Script "HeresiarchScriptTokens" (void) { SetResultValue(CheckInventory("HeresiarchScriptTokens")); }
+
+Script "ReMixerDebugSpawner" Enter
+{
+	while(1)
+	{
+		PrintBold(d:ThingCountName("BaronOfHellSpawner",0));
+		Delay(1);
+	}
+}
