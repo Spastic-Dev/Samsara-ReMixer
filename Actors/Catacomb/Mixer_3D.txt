@@ -1658,10 +1658,33 @@ Actor  Catacomb3D_Troll : Catacomb3D_Enemybase // replaces Demon
 			TNT1 A 0
 			stop
 	    Death.RottDisintegrate:
-			TNT1 A 0 A_ChangeFlag("SOLID", 0)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Scream
-			TNT1 A 5 A_SpawnItem("RGodModeDeath")
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathTiny")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop	
 		Raise:
 			CT05 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
@@ -2278,10 +2301,33 @@ Actor Catacomb3D_Bat : Catacomb3D_Enemybase // replaces LostSoul
 			TNT1 A 0
 			stop
 	    Death.RottDisintegrate:
-			TNT1 A 0 A_ChangeFlag("SOLID", 0)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Scream
-			TNT1 A 5 A_SpawnItem("RGodModeDeath")
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathTiny")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop	
 		Disintegrate:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -2696,10 +2742,34 @@ Actor Catacomb3D_RedDemon : Catacomb3D_Enemybase// replaces BaronOfHell
 			"####" "#" 1 A_IceGuyDie
 			stop
 	    Death.RottDisintegrate:
-			TNT1 A 0 A_ChangeFlag("SOLID", 0)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Scream
-			TNT1 A 5 A_SpawnItem("RGodModeDeath")
+			"####" "#" 0 A_ChangeFlag("SOLID", 0)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" "#" 0 A_Scream
+			"####" "#" 0 A_KillMaster
+			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 0 A_Stop
+			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
+			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
+			"####" "#" 0 A_SpawnItem("RGodModeDeathTiny")
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.4,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.3,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.2,0)
+			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
+			"####" "#" 2 A_SetTranslucent(0.1,0)
 			stop	
 		Raise:
 			CT02 A 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
