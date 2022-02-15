@@ -957,8 +957,9 @@ Actor Hexen2ShadowWizard : Hexen2SkullWizard
 			TNT1 A 5 A_FadeOut
 			Stop
 		Death.BittermanDamage:
-			TNT1 A 0 A_JumpIfHealthLower(-40, "XdeathForBitterman")
+			TNT1 A 0 A_JumpIfHealthLower(-30, "XdeathForBitterman")
 			goto Death
+		XDeath.BittermanDamage:		
 		XdeathForBitterman:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2MediumGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
