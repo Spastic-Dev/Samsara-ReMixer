@@ -109,6 +109,7 @@ Actor Q2IronMaiden : Q2HeavyBase
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
 		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -136,6 +137,7 @@ Actor Q2IronMaiden : Q2HeavyBase
 	Disintegrate:
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 0 A_Scream
@@ -167,7 +169,8 @@ Actor Q2IronMaiden : Q2HeavyBase
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
-		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 		"####" "#################" 3 A_Fadeout(0.05)
 		stop
@@ -191,6 +194,7 @@ Actor Q2IronMaiden : Q2HeavyBase
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
+		TNT1 A 0 A_KillMaster
 		TNT1 A 0 A_Fall
 		TNT1 A 5 A_FadeOut
 		stop
@@ -347,6 +351,7 @@ Actor Q2IronMaiden : Q2HeavyBase
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Fall
+		TNT1 A 0 A_KillMaster
 		TNT1 A 5 A_FadeOut
 		Stop
 	 Pain.Hexen2RavenDamage:
@@ -379,6 +384,7 @@ Actor Q2IronMaiden : Q2HeavyBase
 		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 		TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 A_KillMaster
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_FadeOut
 		stop		
@@ -393,6 +399,7 @@ Actor Q2IronMaiden : Q2HeavyBase
 	Death.WTRangedIce:
 	Death.Ice:
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 A_GenericFreezeDeath
 		"####" "#" 70 A_UnsetSolid
 		"####" "#" 0 A_IceGuyDie
@@ -414,6 +421,7 @@ Actor Q2IronMaiden : Q2HeavyBase
 		"####" "#" 0 A_Scream
 		"####" "#" 3 A_SetTranslucent(0.8,0)
 		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_KillMaster
 		"####" "#" 3 A_SetTranslucent(0.7,0)
 		"####" "#" 3 A_SetTranslucent(0.6,0)
 		"####" "#" 3 A_SetTranslucent(0.5,0)
@@ -457,7 +465,22 @@ Actor Q2IronMaiden : Q2HeavyBase
 		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
 		"####" "#" 0 A_SpawnItemEx("Q2IronMaiden_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
-        TNT1 A 0 Thing_Remove(0)
+		TNT1 A 0 A_ChangeFlag("NODAMAGE", 1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
+		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		Goto ShrunkLoop
+	  ShrunkLoop:
+		TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
+		loop
+	  ShrunkDie:
+		TNT1 A 0
+		TNT1 A 1 A_Die("Shrink")
+		stop
+	  Death.Shrink:
+		TNT1 A 0
+		TNT1 A 1 A_KillMaster
+		stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		BTC0 A 0
