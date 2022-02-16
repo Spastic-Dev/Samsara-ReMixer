@@ -142,6 +142,7 @@ ACTOR Archvile64
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_GiveInventory("EnemyZorched",1)
 		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_KillMaster
 		"####" "#" 0 A_GenericFreezeDeath
 		"####" "#" 70 A_UnsetSolid
 		"####" "#" 0 A_IceGuyDie
@@ -206,6 +207,7 @@ ACTOR Archvile64
 		"####" "#" 2 A_SetTranslucent(0.2,0)
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 2 A_SetTranslucent(0.1,0)
+		TNT1 A -1 A_KillMaster
 		stop
 	Disintegrate:
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -237,6 +239,7 @@ ACTOR Archvile64
 		"####" "#" 2 A_SetTranslucent(0.2,0)
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 2 A_SetTranslucent(0.1,0)
+		TNT1 A -1 A_KillMaster
 		stop
 	Death.Nuke:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
