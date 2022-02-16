@@ -95,7 +95,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			WH_7 Q 4 A_NoBlocking
 			WH_7 R 4
 			WH_7 STUVW 4
-			WH_7 X -1 
+			WH_7 X -1 A_KillMaster
 			Stop
 		Raise:
 			WH_7 X 5
@@ -104,12 +104,14 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 		Death.TotenkopfFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_NoBlocking
 			Stop			
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
-			TNT1 A 0 A_NoBlocking		
+			TNT1 A 0 A_NoBlocking	
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5
 		   Stop	
 		Death.RottExplosive:
@@ -118,12 +120,13 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			TNT1 A 1
 			TNT1 A 0 A_Jump(128, 2)
 			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
-			TNT1 AA 0
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_NoBlocking
 			Stop
 		Death.RottDisintegrate:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_ChangeFlag(SOLID,0)	
+			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_Scream
 			TNT1 A 1 A_SpawnItem("RGodModeDeath")
 			TNT1 A 5 A_FadeOut
@@ -157,11 +160,13 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			"####" "#" 2 A_SetTranslucent(0.2,0)
 			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A 0 A_KillMaster
 			stop
 		Death.Nuke:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_NoBlocking		
 			"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 			"####" "#################" 3 A_Fadeout(0.05)
@@ -184,6 +189,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.Shock:
@@ -198,6 +204,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5
 			stop
 		Death.Vodoo:
@@ -319,6 +326,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
 			TNT1 A 0
@@ -345,8 +353,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0)
-			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1 
+			"####" "#" 0 A_KillMaster
 			Stop
 		Death.SWFist:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
@@ -404,6 +411,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			Stop
 		Death.BittermanDamage:
@@ -413,6 +421,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			Stop
 		Pain.Hexen2RavenDamage:
@@ -431,6 +440,7 @@ Actor WTCiraenSentinelBow : WitchavenEnemyBaseMelee {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			stop			
 		Pain.ShrinkerDMG:
@@ -814,7 +824,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			WH_7 Q 4 A_NoBlocking
 			WH_7 R 4
 			WH_7 STUVW 4
-			WH_7 X -1 
+			WH_7 X -1 A_KillMaster
 			Stop
 		Raise:
 			WH_7 X 5
@@ -823,11 +833,13 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 		Death.TotenkopfFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_NoBlocking
 			Stop			
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
+			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_NoBlocking		
 			TNT1 A 5
 		   Stop	
@@ -837,12 +849,13 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			TNT1 A 1
 			TNT1 A 0 A_Jump(128, 2)
 			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
-			TNT1 AA 0
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_NoBlocking
 			Stop
 		Death.RottDisintegrate:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_ChangeFlag(SOLID,0)		
+			TNT1 A 0 A_ChangeFlag(SOLID,0)	
+			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_Scream
 			TNT1 A 1 A_SpawnItem("RGodModeDeath")
 			TNT1 A 5 A_FadeOut
@@ -876,11 +889,13 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			"####" "#" 2 A_SetTranslucent(0.2,0)
 			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 2 A_SetTranslucent(0.1,0)
+			TNT1 A 0 A_KillMaster
 			stop
 		Death.Nuke:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Scream
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_NoBlocking		
 			"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
 			"####" "#################" 3 A_Fadeout(0.05)
@@ -903,6 +918,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.Shock:
@@ -917,6 +933,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5
 			stop
 		Death.Vodoo:
@@ -1038,6 +1055,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_GenericFreezeDeath
 			"####" "#" 70 A_UnsetSolid
+			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_IceGuyDie
 			"####" "#" 1 A_IceGuyDie
 			TNT1 A 0
@@ -1064,8 +1082,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
 			"####" "#" 3 A_SetTranslucent(0.1,0)
-			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1 
+			TNT1 A 0 A_KillMaster
 			Stop
 		Death.SWFist:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
@@ -1123,6 +1140,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			Stop
 		Death.BittermanDamage:
@@ -1132,6 +1150,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			Stop
 		Pain.Hexen2RavenDamage:
@@ -1150,6 +1169,7 @@ Actor WTCiraenSentinelFists : WitchavenEnemyBaseMelee {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			stop			
 		Pain.ShrinkerDMG:
@@ -2937,6 +2957,7 @@ Actor WTCiraenSentinelBow_2 : WTCiraenSentinelBow {
 		Death.TotenkopfFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("Totenkopf_BurningGuard")
+			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_NoBlocking
 			Stop			
 		Death.RottFire:
@@ -4610,7 +4631,37 @@ actor WTCiraenSentinelSpellAndStar_2_Shrink : WTCiraenSentinelSpellAndStar_2
 
 Actor WTCiraenSentinelCurse_2 : WTCiraenSentinelCurse { Damage (random(7,21)) }
 Actor WTBowArrow_Enemy_2 : WTBowArrow_Enemy { Damage (random(5,10)) }
-Actor WTCiraenSentinelHighMixer : RandomSpawner { DropItem "WTCiraenSentinelSpellAndStar_2" DropItem "WTCiraenSentinelBowAndStar_2" DropItem "WTCiraenSentinelBow_2" DropItem "WTCiraenSentinelSpell_2" } 	
 Actor WTCiraenSentinelLowMixer : RandomSpawner { DropItem "WTCiraenSentinelSpellAndStar" DropItem "WTCiraenSentinelSpell" DropItem "WTCiraenSentinelBowAndStar" DropItem "WTCiraenSentinelBow" } 
+Actor WTCiraenSentinelHighMixer
+{ 
+	Radius 20
+	Height 56
+	+SOLID
+	-SHOOTABLE
+	+ISMONSTER
+	+COUNTKILL
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_Jump(256,"SpellAndStar_2","BowAndStar_2","Bow_2","Spell_2")
+		SpellAndStar_2:
+			TNT1 A 1 A_SpawnItemEx("WTCiraenSentinelSpellAndStar_2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 0 Thing_Remove(0)
+			Stop
+		BowAndStar_2:
+			TNT1 A 1 A_SpawnItemEx("WTCiraenSentinelBowAndStar_2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 0 Thing_Remove(0)
+			Stop
+		Bow_2:
+			TNT1 A 1 A_SpawnItemEx("WTCiraenSentinelBow_2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 0 Thing_Remove(0)
+			Stop
+		Spell_2:
+			TNT1 A 1 A_SpawnItemEx("WTCiraenSentinelSpell_2", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
+			TNT1 A 0 Thing_Remove(0)
+			Stop
+	}
+}
+
 //Actor MultiWTCiraenSentinelHighMixer : RandomSpawner { DropItem "MultiWTCiraenSentinelSpellAndStar_2" DropItem "MultiWTCiraenSentinelBowAndStar_2" DropItem "MultiWTCiraenSentinelBow_2" DropItem "MultiWTCiraenSentinelSpell_2" }
 //Actor MultiWTCiraenSentinelLowMixer : RandomSpawner { DropItem "MultiWTCiraenSentinelSpellAndStar" DropItem "MultiWTCiraenSentinelSpell" DropItem "MultiWTCiraenSentinelBowAndStar" DropItem "MultiWTCiraenSentinelBow" }
