@@ -765,21 +765,3 @@ Script "Samsara_PinataHandler" (int health, int radius, int height)
 }
 
 Script "HeresiarchScriptTokens" (void) { SetResultValue(CheckInventory("HeresiarchScriptTokens")); }
-
-Script "ReMixerDebugSpawner" Enter
-{
-	while(1)
-	{
-		switch(GetCvar("mm_spawnerdebug"))
-		{
-			default: break;
-			case 1: PrintBold(s:"Barons of Hell Left: ",d:ThingCountName("BaronOfHellSpawner",0)); break;
-			case 2: PrintBold(s:"Fatso Left: ",d:ThingCountName("FatsoSpawner",0)); break;
-			case 3: PrintBold(s:"Arachnotron Left: ",d:ThingCountName("ArachnotronSpawner",0)); break;
-			case 4: PrintBold(s:"Archvile Left: ",d:ThingCountName("ArchvileSpawner",0)); break;
-			case 5: PrintBold(s:"Cyberdemon Left: ",d:ThingCountName("CyberdemonSpawner",0)); break;
-			case 6: PrintBold(s:"Spidermastermind Left: ",d:ThingCountName("SpidermastermindSpawner",0)); break;
-		}
-		Delay(1);
-	}
-}

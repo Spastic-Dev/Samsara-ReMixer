@@ -1,5 +1,306 @@
-//Samsara ExMixer 0.81 (includes 0.8 patches):
 
+----------------------------------------------------------------------------------------
+-----------------------------Reincarnation Mixer---------------------------------
+----------------------------------------------------------------------------------------
+
+
+General:
+
+- Added Goldeneye, Hexen 2, and Catacomb series enemies to the mixer
+- Improved Invasion support. Spawners now properly dissappear in invasion maps
+- Added a mixer option for enemies in Shotgun guy or Chaingun guy spawn slots to drop slot 2s or 4s respectively. This applies to nearly all mixer slots retroactively, but sometimes an enemy occupies multiple slots and so the drop chance is lowered in those cases
+- Added a class-based spawning system for alt-classes
+- Greatly expanded Boss Monologues. Now nearly every final boss of every mixer set rants at the player on map start.
+- Improved pinata party support. Loot now scales in quality for enemy tiers
+- Enemy multipliers no longer require their own actors and will just spawn multiple enemies
+- Invasion mode can now use the multipliers
+- Modified multiplier option to go only from 1-20
+- Fixed enemies not dropping weapons when killed with Blood fire weapons
+- Boss spawners will check if mode is invasion, if so, kills the spawner off
+- IPOG and Witchaven Flame Projectiles now trigger Burn deaths
+- Changed the way gibbing works for some sets. If an enemy doesn't have an XDeath or appropriate Death animation, it simply removes their body when they are gibbed.
+- Removed a useless graphic that was causing a harmless startup warning for a long time, the PM40 warning
+- E1M8 should no longer be blocked, regardless of the spawned monsters
+- Removed old outdated randomizer cvar
+- All boss and mini-boss monsters trigger their map specials no matter how they are killed
+
+Players:
+
+- Fixed Ranger crash with quad damage
+- Added BLood fire deaths to 3d humanoid enemies
+- Some enemies that couldn't be gibbed by Build engine classes now can
+- Most, if not all monster corpses shouldn't be able to be gibbed from Zorch attacks.
+- Removed Countkill flag changes while shrinking from all mini-boss monster replacements and moved them into the shrunk monster itself (to hopefully prevent invasion waves from ending prematurely when Duke shrinks a bitch)
+- Added +NOBLOODDECALS to Build Engine monster corpses
+- Added player dummies for LAB Duke Nukem, the Hexen classes, the IPOG altclasses, and the ROTT altclasses
+- Baron enemies should now die properly when frozen
+- Fixed monsters dropping multiple items when frozen
+
+Doom:
+
+- Added Vanilla Doom Randomizer (random R667 doom enemies)
+- Nerfed Doom64 revenant tracers
+- Copied over death states that were missing in mixer from reincarnation so that doom enemies no longer break maps
+
+Chex:
+
+- Gave the Flemoids their proper blood color
+- fixed the Commonus and Bipedicus doing ranged damage.
+- Snotfolus' footstep sounds can no longer be heard across the map
+
+Wolfenstein:
+
+- Added Totenkopf SDL enemies
+- Added new replacements for Otto Giftmacher, Hans Grosse, and Fake Hitlers in Lost Missions Mode. Kapitan Gerhardt von Schreiber, Generalleutnant Stahlkopf, and Fire Drones respectively
+- Wolfenstein bosses no longer drop useless keys
+- Replaced Wolfenstein's Catacomb Mage SS Replacement with a new secret enemy
+- All Wolf 3D Dog enemies now have 80 health and a pain state
+- All Wolf 3D Spectres have 60 health
+- Fake Hitler fire does way less damage (about a quarter of BJ's slot 6 per shot). Makes both it and the fire drone a lot more like a flying Arachnotron rather than this death stream firing monster
+- Dogs now make barking sounds while idle, because they did that in the source
+
+Duke:
+
+- Added DCLAB enemies
+- Removed Maxstepheight 256 and Dropoff flag from Protozoids to prevent them from getting stuck in Invasion
+- Protozoids no longer count as kills to preventing holding up invasion waves
+- Protozoids now spawn in groups from eggs
+- Improved Protozoid attacks
+- Pig Cops and Enforcers now drop their random item drops when killed
+- Fixed a bug where Assault and Beach captains were still unshootable if the player died while they were teleporting
+- Protector Drone shrinker projectile is 2.5x slower so players can dodge it easier
+
+Heretic:
+
+- Made Heretic's Hell Knight replacement a Weredragon
+- Fixed Heretic ammo drops, added Quartz Flask, Tome of Power, and Mystic Urn enemy drops
+- Added a secret enemy for Heretic mixer set based on one of Raven's earlier games
+
+Hexen: 
+
+- Made Hexen 1's revenant replacement a Wendigo, moved Slaughtar to Spectre spawn
+- Moved some Hexen 1 spawns around so you get less overwhelmed by Dark Bishops
+- Wendigo is the only hexen enemy to spawn in Mancubus slot
+
+Marathon:
+
+- Marathon enemies no longer use a weird spawning system for skill-level based stat changes
+- Added Headless from Pathways into Darkness as an SS replacement
+
+RoTT:
+
+- Lightning guards will no longer wait 3 seconds to decide when to get up
+- Moved Rott Strike Team to Demon slot
+- Rott Low gaurds also occupy imp slot
+- RoTT enemy HP and damage values now reflect source. Enemy bullet attacks now do 10 damage per shot and explosives deal 50 (except NME. He's hard enough as is)
+- Death.RoTTExplosive automatically falls through into XDeath (so RoTT missiles always gib RoTT enemies)
+- RoTT explosive discs no longer count for kills
+- Fixed Darian becoming invisible if he goes wackamole and the player dies
+- The RoTT net should be taken away when respawning, so that players aren't respawning with no weapon and being unable to switch
+- Lightning guards drop stolen weapons when expanded in coop
+
+Blake Stone:
+
+- Added a new enemy for Blake Stone's mixer, the Perimeter Gunner Drone. It's basically just a flying version of the turret from AoG.
+- enemies that drop weapons now always drop their weapons. Players that use shell weapons should have a much easier time, including Blake himself
+- Fixed STAR Troopers using Sentinel sprites when getting XDeath'd
+- Blake Stone enemy attacks no longer leave decals
+- STAR Troopers no longer drop their weapons when they fake their deaths
+
+Blood:
+
+- Added Q1 and Q2 gibs to Bloated Butcher
+- Blood Cultists now have an increased chance of dropping their items
+- Blood enemies now use HP values from the game on Still kicking difficulty (with some exceptions. Can't have Tchernobog have 1200 hp) and use damage values faithful to the source material
+- Choking hands no longer count as kills
+- Butchers do not spawn in baron slot
+- Beasts do not spawn in Hell Knight slot
+
+Strife:
+
+- Acolyte damage now matches original 
+- Added Strife Cultist. Thanks to Dynamo and Nash for creating the cultist
+
+Corridor 7:
+
+- Fixed Semaj Q2 gib deaths spawning red chunks
+- Gave Solrac a more fitting shade of violet for a blood color
+- Gave Otrebor purple blood
+- Gave Ttocs green blood
+- Added weapon drops to C7 Mechanical Warrior and Tymok
+- Rebalanced some C7 enemy's health
+- Moved C7 enemies spawns around in light of the buffs/nerfs
+- Added Operation Body Count Balaclava terrorist as an SS replacement for the C7 enemy set
+
+RMR:
+
+- RMR enemy green lasers do a solid 10 damage, Orange 15, Cyan 9, Purple 45, Red 20, White 30, Grenades 20+36 radius, Rails 7
+- Black Suit Strikers now have 50 health instead of 165
+- Estron Babies have 175 health instead of 130
+- Estron Warriors now have 145 health instead of 320
+- Estron Elders have 1000 health instead of 600
+- Grenade Drones have 30 health instead of 50
+- Heavy Black Suits have 100 health instead of 230
+- Hover Gunners have 150 health instead of 135
+- Jump Commandos have 2500 health instead of 3000
+- Laser Drones have 14 health instead of 35
+- Shog'Grans have 150 health instead of 200
+- Spinners have 175 health instead of 30
+- Subestrons have 2000 health instead of 5000
+- Terrans have 100 health instead of 140
+- UN Blue Suits have 45 health instead of 25
+- UN Jump Troopers have 75 health instead of 80
+- UN Shock Troopers have 75 health instead of 45
+- Spinners have been moved to Cacodemon slot
+- Fixed Shock Trooper Zorch animation
+
+Star Wars Dark Forces:
+
+- Star Wars Dark Forces enemies now always drop their weapons
+- Fixed infinite shell loops on Stormtrooper Rifle drops (the additional 16 shells is no longer needed anyway)
+- Fixed Jerec continuously triggering boss taunts
+
+In Pursuit of Greed:
+
+- IPOG enemy HP now matches source (half for common enemies, equal for Berserkers and all the higher tiers)
+- Fixed Elite Corps triggering boss taunts
+- Implemented IPOG blood to enemies
+- Fixed the hitscan enemies from IPOG leaving decals
+- Made the hitscanners less aggressive
+- Made the IPOG prisoner not deal stupid amounts of damage
+- Added a cut enemy from IPOG named the Imperial Drone as a Pain Elemental replacement
+
+Disruptor:
+
+- Added Weapon drops to Disruptor Enemies
+- Disruptor enemy HP values have been changed. While I don't have the original HP values from Disruptor, they were clearly way too tanky
+- Added Disruptor Cyberdemon replacement (it's a giant disruptor. nothing too exciting)
+
+Witchaven:
+
+- Witchaven Lava Fiends now bleed brown
+- Witchaven enemies have HP and damage slightly more true to source. (some enemies had their health multiplied, and i had to infer how much damage some enemies that don't use equipable weapons did)
+- Fixed Pike Axe drops giving slot 3s, raised their drop rate, and added more monster drops
+- Goblins, Argothonians, Sentinels, Ogres, Knights, and all 4 colors of Midian warriors were combined into their own random dropper
+- Moved WT monster spawns around
+- In general, most Witchaven monsters have less health but do more damage
+
+Half-Life:
+
+- Made alien grunts do the appropriate damage with their hornet projectiles
+- Changed all HL enemy hp and damage values to be closer to original
+- HECU Marines and Black Ops now always drop their shotguns and MP5s
+- SAW Ammo gives cells for all classes instead of just adrian
+- Grondoval Nuke no longer crashes when used against some half life enemies
+- Abrams and bradley heads no longer appear after being disintegrated or nuked
+- Half Life enemies should no longer crash from various death types
+- Shock Roach and Baby Headcrabs no longer count for kills
+- HECU Robots now take double damage from explosions
+- HL Tanks now transfer map specials when killed normally
+
+Shadow Warrior:
+
+- Fixed SWRippers not dropping hearts in alternate deaths
+- Moved Baby Ripper to Imp spawn
+- SW Enemies now drop ammo
+- SW enemies use HP and damage values faithful to source
+- SW Wizards now act like Guardians
+- SW Coolies now work a little differently. Instead of their corpse being immediately destroyed with an explosion on death, their corpse stays. Then, there is about a 50/50 chance they will spawn a ghost. if a ghost doesn't spawn, their head disappears.
+-Moved Gaurdians and Wizards to Hell Knight spawners
+- All three ninja and henchmen variants moved to Revenant spawn
+- Red Ninjas no longer spawn in chaingunner slots
+- Moved Serpent God to baron slot
+- SW Ghosts no longer count for kills
+- Nerfed SW Baby Ripper melee attack speed
+
+Exhumed:
+
+- Made Ammit and Set's obituaries use the player's gender
+- Powerslave Ammit is no longer invulnerable. Instead, it takes half radius damage
+- Exhumed enemy HP now match source (found the math)
+- Kilmaatikahn is now the SpiderMaster replacement, with Set or Selkis as Cybers
+- Exhumed monsters use Custom Melee Attacks instead of normal dice roll melee attacks to prevent them from doing so much damage
+- Blue Scorpions and Red Mites no longer count as kills
+- Bastets are now forced out of hiding after a specific duration
+
+CyberMage:
+
+- Provided sprites for Cybermage ammo pickups and added pickups to several enemies
+- Changed GangX and Mongo attacks
+- Made Legion of Doom a bleeding actor and gave him green blood
+- Cybermage troopers drop clips 100% of the time they are killed now
+- Cybermage metabots do not spawn in baron slot
+
+Redneck Rampage:
+
+- Frank doyles now piss on players if they killed them
+- Alien vixen teat gun has been modified: it now does 20 damage per shot and uses accuracy values faithful to the source, as well as a faithful firing pattern.
+- Billy Ray Jeeter and Frank Doyle scatter gun now does 10 damage per pellet and has accuracy faithful to the source
+- Doyle bikes, sheriff hobbes, and coots now do 20 damage per shot and has accuracy faithful to the source
+- Added missing Alien vixen variants
+- Added missing coot variants, general skin overhauls
+- Added missing Billy Ray Jeeter variants
+- Added missing Frank doyle variants
+- Added missing Guard Dog variant
+- Added ghost sheriff hobbes
+- Billy Ray Jeeter now sometimes drops his shotgun
+- Redneck ghosts now unset solid in their death states, so that they no longer obstruct spawners
+- Alien vixen spawner is converted to an actual spawner actor since randomspawners do not support pointers
+
+Quake 1:
+
+- Improved Shambler beam
+- Shamblers no longer melee instantly
+- Buffed Shambler HP slightly from 600 to 650
+- Shambler lightning and melee deal more damage
+- Resized most Quake enemies to be 25% larger
+- Added Quake Blood to enemies
+- Shamblers were moved to AV slot
+- Death Knights were moved to Fatso Slot
+- Vores no longer spawn in Rev slots
+- Quake 1 Baron Slots are exclusively populated with Guardians 2-4
+- Quake Mummies no longer spawn in AV slots
+- Quake Ogres can now spawn in HK slots
+- Quake 1 zombies always die on the second kill
+- Fixed Zombies not being gibbable with Bitterman's weapons
+- Quake Dragon lightning no longer adds to monster count
+
+Quake 2:
+
+- Modified Gladiator Beta Class shield to have correct offsets
+- Ion Ripper guards now use the correct boomerang models
+- Gekks no longer add double kill counts from freeman gibs
+- Q2Tanks have less wonky HL gib behavior
+- Added burning sound to most Strogg
+- Quake 2 enemies now reference the correct ammo pickups (they all drop their appropriate ammo now)
+- Fixed a whole mess of issues with strogg death states, but these may need some extra testing. It also fixes most fire types not making Strogg play their unique burn sound
+- Q2Brain shield spawner no longer uses +NOINTERACTION. Maybe shields will properly remove themselves always
+- Q2 Enemy Rocket, Grenade, and Phalanx projectiles no longer insta kill
+- Brains and Parasites don't deal quite as much damage
+- Altered some bullet attacks
+- Nerfed Quake 2 Mutant melee range
+- Fixed Brain shields not lowering when killed in certain ways
+- Fixed Medic corpses being invisible
+
+Heretic Support:
+
+- Made Heretic's Weredragon spawner inherit from HellKnight spawner to get slightly less tanky enemies
+- Fixed Heretic D'Sparil spawner not raising the steps at the end of the game
+- Heretic Zombieman replacement is now the standard Golem, imp replacements are fire gargoyles
+- Changed Heretic spawners in general to be more reflective of what they should be in heretic. also altered them to spawn monsters of the correct size for Corvus
+
+Hexen Support:
+
+- Made Hexen's Wendigo spawner inherit from Revenant spawner, for the same reasons as Heretic
+- Heresiarch and Korax spawners now properly trigger map scripts
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Samsara ExMixer 0.81 (includes 0.8 patches):
 
 Global
 -Updated menudef that includes miscellaneous character changes
