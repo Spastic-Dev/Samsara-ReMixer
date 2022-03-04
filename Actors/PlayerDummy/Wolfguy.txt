@@ -33,7 +33,6 @@ actor WolfenPlayer2 : WolfenPlayer replaces WolfenPlayer {
 			TNT1 A 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
 			TNT1 A 0 A_JumpIfInventory("WolfenClassMode",2,"MissileTotenkopf")
 			BJBL E 6
-			BJBL F 6 Bright	  
 			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
 			Goto Spawn
 		MissileTotenkopf:	
@@ -43,10 +42,11 @@ actor WolfenPlayer2 : WolfenPlayer replaces WolfenPlayer {
 			Goto Spawn
 		Melee:
 			TNT1 A 0 A_JumpIfInventory("WolfenClassMode",2,"MeleeTotenkopf")
-			BJBL F 3 BRIGHT		
+			BJBL E 6
+			BJBL F 6 Bright	 
 			Goto Missile
 		MeleeTotenkopf:
-			TK61 H 3 BRIGHT		
+			TK61 H 3		
 			Goto See
 		Death:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
