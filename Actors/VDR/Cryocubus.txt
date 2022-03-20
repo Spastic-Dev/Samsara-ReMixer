@@ -92,7 +92,13 @@ ACTOR MMRandomizer_Cryocubus : Fatso3
 			VD62 J 5 A_FaceTarget
 			VD62 J 30 A_Pain
 			VD62 J 70
-			Goto See						
+			Goto See	
+		Pain.LifeLeech:
+			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
+			Goto Pain
+		Pain.Vodoo:
+			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+			Goto Pain
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)

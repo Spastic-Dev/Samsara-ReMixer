@@ -29,7 +29,13 @@ ACTOR MMRandomizer_Hectebus : Fatso3
 			VD61 J 5 A_FaceTarget
 			VD61 J 30 A_Pain
 			VD61 J 70
-			Goto See			
+			Goto See	
+		Pain.LifeLeech:
+			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
+			Goto Pain
+		Pain.Vodoo:
+			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+			Goto Pain			
 		Missile:
 			VD61 G 0 A_PlaySound("fatso/raiseguns")
 			VD61 G 20 A_FaceTarget

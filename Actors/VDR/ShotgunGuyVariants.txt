@@ -33,6 +33,12 @@ ACTOR MMRandomizer_ShotgunGuyVariant1 : ShotgunGuy3
 			VD03 G 3
 			VD03 G 3 A_Pain
 			Goto See
+		Pain.LifeLeech:
+			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
+			Goto Pain		
+		Pain.Vodoo:
+			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+			Goto Pain  
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
@@ -571,7 +577,13 @@ ACTOR MMRandomizer_ShotgunGuyVariant2 : ShotgunGuy3
 			TNT1 A 0 A_Gravity
 			VD04 G 30 A_Pain
 			VD04 G 70
-			Goto See			
+			Goto See		
+		Pain.LifeLeech:
+			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
+			Goto Pain		
+		Pain.Vodoo:
+			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+			Goto Pain  			
 		Pain.WTMelee:
 		Pain.WTMeleeIce:
 		Pain.WTRanged:
@@ -863,6 +875,12 @@ ACTOR MMRandomizer_ShotgunGuyVariant3 : ShotgunGuy3
 			VD05 G 8 A_Pain
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			Goto See			
+		Pain.LifeLeech:
+			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
+			Goto Pain		
+		Pain.Vodoo:
+			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
+			Goto Pain  
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
