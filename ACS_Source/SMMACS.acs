@@ -3,6 +3,12 @@
 #include "commonFuncs.acs"
 
 #define MAX_GAME_TYPES 31
+#define MAX_ALTS 5
+#define MONSTER_SLOT 18
+#define MAXPERSLOT 20
+#define MAX_ITEMS 15
+
+#include "Spawns.acs"
 
 int SMMCVARINFO = 
 "Stuff";
@@ -124,7 +130,7 @@ Script "ReMixerInit" OPEN //667
 	SpawnForced("SamsaraMixerCompendiumToken",0,0,0,0,0);
 }
 
-Script "ReMixerSpawnScript" (int spawncode, int override) //668
+Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 {
 	int map;
 	int setselect;
