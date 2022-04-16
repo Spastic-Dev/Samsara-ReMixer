@@ -244,7 +244,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					switch(GetCvar("mm_wolfmode"))
 					{
 						default:
-							altSetSelect = GetCvar("mm_wolfmode");
+							altSetSelect = GetCvar("mm_wolfmode")-1;
 							break;
 						case 0: //doing this one the crude way
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
@@ -253,14 +253,20 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
 									break;
 							}
-							break;										
+							break;
+						case 4:
+							altSetSelect = random(0,1);
+							break;
+						case 5:
+							altSetSelect = random(0,2);
+							break;
 					}
 					break;
 				case 5:
 					switch(GetCvar("mm_dukemode"))
 					{
 						default:
-							altSetSelect = GetCvar("mm_dukemode");
+							altSetSelect = GetCvar("mm_dukemode")-1;
 							break;
 						case 0:
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
@@ -269,7 +275,10 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
 									break;
 							}
-							break;					
+							break;
+						case 3:
+							altSetSelect = random(0,1);
+							break;
 					}
 					break;
 				case 19:
