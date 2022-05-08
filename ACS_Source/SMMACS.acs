@@ -169,7 +169,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			{
 				GiveInventory("WeaponDropToken", 1);
 			}	
-			
+						
 			if(GetCVar("mm_multiply") > 1 && !CheckInventory("MultiplyOverflowToken"))
 			{
 				int activator = ActivatorTid();
@@ -377,7 +377,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	int speed = monsterSelectStat[monGame][monAlt][monSlot][pick][skillMod];
 	int health = monsterSelectStat[monGame][monAlt][monSlot][pick][skillMod+1];
-	str token = monsterSelectStr[monGame][monAlt][monSlot][pick][1+skillMod];
+	str token = monsterSelectStr[monGame][monAlt][monSlot][pick][1+(skillMod/3)];
 	
 	SpawnForced(monsterSelectStr[monGame][monAlt][monSlot][pick][0],GetActorX(0),GetActorY(0),GetActorZ(0),newMonTid);
 	SetActorAngle(newMonTid, GetActorAngle(0));
@@ -405,7 +405,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	if(speed != 0) { SetActorProperty(newMonTid,APROP_Speed,FixedMul(GetActorProperty(newMonTid,APROP_Speed),speed)); }
 	if(health != 0) { SetActorProperty(newMonTid,APROP_Health,FixedMul(GetActorProperty(newMonTid,APROP_Health),health)); }
 	if(strlen(token) != 0) { GiveActorInventory(newMonTid, token,1); }
-	
+		
 	Thing_ChangeTid(newMonTid,thisMonOld);
 }
 

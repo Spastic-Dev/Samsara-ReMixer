@@ -22,6 +22,7 @@ ACTOR LightningGuard : RoTTHumanoid {
 	   LIGW A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 	   LIGW A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 	   LIGW A 0 A_GiveInventory("AlreadySpawned",1)
+	   LIGW A 0 A_JumpIfInventory("LightningGuardCrezzyMan",1,"GiveRandomMissileWeapon")
 	Spawn2:
 	   LIGW A 10 A_Look
        Loop
@@ -87,6 +88,9 @@ ACTOR LightningGuard : RoTTHumanoid {
 	   LGUS B 6 A_MeleeAttack
 	   TNT1 A 0 A_GiveInventory("StoleWeapon", CallACS("LightningGuardSteal",2))
 	   Goto See
+	GiveRandomMissileWeapon:
+		TNT1 A 0 A_GiveInventory("StoleWeapon", random(1,9))
+		Goto Spawn2
 	Missile:
 	   TNT1 A 0 A_ChangeFlag("NOPAIN",0)
        LIGW F 8 A_FaceTarget
@@ -1195,6 +1199,7 @@ Actor HeavyGuard : LightningGuard {
 		   LIGW A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		   LIGW A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 		   LIGW A 0 A_GiveInventory("AlreadySpawned",1)
+		   LIGW A 0 A_JumpIfInventory("LightningGuardCrezzyMan",1,"GiveRandomMissileWeapon")
 		Spawn2:
 		   TNT1 A 0
 		   TNT1 A 0 A_GiveInventory("MissileStock", random(2,5))
@@ -1276,6 +1281,7 @@ actor MissileLow {
 }
 
 Actor StoleWeapon : Inventory {	inventory.maxamount 9 }
+Actor LightningGuardCrezzyMan : Inventory {	inventory.maxamount 1 }
 
 Actor HSMissile_2 : HSMissile
 { 

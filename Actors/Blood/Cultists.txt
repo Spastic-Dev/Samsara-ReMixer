@@ -166,7 +166,7 @@ Actor Cultist
 		Goto See
 	TNTT:
 		TNT1 A 0 A_Jump(100,"See","ASD")
-		TNT1 A 0 A_Jump(15,"TNTT2")
+		TNT1 A 0 A_JumpIfInventory("CultistExtraCrispy",1,"Missile2")	
 		YCUL XYZ 4 A_FaceTarget
 		YCUL [ 4 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Cultists/Toss",CHAN_AUTO)		
@@ -2648,7 +2648,7 @@ Actor BloodAcolyte : Cultist
 		TNT1 A 0 A_JumpIfCloser(912,1)		
 		Goto See
 		TNT1 A 0 A_Jump(72,"See")
-		TNT1 A 0 A_Jump(15,"Missile2")		
+		TNT1 A 0 A_JumpIfInventory("CultistExtraCrispy",1,"Missile2")		
 		YCUD XYZ 4 A_FaceTarget
 		YCUD [ 4 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Cultists/Toss",CHAN_AUTO)
@@ -6700,3 +6700,4 @@ actor BloodBurningCorpse_Fanatic : BloodBurningCorpse
 }
 
 Actor CultistIsCrawling : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
+Actor CultistExtraCrispy : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
