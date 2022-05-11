@@ -165,6 +165,8 @@ Actor Cultist
 	    YCUF A 8 A_FaceTarget
 		Goto See
 	TNTT:
+		TNT1 A 0 A_JumpIfInventory("CultistWellDone", 1, "TNTT2")
+		TNT1 A 0 A_JumpIfInventory("CultistExtraCrispy", 1, "TNTT2")
 		TNT1 A 0 A_Jump(100,"See","ASD")
 		TNT1 A 0 A_JumpIfInventory("CultistExtraCrispy",1,"Missile2")	
 		YCUL XYZ 4 A_FaceTarget
@@ -1441,8 +1443,9 @@ Actor Fanatic : Cultist
 		TNT1 A 0 A_CPosRefire
 		Goto MissileLoop
 	TNTT:	
+		TNT1 A 0 A_JumpIfInventory("CultistWellDone", 1, "TNTT2")
+		TNT1 A 0 A_JumpIfInventory("CultistExtraCrispy", 1, "TNTT2")	
 		TNT1 A 0 A_Jump(100,"See","FFF")
-		TNT1 A 0 A_Jump(15,"TNTT2")		
 		YCUG XYZ 4 A_FaceTarget
 		YCUG [ 4 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Cultists/Toss",CHAN_AUTO)		
@@ -2644,6 +2647,8 @@ Actor BloodAcolyte : Cultist
 		YCUD F 1 A_Chase("", "",CHF_NOPLAYACTIVE)
 		Loop		
 	Missile:
+		TNT1 A 0 A_JumpIfInventory("CultistWellDone", 1, "Missile2")
+		TNT1 A 0 A_JumpIfInventory("CultistExtraCrispy", 1, "Missile2")	
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_JumpIfCloser(912,1)		
 		Goto See
@@ -3788,8 +3793,9 @@ Actor Zealot : Cultist
 	    YCU0 A 2 A_FaceTarget
 		Goto See
 	TNTT:	
+		TNT1 A 0 A_JumpIfInventory("CultistWellDone", 1, "TNTT2")
+		TNT1 A 0 A_JumpIfInventory("CultistExtraCrispy", 1, "TNTT2")	
 		TNT1 A 0 A_Jump(100,"See","FFFU")
-		TNT1 A 0 A_Jump(15,"TNTT2")		
 		YCUJ XYZ 4 A_FaceTarget
 		YCUJ [ 4 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Cultists/Toss",CHAN_AUTO)		
@@ -5866,6 +5872,7 @@ actor CultistTNT
   +MOVEWITHSECTOR
   -EXPLODEONWATER
   +CANBOUNCEWATER  
+  +BOUNCEONACTORS
   +NOBLOOD
   +DONTHARMCLASS
   +THRUSPECIES
@@ -6153,15 +6160,15 @@ actor CalebBulletSpark_2_Fanatic : CalebBulletSpark_2 {
 ACTOR RandomCultistDrop : RandomSpawner
 {
 	+DROPPED
-	dropitem "CultistAmmoDrop" 118, 1
-	dropitem "CultistDrop" 64, 1
+	dropitem "CultistAmmoDrop" 128, 1
+	dropitem "CultistDrop" 96, 1
 //	dropitem "BloodHeartPower" 78, 5
 }
 
 ACTOR RandomFanaticDrop : RandomSpawner
 {
 	+DROPPED
-	dropitem "FanaticDrop" 64, 1
+	dropitem "FanaticDrop" 96, 1
 	dropitem "FanaticAmmoDrop" 118, 1	
 //	dropitem "BloodHeartPower" 78,5
 }
@@ -6700,4 +6707,5 @@ actor BloodBurningCorpse_Fanatic : BloodBurningCorpse
 }
 
 Actor CultistIsCrawling : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
+Actor CultistWellDone : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
 Actor CultistExtraCrispy : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
