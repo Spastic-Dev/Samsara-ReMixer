@@ -4,7 +4,7 @@ Actor RMRShoggran : RMRDroids
 	PainSound "RMR/Shoggran/Ouw"
 	DeathSound "RMR/Shoggran/Die"
 	ActiveSound "RMR/Shoggran/See"
-	Obituary "%o brain exploded."
+	Obituary "%o's brain exploded."
 	PainChance "ShrinkerDMG", 0
 	Species "Enemies"
 	Health 150
@@ -36,7 +36,7 @@ Actor RMRShoggran : RMRDroids
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			RM86 DD 5 A_FaceTarget
 			TNT1 A 0 A_PlaySound("RMR/RPlasma")			
-			TNT1 A 0 A_CustomMissile("RMR-EnemyRedPlasma",5,0,0)
+			TNT1 A 0 A_CustomMissile("RMR-EnemyRedPlasmaWeak",5,0,0)
 			RM86 D 5 Bright A_FaceTarget			
 			Goto See
 		Pain:

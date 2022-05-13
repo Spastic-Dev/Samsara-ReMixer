@@ -169,11 +169,9 @@ actor RMREnemyGrenade : Rocket
 }
 
 Actor RMREnemyGrenade_Drone : RMREnemyGrenade {
-    Speed 10
-	Damage (10)	
 	States {
       Death:
-	    TNT1 A 0 A_Explode(36,88)	
+	    TNT1 A 0 A_Explode(45,105)	
 		TNT1 A 0 A_SpawnItemEx("RMRExplosion")
 		TNT1 A 5 A_PlaySound("RMR/DiscoBoom")
         Stop
@@ -207,7 +205,7 @@ Actor RMREnemyBullet : FastProjectile
 
 Actor RMR-EnemyBigPlasma
 {
-    Damage (15)
+    Damage (40)
     Radius 5
     Height 5
     Speed 40
@@ -231,7 +229,7 @@ Actor RMR-EnemyBigPlasma
 
 Actor RMR-EnemyRedPlasma
 {
-    Damage (20)
+    Damage (90)
     Radius 5
     Height 5
     Speed 35
@@ -251,9 +249,11 @@ Actor RMR-EnemyRedPlasma
     }
 }
 
+Actor RMR-EnemyRedPlasmaWeak : RMR-EnemyRedPlasma { Damage (30) }
+
 Actor RMR-EnemyWhitePlasma
 {
-    Damage (30)
+    Damage (45)
     Radius 5
     Height 5
     Speed 35
