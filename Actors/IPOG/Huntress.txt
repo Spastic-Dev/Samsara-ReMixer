@@ -38,7 +38,7 @@ Actor IPOGHuntress
 	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	    IPOB E 0 A_Jump(64,"Missile2")
-		IPOB E 2 A_FaceTarget
+		IPOB E 10 A_FaceTarget
 		IPOB D 0 A_PlayWeaponSound("ipoghuntress/fire")
 		IPOB E 0 A_CustomMissile("PGShotgunPlasmaBall0",38,0,-8,8)
 		IPOB E 0 A_CustomMissile("PGShotgunPlasmaBall0",38,0,-4,8)
@@ -48,7 +48,7 @@ Actor IPOGHuntress
 		IPOB E 2
 		Goto See
 	Missile2:
-	    IPOB E 2 A_FaceTarget
+	    IPOB E 10 A_FaceTarget
 		IPOB D 0 A_PlayWeaponSound("ipoghuntress/fire")
 		IPOB E 0 A_CustomMissile("PGShotgunPlasmaBall0",38,0,-16,8)
 		IPOB E 0 A_CustomMissile("PGShotgunPlasmaBall0",38,0,-8,8)
@@ -725,4 +725,4 @@ actor IPOGHuntress_ShrinkEffect : IPOGHuntress
 	}
 }
 
-Actor PGShotgunPlasmaBall0 : PGShotgunPlasmaBall { Speed 25	-THRUGHOST DamageType "" Damage (random(2,8)) }
+Actor PGShotgunPlasmaBall0 : PGShotgunPlasmaBall { Speed 18 -THRUGHOST DamageType "" Damage (random(2,8)) }

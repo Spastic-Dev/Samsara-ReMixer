@@ -8,7 +8,7 @@ Actor IPOGBerserker
 	Mass 255
 	Scale 0.45
 	Monster
-	Meleedamage 4
+	//Meleedamage 4 jank
 	+FLOORCLIP
 	+NOINFIGHTING
 	Tag "Yrktarel Berserker"
@@ -38,9 +38,9 @@ Actor IPOGBerserker
 		Loop
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		IPO5 B 4 A_FaceTarget
+		IPO5 B 6 A_FaceTarget
 		IPO5 E 0 A_PlaySound("ipogberserker/attack")
-		IPO5 E 8 A_MeleeAttack
+		IPO5 E 8 A_CustomMeleeAttack(Random(15,20))
 		IPO5 B 2
 		TNT1 A 0 A_Jump(128,"See")
 		IPO5 AABBCCDDCCBB 3 A_Wander
