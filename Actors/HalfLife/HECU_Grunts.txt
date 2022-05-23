@@ -18,6 +18,7 @@ Actor HECU_Grunt1
 	DeathSound "HECU/Death"	
 	BloodType "HalfLifeBlood"
 	DropItem "HL_HECU_MP5Drop", 256, 1
+	DropItem "MP5Drop", 256, 1
 	Tag "Hazard Environmental Combat Unit Soldier"
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
@@ -1064,6 +1065,7 @@ actor HECU_Grunt2_ShrinkEffect : HECU_Grunt1_ShrinkEffect {}
 Actor HECU_Shotgun1 : HECU_Grunt1
 {
 	DropItem "HL_HECU_ShotgunDrop", 256, 1
+	DropItem "AssaultShotgunDrop", 256, 1
 	States
 	{
 		Missile:
@@ -1678,7 +1680,7 @@ actor HECU_Commander2_ShrinkEffect : HECU_Grunt1_ShrinkEffect {}
 
 Actor HECU_Sarge : HECU_Commander1
 {
-	Health 80
+	Health 150
 	Seesound "Sarge/Alert"
 	Speed 2
 	Mass 180
@@ -2689,7 +2691,7 @@ Actor HL_HECU_MP5Drop : RandomSpawner
 	DropItem "HL_M203Grenade", 255, 6
 	DropItem "HL_GrenadeWeapon", 255, 2
 	DropItem "HL_GrenadeWeapon2", 255, 2
-	DropItem "MP5Drop", 255, 10
+	//DropItem "MP5Drop", 256, 10
 }
 
 Actor HL_HECU_ShotgunDrop : RandomSpawner
@@ -2697,7 +2699,7 @@ Actor HL_HECU_ShotgunDrop : RandomSpawner
 	DropItem "HL_ShotShell", 255, 12
 	DropItem "HL_GrenadeWeapon", 255, 2
 	DropItem "HL_GrenadeWeapon2", 255, 2
-	DropItem "AssaultShotgunDrop", 255, 10
+	//DropItem "AssaultShotgunDrop", 255, 10
 }
 
 Actor HL_HECU_SawDrop : RandomSpawner
@@ -2719,10 +2721,6 @@ ACTOR MP5Drop : SamsaraSlotFourDrop {
       Spawn:
         HL00 A -1
         stop
-	  Pickup:
-		TNT1 A 0 A_GiveInventory("Clip", 25)
-		TNT1 A 0 A_GiveInventory("RocketAmmo", 1)
-		Goto "Super::Pickup"
     }
 }
 
@@ -2733,9 +2731,6 @@ ACTOR AssaultShotgunDrop : SamsaraSlotTwoDrop {
       Spawn:
         HL00 A -1
         stop
-	  Pickup:
-		TNT1 A 0 A_GiveInventory("Shell", 8)
-		Goto "Super::Pickup"
     }
 }
 

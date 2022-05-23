@@ -14,7 +14,7 @@ Actor HLHoundeye
 	Seesound "Houndeye/see"
 	Monster
 	Scale 0.9
-	Health 75
+	Health 50
 	Painchance 100
 	BloodColor "Yellow"
 	BloodType "HalfLifeAlienBlood"
@@ -99,7 +99,9 @@ Actor HLHoundeye
 			Loop
 		Wave1:
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-			TNT1 A 0 A_Jump(128,"Wave2","Wave3","Wave4")
+			TNT1 A 0 A_JumpifInventory("HLNormal", 1, "Wave2" )
+			TNT1 A 0 A_JumpifInventory("HLHard", 1, "Wave3" )
+			TNT1 A 0 A_JumpifInventory("HLNIghtmare", 1, "Wave4" )
 			TNT1 A 0 A_PlaySound ("he_attack1",CHAN_WEAPON)
 			HL03 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 A_FaceTarget
 			HL04 ABCD 2 A_FaceTarget
@@ -837,7 +839,7 @@ Actor HoundEyeWave_Weak
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_WeakEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_WeakEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 1 A_Explode(random(8,15),120,0)
+		TNT1 A 1 A_Explode(15,120,0)
 		Stop
 	}
 }
@@ -865,7 +867,7 @@ Actor HoundEyeWave_Normal : HoundEyeWave_Weak
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_NormalEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_NormalEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 1 A_Explode(random(23,30),130,0)
+		TNT1 A 1 A_Explode(25,130,0)
 		Stop
 	}
 }
@@ -893,7 +895,7 @@ Actor HoundEyeWave_Strong : HoundEyeWave_Weak
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_StrongEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_StrongEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 1 A_Explode(random(33,45),140,0)
+		TNT1 A 1 A_Explode(45,140,0)
 		Stop
 	}
 }
@@ -921,7 +923,7 @@ Actor HoundEyeWave_OP : HoundEyeWave_Weak
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_OPEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_OPEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 1 A_Explode(random(50,60),150,0)
+		TNT1 A 1 A_Explode(65,150,0)
 		Stop
 	}
 }
