@@ -400,7 +400,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	Thing_ChangeTid(thisMonNew,thisMonOld);
 	
 	SetActorProperty(newMonTid,APROP_Ambush,GetActorProperty(0,APROP_Ambush));
-	SetThingSpecial(newMonTid,CheckInventory("ReMixerMonsterSpecial"),CheckInventory("ReMixerMonsterArg0"),CheckInventory("ReMixerMonsterArg1"),CheckInventory("ReMixerMonsterArg2"),CheckInventory("ReMixerMonsterArg3"));
+	SetThingSpecial(newMonTid,GetUserVariable(0,"user_special"),GetUserVariable(0,"user_arg0"),GetUserVariable(0,"user_arg1"),GetUserVariable(0,"user_arg2"),GetUserVariable(0,"user_arg3"));
 
 	if(speed != 0) { SetActorProperty(newMonTid,APROP_Speed,FixedMul(GetActorProperty(newMonTid,APROP_Speed),speed)); }
 	if(health != 0) { SetActorProperty(newMonTid,APROP_Health,FixedMul(GetActorProperty(newMonTid,APROP_Health),health)); }
