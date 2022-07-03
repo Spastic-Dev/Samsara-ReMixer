@@ -19,6 +19,12 @@ ACTOR DemonSpawner replaces Demon
 			TNT1 A 0 A_GiveInventory("ReMixerMonsterArg1",args[1])
 			TNT1 A 0 A_GiveInventory("ReMixerMonsterArg2",args[2])
 			TNT1 A 0 A_GiveInventory("ReMixerMonsterArg3",args[3])
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_Look
+			Loop
+		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,4)			
 		Deciding:
 			TNT1 A 1
