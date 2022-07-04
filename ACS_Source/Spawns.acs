@@ -1,2695 +1,4761 @@
 /*======================================================================================================================
-													Design Specs
-													
+ 													Design Specs
 o MAX_GAME_TYPES
-	- This corresponds to the game set, like Doom or Chex
+	    - This corresponds to the game set, like Doom or Chex
 o MAX_ALTS
-	- This corresponds to a game alt set, like Opposing Force
+	    - This corresponds to a game alt set, like Opposing Force
 o MONSTER_SLOT
-	- This corresponds to the monster slot, like Zombieman. Slots are in this order:
-										0: 	Zombieman
-										1: 	Shotgunguy
-										2: 	Imp
-										3: 	Chaingunner
-										4: 	Demon
-										5: 	Spectre
-										6: 	Hellknight
-										7: 	Baron of Hell
-										8: 	Arachnotron
-										9: 	Mancubus
-										10: Lost Soul
-										11: Pain Elemental
-										12: Cacodemon
-										13: Revenant
-										14: Archvile
-										15: Cyberdemon
-										16: Spider Mastermind
-										17: Wolfenstein SS
-										18: Super Shotgunguy
-										19: Dark Imp
-										20: Blood Demon
-										21: Cacolantern
-										22: Abaddon
-										23: Hectebus
-										24: Belphegor
+	    - This corresponds to the monster slot, like Zombieman. Slots are in this order:
+										            0: 	Zombieman
+										            1: 	Shotgunguy
+										            2: 	Imp
+										            3: 	Chaingunner
+										            4: 	Demon
+										            5: 	Spectre
+										            6: 	Hellknight
+										            7: 	Baron of Hell
+										            8: 	Arachnotron
+										            9: 	Mancubus
+										            10: Lost Soul
+										            11: Pain Elemental
+										            12: Cacodemon
+										            13: Revenant
+										            14: Archvile
+										            15: Cyberdemon
+										            16: Spider Mastermind
+										            17: Wolfenstein SS
+										            18: Super Shotgunguy
+										            19: Dark Imp
+										            20: Blood Demon
+										            21: Cacolantern
+										            22: Abaddon
+										            23: Hectebus
+										            24: Belphegor
 o MAXPERSLOT
-	- This variable is the slot for a decision on the monster from the slot, like spawning a zombieman variant
-			
+     - This variable is the slot for a decision on the monster from the slot, like spawning a zombieman variant
+
 													- Strings -
-	o Monster name:
-		- Name of the the monster
-	o Token0-4:
-		- These are inventory items that can be given to a monster for each difficulty, to alter their behavior
-		
+     o Monster name:
+         - Name of the the monster
+     o Token0-4:
+         - These are inventory items that can be given to a monster for each difficulty, to alter their behavior
+
 													- Stats -
-	o Speed0-4:
-		- These tokens work as a multiplier for monster speed. As such, you should never use numbers with no decimal
-		decimal point. Please use 2.0 instead of 2. If left alone, it will have no affect.
-	o Health0-4:
-		- A health multiplier. Same as speed, these are multipliers. If left alone, it will have no affect.
-	o Weight0-4:
-		- This is a spawn chance, which functions similarly to RandomSpawner. You can use whatever numbers you want,
-		to define the chance of a monster spawning. The higher the weight compared to other monsters, the more likely
-		it is to spawn, and vice versa. If left alone, will be treated as 1. If set to a negative value, however,
-		that means the monster will not spawn at all on that difficulty.
+     o Speed0-4:
+         - These tokens work as a multiplier for monster speed. As such, you should never use numbers with no decimal
+           point. Please use 2.0 instead of 2. If left alone, it will have no affect.
+     o Health0-4:
+         - A health multiplier. Same as speed, these are multipliers. If left alone, it will have no affect.
+     o Weight0-4:
+         - This is a spawn chance, which functions similarly to RandomSpawner. You can use whatever numbers you want,
+           to define the chance of a monster spawning. The higher the weight compared to other monsters, the more likely
+           it is to spawn, and vice versa. If left alone, will be treated as 1. If set to a negative value, however,
+           that means the monster will not spawn at all on that difficulty.
 
 ======================================================================================================================*/
-//Monster name, 										token0, 									token1, 									token2, 								token3, 								token4						token5
-int monsterSelectStr[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][6] = 
-{	
-	{	//Doom
-		{	//Classic	
-			{
-				{ "Zombieman3" }
+
+str monsterSelectStr[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][6] = 
+{
+	{//Doom
+		{//Classic
+			{//Zombieman
+				{"Zombieman3"}
 			},
-			{
-				{ "Shotgunguy3" }
+			{//Shotgunguy
+				{"Shotgunguy3"}
 			},
-			{
-				{ "DoomImp3" }
+			{//Doom Imp
+				{"DoomImp3"}
 			},
-			{
-				{ "Chaingunguy3" }
+			{//Chaingunguy
+				{"Chaingunguy3"}
 			},
-			{
-				{ "DoomDemon3" }
+			{//Demon
+				{"DoomDemon3"}
 			},
-			{
-				{ "Spectre3" }
+			{//Spectre
+				{"Spectre3"}
 			},
-			{
-				{ "HellKnight3" }
+			{//Hell Knight
+				{"HellKnight3"}
 			},
-			{
-				{ "BaronofHell3" }
+			{//Baron of Hell
+				{"BaronofHell3"}
 			},
-			{
-				{ "Arachnotron3" }
+			{//Arachnotron
+				{"Arachnotron3"}
 			},
-			{
-				{ "Fatso3" }
+			{//Mancubus
+				{"Fatso3"}
 			},
-			{
-				{ "LostSoul3" }
+			{//Lost Soul
+				{"LostSoul3"}
 			},
-			{
-				{ "PainElemental3" }
+			{//Pain Elemental
+				{"PainElemental3"}
 			},
-			{
-				{ "Cacodemon3" }
+			{//Cacodemon
+				{"Cacodemon3"}
 			},
-			{
-				{ "Revenant3" }
+			{//Revenant
+				{"Revenant3"}
 			},
-			{
-				{ "Archvile3" }
+			{//Archvile
+				{"Archvile3"}
 			},
-			{
-				{ "Cyberdemon3" }
+			{//Cyberdemon
+				{"Cyberdemon3"}
 			},
-			{
-				{ "SpiderMastermind3" }
+			{//Spider Mastermind
+				{"SpiderMastermind3"}
 			},
-			{
-				{ "Nazi3" }
+			{//Wolfenstein SS
+				{"Nazi3"}
 			},
-			{
-				{ "SuperShotgunguy2" }
+			{//Super Shotgunguy
+				{"SuperShotgunguy2"}
 			},
-			{
-				{ "DarkImp2" }
+			{//Dark Imp
+				{"DarkImp2"}
 			},
-			{
-				{ "BloodDemon2" }
+			{//Blood Demon
+				{"BloodDemon2"}
 			},
-			{
-				{ "Cacolantern2" }
+			{//Cacolantern
+				{"Cacolantern2"}
 			},
-			{
-				{ "Abaddon2" }
+			{//Abaddon
+				{"Abaddon2"}
 			},
-			{
-				{ "Hectebus2" }
+			{//Hectebus
+				{"Hectebus2"}
 			},
-			{
-				{ "Belphegor2" }
-			},
-		},
-		{	//64	
-			{
-				{ "Zombieman64" }
-			},
-			{
-				{ "Shotgunguy64" }
-			},
-			{
-				{ "DoomImp64" },
-				{ "NightmareImp64" }
-			},
-			{
-				{ "Chaingunguy64" }
-			},
-			{
-				{ "Demon64" }
-			},
-			{
-				{ "Spectre64" }
-			},
-			{
-				{ "HellKnight64" }
-			},
-			{
-				{ "BaronofHell64" }
-			},
-			{
-				{ "Arachnotron64" }
-			},
-			{
-				{ "Fatso64" }
-			},
-			{
-				{ "LostSoul64" }
-			},
-			{
-				{ "PainElemental64" }
-			},
-			{
-				{ "Cacodemon64" }
-			},
-			{
-				{ "Revenant64" }
-			},
-			{
-				{ "Archvile64" }
-			},
-			{
-				{ "Cyberdemon64" }
-			},
-			{
-				{ "SpiderMastermind64" },
-				{ "MotherDemon64" }
-			},
-			{
-				{ "WolfensteinSSJagaur" }
-			},
-		},
-		{	//VDR	
-			{
-				{ "ZombieManRandomizer" }
-			},
-			{
-				{ "ShotgunguyRandomizer" }
-			},
-			{
-				{ "DoomImpRandomizer" }
-			},
-			{
-				{ "ChaingunguyRandomizer" }
-			},
-			{
-				{ "DoomDemonRandomizer" }
-			},
-			{
-				{ "SpectreRandomizer" }
-			},
-			{
-				{ "HellKnightRandomizer" }
-			},
-			{
-				{ "BaronofHell3" },
-				{ "MMRandomizer_HellsFury" }, 
-				{ "MMRandomizer_CyberBaron" },
-				{ "MMRandomizer_BruiserDemon" },
-				{ "MMRandomizer_Belphegor" },
-			},
-			{
-				{ "Arachnotron3" }, 
-				{ "MMRandomizer_ChaingunArachnotron" }, 
-				{ "MMRandomizer_RailgunArachnotron" },
-			},
-			{
-				{ "Fatso3" }, 
-				{ "MMRandomizer_Cryocubus" }, 
-				{ "MMRandomizer_Hectebus" },
-			},
-			{
-				{ "LostSoulRandomizer" }
-			},
-			{
-				{ "PainElementalRandomizer" }
-			},
-			{
-				{ "CacodemonRandomizer" }
-			},
-			{
-				{ "RevenantRandomizer" }
-			},
-			{
-				{ "ArchvileRandomizer" }
-			},
-			{
-				{ "Cyberdemon3" }, 
-				{ "MMRandomizer_ArchonOfHell" }, 
-				{ "MMRandomizer_Annihilator" },
-			},
-			{
-				{ "SpiderMastermind3" }, 
-				{ "MMRandomizer_ArachnorbQueen" }, 
-				{ "MMRandomizer_Demolisher" },
-			},
-			{
-				{ "Nazi3" }
-			},
-		},
-	},
-	{	//Chex
-		{ 
-			{
-				{ "FlemoidusCommonus3" }
-			},
-			{
-				{ "FlemoidusBipedicus3" }
-			},
-			{
-				{ "NewArmoredFlemoidusBipedicus" }
-			},
-			{
-				{ "NewArmoredFlemoidusBipedicus" }
-			},
-			{
-				{ "NewFlemoidusStridicus" }
-			},
-			{
-				{ "NewFlemoidusCycloptisCommonus" }, 
-				{ "NewLarva" },
-			},
-			{
-				{ "NewQuadrumpus" }
-			},
-			{
-				{ "OldFlemoidusMaximusDoom" }
-			},
-			{
-				{ "NewQuadrumpus" }
-			},
-			{
-				{ "NewQuadrumpus" }
-			},
-			{
-				{ "FlemMine2" }, 
-				{ "NewFlemoidusGyro" },
-			},
-			{
-				{ "SuperCycloptis2" }
-			},
-			{
-				{ "SuperCycloptis2" }
-			},
-			{
-				{ "NewQuadrumpus" }
-			},
-			{
-				{ "NewSnotfolus" }
-			},
-			{
-				{ "FlembominationNew" }
-			},
-			{
-				{ "YellowArmoredFlemoid" }
-			},
-		}
-	},
-	{	//Heretic
-		{ 
-			{
-				{ "Mummy3Doom" }
-			},
-			{
-				{ "MummyLeader3Doom" }
-			},
-			{
-				{ "HereticImpLeader3" }
-			},
-			{
-				{ "Knight3Doom" }
-			},
-			{
-				{ "Clink3Doom" }
-			},
-			{
-				{ "KnightGhost3Doom" }, 
-				{ "MummyGhost3Doom" },
-				{ "MummyLeaderGhost3Doom" },
-			},
-			{
-				{ "Beast3Doom" }
-			},
-			{
-				{ "Beast3Doom" }
-			},
-			{
-				{ "Snake3Doom" }
-			},
-			{
-				{ "Beast3Doom" }
-			},
-			{
-				{ "HereticImp3" }
-			},
-			{
-				{ "Wizard3Doom" }, 
-			},
-			{
-				{ "Wizard3Doom" }
-			},
-			{
-				{ "Snake3Doom" }
-			},
-			{
-				{ "IronLich3Doom" }
-			},
-			{
-				{ "Minotaur3" }
-			},
-			{
-				{ "Sorcerer5" }
-			},
-			{
-				{ "CyCloneGrunt" }
-			},
-		}
-	},
-	{ //Wolf 3D
-		{ 
-			{
-				{ "WolfGuard" }
-			},
-			{
-				{ "WolfOfficer" }
-			},
-			{
-				{ "WolfOfficer" }
-			},
-			{
-				{ "WolfSS" }
-			},
-			{
-				{ "WolfDog" }
-			},
-			{
-				{ "WolfDogSpectre" }
-			},
-			{
-				{ "WolfMutant" }
-			},
-			{
-				{ "HansGrosseDoom" },
-				{ "GretelGrosseDoom" },
-			},
-			{
-				{ "OttoGiftmacherDoom" }
-			},
-			{
-				{ "OttoGiftmacherDoom" }
-			},
-			{
-				{ "WolfSpectre" }
-			},
-			{
-				{ "FakeHitler" }, 
-			},
-			{
-				{ "FakeHitler" }
-			},
-			{
-				{ "WolfMutant" }
-			},
-			{
-				{ "TransGrosseDoom" }
-			},
-			{
-				{ "DoctorSchabbs" },
-				{ "AngelofDeath" },
-				{ "BarnacleWilhelm" },
-				{ "UberMutant" },
-				{ "BarnacleWilhelm" },
-			},
-			{
-				{ "GeneralFettgesicht" },
-				{ "WDeathKnight" },
-				{ "MechaHitler" },
-			},
-			{
-				{ "Wolf3D_RussianRedArmy" }
-			},
-		},
-		{ 
-			{
-				{ "SODGuard" }
-			},
-			{
-				{ "SODOfficer" }
-			},
-			{
-				{ "SODOfficer" }
-			},
-			{
-				{ "SODSS" }
-			},
-			{
-				{ "SODDog" }
-			},
-			{
-				{ "SODDogSpectre" }
-			},
-			{
-				{ "SODBat" }
-			},
-			{
-				{ "GeneralleutnantStahlkopfDoom" },
-			},
-			{
-				{ "GerhardtVonSchreiberDoom" }
-			},
-			{
-				{ "GerhardtVonSchreiberDoom" }
-			},
-			{
-				{ "SODSpectre" },
-				{ "SODSpectre2" }
-			},
-			{
-				{ "FireDrone" }, 
-			},
-			{
-				{ "FireDrone" }
-			},
-			{
-				{ "SODBat" }
-			},
-			{
-				{ "SubmarineWillyDoom" }
-			},
-			{
-				{ "ProfessorQuarkblitz" },
-				{ "TheAxe" },
-			},
-			{
-				{ "Robot" },
-				{ "DevilIncarnate" },
-			},
-			{
-				{ "Wolf3D_RussianRedArmy" }
-			},
-		},
-		{ 
-			{
-				{ "TotenkopfGuardSpawner" },
-				{ "TotenkopfScientistSpawner" },
-			},
-			{
-				{ "TotenkopfInfantrySpawner" }
-			},
-			{
-				{ "TotenkopfGuardSpawner" }
-			},
-			{
-				{ "TotenkopfSSSpawner" },
-				{ "TotenkopfMutantSpawner" }
-			},
-			{
-				{ "TotenkopfDogSpawner" }
-			},
-			{
-				{ "TotenkopfDogSpawner" }
-			},
-			{
-				{ "TotenkopfTrooperPanzerschreck" }
-			},
-			{
-				{ "TotenkopfHansGrosse" }
-			},
-			{
-				{ "TotenkopfTrooperChaingun" }
-			},
-			{
-				{ "TotenkopfTrooperFlamethrower" }
-			},
-			{
-				{ "TotenkopfGhost" }
-			},
-			{
-				{ "TotenkopfMonk" }
-			},
-			{
-				{ "TotenkopfMonk2" }
-			},
-			{
-				{ "TotenkopfWaffenSSSpawner" }
-			},
-			{
-				{ "TotenkopfMechanoidStormTrooper" }
-			},
-			{
-				{ "TotenkopfSchabbsMutant" },
-				{ "TotenkopfNarbengesicht" },
-			},
-			{
-				{ "TotenkopfPanzGrosse" },
-				{ "TotenkopfDeathMutant" },
-			},
-			{
-				{ "Wolf3D_RussianRedArmy" }
-			},
-		}
-	},
-	{	//Hexen
-		{ 
-			{
-				{ "Ettin3Doom" }
-			},
-			{
-				{ "Ettin3Doom" }
-			},
-			{
-				{ "FireDemon3Doom" },
-				{ "Ettin3Doom" }
-			},
-			{
-				{ "FireDemon3Doom" }
-			},
-			{
-				{ "Centaur3Doom" }
-			},
-			{
-				{ "CentaurLeader3Doom" }, 
-			},
-			{
-				{ "Demon1CDoom" }
-			},
-			{
-				{ "Demon2CDoom" }
-			},
-			{
-				{ "Dragon3Doom" }
-			},
-			{
-				{ "IceGuy3Doom" }, 
-			},
-			{
-				{ "FireDemon3Doom" }
-			},
-			{
-				{ "Wraith3Doom" },
-				{ "Bishop3Doom" },
-			},
-			{
-				{ "Wraith3Doom" },
-				{ "Bishop3Doom" },
-			},
-			{
-				{ "IceGuy3Doom" }
-			},
-			{
-				{ "ClericBoss3Doom" },
-				{ "FighterBoss3Doom" },
-				{ "MageBoss3Doom" },
-			},
-			{
-				{ "Heresiarch3Doom" }
-			},
-			{
-				{ "Korax3Doom" }
-			},
-			{
-				{ "Pig3" }
-			},
-		}
-	},
-	{	//Duke 3D
-		{ 
-			{
-				{ "AssaultTrooper" }
-			},
-			{
-				{ "PigCop" },
-				{ "ZombiePigCop" },
-				{ "MagnumPig" },
-			},
-			{
-				{ "AssaultCaptain" },
-				{ "AssaultGeneral" },
-				{ "AssaultTrooper" },
-			},
-			{
-				{ "AssaultEnforcer" },
-				{ "PiginaDress" }
-			},
-			{
-				{ "ProtozoidEgg" }
-			},
-			{
-				{ "ProtozoidEgg" },
-			},
-			{
-				{ "AssaultCommander" },
-			},
-			{
-				{ "MiniBattlelordDoom" }
-			},
-			{
-				{ "PigCopTank" }
-			},
-			{
-				{ "ScorpionTank" }, 
-			},
-			{
-				{ "SentryDrone" }
-			},
-			{
-				{ "ReconPatrolVehicle" },
-			},
-			{
-				{ "Octabrain" },
-				{ "SharkDrone" },
-			},
-			{
-				{ "AssaultCommander" }
-			},
-			{
-				{ "ProtectorDroneDoom" },
-			},
-			{
-				{ "BattlelordDoom" },
-				{ "OverlordDoom" },
-			},
-			{
-				{ "CycloidEmperorDoom" },
-				{ "AlienQueenDoom" },
-				{ "CyberKeef" },
-			},
-			{
-				{ "AssaultTrooper" }
-			},
-		},
-		{ 
-			{
-				{ "BeachTrooper" },
-			},
-			{
-				{ "BeachPig" },
-				{ "MagnumPig" },
-			},
-			{
-				{ "BeachCaptain" },
-				{ "BeachGeneral" },
-				{ "BeachTrooper" },
-			},
-			{
-				{ "SeaMonster" },
-			},
-			{
-				{ "ProtozoidEgg" }
-			},
-			{
-				{ "ProtozoidEgg" },
-			},
-			{
-				{ "BeachCommander" },
-			},
-			{
-				{ "MiniBattlelordDoom" }
-			},
-			{
-				{ "PigCopTank" }
-			},
-			{
-				{ "ScorpionTank" }, 
-			},
-			{
-				{ "SentryDrone" },
-				{ "Seagull" },
-			},
-			{
-				{ "ReconPatrolVehicle" },
-			},
-			{
-				{ "BeachOctabrain" },
-				{ "SharkDrone" },
-			},
-			{
-				{ "BeachCommander" }
-			},
-			{
-				{ "ProtectorDroneDoom" },
-			},
-			{
-				{ "BattlelordDoom" },
-				{ "OverlordDoom" },
-			},
-			{
-				{ "BeachCycloidEmperorDoom" },
-				{ "AlienQueenDoom" },
-				{ "CyberKeef" },
-			},
-			{
-				{ "BeachTrooper" }
-			},
-		}
-	},
-	{	//Marathon
-		{ 
-			{
-				{ "FighterMinor" },
-				{ "ProjectileFighterMinor" },
-				{ "M1FighterMinor" },
-				{ "M1ProjectileFighterMinor" },
-				{ "MSimulacrum" },
-				{ "M2Simulacrum" }
-			},
-			{
-				{ "ProjectileFighterMinor" },
-				{ "M1ProjectileFighterMinor" },
-				{ "MSimulacrum" },
-				{ "M2Simulacrum" },
-				{ "ProjectileFighterMajor" },
-				{ "M1ProjectileFighterMajor" }
-			},
-			{
-				{ "SewageFlickta" },
-				{ "LavaFlickta" },
-				{ "ProjectileFighterMajor" },				
-			},
-			{
-				{ "TrooperMinor" },
-				{ "M1TrooperMinor" },
-				{ "TrooperMajor" }, 
-				{ "M1TrooperMajor" }
-			},
-			{
-				{ "FighterMajor" },
-				{ "WaterFlickta" },
-				{ "DrinniolMinor" },
-				{ "DrinniolMajor" },
-				{ "SuperFighter" }
-			},
-			{
-				{ "WaterFlickta" },
-				{ "MLooker" },
-				{ "MLooker2" },				
-				{ "DrinniolMinor" },
-				{ "DrinniolMajor" },
-				{ "SuperFighter" }
-			},
-			{
-				{ "HunterMinor" },
-				{ "M1HunterMinor" }
-			},
-			{
-				{ "HunterMajor" },
-				{ "M1HunterMajor" }	,
-				{ "MotherofAllHunters" }
-			},
-			{
-				{ "FlameCyborgMinor" }, 
-				{ "FlameCyborgMajor" }, 
-//				{ "MotherofAllCyborgs" }
-			},			
-			{
-				{ "CyborgMinor" },
-				{ "CyborgMajor" },
-				{ "MotherofAllCyborgs" }
-			},
-			{
-				{ "DroneMinor" },
-				{ "MWasp" },
-				{ "M2Tick" },
-				{ "DroneMajor" },
-				{ "MWasp2" },
-				{ "M2TickBomb" }
-			},
-			{
-				{ "SphtMajor" },
-				{ "M1SphtMajor" },
-				{ "SphtKrMinor" },
-				{ "SphtKrMajor" },
-				{ "MADD2" },
-				{ "M2EliteSpht" }
-			},
-			{
-				{ "SphtMinor" },
-				{ "MADD1" },
-				{ "M1SphtMinor" }
-			},
-			{
-				{ "M1EnforcerMinor" },
-				{ "M2EnforcerMinor" },
-				{ "M1EnforcerMajor" },
-				{ "M2EnforcerMajor" }
-			},
-			{
-				{ "M2EliteEnforcerMinor" },
-				{ "M2EliteEnforcerMajor" },
-				{ "SuperTrooper" },
-			},
-			{
-				{ "JuggernautMajor" },
-				{ "JuggernautMinor" }
-			},
-			{
-				{ "M1Juggernaut" }
-			},
-			{
-				{ "Marathon_Headless" }
-			},
-		}
-	},	
-	{ //Quake
-		{
-			{
-				{ "QGrunt" },
-				{ "RottWeiler" }
-			},	
-			{
-				{ "QEnforcer" }
-			},
-			{
-				{ "QZombie" }
-			},
-			{
-				{ "QCentroid" }
-			},
-			{
-				{ "QKnight" },
-				{ "QKStatue1" },
-				{ "QGremlin" }
-			},
-			{
-				{ "QPhantomSwordsman" },
-				{ "Quake_Spawn" },
-				{ "Quake_HellSpawn" },
-				{ "Quake_HellSpawn_2" }
-			},	
-			{
-				{ "QFiend" },
-				{ "QGuardian" }
-			},
-			{
-				{ "QGuardian2" },
-				{ "QGuardian3" },
-				{ "QGuardian4" },
-				{ "QMummy" }
-			},	
-			{
-				{ "Vore" }
-			},	
-			{
-				{ "QHKnight" },
-				{ "QKStatue2" }
-			},
-			{
-				{ "QSpikeMine" }
-			},
-			{
-				{ "QWrath" }
-			},
-			{
-				{ "QScrag" }
-			},
-			{
-				{ "QOgre" },
-				{ "QMultiOgre" }
-			},
-			{
-				{ "Shambler" },
-			},	
-			{
-				{ "Pterodactylus" },
-				{ "QArmagon" },
-			},
-			{
-				{ "Shub-Niggurath" },
-				{ "QOverlord" },
-			},
-			{
-				{ "Zombieman3" },
-			}
-		}
-	},	
-	{ // RoTT
-		{
-			{
-				{ "LowGuard" }
-			},
-			{
-				{ "LightningGuard", 					"", 					"", 					"", 					"", 					"LightningGuardCrezzyMan" },
-				{ "HeavyGuard", 						"", 					"", 					"", 					"", 					"LightningGuardCrezzyMan" }
-			},
-			{
-				{ "LowGuard" }
-			},
-			{
-				{ "HighGuard" }
-			},
-			{
-				{ "MonkDrain_Weak" }
-			},
-			{
-				{ "MonkDrain_Weak" }
-			},
-			{
-				{ "RobotGuard" }
-			},
-			{
-				{ "GeneralDarian" } // traded for AV slot with Enforcer
-			},
-			{
-				{ "MonkDeathFire" } // now an Arachno replacement so both DS enemies aren't the same thing
-			},
-			{
-				{ "Ballistikraft" }
-			},
-			{
-				{ "ExplosiveDiskJr" }
-			},
-			{
-				{ "CopterPatrol2" }
-			},
-			{
-				{ "CopterPatrol" }
-			},	
-			{
-				{ "OverPatrol" },
-				{ "StrikeTeam" } // very low health for Rev replacements, but they're very annoying and can be a serious threat in groups
-			},
-			{
-				{ "TriadEnforcer" }
-			},
-			{
-				{ "TomHall" },
-				{ "NME" }
-			},	
-			{
-				{ "SnakeTom" },
-				{ "SebastianKrist" }
-			},
-			{
-				{ "WolfGaurd" }
-			},
-		}
-	},	
-	{ //Blake Stone
-		{
-			{
-				{ "Informant" },
-				{ "SectorGuard" },
-				{ "SectorPatrol" }
-			},
-			{
-				{ "SectorGuard" },
-				{ "SectorPatrol" },
-				{ "MutatedGuard" }
-			},
-			{
-				{ "MutantBrown" }
-			},
-			{	
-				{ "BlakeSentinel" },
-				{ "TechWarrior" }
-			},
-			{
-				{ "MutantGreen" }
-			},
-			{
-				{ "WaterAlien" } //not a suitable AV replacement
-			},	
-			{
-				{ "ExpMutantBrown" },
-				{ "GeneticGuard" },
-				{ "PodAlien" }
-			},
-			{
-				{ "ExpMutantBlue" },
-				{ "CyborgWarrior" }
-			},	
-			{
-				{ "SpiderMutant" }
-			},
-			{
-				{ "AcidDragon" },
-				{ "BioMech" }
-			},
-			{
-				{ "PerScanDrone" },
-				{ "PlasmaSphere" }
-			},
-			{
-				{ "PerGunnerDrone" }
-			},
-			{
-				{ "PerGunnerDrone" }
-			},
-			{
-				{ "ReptilianWarrior" },
-				{ "MechSentinel" },
-				{ "StarTrooper" },
-				{ "AlienProtector" }
-			},
-			{
-				{ "BreatherBeast" },
-				{ "PlasmaAlien" }
-			},
-			{
-				{ "GiantStalker" },
-				{ "CrawlerBeast" },
-				{ "SpectorDemon" },
-				{ "ArmoredStalker" }
-			},
-			{
-				{ "GoldFire"}
-			},
-			{
-				{ "Informant" },
-			}	
-		}
-	},	
-	
-	{ //Blood
-		{
-			{
-				{ "Cultist",								"",						"",						"",						"CultistWellDone",		"CultistExtraCrispy"},
-			},
-			{
-				{ "Cultist",								"",						"",						"",						"CultistWellDone",		"CultistExtraCrispy"},
-			},
-			{
-				{ "BloodAcolyte",						"",						"",						"",						"CultistWellDone",		"CultistExtraCrispy"},
-			},
-			{
-				{ "Fanatic",								"",						"",						"",						"CultistWellDone",		"CultistExtraCrispy"},
-			},	
-			{
-				{ "AxeZombie" },
-				{ "GillBeast" }
-			},
-			{
-				{ "ChokingHand" }
-			},
-			{
-				{ "Butcher" }
-			},
-			{
-				{ "BloodBeast" }
-			},
-			{
-				{ "Zealot",							"",						"",						"",						"CultistWellDone",		"CultistExtraCrispy"}
-			},
-			{
-				{ "MotherSpider" }
-			},
-			{
-				{ "BloodBat" }
-			},
-			{
-				{ "BloodPhantasm" }
-			},
-			{
-				{ "BloodGargoyle" }
-			},	
-			{
-				{ "HellHound" } // heck hound is rev now
-			},
-			{
-				{ "BloodPriest",							"",						"",						"",						"CultistWellDone",		"CultistExtraCrispy"}
-			},
-			{
-				{ "Cerberus" },
-				{ "Cheogh" }
-			},
-			{
-				{ "Tchernobog" }
-			},
-			{
-				{ "Cultist", 							"",						"",						"",						"CultistWellDone",		"CultistExtraCrispy"}
-			}	
-		}
-	},
-	{	// Strife
-		{
-			{
-				{ "StrifeAcolyte" },
-				{ "StrifeAcolyte2" }
-			},
-			{
-				{ "StrifeAcolyte3" },
-				{ "StrifeAcolyte4" }
-			},
-			{
-				{ "StrifeCultist" }
-			},
-			{
-				{ "StrifeAcolyte5" },
-				{ "StrifeAcolyte6" }
-			},
-			{
-				{ "StrifeStalker" }
-			},
-			{
-				{ "ShadowStalker" }
-			},
-			{
-				{ "StrifeTemplar" }
-			},
-			{
-				{ "NewStrifeBishop" } 
-			},
-			{
-				{ "NewAlienSpectre2" },
-			},
-			{
-				{ "StrifeCrusader" },
-			},
-			{
-				{ "StrifeSentinel" },
-			},
-			{
-				{ "Programmer3" },
-				{ "NewAlienSpectre1" }
-			},
-			{
-				{ "Recycler" },
-			},
-			{
-				{ "StrifeReaver" },
-			},
-			{
-				{ "NewAlienSpectre3" }, 
-				{ "NewAlienSpectre4" }
-			},
-			{
-				{ "NewAlienSpectre5" },
-				{ "StrifeInquisitor" }
-			},
-			{
-				{ "StrifeEntity" }
-			},
-			{
-				{ "StrifeAcolyte7" },
-				{ "StrifeAcolyte8" }
-			}
-		}
-	},	
-	{ // Eradicator
-		{
-			{
-				{ "LSD" }
-			},
-			{
-				{ "EradArcher" }
-			},
-			{
-				{ "HSD" },
-			},
-			{
-				{ "Skeeving" }
-			},
-			{
-				{ "BoonBitter" }
-			},
-			{
-				{ "BoonBitter" }
-			},			
-			{
-				{ "HSD2" }
-			},
-			{
-				{ "RotoDroid" },
-			},
-			{
-				{ "LSD2" },
-			},
-			{
-				{ "RepairDroid" },
-			}, 
-			{	
-				{ "PatrolEyeSpawner" },
-				{ "MiniBio" },
-				{ "GunTurret1" }				
-			},
-			{
-				{ "MiniRepairDroid" },
-			},
-			{
-				{ "EradMindBreaker" },
-				{ "MiniMech" }
-			},
-			{
-				{ "LSD2" }
-			},
-			{
-				{ "RotoDroid" }
-			},
-			{
-				{ "RSA" },
-				{ "Skaal" }
-			},
-			{
-				{ "GorBoss" }
-			},	
-			{
-				{ "EradArcher" },
-			}
-		}
-	},	
-	{
-		{
-			{
-				{ "AnimatedProbe" }
-			},
-			{
-				{ "Rodex" }
-			},
-			{
-				{ "Bandor" }
-			},
-			{
-				{ "Eitak" }
-			},
-			{
-				{ "Semaj" }
-			},
-			{
-				{ "Semaj" }
-			},
-			{
-				{ "Otrebor" }
-			},
-			{
-				{ "EniramBoss" }
-			},
-			{
-				{ "Nerraw" }
-			},
-			{
-				{ "Ttocs" }
-			},
-			{
-				{ "SectorProbe" }
-			},
-			{ 
-				{ "C7AlienTeleport" }
-			},
-			{
-				{ "Ailoprobe" }
-			},
-			{
-				{ "Tenaj" },
-				{ "Eniram" }
-			},	
-			{
-				{ "C7MWarrior" }
-			},
-			{
-				{ "Tymok" },
-				{ "Solrac" }
-			},
-			{
-				{ "Tebazile" }
-			},
-			{
-				{ "OBCTerrorist" }
-			}
-		}
-	},	
-	{ // That Moon game or whatever
-		{
-			{
-				{ "UnBlueSuit" }
-			},
-			{
-				{ "UnShockTrooper" }
-			},
-			{
-				{ "UnBlueSuit" }
-			},
-			{
-				{ "BlackSuitStriker" }
-			},
-			{
-				{ "BabyEstronBeast" }
-			},
-			{ 
-				{ "BabyEstronBeast" }
-			},
-			{
-				{ "HeavyBlackSuit" }
-			},
-			{
-				{ "RMREstronBig" }
-			},
-			{
-				{ "RMREstronBig" }
-			},
-			{
-				{ "BigEstronBeast" }
-			},
-			{
-				{ "RMRLaserDrone"}, 
-				{ "RMRGrenadeDrone" }
-			},
-			{
-				{ "RMRSpinner" }			
-			},
-			{
-				{ "UNJTrooper" },
-				{ "RMRShoggran" }				
-			},
-			{
-				{ "TerranCommando" }
-			},
-			{
-				{ "RMRHoverGunner" }
-			},
-			{
-				{ "SubestronBoss" }
-			},
-			{
-				{ "RMRJCommando" }
-			},
-			{
-				{ "UnBlueSuit" }
-			},
-		}
-	},	
-	{// Star Wars Dark Forces
-		{
-			{
-				{ "storm_trooper" }
-			},
-			{
-				{ "imperial_commander"}
-			},
-			{
-				{ "DF_officer" }
-			},
-			{
-				{ "hoth_trooper" }
-			},
-			{
-				{ "gamorrean_guard" }
-			},
-			{
-				{ "gamorrean_guard" }
-			},
-			{
-				{ "gran___DF" }
-			},
-			{
-				{ "phase1_DF" }
-			},
-			{
-				{ "trandoshan_1" }
-			},
-			{
-				{ "KellDragon" }
-			},
-			{
-				{ "DFRemote" }
-			},
-			{
-				{ "probe_droid" }
-			},
-			{
-				{ "interrogation_droid" }
-			},
-			{
-				{ "gran___DF" }
-			},
-			{
-				{ "Phase2_DF" },
-				{ "boba_fett" }
-			},
-			{
-				{ "jerec" }
-			},
-			{
-				{ "Phase3_df" }
-			},
-			{
-				{ "storm_trooper" }
-			}
-		}
-	},	
-	{ //IPOGreed
-		{
-			{
-				{ "IPOGTrooper" },
-				{ "IPOGPrisoner" }
-			},
-			{
-				{ "IPOGEliteCorp" }
-			},
-			{
-				{ "]POGBigHead" },
-				{ "IPOGPriestess" }
-			},
-			{
-				{ "IPOGHuntress" }
-			},
-			{
-				{ "IPOGBerserker" }
-			},
-			{
-				{ "IPOGBerserker" }
-			},
-			{
-				{ "IPOGGuard" }
-			},
-			{
-				{ "IPOGWizard" }
-			},
-			{
-				{ "IPOGBigGuard" }
-			},
-			{
-				{ "IPOGMastiff" }
-			},
-			{	
-				{ "IPOGSentrySphere0" }
-			},
-			{
-				{ "IPOGImperialDrone" }
-			},
-			{
-				{ "IPOGSentrySphere" }
-			},
-			{
-				{ "IPOGVeekWarrior" }
-			},
-			{
-				{ "IPOGWizard" }
-			},
-			{
-				{ "IPOGSentinal" },
-				{ "IPOGBrnourd" }
-			},
-			{
-				{ "IPOGChancellor" }
-			},
-			{
-				{ "IPOGPrisoner" }
-			},	
-		}
-	},	
-	{//Disrup
-		{
-			{
-				{ "DisruptorMutantSoldier" }
-			},
-			{
-				{ "DisruptorMutantElite" },
-				{ "DisruptorCryopirate" }
-			},
-			{
-				{ "DisruptorMRat" },
-				{ "DisruptorTerroristDroid" }
-			},
-			{
-				{ "DisruptorTerroristRepeater" },
-				{ "DisruptorTerroristCyclone" }
-			},
-			{
-				{ "DsrptSawRobot" }
-			},
-			{
-				{ "DisruptorNightmareSpider" }
-			},
-			{
-				{ "DisruptorIceDisruptor" }
-			},
-			{
-				{ "DisruptorNDisruptor" },
-				{ "DisruptorAGuardian" }
-			},
-			{
-				{ "DisruptorMBrute" }
-			},
-			{
-				{ "DisruptorGuardDroid" }
-			},
-			{
-				{ "DisruptorDragonFly" },
-				{ "AlienWanderer_T1" },
-				{ "DsrptSilverSpikeBall" },
-				{ "DsrptGoldSpikeBall" },
-				{ "DsrptPsionicSpikeBall" }
-			},
-			{
-				{ "DisruptorAcidBloater" },
-				{ "DisruptorNightmareSphere" }
-			},
-			{
-				{ "DS_Flying_Droid" },
-				{ "AlienWanderer_T2" },
-			},
-			{
-				{ "DisruptorTerroristDroid2" },
-				{ "DisruptorTerroristElite" }
-			},
-			{
-				{ "Nightmare_Demon" }
-			},
-			{
-				{ "DisruptorGiantDisruptor" }
-			},
-			{
-				{ "DS_PresidentK", "", "", "", "DSKriegerHard", "DSKriegerHard" }
-			},
-			{
-				{ "DisruptorHostageDroid" }
-			}
-		}
-	},	
-	{ //Witchaven
-		{
-			{
-				{ "WTSkeleton" },
-				{ "WTRandomGoblin" },
-				{ "WTBrownMidianWarriorMixer" },
-				{ "WitchavenSpider" }
-			},
-			{
-				{ "WTRandomOgre" },
-				{ "WitchavenImp" },
-				{ "WTArgothonianMixer" }
-			},
-			{
-				{ "WTLavaFiend" },
-				{ "WTMuckDemoness" }
-			},
-			{
-				{ "WTCiraenSentinelLowMixer"}
-			},
-			{
-				{ "WTRedMidianWarriorMixer" },
-				{ "WTRandomGonzo" },
-				{ "WitchavenBrute" },
-				{ "MinoDrake" }
-			},
-			{
-				{ "WitchavenShadowHound" },
-				{ "WTRandomGonzo" }
-			},
-			{
-				{ "WTPurpleMidianWarriorMixer" }
-			},
-			{
-				{ "WTGreyWitch" }
-			},
-			{
-				{ "WTCiraenSentinelHighMixer" }
-			},
-			{
-				{ "WTSkeletalPriestess" }
-			},
-			{
-				{ "WTWillOWisp" },
-			},
-			{
-				{ "Witchaven2Guardian" }
-			},
-			{
-				{ "Witchaven1Guardian" }
-			},
-			{
-				{ "WTBlueMidianWarriorMixer" },
-				{ "WTArgothonianHighMixer" }
-			},
-			{
-				{ "WitchavenScaryScreamer" }
-			},
-			{
-				{ "WitchavenDragon" },
-				{ "WTIllwhyrin" }
-			},
-			{
-				{ "WTCiraeArgoth" }
-			},
-			{
-				{ "WTRandomGoblin" } // placeholder for Tekwar
-			}	
-		}
-	},	
-	{ // Half-Life
-		{ 
-			{
-				{ "Headcrab" },
-				{ "HLHoundeye", "HLEasy", "HLEasy", "HLNormal", "HLHard", "HLNightmare" }
-			},
-			{
-				{ "HECU_Shotgun1" },
-				{ "HECU_Shotgun2" },
-				{ "HLAssassin", "", "", "", "HLHard", "HLHard" }
-			},
-			{
-				{ "Vortigaunt", "", "", "", "HLHard", "HLNightmare" },
-				{ "HLPitDrone" }
-			},	
-			{
-				{ "HECU_Grunt1" },
-				{ "HECU_Grunt2" },
-				{ "HECU_M203" },
-				{ "HECU_Commander1" },
-				{ "HECU_Commander2" }
-			},	
-			{
-				{ "Headcrab_Scientist" },
-				{ "Headcrab_Barney" },
-				{ "Headcrab_Soldier" },
-				{ "Bullsquid", "", "HLNormal", "HLHard", "HLHard" }
-			},
-			{
-				{ "Headcrab_Scientist" },
-				{ "Headcrab_Barney" },
-				{ "Headcrab_Soldier" },
-				{ "Bullsquid", "", "HLNormal", "HLHard", "HLHard" }
-			},
-			{
-				{ "Gonome" }
-			},
-			{
-				{ "ShockTrooper" }
-			},
-			{
-				{ "HLAbrams" },
-				{ "HLBradley" }
-			},
-			{
-				{ "Voltigore" }
-			},
-			{
-				{ "Stukabat" }
-			},
-			{
-				{ "HLController" }
-			},
-			{
-				{ "HLController" }
-			},
-			{
-				{ "AlienGrunt", "HLEasy", "HLNormal", "HLHard", "HLNightmare" },
-				{ "HECU_Sarge" }
-			},
-			{
-				{ "HECU_Robot1" },
-				{ "HECU_Robot2" }
-			},
-			{
-				{ "Gargantua" },
-				{ "HLKingpin" },
-				{ "HLPitWorm" }
-			},
-			{
-				{ "Gonarch" },
-				{ "Nihilanth" },
-				{ "Geneworm" }
-			},
-			{
-				{ "Combine_Soldier_MP7" },
-				{ "Combine_Soldier_MP7_Dirty" },
-				{ "Combine_Soldier_Shotgun" },
-				{ "Combine_Soldier_Shotgun_Dirty"},
-				{ "Combine_Soldier_AR2" },
-				{ "Combine_Soldier_AR2_Dirty" },
-				{ "Combine_Elite_AR2" },
-				{ "Combine_Elite_AR2_Dirty" }
-			},
-		},
-		{ //Op4
-			{
-				{ "Headcrab" },
-				{ "HLHoundeye", "HLEasy", "HLEasy", "HLNormal", "HLHard", "HLNightmare" }
-			},		
-			{
-				{ "HLAssassin", "", "", "", "HLHard", "HLHard" },
-				{ "BullSquid" },
-				{ "HECU_FGrunt_Opp_Small" }
-			},	
-			{
-				{ "Vortigaunt", "", "", "", "HLHard", "HLNightmare" },
-				{ "HLPitDrone" }
-			},				
-			{
-				{ "MaleAssassin1_MP5" },
-				{ "MaleAssassin2_MP5" },
-				{ "MaleAssassin3_MP5" },
-				{ "HECU_FGrunt_Opp_MG" }
-			},
-			{
-				{ "Headcrab_Scientist" },
-				{ "Headcrab_Barney" },
-				{ "Headcrab_Soldier" },
-				{ "Bullsquid" }
-			},
-			{
-				{ "Headcrab_Scientist" },
-				{ "Headcrab_Barney" },
-				{ "Headcrab_Soldier" },
-				{ "Bullsquid" }
-			},
-			{
-				{ "Gonome" }
-			},
-			{
-				{ "ShockTrooper" }
-			},
-			{
-				{ "HLAbrams" },
-				{ "HLBradley" }
-			},
-			{
-				{ "Voltigore" }
-			},
-			{
-				{ "Stukabat" }
-			},
-			{
-				{ "HLController" }
-			},
-			{
-				{ "HLController" }
-			},
-			{
-				{ "AlienGrunt" },
-				{ "MaleAssassin1_M40" },
-				{ "MaleAssassin2_M40" },
-				{ "MaleAssassin3_M40" }
-			},
-			{
-				{ "HECU_Robot1" },
-				{ "HECU_Robot2" }
-			},
-			{
-				{ "Gargantua" },
-				{ "HLKingpin" },
-				{ "HLPitWorm" }
-			},
-			{
-				{ "Gonarch" },
-				{ "Nihilanth" },
-				{ "Geneworm" }
-			},
-			{
-				{ "Combine_Soldier_MP7" },
-				{ "Combine_Soldier_MP7_Dirty" },
-				{ "Combine_Soldier_Shotgun" },
-				{ "Combine_Soldier_Shotgun_Dirty"},
-				{ "Combine_Soldier_AR2" },
-				{ "Combine_Soldier_AR2_Dirty" },
-				{ "Combine_Elite_AR2" },
-				{ "Combine_Elite_AR2_Dirty" }
-			},
-		}
-	},	
-};
-//				speed0		health0		weight0		speed1		health1		weight1		speed2		health2		weight2		speed3		health3		weight3		speed4		health4		weight4
-int monsterSelectStat[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_ITEMS] = 
-{	
-	{ //Doom
-		{},
-		{
-			{},
-			{},
-			{
-				{0, 		0, 			4, 			0, 			0, 			3, 			0, 			0, 			2, 			0, 			0, 			1, 			0, 			0, 			-1 }, 
-				{0, 		0, 			1, 			0, 			0, 			2, 			0, 			0, 			3, 			0, 			0, 			4}
+			{//Belphegor
+				{"Belphegor2"}
 			}
 		},
-		{
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{	
-				{0, 		0, 			8, 			0, 			0, 			8, 			0, 			0, 			8, 			0, 			0, 			8, 			0, 			0, 			8 },	
-				{0, 		0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5 },	
-				{0, 		0, 			4, 			0, 			0, 			4, 			0, 			0, 			4, 			0, 			0, 			4, 			0, 			0, 			4 },	
-				{0, 		0, 			3, 			0, 			0, 			3, 			0, 			0, 			3, 			0, 			0, 			3, 			0, 			0, 			3 },	
-				{0, 		0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2 },	
+		{//64
+			{//Zombieman
+				{"Zombieman64"}
 			},
-			{},
-			{
-				{0, 		0, 			6, 			0, 			0, 			6, 			0, 			0, 			6, 			0, 			0, 			6, 			0, 			0, 			6 },	
-				{0, 		0, 			4, 			0, 			0, 			4, 			0, 			0, 			4, 			0, 			0, 			4, 			0, 			0, 			4 },	
-				{0, 		0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2 },	
+			{//Shotgunguy
+				{"Shotgunguy64"}
 			},
-		}
-	},	
-	{},
-	{},
-	{ //Wolf 3D
-		{},
-		{},
-		{
-			{},
-			{},
-			{},
-			{
-				{0, 		0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5 },	
-				{0, 		0, 			3, 			0, 			0, 			3, 			0, 			0, 			3, 			0, 			0, 			3, 			0, 			0, 			3 },	
+			{//Doom Imp
+				{"DoomImp64"},
+				{"NightmareImp64"}
 			},
-		}
-	},
-	{ //Hexen
-		{
-			{},
-			{},
-			{
-				{0, 		0, 			1, 			0, 			0, 			1, 			0, 			0, 			1, 			0, 			0, 			1, 			0, 			0, 			1 }, 
-				{0, 		0, 			3, 			0, 			0, 			3, 			0, 			0, 			3, 			0, 			0, 			3, 			0, 			0, 			3 }, 
+			{//Chaingunguy
+				{"Chaingunguy64"}
+			},
+			{//Demon
+				{"Demon64"}
+			},
+			{//Spectre
+				{"Spectre64"}
+			},
+			{//Hell Knight
+				{"HellKnight64"}
+			},
+			{//Baron of Hell
+				{"BaronofHell64"}
+			},
+			{//Arachnotron
+				{"Arachnotron64"}
+			},
+			{//Mancubus
+				{"Fatso64"}
+			},
+			{//Lost Soul
+				{"LostSoul64"}
+			},
+			{//Pain Elemental
+				{"PainElemental64"}
+			},
+			{//Cacodemon
+				{"Cacodemon64"}
+			},
+			{//Revenant
+				{"Revenant64"}
+			},
+			{//Archvile
+				{"Archvile64"}
+			},
+			{//Cyberdemon
+				{"Cyberdemon64"}
+			},
+			{//Spider Mastermind
+				{"SpiderMastermind64"},
+				{"MotherDemon64"}
+			},
+			{//Wolfenstein SS
+				{"WolfensteinSSJagaur"}
+			},
+			{//Super Shotgunguy
+				{"SuperShotgunguy2"}
+			},
+			{//Dark Imp
+				{"DarkImp2"}
+			},
+			{//Blood Demon
+				{"BloodDemon2"}
+			},
+			{//Cacolantern
+				{"Cacolantern2"}
+			},
+			{//Abaddon
+				{"Abaddon2"}
+			},
+			{//Hectebus
+				{"Hectebus2"}
+			},
+			{//Belphegor
+				{"Belphegor2"}
+			}
+		},
+		{//VDR
+			{//Zombieman
+				{"ZombieManRandomizer"}
+			},
+			{//Shotgunguy
+				{"ShotgunguyRandomizer"}
+			},
+			{//Doom Imp
+				{"DoomImpRandomizer"}
+			},
+			{//Chaingunguy
+				{"ChaingunguyRandomizer"}
+			},
+			{//Demon
+				{"DoomDemonRandomizer"}
+			},
+			{//Spectre
+				{"SpectreRandomizer"}
+			},
+			{//Hell Knight
+				{"HellKnightRandomizer"}
+			},
+			{//Baron of Hell
+				{"BaronofHell3"},
+				{"MMRandomizer_HellsFury"},
+				{"MMRandomizer_CyberBaron"},
+				{"MMRandomizer_BruiserDemon"},
+				{"MMRandomizer_Belphegor"}
+			},
+			{//Arachnotron
+				{"{Arachnotron3"},
+				{"MMRandomizer_ChaingunArachnotron"},
+				{"MMRandomizer_RailgunArachnotron"}
+			},
+			{//Mancubus
+				{"{Fatso3"},
+				{"MMRandomizer_Cryocubus"},
+				{"MMRandomizer_Hectebus"}
+			},
+			{//Lost Soul
+				{"LostSoulRandomizer"}
+			},
+			{//Pain Elemental
+				{"PainElementalRandomizer"}
+			},
+			{//Cacodemon
+				{"CacodemonRandomizer"}
+			},
+			{//Revenant
+				{"RevenantRandomizer"}
+			},
+			{//Archvile
+				{"ArchvileRandomizer"}
+			},
+			{//Cyberdemon
+				{"{Cyberdemon3"},
+				{"MMRandomizer_ArchonOfHell"},
+				{"MMRandomizer_Annihilator"}
+			},
+			{//Spider Mastermind
+				{"{SpiderMastermind3"},
+				{"MMRandomizer_ArachnorbQueen"},
+				{"MMRandomizer_Demolisher"}
+			},
+			{//Wolfenstein SS
+				{"Nazi3"}
+			},
+			{//Super Shotgunguy
+				{"SuperShotgunguy2"}
+			},
+			{//Dark Imp
+				{"DarkImp2"}
+			},
+			{//Blood Demon
+				{"BloodDemon2"}
+			},
+			{//Cacolantern
+				{"Cacolantern2"}
+			},
+			{//Abaddon
+				{"Abaddon2"}
+			},
+			{//Hectebus
+				{"Hectebus2"}
+			},
+			{//Belphegor
+				{"Belphegor2"}
 			}
 		}
 	},
-	{ //Duke 3D
-		{
-			{},
-			{},
-			{
-				{0, 		0, 			12, 		0, 			0, 			12, 		0, 			0, 			12, 		0, 			0, 			12, 		0, 			0, 			12 }, 
-				{0, 		0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2 }, 
+	{//Chex
+		{//Main
+			{//Zombieman
+				{"FlemoidusCommonus3"}
 			},
-			{
-				{0, 		0, 			7, 			0, 			0, 			7, 			0, 			0, 			7, 			0, 			0, 			7, 			0, 			0, 			7 }, 
+			{//Shotgunguy
+				{"FlemoidusBipedicus3"}
 			},
-			{
-				{0, 		0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5 }, 
+			{//Doom Imp
+				{"NewArmoredFlemoidusBipedicus"}
 			},
-			{
-				{0, 		0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5 }, 
+			{//Chaingunguy
+				{"NewArmoredFlemoidusBipedicus"}
 			},
-			{
-				{0, 		0, 			15, 		0, 			0, 			15, 		0, 			0, 			15, 		0, 			0, 			15, 		0, 			0, 			15 }, 
+			{//Demon
+				{"NewFlemoidusStridicus"}
 			},
-			{},
-			{
-				{0, 		0, 			19, 		0, 			0, 			19, 		0, 			0, 			19, 		0, 			0, 			19, 		0, 			0, 			19 }, 
-			},	
-		},
-		{
-			{
-				{0, 		0, 			14, 		0, 			0, 			14, 		0, 			0, 			14, 		0, 			0, 			14, 		0, 			0, 			14 }, 
+			{//Spectre
+				{"NewFlemoidusCycloptisCommonus"},
+				{"NewLarva"}
 			},
-			{},
-			{
-				{0, 		0, 			12, 		0, 			0, 			12, 		0, 			0, 			12, 		0, 			0, 			12, 		0, 			0, 			12 }, 
-				{0, 		0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2, 			0, 			0, 			2 }, 
+			{//Hell Knight
+				{"NewQuadrumpus"}
 			},
-			{
-				{0, 		0, 			7, 			0, 			0, 			7, 			0, 			0, 			7, 			0, 			0, 			7, 			0, 			0, 			7 }, 
+			{//Baron of Hell
+				{"OldFlemoidusMaximusDoom"}
 			},
-			{
-				{0, 		0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5 }, 
+			{//Arachnotron
+				{"NewQuadrumpus"}
 			},
-			{
-				{0, 		0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5, 			0, 			0, 			5 }, 
+			{//Mancubus
+				{"NewQuadrumpus"}
 			},
-			{
-				{0, 		0, 			15, 		0, 			0, 			15, 		0, 			0, 			15, 		0, 			0, 			15, 		0, 			0, 			15 }, 
+			{//Lost Soul
+				{"FlemMine2"},
+				{"NewFlemoidusGyro"}
 			},
-			{},
-			{
-				{0, 		0, 			19, 		0, 			0, 			19, 		0, 			0, 			19, 		0, 			0, 			19, 		0, 			0, 			19 }, 
-			},	
+			{//Pain Elemental
+				{"SuperCycloptis2"}
+			},
+			{//Cacodemon
+				{"SuperCycloptis2"}
+			},
+			{//Revenant
+				{"NewQuadrumpus"}
+			},
+			{//Archvile
+				{"OldFlemoidusMaximusDoom"}
+			},
+			{//Cyberdemon
+				{"NewSnotfolus"}
+			},
+			{//Spider Mastermind
+				{"FlembominationNew"}
+			},
+			{//Wolfenstein SS
+				{"YellowArmoredFlemoid"}
+			},
+			{//Super Shotgunguy
+				{"SuperShotgunguy2"}
+			},
+			{//Dark Imp
+				{"DarkImp2"}
+			},
+			{//Blood Demon
+				{"BloodDemon2"}
+			},
+			{//Cacolantern
+				{"Cacolantern2"}
+			},
+			{//Abaddon
+				{"Abaddon2"}
+			},
+			{//Hectebus
+				{"Hectebus2"}
+			},
+			{//Belphegor
+				{"Belphegor2"}
+			}
 		}
 	},
-	{ //Marathon
-		{
-			{
-				{0.88, 		0.5, 			4, 			0.94, 			0.75, 			4, 			0, 			0, 			3, 			1.13, 			1.25, 			1, 			1.25, 			1.5, 			-1 }, 
-				{0.81, 		0.5, 			-1, 			0.87, 			0.75, 			2, 			0, 			0, 			3, 			1.05, 			1.25, 			4,				1.15,			1.5,			 4 },
-				{0.88, 		0.5, 			4, 			0.94, 			0.75, 			4, 			0, 			0, 			3, 			1.13, 			1.25, 			1, 			1.25, 			1.5, 			-1 }, 	
-				{0.81, 		0.5, 			-1, 			0.87, 			0.75, 			2, 			0, 			0, 			3, 			1.05, 			1.25, 			4,				1.15,			1.5,			 4 },
-				{0, 		0, 			-1, 			0, 			0, 			1, 			0, 			0, 			2, 			0, 			0, 			3, 			0, 			0, 			4}, 	
-				{0, 		0, 			-1, 			0, 			0, 			1, 			0, 			0, 			2, 			0, 			0, 			3, 			0, 			0, 			4}		
+	{//Heretic
+		{//Main
+			{//Zombieman
+				{"Mummy3Doom"}
 			},
-			{
-				{0.81, 		0.5, 			5, 			0.87, 			0.75, 			4, 			0, 			0, 			4, 			1.05, 			1.25, 			2,				1.15,			1.5,			 1 },				
-				{0.81, 		0.5, 			5, 			0.87, 			0.75, 			4, 			0, 			0, 			4, 			1.05, 			1.25, 			2,				1.15,			1.5,			 1 },	
-				{0, 		0, 			-1, 			0, 			0, 			1, 			0, 			0, 			2, 			0, 			0, 			3, 			0, 			0, 			4}, 	
-				{0, 		0, 			-1, 			0, 			0, 			1, 			0, 			0, 			2, 			0, 			0, 			3, 			0, 			0, 			4}, 		
-				{0.88, 		0.5, 			1, 			0.94, 			0.75, 			1, 			0, 			0, 			2, 			1.13, 			1.25, 			4,				1.25,			1.5,			 4 },				
-				{0.88, 		0.5, 			1, 			0.94, 			0.75, 			1, 			0, 			0, 			2, 			1.13, 			1.25, 			4,				1.25,			1.5,			 4 }
+			{//Shotgunguy
+				{"MummyLeader3Doom"}
 			},
-			{
-				{0.88, 		0.5, 			3, 			0.94, 			0.75, 			2, 			0, 			0, 			4, 			1.13, 			1.25, 			4,				1.25,			1.5,			 1 },	
-				{0.88, 		0.5, 			4, 			0.94, 			0.75, 			2, 			0, 			0, 			3, 			1.13, 			1.25, 			2,				1.25,			1.5,			 4 },
-				{0.88, 		0.5, 			-1, 			0.94, 			0.75, 			-1, 			0, 			0, 			1, 			1.13, 			1.25, 			2,				1.25,			1.5,			 3 }
+			{//Doom Imp
+				{"HereticImpLeader3"}
 			},
-			{
-				{0.88, 		0.5, 			3, 			0.94, 			0.75, 			2, 			0, 			0, 			4, 			1.13, 			1.25, 			4,				1.25,			1.5,			 2 },	
-				{0.88, 		0.5, 			3, 			0.94, 			0.75, 			2, 			0, 			0, 			4, 			1.13, 			1.25, 			4,				1.25,			1.5,			 2 },	
-				{0.88, 		0.5, 			-1, 			0.94, 			0.75, 			-1, 			0, 			0, 			1, 			1.13, 			1.25, 			2,				1.25,			1.5,			 4 },	
-				{0.88, 		0.5, 			-1, 			0.94, 			0.75, 			-1, 			0, 			0, 			1, 			1.13, 			1.25, 			2,				1.25,			1.5,			 4 }
+			{//Chaingunguy
+				{"Knight3Doom"}
 			},
-			{
-				{0.88,		0.5,			5,				0.94,			0.75,			5,				0,				0,				5,				1.13,			1.25,			3,				1.25,			1.5,			 1},
-				{0.88,		0.5,			2,				0.94,			0.75,			2,				0,				0,				4,				1.13,			1.25,			5,				1.25,			1.5,			 4},
-				{0.76,		0.8,			1,				0.95,			0.9,				1,				0,				0,				2,				1.19,			1.2,				2,				1.5,				1.4,			 3},	
-				{0.89,		0.7,			-1,			0.96,			0.8,				-1,			0,				0,				1,				1.19,			1.2,				1,				1.32,			1.5,			 1},
-				{0.73,		0.5,			3,				0.8,				0.66,			3,				0,				0,				4,				1.13,			1.34,			3,				1.25,			1.5,			 2},
-			},	
-			{
-				{0.88,		0.5,			4,				0.94,			0.75,			4,				0,				0,				4,				1.13,			1.25,			5,				1.25,			1.5,			 4},
-				{0,			0,				1,				0,					0,					1,				0,				0,				2,				0,					0,					3,				0,					0,				 3},
-				{0,			0,				1,				0,					0,					1,				0,				0,				2,				0,					0,					3,				0,					0,				 3},
-				{0.76,		0.8,			1,				0.95,			0.9,				1,				0,				0,				2,				1.19,			1.2,				2,				1.5,				1.4,			 3},	
-				{0.89,		0.7,			-1,			0.96,			0.8,				-1,			0,				0,				1,				1.19,			1.2,				1,				1.32,			1.5,			 1},
-				{0.73,		0.5,			5,				0.8,				0.66,			5,				0,				0,				2,				1.13,			1.34,			2,				1.25,			1.5,			 1},
-			},	
-			{
-				{0.88,		0.5,			5,				0.94,			0.75,			5,				0,				0,				5,				1.13,			1.25,			5,				1.25,			1.5,			 5},
-				{0.88,		0.5,			5,				0.94,			0.75,			5,				0,				0,				5,				1.13,			1.25,			5,				1.25,			1.5,			 5},
-			},	
-			{
-				{0.88,		0.5,			5,				0.94,			0.75,			5,				0,				0,				5,				1.13,			1.25,			5,				1.25,			1.5,			 5},
-				{0.88,		0.5,			5,				0.94,			0.75,			5,				0,				0,				5,				1.13,			1.25,			5,				1.25,			1.5,			 5},
-				{0.88,		0.5,			1,				0.94,			0.75,			1,				0,				0,				2,				1.13,			1.25,			3,				1.25,			1.5,			 4}
-			},	
-			{
-				{0.88,		0.5,			4,				0.94,			0.75,			4,				0,				0,				3,				1.13,			1.25,			2,				1.25,			1.5,			1},
-				{0.88,		0.5,			1,				0.94,			0.75,			2,				0,				0,				3,				1.13,			1.25,			3,				1.25,			1.5,			4},
-//				{0.88,		0.5,			1,				0.94,			0.75,			1,				0,				0,				2,				1.13,			1.25,			2,				1.25,			1.5,			3},
+			{//Demon
+				{"Clink3Doom"}
 			},
-			{
-				{0.88,		0.5,			4,				0.94,			0.75,			4,				0,				0,				3,				1.13,			1.25,			2,				1.25,			1.5,			1},
-				{0.88,		0.5,			1,				0.94,			0.75,			2,				0,				0,				3,				1.13,			1.25,			4,				1.25,			1.5,			5},
-				{0.88,		0.5,			1,				0.94,			0.75,			1,				0,				0,				1,				1.13,			1.25,			1,				1.25,			1.5,			2},
+			{//Spectre
+				{"KnightGhost3Doom"},
+				{"MummyGhost3Doom"},
+				{"MummyLeaderGhost3Doom"}
 			},
-			{
-				{0.88,		0.5,			3,				0.94,			0.75,			3,				0,				0,				3,				1.13,			1.25,			2,				1.25,			1.5,			1},
-				{0,			0,				3,				0,					0,					3,				0,				0,				3,				0,					0,					2,				0,					0,				-1},
-				{0,			0,				1,				0,					0,					1,				0,				0,				1,				0,					0,					-1,			0,					0,				-1},
-				{0.88,		0.5,			1,				0.94,			0.75,			1,				0,				0,				2,				1.13,			1.25,			3,				1.25,			1.5,			4},
-				{0,			0,				-1,			0,					0,					-1,			0,				0,				1,				0,					0,					3,				0,					0,				4},
-				{0,			0,				-1,			0,					0,					-1,			0,				0,				-1,			0,					0,					1,				0,					0,				1},
+			{//Hell Knight
+				{"Beast3Doom"}
 			},
-			{
-				{0.88,		0.5,			5,				0.94,			0.75,			5,				0,				0,				5,				1.13,			1.25,			3,				1.25,			1.5,			1},
-				{0.88,		0.5,			5,				0.94,			0.75,			5,				0,				0,				5,				1.13,			1.25,			3,				1.25,			1.5,			1},
-				{0.88,		0.5,			3,				0.94,			0.75,			3,				0,				0,				4,				1.13,			1.25,			3,				1.25,			1.5,			2},
-				{0.88,		0.5,			1,				0.94,			0.75,			1,				0,				0,				2,				1.13,			1.25,			4,				1.25,			1.5,			5},
-				{0,			0,				-1,			0,					0,					-1,			0,				0,				1,				0,					0,					2,				0,					0,				3},
-				{0.88,		0.5,			2,				0.94,			0.75,			2,				0,				0,				3,				1.13,			1.25,			2,				1.25,			1.5,			4},
-			},	
-			{
-				{0.88,		0.5,			4,				0.94,			0.75,			4,				0,				0,				4,				1.13,			1.25,			3,				1.25,			1.5,			3},
-				{0,			0,				-1,			0,					0,					-1,			0,				0,				1,				0,					0,					1,				0,					0,				2},
-				{0.88,		0.5,			4,				0.94,			0.75,			4,				0,				0,				4,				1.13,			1.25,			3,				1.25,			1.5,			3}
+			{//Baron of Hell
+				{"Beast3Doom"}
 			},
-			{
-				{0.88,		0.5,			2,				0.94,			0.75,			2,				0,				0,				3,				1.13,			1.25,			1,				1.25,			1.5,			2},
-				{0.88,		0.5,			4,				0.94,			0.75,			4,				0,				0,				3,				1.13,			1.25,			2,				1.25,			1.5,			1},
-				{0.88,		0.5,			1,				0.94,			0.75,			1,				0,				0,				2,				1.13,			1.25,			1,				1.25,			1.5,			2},
-				{0.88,		0.5,			3,				0.94,			0.75,			3,				0,				0,				2,				1.13,			1.25,			4,				1.25,			1.5,			4},
-			},	
-			{
-				{0.88,		0.5,			4,				0.94,			0.75,			4,				0,				0,				3,				1.13,			1.25,			2,				1.25,			1.5,			1},
-				{0.88,		0.5,			2,				0.94,			0.75,			2,				0,				0,				2,				1.13,			1.25,			2,				1.25,			1.5,			4},
-				{0.73,		0.5,			1,				0.78,			0.75,			1,				0,				0,				1,				1.13,			1.25,			2,				1.25,			1.5,			3},
+			{//Arachnotron
+				{"Snake3Doom"},
+				{"Beast3Doom"}
 			},
-			{
-				{0.88,		0.5,			1,				0.94,			0.75,			1,				0,				0,				1,				1.13,			1.25,			2,				1.25,			1.5,			3},
-				{0.88,		0.5,			3,				0.94,			0.75,			3,				0,				0,				2,				1.13,			1.25,			2,				1.25,			1.5,			1},
+			{//Mancubus
+				{"Beast3Doom"}
 			},
-			{
-				{0.88,		0.5,			2,				0.94,			0.75,			2,				0,				0,				2,				1.13,			1.25,			2,				1.25,			1.5,			2},
+			{//Lost Soul
+				{"HereticImp3"}
 			},
-		}	
-	},	
-	{
-		{	
-			{
-				{0,			0,				3,				0,					0,					3,				0,				0,				3,				0,					0,					4,				0,					0,				4},
-				{0,			0,				2,				0,					0,					2,				0,				0,				1,				1.25,			0,					1,				2.0,				0,				1}
+			{//Pain Elemental
+				{"Wizard3Doom"}
 			},
-			{},
-			{},
-			{},
-			{
-				{0,			0,				5,				0,					0,					5,				0,				0,				4,				1.25,			0,					4,				2.0,				0,				3},
-				{0,			0,				1,				0,					0,					1,				0,				0,				1,				1.25,			0,					2,				2.0,				0,				2},
-				{0,			0,				2,				0,					0,					2,				0,				0,				2,				1.25,			0,					1,				2.0,				0,				1}
+			{//Cacodemon
+				{"Wizard3Doom"}
 			},
-			{
-				{0,			0,				5,				0,					0,					5,				0,				0,				4,				0,					0,					4,				0,					0,				4},
-				{0,			0,				1,				0,					0,					1,				0,				0,				1,				0,					0,					2,				0,					0,				3},
-				{0,			0,				1,				0,					0,					1,				0,				0,				1,				0,					0,					2,				0,					0,				3},
-				{0,			0,				1,				0,					0,					1,				0,				0,				1,				0,					0,					2,				0,					0,				3}
+			{//Revenant
+				{"Snake3Doom"}
 			},
-			{
-				{0,			0,				3,				0,					0,					3,				0,				0,				3,				0,					0,					2,				0,					0,				2},
-				{0,			0,				1,				0,					0,					1,				0,				0,				2,				0,					0,					2,				0,					0,				3}
+			{//Archvile
+				{"IronLich3Doom"}
 			},
-			{
-				{0,			0,				2,				0,					0,					2,				0,				0,				2,				0,					0,					2,				0,					0,				2},
-				{0,			0,				2,				0,					0,					2,				0,				0,				2,				0,					0,					2,				0,					0,				2},
-				{0,			0,				2,				0,					0,					2,				0,				0,				2,				0,					0,					2,				0,					0,				2},
-				{0,			0,				1,				0,					0,					1,				0,				0,				1,				0,					0,					1,				0,					0,				1},
+			{//Cyberdemon
+				{"Minotaur3"}
 			},
-			{},
-			{
-				{0,			0,				4,				0,					0,					4,				0,				0,				3,				0,					0,					4,				0,					0,				2},
-				{0,			0,				1,				0,					0,					1,				0,				0,				1,				0,					0,					2,				0,					0,				2}
+			{//Spider Mastermind
+				{"Sorcerer5"}
 			},
-			{},
-			{},
-			{},
-			{
-				{0,			0,				3,				0,					0,					5,				0,				0,				3,				0,					0,					2,				0,					0,				-1},
-				{0,			0,				-1,			0,					0,					1,				0,				0,				1,				0,					0,					3,				0,					0,				 3}
+			{//Wolfenstein SS
+				{"CyCloneGrunt"}
 			},
-			{},
-			{
-				{0,			0,				2,				0,					0,					2,				0,				0,				2,				0,					0,					2,				0,					0,				3},
-				{0,			0,				1,				0,					0,					1,				0,				0,				2,				0,					0,					2,				0,					0,				2}
+			{//Super Shotgunguy
+				{"MummyLeader3Doom"}
 			},
-			{
-				{0,			0,				1,				0,					0,					1,				0,				0,				2,				0,					0,					3,				0,					0,				4},
-				{0,			0,				2,				0,					0,					2,				0,				0,				2,				0,					0,					2,				0,					0,				1}
+			{//Dark Imp
+				{"HereticImpLeader3"}
 			},
-			{},
+			{//Blood Demon
+				{"Clink3Doom"}
+			},
+			{//Cacolantern
+				{"Wizard3Doom"}
+			},
+			{//Abaddon
+				{"Wizard3Doom"}
+			},
+			{//Hectebus
+				{"Beast3Doom"}
+			},
+			{//Belphegor
+				{"Beast3Doom"}
+			}
 		}
-	},	
-	{ //RoTT
-		{
-			{	
-				{0,			0.75,		1,				0,					0,					1,				0,				1.25,		1,				0,					1.5,				1,				0,					1.75,		1},
+	},
+	{//Wolfenstein 3D
+		{//Classic
+			{//Zombieman
+				{"WolfGuard"}
 			},
-			{
-				{0,			0.9,			5,				0,					0,					5,				0,				1.2,			5,				0,					1.5,				5,				0,					1.8,			1},
-				{0,			0.9,			1,				0,					0,					2,				0,				1.2,			3,				0,					1.5,				4,				0,					1.8,			1},
+			{//Shotgunguy
+				{"WolfOfficer"},
+				{"WolfGuard"}
 			},
-			{
-				{0,			0.75,		1,				0,					0,					1,				0,				1.25,		1,				0,					1.5,				1,				0,					1.75,		1},
+			{//Doom Imp
+				{"WolfOfficer"}
 			},
-			{
-				{0,			0.7,			5,				0,					0,					5,				0,				1.3,			5,				0,					1.6,				5,				0,					2.0,			1},
+			{//Chaingunguy
+				{"WolfSS"}
 			},
-			{
-				{0,			0.8,			5,				0,					0,					5,				0,				1.1,			5,				0,					1.2,				5,				0,					1.4,			5}
+			{//Demon
+				{"WolfDog"}
 			},
-			{
-				{0,			0.8,			5,				0,					0,					5,				0,				1.1,			5,				0,					1.2,				5,				0,					1.4,			5}
+			{//Spectre
+				{"WolfDogSpectre"}
 			},
-			{
-				{0,			0.8,			5,				0,					0,					5,				0,				1.2,			5,				0,					1.4,				5,				0,					1.6,			5}
-			},	
-			{
-				{0,			0.65,		1,				0,					0,					1,				0,				1.05,		3,				0,					1.22,			3,				0,					1.44,		3}
+			{//Hell Knight
+				{"WolfMutant"}
 			},
-			{
-				{0,			0.8,			5,				0,					0,					5,				0,				1.2,			5,				0,					1.4,				5,				0,					1.6,			5}
+			{//Baron of Hell
+				{"HansGrosseDoom"},
+				{"GretelGrosseDoom"}
 			},
-			{
-				{0,			0.8,			5,				0,					0,					5,				0,				1.2,			5,				0,					1.4,				5,				0,					1.6,			5}
+			{//Arachnotron
+				{"OttoGiftmacherDoom"}
 			},
-			{
-				{0,			0.5,			5,				0,					0,					5,				0,				1.5,			5,				0,					2.0,				5,				0,					5.0,			5}
+			{//Mancubus
+				{"OttoGiftmacherDoom"}
 			},
-			{
-				{0,			0.8,			5,				0,					0,					5,				0,				1.2,			5,				0,					1.4,				5,				0,					1.6,			5}
+			{//Lost Soul
+				{"WolfSpectre"}
 			},
-			{
-				{0,			0.8,			5,				0,					0,					5,				0,				1.2,			5,				0,					1.4,				5,				0,					1.6,			5}
+			{//Pain Elemental
+				{"FakeHitler"}
 			},
-			{
-				{0,			0.9,			3,				0,					0,					3,				0,				1.09,		3,				0,					1.27,			3,				0,					2.0,			3},
-				{0,			0.8,			4,				0,					0,					4,				0,				1.2,			3,				0,					1.4,				2,				0,					2.0,			1}
+			{//Cacodemon
+				{"FakeHitler"}
 			},
-			{
-				{0,			0.9,			5,				0,					0,					5,				0,				1.1,			5,				0,					1.1,				5,				0,					1.4,			5}
+			{//Revenant
+				{"WolfMutant"}
 			},
-			{
-				{0,			0,				2,				0,					1.5,				3,				0,				1.67,		2,				0,					2.0,				3,				0,					2.25,		3},
-				{0,			0,				-1,			0,					1.2,				1,				0,				1.5,			1,				0,					1.6,				2,				0,					1.8,			3}
+			{//Archvile
+				{"TransGrosseDoom"}
 			},
-			{
-				{0,			0.8,			2,				0,					0,					3,				0,				1.25,		4,				0,					1.5,				5,				0,					1.6,			5},
-				{0,			0,				4,				0,					1.4,				4,				0,				1.45,		4,				0,					1.55,			4,				0,					1.8,			3}
+			{//Cyberdemon
+				{"DoctorSchabbs"},
+				{"AngelofDeath"},
+				{"BarnacleWilhelm"},
+				{"UberMutant"},
+				{"BarnacleWilhelm"}
 			},
-			{},
+			{//Spider Mastermind
+				{"GeneralFettgesicht"},
+				{"WDeathKnight"},
+				{"MechaHitler"}
+			},
+			{//Wolfenstein SS
+				{"Wolf3D_RussianRedArmy"}
+			},
+			{//Super Shotgunguy
+				{"WolfSS"}
+			},
+			{//Dark Imp
+				{"WolfOfficer"}
+			},
+			{//Blood Demon
+				{"WolfDog"}
+			},
+			{//Cacolantern
+				{"FakeHitler"}
+			},
+			{//Abaddon
+				{"FakeHitler"}
+			},
+			{//Hectebus
+				{"OttoGiftmacherDoom"}
+			},
+			{//Belphegor
+				{"HansGrosseDoom"},
+				{"GretelGrosseDoom"}
+			}
+		},
+		{//Lost Missions
+			{//Zombieman
+				{"SODGuard"}
+			},
+			{//Shotgunguy
+				{"SODOfficer"}
+			},
+			{//Doom Imp
+				{"SODOfficer"}
+			},
+			{//Chaingunguy
+				{"SODSS"}
+			},
+			{//Demon
+				{"SODDog"},
+				{"SODDogSpectre"}
+			},
+			{//Spectre
+				{"SODDogSpectre"}
+			},
+			{//Hell Knight
+				{"SODBat"}
+			},
+			{//Baron of Hell
+				{"GeneralleutnantStahlkopfDoom"}
+			},
+			{//Arachnotron
+				{"GerhardtVonSchreiberDoom"}
+			},
+			{//Mancubus
+				{"GerhardtVonSchreiberDoom"}
+			},
+			{//Lost Soul
+				{"SODSpectre"},
+				{"SODSpectre2"}
+			},
+			{//Pain Elemental
+				{"FireDrone"}
+			},
+			{//Cacodemon
+				{"FireDrone"}
+			},
+			{//Revenant
+				{"SODBat"}
+			},
+			{//Archvile
+				{"SubmarineWillyDoom"}
+			},
+			{//Cyberdemon
+				{"ProfessorQuarkblitz"},
+				{"TheAxe"}
+			},
+			{//Spider Mastermind
+				{"Robot"},
+				{"DevilIncarnate"}
+			},
+			{//Wolfenstein SS
+				{"Wolf3D_RussianRedArmy"}
+			},
+			{//Super Shotgunguy
+				{"SODSS"}
+			},
+			{//Dark Imp
+				{"SODOfficer"}
+			},
+			{//Blood Demon
+				{"SODDog"}
+			},
+			{//Cacolantern
+				{"FireDrone"}
+			},
+			{//Abaddon
+				{"FireDrone"}
+			},
+			{//Hectebus
+				{"GerhardtVonSchreiberDoom"}
+			},
+			{//Belphegor
+				{"GeneralleutnantStahlkopfDoom"}
+			}
+		},
+		{//Totenkopf SDL
+			{//Zombieman
+				{"TotenkopfGuardSpawner"},
+				{"TotenkopfScientistSpawner"}
+			},
+			{//Shotgunguy
+				{"TotenkopfInfantrySpawner"}
+			},
+			{//Doom Imp
+				{"TotenkopfGuardSpawner"}
+			},
+			{//Chaingunguy
+				{"TotenkopfSSSpawner"},
+				{"TotenkopfMutantSpawner"}
+			},
+			{//Demon
+				{"TotenkopfDogSpawner"}
+			},
+			{//Spectre
+				{"TotenkopfDogSpawner"}
+			},
+			{//Hell Knight
+				{"TotenkopfTrooperPanzerschreck"}
+			},
+			{//Baron of Hell
+				{"TotenkopfHansGrosse"}
+			},
+			{//Arachnotron
+				{"TotenkopfTrooperChaingun"}
+			},
+			{//Mancubus
+				{"TotenkopfTrooperFlamethrower"}
+			},
+			{//Lost Soul
+				{"TotenkopfGhost"}
+			},
+			{//Pain Elemental
+				{"TotenkopfMonk"}
+			},
+			{//Cacodemon
+				{"TotenkopfMonk2"}
+			},
+			{//Revenant
+				{"TotenkopfWaffenSSSpawner"}
+			},
+			{//Archvile
+				{"TotenkopfMechanoidStormTrooper"}
+			},
+			{//Cyberdemon
+				{"TotenkopfSchabbsMutant"},
+				{"TotenkopfNarbengesicht"}
+			},
+			{//Spider Mastermind
+				{"TotenkopfPanzGrosse"},
+				{"TotenkopfDeathMutant"}
+			},
+			{//Wolfenstein SS
+				{"Wolf3D_RussianRedArmy"}
+			},
+			{//Super Shotgunguy
+				{"TotenkopfWaffenSSSpawner"}
+			},
+			{//Dark Imp
+				{"TotenkopfWaffenSSSpawner"}
+			},
+			{//Blood Demon
+				{"TotenkopfDogSpawner"}
+			},
+			{//Cacolantern
+				{"TotenkopfMonk"}
+			},
+			{//Abaddon
+				{"TotenkopfMonk2"}
+			},
+			{//Hectebus
+				{"TotenkopfTrooperFlamethrower"}
+			},
+			{//Belphegor
+				{"TotenkopfHansGrosse"}
+			}
 		}
-	},	
+	},
+	{//Hexen
+		{//Main
+			{//Zombieman
+				{"Ettin3Doom"}
+			},
+			{//Shotgunguy
+				{"Ettin3Doom"}
+			},
+			{//Doom Imp
+				{"FireDemon3Doom"},
+				{"Ettin3Doom"}
+			},
+			{//Chaingunguy
+				{"FireDemon3Doom"}
+			},
+			{//Demon
+				{"Centaur3Doom"}
+			},
+			{//Spectre
+				{"CentaurLeader3Doom"}
+			},
+			{//Hell Knight
+				{"Demon1CDoom"}
+			},
+			{//Baron of Hell
+				{"Demon2CDoom"}
+			},
+			{//Arachnotron
+				{"Dragon3Doom"}
+			},
+			{//Mancubus
+				{"IceGuy3Doom"}
+			},
+			{//Lost Soul
+				{"FireDemon3Doom"}
+			},
+			{//Pain Elemental
+				{"Wraith3Doom"},
+				{"Bishop3Doom"}
+			},
+			{//Cacodemon
+				{"Wraith3Doom"},
+				{"Bishop3Doom"}
+			},
+			{//Revenant
+				{"IceGuy3Doom"}
+			},
+			{//Archvile
+				{"ClericBoss3Doom"},
+				{"FighterBoss3Doom"},
+				{"MageBoss3Doom"}
+			},
+			{//Cyberdemon
+				{"Heresiarch3Doom"}
+			},
+			{//Spider Mastermind
+				{"Korax3Doom"}
+			},
+			{//Wolfenstein SS
+				{"Pig3"}
+			},
+			{//Super Shotgunguy
+				{"Ettin3Doom"}
+			},
+			{//Dark Imp
+				{"FireDemon3Doom"}
+			},
+			{//Blood Demon
+				{"CentaurLeader3Doom"}
+			},
+			{//Cacolantern
+				{"Wraith3Doom"}
+			},
+			{//Abaddon
+				{"Wraith3Doom"}
+			},
+			{//Hectebus
+				{"{//Belphegor"},
+				{"Demon2CDoom"}
+			},
+			{//Belphegor
+				{"Demon2CDoom"}
+			}
+		}
+	},
+	{//Duke Nukem 3D
+		{//Main
+			{//Zombieman
+				{"AssaultTrooper"}
+			},
+			{//Shotgunguy
+				{"PigCop"},
+				{"ZombiePigCop"},
+				{"MagnumPig"}
+			},
+			{//Doom Imp
+				{"AssaultCaptain"},
+				{"AssaultGeneral"},
+				{"AssaultTrooper"}
+			},
+			{//Chaingunguy
+				{"AssaultEnforcer"},
+				{"PiginaDress"}
+			},
+			{//Demon
+				{"ProtozoidEgg"}
+			},
+			{//Spectre
+				{"ProtozoidEgg"}
+			},
+			{//Hell Knight
+				{"AssaultCommander"}
+			},
+			{//Baron of Hell
+				{"MiniBattlelordDoom"}
+			},
+			{//Arachnotron
+				{"ScorpionTank"}
+			},
+			{//Mancubus
+				{"ScorpionTank"}
+			},
+			{//Lost Soul
+				{"SentryDrone"}
+			},
+			{//Pain Elemental
+				{"ReconPatrolVehicle"}
+			},
+			{//Cacodemon
+				{"Octabrain"},
+				{"SharkDrone"}
+			},
+			{//Revenant
+				{"AssaultCommander"}
+			},
+			{//Archvile
+				{"ProtectorDroneDoom"}
+			},
+			{//Cyberdemon
+				{"BattlelordDoom"},
+				{"OverlordDoom"}
+			},
+			{//Spider Mastermind
+				{"CycloidEmperorDoom"},
+				{"AlienQueenDoom"},
+				{"CyberKeef"}
+			},
+			{//Wolfenstein SS
+				{"AssaultTrooper"}
+			},
+			{//Super Shotgunguy
+				{"PiginaDress"}
+			},
+			{//Dark Imp
+				{"AssaultEnforcer"}
+			},
+			{//Blood Demon
+				{"ProtozoidEgg"}
+			},
+			{//Cacolantern
+				{"Octabrain"},
+				{"SharkDrone"}
+			},
+			{//Abaddon
+				{"Octabrain"},
+				{"ReconPatrolVehicle"}
+			},
+			{//Hectebus
+				{"ScorpionTank"}
+			},
+			{//Belphegor
+				{"MiniBattlelordDoom"}
+			}
+		},
+		{//Life's a Beach
+			{//Zombieman
+				{"BeachTrooper"}
+			},
+			{//Shotgunguy
+				{"BeachPig"},
+				{"MagnumPig"}
+			},
+			{//Doom Imp
+				{"BeachCaptain"},
+				{"BeachGeneral"},
+				{"BeachTrooper"}
+			},
+			{//Chaingunguy
+				{"SeaMonster"}
+			},
+			{//Demon
+				{"ProtozoidEgg"}
+			},
+			{//Spectre
+				{"ProtozoidEgg"}
+			},
+			{//Hell Knight
+				{"BeachCommander"}
+			},
+			{//Baron of Hell
+				{"MiniBattlelordDoom"}
+			},
+			{//Arachnotron
+				{"PigCopTank"}
+			},
+			{//Mancubus
+				{"ScorpionTank"}
+			},
+			{//Lost Soul
+				{"SentryDrone"},
+				{"Seagull"}
+			},
+			{//Pain Elemental
+				{"ReconPatrolVehicle"},
+				{"BeachOctabrain"}
+			},
+			{//Cacodemon
+				{"BeachOctabrain"},
+				{"SharkDrone"}
+			},
+			{//Revenant
+				{"BeachCommander"}
+			},
+			{//Archvile
+				{"ProtectorDroneDoom"}
+			},
+			{//Cyberdemon
+				{"BattlelordDoom"},
+				{"OverlordDoom"}
+			},
+			{//Spider Mastermind
+				{"BeachCycloidEmperorDoom"},
+				{"AlienQueenDoom"},
+				{"CyberKeef"}
+			},
+			{//Wolfenstein SS
+				{"BeachTrooper"}
+			},
+			{//Super Shotgunguy
+				{"PiginaDress"},
+				{"PiginaDress"}
+			},
+			{//Dark Imp
+				{"SeaMonster"}
+			},
+			{//Blood Demon
+				{"ProtozoidEgg"}
+			},
+			{//Cacolantern
+				{"BeachOctabrain"},
+				{"ReconPatrolVehicle"}
+			},
+			{//Abaddon
+				{"BeachOctabrain"},
+				{"ReconPatrolVehicle"}
+			},
+			{//Hectebus
+				{"ScorpionTank"}
+			},
+			{//Belphegor
+				{"MiniBattlelordDoom"}
+			}
+		}
+	},
+	{//Marathon
+		{//Main
+			{//Zombieman
+				{"FighterMinor"},
+				{"ProjectileFighterMinor"},
+				{"M1FighterMinor"},
+				{"M1ProjectileFighterMinor"},
+				{"MSimulacrum"},
+				{"M2Simulacrum"}
+			},
+			{//Shotgunguy
+				{"ProjectileFighterMinor"},
+				{"M1ProjectileFighterMinor"},
+				{"MSimulacrum"},
+				{"M2Simulacrum"},
+				{"ProjectileFighterMajor"},
+				{"M1ProjectileFighterMajor"}
+			},
+			{//Doom Imp
+				{"SewageFlickta"},
+				{"LavaFlickta"},
+				{"ProjectileFighterMajor"}
+			},
+			{//Chaingunguy
+				{"TrooperMinor"},
+				{"M1TrooperMinor"},
+				{"TrooperMajor"},
+				{"M1TrooperMajor"}
+			},
+			{//Demon
+				{"FighterMajor"},
+				{"WaterFlickta"},
+				{"DrinniolMinor"},
+				{"DrinniolMajor"},
+				{"SuperFighter"}
+			},
+			{//Spectre
+				{"WaterFlickta"},
+				{"MLooker"},
+				{"MLooker2"},
+				{"DrinniolMinor"},
+				{"DrinniolMajor"},
+				{"SuperFighter"}
+			},
+			{//Hell Knight
+				{"HunterMinor"},
+				{"M1HunterMinor"}
+			},
+			{//Baron of Hell
+				{"HunterMajor"},
+				{"M1HunterMajor"},
+				{"MotherofAllHunters"}
+			},
+			{//Arachnotron
+				{"FlameCyborgMinor"},
+				{"FlameCyborgMajor"}
+			},
+			{//Mancubus
+				{"CyborgMinor"},
+				{"CyborgMajor"},
+				{"MotherofAllCyborgs"}
+			},
+			{//Lost Soul
+				{"DroneMinor"},
+				{"MWasp"},
+				{"M2Tick"},
+				{"DroneMajor"},
+				{"MWasp2"},
+				{"M2TickBomb"}
+			},
+			{//Pain Elemental
+				{"SphtMajor"},
+				{"M1SphtMajor"},
+				{"SphtKrMinor"},
+				{"SphtKrMajor"},
+				{"MADD2"},
+				{"M2EliteSpht"}
+			},
+			{//Cacodemon
+				{"SphtMinor"},
+				{"MADD1"},
+				{"M1SphtMinor"}
+			},
+			{//Revenant
+				{"M1EnforcerMinor"},
+				{"M2EnforcerMinor"},
+				{"M1EnforcerMajor"},
+				{"M2EnforcerMajor"}
+			},
+			{//Archvile
+				{"M2EliteEnforcerMinor"},
+				{"M2EliteEnforcerMajor"},
+				{"SuperTrooper"}
+			},
+			{//Cyberdemon
+				{"JuggernautMajor"},
+				{"JuggernautMinor"}
+			},
+			{//Spider Mastermind
+				{"M1Juggernaut"}
+			},
+			{//Wolfenstein SS
+				{"Marathon_Headless"}
+			},
+			{//Super Shotgunguy
+				{"ProjectileFighterMajor"},
+				{"M1ProjectileFighterMajor"}
+			},
+			{//Dark Imp
+				{"TrooperMajor"},
+				{"M1TrooperMajor"}
+			},
+			{//Blood Demon
+				{"DrinniolMajor"},
+				{"SuperFighter"}
+			},
+			{//Cacolantern
+				{"SphtKrMajor"},
+				{"SphtMajor"}
+			},
+			{//Abaddon
+				{"SphtMajor"},
+				{"M1SphtMajor"}
+			},
+			{//Hectebus
+				{"MotherofAllCyborgs"}
+			},
+			{//Belphegor
+				{"MotherofAllHunters"}
+			}
+		}
+	},
+	{//Quake 1
+		{//Main
+			{//Zombieman
+				{"QGrunt"},
+				{"RottWeiler"}
+			},
+			{//Shotgunguy
+				{"QEnforcer"},
+				{"QZombie"}
+			},
+			{//Doom Imp
+				{"QZombie"}
+			},
+			{//Chaingunguy
+				{"QCentroid"}
+			},
+			{//Demon
+				{"QKnight"},
+				{"QKStatue1"},
+				{"QGremlin"}
+			},
+			{//Spectre
+				{"QPhantomSwordsman"},
+				{"Quake_Spawn"},
+				{"Quake_HellSpawn"},
+				{"Quake_HellSpawn_2"}
+			},
+			{//Hell Knight
+				{"QFiend"},
+				{"QGuardian"}
+			},
+			{//Baron of Hell
+				{"QGuardian2"},
+				{"QGuardian3"},
+				{"QGuardian4"},
+				{"QMummy"}
+			},
+			{//Arachnotron
+				{"Vore"}
+			},
+			{//Mancubus
+				{"QHKnight"},
+				{"QKStatue2"}
+			},
+			{//Lost Soul
+				{"QSpikeMine"}
+			},
+			{//Pain Elemental
+				{"QWrath"}
+			},
+			{//Cacodemon
+				{"QScrag"}
+			},
+			{//Revenant
+				{"QOgre"},
+				{"QMultiOgre"}
+			},
+			{//Archvile
+				{"Shambler"}
+			},
+			{//Cyberdemon
+				{"Pterodactylus"},
+				{"QArmagon"}
+			},
+			{//Spider Mastermind
+				{"Shub-Niggurath"},
+				{"QOverlord"}
+			},
+			{//Wolfenstein SS
+				{"Zombieman3"}
+			},
+			{//Super Shotgunguy
+				{"QEnforcer"}
+			},
+			{//Dark Imp
+				{"QGremlin"}
+			},
+			{//Blood Demon
+				{"Quake_HellSpawn"},
+				{"Quake_HellSpawn_2"}
+			},
+			{//Cacolantern
+				{"QWrath"}
+			},
+			{//Abaddon
+				{"QWrath"}
+			},
+			{//Hectebus
+				{"Vore"}
+			},
+			{//Belphegor
+				{"QGuardian2"},
+				{"QGuardian3"},
+				{"QGuardian4"}
+			}
+		}
+	},
+	{//Rise of the Triad
+		{//Main
+			{//Zombieman
+				{"LowGuard"}
+			},
+			{//Shotgunguy
+				{"LightningGuard","","","","","LightningGuardCrezzyMan"},
+				{"HeavyGuard","","","","","LightningGuardCrezzyMan"}
+			},
+			{//Doom Imp
+				{"StrikeTeam"},
+				{"LightningGuard","","","","","LightningGuardCrezzyMan"},
+				{"LowGuard"}
+			},
+			{//Chaingunguy
+				{"HighGuard"}
+			},
+			{//Demon
+				{"MonkDrain_Weak"}
+			},
+			{//Spectre
+				{"MonkDrain"}
+			},
+			{//Hell Knight
+				{"RobotGuard"}
+			},
+			{//Baron of Hell
+				{"GeneralDarian"}
+			},
+			{//Arachnotron
+				{"MonkDeathFire"}
+			},
+			{//Mancubus
+				{"Ballistikraft"}
+			},
+			{//Lost Soul
+				{"ExplosiveDiskJr"},
+				{"ExplosiveDiskSr"}
+			},
+			{//Pain Elemental
+				{"CopterPatrol2"}
+			},
+			{//Cacodemon
+				{"CopterPatrol"}
+			},
+			{//Revenant
+				{"OverPatrol"}
+			},
+			{//Archvile
+				{"TriadEnforcer"}
+			},
+			{//Cyberdemon
+				{"TomHall"},
+				{"NME"}
+			},
+			{//Spider Mastermind
+				{"SnakeTom"},
+				{"SebastianKrist"}
+			},
+			{//Wolfenstein SS
+				{"WolfGuard"}
+			},
+			{//Super Shotgunguy
+				{"HeavyGuard"}
+			},
+			{//Dark Imp
+				{"OverPatrol"}
+			},
+			{//Blood Demon
+				{"MonkDrain"}
+			},
+			{//Cacolantern
+				{"CopterPatrol2"}
+			},
+			{//Abaddon
+				{"CopterPatrol"}
+			},
+			{//Hectebus
+				{"Ballistikraft"}
+			},
+			{//Belphegor
+				{"GeneralDarian"}
+			}
+		}
+	},
 	{//Blake Stone
-		{
-			{
-				{0, 			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.2,				2,				0,					1.4,			2},
-				{0,			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.25,			2,				0,					1.5,			2},
-				{0,			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.25,			2,				0,					1.5,			2}
+		{//Main
+			{//Zombieman
+				{"Informant"},
+				{"SectorGuard"},
+				{"SectorPatrol"}
 			},
-			{
-				{0,			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.25,			3,				0,					1.5,			2},
-				{0,			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.25,			3,				0,					1.5,			2},
-				{0,			0.4,			1,				0,					0.6,				1,				0,				0,				1,				0,					1.2,				1,				0,					1.5,			1}
+			{//Shotgunguy
+				{"SectorGuard"},
+				{"SectorPatrol"},
+				{"MutatedGuard"}
 			},
-			{
-				{0,			0.4,			5,				0,					0.6,				5,				0,				0,				5,				0,					1.33,			5,				0,					1.5,			5}
+			{//Doom Imp
+				{"MutantBrown"}
 			},
-			{
-				{0,			0.4,			5,				0,					0.6,				5,				0,				0,				5,				0,					1.166,			5,				0,					1.4,			5},
-				{0,			0.4,			5,				0,					0.6,				5,				0,				0,				5,				0,					1.166,			5,				0,					1.4,			5}
+			{//Chaingunguy
+				{"BlakeSentinel"},
+				{"TechWarrior"}
 			},
-			{
-				{0,			0.4,			5,				0,					0.6,				5,				0,				0,				5,				0,					1.2,				5,				0,					1.4,			5},
+			{//Demon
+				{"MutantGreen"}
 			},
-			{
-				{0,			0.4,			5,				0,					0.6,				5,				0,				0,				5,				0,					1.25,			5,				0,					1.5,			5},
+			{//Spectre
+				{"WaterAlien"}
 			},
-			{
-				{0,			0.5,			5,				0,					0.7,				5,				0,				0,				5,				0,					1.3,				5,				0,					1.5,			5},
-				{0,			0.5,			2,				0,					0.75, 			3,				0,				0,				3,				0,					1.25,			3,				0,					1.5,			4},
-				{0,			0.5,			5,				0,					0.75,			4,				0,				0,				4,				0,					1.25,			3,				0,					1.5,			3}
+			{//Hell Knight
+				{"ExpMutantBrown"},
+				{"GeneticGuard"},
+				{"PodAlien"}
 			},
-			{
-				{0,			0.5,			5,				0,					0.75,			5,				0,				0,				5,				0,					1.25,			5,				0,					1.5,			5},
-				{0,			0.5,			5,				0,					0.75,			5,				0,				0,				5,				0,					1.25,			5,				0,					1.5,			5}
+			{//Baron of Hell
+				{"ExpMutantBlue"},
+				{"CyborgWarrior"}
 			},
-			{
-				{0,			0.6,		    5,				0,					0.75,			5,				0,				0,				5,				0,					1.25,			5,				0,					1.5,			5},
+			{//Arachnotron
+				{"SpiderMutant"}
 			},
-			{
-				{0,			0.5,			5,				0,					0.75,			5,				0,				0,				5,				0,					1.25,			5,				0,					1.5,			5},
-				{0,			0.4,			3,				0,					0.6,				3,				0,				0,				3,				0,					1.2,				3,				0,					1.4,			4}
+			{//Mancubus
+				{"AcidDragon"},
+				{"BioMech"}
 			},
-			{
-				{0,			0.5,			4,				0,					0.75,			4,				0,				0,				4,				0,					1.25,			4,				0,					1.5,			4},
-				{0.75,		0,				3,				0,					0.9,				3,				0,				0,				3,				0,					1.2,				3,				0,					1.4,			3}
-			},	
-			{
-				{0,			0.6,			5,				1.2,				0.8,				5,				1.4,			0,				5,				1.6,				1.2,				5,				1.75,			1.5,			5}
+			{//Lost Soul
+				{"PerScanDrone"},
+				{"PlasmaSphere"}
 			},
-			{
-				{0,			0.6,			5,				1.2,				0.8,				5,				1.4,			0,				5,				1.6,				1.2,				5,				1.75,			1.5,			5}
+			{//Pain Elemental
+				{"PerGunnerDrone"}
 			},
-			{
-				{0,			0.4,			4,				0,					0.6,				4,				0,				0,				4,				0,					1.2,				4,				0,					1.5,			4},
-				{0,			0.6,			3,				0,					0.9,				3,				0,				0,				3,				0,					1.2,				3,				0,					1.4,			3},
-				{0,			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.31,			2,				0,					1.6,			2},
-				{0,			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.31,			2,				0,					1.6,			2}
+			{//Cacodemon
+				{"PerGunnerDrone"}
 			},
-			{
-				{0,			0.4,			3,				0,					0.8,				3,				0,				0,				3,				0,					1.2,				3,				0,					1.4,			3},
-				{0,			0.5,			4,				0,					0.75,			4,				0,				0,				4,				0,					1.33,			4,				0,					1.66,		4}
+			{//Revenant
+				{"ReptilianWarrior"},
+				{"MechSentinel"},
+				{"StarTrooper"},
+				{"AlienProtector"}
 			},
-			{
-				{0,			0.5,			4,				0,					0.66,			4,				0,				0,				4,				0,					1.2,				4,				0,					1.5,			4},
-				{0,			0.5,			4,				0,					0.75,			4,				0,				0,				4,				0,					1.25,			4,				0,					1.4,			4},
-				{0,			0.5,			4,				0,					0.75,			4,				0,				0,				4,				0,					1.25,			4,				0,					1.5,			4},
-				{0,			0.5,			2,				0,					0.75,			2,				0,				0,				2,				0,					1.25,			2,				0,					1.4,			2}
-			},	
-			{
-				{0,			0,				5,				0,					0,					5,				0,				0,				5,				0,					1.66,			5,				0,					2.0,			5}
+			{//Archvile
+				{"BreatherBeast"},
+				{"PlasmaAlien"}
 			},
-			{
-				{0, 			0.4,			2,				0,					0.6,				2,				0,				0,				2,				0,					1.2,				2,				0,					1.4,			2}
+			{//Cyberdemon
+				{"GiantStalker"},
+				{"CrawlerBeast"},
+				{"SpectorDemon"},
+				{"ArmoredStalker"}
+			},
+			{//Spider Mastermind
+				{"GoldFire"}
+			},
+			{//Wolfenstein SS
+				{"Informant"}
+			},
+			{//Super Shotgunguy
+				{"BlakeSentinel"},
+				{"TechWarrior"}
+			},
+			{//Dark Imp
+				{"MutantBrown"}
+			},
+			{//Blood Demon
+				{"WaterAlien"}
+			},
+			{//Cacolantern
+				{"PerGunnerDrone"}
+			},
+			{//Abaddon
+				{"PerGunnerDrone"}
+			},
+			{//Hectebus
+				{"AcidDragon"},
+				{"BioMech"}
+			},
+			{//Belphegor
+				{"ExpMutantBlue"},
+				{"CyborgWarrior"}
 			}
-		},
-	},
-	
-	{	// Blood
-		{
-			{
-				{0,			0,				2,				0,					1.5,				2,				0,				2.0,			2,				0,					2.5,				2,				0,					3.1,			2}
-			},
-			{
-				{0,			0,				2,				0,					1.5,				2,				0,				2.0,			2,				0,					2.5,				2,				0,					3.1,			2}
-			},
-			{
-				{0,			0,				3,				0,					1.4,				3,				0,				2.0,			3,				0,					2.6,				3,				0,					3.4,			3}
-			},
-			{
-				{0,			0,				2,				0,					1.5,				2,				0,				2.0,			2,				0,					2.5,				2,				0,					3.1,			2}
-			},
-			{
-				{0,			0,				3,				0,					1.32,			3,				0,				1.91,		3, 			0,					2.5,				3,				0,					3.23,		3},
-				{0,			0,				3,				0,					1.41,			3,				0,				2.17,		3,				0,					2.65,			3,				0,					3.37,		3}
-			},
-			{
-				{0,			0,				3,				0,					1.75,			3,				0,				2.5,			3,				0,					3.5,				3,				0,					4.5,			3},
-			},
-			{
-				{0,			0,				3,				0,					1.41,			3,				0,				2.0,			3,				0,					2.76,			3,				0,					3.4,			3}
-			},
-			{
-				{0,			0,				3,				0,					1.2,				3,				0,				1.5,			3,				0,					1.7,				3,				0,					2.0,			3}
-			},
-			{
-				{0, 			0,				3,				0,					1.4,				3,				0,				2.0,			3,				0,					2.6,				3,				0,					3.4,			3},	
-			},
-			{
-				{0,			0,				3,				0,					1.78,			3,				0,				2.22,		3,				0,					3.11,			3,				0,					3.55,		3}
-			},
-			{
-				{0,			0,				3,				0,					1.5,				3,				0,				2.0,			3,				0,					3.5,				3,				0,					5.0,			3}
-			},
-			{
-				{0,			0,				3,				0,					1.35,			3,				0,				2.04,		3,				0,					2.63,			3,				0,					3.37,		3}
-			},
-			{
-				{0,			0,				3,				0,					1.3,				3,				0,				1.5,			3,				0,					2.3,				3,				0,					3.2,			3}
-			},
-			{
-				{0,			0,				3,				0,					1.35,			3,				0,				2.0,			3,				0,					2.7,				3,				0,					3.0,			3}
-			},
-			{
-				{0, 			0,				3,				0,					1.4,				3,				0,				2.0,			3,				0,					2.6,				3,				0,					3.4,			3},	
-			},
-			{
-				{0,			0,				3,				0,					1.2,				3,				0,				2.0,			3,				0,					2.4,				3,				0,					3.2,			3},
-				{0,			0,				3,				0,					1.25,			3,				0,				2.35,		3,				0,					2.4,				3,				0,					3.5,			3}
-			},	
-			{
-				{0,			0,				3,				0,					1.2,				3,				0,				1.5,			3,				0,					2.0,				3,				0,					3.2,			3}
-			},	
-			{
-				{0,			0,				2,				0,					1.5,				2,				0,				2.0,			2,				0,					2.5,				2,				0,					3.1,			2}
-			},	
-		},
-	},
-	{  //Strife
-		{
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{
-				{0,			0,				5,				0,					0,					4,				0,				0,				3,				0,					0,				2,					0,						0,				1},
-				{0,			0,				1,				0,					0,					2,				0,				0,				3,				0,					0,				4,					0,						0,				5}
-			},
-			{},
-			{},
-			{},
-			{
-				{0,			0,				1,				0,					0,					2,				0,				0,				3,				0,					0,				4,					0,						0,				5},
-				{0,			0,				5,				0,					0,					4,				0,				0,				3,				0,					0,				2,					0,						0,				1}
-			},
-			{},
-			{},
-		}
-	},	
-	{	// Eradicator
-		{
-			{},
-			{},
-			{},
-			{},
-			{
-				{0.66,			0,			5,				0.75,			0,			5,				0,				0,			5,			1.25,			0,			5,			1.5,		0,			5},
-			},
-			{
-				{0.66,			0,			5,				0.75,			0,			5,				0,				0,			5,			1.25,			0,			5,			1.5,		0,			5},
-			},
-			{},
-			{},
-			{},
-			{},
-			{
-				{0.8,			0,			4,				0.9,				0,			4,				1.25,		0,			4,			1.5,			0,			4,			2.0,			0,			4},
-				{0.8,			0,			1,				0.9,				0,			1,				1.25,		0,			1,			1.5,			0,			1,			2.0,			0,			1},
-				{0,			0,			3,				0,					0,			3,				0,				0,			3,			0,				0,			3,			0,				0,			3}
-			},
-			{},
-			{},
-		}
-	},	
-	{ // Corridor 7
-		{ 
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{
-				{0,		0,			5,			0,				0,				5,				0,			0,				5,				0,			0,		5,			0,				0,			5},
-				{0,		0,			3,			0,				0,				3,				0,			0,				3,				0,			0,		3,			0,				0,			3}
-			},	
-			{},
-			{},					
 		}
 	},
-	{ // Moonbase Alpha john madden
-		{
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{
-				{0,		0,			5,			0,			0,				5,			0,			0,			4,			0,			0,		3,			0,			0,		2},
-				{0,		0,			1,			0,			0,				2,			0,			0,			2,			0,			0,		3,			0,			0,		4}
+	{//Blood
+		{//Main
+			{//Zombieman
+				{"Cultist","","","","CultistWellDone","CultistExtraCrispy"}
 			},
-			{
-				{0,		0,			5,			0,			0,				5,			0,			0,			4,			0,			0,		3,			0,			0,		2},
-				{0,		0,			1,			0,			0,				2,			0,			0,			2,			0,			0,		3,			0,			0,		4}
+			{//Shotgunguy
+				{"Cultist","","","","CultistWellDone","CultistExtraCrispy"}
 			},
-			{},
-			{},
-			{},
+			{//Doom Imp
+				{"BloodAcolyte","","","","CultistWellDone","CultistExtraCrispy"}
+			},
+			{//Chaingunguy
+				{"Fanatic","","","","CultistWellDone","CultistExtraCrispy"}
+			},
+			{//Demon
+				{"AxeZombie"},
+				{"GillBeast"}
+			},
+			{//Spectre
+				{"ChokingHand"}
+			},
+			{//Hell Knight
+				{"Butcher"}
+			},
+			{//Baron of Hell
+				{"BloodBeast"}
+			},
+			{//Arachnotron
+				{"Zealot","","","","CultistWellDone","CultistExtraCrispy"}
+			},
+			{//Mancubus
+				{"MotherSpider"}
+			},
+			{//Lost Soul
+				{"BloodBat"}
+			},
+			{//Pain Elemental
+				{"BloodPhantasm"}
+			},
+			{//Cacodemon
+				{"BloodGargoyle"}
+			},
+			{//Revenant
+				{"HellHound"}
+			},
+			{//Archvile
+				{"BloodPriest","","","","CultistWellDone","CultistExtraCrispy"}
+			},
+			{//Cyberdemon
+				{"Cerberus"},
+				{"Cheogh"}
+			},
+			{//Spider Mastermind
+				{"Tchernobog"}
+			},
+			{//Wolfenstein SS
+				{"Cultist"}
+			},
+			{//Super Shotgunguy
+				{"Cultist","","","","CultistWellDone","CultistExtraCrispy"}
+			},
+			{//Dark Imp
+				{"BloodAcolyte","","","","CultistWellDone","CultistExtraCrispy"}
+			},
+			{//Blood Demon
+				{"AxeZombie"},
+				{"GillBeast"}
+			},
+			{//Cacolantern
+				{"BloodGargoyle"}
+			},
+			{//Abaddon
+				{"BloodPhantasm"}
+			},
+			{//Hectebus
+				{"MotherSpider"}
+			},
+			{//Belphegor
+				{"BloodBeast"}
+			}
 		}
-	},	
-	{
-		{
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
+	},
+	{//Strife
+		{//Main
+			{//Zombieman
+				{"StrifeAcolyte"},
+				{"StrifeAcolyte2"}
+			},
+			{//Shotgunguy
+				{"StrifeAcolyte3"},
+				{"StrifeAcolyte4"}
+			},
+			{//Doom Imp
+				{"StrifeCultist"}
+			},
+			{//Chaingunguy
+				{"StrifeAcolyte5"},
+				{"StrifeAcolyte6"}
+			},
+			{//Demon
+				{"StrifeStalker"}
+			},
+			{//Spectre
+				{"ShadowStalker"}
+			},
+			{//Hell Knight
+				{"StrifeTemplar"}
+			},
+			{//Baron of Hell
+				{"NewStrifeBishop"}
+			},
+			{//Arachnotron
+				{"NewAlienSpectre2"}
+			},
+			{//Mancubus
+				{"StrifeCrusader"}
+			},
+			{//Lost Soul
+				{"StrifeSentinel"}
+			},
+			{//Pain Elemental
+				{"Programmer3"},
+				{"NewAlienSpectre1"}
+			},
+			{//Cacodemon
+				{"Recycler"}
+			},
+			{//Revenant
+				{"StrifeReaver"}
+			},
+			{//Archvile
+				{"NewAlienSpectre3"},
+				{"NewAlienSpectre4"}
+			},
+			{//Cyberdemon
+				{"NewAlienSpectre5"},
+				{"StrifeInquisitor"}
+			},
+			{//Spider Mastermind
+				{"StrifeEntity"}
+			},
+			{//Wolfenstein SS
+				{"StrifeAcolyte7"},
+				{"StrifeAcolyte8"}
+			},
+			{//Super Shotgunguy
+				{"StrifeAcolyte3"},
+				{"StrifeAcolyte4"}
+			},
+			{//Dark Imp
+				{"StrifeCultist"}
+			},
+			{//Blood Demon
+				{"StrifeStalker"}
+			},
+			{//Cacolantern
+				{"Programmer3"},
+				{"NewAlienSpectre1"}
+			},
+			{//Abaddon
+				{"Recycler"}
+			},
+			{//Hectebus
+				{"StrifeCrusader"}
+			},
+			{//Belphegor
+				{"NewStrifeBishop"}
+			}
 		}
-	},	
-	{ //IPOG
-		{
-			{
-				{0,		0,		2,		0,		0,		2,		0,		0,		3,			0,			0,			4,			0,			0,		5},
-				{0,		0,		3,		0,		0,		2,		0,		0,		2,			0,			0,			2,			0,			0,		1}
+	},
+	{//Eradicator
+		{//Main
+			{//Zombieman
+				{"LSD"}
 			},
-			{},
-			{
-				{0,		0,		5,		0,		0,		5,		0,		0,		4,			0,			0,			3,			0,			0,		2},
-				{0,		0,		2,		0,		0,		3,		0,		0,		3,			0,			0,			3,			0,			0,		4}
+			{//Shotgunguy
+				{"EradArcher"}
 			},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{
-				{0,	0,		3,		0,		0,		3,		0,		0,		3,		0,		0,		3,		0,		0,		3},
-				{0,	0,		3,		0,		0,		3,		0,		0,		3,		0,		0,		3,		0,		0,		3}
+			{//Doom Imp
+				{"HSD"}
 			},
-			{}
+			{//Chaingunguy
+				{"Skeeving"}
+			},
+			{//Demon
+				{"BoonBitter"}
+			},
+			{//Spectre
+				{"BoonBitter"}
+			},
+			{//Hell Knight
+				{"HSD2"}
+			},
+			{//Baron of Hell
+				{"RotoDroid"}
+			},
+			{//Arachnotron
+				{"LSD2"}
+			},
+			{//Mancubus
+				{"RepairDroid"}
+			},
+			{//Lost Soul
+				{"PatrolEyeSpawner"},
+				{"MiniBio"},
+				{"GunTurret1"}
+			},
+			{//Pain Elemental
+				{"MiniRepairDroid"}
+			},
+			{//Cacodemon
+				{"EradMindBreaker"},
+				{"MiniMech"}
+			},
+			{//Revenant
+				{"LSD2"}
+			},
+			{//Archvile
+				{"RotoDroid"}
+			},
+			{//Cyberdemon
+				{"RSA"},
+				{"Skaal"}
+			},
+			{//Spider Mastermind
+				{"GorBoss"}
+			},
+			{//Wolfenstein SS
+				{"EradArcher"}
+			},
+			{//Super Shotgunguy
+				{"EradArcher"}
+			},
+			{//Dark Imp
+				{"HSD"}
+			},
+			{//Blood Demon
+				{"BoonBitter"}
+			},
+			{//Cacolantern
+				{"MiniRepairDroid"}
+			},
+			{//Abaddon
+				{"EradMindBreaker"},
+				{"MiniMech"}
+			},
+			{//Hectebus
+				{"LSD2"}
+			},
+			{//Belphegor
+				{"RotoDroid"}
+			}
 		}
-	},	
-	{//Disrup
-		{
-			{},
-			{
-				{0,		0,		3,		0,		0,		3,		0,		0,		3,		0,			0,			3,		0,		0,		3},
-				{0,		0,		-1,	0,		0,		1,		0,		0,		2,		0,			0,			3,		0,		0,		5}
+	},
+	{//Corridor 7
+		{//Main
+			{//Zombieman
+				{"AnimatedProbe"}
 			},
-			{
-				{0,		0,		5,		0,		0,		5,		0,		0,		5,		0,			0,			5,		0,		0,		5},
-				{0,		0,		5,		0,		0,		5,		0,		0,		5,		0,			0,			5,		0,		0,		5}
+			{//Shotgunguy
+				{"Rodex"}
 			},
-			{
-				{0,		0,		5,		0,		0,		5,		0,		0,		5,		0,			0,			5,		0,		0,		5},
-				{0,		0,		2,		0,		0,		2,		0,		0,		3,		0,			0,			3,		0,		0,		4}
+			{//Doom Imp
+				{"Bandor"}
 			},
-			{},
-			{},
-			{},
-			{
-				{0,		0,		2,		0,		0,		3,		0,		0,		3,		0,			0,			4,		0,		0,		5},
-				{0,		0,		1,		0,		0,		1,		0,		0,		2,		0,			0,			2,		0,		0,		2}
+			{//Chaingunguy
+				{"Eitak"}
 			},
-			{},
-			{},
-			{
-				{0,		0,		7,		0,		0,		7,		0,		0,		6,		0,			0,			5,		0,		0,		-1},
-				{0,		0,		6,		0,		0,		7,		0,		0,		5,		0,			0,			3,		0,		0,		-1},
-				{0,		0,		7,		0,		0,		7,		0,		0,		6,		0,			0,			4,		0,		0,		-1},
-				{0,		0,		2,		0,		0,		3,		0,		0,		4,		0,			0,			6,		0,		0,		4},
-				{0,		0,		-1,	0,		0,		1,		0,		0,		2,		0,			0,			5,		0,		0,		7}
+			{//Demon
+				{"Semaj"}
 			},
-			{
-				{0,		0,		2,		0,		0,		3,		0,		0,		3,		0,			0,			3,		0,		0,		2},
-				{0,		0,		3,		0,		0,		4,		0,		0,		3,		0,			0,			6,		0,		0,		8}
+			{//Spectre
+				{"Semaj"}
 			},
-			{
-				{0,		0,		2,		0,		0,		3,		0,		0,		5,		0,			0,			6,		0,		0,		6},
-				{0,		0,		4,		0,		0,		4,		0,		0,		4,		0,			0,			3,		0,		0,		1}
-			},	
-			{
-				{0,		0,		5,		0,		0,		4,		0,		0,		3,		0,			0,			3,		0,		0,		2},
-				{0,		0,		2,		0,		0,		2,		0,		0,		2,		0,			0,			3,		0,		0,		4}
+			{//Hell Knight
+				{"Otrebor"}
 			},
-			{},
-			{},
-			{},
+			{//Baron of Hell
+				{"EniramBoss"}
+			},
+			{//Arachnotron
+				{"Nerraw"}
+			},
+			{//Mancubus
+				{"Ttocs"}
+			},
+			{//Lost Soul
+				{"SectorProbe"}
+			},
+			{//Pain Elemental
+				{"C7AlienTeleport"}
+			},
+			{//Cacodemon
+				{"Ailoprobe"}
+			},
+			{//Revenant
+				{"Tenaj"},
+				{"Eniram"}
+			},
+			{//Archvile
+				{"C7MWarrior"}
+			},
+			{//Cyberdemon
+				{"Tymok"},
+				{"Solrac"}
+			},
+			{//Spider Mastermind
+				{"Tebazile"}
+			},
+			{//Wolfenstein SS
+				{"OBCTerrorist"}
+			},
+			{//Super Shotgunguy
+				{"Rodex"}
+			},
+			{//Dark Imp
+				{"Bandor"}
+			},
+			{//Blood Demon
+				{"Semaj"}
+			},
+			{//Cacolantern
+				{"C7AlienTeleport"}
+			},
+			{//Abaddon
+				{"Ailoprobe"}
+			},
+			{//Hectebus
+				{"Ttocs"}
+			},
+			{//Belphegor
+				{"EniramBoss"}
+			}
 		}
-	},	
+	},
+	{//Rebel Moon Rising
+		{//Main
+			{//Zombieman
+				{"UnBlueSuit"}
+			},
+			{//Shotgunguy
+				{"UnShockTrooper"}
+			},
+			{//Doom Imp
+				{"UnBlueSuit"}
+			},
+			{//Chaingunguy
+				{"BlackSuitStriker"}
+			},
+			{//Demon
+				{"BabyEstronBeast"}
+			},
+			{//Spectre
+				{"BabyEstronBeast"}
+			},
+			{//Hell Knight
+				{"HeavyBlackSuit"}
+			},
+			{//Baron of Hell
+				{"RMREstronBig"}
+			},
+			{//Arachnotron
+				{"RMREstronBig"}
+			},
+			{//Mancubus
+				{"BigEstronBeast"}
+			},
+			{//Lost Soul
+				{"RMRLaserDrone"},
+				{"RMRGrenadeDrone"}
+			},
+			{//Pain Elemental
+				{"RMRSpinner"}
+			},
+			{//Cacodemon
+				{"UNJTrooper"},
+				{"RMRShoggran"}
+			},
+			{//Revenant
+				{"TerranCommando"}
+			},
+			{//Archvile
+				{"RMRHoverGunner"}
+			},
+			{//Cyberdemon
+				{"SubestronBoss"}
+			},
+			{//Spider Mastermind
+				{"RMRJCommando"}
+			},
+			{//Wolfenstein SS
+				{"UnBlueSuit"}
+			},
+			{//Super Shotgunguy
+				{"BlackSuitStriker"}
+			},
+			{//Dark Imp
+				{"UnShockTrooper"}
+			},
+			{//Blood Demon
+				{"BabyEstronBeast"}
+			},
+			{//Cacolantern
+				{"UNJTrooper"}
+			},
+			{//Abaddon
+				{"UNJTrooper"}
+			},
+			{//Hectebus
+				{"BigEstronBeast"}
+			},
+			{//Belphegor
+				{"RMREstronBig"}
+			}
+		}
+	},
+	{//Star Wars Dark Forces
+		{//Main
+			{//Zombieman
+				{"storm_trooper"}
+			},
+			{//Shotgunguy
+				{"imperial_commander"}
+			},
+			{//Doom Imp
+				{"DF_officer"}
+			},
+			{//Chaingunguy
+				{"hoth_trooper"}
+			},
+			{//Demon
+				{"gamorrean_guard"}
+			},
+			{//Spectre
+				{"gamorrean_guard"}
+			},
+			{//Hell Knight
+				{"gran___DF"}
+			},
+			{//Baron of Hell
+				{"phase1_DF"}
+			},
+			{//Arachnotron
+				{"trandoshan_1"}
+			},
+			{//Mancubus
+				{"KellDragon"}
+			},
+			{//Lost Soul
+				{"DFRemote"}
+			},
+			{//Pain Elemental
+				{"probe_droid"}
+			},
+			{//Cacodemon
+				{"interrogation_droid"}
+			},
+			{//Revenant
+				{"gran___DF"}
+			},
+			{//Archvile
+				{"Phase2_DF"},
+				{"boba_fett"}
+			},
+			{//Cyberdemon
+				{"Phase3_df"}
+			},
+			{//Spider Mastermind
+				{"jerec"}
+			},
+			{//Wolfenstein SS
+				{"storm_trooper"}
+			},
+			{//Super Shotgunguy
+				{"hoth_trooper"}
+			},
+			{//Dark Imp
+				{"DF_officer"}
+			},
+			{//Blood Demon
+				{"gamorrean_guard"}
+			},
+			{//Cacolantern
+				{"probe_droid"}
+			},
+			{//Abaddon
+				{"interrogation_droid"}
+			},
+			{//Hectebus
+				{"KellDragon"}
+			},
+			{//Belphegor
+				{"Phase2_DF"}
+			}
+		}
+	},
+	{//In Pursuit of Greed
+		{//Main
+			{//Zombieman
+				{"IPOGTrooper"},
+				{"IPOGPrisoner"}
+			},
+			{//Shotgunguy
+				{"IPOGEliteCorp"}
+			},
+			{//Doom Imp
+				{"IPOGBigHead"},
+				{"IPOGPriestess"}
+			},
+			{//Chaingunguy
+				{"IPOGHuntress"}
+			},
+			{//Demon
+				{"IPOGBerserker"}
+			},
+			{//Spectre
+				{"IPOGBerserker"}
+			},
+			{//Hell Knight
+				{"IPOGGuard"}
+			},
+			{//Baron of Hell
+				{"IPOGWizard"}
+			},
+			{//Arachnotron
+				{"IPOGBigGuard"}
+			},
+			{//Mancubus
+				{"IPOGMastiff"}
+			},
+			{//Lost Soul
+				{"IPOGSentrySphere0"}
+			},
+			{//Pain Elemental
+				{"IPOGImperialDrone"}
+			},
+			{//Cacodemon
+				{"IPOGSentrySphere"}
+			},
+			{//Revenant
+				{"IPOGVeekWarrior"}
+			},
+			{//Archvile
+				{"IPOGWizard"}
+			},
+			{//Cyberdemon
+				{"IPOGSentinal"},
+				{"IPOGBrnourd"}
+			},
+			{//Spider Mastermind
+				{"IPOGChancellor"}
+			},
+			{//Wolfenstein SS
+				{"IPOGPrisoner"}
+			},
+			{//Super Shotgunguy
+				{"IPOGEliteCorp"}
+			},
+			{//Dark Imp
+				{"IPOGBigHead"},
+				{"IPOGPriestess"}
+			},
+			{//Blood Demon
+				{"IPOGBerserker"}
+			},
+			{//Cacolantern
+				{"IPOGImperialDrone"}
+			},
+			{//Abaddon
+				{"IPOGSentrySphere"}
+			},
+			{//Hectebus
+				{"IPOGMastiff"}
+			},
+			{//Belphegor
+				{"IPOGWizard"}
+			}
+		}
+	},
+	{//Disruptor
+		{//Main
+			{//Zombieman
+				{"DisruptorMutantSoldier"}
+			},
+			{//Shotgunguy
+				{"DisruptorMutantElite"},
+				{"DisruptorCryopirate"}
+			},
+			{//Doom Imp
+				{"DisruptorMRat"},
+				{"DisruptorTerroristDroid"}
+			},
+			{//Chaingunguy
+				{"DisruptorTerroristRepeater"},
+				{"DisruptorTerroristCyclone"}
+			},
+			{//Demon
+				{"DsrptSawRobot"}
+			},
+			{//Spectre
+				{"DisruptorNightmareSpider"}
+			},
+			{//Hell Knight
+				{"DisruptorIceDisruptor"}
+			},
+			{//Baron of Hell
+				{"DisruptorNDisruptor"},
+				{"DisruptorAGuardian"}
+			},
+			{//Arachnotron
+				{"DisruptorMBrute"}
+			},
+			{//Mancubus
+				{"DisruptorGuardDroid"}
+			},
+			{//Lost Soul
+				{"DisruptorDragonFly"},
+				{"AlienWanderer_T1"},
+				{"DsrptSilverSpikeBall"},
+				{"DsrptGoldSpikeBall"},
+				{"DsrptPsionicSpikeBall"}
+			},
+			{//Pain Elemental
+				{"DisruptorAcidBloater"},
+				{"DisruptorNightmareSphere"}
+			},
+			{//Cacodemon
+				{"DS_Flying_Droid"},
+				{"AlienWanderer_T2"}
+			},
+			{//Revenant
+				{"DisruptorTerroristDroid2"},
+				{"DisruptorTerroristElite"}
+			},
+			{//Archvile
+				{"Nightmare_Demon"}
+			},
+			{//Cyberdemon
+				{"DisruptorGiantDisruptor"}
+			},
+			{//Spider Mastermind
+				{"S_PresidentK","","","","DSKriegerHard","DSKriegerHard"}
+			},
+			{//Wolfenstein SS
+				{"DisruptorHostageDroid"}
+			},
+			{//Super Shotgunguy
+				{"DisruptorTerroristRepeater"},
+				{"DisruptorTerroristCyclone"}
+			},
+			{//Dark Imp
+				{"DisruptorMRat"},
+				{"DisruptorTerroristDroid"}
+			},
+			{//Blood Demon
+				{"DisruptorNightmareSpider"}
+			},
+			{//Cacolantern
+				{"DisruptorAcidBloater"},
+				{"DisruptorNightmareSphere"}
+			},
+			{//Abaddon
+				{"DS_Flying_Droid"},
+				{"AlienWanderer_T2"}
+			},
+			{//Hectebus
+				{"DisruptorGuardDroid"}
+			},
+			{//Belphegor
+				{"DisruptorNDisruptor"},
+				{"DisruptorAGuardian"}
+			}
+		}
+	},
 	{//Witchaven
-		{
-			{
-				{0,		0,		4,		0,		0,		3,			0,			0,		2,			0,			0, 	1,		0,			0,			-1},
-				{0,		0,		3,		0,		0,		2,			0,			0,		3,			0,			0,		 4,	0,			0,			5},
-				{0,		0,		2,		0,		0,		2,			0,			0,		3,			0,			0,		3,		0,			0,			4},
-				{0,		0,		4,		0,		0,		3,			0,			0,		2,			0,			0,		1,		0,			0,			-1}
+		{//Main
+			{//Zombieman
+				{"WTSkeleton"},
+				{"WTRandomGoblin"},
+				{"WTBrownMidianWarriorMixer"},
+				{"WitchavenSpider"}
 			},
-			{
-				{0,		0,		3,		0,		0,		3,			0,			0,		2,			0,			0,		2,		0,			0,			1},
-				{0,		0,		5,		0,		0,		4,			0,			0,		3,			0,			0,		1,		0,			0,			-1},
-				{0,		0,		1,		0,		0,		2,			0,			0,		4,			0,			0,		4,		0,			0,			3}
+			{//Shotgunguy
+				{"WTRandomOgre"},
+				{"WitchavenImp"},
+				{"WTArgothonianMixer"}
 			},
-			{
-				{0,		0,		5,		0,		0,		5,			0,			0,		5,			0,			0,		4,		0,			0,			4},
-				{0,		0,		2,		0,		0,		2,			0,			0,		3,			0,			0,		2,		0,			0,			3}
+			{//Doom Imp
+				{"WTLavaFiend"},
+				{"WTMuckDemoness"}
 			},
-			{},
-			{
-				{0,		0,		4,		0,		0,		5,			0,			0,		4,			0,			0,		3,		0,			0,			2},
-				{0,		0,		2,		0,		0,		2,			0,			0,		2,			0,			0,		3,		0,			0,			4},
-				{0,		0,		3,		0,		0,		3,			0,			0,		3,			0,			0,		3,		0,			0,			1},
-				{0,		0,		1,		0,		0,		2,			0,			0,		2,			0,			0,		3,		0,			0,			3}
+			{//Chaingunguy
+				{"WTCiraenSentinelLowMixer"}
 			},
-			{
-				{0,		0,		2,		0,		0,		2,			0,			0,		2,			0,			0,		2,		0,			0,			2},
-				{0,		0,		4,		0,		0,		5,			0,			0,		4,			0,			0,		3,		0,			0,			2}
+			{//Demon
+				{"WTRedMidianWarriorMixer"},
+				{"WTRandomGonzo"},
+				{"WitchavenBrute"},
+				{"MinoDrake"}
 			},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{},
-			{
-				{0,		0,		4,			0,			0,		4,			0,			0,		3,			0,			0,		2,			0,		0,		1},
-				{0,		0,		1,			0,			0,		2,			0,			0,		3,			0,			0,		3,			0,		0,		3}
+			{//Spectre
+				{"WitchavenShadowHound"},
+				{"WTRandomGonzo"}
 			},
-			{},
-			{
-				{0,		0,		4,			0,			0,		3,			0,			0,		3,			0,			0,		2,			0,		0,		1},
-				{0,		0,		1,			0,			0,		2,			0,			0,		3,			0,			0,		3,			0,		0,		4}
+			{//Hell Knight
+				{"WTPurpleMidianWarriorMixer"}
 			},
-			{},
-			{},
+			{//Baron of Hell
+				{"WTGreyWitch"}
+			},
+			{//Arachnotron
+				{"WTCiraenSentinelHighMixer"}
+			},
+			{//Mancubus
+				{"WTSkeletalPriestess"}
+			},
+			{//Lost Soul
+				{"WTWillOWisp"}
+			},
+			{//Pain Elemental
+				{"Witchaven2Guardian"}
+			},
+			{//Cacodemon
+				{"Witchaven1Guardian"}
+			},
+			{//Revenant
+				{"WTBlueMidianWarriorMixer"},
+				{"WTArgothonianHighMixer"}
+			},
+			{//Archvile
+				{"WitchavenScaryScreamer"}
+			},
+			{//Cyberdemon
+				{"WitchavenDragon"},
+				{"WTIllwhyrin"}
+			},
+			{//Spider Mastermind
+				{"WTCiraeArgoth"}
+			},
+			{//Wolfenstein SS
+				{"WTRandomGoblin"}
+			},
+			{//Super Shotgunguy
+				{"WTRandomOgre"},
+				{"WitchavenImp"},
+				{"WTArgothonianMixer"}
+			},
+			{//Dark Imp
+				{"WTLavaFiend"},
+				{"WTMuckDemoness"}
+			},
+			{//Blood Demon
+				{"WTRedMidianWarriorMixer"},
+				{"WTRandomGonzo"},
+				{"WitchavenBrute"},
+				{"MinoDrake"}
+			},
+			{//Cacolantern
+				{"Witchaven2Guardian"}
+			},
+			{//Abaddon
+				{"Witchaven1Guardian"}
+			},
+			{//Hectebus
+				{"WTSkeletalPriestess"}
+			},
+			{//Belphegor
+				{"WTGreyWitch"}
+			}
 		}
-	},	
-	{ // Half-Life
-		{
-			{
-				{0,		0,			2,			0,			0,			2,			0,			0,				3,			0,			2.0,		3,		0,			2.25,			1},
-				{0,		0,			3,			0,			0,			4,			0,			0,				3,			0,			1.5,		4,		0,			2.0,				4}
+	},
+	{//Half Life
+		{//Main
+			{//Zombieman
+				{"Headcrab"},
+				{"HLHoundeye","HLEasy","HLEasy","HLNormal","HLHard","HLNightmare"}
 			},
-			{
-				{0,		0.5,		5,			0,			0.5,		5,			0,			0.75,		4,			0,			0,			3,		0,			1.5,				2},
-				{0,		0.5,		5,			0,			0.5,		5,			0,			0.75,		4,			0,			0,			3,		0,			1.5,				2},
-				{0,		0.5,		1,			0,			0.5,		1,			0,			0.75,		1,			0,			0,			1,		0,			1.5,				1}
+			{//Shotgunguy
+				{"HECU_Shotgun1"},
+				{"HECU_Shotgun2"}
 			},
-			{
-				{0,		0,			5,			0,			0,			5,			0,			0,				4,			0,			2.0,		3,		0,			2.0,				3},
-				{0,		0,			1,			0,			0,			2,			0,			0,				2,			0,			2.75,	1,		0,			2.75,			2}
-			},	
-			{
-				{0,		0.5,		6,			0,			0.5,		6,			0,			0.75,		6,			0,			0,			6,		0,			1.5,				5},
-				{0,		0.5,		6,			0,			0.5,		6,			0,			0.75,		6,			0,			0,			6,		0,			1.5,				5},
-				{0,		0.5,		1,			0,			0.5,		1,			0,			0.75,		2,			0,			0,			3,		0,			1.5,				4},
-				{0,		0.5,		2,			0,			0.5,		2,			0,			0.75,		2,			0,			0,			2,		0,			1.5,				2},
-				{0,		0.5,		2,			0,			0.5,		2,			0,			0.75,		2,			0,			0,			2,		0,			1.5,				2}
+			{//Doom Imp
+				{"Vortigaunt","","","","HLHard","HLNightmare"}
 			},
-			{
-				{0,		0,			4,			0,			0,			4,			0,			0,				5,			0,			2.0,		6,		0,			2.0,				6},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			2.0,		2,		0,			2.0,				2},
-				{0,		0,			2,			0,			0,			2,			0,			0,				1,			0,			2.0,		1,		0,			2.0,				1},
-				{0,		0,			1,			0,			0,			1,			0,			0,				2,			0,			3.0,		2,		0,			3.0,				3}
+			{//Chaingunguy
+				{"HECU_Grunt1"},
+				{"HECU_Grunt2"},
+				{"HECU_M203"},
+				{"HECU_Commander1"},
+				{"HECU_Commander2"},
+				{"HECU_Sarge"}
 			},
-			{
-				{0,		0,			4,			0,			0,			4,			0,			0,				5,			0,			2.0,		6,		0,			2.0,				6},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			2.0,		2,		0,			2.0,				2},
-				{0,		0,			2,			0,			0,			2,			0,			0,				1,			0,			2.0,		1,		0,			2.0,				1},
-				{0,		0,			1,			0,			0,			1,			0,			0,				2,			0,			3.0,		2,		0,			3.0,				3}
+			{//Demon
+				{"Headcrab_Scientist"},
+				{"Headcrab_Barney"},
+				{"Headcrab_Soldier"},
+				{"Bullsquid","","","HLNormal","HLHard","HLHard"}
 			},
-			{
-				{0,		0,			4,			0,			0,			4,			0,			0,				4,			0,			2.0,		4,		0,			2.4,				4}
+			{//Spectre
+				{"Headcrab_Scientist"},
+				{"Headcrab_Barney"},
+				{"Headcrab_Soldier"},
+				{"HLPitDrone"}
 			},
-			{
-				{0,		0.6,		5,			0,			0.6,		4,			0,			0,				4,			0,			0,			4,		0,			2.0,				4}
+			{//Hell Knight
+				{"AlienGrunt","HLEasy","HLEasy","HLNormal","HLHard","HLNightmare"}
 			},
-			{
-				{0,		0,			2,			0,			0,			3,			0,			0,				3,			0,			0,			4,		0,			0,					5},
-				{0,		0,			1,			0,			0,			2,			0,			0,				3,			0,			0,			5,		0,			0,					7}
+			{//Baron of Hell
+				{"ShockTrooper"}
 			},
-			{
-				{0,		0.711,	5,			0,			0.711,	5,			0,			0.711,		5,			0,			0,			5,		0,			0,					5}
+			{//Arachnotron
+				{"HLAbramsGun"},
+				{"HLBradleyGun"}
 			},
-			{
-				{0,		0,			5,			0,			0,			5,			0,			0,				5,			0,			2.0,		5,		0,			2.0,				5}
+			{//Mancubus
+				{"Voltigore"},
+				{"HLAbrams"},
+				{"HLBradley"}
 			},
-			{
-				{0,		0.6,		5,			0,			0.6,		5,			0,			0.6,			5,			0,			0,			5,		0,			2.0,				5}
+			{//Lost Soul
+				{"Stukabat"}
 			},
-			{
-				{0,		0.6,		5,			0,			0.6,		5,			0,			0.6,			5,			0,			0,			5,		0,			2.0,				5}
+			{//Pain Elemental
+				{"HLController"}
 			},
-			{
-				{0,		0.5,		4,			0,			0.5,		4,			0,			0.75,		5,			0,			0,			5,		0,			1.2,				5},
-				{0,		0,			2,			0,			0,			2,			0,			0,				3,			0,			2.0,		2,		0,			2.0,				3}
+			{//Cacodemon
+				{"HLController"}
 			},
-			{
-				{0,		0.5,		5,			0,			0.5,		5,			0,			0.75,		5,			0,			0,			5,		0,			1.5,				5},
-				{0,		0.5,		3,			0,			0.5,		3,			0,			0.75,		3,			0,			0,			3,		0,			1.5,				3}
+			{//Revenant
+				{"Gonome"},
+				{"MaleAssassin1_MP5"},
+				{"MaleAssassin2_MP5"},
+				{"MaleAssassin3_MP5"},
+				{"MaleAssassin1_M40"},
+				{"MaleAssassin2_M40"},
+				{"MaleAssassin3_M40"},
+				{"HLAssassin"}
 			},
-			{
-				{0,		0.8,		5,			0,			0.8,		5,			0,			0.8,			5,			0,			0,			5,		0,			0,					5},
-				{0,		0.8,		3,			0,			0.8,		3,			0,			0.8,			3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			2,			0,			0,			2,			0,			0,				2,			0,			0,			2,		0,			0,					2}
+			{//Archvile
+				{"HECU_Robot1"},
+				{"HECU_Robot2"}
 			},
-			{
-				{0,		0.8,		6,			0,			0.8,		6,			0,			0.8,			6,			0,			0,			6,		0,			1.6,				6},
-				{0,		0.8,		3,			0,			0.8,		3,			0,			0.8,			3,			0,			0,			3,		0,			1.1,				3},
-				{0,		0.7,		2,			0,			0.7,		2,			0,			0.9,			2,			0,			0,			2,		0,			1.25,			2}
-			},	
-			{
-				{0,		0,			6,			0,			0,			6,			0,			0,				6,			0,			0,			6,		0,			0,					6},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			4,			0,			0,			4,			0,			0,				4,			0,			0,			4,		0,			0,					4},
-				{0,		0,			2,			0,			0,			2,			0,			0,				2,			0,			0,			2,		0,			0,					2},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			2,			0,			0,			2,			0,			0,				2,			0,			0,			2,		0,			0,					2},
-				{0,		0,			1,			0,			0,			1,			0,			0,				1,			0,			0,			1,		0,			0,					1}
+			{//Cyberdemon
+				{"Gargantua"},
+				{"HLKingpin"},
+				{"HLPitWorm"}
+			},
+			{//Spider Mastermind
+				{"Gonarch"},
+				{"Nihilanth"},
+				{"Geneworm"}
+			},
+			{//Wolfenstein SS
+				{"Combine_Soldier_MP7"},
+				{"Combine_Soldier_MP7_Dirty"},
+				{"Combine_Soldier_Shotgun"},
+				{"Combine_Soldier_Shotgun_Dirty"},
+				{"Combine_Soldier_AR2"},
+				{"Combine_Soldier_AR2_Dirty"},
+				{"Combine_Elite_AR2"},
+				{"Combine_Elite_AR2_Dirty"}
+			},
+			{//Super Shotgunguy
+				{"HECU_Shotgun1"},
+				{"HECU_Shotgun2"}
+			},
+			{//Dark Imp
+				{"HLPitDrone"},
+				{"HECU_Sarge"}
+			},
+			{//Blood Demon
+				{"Bullsquid"},
+				{"HLPitDrone"}
+			},
+			{//Cacolantern
+				{"HLController"}
+			},
+			{//Abaddon
+				{"HLController"}
+			},
+			{//Hectebus
+				{"Voltigore"},
+				{"HLAbrams"},
+				{"HLBradley"}
+			},
+			{//Belphegor
+				{"ShockTrooper"}
 			}
 		},
-		{ // OpFor
-			{
-				{0,		0,			2,			0,			0,			2,			0,			0,				3,			0,			2.0,		3,		0,			2.25,			1},
-				{0,		0,			3,			0,			0,			4,			0,			0,				3,			0,			1.5,		4,		0,			2.0,				4}
+		{//Opposing Force
+			{//Zombieman
+				{"Headcrab"},
+				{"HLHoundeye","HLEasy","HLEasy","HLNormal","HLHard","HLNightmare"},
+				{"Headcrab_Scientist"},
+				{"Headcrab_Barney"},
+				{"Headcrab_Soldier"}
 			},
-			{
-				{0,		0.5,		2,			0,			0.5,		2,			0,			0.75,		3,			0,			0,			4,		0,			1.5,				3},
-				{0,		0.5,		6,			0,			0.5,		6,			0,			0.75,		7,			0,			0,			10,		0,			1.5,			5},	
-				{0,		0,			3,			0,			0,			3,			0,			0,				1,			0,			0,			1,		0,			0,					-1}
+			{//Shotgunguy
+				{"Bullsquid","","","HLNormal","HLHard","HLHard"},
+				{"HLHoundeye"},
+				{"Headcrab_Scientist"},
+				{"Headcrab_Barney"},
+				{"Headcrab_Soldier"},
+				{"HECU_FGrunt_Opp_Small"}
 			},
-			{
-				{0,		0,			5,			0,			0,			5,			0,			0,				4,			0,			2.0,		3,		0,			2.0,				3},
-				{0,		0,			1,			0,			0,			2,			0,			0,				2,			0,			2.75,	1,		0,			2.75,			2}
-			},				
-			{
-				{0,		0.5,		3,			0,			0.5,		3,			0,			0.75,		4,			0,			0,			5,		0,			1.5,				6},
-				{0,		0.5,		3,			0,			0.5,		3,			0,			0.75,		4,			0,			0,			5,		0,			1.5,				6},
-				{0,		0.5,		3,			0,			0.5,		3,			0,			0.75,		4,			0,			0,			5,		0,			1.5,				6},
-				{0,		0,			1,			0,			0,			1,			0,			0,				1,			0,			0,			1,		0,			0,					1}
+			{//Doom Imp
+				{"Vortigaunt","","","","HLHard","HLNightmare"}
 			},
-			{
-				{0,		0,			4,			0,			0,			4,			0,			0,				5,			0,			2.0,		6,		0,			2.0,				6},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			2.0,		2,		0,			2.0,				2},
-				{0,		0,			2,			0,			0,			2,			0,			0,				1,			0,			2.0,		1,		0,			2.0,				1},
-				{0,		0,			1,			0,			0,			1,			0,			0,				2,			0,			3.0,		2,		0,			3.0,				3}
+			{//Chaingunguy
+				{"MaleAssassin1_MP5"},
+				{"MaleAssassin2_MP5"},
+				{"MaleAssassin3_MP5"},
+				{"HLAssassin"},
+				{"HECU_FGrunt_Opp_MG"}
 			},
-			{
-				{0,		0,			4,			0,			0,			4,			0,			0,				5,			0,			2.0,		6,		0,			2.0,				6},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			2.0,		2,		0,			2.0,				2},
-				{0,		0,			2,			0,			0,			2,			0,			0,				1,			0,			2.0,		1,		0,			2.0,				1},
-				{0,		0,			1,			0,			0,			1,			0,			0,				2,			0,			3.0,		2,		0,			3.0,				3}
-			},	
-			{
-				{0,		0,			4,			0,			0,			4,			0,			0,				4,			0,			2.0,		4,		0,			2.4,				4}
+			{//Demon
+				{"Bullsquid","","","HLNormal","HLHard","HLHard"},
+				{"HLPitDrone"},
+				{"Gonome"}
 			},
-			{
-				{0,		0.6,		5,			0,			0.6,		4,			0,			0,				4,			0,			0,			4,		0,			2.0,				4}
+			{//Spectre
+				{"Bullsquid","","","HLNormal","HLHard","HLHard"},
+				{"HLPitDrone"},
+				{"Gonome"}
 			},
-			{
-				{0,		0,			2,			0,			0,			3,			0,			0,				3,			0,			0,			4,		0,			0,					5},
-				{0,		0,			1,			0,			0,			2,			0,			0,				3,			0,			0,			5,		0,			0,					7}
+			{//Hell Knight
+				{"AlienGrunt","HLEasy","HLEasy","HLNormal","HLHard","HLNightmare"}
 			},
-			{
-				{0,		0.711,	5,			0,			0.711,	5,			0,			0.711,		5,			0,			0,			5,		0,			0,					5}
+			{//Baron of Hell
+				{"ShockTrooper"}
 			},
-			{
-				{0,		0,			5,			0,			0,			5,			0,			0,				5,			0,			2.0,		5,		0,			2.0,				5}
+			{//Arachnotron
+				{"Voltigore"}
 			},
-			{
-				{0,		0.6,		5,			0,			0.6,		5,			0,			0.6,			5,			0,			0,			5,		0,			2.0,				5}
+			{//Mancubus
+				{"Voltigore"}
 			},
-			{
-				{0,		0.6,		5,			0,			0.6,		5,			0,			0.6,			5,			0,			0,			5,		0,			2.0,				5}
+			{//Lost Soul
+				{"Stukabat"}
 			},
-			{
-				{0,		0.5,		4,			0,			0.5,		4,			0,			0.75,		5,			0,			0,			5,		0,			1.2,				5},
-				{0,		1.25,	3,			0,			1.25,	3,			0,			1.5,			3,			0,			2.0,		3,		0,			2.5,				4},
-				{0,		1.25,	3,			0,			1.25,	3,			0,			1.5,			3,			0,			2.0,		3,		0,			2.5,				4},
-				{0,		1.25,	3,			0,			1.25,	3,			0,			1.5,			3,			0,			2.0,		3,		0,			2.5,				4}
-			},	
-			{
-				{0,		0.5,		5,			0,			0.5,		5,			0,			0.75,		5,			0,			0,			5,		0,			1.5,				5},
-				{0,		0.5,		3,			0,			0.5,		3,			0,			0.75,		3,			0,			0,			3,		0,			1.5,				3}
+			{//Pain Elemental
+				{"HLController"}
 			},
-			{
-				{0,		0.8,		5,			0,			0.8,		5,			0,			0.8,			5,			0,			0,			5,		0,			0,					5},
-				{0,		0.8,		3,			0,			0.8,		3,			0,			0.8,			3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			2,			0,			0,			2,			0,			0,				2,			0,			0,			2,		0,			0,					2}
+			{//Cacodemon
+				{"HLController"}
 			},
-			{
-				{0,		0.8,		6,			0,			0.8,		6,			0,			0.8,			6,			0,			0,			6,		0,			1.6,				6},
-				{0,		0.8,		3,			0,			0.8,		3,			0,			0.8,			3,			0,			0,			3,		0,			1.1,				3},
-				{0,		0.7,		2,			0,			0.7,		2,			0,			0.9,			2,			0,			0,			2,		0,			1.25,			2}
-			},	
-			{
-				{0,		0,			6,			0,			0,			6,			0,			0,				6,			0,			0,			6,		0,			0,					6},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			4,			0,			0,			4,			0,			0,				4,			0,			0,			4,		0,			0,					4},
-				{0,		0,			2,			0,			0,			2,			0,			0,				2,			0,			0,			2,		0,			0,					2},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			3,			0,			0,			3,			0,			0,				3,			0,			0,			3,		0,			0,					3},
-				{0,		0,			2,			0,			0,			2,			0,			0,				2,			0,			0,			2,		0,			0,					2},
-				{0,		0,			1,			0,			0,			1,			0,			0,				1,			0,			0,			1,		0,			0,					1}
-			}		
+			{//Revenant
+				{"MaleAssassin1_M40"},
+				{"MaleAssassin2_M40"},
+				{"MaleAssassin3_M40"},
+				{"MaleAssassin1_MP5"},
+				{"MaleAssassin2_MP5"},
+				{"MaleAssassin3_MP5"},
+				{"HLAssassin"}
+			},
+			{//Archvile
+				{"HECU_Robot1"},
+				{"HECU_Robot2"}
+			},
+			{//Cyberdemon
+				{"Gargantua"},
+				{"HLKingpin"},
+				{"HLPitWorm"}
+			},
+			{//Spider Mastermind
+				{"Gargantua"},
+				{"Geneworm"}
+			},
+			{//Wolfenstein SS
+				{"Combine_Soldier_MP7"},
+				{"Combine_Soldier_MP7_Dirty"},
+				{"Combine_Soldier_Shotgun"},
+				{"Combine_Soldier_Shotgun_Dirty"},
+				{"Combine_Soldier_AR2"},
+				{"Combine_Soldier_AR2_Dirty"},
+				{"Combine_Elite_AR2"},
+				{"Combine_Elite_AR2_Dirty"}
+			},
+			{//Super Shotgunguy
+				{"MaleAssassin1_MP5"},
+				{"MaleAssassin2_MP5"},
+				{"MaleAssassin3_MP5"},
+				{"MaleAssassin1_M40"},
+				{"MaleAssassin2_M40"},
+				{"MaleAssassin3_M40"},
+				{"HLAssassin"},
+				{"HECU_FGrunt_Opp_MG"}
+			},
+			{//Dark Imp
+				{"Gonome"},
+				{"HLPitDrone"},
+				{"Vortigaunt","","","","HLHard","HLNightmare"}
+			},
+			{//Blood Demon
+				{"Gonome"},
+				{"HLPitDrone"},
+				{"Bullsquid","","","HLNormal","HLHard","HLHard"}
+			},
+			{//Cacolantern
+				{"HLController"}
+			},
+			{//Abaddon
+				{"HLController"}
+			},
+			{//Hectebus
+				{"Voltigore"}
+			},
+			{//Belphegor
+				{"ShockTrooper"}
+			}
 		}
-	},	
+	}
+};
+
+int monsterSelectStat[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_ITEMS] = 
+{
+	{//Doom
+		{//Classic
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		},
+		{//64
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,4,0,0,3,0,0,2,0,0,1,0,0,-1},
+				{0,0,1,0,0,2,0,0,3,0,0,4,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		},
+		{//VDR
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,8,0,0,8,0,0,8,0,0,8,0,0,2},
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,6,0,0,6,0,0,6,0,0,6,0,0,6},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Chex
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Heretic
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Wolfenstein 3D
+		{//Classic
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		},
+		{//Lost Missions
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		},
+		{//Totenkopf SDL
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Hexen
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,1,0,0,1,0,0,1,0,0,1,0,0,1},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Duke Nukem 3D
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,12,0,0,12,0,0,12,0,0,12,0,0,12},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,7,0,0,7,0,0,7,0,0,7,0,0,7},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		},
+		{//Life's a Beach
+			{//Zombieman
+				{0,0,14,0,0,14,0,0,14,0,0,14,0,0,14}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,12,0,0,12,0,0,12,0,0,12,0,0,12},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Marathon
+		{//Main
+			{//Zombieman
+				{0.5,0.5,4,0.75,0.75,4,0,0,3,1.25,1.25,1,1.5,1.5,-1},
+				{0.81,0.5,-1,0.87,0.75,2,0,0,3,1.05,1.25,4,1.15,1.5,4},
+				{0.88,0.5,4,0.94,0.75,4,0,0,3,1.13,1.25,1,1.25,1.5,-1},
+				{0.81,0.5,-1,0.87,0.75,2,0,0,3,1.05,1.25,4,1.15,1.5,4},
+				{0,0,-1,0,0,1,0,0,2,0,0,3,0,0,4},
+				{0,0,-1,0,0,1,0,0,2,0,0,3,0,0,4}
+			},
+			{//Shotgunguy
+				{0.81,0.5,5,0.87,0.75,4,0,0,4,1.05,1.25,2,1.15,1.5,1},
+				{0.81,0.5,5,0.87,0.75,4,0,0,4,1.05,1.25,2,1.15,1.5,1},
+				{0,0,-1,0,0,1,0,0,2,0,0,3,0,0,4},
+				{0,0,-1,0,0,1,0,0,2,0,0,3,0,0,4},
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,4,1.25,1.5,4},
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,4,1.25,1.5,4}
+			},
+			{//Doom Imp
+				{0.88,0.5,3,0.94,0.75,2,0,0,4,1.13,1.25,4,1.25,1.5,1},
+				{0.88,0.5,4,0.94,0.75,2,0,0,3,1.13,1.25,2,1.25,1.5,4},
+				{0.88,0.5,-1,0.94,0.75,-1,0,0,1,1.13,1.25,2,1.25,1.5,3}
+			},
+			{//Chaingunguy
+				{0.88,0.5,3,0.94,0.75,2,0,0,4,1.13,1.25,4,1.25,1.5,2},
+				{0.88,0.5,3,0.94,0.75,2,0,0,4,1.13,1.25,4,1.25,1.5,2},
+				{0.88,0.5,-1,0.94,0.75,-1,0,0,1,1.13,1.25,2,1.25,1.5,4},
+				{0.88,0.5,-1,0.94,0.75,-1,0,0,1,1.13,1.25,2,1.25,1.5,4}
+			},
+			{//Demon
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,3,1.25,1.5,1},
+				{0.88,0.5,2,0.94,0.75,2,0,0,4,1.13,1.25,5,1.25,1.5,4},
+				{0.76,0.8,1,0.95,0.9,1,0,0,2,1.19,1.2,2,1.5,1.4,3},
+				{0.89,0.7,-1,0.96,0.8,-1,0,0,1,1.19,1.2,1,1.32,1.5,1},
+				{0.73,0.5,3,0.8,0.66,3,0,0,4,1.13,1.34,3,1.25,1.5,2}
+			},
+			{//Spectre
+				{0.88,0.5,4,0.94,0.75,4,0,0,4,1.13,1.25,5,1.25,1.5,4},
+				{0,0,1,0,0,1,0,0,2,0,0,3,0,0,3},
+				{0,0,1,0,0,1,0,0,2,0,0,3,0,0,3},
+				{0.76,0.8,1,0.95,0.9,1,0,0,2,1.19,1.2,2,1.5,1.4,3},
+				{0.89,0.7,-1,0.96,0.8,-1,0,0,1,1.19,1.2,1,1.32,1.5,1},
+				{0.73,0.5,5,0.8,0.66,5,0,0,2,1.13,1.34,2,1.25,1.5,1}
+			},
+			{//Hell Knight
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,5,1.25,1.5,5},
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,5,1.25,1.5,5}
+			},
+			{//Baron of Hell
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,5,1.25,1.5,5},
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,5,1.25,1.5,5},
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,3,1.25,1.5,4}
+			},
+			{//Arachnotron
+				{0.88,0.5,4,0.94,0.75,4,0,0,3,1.13,1.25,2,1.25,1.5,1},
+				{0.88,0.5,1,0.94,0.75,2,0,0,3,1.13,1.25,3,1.25,1.5,4}
+			},
+			{//Mancubus
+				{0.88,0.5,4,0.94,0.75,4,0,0,3,1.13,1.25,2,1.25,1.5,1},
+				{0.88,0.5,1,0.94,0.75,2,0,0,3,1.13,1.25,4,1.25,1.5,5},
+				{0.88,0.5,1,0.94,0.75,1,0,0,1,1.13,1.25,1,1.25,1.5,2}
+			},
+			{//Lost Soul
+				{0.88,0.5,3,0.94,0.75,3,0,0,3,1.13,1.25,2,1.25,1.5,1},
+				{0,0,3,0,0,3,0,0,3,0,0,2,0,0,-1},
+				{0,0,1,0,0,1,0,0,1,0,0,-1,0,0,-1},
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,3,1.25,1.5,4},
+				{0,0,-1,0,0,-1,0,0,1,0,0,3,0,0,4},
+				{0,0,-1,0,0,-1,0,0,-1,0,0,1,0,0,1}
+			},
+			{//Pain Elemental
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,3,1.25,1.5,1},
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,3,1.25,1.5,1},
+				{0.88,0.5,3,0.94,0.75,3,0,0,4,1.13,1.25,3,1.25,1.5,2},
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,4,1.25,1.5,5},
+				{0,0,-1,0,0,-1,0,0,1,0,0,2,0,0,3},
+				{0.88,0.5,2,0.94,0.75,2,0,0,3,1.13,1.25,2,1.25,1.5,4}
+			},
+			{//Cacodemon
+				{0.88,0.5,4,0.94,0.75,4,0,0,4,1.13,1.25,3,1.25,1.5,3},
+				{0,0,-1,0,0,-1,0,0,1,0,0,1,0,0,2},
+				{0.88,0.5,4,0.94,0.75,4,0,0,4,1.13,1.25,3,1.25,1.5,3}
+			},
+			{//Revenant
+				{0.88,0.5,2,0.94,0.75,2,0,0,3,1.13,1.25,1,1.25,1.5,2},
+				{0.88,0.5,4,0.94,0.75,4,0,0,3,1.13,1.25,2,1.25,1.5,1},
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,1,1.25,1.5,2},
+				{0.88,0.5,3,0.94,0.75,3,0,0,2,1.13,1.25,4,1.25,1.5,4}
+			},
+			{//Archvile
+				{0.88,0.5,4,0.94,0.75,4,0,0,3,1.13,1.25,2,1.25,1.5,1},
+				{0.88,0.5,2,0.94,0.75,2,0,0,2,1.13,1.25,2,1.25,1.5,4},
+				{0.73,0.5,1,0.78,0.75,1,0,0,1,1.13,1.25,2,1.25,1.5,3}
+			},
+			{//Cyberdemon
+				{0.88,0.5,1,0.94,0.75,1,0,0,1,1.13,1.25,2,1.25,1.5,3},
+				{0.88,0.5,3,0.94,0.75,3,0,0,2,1.13,1.25,2,1.25,1.5,1}
+			},
+			{//Spider Mastermind
+				{0.88,0.5,2,0.94,0.75,2,0,0,2,1.13,1.25,2,1.25,1.5,2}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,4,1.25,1.5,4},
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,4,1.25,1.5,4}
+			},
+			{//Dark Imp
+				{0.88,0.5,-1,0.94,0.75,-1,0,0,1,1.13,1.25,2,1.25,1.5,4},
+				{0.88,0.5,-1,0.94,0.75,-1,0,0,1,1.13,1.25,2,1.25,1.5,4}
+			},
+			{//Blood Demon
+				{0.89,0.7,-1,0.96,0.8,-1,0,0,1,1.19,1.2,1,1.32,1.5,1},
+				{0.73,0.5,3,0.8,0.66,3,0,0,4,1.13,1.34,3,1.25,1.5,2}
+			},
+			{//Cacolantern
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,4,1.25,1.5,5},
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,3,1.25,1.5,1}
+			},
+			{//Abaddon
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,3,1.25,1.5,1},
+				{0.88,0.5,5,0.94,0.75,5,0,0,5,1.13,1.25,3,1.25,1.5,1}
+			},
+			{//Hectebus
+				{0.88,0.5,1,0.94,0.75,1,0,0,1,1.13,1.25,1,1.25,1.5,2}
+			},
+			{//Belphegor
+				{0.88,0.5,1,0.94,0.75,1,0,0,2,1.13,1.25,3,1.25,1.5,4}
+			}
+		}
+	},
+	{//Quake 1
+		{//Main
+			{//Zombieman
+				{0,0,3,0,0,3,0,0,3,0,0,4,0,0,4},
+				{0,0,2,0,0,2,0,0,1,1.25,0,1,2.0,0,1}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,5,0,0,5,0,0,4,1.25,0,4,2.0,0,3},
+				{0,0,1,0,0,1,0,0,1,1.25,0,2,2.0,0,2},
+				{0,0,2,0,0,2,0,0,2,1.25,0,1,2.0,0,1}
+			},
+			{//Spectre
+				{0,0,5,0,0,5,0,0,4,0,0,4,0,0,4},
+				{0,0,1,0,0,1,0,0,1,0,0,2,0,0,3},
+				{0,0,1,0,0,1,0,0,1,0,0,2,0,0,3},
+				{0,0,1,0,0,1,0,0,1,0,0,2,0,0,3}
+			},
+			{//Hell Knight
+				{0,0,3,0,0,3,0,0,3,0,0,2,0,0,2},
+				{0,0,1,0,0,1,0,0,2,0,0,2,0,0,3}
+			},
+			{//Baron of Hell
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,1,0,0,1,0,0,1,0,0,1,0,0,1}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,4,0,0,4,0,0,3,0,0,4,0,0,2},
+				{0,0,1,0,0,1,0,0,1,0,0,2,0,0,2}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,3,0,0,5,0,0,3,0,0,2,0,0,-1},
+				{0,0,-1,0,0,1,0,0,1,0,0,3,0,0,3}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,3},
+				{0,0,1,0,0,1,0,0,2,0,0,2,0,0,2}
+			},
+			{//Spider Mastermind
+				{0,0,1,0,0,1,0,0,2,0,0,3,0,0,4},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,1}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,1,0,0,1,0,0,1,0,0,2,0,0,3},
+				{0,0,1,0,0,1,0,0,1,0,0,2,0,0,3}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Rise of the Triad
+		{//Main
+			{//Zombieman
+				{0.75,0.75,0,0,0,0,1.25,1.25,0,1.5,1.5,0,1.75,1.75,0}
+			},
+			{//Shotgunguy
+				{0.9,0.9,5,0,0,5,1.2,1.2,5,0,1.5,5,1.8,1.8,1},
+				{0,0.9,1,0,0,2,0,1.2,3,0,1.5,4,0,1.8,1}
+			},
+			{//Doom Imp
+				{0.75,0.75,0,0,0,2,1.25,1.25,2,0,1.5,3,1.75,1.75,4},
+				{0.9,0.9,3,0,0,3,1.2,1.2,3,0,1.5,3,1.8,1.8,3},
+				{0.75,0.75,4,0,0,3,1.25,1.25,2,1.5,1.5,2,1.75,1.75,-1}
+			},
+			{//Chaingunguy
+				{0.7,0.7,0,0,0,0,1.3,1.3,0,1.6,1.6,0,2.0,2.0,0}
+			},
+			{//Demon
+				{0.8,0.8,0,0,0,0,1.1,1.1,0,1.2,1.2,0,1.4,1.4,0}
+			},
+			{//Spectre
+				{0,0.8,0,0,0,0,0,1.1,0,0,1.2,0,0,1.4,0}
+			},
+			{//Hell Knight
+				{0,0.8,0,0,0,0,1.2,1.2,0,1.4,1.4,0,1.6,1.6,0}
+			},
+			{//Baron of Hell
+				{0.65,0.65,0,0,0,0,1.05,1.05,0,1.22,1.22,0,1.44,1.44,0}
+			},
+			{//Arachnotron
+				{0.8,0.8,0,0,0,0,1.2,1.2,0,1.4,1.4,0,1.6,1.6,0}
+			},
+			{//Mancubus
+				{0,0.8,0,0,0,0,0,1.2,0,0,1.4,0,0,1.6,0}
+			},
+			{//Lost Soul
+				{0.5,0.5,2,0,0,2,1.5,1.5,2,2.0,2.0,2,5.0,5.0,2},
+				{0,0.5,0,0,0,0,0,1.5,0,0,2.0,0,0,5.0,0}
+			},
+			{//Pain Elemental
+				{0.8,0.8,0,0,0,0,1.2,1.2,0,1.4,1.4,0,1.6,1.6,0}
+			},
+			{//Cacodemon
+				{0,0.8,0,0,0,0,0,1.2,0,0,1.4,0,0,1.6,0}
+			},
+			{//Revenant
+				{0.9,0.9,0,0,0,0,1.09,1.09,0,1.27,1.27,0,2.0,2.0,0}
+			},
+			{//Archvile
+				{0,0.9,0,0,0,0,1.1,1.1,0,1.1,1.1,0,1.4,1.4,0}
+			},
+			{//Cyberdemon
+				{0,0,2,1.5,1.5,3,1.67,1.67,2,2.0,2.0,3,2.25,2.25,3},
+				{0,0,-1,1.2,1.2,1,1.5,1.5,1,1.6,1.6,2,1.8,1.8,3}
+			},
+			{//Spider Mastermind
+				{0.8,0.8,2,0,0,3,1.25,1.25,4,1.5,1.5,5,1.6,1.6,5},
+				{0,0,4,1.4,1.4,4,1.45,1.45,4,1.55,1.55,4,1.8,1.8,3}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0.9,1,0,0,2,0,1.2,3,0,1.5,4,0,1.8,1}
+			},
+			{//Dark Imp
+				{0.9,0.9,0,0,0,0,1.09,1.09,0,1.27,1.27,0,2.0,2.0,0}
+			},
+			{//Blood Demon
+				{0,0.8,0,0,0,0,0,1.1,0,0,1.2,0,0,1.4,0}
+			},
+			{//Cacolantern
+				{0.8,0.8,0,0,0,0,1.2,1.2,0,1.4,1.4,0,1.6,1.6,0}
+			},
+			{//Abaddon
+				{0,0.8,0,0,0,0,0,1.2,0,0,1.4,0,0,1.6,0}
+			},
+			{//Hectebus
+				{0,0.8,0,0,0,0,0,1.2,0,0,1.4,0,0,1.6,0}
+			},
+			{//Belphegor
+				{0.65,0.65,0,0,0,0,1.05,1.05,0,1.22,1.22,0,1.44,1.44,0}
+			}
+		}
+	},
+	{//Blake Stone
+		{//Main
+			{//Zombieman
+				{0.4,0.4,2,0.6,0.6,2,0,0,2,1.2,1.2,2,1.4,1.4,2},
+				{0,0.4,2,0,0.6,2,0,0,2,1.25,1.25,2,1.5,1.5,2},
+				{0,0.4,2,0,0.6,2,0,0,2,0,1.25,2,0,1.5,2}
+			},
+			{//Shotgunguy
+				{0,0.4,2,0,0.6,2,0,0,2,0,1.25,3,0,1.5,2},
+				{0,0.4,2,0,0.6,2,0,0,2,0,1.25,3,0,1.5,2},
+				{0,0.4,1,0,0.6,1,0,0,1,0,1.2,1,0,1.5,1}
+			},
+			{//Doom Imp
+				{0,0.4,0,0,0.6,0,0,0,0,1.33,1.33,0,0,1.5,0}
+			},
+			{//Chaingunguy
+				{0,0.4,5,0,0.6,5,0,0,5,1.166,1.166,5,1.4,1.4,5},
+				{0,0.4,5,0,0.6,5,0,0,5,0,1.166,5,0,1.4,5}
+			},
+			{//Demon
+				{0,0.4,0,0,0.6,0,0,0,0,1.2,1.2,0,0,1.4,0}
+			},
+			{//Spectre
+				{0,0.4,0,0,0.6,0,0,0,0,1.25,1.25,0,1.5,1.5,0}
+			},
+			{//Hell Knight
+				{0.5,0.5,5,0.7,0.7,5,0,0,5,1.3,1.3,5,0,1.5,5},
+				{0,0.5,2,0,0.75,3,0,0,3,0,1.25,3,0,1.5,4},
+				{0,0.5,5,0,0.75,4,0,0,4,0,1.25,3,0,1.5,3}
+			},
+			{//Baron of Hell
+				{0,0.5,5,0.75,0.75,5,0,0,5,1.25,1.25,5,0,1.5,5},
+				{0,0.5,5,0,0.75,5,0,0,5,0,1.25,5,0,1.5,5}
+			},
+			{//Arachnotron
+				{0.6,0.6,0,0,0.75,0,0,0,0,0,1.25,0,0,1.5,0}
+			},
+			{//Mancubus
+				{0.5,0.5,5,0,0.75,5,0,0,5,0,1.25,5,0,1.5,5},
+				{0,0.4,3,0,0.6,3,0,0,3,0,1.2,3,0,1.4,4}
+			},
+			{//Lost Soul
+				{0,0.5,4,0,0.75,4,0,0,4,0,1.25,4,0,1.5,4},
+				{0.75,0,3,0,0.9,3,0,0,3,0,1.2,3,0,1.4,3}
+			},
+			{//Pain Elemental
+				{0.6,0.6,0,0.8,0.8,0,1.4,0,0,1.2,1.2,0,1.75,1.5,0}
+			},
+			{//Cacodemon
+				{0,0.6,0,1.2,0.8,0,1.4,0,0,1.6,1.2,0,1.75,1.5,0}
+			},
+			{//Revenant
+				{0.4,0.4,4,0.6,0.6,4,0,0,4,0,1.2,4,0,1.5,4},
+				{0,0.6,3,0,0.9,3,0,0,3,0,1.2,3,0,1.4,3},
+				{0,0.4,2,0,0.6,2,0,0,2,0,1.31,2,0,1.6,2},
+				{0,0.4,2,0,0.6,2,0,0,2,0,1.31,2,0,1.6,2}
+			},
+			{//Archvile
+				{0,0.4,3,0.8,0.8,3,0,0,3,0,1.2,3,1.4,1.4,3},
+				{0,0.5,4,0,0.75,4,0,0,4,0,1.33,4,0,1.66,4}
+			},
+			{//Cyberdemon
+				{0.5,0.5,4,0.66,0.66,4,0,0,4,1.2,1.2,4,1.5,1.5,4},
+				{0,0.5,4,0.75,0.75,4,0,0,4,1.25,1.25,4,1.4,1.4,4},
+				{0,0.5,4,0,0.75,4,0,0,4,0,1.25,4,1.5,1.5,4},
+				{0,0.5,2,0,0.75,2,0,0,2,0,1.25,2,1.4,1.4,2}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,1.66,1.66,0,2.0,2.0,0}
+			},
+			{//Wolfenstein SS
+				{0.4,0.4,0,0.6,0.6,0,0,0,0,1.2,1.2,0,1.4,1.4,0}
+			},
+			{//Super Shotgunguy
+				{0,0.4,5,0,0.6,5,0,0,5,1.166,1.166,5,0,1.4,5},
+				{0,0.4,5,0,0.6,5,0,0,5,0,1.166,5,0,1.4,5}
+			},
+			{//Dark Imp
+				{0,0.4,0,0,0.6,0,0,0,0,1.33,1.33,0,1.5,1.5,0}
+			},
+			{//Blood Demon
+				{0,0.4,0,0,0.6,0,0,0,0,1.25,1.25,0,0,1.5,0}
+			},
+			{//Cacolantern
+				{0.6,0.6,0,0.8,0.8,0,1.4,0,0,1.2,1.2,0,1.75,1.5,0}
+			},
+			{//Abaddon
+				{0,0.6,0,1.2,0.8,0,1.4,0,0,1.6,1.2,0,1.75,1.5,0}
+			},
+			{//Hectebus
+				{0.5,0.5,5,0.75,0.75,5,0,0,5,1.25,1.25,5,0,1.5,5},
+				{0,0.4,3,0,0.6,3,0,0,3,0,1.2,3,0,1.4,4}
+			},
+			{//Belphegor
+				{0.5,0.5,5,0.75,0.75,5,0,0,5,1.25,1.25,5,1.5,1.5,5},
+				{0,0.5,5,0,0.75,5,0,0,5,0,1.25,5,0,1.5,5}
+			}
+		}
+	},
+	{//Blood
+		{//Main
+			{//Zombieman
+				{0,0,2,1.5,1.5,2,2.0,2.0,2,2.5,2.5,2,3.1,3.1,2}
+			},
+			{//Shotgunguy
+				{0,0,2,0,1.5,2,0,2.0,2,0,2.5,2,0,3.1,2}
+			},
+			{//Doom Imp
+				{0,0,3,0,1.4,3,0,2.0,3,0,2.6,3,0,3.4,3}
+			},
+			{//Chaingunguy
+				{0,0,2,1.5,1.5,2,0,2.0,2,2.5,2.5,2,3.1,3.1,2}
+			},
+			{//Demon
+				{0,0,3,0,1.32,3,0,1.91,3,0,2.5,3,0,3.23,3},
+				{0,0,3,0,1.41,3,0,2.17,3,0,2.65,3,0,3.37,3}
+			},
+			{//Spectre
+				{0,0,3,0,1.75,3,0,2.5,3,0,3.5,3,0,4.5,3}
+			},
+			{//Hell Knight
+				{0,0,3,0,1.41,3,0,2.0,3,0,2.76,3,0,3.4,3}
+			},
+			{//Baron of Hell
+				{0,0,3,0,1.2,3,0,1.5,3,0,1.7,3,0,2.0,3}
+			},
+			{//Arachnotron
+				{0,0,3,1.4,1.4,3,2.0,2.0,3,2.6,2.6,3,3.4,3.4,3}
+			},
+			{//Mancubus
+				{0,0,3,0,1.78,3,0,2.22,3,0,3.11,3,0,3.55,3}
+			},
+			{//Lost Soul
+				{0,0,3,0,1.5,3,0,2.0,3,0,3.5,3,0,5.0,3}
+			},
+			{//Pain Elemental
+				{0,0,3,0,1.35,3,0,2.04,3,0,2.63,3,0,3.37,3}
+			},
+			{//Cacodemon
+				{0,0,3,0,1.3,3,0,1.5,3,0,2.3,3,0,3.2,3}
+			},
+			{//Revenant
+				{0,0,3,0,1.35,3,0,2.0,3,0,2.7,3,0,3.0,3}
+			},
+			{//Archvile
+				{0,0,3,0,1.4,3,0,2.0,3,0,2.6,3,0,3.4,3}
+			},
+			{//Cyberdemon
+				{0,0,3,0,1.2,3,0,2.0,3,0,2.4,3,0,3.2,3},
+				{0,0,3,0,1.25,3,0,2.35,3,0,2.4,3,0,3.5,3}
+			},
+			{//Spider Mastermind
+				{0,0,3,1.2,1.2,3,1.5,1.5,3,2.0,2.0,3,3.2,3.2,3}
+			},
+			{//Wolfenstein SS
+				{0,0,2,1.5,1.5,2,2.0,2.0,2,2.5,2.5,2,3.1,3.1,2}
+			},
+			{//Super Shotgunguy
+				{0,0,2,0,1.5,2,0,2.0,2,0,2.5,2,0,3.1,2}
+			},
+			{//Dark Imp
+				{0,0,3,0,1.4,3,0,2.0,3,0,2.6,3,0,3.4,3}
+			},
+			{//Blood Demon
+				{0,0,3,0,1.32,3,0,1.91,3,0,2.5,3,0,3.23,3},
+				{0,0,3,0,1.41,3,0,2.17,3,0,2.65,3,0,3.37,3}
+			},
+			{//Cacolantern
+				{0,0,3,0,1.35,3,0,2.04,3,0,2.63,3,0,3.37,3}
+			},
+			{//Abaddon
+				{0,0,3,0,1.3,3,0,1.5,3,0,2.3,3,0,3.2,3}
+			},
+			{//Hectebus
+				{0,0,3,0,1.78,3,0,2.22,3,0,3.11,3,0,3.55,3}
+			},
+			{//Belphegor
+				{0,0,3,1.2,1.2,3,1.5,1.5,3,1.7,1.7,3,2.0,2.0,3}
+			}
+		}
+	},
+	{//Strife
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,5,0,0,4,0,0,3,0,0,2,0,0,1},
+				{0,0,1,0,0,2,0,0,3,0,0,4,0,0,5}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,1,0,0,2,0,0,3,0,0,4,0,0,5},
+				{0,0,5,0,0,4,0,0,3,0,0,2,0,0,1}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Eradicator
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0.66,0,5,0.75,0,5,0,0,5,1.25,0,5,1.5,0,5}
+			},
+			{//Spectre
+				{0.66,0,5,0.75,0,5,0,0,5,1.25,0,5,1.5,0,5}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0.8,0,4,0.9,0,4,1.25,0,4,1.5,0,4,2.0,0,4},
+				{0.8,0,1,0.9,0,1,1.25,0,1,1.5,0,1,2.0,0,1},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0.66,0,0,0.75,0,0,0,0,0,1.25,0,0,1.5,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Corridor 7
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Rebel Moon Rising
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,5,0,0,5,0,0,4,0,0,3,0,0,2},
+				{0,0,1,0,0,2,0,0,2,0,0,3,0,0,4}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,5,0,0,5,0,0,4,0,0,3,0,0,2},
+				{0,0,1,0,0,2,0,0,2,0,0,3,0,0,4}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Star Wars Dark Forces
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//In Pursuit of Greed
+		{//Main
+			{//Zombieman
+				{0,0,2,0,0,2,0,0,3,0,0,4,0,0,5},
+				{0,0,3,0,0,2,0,0,2,0,0,2,0,0,1}
+			},
+			{//Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Doom Imp
+				{0,0,5,0,0,5,0,0,4,0,0,3,0,0,2},
+				{0,0,2,0,0,3,0,0,3,0,0,3,0,0,4}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,5,0,0,5,0,0,4,0,0,3,0,0,2},
+				{0,0,2,0,0,3,0,0,3,0,0,3,0,0,4}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Disruptor
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgunguy
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,-1,0,0,1,0,0,2,0,0,3,0,0,5}
+			},
+			{//Doom Imp
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5},
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5}
+			},
+			{//Chaingunguy
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5},
+				{0,0,2,0,0,2,0,0,3,0,0,3,0,0,4}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,2,0,0,3,0,0,3,0,0,4,0,0,5},
+				{0,0,1,0,0,1,0,0,2,0,0,2,0,0,2}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,7,0,0,7,0,0,6,0,0,5,0,0,-1},
+				{0,0,6,0,0,7,0,0,5,0,0,3,0,0,-1},
+				{0,0,7,0,0,7,0,0,6,0,0,4,0,0,-1},
+				{0,0,2,0,0,3,0,0,4,0,0,6,0,0,4},
+				{0,0,-1,0,0,1,0,0,2,0,0,5,0,0,7}
+			},
+			{//Pain Elemental
+				{0,0,2,0,0,3,0,0,3,0,0,3,0,0,2},
+				{0,0,3,0,0,4,0,0,3,0,0,6,0,0,8}
+			},
+			{//Cacodemon
+				{0,0,2,0,0,3,0,0,5,0,0,6,0,0,6},
+				{0,0,4,0,0,4,0,0,4,0,0,3,0,0,1}
+			},
+			{//Revenant
+				{0,0,5,0,0,4,0,0,3,0,0,3,0,0,2},
+				{0,0,2,0,0,2,0,0,2,0,0,3,0,0,4}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5},
+				{0,0,2,0,0,2,0,0,3,0,0,3,0,0,4}
+			},
+			{//Dark Imp
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5},
+				{0,0,5,0,0,5,0,0,5,0,0,5,0,0,5}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,2,0,0,3,0,0,3,0,0,3,0,0,2},
+				{0,0,3,0,0,4,0,0,3,0,0,6,0,0,8}
+			},
+			{//Abaddon
+				{0,0,2,0,0,3,0,0,5,0,0,6,0,0,6},
+				{0,0,4,0,0,4,0,0,4,0,0,3,0,0,1}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,2,0,0,3,0,0,3,0,0,4,0,0,5},
+				{0,0,1,0,0,1,0,0,2,0,0,2,0,0,2}
+			}
+		}
+	},
+	{//Witchaven
+		{//Main
+			{//Zombieman
+				{0,0,4,0,0,3,0,0,2,0,0,1,0,0,-1},
+				{0,0,3,0,0,2,0,0,3,0,0,4,0,0,5},
+				{0,0,2,0,0,2,0,0,3,0,0,3,0,0,4},
+				{0,0,4,0,0,3,0,0,2,0,0,1,0,0,-1}
+			},
+			{//Shotgunguy
+				{0,0,3,0,0,3,0,0,2,0,0,2,0,0,1},
+				{0,0,5,0,0,4,0,0,3,0,0,1,0,0,-1},
+				{0,0,1,0,0,2,0,0,4,0,0,4,0,0,3}
+			},
+			{//Doom Imp
+				{0,0,5,0,0,5,0,0,5,0,0,4,0,0,4},
+				{0,0,2,0,0,2,0,0,3,0,0,2,0,0,3}
+			},
+			{//Chaingunguy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,4,0,0,5,0,0,4,0,0,3,0,0,2},
+				{0,0,2,0,0,2,0,0,2,0,0,3,0,0,4},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,1},
+				{0,0,1,0,0,2,0,0,2,0,0,3,0,0,3}
+			},
+			{//Spectre
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,4,0,0,5,0,0,4,0,0,3,0,0,2}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,4,0,0,4,0,0,3,0,0,2,0,0,1},
+				{0,0,1,0,0,2,0,0,3,0,0,3,0,0,3}
+			},
+			{//Archvile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,4,0,0,3,0,0,3,0,0,2,0,0,1},
+				{0,0,1,0,0,2,0,0,3,0,0,3,0,0,4}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgunguy
+				{0,0,3,0,0,3,0,0,2,0,0,2,0,0,1},
+				{0,0,5,0,0,4,0,0,3,0,0,1,0,0,-1},
+				{0,0,1,0,0,2,0,0,4,0,0,4,0,0,3}
+			},
+			{//Dark Imp
+				{0,0,5,0,0,5,0,0,5,0,0,4,0,0,4},
+				{0,0,2,0,0,2,0,0,3,0,0,2,0,0,3}
+			},
+			{//Blood Demon
+				{0,0,4,0,0,5,0,0,4,0,0,3,0,0,2},
+				{0,0,2,0,0,2,0,0,2,0,0,3,0,0,4},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,1},
+				{0,0,1,0,0,2,0,0,2,0,0,3,0,0,3}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	},
+	{//Half Life
+		{//Main
+			{//Zombieman
+				{0,0,2,0,0,2,0,0,3,2.0,2.0,3,2.25,2.25,1},
+				{0,0,3,0,0,4,0,0,3,0,1.5,4,0,2.0,4}
+			},
+			{//Shotgunguy
+				{0,0.5,5,0,0.5,5,0,0.75,4,0,0,3,0,1.5,2},
+				{0,0.5,5,0,0.5,5,0,0.75,4,0,0,3,0,1.5,2}
+			},
+			{//Doom Imp
+				{0,0,5,0,0,5,0,0,4,0,2.0,3,2.0,2.0,3}
+			},
+			{//Chaingunguy
+				{0.5,0.5,6,0.5,0.5,6,0.75,0.75,6,0,0,6,1.5,1.5,5},
+				{0,0.5,6,0,0.5,6,0,0.75,6,0,0,6,0,1.5,5},
+				{0,0.5,1,0,0.5,1,0,0.75,2,0,0,3,0,1.5,4},
+				{0,0.5,2,0,0.5,2,0,0.75,2,0,0,2,0,1.5,2},
+				{0,0.5,2,0,0.5,2,0,0.75,2,0,0,2,0,1.5,2},
+				{0,0.5,3,0,0.5,3,0,0.75,3,0,0,3,0,1.5,3}
+			},
+			{//Demon
+				{0,0,4,0,0,4,0,0,5,0,2.0,6,0,2.0,6},
+				{0,0,3,0,0,3,0,0,3,0,2.0,2,0,2.0,2},
+				{0,0,2,0,0,2,0,0,1,0,2.0,1,0,2.0,1},
+				{0,0,1,0,0,1,0,0,2,0,3.0,2,0,3.0,3}
+			},
+			{//Spectre
+				{0,0,4,0,0,4,0,0,5,0,2.0,6,0,2.0,6},
+				{0,0,3,0,0,3,0,0,3,0,2.0,2,0,2.0,2},
+				{0,0,2,0,0,2,0,0,1,0,2.0,1,0,2.0,1},
+				{0,0,1,0,0,2,0,0,2,0,2.75,1,0,2.75,2}
+			},
+			{//Hell Knight
+				{0,0.5,4,0,0.5,4,0,0.75,5,0,0,5,0,1.2,5}
+			},
+			{//Baron of Hell
+				{0,0.6,5,0,0.6,4,0,0,4,0,0,4,0,2.0,4}
+			},
+			{//Arachnotron
+				{0,0,2,0,0,3,0,0,3,0,0,4,0,0,5},
+				{0,0,1,0,0,2,0,0,3,0,0,5,0,0,7}
+			},
+			{//Mancubus
+				{0,0.711,5,0,0.711,5,0,0.711,5,0,0,5,0,0,5},
+				{0,0,2,0,0,3,0,0,3,0,0,4,0,0,5},
+				{0,0,1,0,0,2,0,0,3,0,0,5,0,0,7}
+			},
+			{//Lost Soul
+				{0,0,5,0,0,5,0,0,5,0,2.0,5,0,2.0,5}
+			},
+			{//Pain Elemental
+				{0,0.6,5,0,0.6,5,0,0.6,5,0,0,5,0,2.0,5}
+			},
+			{//Cacodemon
+				{0,0.6,5,0,0.6,5,0,0.6,5,0,0,5,0,2.0,5}
+			},
+			{//Revenant
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4},
+				{0,0.5,3,0,0.5,3,0,0.75,4,0,0,5,0,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{1.25,1.25,3,1.25,1.25,3,1.5,1.5,3,2.0,2.0,3,2.5,2.5,4},
+				{1.25,1.25,3,1.25,1.25,3,1.5,1.5,3,2.0,2.0,3,2.5,2.5,4},
+				{0,1.25,3,0,1.25,3,0,1.5,3,0,2.0,3,0,2.5,4},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Archvile
+				{0,0.5,5,0,0.5,5,0,0.75,5,0,0,5,0,1.5,5},
+				{0,0.5,3,0,0.5,3,0,0.75,3,0,0,3,0,1.5,3}
+			},
+			{//Cyberdemon
+				{0,0.8,5,0,0.8,5,0,0.8,5,0,0,5,0,0,5},
+				{0,0.8,3,0,0.8,3,0,0.8,3,0,0,3,0,0,3},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2}
+			},
+			{//Spider Mastermind
+				{0,0.8,6,0,0.8,6,0,0.8,6,0,0,6,0,1.6,6},
+				{0,0.8,3,0,0.8,3,0,0.8,3,0,0,3,0,1.1,3},
+				{0,0.7,2,0,0.7,2,0,0.9,2,0,0,2,0,1.25,2}
+			},
+			{//Wolfenstein SS
+				{0,0,6,0,0,6,0,0,6,0,0,6,0,0,6},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,1,0,0,1,0,0,1,0,0,1,0,0,1}
+			},
+			{//Super Shotgunguy
+				{0,0.5,5,0,0.5,5,0,0.75,4,0,0,3,0,1.5,2},
+				{0,0.5,5,0,0.5,5,0,0.75,4,0,0,3,0,1.5,2}
+			},
+			{//Dark Imp
+				{0,0,1,0,0,2,0,0,2,0,2.75,1,0,2.75,2},
+				{0,0.5,3,0,0.5,3,0,0.75,3,0,0,3,0,1.5,3}
+			},
+			{//Blood Demon
+				{0,0,1,0,0,1,0,0,2,0,3.0,2,0,3.0,3},
+				{0,0,1,0,0,2,0,0,2,0,2.75,1,0,2.75,2}
+			},
+			{//Cacolantern
+				{0,0.6,5,0,0.6,5,0,0.6,5,0,0,5,0,2.0,5}
+			},
+			{//Abaddon
+				{0,0.6,5,0,0.6,5,0,0.6,5,0,0,5,0,2.0,5}
+			},
+			{//Hectebus
+				{0,0.711,5,0,0.711,5,0,0.711,5,0,0,5,0,0,5},
+				{0,0,2,0,0,3,0,0,3,0,0,4,0,0,5},
+				{0,0,1,0,0,2,0,0,3,0,0,5,0,0,7}
+			},
+			{//Belphegor
+				{0.6,0.6,5,0.6,0.6,4,0,0,4,0,0,4,2.0,2.0,4}
+			}
+		},
+		{//Opposing Force
+			{//Zombieman
+				{0,0,2,0,0,2,0,0,3,2.0,2.0,3,2.25,2.25,1},
+				{0,0,3,0,0,4,0,0,3,0,1.5,4,0,2.0,4},
+				{0,0,4,0,0,4,0,0,5,0,2.0,6,0,2.0,6},
+				{0,0,3,0,0,3,0,0,3,0,2.0,2,0,2.0,2},
+				{0,0,2,0,0,2,0,0,1,0,2.0,1,0,2.0,1}
+			},
+			{//Shotgunguy
+				{0,0,1,0,0,1,0,0,2,0,3.0,2,0,3.0,3},
+				{0,0,3,0,0,4,0,0,3,0,1.5,4,0,2.0,4},
+				{0,0,4,0,0,4,0,0,5,0,2.0,6,0,2.0,6},
+				{0,0,3,0,0,3,0,0,3,0,2.0,2,0,2.0,2},
+				{0,0,2,0,0,2,0,0,1,0,2.0,1,0,2.0,1},
+				{0,0,3,0,0,3,0,0,1,0,0,1,0,0,-1}
+			},
+			{//Doom Imp
+				{0,0,0,0,0,0,0,0,0,2.0,2.0,0,2.0,2.0,0}
+			},
+			{//Chaingunguy
+				{0,0.5,3,0,0.5,3,0,0.75,4,0,0,5,0,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4},
+				{0,0,3,0,0,3,0,0,1,0,0,1,0,0,-1}
+			},
+			{//Demon
+				{0,0,1,0,0,1,0,0,2,3.0,3.0,2,3.0,3.0,3},
+				{0,0,1,0,0,2,0,0,2,0,2.75,1,0,2.75,2},
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4}
+			},
+			{//Spectre
+				{0,0,1,0,0,1,0,0,2,3.0,3.0,2,3.0,3.0,3},
+				{0,0,1,0,0,2,0,0,2,2.75,2.75,1,2.75,2.75,2},
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4}
+			},
+			{//Hell Knight
+				{0.5,0.5,0,0.5,0.5,0,0.75,0.75,0,0,0,0,1.2,1.2,0}
+			},
+			{//Baron of Hell
+				{0.6,0.6,0,0.6,0.6,0,0,0,0,0,0,0,2.0,2.0,0}
+			},
+			{//Arachnotron
+				{0.711,0.711,0,0.711,0.711,0,0.711,0.711,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0.711,0.711,0,0.711,0.711,0,0.711,0.711,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,2.0,2.0,0,0,2.0,0}
+			},
+			{//Pain Elemental
+				{0.6,0.6,0,0.6,0.6,0,0.6,0.6,0,0,0,0,2.0,2.0,0}
+			},
+			{//Cacodemon
+				{0,0.6,0,0,0.6,0,0,0.6,0,0,0,0,0,2.0,0}
+			},
+			{//Revenant
+				{1.25,1.25,3,1.25,1.25,3,1.5,1.5,3,2.0,2.0,3,2.5,2.5,4},
+				{1.25,1.25,3,1.25,1.25,3,1.5,1.5,3,2.0,2.0,3,2.5,2.5,4},
+				{0,1.25,3,0,1.25,3,0,1.5,3,0,2.0,3,0,2.5,4},
+				{0,0.5,3,0,0.5,3,0,0.75,4,0,0,5,0,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4}
+			},
+			{//Archvile
+				{0,0.5,5,0,0.5,5,0,0.75,5,0,0,5,0,1.5,5},
+				{0,0.5,3,0,0.5,3,0,0.75,3,0,0,3,0,1.5,3}
+			},
+			{//Cyberdemon
+				{0,0.8,5,0,0.8,5,0,0.8,5,0,0,5,0,0,5},
+				{0,0.8,3,0,0.8,3,0,0.8,3,0,0,3,0,0,3},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2}
+			},
+			{//Spider Mastermind
+				{0,0.8,3,0,0.8,3,0,0.8,3,0,0,3,0,1.1,3},
+				{0,0.7,2,0,0.7,2,0,0.9,2,0,0,2,0,1.25,2}
+			},
+			{//Wolfenstein SS
+				{0,0,6,0,0,6,0,0,6,0,0,6,0,0,6},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
+				{0,0,1,0,0,1,0,0,1,0,0,1,0,0,1}
+			},
+			{//Super Shotgunguy
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{0.5,0.5,3,0.5,0.5,3,0.75,0.75,4,0,0,5,1.5,1.5,6},
+				{1.25,1.25,3,1.25,1.25,3,1.5,1.5,3,2.0,2.0,3,2.5,2.5,4},
+				{1.25,1.25,3,1.25,1.25,3,1.5,1.5,3,2.0,2.0,3,2.5,2.5,4},
+				{0,1.25,3,0,1.25,3,0,1.5,3,0,2.0,3,0,2.5,4},
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4},
+				{0,0,3,0,0,3,0,0,1,0,0,1,0,0,-1}
+			},
+			{//Dark Imp
+				{0,0,1,0,0,2,0,0,2,2.75,2.75,1,2.75,2.75,2},
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4},
+				{0,0,5,0,0,5,0,0,4,0,2.0,3,2.0,2.0,3}
+			},
+			{//Blood Demon
+				{0,0,4,0,0,4,0,0,4,2.0,2.0,4,2.4,2.4,4},
+				{0,0,1,0,0,2,0,0,2,2.75,2.75,1,2.75,2.75,2},
+				{0,0,1,0,0,1,0,0,2,3.0,3.0,2,3.0,3.0,3}
+			},
+			{//Cacolantern
+				{0,0.6,0,0,0.6,0,0,0.6,0,0,0,0,0,2.0,0}
+			},
+			{//Abaddon
+				{0.6,0.6,0,0.6,0.6,0,0.6,0.6,0,0,0,0,2.0,2.0,0}
+			},
+			{//Hectebus
+				{0.711,0.711,0,0.711,0.711,0,0.711,0.711,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0.6,0.6,0,0.6,0.6,0,0,0,0,0,0,0,2.0,2.0,0}
+			}
+		}
+	},
 };
