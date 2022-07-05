@@ -520,6 +520,8 @@ Script "ReMixer_PickSets" (void)
 {	
 	if(monsterProcessing == 1)
 		terminate;
+		
+	SetCvar("mm_cachemodels",0);
 			
 	int clients = PlayerCount();
 	int bitindex, a, b, p;
@@ -571,6 +573,9 @@ Script "ReMixer_PickSets" (void)
 									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 										amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
 									break;
+								case 30:
+									SetCvar("mm_cachemodels",1);
+									break;
 							}						
 						}
 					}
@@ -616,6 +621,9 @@ Script "ReMixer_PickSets" (void)
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
 								break;
+							case 30:
+								SetCvar("mm_cachemodels",1);
+								break;
 						}
 					}
 				}
@@ -653,6 +661,9 @@ Script "ReMixer_PickSets" (void)
 							case 19: 
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
+								break;
+							case 30:
+								SetCvar("mm_cachemodels",1);
 								break;
 						}
 					}
@@ -703,6 +714,9 @@ Script "ReMixer_PickSets" (void)
 							case 19: 
 								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
+								break;
+							case 30:
+								SetCvar("mm_cachemodels",1);
 								break;
 						}
 					}
