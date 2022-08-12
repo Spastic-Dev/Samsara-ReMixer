@@ -10,8 +10,7 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 	Health 100
 	Meleerange 48
 	Tag "Black Operations (M)"
-	DropItem "HL_HECU_MP5Drop", 256, 1
-	DropItem "MP5Drop", 256, 1
+	DropItem "HL_HECU_MP5Drop", 128, 1
 	States
 	{
 		Spawn:
@@ -20,7 +19,6 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			HL00 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			HL00 A 0 ACS_NamedExecuteAlways("HalfLifeFootStepGeneratorEnemy")
 			HL00 A 0 A_GiveInventory("HLSpeedTokens", 12)
-			HL00 A 0 A_GiveInventory("NoHeadshots", 1) //they're supposedly immune to headshots. weird, i know
 			HL00 A 0 A_GiveInventory("AlreadySpawned",1)
 		SpawnStandard:
 			TNT1 A 0
@@ -636,8 +634,7 @@ actor MaleAssassin3_MP5_ShrinkEffect : MaleAssassin1_MP5_ShrinkEffect {}
 
 Actor MaleAssassin1_M40 : MaleAssassin1_MP5
 {
-	DropItem "HL_HECU_M40A1Drop", 256, 1
-	DropItem "HL_M40A1", 256, 1
+	DropItem "HL_HECU_M40A1Drop", 100, 1
 	States
 	{
 		Missile:
@@ -899,7 +896,7 @@ Actor HLBullet_Blackop : HLBullet
 
 Actor HLBullet_M40 : HLBullet
 {
-	Damage (15)
+	Damage (15*Random(2,1))
 }
 
 Actor Ass_M40_DummyReload : Inventory { Inventory.Amount 1 Inventory.MaxAmount 50 }
@@ -907,7 +904,7 @@ Actor Ass_M40_DummyReload : Inventory { Inventory.Amount 1 Inventory.MaxAmount 5
 Actor HL_HECU_M40A1Drop : RandomSpawner
 {
 	DropItem "HL_M40A1clip", 255, 10
-	//DropItem "HL_M40A1", 255, 2
+	DropItem "HL_M40A1", 255, 2
 	DropItem "HL_GrenadeWeapon", 255, 2
 	DropItem "HL_GrenadeWeapon2", 255, 2
 }

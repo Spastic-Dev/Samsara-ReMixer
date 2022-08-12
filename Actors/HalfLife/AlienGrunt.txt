@@ -91,9 +91,6 @@ Actor AlienGrunt
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL02 A 0 A_Jump(155,"Missile2")
 			HL02 ABCD 2 A_FaceTarget
-			HL02 E 0 A_JumpIfInventory("HLNormal", 1, "FireMissileNorm")
-			HL02 E 0 A_JumpIfInventory("HLHard", 1, "FireMissileHard")
-			HL02 E 0 A_JumpIfInventory("HLNightmare", 1, "FireMissileNightmare")
 		FireMissile:
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
@@ -102,40 +99,12 @@ Actor AlienGrunt
 			HL02 F 0 A_Jump(16,2)
 			TNT1 A 0 A_JumpIfTargetInLOS("FireMissile",160,JLOSF_DEADNOJUMP)
 			HL02 G 1
-			Goto FireStop
-		FireMissileNorm:
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL02 E 6 A_CustomMissile("HLHornetGruntNormal",48,16)
-			HL02 F 6 A_CustomMissile("HLHornetGruntNormal",48,16)
-			HL02 F 0 A_Jump(16,2)
-			TNT1 A 0 A_JumpIfTargetInLOS("FireMissileNorm",160,JLOSF_DEADNOJUMP)
-			HL02 G 1
-			Goto FireStop
-		FireMissileHard:
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL02 E 6 A_CustomMissile("HLHornetGruntHard",48,16)
-			HL02 F 6 A_CustomMissile("HLHornetGruntHard",48,16)
-			HL02 F 0 A_Jump(16,2)
-			TNT1 A 0 A_JumpIfTargetInLOS("FireMissileHard",160,JLOSF_DEADNOJUMP)
-			HL02 G 1		
-			Goto FireStop
-		FireMissileNightmare:
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL02 E 6 A_CustomMissile("HLHornetGruntNightmare",48,16)
-			HL02 F 6 A_CustomMissile("HLHornetGruntNightmare",48,16)
-			HL02 F 0 A_Jump(16,2)
-			TNT1 A 0 A_JumpIfTargetInLOS("FireMissileNightmare",160,JLOSF_DEADNOJUMP)
-			HL02 G 1			
 		FireStop:
 			HL02 GH 2 
 			Goto SetRun
 		Missile2:
 			HL03 A 0 A_Jump(155,"FireMissile2")
 			HL03 AB 2 A_FaceTarget
-			HL03 C 0 A_JumpIfInventory("HLNormal", 1, "FireMissile2Norm")
 		FireMissile2:
 			HL03 C 0 A_FaceTarget
 			HL03 C 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
@@ -143,50 +112,15 @@ Actor AlienGrunt
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_JumpIfTargetInLOS("FireMissile2",160,JLOSF_DEADNOJUMP)
 			HL03 D 1
-			Goto FireStop2
-		FireMissile2Norm:
-			HL03 C 0 A_FaceTarget
-			HL03 C 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL03 C 16 A_CustomMissile("HLHornetSeekerGruntNormal",48,16)
-			TNT1 A 0 A_Jump(64,2)
-			TNT1 A 0 A_JumpIfTargetInLOS("FireMissile2Norm",160,JLOSF_DEADNOJUMP)
-			HL03 D 1
-			Goto FireStop2	
-		FireMissile2Hard:
-			HL03 C 0 A_FaceTarget
-			HL03 C 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL03 C 16 A_CustomMissile("HLHornetSeekerGruntHard",48,16)
-			TNT1 A 0 A_Jump(64,2)
-			TNT1 A 0 A_JumpIfTargetInLOS("FireMissile2Hard",160,JLOSF_DEADNOJUMP)
-			HL03 D 1
-			Goto FireStop2	
-		FireMissile2Nightmare:	
-			HL03 C 0 A_FaceTarget
-			HL03 C 0 A_Playsound("halflife/hornet_shoot",CHAN_WEAPON)
-			HL03 C 16 A_CustomMissile("HLHornetSeekerGruntNightmare",48,16)
-			TNT1 A 0 A_Jump(64,2)
-			TNT1 A 0 A_JumpIfTargetInLOS("FireMissile2Nightmare",160,JLOSF_DEADNOJUMP)
-			HL03 D 1	
 		FireStop2:
 			HL03 DEF 2 
 			Goto SetRun
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			HL04 ABCD 2
-			HL04 E 0 A_JumpIfInventory("HLNormal", 1, "MeleeHard")
-			HL04 E 0 A_JumpIfInventory("HLHard", 1, "MeleeHard")
-			HL04 E 0 A_JumpIfInventory("HLNightmare", 1, "MeleeNightmare")
-			HL04 E 0 A_CustomMeleeAttack(10,"HLZombie/Claw","HLZombie/Miss")
-			HL04 EFGH 2
-			Goto SetRun
-		MeleeHard:
 			HL04 E 0 A_CustomMeleeAttack(20,"HLZombie/Claw","HLZombie/Miss")
 			HL04 EFGH 2
-			Goto SetRun	
-		MeleeNightmare:
-			HL04 E 0 A_CustomMeleeAttack(30,"HLZombie/Claw","HLZombie/Miss")
-			HL04 EFGH 2
-			Goto SetRun			
+			Goto SetRun
 		Pain:
 			HL07 A 0 A_Pain
 			HL07 ABCDEFGH 2
@@ -357,7 +291,7 @@ Actor AlienGrunt
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)			
-			TNT1 A 0 A_SpawnItem("HLAlienGibSpawner")
+			TNT1 A 0 A_SpawnItemEx("HLAlienGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR)
 			TNT1 A 5 A_NoBlocking
 			Stop	
 		Pain.LifeLeech: 
@@ -908,7 +842,7 @@ ACTOR HornetGunDrop : SamsaraSlotOneDrop {
 
 Actor HLHornetGrunt : HLHornet 
 { 
-	Damage (4) 
+	Damage (5) 
 	States
 	{
 		Crash:
@@ -918,12 +852,9 @@ Actor HLHornetGrunt : HLHornet
 			stop
 	}
 }
-Actor HLHornetGruntNormal : HLHornetGrunt { Damage (5) }
-Actor HLHornetGruntHard : HLHornetGrunt { Damage (8) }
-Actor HLHornetGruntNightmare : HLHornetGrunt { Damage (10) }
 Actor HLHornetSeekerGrunt : HLHornetSeeker 
 { 
-	Damage (4) 
+	Damage (5) 
 	States
 	{
 		Crash:
@@ -933,6 +864,3 @@ Actor HLHornetSeekerGrunt : HLHornetSeeker
 			stop
 	}
 }
-Actor HLHornetSeekerGruntNormal : HLHornetSeekerGrunt { Damage (5) }
-Actor HLHornetSeekerGruntHard : HLHornetSeekerGrunt { Damage (8) }
-Actor HLHornetSeekerGruntNightmare : HLHornetSeekerGrunt { Damage (10) }

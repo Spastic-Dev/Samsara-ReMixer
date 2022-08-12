@@ -12,8 +12,8 @@ actor Stukabat
 	Monster
 	Height 20
 	Radius 24
-	Speed 11
-	Floatspeed 11
+	Speed 8
+	Floatspeed 8
 	Health 100
 	Tag "Stukabat"
 	Scale 0.9
@@ -78,7 +78,7 @@ actor Stukabat
 			HL13 NOP 3
 		Melee:
 			HL02 ABCD 3
-			HL02 E 0 A_CustomMeleeAttack(10,"HLZombie/Claw","HLZombie/Miss")
+			HL02 E 0 A_CustomMeleeAttack(random(4,5),"HLZombie/Claw","HLZombie/Miss")
 			HL02 EG 3
 			Goto See
 		Pain:
@@ -218,7 +218,7 @@ actor Stukabat
 		Death.FreemanGibs:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)			
-			TNT1 A 0 A_SpawnItem("HLAlienGibSpawner")
+			TNT1 A 0 A_SpawnItemEx("HLAlienGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR)
 			TNT1 A 5 A_NoBlocking
 			Stop
 		Pain.LifeLeech: 

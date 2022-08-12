@@ -7,7 +7,7 @@ Actor BlacksuitStriker : RMRHumanoid
   ActiveSound "RMR/Blacksuit/See"
   Obituary "%o was no match for Black Suit Striker's."
   Species "Enemies"
-  DropItem "RMRBlackSuitDrop"
+  DropItem "RMRAmmoDropCell" 100,1
   Tag "Black Suit Striker"  
   +MISSILEEVENMORE
   States
@@ -29,7 +29,7 @@ Actor BlacksuitStriker : RMRHumanoid
 		TNT1 A 0 A_PlaySound("RMR/RLGUNSHOT",CHAN_WEAPON)
 		RM88 E 3 Bright A_CustomMissile("RMREnemyBullet_BS",32,frandom(-4.50,4.50),frandom(-4.50,4.50))
 		RM88 E 1 A_MonsterRefire(13,"See")
-		Goto Missile+3
+		Goto Missile+2
 	Pain:
 		RM88 F 4
 		RM88 F 4 A_Pain
@@ -609,24 +609,4 @@ actor BlacksuitStriker_ShrinkEffect : BlacksuitStriker
 	}
 }
 
-Actor RMREnemyBullet_BS : RMREnemyBullet { Damage (7) }
-
-Actor RMRBlackSuitDrop 
-{
-	Height 5
-	Radius 5
-	+NOCLIP
-	+FLOORCLIP
-	States {
-		Spawn:
-			TNT1 A 0 
-			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,4,0)
-			TNT1 A 15
-			TNT1 A 0 A_JumpIfInventory("WeaponDropToken", 1, "Spawn2")
-			TNT1 A 1 Bright A_DropItem("RMRAmmoDropCell", 1, 100)
-			Stop
-		Spawn2:
-			TNT1 A 1 Bright A_DropItem("RMRCyclopseDrop", 1, 256) 
-			Stop	
-		}
-}		
+Actor RMREnemyBullet_BS : RMREnemyBullet { Damage (random(1,2)+random(2,(3-random(2,0)))) }

@@ -98,7 +98,6 @@ ACTOR MonkDeathFire {
 		Death.ZorchSpectral:
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_Stop
-			"####" "#" 0 A_KillMaster
 			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 			"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
 			"####" "#" 3 A_SpawnItem("ZorchEffectSmall")
@@ -120,7 +119,7 @@ ACTOR MonkDeathFire {
 		Death:
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			ALLD A 2 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			ALLD B 3 
+			ALLD B 3
 			ALLD C 3 A_Scream
 			ALLD D 4 A_Fall
 			ALLD E 3
@@ -128,7 +127,7 @@ ACTOR MonkDeathFire {
 			ALLD G 2
 			ALLD H 2
 			ALLD I 2
-			ALLD J 2 A_KillMaster
+			ALLD J 2
 			ALLD K -1
 			Stop
 		Raise:
@@ -171,7 +170,6 @@ ACTOR MonkDeathFire {
 		Death.RottFire:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItem("BurningSkeleton")
-			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_NoBlocking
 			Stop	
 		Death.RottExplosive:		
@@ -181,15 +179,13 @@ ACTOR MonkDeathFire {
 			TNT1 A 1
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
-			TNT1 AA 0 
-			TNT1 A 0 A_KillMaster
+			TNT1 AA 0
 			TNT1 A 5 A_NoBlocking
 			Stop
 		Death.RottDisintegrate:
 			TNT1 A 0 A_ChangeFlag("SOLID", 0)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
-			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_SpawnItem("RGodModeDeath")
 			stop	  
 		Death.SWFlame:
@@ -214,7 +210,6 @@ ACTOR MonkDeathFire {
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("HLGenericGibSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			stop
 		Pain.Shock:
@@ -229,7 +224,6 @@ ACTOR MonkDeathFire {
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_KillMaster
 			TNT1 A 5
 			stop
 		Death.CalebNapalm:
@@ -336,7 +330,6 @@ ACTOR MonkDeathFire {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("QuakeGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			Stop
 		Death.BittermanDamage:
@@ -346,7 +339,6 @@ ACTOR MonkDeathFire {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Q2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_Fall
-			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut			
 			Stop
 		Pain.Hexen2RavenDamage:
@@ -367,7 +359,6 @@ ACTOR MonkDeathFire {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
 			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_KillMaster
 			TNT1 A 5 A_FadeOut
 			stop			
 		Death.SWFist:

@@ -1,11 +1,10 @@
 Actor Tymok : C7Alien {
 	Health 2000
-	Radius 40
-	Height 110
+	Radius 24
+	Height 64
 	Speed 6
 	Mass 1000
-	Scale 1.5
-	Species "PurpleGuy"
+	Species "Enemies"
 	+DONTMORPH
 	+BOSSDEATH
 	+MISSILEEVENMORE
@@ -674,14 +673,14 @@ actor Tymok_ShrinkEffect : Tymok
 
 actor TymokMissile : EniramMissile
 {
-    Damage (Random(10,25))
+    Damage (Random(5,15)+Random(5,0))
 	Obituary "%o lost against Tymok."
     DeathSound "tymok/ric"	
 	Decal None
     States
     {
       Death:
-        7MIS I 8 Bright A_Explode(random(45,110),128)
+        7MIS I 8 Bright A_Explode(random(15,30)-Random(10,5),126/random(1,2))
         7MIS J 6 Bright
         7MIS K 4 Bright
         Stop

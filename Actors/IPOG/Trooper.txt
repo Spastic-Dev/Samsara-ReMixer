@@ -38,15 +38,15 @@ Actor IPOGTrooper
 	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	    IPO1 A 0 A_Jump(48,"Missile2")
-		IPO1 D 8 A_FaceTarget
+		IPO1 D 4 A_FaceTarget
 		IPO1 D 0 A_PlaySound("ipogtrooper/fire")
 		IPO1 D 2 bright A_CustomMissile("IPOGEnemyBullet",32,0,random(-8,8),8)
 		IPO1 E 8
 		Goto See
 	Missile2:
-		IPO1 D 6 A_FaceTarget
+		IPO1 D 4 A_FaceTarget
 		IPO1 D 0 A_PlaySound("ipogtrooper/fire")
-		IPO1 D 2 bright A_CustomMissile("IPOGEnemyBullet",32,0,random(-14,14),8)
+		IPO1 D 2 bright A_CustomMissile("IPOGEnemyBullet",32,0,random(-8,8),8)
 		IPO1 E 12
 		IPO1 D 1 A_FaceTarget
 	    TNT1 A 0 A_Jump(16,"Retreat")

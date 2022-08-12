@@ -1,10 +1,10 @@
 Actor EniramBoss : C7Alien {
-	Health 1000 // reduced health
+	Health 2000
 	Radius 24
 	Height 64
 	Speed 8
 	Mass 1000
-	Species "SatanWithABazooka"
+	Species "Enemies"
 	+DONTMORPH
 	+BOSSDEATH
 	+MISSILEEVENMORE
@@ -639,7 +639,7 @@ actor EniramMissile : C7Plasma
     States
     {
       Death:
-        7MIS I 8 Bright A_Explode(random(45,60),86)
+        7MIS I 8 Bright A_Explode(random(5,20),86/random(1,2))
         7MIS J 6 Bright
         7MIS K 4 Bright
         Stop
