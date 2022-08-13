@@ -1,36 +1,10 @@
-ACTOR DarkImp64 : SamsaraMonsterHumanoidMedium
+ACTOR DarkImp64 : DoomImp64
 {
 	Health 120
-	Radius 20
-	Height 56
-	Mass 100
-	Speed 8
-	PainChance 200
-	Monster
-	Scale 0.7
 	Species "Enemies"
-	+FLOORCLIP
-	+MISSILEMORE
-	+NOINFIGHTING
-    Tag "Dark Imp"
-	SeeSound "64imp/sight"
-	PainSound "64grunt/pain"
-	DeathSound "64imp/death"
-	ActiveSound "64imp/active"
+	Tag "Dark Imp"
 	Obituary "$OB_DARKIMP"
-    HitObituary "$OB_DARKIMP_MELEE"
-	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
-	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
-	PainChance "MarathonStun", 255
-	DamageFactor "WitchMelee", 1.1
-	PainChance "CalebFire", 0
-	PainChance "WTMelee", 255
-	PainChance "WTMeleeIce", 255
-    Obituary "$OB_DARKIMP"
-    HitObituary "$OB_DARKIMP_MELEE"
-    BloodType "Doom64Blood"
+	HitObituary "$OB_DARKIMP_MELEE"
 	var int user_scalex;
 	var int user_scaley;
 	States
