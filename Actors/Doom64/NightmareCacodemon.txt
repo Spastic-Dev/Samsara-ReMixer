@@ -1,14 +1,14 @@
 ACTOR NightmareCacodemon64 : Cacodemon64
 {
 	Health 700
-    Speed 15
+	Speed 15
 	PainChance 96
 	Health 700
 	RenderStyle Translucent
 	Alpha 0.60
 	Tag "Nightmare Cacodemon"
-	Obituary "$OB_ABADDON"
-    HitObituary "$OB_ABADDON_MELEE"
+	Obituary "%o was scorched by a Nightmare Cacodemon."
+	HitObituary "%o got chomped on by a Nightmare Cacodemon."
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -53,7 +53,7 @@ ACTOR NightmareCacodemon64 : Cacodemon64
 			Goto See
 		Death:
 			64NC H 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    64NC H 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+			64NC H 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			64NC H 0 A_ChangeFlag("THRUACTORS", TRUE)
 			64NC H 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", FALSE)
 			64NC H 8 A_ScaleVelocity(0.50)
