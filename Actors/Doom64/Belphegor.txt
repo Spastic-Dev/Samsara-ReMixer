@@ -1,35 +1,13 @@
-ACTOR Belphegor64 : SamsaraMonsterDemonicLargeTotalGib
+ACTOR Belphegor64 : BaronOfHell64
 {
-	Radius 24
-	Height 64
 	PainChance 25
 	BloodColor "18 8C 31"
 	Health 1500
-	Mass 1000
-	Speed 8
-	Monster
-	Scale 0.75
-	+FLOORCLIP
-	+MISSILEMORE
-	+NOINFIGHTING
-	Species "Enemies"
-	SeeSound "64baron/sight"
-	PainSound "64demon/pain"
-	DeathSound "64baron/death"
-	ActiveSound "64demon/active"
+	-BOSSDEATH
+	-MISSILEMORE
 	Tag "Belphegor"
-    Obituary "$OB_BELPHEGOR"
-    HitObituary "$OB_BELPHEGOR_MELEE"
-	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
-	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
-	PainChance "MarathonStun", 255
-	PainChance "CalebFire", 0
-	PainChance "WTMelee", 255
-	PainChance "WTMeleeIce", 255
-	DamageFactor "WitchMelee", 1.1
-    BloodType "Doom64Blood"
+	Obituary "$OB_BELPHEGOR"
+	HitObituary "$OB_BELPHEGOR_MELEE"
 	var int user_scalex;
 	var int user_scaley;
 	States
