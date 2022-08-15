@@ -11,7 +11,7 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 	+FLOORCLIP
 	+NOINFIGHTING
 	Tag "Chaingunner"
-	Species "Enemies"	
+	Species "Enemies"
 	SeeSound "64grunt/sight"
 	PainSound "64grunt/pain"
 	DeathSound "64grunt/death"
@@ -19,14 +19,14 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 	//AttackSound "doom64guy/shotgf"
 	Obituary "$OB_CHAINGUY"
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
-	DamageFactor "WitchMelee", 1.1	
+	DamageFactor "WitchMelee", 1.1
 	PainChance "CalebFire", 0
 	PainChance "WTMelee", 255
-	PainChance "WTMeleeIce", 255		
+	PainChance "WTMeleeIce", 255
 	Dropitem "Chaingun64"
     BloodType "Doom64Blood"
  	var int user_scalex;
@@ -45,13 +45,13 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 		64CP AABBCCDD 3 A_Chase
 		Loop
 	Missile:
-		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		64CP E 0 A_ChangeFlag("NOPAIN",0)
 		64CP E 10 A_FaceTarget
-		TNT1 A 0 A_PlaySound("doom64guy/pistol", CHAN_WEAPON)
+		64CP F 0 BRIGHT A_PlaySound("doom64guy/pistol", CHAN_WEAPON)
 		64CP F 4 BRIGHT A_CustomBulletAttack(22.5, 0, 1, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
-		TNT1 A 0 A_PlaySound("doom64guy/pistol", CHAN_WEAPON)				
+		64CP E 0 BRIGHT A_PlaySound("doom64guy/pistol", CHAN_WEAPON)				
 		64CP E 4 BRIGHT A_CustomBulletAttack(22.5, 0, 1, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
-		64CP F 1 A_CposRefire
+		64CP F 1 A_CPosRefire
 		Goto Missile+2
 	Pain:
 		64CP G 3
@@ -71,12 +71,11 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 		TNT1 A -1 A_Jump(256,"See")
 		wait
 	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")		
-		64CP H 5
+		64CP H 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		64CP H 5 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		64CP I 5 A_Scream
 		64CP J 5 A_NoBlocking
-		64CP KLM 5
+		64CP KL 5
 		64CP M -1
 		Stop
 	Death.CalebFire:
@@ -98,27 +97,21 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 		64CP G 2
 		Loop
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-	    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")		
-		64CP N 5 
+		64CP N 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		64CP N 5 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 		64CP O 5 A_PlaySound("friendlyimp64/gibbed", CHAN_VOICE)
 		64CP P 5 A_NoBlocking
-		64CP QRSTU 5
-		64CP V -1
-		Stop					
+		64CP QR 5
+		64CP S -1
+		Stop
 	Raise:
-		64CP M 5
-		64CP LKJIH 5
+		64CP MLKJIH 5
 		Goto See
 	Pain.Vertigo:
-		64CP G 0 ThrustThingZ(0, 55, 0, 0)
-		64CP G 3
-		64CP G 3 A_Pain
-		Goto See
+		64CP G 3 ThrustThingZ(0, 55, 0, 0)
+		Goto Pain+1
 	Crush:
-		A027 A 0
-		A027 A 0 A_PlaySound("friendlyimp64/crush")
-		A027 A -1
+		A027 A -1 A_PlaySound("friendlyimp64/crush")
 		Stop
 	Pain.ShrinkerDMG:
 		64CP G 0
@@ -170,7 +163,7 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -200,7 +193,7 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -379,7 +372,7 @@ actor ChainGunGuy64_ShrinkEffect : ChaingunGuy64
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
