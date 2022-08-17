@@ -55,6 +55,7 @@ ACTOR IceGuy3 : IceGuy2
       Death.Zorch:
       Death.ZorchKamikaze:
       Death.PhasingZorch:
+	  Death.ZorchSpectral:
         "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_ChangeFlag("DONTGIB",1)
@@ -75,91 +76,6 @@ ACTOR IceGuy3 : IceGuy2
         TNT1 A 1 A_SetTranslucent(1,0)
         TNT1 A -1 A_KillMaster
         stop
-      Pain.LifeLeech:
-		TNT1 A 0 A_GiveToTarget("SerpentHealth", random(1,2))
-		TNT1 A 0 A_GiveToTarget("HealthBonus",1)
-		Goto Pain		
-	  Pain.Vodoo:
-		TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-		Goto Pain
-	  Death.Dynamite:
-	  Death.LifeLeech:
-	  Death.CalebNapalm:
-	  Death.Shock:	  
-	  Death.Vodoo:
-	  Death.Tesla:
-	  Death.CalebFire:	
-	  Death.CalebBullet:	
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-		Goto Death
-	  Death.EradExplosive:
-	  Death.EradNova:
-	  Death.EradShock:
-	  Death.EradExplosive2:	
-	  Death.EradDisc:
-	  Death.EradPiercingDart:
-	  Death.EradGreenFire:
-	  Death.EradCoopGreenFire:
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1", 1)
-		Goto Death
-	  Death.DukeDamage:
-	  Death.DukePistol:
-	  Death.DukeExplosive:	  
-	  Death.DukeIce:
-		TNT1 A 0 A_Jump(218,"Death")
-		TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-		goto Death
-	  Death.MightyBoot:
-	  	TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-	  	TNT1 A 0 A_Jump(64,"Death")
-	  	TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-	  	goto Death
-	  Death.PSRAPower:
-	  Death.PSRAPowerCoop:
-	  Death.PSExplosive:
-	  Death.PSExplosiveCoop:
-	  Death.PSBullet:
-	  Death.PSFire:	
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
-		Goto Death
-	  Death.LeonardDamage2:
-	  Death.LeonardDamage3:
-	  Death.LeonardDamage0:
-	  Death.LeonardDamage1:	
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
-		Goto Death
-	  Death.SWSticky:
-	  Death.SWStickyCoop:	  
-	  Death.SWGrenade:
-	  Death.SWNuke:
-	  Death.SWRocket:
-	  Death.SWRailgun:
-	  Death.SWRailgunCoop:
-	  Death.SWNukeCoop:
-	  Death.SWFlame:
-	  Death.SWFlame2:
-	  Death.SWFlame2Coop:
-	  Death.SWFlame3:	
-	  Death.SWBullet:	  
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-		goto Death
-      Death.DukeIce:
-      Death.DukeExplosive:
-      Death.DukeDamage:
-      Death.DukePistol:
-        TNT1 A 0 A_Jump(218,"Death")
-        TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-        goto Death
-      Death.MightyBoot:
-        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-        TNT1 A 0 A_Jump(64,"Death")
-        TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-        goto Death
 	  Death.RottDisintegrate:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
