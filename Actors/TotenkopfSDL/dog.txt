@@ -47,6 +47,7 @@ ACTOR TotenkopfDog : SamsaraMonsterBeastSmallTotalGib
 			"####" F 4 
 			Goto See
 		Death:
+			TK33 A 0
 			"####" A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" H 7
@@ -348,6 +349,15 @@ ACTOR TotenkopfDog2 : TotenkopfDog
 		Spawn2:
 			TK34 A 2 A_Look
 			Loop
+		Death:
+			TK34 A 0
+			"####" A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			"####" H 7
+			"####" I 8 A_Scream
+			"####" J 7 A_NoBlocking
+			"####" K -1
+			Stop
 		Pain.ShrinkerDMG:
 			"####" F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
