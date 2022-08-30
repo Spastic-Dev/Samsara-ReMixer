@@ -1,4 +1,4 @@
-ACTOR SentryDrone
+ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 {
 	Health 150
 	Radius 16
@@ -52,15 +52,6 @@ ACTOR SentryDrone
 			TNT1 A 0 A_FastChase
 			TNT1 A 0 A_Pain
 			Goto See
-		Pain.MarathonStun:
-			TNT1 A 0 A_Stop
-			TNT1 A 0 A_GiveInventory("NothingSpeed")
-			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-			SEDR A 5 A_FaceTarget
-			TNT1 A 0 A_Gravity
-			SEDR A 30 A_Pain
-			SEDR A 70
-			Goto See
 		Missile:
 			SEDR AAAAAAAAAAAAAAA 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound ("sentdrone/charge") 
@@ -72,92 +63,6 @@ ACTOR SentryDrone
 			SEDR A 1 A_FaceTarget
 			SEDR A 1 A_Die
 			Wait
-		Death.Vodoo:
-		Death.VoodooPuff:
-		Death.DynamiteCoop:
-		Death.Dynamite:
-		Death.LifeLeech:
-		Death.CalebNapalm:
-		Death.Shock:	  
-		Death.Vodoo:
-		Death.Tesla:
-		Death.CalebFire:	
-		Death.CalebBullet:	
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt3", 1)
-			Goto Death
-		Death.EradExplosive:
-		Death.EradNova:
-		Death.EradShock:
-		Death.EradExplosive2:	
-		Death.EradDisc:
-		Death.EradPiercingDart:
-		Death.EradGreenFire:
-		Death.EradCoopGreenFire:
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt2", 1)
-			Goto Death
-		Death.PSRAPowerCoop:
-		Death.PSExplosive:
-		Death.PSExplosiveCoop:
-		Death.PSBullet:
-		Death.PSFire:	
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
-			Goto Death
-		Death.LeonardDamage2:
-		Death.LeonardDamage3:
-		Death.LeonardDamage0:
-		Death.LeonardDamage1:	
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt2", 1)
-			Goto Death
-		Death.SWFist:
-		Death.SWKatana:
-		Death.SWShuriken:
-		Death.SWSticky:
-		Death.SWStickyCoop:		
-		Death.SWGrenade:
-		Death.SWNuke:
-		Death.SWRocket:
-		Death.SWRailgun:
-		Death.SWRailgunCoop:
-		Death.SWNukeCoop:
-		Death.SWFlame:
-		Death.SWFlame2:
-		Death.SWFlame2Coop:
-		Death.SWFlame3:	
-		Death.SWBullet:	  
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2", 1)
-			goto Death
-		Death.ZorchPistol:
-		Death.Zorch:
-		Death.ZorchKamikaze:
-		Death.PhasingZorch:
-		Death.ZorchSpectral:
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_Stop
-			"####" "#" 0 A_NoGravity
-			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
-			"####" "#" 3 A_SpawnItem("ZorchEffectSmall")
-			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 A_Scream
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 A_NoBlocking
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.1,0) 
-			TNT1 A 0 A_Gravity
-			TNT1 A 1 A_SetTranslucent(1,0)
-			"####" "#" 0
-			stop
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    		
 			TNT1 A 0 A_NoBlocking
@@ -169,74 +74,6 @@ ACTOR SentryDrone
 			TNT1 A 0 A_SpawnItemEx("SentryDroneBomb",0,0,32,0,0,0,0,1,0)
 			TNT1 A 5 A_PlaySound ("sentdrone/detonate", CHAN_AUTO)
 			stop			
-		Death.RottDisintegrate:
-			"####" "#" 0 A_ChangeFlag("SOLID", 0)
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_Scream
-			"####" "#" 0 A_NoBlocking	
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 0 A_Stop
-			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
-			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
-			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
-			"####" "#" 0 A_SpawnItem("RGodModeDeathSmall")
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.1,0)
-			stop
-		Disintegrate:
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_NoBlocking
-			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 0 A_Scream
-			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
-			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
-			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
-			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
-			"####" "#" 0 A_Stop
-			"####" "#" 3 A_SpawnItem("DisintEffectSmall",0,10)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.1,0)
-			stop
-		Death.Nuke:
-			"####" "#" 0 A_ChangeFlag("SOLID", 0)
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_Scream
-			"####" "#" 0 A_NoGravity		
-			"####" "#" 0 A_NoBlocking		
-			"####" "#" 0 A_SpawnItem("WTNukeDeathSmall")
-			"####" "#################" 3 A_Fadeout(0.05)
-			stop
 	}
 }
 
