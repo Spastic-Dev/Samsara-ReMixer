@@ -1,7 +1,52 @@
-#library "MIXERAPI"
-
 global str 16: addonSets[];
 global int 17: addonSetStats[];
 global int 18: addonCounter;
 global int 19: addonsProcessed;
 global str 20: addonCVARs[];
+
+function void AddSetToGlobal(void)
+{
+	if(!addonsProcessed)
+	{
+		int libraryAddons = 0;
+		int i = addonCounter, j = 0, k = 0, l = 0, m = 0;
+		int addonGameOffset, addonAltGameOffset, addonMonsterSlotOffset, addonMonsterChoiceSlot;
+		int addonGameStat, addonAltGameStat, addonMonsterSlotStat, addonMonsterChoiceStat;
+		for(i = addonCounter; i < addonCounter+MAX_GAME_TYPES; i++)
+		{
+			if(strlen(monsterSelectStr[i][0][0][0][0]) == 0) break;
+			addonGameOffset = addonCounter * MAX_ALTS * MONSTER_SLOT * MAXPERSLOT * MAX_STRING_ITEMS;
+			addonGameStat = addonCounter * MAX_ALTS * MONSTER_SLOT * MAXPERSLOT * MAX_ITEMS;
+			for(j = 0; j < MAX_ALTS; j++)
+			{
+				if(strlen(monsterSelectStr[i][j][0][0][0]) == 0) break;
+				addonAltGameOffset = l * MONSTER_SLOT * MAXPERSLOT * MAX_STRING_ITEMS;
+				addonAltGameStat = l * MONSTER_SLOT * MAXPERSLOT * MAX_ITEMS;
+				for(k = 0; k < MONSTER_SLOT; k++)
+				{
+					if(strlen(monsterSelectStr[i][j][k][0][0]) == 0) break;
+					addonMonsterSlotOffset = k * MAXPERSLOT * MAX_STRING_ITEMS;
+					addonMonsterSlotStat = k * MAXPERSLOT * MAX_ITEMS;
+					for(l = 0; l < MAXPERSLOT; l++)
+					{
+						if(strlen(monsterSelectStr[i][j][k][l][0]) == 0) break;
+						addonMonsterChoiceSlot = l * MAX_STRING_ITEMS;
+						addonMonsterChoiceStat = l * MAX_ITEMS;
+						for(m = 0; m < MAX_STRING_ITEMS; m++)
+						{
+							addonSets[addonGameOffset+addonAltGameOffset+addonMonsterSlotOffset+addonMonsterChoiceSlot+m] = monsterSelectStr[libraryAddons][j][k][l][m];
+						}
+						for(m = 0; m < MAX_ITEMS; m++)
+						{
+							addonSetStats[addonGameStat+addonAltGameStat+addonMonsterSlotStat+addonMonsterChoiceStat+m] = monsterSelectStat[libraryAddons][j][k][l][m];
+						}
+					}
+				}
+			}
+			addonCVARs[addonCounter] = addons[libraryAddons];
+			libraryAddons++;
+		}
+		
+		addonCounter+=MAX_GAME_TYPES;
+	}
+}

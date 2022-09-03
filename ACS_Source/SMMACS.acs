@@ -1,5 +1,4 @@
 #library "SMMACS"
-#import "ReMixerAPI.acs"
 #include "zcommon.acs"
 #include "commonFuncs.acs"
 
@@ -8,6 +7,7 @@
 #define MONSTER_SLOT 25
 #define MAXPERSLOT 20
 #define MAX_ITEMS 15
+#define MAX_STRING_ITEMS 6
 #define MAX_ADDON_SETS 64
 
 #include "Spawns.acs"
@@ -56,6 +56,10 @@ int pickClear = 0;
 int maxAltSets = 4;
 
 #define MAX_MAPS				500
+
+//Addon set info, not directly used
+str addons[MAX_GAME_TYPES] = {};
+#include "ReMixerAPI.acs"
 
 global int 2:alreadyshowedbs;
 //global int 4:lastchosen;
@@ -583,7 +587,7 @@ Script "ReMixer_PickSets" (void)
 		terminate;
 	
 	int clients = PlayerCount();
-	int addons, bitindex, bitindex2, bitindexa, a, b, p;
+	int usingAddons, bitindex, bitindex2, bitindexa, a, b, p;
 
 	activeSets = 0;
 	activeSets2 = 0;
@@ -661,14 +665,14 @@ Script "ReMixer_PickSets" (void)
 					
 				if(GetCvar(gameTypeMap))
 				{
-					if(addons)
+					if(usingAddons)
 						bitindexa = 1<<(b-MAX_GAME_TYPES);
 					else if(b >= 32)
 						bitindex2 = 1<<b-32;
 					else
 						bitindex = 1<<b;
 					
-					if(addons)
+					if(usingAddons)
 					{
 						if(!(activesetsA & bitindexa))
 						{
@@ -721,17 +725,17 @@ Script "ReMixer_PickSets" (void)
 		case 2:
 			for(b = 0; b < MAX_GAME_TYPES+addonCounter; b++)
 			{
-				addons = b >= MAX_GAME_TYPES;
-				if(addons ? addonCVARs[b-MAX_GAME_TYPES] : GetCvar(gameTypesStr[b]))
+				usingAddons = b >= MAX_GAME_TYPES;
+				if(usingAddons ? addonCVARs[b-MAX_GAME_TYPES] : GetCvar(gameTypesStr[b]))
 				{
-					if(addons)
+					if(usingAddons)
 						bitindexa = 1<<(b-MAX_GAME_TYPES);
 					else if(b >= 32)
 						bitindex2 = 1<<b-32;
 					else
 						bitindex = 1<<b;
 					
-					if(addons)
+					if(usingAddons)
 					{
 						if(!(activesetsA & bitindexa))
 						{
@@ -795,8 +799,8 @@ Script "ReMixer_PickSets" (void)
 				randombit2 = 0;
 				randombita = 0;
 				randnum = random(0, MAX_GAME_TYPES+MAX_ADDON_SETS-1);
-				addons = randnum >= MAX_GAME_TYPES;
-				if(!addons)
+				usingAddons = randnum >= MAX_GAME_TYPES;
+				if(!usingAddons)
 				{
 					if(randnum >= 32)
 					{
@@ -815,7 +819,7 @@ Script "ReMixer_PickSets" (void)
 					randombita = randombita<<randnum-MAX_GAME_TYPES;
 				}
 				
-				if(addons ? !GetCVar(addonCVARs[randnum-MAX_GAME_TYPES]) : !GetCVar(gameTypesStr[randnum])||((randomtotal & randombit) && (randomtotal2 & randombit2) && (randomtotala & randombita))) { if(erroramount > 256){ selectloop = randnum; break; } else{erroramount++;} }
+				if(usingAddons ? !GetCVar(addonCVARs[randnum-MAX_GAME_TYPES]) : !GetCVar(gameTypesStr[randnum])||((randomtotal & randombit) && (randomtotal2 & randombit2) && (randomtotala & randombita))) { if(erroramount > 256){ selectloop = randnum; break; } else{erroramount++;} }
 				else 
 				{ 
 					pickFromSets[maxSetsEnabled] = randnum; 
