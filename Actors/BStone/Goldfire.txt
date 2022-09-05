@@ -1,11 +1,13 @@
-Actor GoldFire : BlakeStoneHumanoid {
+// Normally, Goldfire would use a monster base, but because of
+// how his death state functions, he won't be able to use a base
+// without extensive modifying.
+Actor GoldFire {
 	Health 150
 	SeeSound "goldfire/sight"
 	DeathSound "goldfire/death"
 	AttackSound "Bpistol2/Fire"
 	Dropitem "BlakeClip"
 	Obituary "%o couldn't defeat Dr. Goldfire."
-	Species "Enemies"
 	Painchance 32
 	PainChance "ShrinkerDMG", 0
 	Decal BulletChip
@@ -20,6 +22,24 @@ Actor GoldFire : BlakeStoneHumanoid {
 	+DONTRIP
 	Tag "Dr. Pyrus Goldfire"
 	Mass 4096
+	Species "BStone"
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+NOINFIGHTING
+	PainSound ""
+	ActiveSound ""
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "BlakeEnemyBullet", 0.0
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+//	Dropitem "BlakeClip"
+	var int user_scalex;
+	var int user_scaley;
 	States {
 		Spawn:
 			BSE5 A 0
@@ -166,13 +186,23 @@ Actor GoldFire : BlakeStoneHumanoid {
 			BSE5 A 5 A_Look
 			Wait		
 		See:
-			TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "SeeLoop")
-			TNT1 A 0 A_GiveInventory("SawPlayer", 1)		
+			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
+			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
+			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
+			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
+			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
+			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
+			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
+			TNT1 A 0 A_GiveInventory("HLBossSee",1)
+			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
-	        TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-  		    TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
 			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
 		SeeLoop:
 			BSE5 BBBCCDDDEE 2 A_Chase
@@ -230,15 +260,6 @@ Actor GoldFire : BlakeStoneHumanoid {
 			TNT1 A 0 A_Recoil(14)
 			BSE5 F 16 A_Pain
 			Goto SeeLoop
-		Pain.MarathonStun:
-			TNT1 A 0 A_Stop
-			TNT1 A 0 A_GiveInventory("NothingSpeed")
-			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-			BSE5 F 5 A_FaceTarget
-			TNT1 A 0 A_Gravity
-			BSE5 F 30 A_Pain
-			BSE5 F 70
-			Goto SeeLoop
 		Death:
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -249,16 +270,6 @@ Actor GoldFire : BlakeStoneHumanoid {
 			TNT1 A 0 A_SpawnItemEx("GoldFireBoss",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			TNT1 A -1
 			Stop
-		Pain.Hexen2RavenDamage:
-			TNT1 A 0 A_Jump(192,"Pain")
-			TNT1 A 0 A_SpawnItemEx("Hexen2GibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			Goto Pain			
-		Pain.LifeLeech:
-			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
-			Goto Pain		
-		Pain.Vodoo:
-			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-			Goto Pain
 	}
 }
 
