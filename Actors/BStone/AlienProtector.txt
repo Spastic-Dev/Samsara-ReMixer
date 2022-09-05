@@ -181,8 +181,9 @@ Actor AlienProtector : StarTrooper {
 			TNT1 A 0 A_StopSound(7)
 			TNT1 A 0 A_PlaySound("DSNONE")
 			BS25 QPO 3
-			TNT1 A 0 Thing_Damage(0, 75, 0)
-			Goto See
+			TNT1 A 0 A_SpawnItemEx("AlienProtector",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG,0,tid)
+			TNT1 A 1
+			Stop
 		Death.GoldeneyeHead:				
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
