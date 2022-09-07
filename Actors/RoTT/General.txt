@@ -17,7 +17,67 @@ const int TomSnake_ID = 9000;
 90 mass = FlameWall
 */
 
-Actor RoTTHumanoid {
+Actor RoTTHumanoid : SamsaraMonsterHumanoidMedium {
+	Radius 16
+	Height 48
+	Speed 6
+	PainChance 192
+	Scale 1.175
+	Species "RoTT"
+	Mass 80
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOINFIGHTING
+	PainSound ""
+	ActiveSound ""
+	AttackSound "rott/pistolf"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "BlakeEnemyBullet", 0.0
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	BloodType "RottFreeleyBlood"	
+	Decal BulletChip
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor RoTTHumanoidLarge : SamsaraMonsterBossLarge {
+	Radius 16
+	Height 48
+	Speed 6
+	PainChance 192
+	Scale 1.175
+	Species "RoTT"
+	Mass 80
+	MONSTER
+	+FLOORCLIP
+    +NOTDMATCH
+    +NOICEDEATH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOINFIGHTING
+	PainSound ""
+	ActiveSound ""
+	AttackSound "rott/pistolf"
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+	DamageFactor "BlakeEnemyBullet", 0.0
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	BloodType "RottFreeleyBlood"	
+	Decal BulletChip
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor RoTTBoss : SamsaraMonsterDemonicHuge {
 	Radius 16
 	Height 48
 	Speed 6

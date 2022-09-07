@@ -274,3 +274,11 @@ Script "LightningGuardSteal" (int action) // Lightning Guard steal script. Trust
 		break;
 	}
 }
+
+Script "LightningGuardDeadDrop" (void)
+{
+	until(ClassifyActor(0) & ACTOR_DEAD) { Delay(1); }
+	
+	if(CheckInventory("StoleWeapon")-1 >= 0)
+		SpawnSpotForced(StoleDummies[CheckInventory("StoleWeapon")-1],0,0,0);
+}
