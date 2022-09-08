@@ -1,4 +1,4 @@
-ACTOR MiniBattlelord : SamsaraMonsterMechanicalLarge
+ACTOR MiniBattlelord : SamsaraMonsterMechanicalLargeTotalGib
 {
 	Health 1000
 	Height 64
@@ -192,7 +192,6 @@ ACTOR MiniBattlelord : SamsaraMonsterMechanicalLarge
 			TNT1 A -1 A_Jump(256,"Death")
 			wait
 		Death:
-		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			BTLO I 10 A_Scream
