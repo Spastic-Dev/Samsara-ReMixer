@@ -544,6 +544,15 @@ ACTOR M1TrooperMinor : SamsaraMonsterMarathonAlienSmall
 			M_HX G 2 A_CheckFloor("XDeathForSarge4")
 			TNT1 A -1 A_Jump(256,"XDeathForSarge3")
 			wait
+		DeusXDeath2:
+			M_HX G 6
+			TNT1 A -1 A_Jump(256,"DeusXDeath3")
+			wait
+		DeusXDeath3:
+			M_HX GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "DeusXDeath4")
+			M_HX G 2 A_CheckFloor("DeusXDeath4")
+			TNT1 A -1 A_Jump(256,"DeusXDeath3")
+			wait	
 	}
 }
 

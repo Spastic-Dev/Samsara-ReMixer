@@ -266,13 +266,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
-		XDeath321:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeath321_2")
-			wait
 		XDeath321_2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"XDeath321_3")
@@ -281,14 +274,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeath321_4")
 			M_HU I 2 A_CheckFloor("XDeath321_4")
 			TNT1 A -1 A_Jump(256,"XDeath321_3")
-			wait
-		Death.HLEgon:
-		Death.FreemanGibs:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForFreeman2")
 			wait
 		XDeathForFreeman2:
 			M_HU I 4
@@ -299,13 +284,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("XDeathForFreeman4")
 			TNT1 A -1 A_Jump(256,"XDeathForFreeman3")
 			wait
-		XDeathForCaleb:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForCaleb2")
-			wait
 		XDeathForCaleb2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"XDeathForCaleb3")
@@ -314,13 +292,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathForCaleb4")
 			M_HU I 2 A_CheckFloor("XDeathForCaleb4")
 			TNT1 A -1 A_Jump(256,"XDeathForCaleb3")
-			wait
-		XDeathForCatBitch:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForCatBitch2")
 			wait
 		XDeathForCatBitch2:
 			M_HU I 4
@@ -331,13 +302,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("XDeathForCatBitch4")
 			TNT1 A -1 A_Jump(256,"XDeathForCatBitch3")
 			wait
-		DukeGibStart:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"DukeGibStart2")
-			wait
 		DukeGibStart2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"DukeGibStart3")
@@ -346,13 +310,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "DukeGibStart4")
 			M_HU I 2 A_CheckFloor("DukeGibStart4")
 			TNT1 A -1 A_Jump(256,"DukeGibStart3")
-			wait
-		XDeathForJon:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForJon2")
 			wait
 		XDeathForJon2:
 			M_HU I 4
@@ -363,13 +320,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("XDeathForJon4")
 			TNT1 A -1 A_Jump(256,"XDeathForJon3")
 			wait
-		XDeathForLeonard:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForLeonard2")
-			wait
 		XDeathForLeonard2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"XDeathForLeonard3")
@@ -378,13 +328,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathForLeonard4")
 			M_HU I 2 A_CheckFloor("XDeathForLeonard4")
 			TNT1 A -1 A_Jump(256,"XDeathForLeonard3")
-			wait
-		XDeathForWang:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForWang2")
 			wait
 		XDeathForWang2:
 			M_HU I 4
@@ -395,16 +338,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("XDeathForWang4")
 			TNT1 A -1 A_Jump(256,"XDeathForWang3")
 			wait
-		XDeath.QuakeElectric:
-		XDeath.NotQuadded:
-		XDeath.QuakeExplosive:
-		XDeathForRanger:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForRanger2")
-			wait
 		XDeathForRanger2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"XDeathForRanger3")
@@ -413,13 +346,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathForRanger4")
 			M_HU I 2 A_CheckFloor("XDeathForRanger4")
 			TNT1 A -1 A_Jump(256,"XDeathForRanger3")
-			wait
-		XDeathForBitterman:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForBitterman2")
 			wait
 		XdeathForBitterman2:
 			M_HU I 4
@@ -430,15 +356,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("XdeathForBitterman4")
 			TNT1 A -1 A_Jump(256,"XdeathForBitterman3")
 			wait
-		Death.Hexen2Extreme:
-		Death.Hexen2ElectricExtreme:
-		XDeathForDemoness:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForDemoness2")
-			wait
 		XDeathForDemoness2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"XDeathForDemoness3")
@@ -447,13 +364,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathForDemoness4")
 			M_HU I 2 A_CheckFloor("XDeathForDemoness4")
 			TNT1 A -1 A_Jump(256,"XDeathForDemoness3")
-			wait
-		PainkillerGib:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"PainkillerGib2")
 			wait
 		PainkillerGib2:
 			M_HU I 4
@@ -464,16 +374,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("PainkillerGib4")
 			TNT1 A -1 A_Jump(256,"PainkillerGib3")
 			wait
-		Death.UnrealExtreme:
-		Death.UnrealRedeemer:
-		Death.UnrealShredded:
-		UnrealXDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"UnrealXDeath2")
-			wait
 		UnrealXDeath2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"UnrealXDeath3")
@@ -482,13 +382,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "UnrealXDeath4")
 			M_HU I 2 A_CheckFloor("UnrealXDeath4")
 			TNT1 A -1 A_Jump(256,"UnrealXDeath3")
-			wait
-		RTCWXDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"RTCWXDeath2")
 			wait
 		RTCWXDeath2:
 			M_HU I 4
@@ -499,15 +392,6 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("RTCWXDeath4")
 			TNT1 A -1 A_Jump(256,"RTCWXDeath3")
 			wait
-		Death.Q3BFG:
-		XDeath.Q3Explosive:
-		XDeath.Q3Energy:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			TNT1 A -1 A_Jump(256,"XDeathForSarge2")
-			wait
 		XDeathForSarge2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"XDeathForSarge3")
@@ -517,6 +401,15 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("XDeathForSarge4")
 			TNT1 A -1 A_Jump(256,"XDeathForSarge3")
 			wait
+		DeusXDeath2:
+			M_HU I 6
+			TNT1 A -1 A_Jump(256,"DeusXDeath3")
+			wait
+		DeusXDeath3:
+			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "DeusXDeath4")
+			M_HU I 2 A_CheckFloor("DeusXDeath4")
+			TNT1 A -1 A_Jump(256,"DeusXDeath3")
+			wait	
 	}
 }
 
