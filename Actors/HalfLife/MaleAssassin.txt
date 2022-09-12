@@ -210,16 +210,6 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			HL18 CDEF 3
 			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
 			Goto See
-		Pain.MarathonStun:
-			HL18 A 0 A_Stop
-			HL18 A 0 A_GiveInventory("NothingSpeed")
-			HL18 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-			HL18 A 5 A_FaceTarget
-			HL18 A 0 A_Gravity
-			HL18 A 30 A_Pain
-			HL18 A 70
-			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
-			Goto See
 		Pain.ShrinkerDMG:
 			HL18 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -255,7 +245,6 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-		XDeath:
 		Death.HLLaser:
 		Death.HLExplosive:
 		Death.HLRPGExplosive:	
@@ -263,8 +252,9 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
+		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)			
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)			
 			TNT1 A 0 A_SpawnItem("HLGenericGibSpawner")
 			TNT1 A 5 A_NoBlocking
 			Stop	
@@ -277,30 +267,6 @@ Actor MaleAssassin1_MP5 : HECU_Commander1
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5
 			stop
-		Death.DukeExplosive:
-			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
-		Death.DukeDamage:
-		Death.DukePistol:
-			TNT1 A 0 A_Jump(218,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-			goto Death
-		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			TNT1 A 0 A_Jump(64,"Death")
-			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-			goto Death
-		DukeGibStart:
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnDebris("DukeGibs1")
-			TNT1 A 0 A_SpawnDebris("DukeGibs2")
-			TNT1 A 0 A_SpawnDebris("DukeGibs3")
-			TNT1 A 0 A_SpawnDebris("DukeGibs4")
-			TNT1 A 0 A_SpawnDebris("DukeGibs5")
-			TNT1 A 0 A_SpawnDebris("DukeGibs6")
-			TNT1 A 0 A_PlaySound("duke/enemygib")
-			TNT1 A 0 A_Jump(96,"XDeath")
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			Goto XDeath
 	}
 }
 

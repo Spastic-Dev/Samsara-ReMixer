@@ -1,6 +1,6 @@
-Actor HLMrFriendly
+Actor HLMrFriendly : SamsaraMonsterAlienLarge
 {
-	Species "Enemies"
+	Species "HLEnemies"
 	Mass 500
 	Radius 24
 	Height 56
@@ -164,16 +164,6 @@ Actor HLMrFriendly
 			HL02 B 2 A_Pain
 			HL02 CDEFGHIJKLMNOP 2
 			Goto See
-		Pain.MarathonStun:
-			HL02 A 0 A_Stop
-			HL02 A 0 A_GiveInventory("NothingSpeed")
-			HL02 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-			HL02 A 5 A_FaceTarget
-			HL02 A 0 A_Gravity
-			HL02 A 30 A_Pain
-			HL02 A 70
-			HL02 A 0
-			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
@@ -182,30 +172,5 @@ Actor HLMrFriendly
 			HL00 ABCDEFGHIJKLMNO 2
 			HL00 O -1
 			Stop
-		Death.ZorchPistol:
-		Death.Zorch:
-		Death.ZorchKamikaze:
-		Death.PhasingZorch:
-		Death.ZorchSpectral:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			HL02 G 0 A_Stop
-			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
-			HL02 G 3 A_SpawnItem("ZorchEffectBig")
-			HL02 G 0 A_GiveInventory("EnemyZorched",1)
-			HL02 G 3 A_SetTranslucent(0.9,0)
-			HL02 G 0 A_Scream
-			HL02 G 3 A_SetTranslucent(0.8,0)
-			HL02 G 0 A_NoBlocking
-			HL02 G 3 A_SetTranslucent(0.7,0)
-			HL02 G 3 A_SetTranslucent(0.6,0)
-			HL02 G 3 A_SetTranslucent(0.5,0)
-			HL02 G 3 A_SetTranslucent(0.4,0)
-			HL02 G 3 A_SetTranslucent(0.3,0)
-			HL02 G 3 A_SetTranslucent(0.2,0)
-			HL02 G 3 A_SetTranslucent(0.1,0)
-			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1
-			stop
 	}
 }
