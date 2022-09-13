@@ -1,9 +1,9 @@
-Actor WitchavenEnemyBaseMelee {
+Actor WitchavenEnemyBaseMelee : SamsaraMonsterHumanoidMediumTotalGib {
 	Radius 20
 	Height 56
 	Speed 10
 	PainChance 67
-	Species "Enemies"
+	Species "WHEnemies"
 	MONSTER	
 	+FLOORCLIP
     +NOTDMATCH
@@ -29,12 +29,12 @@ Actor WitchavenEnemyBaseMelee {
 	var int user_scaley;
 }
 
-Actor WitchavenEnemyBaseRanged {
+Actor WitchavenEnemyBaseRanged : SamsaraMonsterHumanoidMediumTotalGib {
 	Radius 20
 	Height 56
 	Speed 15
 	PainChance 124
-	Species "Enemies"
+	Species "WHEnemies"
 	MONSTER	
 	+FLOORCLIP
     +NOTDMATCH
@@ -55,6 +55,195 @@ Actor WitchavenEnemyBaseRanged {
     DamageFactor "DragonClaw", 1.5
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor WitchavenEnemyBaseMeleeBeast : SamsaraMonsterBeastMediumTotalGib {
+	Radius 20
+	Height 56
+	Speed 10
+	PainChance 67
+	Species "WHEnemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOFEAR
+	+DONTBLAST
+	+LONGMELEERANGE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS	
+	+NOINFIGHTING
+	Mass 500
+	PainSound ""
+	ActiveSound ""
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor WitchavenEnemyBaseRangedBeast : SamsaraMonsterBeastMediumTotalGib {
+	Radius 20
+	Height 56
+	Speed 15
+	PainChance 124
+	Species "WHEnemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS
+	+NOINFIGHTING
+//	+SEEINVISIBLE
+	Mass 300
+	PainSound ""
+	ActiveSound ""
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor WitchavenEnemyBaseMeleeBeastLarge : SamsaraMonsterBeastLargeTotalGib {
+	Radius 20
+	Height 56
+	Speed 10
+	PainChance 67
+	Species "WHEnemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOFEAR
+	+DONTBLAST
+	+LONGMELEERANGE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS	
+	+NOINFIGHTING
+	Mass 500
+	PainSound ""
+	ActiveSound ""
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor WitchavenEnemyBaseRangedBeastLarge : SamsaraMonsterBeastLargeTotalGib {
+	Radius 20
+	Height 56
+	Speed 15
+	PainChance 124
+	Species "WHEnemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS
+	+NOINFIGHTING
+//	+SEEINVISIBLE
+	Mass 300
+	PainSound ""
+	ActiveSound ""
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor WitchavenEnemyBaseMeleeSkeleton : SamsaraMonsterSkeletonMedium {
+	Radius 20
+	Height 56
+	Speed 10
+	PainChance 67
+	Species "WHEnemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOFEAR
+	+DONTBLAST
+	+LONGMELEERANGE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS	
+	+NOINFIGHTING
+	+NOBLOOD
+	Mass 500
+	PainSound ""
+	ActiveSound ""
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	PainChance "ShrinkerDMG", 0
+    DamageFactor "PoisonBolt", 0.0	
+	var int user_scalex;
+	var int user_scaley;
+}
+
+Actor WitchavenEnemyBaseRangedSkeleton : SamsaraMonsterSkeletonMedium {
+	Radius 20
+	Height 56
+	Speed 15
+	PainChance 124
+	Species "WHEnemies"
+	MONSTER	
+	+FLOORCLIP
+    +NOTDMATCH
+    +THRUGHOST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	+CANPUSHWALLS
+	+CANUSEWALLS
+	+ACTIVATEMCROSS
+	+CANPASS
+	+NOINFIGHTING
+	+NOBLOOD
+//	+SEEINVISIBLE
+	Mass 300
+	PainSound ""
+	ActiveSound ""
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5
+    PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	PainChance "ShrinkerDMG", 0
+    DamageFactor "PoisonBolt", 0.0	
 	var int user_scalex;
 	var int user_scaley;
 }
