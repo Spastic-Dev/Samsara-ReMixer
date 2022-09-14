@@ -56,7 +56,7 @@ Actor Hexen2SpiderGibSpawnerSmall : Hexen2SpiderGibSpawner
 		}
 }	*/
 
-Actor Hexen2HumanoidBase 
+Actor Hexen2HumanoidBase : SamsaraMonsterHumanoidMedium
 {
 	BloodType "Hexen2Blood"
 	Species "Enemies"
@@ -78,7 +78,7 @@ Actor Hexen2HumanoidBase
 	}
 }	
 
-Actor Hexen2BestialBase
+Actor Hexen2BestialBase : SamsaraMonsterDemonicMedium
 {
 	BloodType "Hexen2Blood"
 	Species "Enemies"
@@ -100,7 +100,29 @@ Actor Hexen2BestialBase
 	}
 }	
 
-Actor Hexen2ConstructBase
+Actor Hexen2BestialBaseSmall : SamsaraMonsterDemonicSmall
+{
+	BloodType "Hexen2Blood"
+	Species "Enemies"
+	Monster
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5	
+	+NOINFIGHTING
+	var int user_scalex;
+	var int user_scaley;
+	States
+	{
+		NoFrames:
+			HX00 A 0 bright A_Stop HX01 A 0 bright A_Stop HX02 A 0 bright A_Stop HX03 A 0 bright A_Stop HX04 A 0 bright A_Stop HX05 A 0 bright A_Stop 
+			HX06 A 0 bright A_Stop HX07 A 0 bright A_Stop HX08 A 0 bright A_Stop HX09 A 0 bright A_Stop HX10 A 0 bright A_Stop HX11 A 0 bright A_Stop 
+			HX12 A 0 bright A_Stop HX13 A 0 bright A_Stop HX14 A 0 bright A_Stop HX15 A 0 bright A_Stop HX16 A 0 bright A_Stop HX17 A 0 bright A_Stop 
+			stop
+	}
+}	
+
+Actor Hexen2ConstructBase : SamsaraMonsterMechanicalLarge
 {
 	Species "Enemies"
 	Monster
@@ -122,7 +144,29 @@ Actor Hexen2ConstructBase
 	}
 }	
 
-Actor Hexen2BossBase
+Actor Hexen2ConstructBaseSmall : SamsaraMonsterMechanicalSmall
+{
+	Species "Enemies"
+	Monster
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+    DamageFactor "Mace", 1.1
+    DamageFactor "DragonClaw", 1.5	
+	DamageFactor "PoisonBolt", 0.2
+	+NOINFIGHTING	
+	+NOBLOOD
+	+NOICEDEATH
+	States
+	{
+		NoFrames:
+			HX00 A 0 bright A_Stop HX01 A 0 bright A_Stop HX02 A 0 bright A_Stop HX03 A 0 bright A_Stop HX04 A 0 bright A_Stop HX05 A 0 bright A_Stop 
+			HX06 A 0 bright A_Stop HX07 A 0 bright A_Stop HX08 A 0 bright A_Stop HX09 A 0 bright A_Stop HX10 A 0 bright A_Stop HX11 A 0 bright A_Stop 
+			HX12 A 0 bright A_Stop HX13 A 0 bright A_Stop HX14 A 0 bright A_Stop HX15 A 0 bright A_Stop HX16 A 0 bright A_Stop HX17 A 0 bright A_Stop 
+			stop
+	}
+}	
+
+Actor Hexen2BossBase : SamsaraMonsterDemonicHuge
 {
 	BloodType "Hexen2Blood"
 	Species "Enemies"
@@ -142,201 +186,6 @@ Actor Hexen2BossBase
 		    HX06 A 0 bright A_Stop HX07 A 0 bright A_Stop HX08 A 0 bright A_Stop HX09 A 0 bright A_Stop HX10 A 0 bright A_Stop HX11 A 0 bright A_Stop 
 		    HX12 A 0 bright A_Stop HX13 A 0 bright A_Stop HX14 A 0 bright A_Stop HX15 A 0 bright A_Stop HX16 A 0 bright A_Stop HX17 A 0 bright A_Stop 
 		    stop
-		Death.PSRAPower:
-		Death.PSRAPowerCoop:
-		Death.PSExplosive:
-		Death.PSExplosiveCoop:
-		Death.PSBullet:
-		Death.PSFire:	
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
-			TNT1 A 0 A_Jump(256,"Death")
-			Wait
-		Death.LeonardDamage2:
-		Death.LeonardDamage3:
-		Death.LeonardDamage0:
-		Death.LeonardDamage1:	
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
-			TNT1 A 0 A_Jump(256,"Death")
-			Wait
-		Death.SWFist:
-		Death.SWKatana:
-		Death.SWShuriken:
-		Death.SWSticky:
-		Death.SWStickyCoop:	
-		Death.SWGrenade:
-		Death.SWNuke:
-		Death.SWRocket:
-		Death.SWRailgun:
-		Death.SWRailgunCoop:
-		Death.SWNukeCoop:
-		Death.SWFlame:
-		Death.SWFlame2:
-		Death.SWFlame2Coop:
-		Death.SWFlame3:	
-		Death.SWBullet:	  
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			TNT1 A 0 A_Jump(256,"Death")
-			Wait												
-		Pain.LifeLeech:
-			TNT1 A 0 A_GiveToTarget("SerpentHealth", 1)
-			TNT1 A 0 A_Jump(256,"Pain")
-			Wait
-		Pain.Vodoo:
-			TNT1 A 0 A_GiveToTarget("Voodoo", 1)
-			TNT1 A 0 A_Jump(256,"Pain")
-			Wait
-		Death.DukeDamage:
-		Death.DukeIce:
-		Death.DukeSpectral:
-		Death.DukePistol:
-		Death.DukeExplosive:		
-			TNT1 A 0 A_Jump(218, "Death")
-			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-			TNT1 A 0 A_Jump(256,"Death")
-			Wait
-		Death.EradDisc:
-		Death.EradPiercingDart:
-		Death.EradExplosive2:	  
-		Death.EradExplosive:
-		Death.EradNova:
-		Death.EradShock:  		
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1", 1)
-			TNT1 A 0 A_Jump(256,"Death")
-			Wait
-		Death.Vodoo:
-		Death.VoodooPuff:
-		Death.DynamiteCoop:
-		Death.Dynamite:
-		Death.CalebNapalm:
-		Death.CalebFire:	  
-		Death.Shock:	  
-		Death.LifeLeech:	  
-		Death.Tesla:
-		Death.CalebBullet:	  
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_Jump(256,"Death")
-			Wait
-		Death.RottDisintegrate:
-			"####" "#" 0 A_ChangeFlag("SOLID", 0)
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_Scream
-			"####" "#" 0 A_NoBlocking	
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 0 A_Stop
-			"####" "#" 0 A_KillMaster
-			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
-			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
-			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
-			"####" "#" 0 A_SpawnItem("RGodModeDeathBig")
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.1,0)
-			stop
-		Disintegrate:
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_NoBlocking
-			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 0 A_Scream
-			"####" "#" 0 A_KillMaster
-			"####" "#" 0 A_ChangeFlag("SOLID",FALSE)
-			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
-			"####" "#" 0 A_ChangeFlag("NOGRAVITY",TRUE)
-			"####" "#" 0 A_ChangeFlag("FLOORCLIP",TRUE)
-			"####" "#" 0 A_Stop
-			"####" "#" 3 A_SpawnItem("DisintEffectRound",0,10)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.4,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.3,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.2,0)
-			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
-			"####" "#" 2 A_SetTranslucent(0.1,0)
-			stop
-		Death.Nuke:
-			"####" "#" 0 A_ChangeFlag("SOLID", 0)
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_KillMaster
-			"####" "#" 0 A_Scream
-			"####" "#" 0 A_NoGravity		
-			"####" "#" 0 A_NoBlocking		
-			"####" "#" 0 A_SpawnItem("WTNukeDeathBig")
-			"####" "#################" 3 A_Fadeout(0.05)
-			stop		
-		Death.ZorchPistol:
-		Death.Zorch:
-		Death.ZorchKamikaze:
-		Death.PhasingZorch:
-		Death.ZorchSpectral:
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" "#" 0 A_Stop
-			"####" "#" 0 A_KillMaster
-			"####" "#" 0 A_NoGravity		
-			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
-			"####" "#" 0 A_PlaySoundEx("chex/zorchhuge","soundslot5",0,0)
-			"####" "#" 3 A_SpawnItem("ZorchEffectBig")
-			"####" "#" 0 A_GiveInventory("EnemyZorched",1)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 0 A_Scream
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 0 A_NoBlocking
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.1,0)
-			TNT1 A 1 A_SetTranslucent(1,0)
-			TNT1 A -1
-			stop
-		Death.DukeIce:
-			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
-			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
-			"####" "#" 0 A_Jump(218,"Ice")
-			"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
-		Ice:
-		Death.HexenIce:
-		Death.WTMeleeIce:
-		Death.WTRangedIce:
-		Death.Ice:
-			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-			"####" "#" 0 A_KillMaster
-			"####" "#" 0 A_GenericFreezeDeath
-			"####" "#" 70 A_UnsetSolid
-			"####" "#" 0 A_IceGuyDie
-			"####" "#" 1 A_IceGuyDie
-			TNT1 A 0
-			stop	
 	}
 }	
 
