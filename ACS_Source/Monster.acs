@@ -18,7 +18,7 @@
 #define MAXPLAYERS 64
 #define SKULLCOOLDOWNTID 1000
 
-#define CLASSCOUNT          28
+#define CLASSCOUNT          34
 
 #define MAX_RING_MONST 128
 #define RING_MONST_BASE_TID		1000000		// base TIDs for SW ring monsters' objects
@@ -37,7 +37,8 @@ int sumofirecount[MAXPLAYERS];
 str gameClassesSTR[CLASSCOUNT] = {
 	"DoomguyClass", "ChexClass", "CorvusClass", "WolfenClass", "HexenClass", "DukeClass", "MarathonClass", "QuakeClass", "RottClass", "BlakeClass",
 	"CalebClass", "StrifeClass", "EradClass", "C7Class", "RMRClass", "KatarnClass", "POGreedClass", "DisruptorClass", "WitchavenClass", 
-	"HalfLifeClass", "SWClass", "CMClass", "JonClass", "RRClass", "BittermanClass", "Hexen2Class", "BondClass", "CatacombClass"
+	"HalfLifeClass", "SWClass", "CMClass", "JonClass", "RRClass", "BittermanClass", "Hexen2Class", "BondClass", "CatacombClass", "PainkillerClass", 
+	"UnrealClass", "RTCWClass", "Q3Class", "DescentClass", "DeusExClass"
 };
 
 int ClassWeapons[CLASSCOUNT][9] = 
@@ -258,9 +259,9 @@ int ClassWeapons[CLASSCOUNT][9] =
 		"Pike Axe",
 	},
 	{	//Freebutt
-		"HL Squeaks",
-		"HL Crossbow",
-		"HL Squeaks",
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
 		"Hornetgun",
 		".357 Python",
 		"MP5",
@@ -269,9 +270,9 @@ int ClassWeapons[CLASSCOUNT][9] =
 		"E.G.O.N.",
 	},	
     {   // Lo Wang
-		"SWRipperHeart",
-		"SWRipperHeart",
-		"SWRipperHeart",
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
         "SWSticky",
         "SWGrenade",
         "SWUzi",
@@ -291,9 +292,9 @@ int ClassWeapons[CLASSCOUNT][9] =
         "CMPlasmaGun",
 	},	
     {   // Jon
-		"Ring of RA",
-		"Ring of RA",
-		"Ring of RA",
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
         " Anubis Mine ",
         "PSFlamethrower",
         "PSM60",
@@ -302,20 +303,20 @@ int ClassWeapons[CLASSCOUNT][9] =
         " Mummy Staff ",
 	},	
     {   // Leonard
-		" Dyn 'O' Mites ",
-		" Hunting Rifle With Scope ",
-		" Dyn 'O' Mites ",
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
         " RR Rip Saw ",
         " Scattered Gun ",
         " Ranch Rifle ",
-        " Chicken Crossbow ",
+        " Dyn 'O' Mites ",
         " Alien Bra Gun ",
         " Alien Arm Cannon ",
 	},	
 	{   // Bitterman
-		"Q2IonRipper",
-		"Q2GrenadeLauncher",
-		"Q2ETFRifle",
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
         "Q2MachineGun",
         "Q2SuperShotgun",
         "Q2Chaingun",
@@ -335,8 +336,8 @@ int ClassWeapons[CLASSCOUNT][9] =
         "Hexen2TempestStaff",
     },
 	{   // James Bond
-		"Goldeneye_SniperRifle",
-		"Goldeneye_SilencedD5K",
+		"notapplicable",
+		"notapplicable",
 		"notapplicable",
         "Goldeneye_ThrowingKnives",
         "Goldeneye_AutoShotgun",
@@ -354,7 +355,73 @@ int ClassWeapons[CLASSCOUNT][9] =
         "Catacomb_ZappersQuickSpell",
         "Catacomb_NukesQuickSpell",
         "Catacomb_BoltsQuickSpell",
-        "Catacomb_Hourglass",
+        "Catacomb_AtomicQuickSpell",
+    },	
+	{   // Daniel Garner
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "Painkiller_Shotgun",
+        "Painkiller_BoltGun",
+        "Painkiller_Rifle",
+        "Painkiller_RocketLauncher",
+        "Painkiller_Electrodriver",
+        "Painkiller_Tarot_GoldGiver",
+    },	
+	{   // Prisoner 849
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "Unreal_ASMDShockRifle",
+        "Unreal_FlakCannon",
+        "Unreal_Stinger",
+        "Unreal_Eightball",
+        "Unreal_Minigun",
+        "Unreal_Redeemer",
+    },	
+	{   // RTCW BJ
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "RTCW_MP40",
+        "RTCW_Mauser",
+        "RTCW_FG42",
+        "RTCW_Panzerfaust",
+        "RTCW_Venom",
+        "RTCW_TeslaGun",
+    },	
+	{   // Sarge
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "Q3Shotgun",
+        "Q3Nailgun",
+        "Q3LightningGun",
+        "Q3RocketLauncher",
+        "Q3PlasmaGun",
+        "Q3BFG10K",
+    },	
+	{   // Pyro-GX
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "DescentVulcan",
+        "DescentGauss",
+        "DescentSpreadFire",
+        "DescentFusion",
+        "DescentHelix",
+        "DescentOmega",
+    },	
+	{   // JC Denton
+		"notapplicable",
+		"notapplicable",
+		"notapplicable",
+        "DeusEx_Shotgun",
+        "DeusEx_AssaultShotgun",
+        "DeusEx_AssaultRifle",
+        "DeusEx_GEPGun",
+        "DeusEx_FlameThrower",
+        "DeusEx_MJ12PlasmaRifle",
     },		
 };
 
