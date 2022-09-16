@@ -107,7 +107,7 @@ ACTOR NightmareImp64 : SamsaraMonsterHumanoidMedium
 		XDeath:
 			64I2 Q 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			64I2 Q 5 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			64I2 R 5 A_XScream
+			64I2 R 5 A_PlaySound("friendlyimp64/gibbed", CHAN_VOICE)
 			64I2 S 5
 			64I2 T 5 A_NoBlocking
 			64I2 UVW 5

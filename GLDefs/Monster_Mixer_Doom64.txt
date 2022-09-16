@@ -351,6 +351,172 @@ object MultiLostSoul64
 	frame 64LSO { light LOSTSOUL_64_X8 }
 }
 
+// Stalker
+pulselight STALKER_64
+{
+	color 0.0 0.7 0.2
+	size 30
+	secondarySize 34
+	interval 1
+	offset 0 16 0
+}
+
+flickerlight STALKER_64_X1
+{
+	color 0.0 0.8 0.4
+	size 72
+	secondarySize 80
+	chance 0.25
+}
+
+flickerlight STALKER_64_X2
+{
+	color 0.0 0.7 0.3
+	size 88
+	secondarySize 96
+	chance 0.25
+}
+
+flickerlight STALKER_64_X3
+{
+	color 0.0 0.6 0.2
+	size 104
+	secondarySize 112
+	chance 0.25
+}
+
+flickerlight STALKER_64_X4
+{
+	color 0.0 0.5 0.1
+	size 112
+	secondarySize 120
+	chance 0.25
+}
+
+flickerlight STALKER_64_X5
+{
+	color 0.0 0.4 0.4
+	size 112
+	secondarySize 120
+	chance 0.25
+}
+
+flickerlight STALKER_64_X6
+{
+	color 0.0 0.3 0.3
+	size 112
+	secondarySize 120
+	chance 0.25
+}
+
+flickerlight STALKER_64_X7
+{
+	color 0.0 0.2 0.2
+	size 112
+	secondarySize 120
+	chance 0.25
+}
+
+flickerlight STALKER_64_X8
+{
+	color 0.0 0.1 0.1
+	size 112
+	secondarySize 120
+	chance 0.25
+}
+
+object Stalker64
+{
+	frame 64STA { light STALKER_64 }
+	frame 64STB { light STALKER_64 }
+	frame 64STC { light STALKER_64 }
+	frame 64STD { light STALKER_64 }
+	frame 64STE { light STALKER_64_X1 }
+	frame 64STF { light STALKER_64_X2 }
+	frame 64STG { light STALKER_64_X3 }
+	frame 64STH { light STALKER_64_X4 }
+	frame 64STI { light STALKER_64_X5 }
+	frame 64STJ { light STALKER_64_X6 }
+	frame 64STK { light STALKER_64_X7 }
+	frame 64STL { light STALKER_64_X8 }
+}
+
+object MultiStalker64
+{
+	frame 64STA { light STALKER_64 }
+	frame 64STB { light STALKER_64 }
+	frame 64STC { light STALKER_64 }
+	frame 64STD { light STALKER_64 }
+	frame 64STE { light STALKER_64_X1 }
+	frame 64STF { light STALKER_64_X2 }
+	frame 64STG { light STALKER_64_X3 }
+	frame 64STH { light STALKER_64_X4 }
+	frame 64STI { light STALKER_64_X5 }
+	frame 64STJ { light STALKER_64_X6 }
+	frame 64STK { light STALKER_64_X7 }
+	frame 64STL { light STALKER_64_X8 }
+}
+
+object StalkerTracer64
+{
+	frame 64RBA { light REDTRACER_64 }
+	frame 64RBB { light REDTRACER_64 }
+	frame 64RBC { light REDTRACER_64_X1 }
+	frame 64RBD { light REDTRACER_64_X2 }
+	frame 64RBE { light REDTRACER_64_X2 }
+	frame 64RBF { light REDTRACER_64_X3 }
+	frame 64RBG { light REDTRACER_64_X3 }
+	frame 64RBH { light REDTRACER_64_X4 }
+}
+
+flickerlight STALKER_TELEFOG_64_1
+{
+	color 1.0 0.0 0.0
+	size 56
+	secondarySize 64
+	chance 0.4
+	offset 0 32 0
+}
+
+flickerlight STALKER_TELEFOG_64_2
+{
+	color 1.0 0.0 0.0
+	size 40
+	secondarySize 48
+	chance 0.4
+	offset 0 32 0
+}
+
+flickerlight STALKER_TELEFOG_64_3
+{
+	color 1.0 0.0 0.0
+	size 24
+	secondarySize 32
+	chance 0.4
+	offset 0 32 0
+}
+
+flickerlight STALKER_TELEFOG_64_4
+{
+	color 1.0 0.0 0.0
+	size 10
+	secondarySize 16
+	chance 0.4
+	offset 0 32 0
+}
+
+object StalkerTeleportFog64
+{
+	frame 64HFA { light STALKER_TELEFOG_64_1 }
+	frame 64HFB { light STALKER_TELEFOG_64_1 }
+	frame 64HFC { light STALKER_TELEFOG_64_2 }
+	frame 64HFD { light STALKER_TELEFOG_64_2 }
+	frame 64HFE { light STALKER_TELEFOG_64_3 }
+	frame 64HFF { light STALKER_TELEFOG_64_3 }
+	frame 64HFG { light STALKER_TELEFOG_64_4 }
+	frame 64HFH { light STALKER_TELEFOG_64_4 }
+}
+
 // Cacodemon
 flickerlight CACOBALL_64
 {
@@ -741,6 +907,24 @@ object ArachnotronPlasma64
 	frame 64PPF { light ARACHPLAS_64_X3 }
 	frame 64PPG { light ARACHPLAS_64_X4 }
 	frame 64PPH { light ARACHPLAS_64_X5 }
+}
+
+// Nightcrawler
+pointlight NIGHTCRAWLER_GRENADE_64
+{
+	color 1.0 0.08 0.0
+	size 32
+}
+
+object NightcrawlerGrenade64
+{
+	frame 64GN { light NIGHTCRAWLER_GRENADE_64 }
+
+	frame 64MIB { light ROCKET64_X1 }
+	frame 64MIC { light ROCKET64_X2 }
+	frame 64MID { light ROCKET64_X3 }
+	frame 64MIE { light ROCKET64_X4 }
+	frame 64MIF { light ROCKET64_X5 }
 }
 
 // Mancubus

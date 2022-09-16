@@ -13,10 +13,11 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 	Tag "Chaingunner"
 	Species "Enemies"
 	SeeSound "64grunt/sight"
+	AttackSound "doom64guy/pistol"
 	PainSound "64grunt/pain"
 	DeathSound "64grunt/death"
 	ActiveSound "64grunt/active"
-	//AttackSound "doom64guy/shotgf"
+	AttackSound "doom64guy/pistol"
 	Obituary "$OB_CHAINGUY"
 	DamageFactor "Mace", 1.1
 	DamageFactor "DragonClaw", 1.5
@@ -47,10 +48,7 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoidMedium
 	Missile:
 		64CP E 0 A_ChangeFlag("NOPAIN",0)
 		64CP E 10 A_FaceTarget
-		64CP F 0 BRIGHT A_PlaySound("doom64guy/pistol", CHAN_WEAPON)
-		64CP F 4 BRIGHT A_CustomBulletAttack(22.5, 0, 1, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
-		64CP E 0 BRIGHT A_PlaySound("doom64guy/pistol", CHAN_WEAPON)				
-		64CP E 4 BRIGHT A_CustomBulletAttack(22.5, 0, 1, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
+		64CP FE 4 BRIGHT A_CustomBulletAttack(22.5, 0, 1, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
 		64CP F 1 A_CPosRefire
 		Goto Missile+2
 	Pain:

@@ -19,31 +19,29 @@ ACTOR Spectre64 : Demon64
 			Goto Spawn+1
 		See:
 			64S2 A 0 A_SetTranslucent(1.0, 0)
-			64S2 AA 2 A_Chase
+			64S2 AA 2 Fast A_Chase
 			64S2 B 0 A_SetTranslucent(0.75, 0)
-			64S2 BB 2 A_Chase
+			64S2 BB 2 Fast A_Chase
 			64S2 C 0 A_SetTranslucent(0.50, 0)
-			64S2 CC 2 A_Chase
+			64S2 CC 2 Fast A_Chase
 			64S2 D 0 A_SetTranslucent(0.25, 0)
-			64S2 DD 2 A_Chase
+			64S2 DD 2 Fast A_Chase
 			64S2 A 0 A_SetTranslucent(0.20, 0)
-			64S2 AABBCCDD 2 A_Chase
+			64S2 AABBCCDD 2 Fast A_Chase
 			Goto See+12
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			64S2 E 0 A_SetTranslucent(0.20, 0)
-			64S2 EF 8 A_FaceTarget
-			64S2 G 8 A_SargAttack
+			64S2 EF 8 Fast A_FaceTarget
+			64S2 G 8 Fast A_SargAttack
 			Goto See+12
 		Pain:
-			64S2 H 0 A_SetTranslucent(0.20, 0)
-			64S2 H 2
-			64S2 H 2 A_Pain
+			64S2 H 2 Fast A_SetTranslucent(0.20, 0)
+			64S2 H 2 Fast A_Pain
 			Goto See+12
 		Pain.Vertigo:
 			64S2 H 0 A_SetTranslucent(0.20, 0)
-			64S2 H 0 ThrustThingZ(0, 55, 0, 0)
-			64S2 H 2
+			64S2 H 2 ThrustThingZ(0, 55, 0, 0)
 			64S2 H 2 A_Pain
 			Goto See+12
 		Pain.MightyBoot:

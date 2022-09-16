@@ -12,7 +12,7 @@ ACTOR WolfensteinSSJagaur : SamsaraMonsterHumanoidMediumTotalGib
 	Tag "Nazi SS"	
 	SeeSound "64wolfss/sight"
 	DeathSound "64wolfss/death"
-	//AttackSound "64wolfss/attack"
+	AttackSound "64wolfss/attack"
 	Obituary "$OB_WOLFSS"
 	Dropitem "Clip64"
 	DamageFactor "Mace", 1.1
@@ -45,10 +45,8 @@ ACTOR WolfensteinSSJagaur : SamsaraMonsterHumanoidMediumTotalGib
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		64SS F 10 A_FaceTarget
 		64SS G 10 A_FaceTarget
-		TNT1 A 0 A_PlaySound("64wolfss/attack", CHAN_WEAPON)
 		64SS H 4 BRIGHT A_CustomBulletAttack(22.5, 0, 1, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
 		64SS G 6 A_FaceTarget
-		TNT1 A 0 A_PlaySound("64wolfss/attack", CHAN_WEAPON)
 		64SS H 4 BRIGHT A_CustomBulletAttack(22.5, 0, 1, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
 		64SS G 1 A_CPosRefire
 		Goto Missile+1

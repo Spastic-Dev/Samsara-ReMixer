@@ -1,0 +1,129 @@
+ACTOR Stalker64 : LostSoul64
+{
+	Health 200
+	Tag "Stalker"
+	-MISSILEEVENMORE
+	+MISSILEMORE
+	+BRIGHT
+	AttackSound ""
+	SeeSound "64stalker/sight"
+	PainSound "64stalker/pain"
+	Obituary "%o was flambeed by a Stalker."
+	States
+	{
+		Spawn:
+			64ST A 0
+			64ST A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			64ST A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			64ST A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			64ST A 0 A_GiveInventory("IsAFlyingActor")
+		Spawn3:
+			64ST A 2 A_Look
+			Loop
+		See:
+			64ST AA 2 A_Chase
+			64ST A 2 A_Chase("","")
+			Loop
+		Missile:
+			64ST B 0 A_ChangeFlag("NOPAIN",0)
+			64ST B 15 A_FaceTarget
+			64ST B 0 A_JumpIfInventory("Stalker64TeleportCooldown",1,"Tracer")
+			64ST B 0 A_JumpIfCloser(1024,1)
+			Goto Tracer
+			64ST B 0 A_Jump(128,"Teleport")
+			Goto Tracer
+		Tracer:
+			64ST B 0 A_FaceTarget
+			64ST B 5 A_CustomMissile("StalkerTracer64",12)
+			64ST B 15 A_FaceTarget
+			Goto See
+		Teleport:
+			64ST B 0 A_SpawnItemEx("StalkerTeleportFog64",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			TNT1 A 0 A_UnSetShootable
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
+			TNT1 AAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+			TNT1 AAAAAAAAAAAAAAAAAAAAA 1 A_Wander
+			TNT1 AAAAA 1 A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_GiveInventory("Stalker64TeleportCooldown",1)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_SetShootable
+			64ST B 0 A_SpawnItemEx("StalkerTeleportFog64",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			64ST B 5 A_CustomMissile("StalkerTracer64",12)
+			64ST B 10 A_FaceTarget
+			Goto See
+		Pain:
+			64ST C 3
+			64ST C 3 A_Pain
+			Goto See
+		Pain.Vertigo:
+			64ST C 3 ThrustThingZ(0, 55, 0, 0)
+			Goto Pain+1
+		Pain.MightyBoot:
+			64ST C 0 A_ChangeFlag("NOPAIN",1)
+			64ST C 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64ST C 2 A_FaceTarget
+			64ST C 0 A_Recoil(14)
+			64ST C 16 A_Pain
+			Goto See
+		Death:
+			64ST D 6 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			64ST E 6 A_Scream
+			64ST F 4
+			64ST G 3 A_NoBlocking
+			64ST HIJKLM 3 A_FadeOut(0.20)
+			Stop
+		Crush:
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor MultiStalker64 : Stalker64 { +THRUSPECIES }
+
+ACTOR StalkerTracer64 : RevenantTracer64
+{
+	Damage 8
+	Speed 10
+	States
+	{
+		Spawn:
+			64RB AB 2 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB A 1 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB A 1 Bright A_Tracer2
+			64RB BA 2 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB B 0 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB B 2 Bright A_Tracer2
+			64RB A 2 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB B 1 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB B 1 Bright A_Tracer2
+			64RB AB 2 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB A 0 Bright A_SpawnItemEx("Doom64RevenantSmokePuff",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+			64RB A 2 Bright A_Tracer2
+			Goto Spawn+1
+	}
+}
+
+ACTOR StalkerTeleportFog64
+{
+	+BRIGHT
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.8
+	States
+	{
+		Spawn:
+			64HF D 0
+			64HF D 4 A_PlaySound("64stalker/warp")
+			64HF CBABCDEFGH 4
+			Stop
+	}
+}
+
+Actor Stalker64TeleportCooldown : Powerup
+{
+	Powerup.Duration 87
+}

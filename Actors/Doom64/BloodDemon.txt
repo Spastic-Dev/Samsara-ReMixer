@@ -57,7 +57,8 @@ ACTOR BloodDemon64 : Demon64
 			Goto See
 		Pain.Vertigo:
 			64BD H 2 ThrustThingZ(0, 55, 0, 0)
-			Goto Pain+1
+			64BD H 2 A_Pain
+			Goto See
 		Crush:
 			A027 A -1 A_PlaySound("friendlyimp64/crush")
 			Stop

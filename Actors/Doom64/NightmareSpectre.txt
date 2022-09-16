@@ -16,20 +16,21 @@ ACTOR NightmareSpectre64 : Spectre64
 			64NS BD 10 A_Look
 			Loop
 		See:
-			64NS AABBCCDD 2 A_Chase
+			64NS AABBCCDD 2 Fast A_Chase
 			Loop
 		Melee:
 			64NS E 0 A_ChangeFlag("NOPAIN",0)
-			64NS EF 8 A_FaceTarget
-			64NS G 8 A_SargAttack
+			64NS EF 8 Fast A_FaceTarget
+			64NS G 8 Fast A_SargAttack
 			Goto See
 		Pain:
-			64NS H 2
-			64NS H 2 A_Pain
+			64NS H 2 Fast
+			64NS H 2 Fast A_Pain
 			Goto See
 		Pain.Vertigo:
 			64NS H 2 ThrustThingZ(0, 55, 0, 0)
-			Goto Pain+1
+			64NS H 2 A_Pain
+			Goto See
 		Pain.MightyBoot:
 			64NS H 0 A_ChangeFlag("NOPAIN",1)
 			64NS H 0 A_PlaySoundEx("duke/kickhit","body",0,0)
