@@ -40,7 +40,7 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 	"Q3Sarge2", "DescentPyroGX2", "JCDenton2"
 };
 
-str doomModes[3] = { "SetDoom", "SetDoom64", "SetDoomRandom" };
+str doomModes[4] = { "SetDoom", "SetDoom64", "SetDoomRandom", "SetDoom64AbsolutionOutcasrt" };
 str wolfModes[3] = { "SetWolf3D", "SetSpear", "SetTotenkopf" };
 str dukeModes[2] = { "SetDuke3D", "SetDukeLAB" };
 str hlModes[2] =   { "SetHL", "SetHLOP" };
@@ -220,10 +220,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					//SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 					break;
 				case 0: // Doom
-					switch(GetCvar("mm_doommode"))
+					int doomMode = GetCvar("mm_doommode");
+
+					switch(doomMode)
 					{
 						default:
-							altSetSelect = GetCvar("mm_doommode")-2;
+							altSetSelect = doomMode-1;
 							break;
 						case 0:
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
@@ -232,26 +234,46 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
 									break;
 							}
-							break;					
-						case 1:
-							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+
+							switch(altSetSelect)
 							{
-								altSetSelect = random(0,maxAltSets);
-								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+								default:
+								case 0:
+									altSetSelect = GetCvar("mm_doomspawns") * 2;
+									break;
+								case 1:
+									altSetSelect = 1 + GetCvar("mm_doom64spawns") * 2;
 									break;
 							}
-							altSetSelect += (2 * random(0,altSetSelect==0));
 							break;
-						case 5:
-							altSetSelect = random(0,2);
+						case 1:
+							altSetSelect = GetCvar("mm_doomspawns") * 2;
+							break;
+						case 2:
+							altSetSelect = 1 + GetCvar("mm_doom64spawns") * 2;
+							break;
+						case 3:
+							switch(random(0,1))
+							{
+								default:
+								case 0:
+									altSetSelect = GetCvar("mm_doomspawns") * 2;
+									break;
+								case 1:
+									altSetSelect = 1 + GetCvar("mm_doom64spawns") * 2;
+									break;
+							}
+
 							break;
 					}
 					break;
 				case 3: // Wolf3d
-					switch(GetCvar("mm_wolfmode"))
+					int wolfMode = GetCvar("mm_wolfmode");
+
+					switch(wolfMode)
 					{
 						default:
-							altSetSelect = GetCvar("mm_wolfmode")-1;
+							altSetSelect = wolfMode-1;
 							break;
 						case 0: //doing this one the crude way
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
@@ -270,10 +292,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					}
 					break;
 				case 5:
-					switch(GetCvar("mm_dukemode"))
+					int dukeMode = GetCvar("mm_dukemode");
+					
+					switch(dukeMode)
 					{
 						default:
-							altSetSelect = GetCvar("mm_dukemode")-1;
+							altSetSelect = dukeMode-1;
 							break;
 						case 0:
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
@@ -289,10 +313,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					}
 					break;
 				case 19:
-					switch(GetCvar("mm_halflifemode"))
+					int halfLifeMode = GetCvar("mm_halflifemode");
+
+					switch(halfLifeMode)
 					{
 						default:
-							altSetSelect = GetCvar("mm_halflifemode");
+							altSetSelect = halfLifeMode;
 							break;
 						case 0:
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
