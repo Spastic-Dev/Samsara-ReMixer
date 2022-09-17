@@ -4,6 +4,8 @@
 
 ACTOR BishopReplacer : DoomImpSpawner replaces Bishop 
 {
+	Game Hexen
+	SpawnID 19
 	States
 	{
 		SetHexen1:
@@ -11,20 +13,22 @@ ACTOR BishopReplacer : DoomImpSpawner replaces Bishop
 			Goto DeathForInvasion			
 	}		
 } 	
-ACTOR CentaurReplacer : DemonSpawner replaces Centaur {}
-ACTOR CentaurMashReplacer : DemonSpawner replaces CentaurMash {}
-ACTOR CentaurLeaderReplacer : SpectreSpawner replaces CentaurLeader {}
-ACTOR Demon1Replacer : HellKnightSpawner replaces Demon1 {}
-ACTOR Demon2Replacer : BaronOfHellSpawner replaces Demon2 {}
-ACTOR Demon1MashReplacer : HellKnightSpawner replaces Demon1Mash {}
-ACTOR Demon2MashReplacer : BaronOfHellSpawner replaces Demon2Mash {}
+ACTOR CentaurReplacer : DemonSpawner replaces Centaur { Game Hexen SpawnID 1 }
+ACTOR CentaurMashReplacer : DemonSpawner replaces CentaurMash { Game Hexen SpawnID 103 }
+ACTOR CentaurLeaderReplacer : SpectreSpawner replaces CentaurLeader { Game Hexen SpawnID 2 }
+ACTOR Demon1Replacer : HellKnightSpawner replaces Demon1 { Game Hexen SpawnID 3 }
+ACTOR Demon2Replacer : BaronOfHellSpawner replaces Demon2 { }
+ACTOR Demon1MashReplacer : HellKnightSpawner replaces Demon1Mash { Game Hexen SpawnID 100 }
+ACTOR Demon2MashReplacer : BaronOfHellSpawner replaces Demon2Mash { Game Hexen SpawnID 101 }
 ACTOR EttinReplacer : RandomSpawner replaces Ettin 
 {
+	Game Hexen
+	SpawnID 4
 	DropItem "EttinSpawner1", 256, 1
 	DropItem "EttinSpawner2", 256, 1
 	DropItem "EttinSpawner3", 256, 1
 }
-ACTOR EttinMashReplacer : EttinReplacer replaces EttinMash {}
+ACTOR EttinMashReplacer : EttinReplacer replaces EttinMash { Game Hexen SpawnID 102 }
 ACTOR EttinSpawner1 : ZombiemanSpawner {}
 ACTOR EttinSpawner2 : DoomImpSpawner 
 {
@@ -36,10 +40,12 @@ ACTOR EttinSpawner2 : DoomImpSpawner
 	}		
 } 	
 ACTOR EttinSpawner3 : ShotgunGuySpawner { }
-ACTOR FireDemonReplacer : LostSoulSpawner replaces FireDemon {}
-ACTOR IceGuyReplacer : RevenantSpawner replaces IceGuy {}
+ACTOR FireDemonReplacer : LostSoulSpawner replaces FireDemon { Game Hexen SpawnID 5 }
+ACTOR IceGuyReplacer : RevenantSpawner replaces IceGuy { Game Hexen SpawnID 20 }
 ACTOR SerpentReplacer : ShotgunGuySpawner replaces Serpent 
 {
+	Game Hexen
+	SpawnID 6
 	States
 	{
 		SetCatacomb:
@@ -52,6 +58,8 @@ ACTOR SerpentReplacer : ShotgunGuySpawner replaces Serpent
 } 
 ACTOR SerpentLeaderReplacer : ChaingunGuySpawner replaces SerpentLeader
 {
+	Game Hexen
+	SpawnID 7
 	States
 	{
 		SetCatacomb:
@@ -62,8 +70,8 @@ ACTOR SerpentLeaderReplacer : ChaingunGuySpawner replaces SerpentLeader
 			Goto DeathForInvasion			
 	}		
 } 
-ACTOR WraithReplacer : CacodemonSpawner replaces Wraith {}
-ACTOR WraithBuriedReplacer : PainElementalSpawner replaces WraithBuried {}
+ACTOR WraithReplacer : CacodemonSpawner replaces Wraith { Game Hexen SpawnID 8 }
+ACTOR WraithBuriedReplacer : PainElementalSpawner replaces WraithBuried { Game Hexen SpawnID 9 }
 ACTOR ClericBossReplacer : ArchvileSpawner replaces ClericBoss
 {
 	states
