@@ -417,6 +417,13 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 		Pain:
 			AGD2 O 8 A_Pain
 			goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			AGD2 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			AGD2 O 16 A_Pain
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
@@ -429,6 +436,9 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			AGD2 M 3
 			AGD2 N -1
 			stop
+		StakeDeath:
+			AGD2 O 2
+			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -733,7 +743,14 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			goto See		
 		Pain:
 			AGD3 O 8 A_Pain
-			goto See		
+			goto See	
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			AGD3 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			AGD3 O 16 A_Pain
+			Goto See			
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
@@ -746,6 +763,9 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			AGD3 M 3
 			AGD3 N -1
 			stop	
+		StakeDeath:
+			AGD3 O 2
+			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1058,6 +1078,13 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 		Pain:
 			AGD4 O 8 A_Pain
 			goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			AGD4 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			AGD4 O 16 A_Pain
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
@@ -1070,6 +1097,9 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 			AGD4 M 3
 			AGD4 N -1
 			stop
+		StakeDeath:
+			AGD4 O 2
+			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1383,6 +1413,13 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 		Pain:
 			AGR5 O 8 A_Pain
 			goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			AGD5 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			AGD5 O 16 A_Pain
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
@@ -1395,6 +1432,9 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 			AGR5 M 3
 			AGR5 N -1
 			stop
+		StakeDeath:
+			AGD5 O 2
+			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1709,6 +1749,13 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 		Pain:
 			AGR6 O 8 A_Pain
 			goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			AGD6 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			AGD6 O 16 A_Pain
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
@@ -1721,6 +1768,9 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 			AGR6 M 3
 			AGR6 N -1
 			stop
+		StakeDeath:
+			AGD6 O 2
+			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -2033,6 +2083,13 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 		Pain:
 			AGR7 O 8 A_Pain
 			goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			AGD7 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			AGD7 O 16 A_Pain
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
@@ -2045,6 +2102,9 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 			AGR7 M 3
 			AGR7 N -1
 			stop
+		StakeDeath:
+			AGD7 O 2
+			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -2370,6 +2430,9 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			AGR8 M 3
 			AGR8 N -1
 			stop
+		StakeDeath:
+			AGD8 O 2
+			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -2391,6 +2454,13 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			AGR8 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			AGR8 O 16 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			AGD8 O 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			AGD8 O 16 A_Pain
 			Goto See
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
