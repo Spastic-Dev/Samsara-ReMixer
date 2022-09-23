@@ -238,12 +238,23 @@ ACTOR CacolanternSpawner : CacodemonSpawner replaces Cacolantern
 	+SHOOTABLE
 	States
 	{
-		SetDoom:
-			TNT1 A 1 A_SpawnItemEx("Cacolantern2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion
-		SetChex:
-			TNT1 A 1 A_SpawnItemEx("YellowCycloptis",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SetUserVar("user_special",special)
+			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
+			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
+			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
+			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_Look
+			Loop
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,22)			
+		Deciding:
+			TNT1 A 1
+			Loop
 	}
 }
 
@@ -261,11 +272,22 @@ ACTOR AbaddonSpawner : CacodemonSpawner replaces Abaddon
 	+SHOOTABLE
 	States
 	{
-		SetDoom:
-			TNT1 A 1 A_SpawnItemEx("Abaddon2",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion
-		SetChex:
-			TNT1 A 1 A_SpawnItemEx("DarkCycloptis",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SetUserVar("user_special",special)
+			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
+			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
+			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
+			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_Look
+			Loop
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,23)			
+		Deciding:
+			TNT1 A 1
+			Loop
 	}
 }
