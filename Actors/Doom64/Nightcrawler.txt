@@ -3,7 +3,7 @@ ACTOR Nightcrawler64 : Arachnotron64
 	Health 750
 	Speed 10
 	MaxTargetRange 1088
-	+MISSILEMORE
+	+MISSILEEVENMORE
 	+DONTHARMSPECIES
 	Tag "Nightcrawler"
 	Obituary "%o caught a Nightcrawler's grenade."
@@ -231,23 +231,13 @@ ACTOR NightcrawlerGrenade64 : Doom64Rocket
 	States
 	{
 		Spawn:
-			64GN ABCD 2 bright A_SpawnItemEx("Doom64NightcrawlerGrenadeSmokeTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			64GN ABCD 2 bright A_SpawnItemEx("Doom64RocketSmokeTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			Loop
 		Death:
 			64MI B 0 bright A_NoGravity
-			64MI B 8 bright A_Explode(64, 128, 0)
+			64MI B 8 bright A_Explode(64, 144, 0)
 			Goto Super::Death+1
 	}
-}
-
-actor Doom64NightcrawlerGrenadeSmokeTrail : Doom64RocketSmokeTrail
-{
-    States
-    {
-    Spawn:
-        64RS ABCDE 1 bright
-        stop
-    }
 }
 
 Actor MultiNightcrawler64 : Nightcrawler64 { +THRUSPECIES }
