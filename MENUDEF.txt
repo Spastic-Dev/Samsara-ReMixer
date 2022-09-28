@@ -37,6 +37,7 @@
 			Slider "Monster Multiplier", "mm_multiply",  1, 20, 1
 			StaticText ""
 			StaticText "General Options", 1
+			Option "Monster Generation Rate", "mm_generate", "GenerationOptions"
 			Option "Rare Spawns" , "mm_rarespawns", "OnOff"
 			Option "Invulnerable Monsters Die", "mm_specpermdeath", "OnOff"
 			Option "Pinata Party", "mm_pinataparty", "OnOff"
@@ -60,6 +61,17 @@
 			Option "Doom Enemies", "mm_doomspawns", "DoomSpawns"
 			Option "Doom 64 Enemies", "mm_doom64spawns", "Doom64Spawns"
 	}
+	
+	OptionValue GenerationOptions
+	{
+			0, "Off"
+			5, "Rare"
+			10, "Uncommon"
+			25, "Common"
+			50, "Frequent"
+			75, "Slaughterfest"
+			100, "Nuts"
+	}		
 
 	OptionValue DoomMode
 	{

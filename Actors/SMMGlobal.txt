@@ -23,6 +23,93 @@ ACTOR AlreadySpawned : Inventory { Inventory.MaxAmount 1 }
 ACTOR InvasionToken : Inventory { Inventory.MaxAmount 1 }
 ACTOR WeaponDropToken : Inventory { Inventory.MaxAmount 1 }
 
+//ReMixer generator logic
+
+Actor DetermineValidCellReMixer
+{
+	+VULNERABLE
+	+CANPASS
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_GiveInventory("isCellCheckerTokenReMixer",1)
+			TNT1 A 0 A_RadiusGive("DetermineValidCellBroadcastReMixer",1024,RGF_PLAYERS|RGF_MONSTERS|RGF_NOSIGHT|RGF_CUBE)
+			TNT1 A 4
+			Stop
+	}
+}
+
+Actor DetermineValidCellBroadcastReMixer : Trigger
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 A_RadiusGive("IsValidCellBroadcastReMixer",1024,RGF_OBJECTS|RGF_NOSIGHT|RGF_CUBE)
+			Stop
+	}
+}
+
+Actor IsValidCellBroadcastReMixer : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("isCellCheckerTokenReMixer",1,1)
+			fail
+			TNT1 A 0 ACS_NamedExecuteWithResult("CellDoneScanningReMixer")
+			TNT1 A 0 Thing_Remove(0)
+			Stop
+	}
+}
+
+Actor DetermineValidSpawnReMixer
+{
+	Height 56
+	Radius 32
+	+VULNERABLE
+	+SOLID
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_GiveInventory("isSpawnCheckerTokenReMixer",1)
+			TNT1 A 0 A_RadiusGive("DetermineValidSpawnBroadcastReMixer",1024,RGF_PLAYERS|RGF_MONSTERS|RGF_CUBE)
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 4
+			Stop
+	}
+}
+
+Actor DetermineValidSpawnBroadcastReMixer : Trigger
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 A_RadiusGive("IsValidSpawnBroadcastReMixer",1024,RGF_OBJECTS|RGF_CUBE)
+			Stop
+	}
+}
+
+Actor IsValidSpawnBroadcastReMixer : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("isSpawnCheckerTokenReMixer",1,1)
+			fail
+			TNT1 A 0 A_JumpIfInventory("ValidSpawnTokenReMixer",1,"Failure")
+			TNT1 A 0 A_GiveInventory("ValidSpawnTokenReMixer",1)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SMMGeneratorSelector")
+			Stop
+		Failure:
+			TNT1 A 0
+			fail
+	}
+}
+
+Actor isCellCheckerTokenReMixer : Inventory { Inventory.MaxAmount 1 }
+Actor isSpawnCheckerTokenReMixer : Inventory { Inventory.MaxAmount 1 }
+Actor ValidSpawnTokenReMixer : Inventory { Inventory.MaxAmount 1 }
+
 /*ACTOR PinataDrop : RandomSpawner
 {
 	dropitem "Ammo1Small" 255 256

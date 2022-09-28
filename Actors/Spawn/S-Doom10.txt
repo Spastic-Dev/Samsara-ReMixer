@@ -227,6 +227,8 @@ ACTOR FatsoSpawner replaces Fatso
 	}
 }
 
+ACTOR FatsoSpawnerGenerator : FatsoSpawner { -BOSSDEATH }
+
 ACTOR HectebusSpawner : FatsoSpawner replaces Hectebus
 {
 	Health 0x7fffffff
@@ -254,9 +256,11 @@ ACTOR HectebusSpawner : FatsoSpawner replaces Hectebus
 			TNT1 A 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,24)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,23)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
+
+ACTOR HectebusSpawnerGenerator : HectebusSpawner {}

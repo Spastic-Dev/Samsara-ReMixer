@@ -245,6 +245,8 @@ ACTOR ShotgunGuySpawner replaces ShotgunGuy
 	}
 }
 
+ACTOR ShotgunGuySpawnerGenerator : ShotgunGuySpawner {}
+
 actor ShotgunguyRandomizer : RandomSpawner
 {
 	DropItem "Shotgunguy3", 255, 6
@@ -284,9 +286,11 @@ ACTOR SuperShotgunGuySpawner : ShotgunGuySpawner replaces SuperShotgunGuy
 			TNT1 A 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,19)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,18)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
+
+ACTOR SuperShotgunGuySpawnerGenerator : SuperShotgunGuySpawner {}

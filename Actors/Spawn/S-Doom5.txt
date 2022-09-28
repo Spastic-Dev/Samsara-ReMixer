@@ -348,6 +348,8 @@ ACTOR DemonSpawner replaces Demon
 	}
 }
 
+ACTOR DemonSpawnerGenerator : DemonSpawner {}
+
 actor DoomDemonRandomizer : RandomSpawner
 {
 	DropItem "DoomDemon3", 255, 6
@@ -386,9 +388,11 @@ ACTOR BloodDemonSpawner : DemonSpawner replaces BloodDemon
 			TNT1 A 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,21)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,20)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
+
+ACTOR BloodDemonSpawnerGenerator : BloodDemonSpawner {}

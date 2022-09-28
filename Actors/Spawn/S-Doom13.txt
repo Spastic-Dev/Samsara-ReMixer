@@ -213,6 +213,7 @@ ACTOR CacodemonSpawner replaces Cacodemon
 	}
 }
 
+ACTOR CacodemonSpawnerGenerator : CacodemonSpawner {}
 
 Actor CacodemonRandomizer : RandomSpawner
 {
@@ -251,7 +252,7 @@ ACTOR CacolanternSpawner : CacodemonSpawner replaces Cacolantern
 			TNT1 A 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,22)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,21)			
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -285,9 +286,12 @@ ACTOR AbaddonSpawner : CacodemonSpawner replaces Abaddon
 			TNT1 A 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,23)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,22)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
+
+ACTOR CacolanternSpawnerGenerator : CacolanternSpawner {}
+ACTOR AbaddonSpawnerGenerator : AbaddonSpawner {}

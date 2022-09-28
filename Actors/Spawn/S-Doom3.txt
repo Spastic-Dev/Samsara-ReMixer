@@ -251,6 +251,8 @@ ACTOR DoomImpSpawner replaces DoomImp
 	}
 }
 
+ACTOR DoomImpSpawnerGenerator : DoomImpSpawner {}
+
 actor DoomImpRandomizer : RandomSpawner
 {
 	DropItem "DoomImp3", 255, 5
@@ -299,9 +301,11 @@ ACTOR DarkImpSpawner: DoomImpSpawner replaces DarkImp
 			TNT1 A 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,20)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,19)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
+
+ACTOR DarkImpSpawnerGenerator : DarkImpSpawner {}

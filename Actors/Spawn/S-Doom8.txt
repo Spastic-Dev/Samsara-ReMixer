@@ -224,6 +224,8 @@ ACTOR BaronOfHellSpawner replaces BaronOfHell
 	}
 }
 
+ACTOR BaronOfHellSpawnerGenerator : BaronOfHellSpawner { -BOSSDEATH }
+
 ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor 
 {
 	Health 0x7fffffff
@@ -252,9 +254,11 @@ ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor
 			TNT1 A 4 A_Look
 			Loop
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,25)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,24)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
+
+ACTOR BelphegorSpawnerGenerator : BelphegorSpawner {}
