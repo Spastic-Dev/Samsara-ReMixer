@@ -6,12 +6,6 @@ ACTOR BishopReplacer : DoomImpSpawner replaces Bishop
 {
 	Game Hexen
 	SpawnID 19
-	States
-	{
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("Bishop3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion			
-	}		
 } 	
 ACTOR CentaurReplacer : DemonSpawner replaces Centaur { Game Hexen SpawnID 1 }
 ACTOR CentaurMashReplacer : DemonSpawner replaces CentaurMash { Game Hexen SpawnID 103 }
@@ -30,91 +24,23 @@ ACTOR EttinReplacer : RandomSpawner replaces Ettin
 }
 ACTOR EttinMashReplacer : EttinReplacer replaces EttinMash { Game Hexen SpawnID 102 }
 ACTOR EttinSpawner1 : ZombiemanSpawner {}
-ACTOR EttinSpawner2 : DoomImpSpawner 
-{
-	States
-	{
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("Ettin3Doom",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion			
-	}		
-} 	
-ACTOR EttinSpawner3 : ShotgunGuySpawner { }
+ACTOR EttinSpawner2 : DoomImpSpawner {}
+ACTOR EttinSpawner3 : ShotgunGuySpawner {}
 ACTOR FireDemonReplacer : LostSoulSpawner replaces FireDemon { Game Hexen SpawnID 5 }
 ACTOR IceGuyReplacer : RevenantSpawner replaces IceGuy { Game Hexen SpawnID 20 }
-ACTOR SerpentReplacer : ShotgunGuySpawner replaces Serpent 
-{
-	Game Hexen
-	SpawnID 6
-	States
-	{
-		SetCatacomb:
-			TNT1 A 1 A_SpawnItemEx("CatacombAbyss_WaterTroll",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			Goto DeathForInvasion	
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("Serpent3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion			
-	}		
-} 
-ACTOR SerpentLeaderReplacer : ChaingunGuySpawner replaces SerpentLeader
-{
-	Game Hexen
-	SpawnID 7
-	States
-	{
-		SetCatacomb:
-			TNT1 A 1 A_SpawnItemEx("CatacombAbyss_WaterTroll",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			Goto DeathForInvasion	
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("SerpentLeader3",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			Goto DeathForInvasion			
-	}		
-} 
+ACTOR SerpentReplacer : ShotgunGuySpawner replaces Serpent { Game Hexen SpawnID 6 }
+ACTOR SerpentLeaderReplacer : ChaingunGuySpawner replaces SerpentLeader { Game Hexen SpawnID 7} 
 ACTOR WraithReplacer : CacodemonSpawner replaces Wraith { Game Hexen SpawnID 8 }
 ACTOR WraithBuriedReplacer : PainElementalSpawner replaces WraithBuried { Game Hexen SpawnID 9 }
-ACTOR ClericBossReplacer : ArchvileSpawner replaces ClericBoss
-{
-	states
-	{
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("ClericBoss3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			Goto BossWait
-	}
-}
-
-ACTOR FighterBossReplacer : ArchvileSpawner replaces FighterBoss 
-{
-	states
-	{
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("FighterBoss3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			Goto BossWait
-	}
-}
-
-ACTOR MageBossReplacer : ArchvileSpawner replaces MageBoss 
-{
-	states
-	{
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("MageBoss3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			Goto BossWait
-	}
-}
+ACTOR ClericBossReplacer : ArchvileSpawner replaces ClericBoss {}
+ACTOR FighterBossReplacer : ArchvileSpawner replaces FighterBoss {}
+ACTOR MageBossReplacer : ArchvileSpawner replaces MageBoss {}
 
 Actor HeresiarchScriptTokens : Counter {}
 ACTOR HeresiarchReplacer : CyberDemonSpawner replaces Heresiarch 
 {
 	states
 	{
-		SetDoom:
-			TNT1 A 1 A_SpawnItemEx("Cyberdemon3",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			TNT1 A 0 A_Jump(256,"BossWait")
-			Wait
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("Heresiarch3Doom",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			TNT1 A 0 A_Jump(256,"BossWait")
-			Wait
 		BossWait:
 			TNT1 A 0 A_GiveInventory("HeresiarchScriptTokens",special)
 			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
@@ -139,28 +65,6 @@ ACTOR KoraxReplacer : SpiderMastermindSpawner replaces Korax
 {
 	states
 	{
-		SetDoom:
-			TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			TNT1 A 0 A_Jump(256,"BossWait")
-			Wait
-		SetDoomRandom:
-			TNT1 A 0 A_Jump(144,"SetDoomRandom2")
-			TNT1 A 1 A_SpawnItemEx("SpiderMastermind3",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			TNT1 A 0 A_Jump(256,"BossWait")
-			Wait
-		SetDoomRandom2:
-			TNT1 A 0 A_Jump(64,"SetDoomRandom2")
-			TNT1 A 1 A_SpawnItemEx("MMRandomizer_ArachnorbQueen",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_Jump(256,"BossWait")
-			Wait
-		SetDoomRandom3:
-			TNT1 A 1 A_SpawnItemEx("MMRandomizer_Demolisher",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
-			TNT1 A 0 A_Jump(256,"BossWait")
-			Wait	
-		SetHexen1:
-			TNT1 A 1 A_SpawnItemEx("Korax3Doom",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
-			TNT1 A 0 A_Jump(256,"BossWait")
-			Wait
 		BossWait:
 			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
 			TNT1 A 2
@@ -208,3 +112,23 @@ ACTOR PigReplacer : WolfensteinSSSpawner replaces Pig
 			Stop
 	}
 }
+
+Actor BishopReplacerGenerator : BishopReplacer {}
+Actor EttinSpawner1Generator : EttinSpawner1 {}
+Actor EttinSpawner2Generator : EttinSpawner2 {}
+Actor EttinSpawner3Generator : EttinSpawner3 {}
+Actor CentaurReplacerGenerator : CentaurReplacer {}
+Actor CentaurLeaderReplacerGenerator : CentaurLeaderReplacer {}
+Actor Demon1ReplacerGenerator : Demon1Replacer {}
+Actor Demon2ReplacerGenerator : Demon2Replacer {}
+Actor FireDemonReplacerGenerator : FireDemonReplacer {}
+Actor IceGuyReplacerGenerator : IceGuyReplacer {}
+Actor SerpentReplacerGenerator : SerpentReplacer {}
+Actor SerpentLeaderReplacerGenerator : SerpentLeaderReplacer {}
+Actor WraithReplacerGenerator : WraithReplacer {}
+Actor ClericBossReplacerGenerator : ClericBossReplacer {}
+Actor FighterBossReplacerGenerator : FighterBossReplacer {}
+Actor MageBossReplacerGenerator : MageBossReplacer {}
+Actor Dragon2GeneratorGenerator : Dragon2 {}
+Actor HeresiarchReplacerGenerator : HeresiarchReplacer {}
+Actor KoraxReplacerGenerator : KoraxReplacer {}
