@@ -367,6 +367,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int totalChance, currentChance;
 	int useSkill = GetCvar("mm_overrideskill");
 	int currentSkill = GameSkill();
+	int alert = 0;
 	int pickAddon = 0, addonOffsetGame, addonOffsetAltGame, addonOffsetMonSlot, addonPickOffset;
 	int a = 0, newChance = 0, oldChance = 0;
 	skillMod = ((currentSkill * !useSkill) + ((useSkill > 0) * (useSkill - 1))) * 3;
@@ -485,7 +486,8 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	}
 	
 	SetActivator(thisMonNew,AAPTR_Target);
-	SetPointerExt(AAPTR_Target,0,newMonTid);
+	if(SetPointerExt(AAPTR_Target,0,newMonTid))
+		alert = 1;
 		
 	SetActivator(thisMonNew,AAPTR_Tracer);
 	SetPointerExt(AAPTR_Tracer,0,newMonTid);
@@ -496,11 +498,22 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SetActorProperty(newMonTid,APROP_Ambush,GetActorProperty(0,APROP_Ambush));
 	SetThingSpecial(newMonTid,GetUserVariable(0,"user_special"),GetUserVariable(0,"user_arg0"),GetUserVariable(0,"user_arg1"),GetUserVariable(0,"user_arg2"),GetUserVariable(0,"user_arg3"));
 
+	if(!GetActorProperty(newMonTid,APROP_Ambush) && alert)
+		ACS_NamedExecuteWithResult("ReMixerAwakenMonster",newMonTid);
+
 	if(speed != 0) { SetActorProperty(newMonTid,APROP_Speed,FixedMul(GetActorProperty(newMonTid,APROP_Speed),speed)); }
 	if(health != 0) { SetActorProperty(newMonTid,APROP_Health,FixedMul(GetActorProperty(newMonTid,APROP_Health),health)); }
 	if(strlen(token) != 0) { GiveActorInventory(newMonTid, token,1); }
 		
 	Thing_ChangeTid(newMonTid,thisMonOld);
+}
+
+Script "ReMixerAwakenMonster" (int monTid)
+{
+	SetActivator(monTid);
+	int seeAttempts = 0;
+	until(CheckInventory("AlreadySpawned") && seeAttempts < 5) { Delay(1); seeAttempts++; }
+	SetActorState(0,"See",1);
 }
 
 Script "ReMixerInvasion" OPEN //670
