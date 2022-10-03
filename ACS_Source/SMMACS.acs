@@ -4,7 +4,7 @@
 
 #define MAX_GAME_TYPES 34
 #define MAX_ALTS 5
-#define MONSTER_SLOT 25
+#define MONSTER_SLOT 38
 #define MAXPERSLOT 20
 #define MAX_ITEMS 15
 #define MAX_STRING_ITEMS 6
@@ -477,7 +477,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SpawnForced(monster,GetActorX(0),GetActorY(0),GetActorZ(0),newMonTid);
 	SetActorAngle(newMonTid, GetActorAngle(0));
 		
-	if(monSlot == 6|7|8|9|14|15|16)
+	if(monSlot == 6|7|8|9|14|15|16|30|31|37|38)
 		SetPointerExt(AAPTR_Master,0,newMonTid);
 	else
 	{

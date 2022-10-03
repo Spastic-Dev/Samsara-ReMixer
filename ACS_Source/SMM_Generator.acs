@@ -11,7 +11,7 @@ int generatorCountersDoom[MAXMONSTERS_DOOM];
 str SpawnersDoom[MAXMONSTERS_DOOM] = { "ZombiemanSpawner", "ShotGunGuySpawner", "DoomImpSpawner", "ChainGunGuySpawner", "SuperShotgunGuySpawner", "DemonSpawner", "DarkImpSpawner", "SpectreSpawner", "BloodDemonSpawner", "LostSoulSpawner", "CacodemonSpawner", "RevenantSpawner", "CacolanternSpawner", "PainElementalSpawner", "HellKnightSpawner", "ArachnotronSpawner", "FatsoSpawner", "AbaddonSpawner", "ArchvileSpawner", "BaronofHellSpawner", "HectebusSpawner", "BelphegorSpawner", "SpiderMastermindSpawner", "CyberDemonSpawner", "WolfensteinSSSpawner" };
 
 int generatorCountersChex[MAXMONSTERS_CHEX];
-str SpawnersChex[MAXMONSTERS_CHEX] = { "FlemoidusCommonusSpawner", "FlemoidusBipedicusSpawner", "ArmoredFlemoidusBipedicusSpawner", "FlemoidusStridicusSpawner", "LarvaSpawner", "FlemMineSpawner", "FlemoidusCycloptisCommonusSpawner", "SuperCycloptisSpawner", "QuadrumpusSpawner", "FlemoidusMaximusSpawner", "FlembraneSpawner", "SnotfolusSpawner", "FlembominationSpawner" };
+str SpawnersChex[MAXMONSTERS_CHEX] = { "FlemoidusCommonusSpawner", "FlemoidusBipedicusSpawner", "ArmoredFlemoidusBipedicusSpawner", "FlemoidusStridicusSpawner", "LarvaSpawner", "FlemMineSpawner", "FlemoidusCycloptisCommonusSpawner", "SuperCycloptisSpawner", "QuadrumpusSpawner", "FlemoidusMaximusSpawner", "FlembraneSpawner", "FlembominationSpawner", "SnotfolusSpawner" };
 
 int generatorCountersHeretic[MAXMONSTERS_HERETIC];
 str SpawnersHeretic[MAXMONSTERS_HERETIC] = { "HereticImpReplacer", "HereticImpLeaderReplacer", "MummyReplacer", "MummyGhostReplacer", "MummyLeaderReplacer", "MummyLeaderGhostReplacer", "WizardReplacer", "KnightReplacer", "KnightGhostReplacer", "ClinkReplacer", "SnakeReplacer", "BeastReplacer", "IronlichReplacer", "MinotaurReplacer", "Sorcerer1Replacer" };
@@ -230,8 +230,8 @@ Script "SMMGeneratorSelector" (void)
 			SpawnForced(strparam(s:SpawnersDoom[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
 			break;
 		case 2:	
-			pickMonster = 12; 
-			while((pickMonster == 12 || pickMonster == 13) && selectionAttempts < maxSelectionAttempts)
+			pickMonster = 11; 
+			while((pickMonster == 11 || pickMonster == 12) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
