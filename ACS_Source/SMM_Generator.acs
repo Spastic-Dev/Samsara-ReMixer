@@ -1,7 +1,7 @@
 #define MAXMONSTERS_DOOM 25
 #define MAXMONSTERS_CHEX 13
 #define MAXMONSTERS_HERETIC 15
-#define MAXMONSTERS_HEXEN 18
+#define MAXMONSTERS_HEXEN 16
 #define MAXMONSTERS_HACX 15
 #define MAXMONSTERS_HARMONY 9
 #define MAXMONSTERS_ROTWB 19
@@ -17,7 +17,7 @@ int generatorCountersHeretic[MAXMONSTERS_HERETIC];
 str SpawnersHeretic[MAXMONSTERS_HERETIC] = { "HereticImpReplacer", "HereticImpLeaderReplacer", "MummyReplacer", "MummyGhostReplacer", "MummyLeaderReplacer", "MummyLeaderGhostReplacer", "WizardReplacer", "KnightReplacer", "KnightGhostReplacer", "ClinkReplacer", "SnakeReplacer", "BeastReplacer", "IronlichReplacer", "MinotaurReplacer", "Sorcerer1Replacer" };
 
 int generatorCountersHexen[MAXMONSTERS_HEXEN];
-str SpawnersHexen[MAXMONSTERS_HEXEN] = { "EttinSpawner1", "EttinSpawner2", "EttinSpawner3", "FireDemonReplacer", "BishopReplacer", "CentaurReplacer", "Demon1Replacer", "SerpentReplacer", "SerpentLeaderReplacer", "IceGuyReplacer", "WraithReplacer", "Demon2Replacer", "ClericBossReplacer", "FighterBossReplacer", "MageBossReplacer", "Dragon2", "HeresiarchReplacer", "KoraxReplacer" };
+str SpawnersHexen[MAXMONSTERS_HEXEN] = { "EttinReplacer", "FireDemonReplacer", "BishopReplacer", "CentaurReplacer", "Demon1Replacer", "SerpentReplacer", "SerpentLeaderReplacer", "IceGuyReplacer", "WraithReplacer", "Demon2Replacer", "ClericBossReplacer", "FighterBossReplacer", "MageBossReplacer", "Dragon2", "HeresiarchReplacer", "KoraxReplacer" };
 
 int generatorCountersHacx[MAXMONSTERS_HACX];
 str SpawnersHacx[MAXMONSTERS_HACX] = { "HacxThug_SamsaraRemixer", "HacxAndroid_SamsaraRemixer", "HacxPhage_SamsaraRemixer", "HacxBuzzer_SamsaraRemixer", "HacxStealth_SamsaraRemixer", "HacxICE_SamsaraRemixer", "HacxDMan_SamsaraRemixer", "HacxMajong7_SamsaraRemixer", "HacxMonstruct_SamsaraRemixer", "HacxTerminatrix_SamsaraRemixer", "HacxMechaManiac_SamsaraRemixer", "HacxThornThing_SamsaraRemixer", "HacxMummy_SamsaraRemixer", "HacxSkeleton_SamsaraRemixer", "HacxRoamingMine_SamsaraRemixer" };
@@ -258,8 +258,8 @@ Script "SMMGeneratorSelector" (void)
 			SpawnForced(strparam(s:SpawnersHeretic[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
 			break;
 		case 8:	
-			pickMonster = 16; 
-			while((pickMonster == 16 || pickMonster == 17) && selectionAttempts < maxSelectionAttempts)
+			pickMonster = 14; 
+			while((pickMonster == 14 || pickMonster == 15) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
