@@ -74,6 +74,9 @@ Class IsValidSpawnBroadcastReMixerZS : CustomInventory
 		Pickup:
 			TNT1 A 0 A_JumpIfInventory("isSpawnCheckerTokenReMixer",1,1);
 			fail;
+			TNT1 A 0 A_CheckRange(256,"Generate");
+			Stop;
+		Generate:
 			TNT1 A 0 A_JumpIfInventory("ValidSpawnTokenReMixer",1,"Failure");
 			TNT1 A 0 A_GiveInventory("ValidSpawnTokenReMixer",1);
 			TNT1 A 0 ACS_NamedExecuteWithResult("SMMGeneratorSelector");

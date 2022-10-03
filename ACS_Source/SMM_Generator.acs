@@ -86,9 +86,9 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			{
 				if(generatorCountersDoom[selector] > 0)
 				{
-					if(selector < minSelector && selector < 22)
+					if(selector < minSelector)
 						minSelector = selector;
-					if(selector > maxSelector && selector < 22)
+					if(selector > maxSelector)
 						maxSelector = selector;
 				}
 				totalTypes += generatorCountersDoom[selector];	
@@ -96,10 +96,7 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			}
 				
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			for(diff = 5; diff > GameSkill()+1; diff--)
-			{
-				selectorBias = FixedMul(selectorBias,0.8);
-			}
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 		case 2:
 			for(counters = 0; counters < MAXMONSTERS_CHEX; counters++)
@@ -111,9 +108,9 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			{
 				if(generatorCountersChex[selector] > 0)
 				{
-					if(selector < minSelector && selector < 12)
+					if(selector < minSelector)
 						minSelector = selector;
-					if(selector > maxSelector && selector < 12)
+					if(selector > maxSelector)
 						maxSelector = selector;
 				}
 				totalTypes += generatorCountersChex[selector];	
@@ -121,10 +118,7 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			}
 				
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			for(diff = 5; diff > GameSkill()+1; diff--)
-			{
-				selectorBias = FixedMul(selectorBias,0.8);
-			}
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 		case 4:
 			for(counters = 0; counters < MAXMONSTERS_HERETIC; counters++)
@@ -136,9 +130,9 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			{
 				if(generatorCountersHeretic[selector] > 0)
 				{
-					if(selector < minSelector && selector < 13)
+					if(selector < minSelector)
 						minSelector = selector;
-					if(selector > maxSelector && selector < 13)
+					if(selector > maxSelector)
 						maxSelector = selector;
 				}
 				totalTypes += generatorCountersHeretic[selector];	
@@ -146,10 +140,7 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			}
 				
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			for(diff = 5; diff > GameSkill()+1; diff--)
-			{
-				selectorBias = FixedMul(selectorBias,0.8);
-			}
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 		case 8:
 			for(counters = 0; counters < MAXMONSTERS_HEXEN; counters++)
@@ -161,9 +152,9 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			{
 				if(generatorCountersHexen[selector] > 0)
 				{
-					if(selector < minSelector && selector < 16)
+					if(selector < minSelector)
 						minSelector = selector;
-					if(selector > maxSelector && selector < 16)
+					if(selector > maxSelector)
 						maxSelector = selector;
 				}
 				totalTypes += generatorCountersHexen[selector];	
@@ -171,10 +162,7 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			}
 				
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			for(diff = 5; diff > GameSkill()+1; diff--)
-			{
-				selectorBias = FixedMul(selectorBias,0.8);
-			}
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 	}
 }
@@ -224,16 +212,16 @@ Script "SMMGeneratorSelector" (void)
 		terminate;
 		
 	int rnd, mix;
-	
+		
 	switch(game)
 	{
 		case 1:	
 			pickMonster = DoomSecretLevel ? 24 : 22; 
 			while((pickMonster == 22 || pickMonster == 23) && selectionAttempts < maxSelectionAttempts)
 			{
-				rnd = random(0.0,1.0) * (maxSelector - minSelector) + minSelector;
+				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
-				pickMonster = roundZandronum(FixedMul(rnd,(1.0 - mix)) + (selectorBias * minSelector));
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
@@ -245,9 +233,9 @@ Script "SMMGeneratorSelector" (void)
 			pickMonster = 12; 
 			while((pickMonster == 12 || pickMonster == 13) && selectionAttempts < maxSelectionAttempts)
 			{
-				rnd = random(0.0,1.0) * (maxSelector - minSelector) + minSelector;
+				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
-				pickMonster = roundZandronum(FixedMul(rnd,(1.0 - mix)) + (selectorBias * minSelector));
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
@@ -259,9 +247,9 @@ Script "SMMGeneratorSelector" (void)
 			pickMonster = 13; 
 			while((pickMonster == 13 || pickMonster == 14) && selectionAttempts < maxSelectionAttempts)
 			{
-				rnd = random(0.0,1.0) * (maxSelector - minSelector) + minSelector;
+				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
-				pickMonster = roundZandronum(FixedMul(rnd,(1.0 - mix)) + (selectorBias * minSelector));
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
@@ -273,9 +261,9 @@ Script "SMMGeneratorSelector" (void)
 			pickMonster = 16; 
 			while((pickMonster == 16 || pickMonster == 17) && selectionAttempts < maxSelectionAttempts)
 			{
-				rnd = random(0.0,1.0) * (maxSelector - minSelector) + minSelector;
+				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
-				pickMonster = roundZandronum(FixedMul(rnd,(1.0 - mix)) + (selectorBias * minSelector));
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
