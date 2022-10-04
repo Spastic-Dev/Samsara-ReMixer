@@ -5,7 +5,7 @@
 #define MAXMONSTERS_HACX 15
 #define MAXMONSTERS_HARMONY 9
 #define MAXMONSTERS_ROTWB 19
-#define MAXMONSTERS_REKKR 17
+#define MAXMONSTERS_REKKR 18
 
 int generatorCountersDoom[MAXMONSTERS_DOOM];
 str SpawnersDoom[MAXMONSTERS_DOOM] = { "ZombiemanSpawner", "ShotGunGuySpawner", "DoomImpSpawner", "ChainGunGuySpawner", "SuperShotgunGuySpawner", "DemonSpawner", "DarkImpSpawner", "SpectreSpawner", "BloodDemonSpawner", "LostSoulSpawner", "CacodemonSpawner", "RevenantSpawner", "CacolanternSpawner", "PainElementalSpawner", "HellKnightSpawner", "ArachnotronSpawner", "FatsoSpawner", "AbaddonSpawner", "ArchvileSpawner", "BaronofHellSpawner", "HectebusSpawner", "BelphegorSpawner", "SpiderMastermindSpawner", "CyberDemonSpawner", "WolfensteinSSSpawner" };
@@ -26,10 +26,10 @@ int generatorCountersHarmony[MAXMONSTERS_HARMONY];
 str SpawnersHarmony[MAXMONSTERS_HARMONY] = { "Beastling_SamsaraRemixer", "FallingFollower_SamsaraRemixer", "Follower_SamsaraRemixer", "WalkingCentaur_SamsaraRemixer", "Soldier_SamsaraRemixer", "WalkingPhage_SamsaraRemixer", "Critter_SamsaraRemixer", "WalkingPredator_SamsaraRemixer", "Echida_SamsaraRemixer" };
 
 int generatorCountersROTWB[MAXMONSTERS_ROTWB];
-str SpawnersROTWB[MAXMONSTERS_ROTWB] = { "ShotgunCat_SamsaraRemixer", "DemonCat_SamsaraRemixer", "ChaingunCat_SamsaraRemixer", "WizardCat_SamsaraRemixer", "Spidercat_SamsaraRemixer", "WizardCatBlack_SamsaraRemixer", "ChaingunCatBig_SamsaraRemixer", "ShotgunCatFloat_SamsaraRemixer", "OfficerCat_SamsaraRemixer", "KamikaziGuy_SamsaraRemixer", "FlyingKitty_SamsaraRemixer", "DemonFish_SamsaraRemixer", "PsychoCat_SamsaraRemixer", "ChaingunCatBigCurl_SamsaraRemixer", "RoboCat_SamsaraRemixer", "ShotgunCatPirate_SamsaraRemixer", "ChaingunCatBigPirate_SamsaraRemixer", "LowResHedgehog_SamsaraRemixer", "LowResChaingunCat_SamsaraRemixer" };
+str SpawnersROTWB[MAXMONSTERS_ROTWB] = { "ShotgunCat_SamsaraRemixer", "WizardCat_SamsaraRemixer", "DemonCat_SamsaraRemixer", "WizardCatBlack_SamsaraRemixer", "ChaingunCat_SamsaraRemixer", "PsychoCat_SamsaraRemixer", "ShotgunCatFloat_SamsaraRemixer", "KamikaziGuy_SamsaraRemixer", "Spidercat_SamsaraRemixer", "ChaingunCatBig_SamsaraRemixer", "OfficerCat_SamsaraRemixer", "FlyingKitty_SamsaraRemixer", "ChaingunCatBigCurl_SamsaraRemixer", "RoboCat_SamsaraRemixer", "DemonFish_SamsaraRemixer", "ShotgunCatPirate_SamsaraRemixer", "ChaingunCatBigPirate_SamsaraRemixer", "LowResHedgehog_SamsaraRemixer", "LowResChaingunCat_SamsaraRemixer" };
 
 int generatorCountersREKKR[MAXMONSTERS_REKKR];
-str SpawnersREKKR[MAXMONSTERS_REKKR] = { "REKKRFormerHuman_SamsaraRemixer", "REKKRHusk_SamsaraRemixer", "REKKRMeanHusk_SamsaraRemixer", "REKKREyeball_SamsaraRemixer", "REKKRImp_SamsaraRemixer", "REKKRMeanImp_SamsaraRemixer", "REKKRGrotesque_SamsaraRemixer", "RERRKFormerDuke_SamsaraRemixer", "REKKRSorrow_SamsaraRemixer", "REKKRTreebeast_SamsaraRemixer", "REKKRSkellyBelly_SamsaraRemixer", "REKKRSkelespider_SamsaraRemixer", "REKKRRunePorter_SamsaraRemixer", "REKKRFlammenwerfer_SamsaraRemixer", "REKKRFormerKing_SamsaraRemixer", "REKKRDeathRaven_SamsaraRemixer", "REKKRGardien_SamsaraRemixer" };
+str SpawnersREKKR[MAXMONSTERS_REKKR] = { "REKKRFormerHuman_SamsaraRemixer", "REKKRHusk_SamsaraRemixer", "REKKRMeanHusk_SamsaraRemixer", "REKKREyeball_SamsaraRemixer", "REKKRGrotesque_SamsaraRemixer", "REKKRImp_SamsaraRemixer", "REKKRMeanImp_SamsaraRemixer", "REKKRSorrow_SamsaraRemixer", "REKKRRunePorter_SamsaraRemixer", "REKKRSkelespider_SamsaraRemixer", "RERRKFormerDuke_SamsaraRemixer", "REKKRSkellyBelly_SamsaraRemixer", "REKKRTreebeast_SamsaraRemixer", "REKKRFlammenwerfer_SamsaraRemixer", "REKKRFormerKing_SamsaraRemixer", "REKKRFormerKing2_SamsaraRemixer", "REKKRDeathRaven_SamsaraRemixer", "REKKRGardien_SamsaraRemixer" };
 
 int totalTypes = 0;
 int generationAmount = 0;
@@ -208,6 +208,50 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
+		case 128:
+			for(counters = 0; counters < MAXMONSTERS_ROTWB; counters++)
+			{
+				generatorCountersROTWB[counters] = ThingCountName(SpawnersROTWB[counters],0);
+			}
+
+			for(selector = 0; selector < MAXMONSTERS_ROTWB; selector++)
+			{
+				if(generatorCountersROTWB[selector] > 0)
+				{
+					if(selector < minSelector)
+						minSelector = selector;
+					if(selector > maxSelector)
+						maxSelector = selector;
+				}
+				totalTypes += generatorCountersROTWB[selector];	
+				generationAmount += generatorCountersROTWB[selector]*(selector+1);
+			}
+				
+			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
+			break;
+		case 256:
+			for(counters = 0; counters < MAXMONSTERS_REKKR; counters++)
+			{
+				generatorCountersREKKR[counters] = ThingCountName(SpawnersREKKR[counters],0);
+			}
+
+			for(selector = 0; selector < MAXMONSTERS_REKKR; selector++)
+			{
+				if(generatorCountersREKKR[selector] > 0)
+				{
+					if(selector < minSelector)
+						minSelector = selector;
+					if(selector > maxSelector)
+						maxSelector = selector;
+				}
+				totalTypes += generatorCountersREKKR[selector];	
+				generationAmount += generatorCountersREKKR[selector]*(selector+1);
+			}
+				
+			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
+			break;
 	}
 }
 
@@ -317,7 +361,7 @@ Script "SMMGeneratorSelector" (void)
 			break;
 		case 32:	
 			pickMonster = 14; 
-			while((pickMonster == 14) && selectionAttempts < maxSelectionAttempts)
+			while((pickMonster == 14 || pickMonster == 15) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
@@ -342,6 +386,34 @@ Script "SMMGeneratorSelector" (void)
 				terminate;
 				
 			SpawnForced(strparam(s:SpawnersHarmony[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+			break;
+		case 128:	
+			pickMonster = 18; 
+			while((pickMonster == 18 || pickMonster == 19) && selectionAttempts < maxSelectionAttempts)
+			{
+				rnd = random(minSelector,maxSelector);
+				mix = FixedMul(random(0.0,1.0),influence);
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
+				selectionAttempts++;
+			}
+			if(selectionAttempts >= maxSelectionAttempts)
+				terminate;
+				
+			SpawnForced(strparam(s:SpawnersROTWB[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+			break;
+		case 256:	
+			pickMonster = 17; 
+			while((pickMonster == 17 || pickMonster == 18) && selectionAttempts < maxSelectionAttempts)
+			{
+				rnd = random(minSelector,maxSelector);
+				mix = FixedMul(random(0.0,1.0),influence);
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
+				selectionAttempts++;
+			}
+			if(selectionAttempts >= maxSelectionAttempts)
+				terminate;
+				
+			SpawnForced(strparam(s:SpawnersREKKR[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
 			break;
 	}
 	
