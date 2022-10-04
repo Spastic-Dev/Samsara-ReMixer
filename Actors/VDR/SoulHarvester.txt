@@ -87,7 +87,7 @@ Actor MMRandomizer_SoulHarvester : SamsaraMonsterDemonicMedium
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			VD40 X 6 A_Xscream
+			VD40 X 6 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
 			VD40 Y 6 A_SpawnItemEx("MMRandomizer_SoulHarvesterGhost", 0, 0, 32, 0, 0, 0, 0, 128)
 			VD40 Z 6
 			VD40 [ 6 A_Fall
