@@ -23,7 +23,7 @@ int generatorCountersHacx[MAXMONSTERS_HACX];
 str SpawnersHacx[MAXMONSTERS_HACX] = { "HacxThug_SamsaraRemixer", "HacxAndroid_SamsaraRemixer", "HacxPhage_SamsaraRemixer", "HacxBuzzer_SamsaraRemixer", "HacxStealth_SamsaraRemixer", "HacxICE_SamsaraRemixer", "HacxDMan_SamsaraRemixer", "HacxMajong7_SamsaraRemixer", "HacxMonstruct_SamsaraRemixer", "HacxTerminatrix_SamsaraRemixer", "HacxMechaManiac_SamsaraRemixer", "HacxThornThing_SamsaraRemixer", "HacxMummy_SamsaraRemixer", "HacxSkeleton_SamsaraRemixer", "HacxRoamingMine_SamsaraRemixer" };
 
 int generatorCountersHarmony[MAXMONSTERS_HARMONY];
-str SpawnersHarmony[MAXMONSTERS_HARMONY] = { "Beastling_SamsaraRemixer", "FallingFollower_SamsaraRemixer", "Follower_SamsaraRemixer", "WalkingCentaur_SamsaraRemixer", "Soldier_SamsaraRemixer", "Critter_SamsaraRemixer", "WalkingPhage_SamsaraRemixer", "WalkingPredator_SamsaraRemixer", "Echida_SamsaraRemixer" };
+str SpawnersHarmony[MAXMONSTERS_HARMONY] = { "Beastling_SamsaraRemixer", "FallingFollower_SamsaraRemixer", "Follower_SamsaraRemixer", "WalkingCentaur_SamsaraRemixer", "Soldier_SamsaraRemixer", "WalkingPhage_SamsaraRemixer", "Critter_SamsaraRemixer", "WalkingPredator_SamsaraRemixer", "Echida_SamsaraRemixer" };
 
 int generatorCountersROTWB[MAXMONSTERS_ROTWB];
 str SpawnersROTWB[MAXMONSTERS_ROTWB] = { "ShotgunCat_SamsaraRemixer", "DemonCat_SamsaraRemixer", "ChaingunCat_SamsaraRemixer", "WizardCat_SamsaraRemixer", "Spidercat_SamsaraRemixer", "WizardCatBlack_SamsaraRemixer", "ChaingunCatBig_SamsaraRemixer", "ShotgunCatFloat_SamsaraRemixer", "OfficerCat_SamsaraRemixer", "KamikaziGuy_SamsaraRemixer", "FlyingKitty_SamsaraRemixer", "DemonFish_SamsaraRemixer", "PsychoCat_SamsaraRemixer", "ChaingunCatBigCurl_SamsaraRemixer", "RoboCat_SamsaraRemixer", "ShotgunCatPirate_SamsaraRemixer", "ChaingunCatBigPirate_SamsaraRemixer", "LowResHedgehog_SamsaraRemixer", "LowResChaingunCat_SamsaraRemixer" };
@@ -164,6 +164,50 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
+		case 32:
+			for(counters = 0; counters < MAXMONSTERS_HACX; counters++)
+			{
+				generatorCountersHacx[counters] = ThingCountName(SpawnersHacx[counters],0);
+			}
+
+			for(selector = 0; selector < MAXMONSTERS_HACX; selector++)
+			{
+				if(generatorCountersHacx[selector] > 0)
+				{
+					if(selector < minSelector)
+						minSelector = selector;
+					if(selector > maxSelector)
+						maxSelector = selector;
+				}
+				totalTypes += generatorCountersHacx[selector];	
+				generationAmount += generatorCountersHacx[selector]*(selector+1);
+			}
+				
+			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
+			break;
+		case 64:
+			for(counters = 0; counters < MAXMONSTERS_HARMONY; counters++)
+			{
+				generatorCountersHarmony[counters] = ThingCountName(SpawnersHarmony[counters],0);
+			}
+
+			for(selector = 0; selector < MAXMONSTERS_HARMONY; selector++)
+			{
+				if(generatorCountersHarmony[selector] > 0)
+				{
+					if(selector < minSelector)
+						minSelector = selector;
+					if(selector > maxSelector)
+						maxSelector = selector;
+				}
+				totalTypes += generatorCountersHarmony[selector];	
+				generationAmount += generatorCountersHarmony[selector]*(selector+1);
+			}
+				
+			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
+			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
+			break;
 	}
 }
 
@@ -270,6 +314,34 @@ Script "SMMGeneratorSelector" (void)
 				terminate;
 				
 			SpawnForced(strparam(s:SpawnersHexen[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+			break;
+		case 32:	
+			pickMonster = 14; 
+			while((pickMonster == 14) && selectionAttempts < maxSelectionAttempts)
+			{
+				rnd = random(minSelector,maxSelector);
+				mix = FixedMul(random(0.0,1.0),influence);
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
+				selectionAttempts++;
+			}
+			if(selectionAttempts >= maxSelectionAttempts)
+				terminate;
+				
+			SpawnForced(strparam(s:SpawnersHacx[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+			break;
+		case 64:	
+			pickMonster = 7; 
+			while((pickMonster == 7 || pickMonster == 8) && selectionAttempts < maxSelectionAttempts)
+			{
+				rnd = random(minSelector,maxSelector);
+				mix = FixedMul(random(0.0,1.0),influence);
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
+				selectionAttempts++;
+			}
+			if(selectionAttempts >= maxSelectionAttempts)
+				terminate;
+				
+			SpawnForced(strparam(s:SpawnersHarmony[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
 			break;
 	}
 	
