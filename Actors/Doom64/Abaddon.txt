@@ -40,9 +40,9 @@ ACTOR Abaddon64 : Cacodemon64
 		Missile:
 			64AB E 0 A_ChangeFlag("NOPAIN",0)
 			64AB EF 5 A_FaceTarget
-			64AB G 5 BRIGHT A_CustomComboAttack("AbaddonBall64", 48, 8 * random(1,8), "friendlyimp64/melee")
+			64AB G 5 BRIGHT A_CustomComboAttack("AbaddonBall64", 48, 8 * random(1,8))
 			64AB EF 5 A_FaceTarget
-			64AB G 5 BRIGHT A_CustomComboAttack("AbaddonBall64", 48, 8 * random(1,8), "friendlyimp64/melee")
+			64AB G 5 BRIGHT A_CustomComboAttack("AbaddonBall64", 48, 8 * random(1,8))
 			Goto See
 		Death:
 			64AB H 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
