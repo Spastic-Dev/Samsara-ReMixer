@@ -8,28 +8,28 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 	PainChance 128
 	Monster
 	Scale 0.8
-	+FLOAT 
-	+NOGRAVITY 
+	+FLOAT
+	+NOGRAVITY
 	+MISSILEMORE
 	+NOINFIGHTING
-	Species "Enemies"	
-	Tag "Cacodemon"	
+	Species "Enemies"
+	Tag "Cacodemon"
 	SeeSound "64caco/sight"
 	PainSound "64demon/pain"
 	DeathSound "64caco/death"
 	ActiveSound "64demon/active"
 	Obituary "$OB_CACO"
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	PainChance "CalebFire", 0
 	PainChance "WTMelee", 255
-	PainChance "WTMeleeIce", 255	
-	DamageFactor "WitchMelee", 1.1		
+	PainChance "WTMeleeIce", 255
+	DamageFactor "WitchMelee", 1.1
 	HitObituary "$OB_CACOHIT"
-    BloodType "Doom64Blood"
+	BloodType "Doom64Blood"
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -40,9 +40,8 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 			64HD A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			64HD A 0 A_GiveInventory("AlreadySpawned",1)
 			64HD A 0 A_GiveInventory("IsAFlyingActor")
-			64HD A 0
 		Spawn2:
-			TNT1 A 0 A_GiveInventory("IsAFlyingActor")
+			64HD A 0 A_GiveInventory("IsAFlyingActor")
 		Spawn3:
 			64HD ABCD 15 A_Look
 			Loop
@@ -55,34 +54,31 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 			64HD D 3 A_Pain
 			Goto See
 		Pain.Vertigo:
-			64HD D 0 ThrustThingZ(0, 55, 0, 0)
-			64HD D 3
-			64HD D 3 A_Pain
-			Goto See
+			64HD D 3 ThrustThingZ(0, 55, 0, 0)
+			Goto Pain+1
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64HD D 0 A_ChangeFlag("NOPAIN",1)
+			64HD D 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			64HD D 2 A_FaceTarget
-			TNT1 A 0 A_Recoil(14)
+			64HD D 0 A_Recoil(14)
 			64HD D 16 A_Pain
 			Goto See
 		Missile:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			64HD E 0 A_ChangeFlag("NOPAIN",0)
 			64HD EF 5 A_FaceTarget
 			64HD G 5 BRIGHT A_CustomComboAttack("CacodemonBall64", 48, 8 * random(1,8))
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")			
+			64HD H 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			64HD H 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			64HD H 0 A_ChangeFlag("THRUACTORS", TRUE)
 			64HD H 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", FALSE)
-			64HD H 0 A_ScaleVelocity(0.50)
-			64HD H 8
+			64HD H 8 A_ScaleVelocity(0.50)
 			64HD I 8 A_Scream
 			64HD JK 8
 			64HD L 8 A_NoBlocking
 			64HD M -1 A_SetFloorClip
-			Stop			
+			Stop
 		Death.PainkillerStake:
 			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
 			TNT1 A 0 A_JumpIf(CallACS("Painkiller_IsItGibbed")==1,"PainkillerGib")
@@ -98,9 +94,7 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 			64HD LKJIH 8
 			Goto See
 		Crush:
-			A027 A 0
-			A027 A 0 A_PlaySound("friendlyimp64/crush")
-			A027 A -1
+			A027 A -1 A_PlaySound("friendlyimp64/crush")
 			Stop
 		Pain.ShrinkerDMG:
 			64HD D 0
@@ -152,7 +146,7 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -182,7 +176,7 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -203,11 +197,12 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 ACTOR CacodemonBall64
 {
 	Speed 14
+	FastSpeed 20
 	Renderstyle Normal
 	Radius 6
 	Height 8
 	Damage 5
-	Projectile 
+	Projectile
 	+RANDOMIZE
 	SeeSound "friendlyimp64/attack"
 	DeathSound "friendlyimp64/shotx"
@@ -374,7 +369,7 @@ actor Cacodemon64_ShrinkEffect : Cacodemon64
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
