@@ -36,7 +36,7 @@ Actor MMRandomizer_TriteHole
 
 Actor MMRandomizer_Trite : SamsaraMonsterDemonicTinyTotalGib
 {
-	HitObituary "%o was nipped by a Trite"
+	HitObituary "%o was nipped by a Trite."
 	Health 30
 	Radius 20
 	Height 25
@@ -129,5 +129,10 @@ Actor MMRandomizer_Trite : SamsaraMonsterDemonicTinyTotalGib
 			TNT1 A 0 A_Recoil(14)
 			VD39 E 16 A_Pain
 			Goto See 
+		Pain.DoomDamageTypeStunner:
+			VD39 E 2 A_ChangeFlag("NOPAIN",true)
+			VD39 E 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See
 	}
 }

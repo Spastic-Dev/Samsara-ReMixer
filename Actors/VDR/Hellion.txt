@@ -48,6 +48,11 @@ Actor MMRandomizer_Hellion : SamsaraMonsterHumanoidMedium
 			TNT1 A 0 A_Recoil(14)
 			VD44 M 16 A_Pain
 			Goto See
+		Pain.DoomDamageTypeStunner:
+			VD44 M 2 A_ChangeFlag("NOPAIN",true)
+			VD44 M 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS A 4 A_Pain

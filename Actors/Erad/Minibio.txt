@@ -48,6 +48,12 @@ Actor MiniBio : SamsaraMonsterMechanicalSmallTotalGib
 			MIBI A 1 A_FaceTarget
 			MIBI A 1 A_Die("Suicide")
 			Wait
+		XDeathForCatBitch:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"Death")
+			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1",1)
+			TNT1 A -1 A_Jump(256,"Death")
+			wait
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_StopSound(CHAN_BODY)			

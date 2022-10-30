@@ -43,6 +43,11 @@ actor MMRandomizer_STDarkImp : DoomImp3
 			VD18 H 2
 			VD18 H 2 A_Pain
 			Goto See
+		Pain.DoomDamageTypeStunner:
+			VD18 H 2 A_ChangeFlag("NOPAIN",true)
+			VD18 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS A 4 A_Pain
@@ -453,6 +458,11 @@ actor MMRandomizer_DarkDevil : MMRandomizer_STDarkImp
 			TNT1 A 0 A_Recoil(14)
 			VD19 H 16 A_Pain
 			Goto See
+		Pain.DoomDamageTypeStunner:
+			VD19 H 2 A_ChangeFlag("NOPAIN",true)
+			VD19 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS A 4 A_Pain
@@ -859,7 +869,12 @@ actor MMRandomizer_NamiDarkImp : MMRandomizer_STDarkImp
 			VD20 H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD20 H 16 A_Pain
-			Goto See					
+			Goto See		
+		Pain.DoomDamageTypeStunner:
+			VD20 H 2 A_ChangeFlag("NOPAIN",true)
+			VD20 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See			
 		Pain:
 			VD20 H 2
 			VD20 H 2 A_Pain
@@ -1286,6 +1301,11 @@ actor MMRandomizer_NetherDarkImp : MMRandomizer_STDarkImp
 			TNT1 A 0 A_Recoil(14)
 			VD21 H 16 A_Pain
 			Goto See	
+		Pain.DoomDamageTypeStunner:
+			VD21 H 2 A_ChangeFlag("NOPAIN",true)
+			VD21 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
@@ -1779,6 +1799,11 @@ actor MMRandomizer_VoidDarkImp : MMRandomizer_STDarkImp
 			VD22 H 2
 			VD22 H 2 A_Pain
 			Goto See
+		Pain.DoomDamageTypeStunner:
+			VD22 H 2 A_ChangeFlag("NOPAIN",true)
+			VD22 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS A 4 A_Pain

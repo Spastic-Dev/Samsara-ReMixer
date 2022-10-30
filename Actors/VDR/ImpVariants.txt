@@ -47,6 +47,11 @@ Actor MMRandomizer_VoidImp : DoomImp3
 		    VD15 H 2
 		    VD15 H 2 A_Pain
 		    Goto See
+		Pain.DoomDamageTypeStunner:
+			VD15 H 2 A_ChangeFlag("NOPAIN",true)
+			VD15 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See	
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS A 4 A_Pain
@@ -458,6 +463,11 @@ Actor MMRandomizer_STImp : DoomImp3
 			TNT1 A 0 A_Recoil(14)
 			VD16 H 16 A_Pain
 			Goto See
+		Pain.DoomDamageTypeStunner:
+			VD16 H 2 A_ChangeFlag("NOPAIN",true)
+			VD16 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See	
 		Pain.Shock:
 		Pain.Tesla:
 			CBGS A 4 A_Pain
@@ -853,7 +863,12 @@ Actor MMRandomizer_ImpAbomination : DoomImp3
 			VD17 H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD17 H 16 A_Pain
-			Goto See								
+			Goto See
+		Pain.DoomDamageTypeStunner:
+			VD17 H 2 A_ChangeFlag("NOPAIN",true)
+			VD17 H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			goto See				
 		Pain:
 			VD17 H 2
 			VD17 H 2 A_Pain

@@ -93,6 +93,12 @@ Actor EradMindBreaker : SamsaraMonsterMechanicalMediumTotalGib
 			ZBRO E 2 A_FaceTarget
 			TNT1 A 0 A_Jump(160,"See")
 			Goto Attack3+1			
+		XDeathForCatBitch:
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_Jump(96,"Death")
+			TNT1 A 0 A_GiveToTarget("EleenaDMTaunt1",1)
+			TNT1 A -1 A_Jump(256,"Death")
+			wait
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	  		
 		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
