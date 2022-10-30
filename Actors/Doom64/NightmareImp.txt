@@ -51,7 +51,7 @@ ACTOR NightmareImp64 : SamsaraMonsterHumanoidMedium
 		Melee:
 			64I2 E 0 A_ChangeFlag("NOPAIN",0)
 			64I2 EF 8 A_FaceTarget
-			64I2 G 6 A_CustomMeleeAttack(3, "friendlyimp64/melee")
+			64I2 G 6 A_CustomMeleeAttack(3 * random(1, 8), "friendlyimp64/melee")
 			Goto See
 		Missile:
 			64I2 I 0 A_ChangeFlag("NOPAIN",0)
