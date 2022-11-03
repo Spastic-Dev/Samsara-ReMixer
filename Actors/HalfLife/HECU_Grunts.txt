@@ -1943,6 +1943,11 @@ Actor HECU_Sarge : HECU_Commander1
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5 A_FadeOut
 			stop
+		Death.GETank:
+			TNT1 A 0 A_PlaySound("Goldeneye/Tank/Squish",CHAN_6)
+			TNT1 A 0 A_PlaySound("Goldeneye/MaleScream",CHAN_5)
+			TNT1 A -1 A_Jump(256,"XDeath")
+			wait
 		Death.UnrealDamage:
 		Death.UnrealPlasma:
 		Death.UnrealSludge:
