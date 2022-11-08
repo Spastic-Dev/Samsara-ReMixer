@@ -629,6 +629,20 @@ Actor SamsaraMonsterRemixDragon : Dragon
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 6 A_FadeOut
 			Stop	
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -1224,6 +1238,20 @@ Actor SamsaraMonsterRemixFighterBoss : FighterBoss
 			TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_GibCreator")
 			TNT1 A -1 A_Jump(256, "XDeath")
 			Wait
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -1819,6 +1847,20 @@ Actor SamsaraMonsterRemixClericBoss : ClericBoss
 			TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_GibCreator")
 			TNT1 A -1 A_Jump(256, "XDeath")
 			Wait
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -2414,6 +2456,20 @@ Actor SamsaraMonsterRemixMageBoss : MageBoss
 			TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_GibCreator")
 			TNT1 A -1 A_Jump(256, "XDeath")
 			Wait
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -2770,6 +2826,20 @@ Actor SamsaraMonsterRemixProgrammer : Programmer
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256, "Death")
 			Wait	
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -3126,6 +3196,20 @@ Actor SamsaraMonsterRemixStrifeBishop : StrifeBishop
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256, "Death")
 			Wait	
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -3482,6 +3566,20 @@ Actor SamsaraMonsterRemixLoremaster : Loremaster
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256, "Death")
 			Wait	
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -3839,6 +3937,20 @@ Actor SamsaraMonsterRemixAlienSpectre1 : AlienSpectre1
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256, "Death")
 			Wait	
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -4677,6 +4789,20 @@ Actor SamsaraMonsterRemixSubEntity : EntitySecond
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256, "Death")
 			Wait	
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 A_GiveInventory("DeadSubEntity",1,AAPTR_MASTER)
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -5853,6 +5979,20 @@ Actor SamsaraMonsterMarathonAlienSmall
 			TNT1 A 0 A_PlaySound("Goldeneye/Tank/Squish",CHAN_6)
 			TNT1 A -1 A_Jump(256,"XDeath")
 			wait
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -6568,6 +6708,20 @@ Actor SamsaraMonsterROTTHumanoidSmall
 			TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_GibCreator")
 			TNT1 A -1 A_Jump(256, "XDeath")
 			Wait
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -6888,6 +7042,20 @@ Actor SamsaraMonsterROTTHumanoidLarge
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256, "Death")
 			Wait	
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -7512,6 +7680,21 @@ Actor SamsaraMonsterRemixEradPatrolEye
 			TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_GibCreator")
 			TNT1 A -1 A_Jump(256, "XDeath")
 			Wait
+		Death.DukePlasma:
+            "####" "#" 0 A_StopSound(CHAN_BODY)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -8165,6 +8348,21 @@ Actor SamsaraMonsterRemixEradRepairDroid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 6 A_FadeOut
 			Stop		
+		Death.DukePlasma:
+            "####" "#" 0 A_StopSound(CHAN_WEAPON)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -8787,6 +8985,21 @@ Actor SamsaraMonsterRemixEradRotoDroid
 			TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_GibCreator")
 			TNT1 A -1 A_Jump(256, "XDeath")
 			Wait
+		Death.DukePlasma:
+            "####" "#" 0 A_StopSound(CHAN_WEAPON)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -9470,6 +9683,21 @@ Actor SamsaraMonsterRemixDisrFlyingDroid
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256, "Death")
 			Wait	
+		Death.DukePlasma:
+            "####" "#" 0 A_StopSound(CHAN_BODY)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -9989,6 +10217,20 @@ Actor SamsaraMonsterDFJerec
 			TNT1 A 0
 			TNT1 A -1 A_Jump(256,"XDeath")
 			wait
+		Death.DukePlasma:
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
 
@@ -10186,6 +10428,24 @@ Actor SamsaraMonsterHLTankLarge : SamsaraMonsterRoboticLarge
 			"####" "#" 0 A_ChangeFlag("NOBLOOD",CallACS("Painkiller_FlagStorage",2,3))
 			TNT1 A -1 A_Jump(256,"See")
 			wait
+		Death.DukePlasma:
+			"####" "#" 0 A_RemoveChildren(TRUE)
+			"####" "#" 0 A_StopSound(CHAN_5)
+			"####" "#" 0 A_StopSound(CHAN_BODY)
+			"####" "#" 0 A_StopSound(CHAN_VOICE)
+            "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop	
 	}
 }
 
@@ -11354,5 +11614,20 @@ Actor SamsaraMonsterRemixRRBike
 			TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_GibCreator")
 			TNT1 A -1 A_Jump(256, "XDeath")
 			Wait
+		Death.DukePlasma:
+            "####" "#" 0 A_StopSound(CHAN_BODY)
+			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+            "####" "#" 0 A_Stop
+            "####" "#" 1 A_NoBlocking
+            "####" "#" 0 A_Jump(218,2)
+            "####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
+            "####" "#" 0 ACS_NamedExecuteAlways("DN64PlasmaDeath")
+            "####" "#" 3 A_SpawnItem("Duke64PlasmaEffectSmall")
+            "####" "#" 0 A_GiveInventory("EnemyZorched",1)
+            "####" "#" 27 A_Scream
+			TNT1 A 1 A_SetTranslucent(1,0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+            TNT1 A -1
+            Stop
 	}
 }
