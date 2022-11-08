@@ -918,24 +918,24 @@ Script "RemixerInvasionChecker" (void)
 	SetResultValue(GetInvasionState() != -1);
 }
 
-int maxPinataCommonQuality = 9;
-int maxPinataUncommonQuality = 16;
-int maxPinataRareQuality = 17;
-int maxPinataEpicQuality = 11;
-int maxPinataLegendaryQuality = 7;
+#DEFINE maxPinataCommonQuality 9
+#DEFINE maxPinataUncommonQuality 16
+#DEFINE maxPinataRareQuality 18
+#DEFINE maxPinataEpicQuality 14
+#DEFINE maxPinataLegendaryQuality 8
 
-str PinataDoomCommonQuality[9] = { "Ammo1Small", "Ammo2Small", "HealPack0", "ArmorScrap200", "HealPack1", "Ammo1Big", "Ammo2Big", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop" };
-str PinataDoomUncommonQuality[16] = { "Ammo3Small", "Ammo4Small", "HealPack1", "Ammo1Big", "Ammo2Big", "HealPack2", "SuperHealth2", "PartialInvisibility", "SamsaraSlotOneDrop", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop", "SamsaraSlotThreeDrop", "Ammo1Small", "Ammo2Small", "GreenArmorPickup", "AmmoBackpack" };
-str PinataDoomRareQuality[17] = { "Ammo1Big", "Ammo2Big", "HealthPack2", "SamsaraSlotOneDrop", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "Ammo3Big", "Ammo4Big", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "AmmoBackpack", "SuperHealth2", "BlueArmorPickup", "Ammo3Small", "Ammo4Small", "Megapack", "PartialInvisibility"};
-str PinataDoomEpicQuality[11] = { "AmmoBackpack", "SuperHealth2", "BlueArmorPickup", "Ammo3Big", "Ammo4Big", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "Megapack", "SamsaraSlotSevenDrop", "Ammo1Big", "Ammo2Big" };
-str PinataDoomLegendaryQuality[7] = { "AmmoBackpack", "Megapack", "SamsaraSlotSevenDrop", "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big" };
+str PinataDoomCommonQuality[maxPinataCommonQuality] = { "Ammo1Small", "Ammo2Small", "HealPack0", "ArmorScrap200", "HealPack1", "Ammo1Big", "Ammo2Big", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop" };
+str PinataDoomUncommonQuality[maxPinataUncommonQuality] = { "Ammo3Small", "Ammo4Small", "HealPack1", "Ammo1Big", "Ammo2Big", "HealPack2", "SuperHealth2", "PartialInvisibility", "SamsaraSlotOneDrop", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop", "SamsaraSlotThreeDrop", "Ammo1Small", "Ammo2Small", "GreenArmorPickup", "AmmoBackpack" };
+str PinataDoomRareQuality[maxPinataRareQuality] = { "Ammo1Big", "Ammo2Big", "HealthPack2", "SamsaraSlotOneDrop", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "Ammo3Big", "Ammo4Big", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "AmmoBackpack", "SuperHealth2", "BlueArmorPickup", "Ammo3Small", "Ammo4Small", "Megapack", "PartialInvisibility", "SamsaraSlotFourSkulltagDrop" };
+str PinataDoomEpicQuality[maxPinataEpicQuality] = { "AmmoBackpack", "SuperHealth2", "BlueArmorPickup", "Ammo3Big", "Ammo4Big", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "Megapack", "SamsaraSlotSevenDrop", "Ammo1Big", "Ammo2Big", "SamsaraSlotFiveSkulltagDrop", "SamsaraSlotSixSkulltagDrop", "SamsaraSlotFourSkulltagDrop" };
+str PinataDoomLegendaryQuality[maxPinataLegendaryQuality] = { "AmmoBackpack", "Megapack", "SamsaraSlotSevenDrop", "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "SamsaraSlotSevenSkulltagDrop" };
 
 //f me
-int PinataDoomCommonQualityInt[9] = { 50, 50, 50, 50, 25, 10, 10, 5, 5 };
-int PinataDoomUncommonQualityInt[16] = { 50, 50, 50, 25, 25, 10, 10, 10, 15, 15, 10, 10, 10, 10, 10, 5 };
-int PinataDoomRareQualityInt[17] = { 50, 50, 30, 30, 30, 30, 25, 25, 15, 15, 10, 10, 10, 10, 10, 5 };
-int PinataDoomEpicQualityInt[11] = { 50, 50, 50, 50, 50, 30, 30, 25, 10, 5, 5 };
-int PinataDoomLegendaryQualityInt[7] = { 100, 100, 100, 50, 50, 50, 50 };
+int PinataDoomCommonQualityInt[maxPinataCommonQuality] = { 50, 50, 50, 50, 25, 10, 10, 5, 5 };
+int PinataDoomUncommonQualityInt[maxPinataUncommonQuality] = { 50, 50, 50, 25, 25, 10, 10, 10, 15, 15, 10, 10, 10, 10, 10, 5 };
+int PinataDoomRareQualityInt[maxPinataRareQuality] = { 50, 50, 30, 30, 30, 30, 25, 25, 15, 15, 10, 10, 10, 10, 10, 5, 5, 10 };
+int PinataDoomEpicQualityInt[maxPinataEpicQuality] = { 50, 50, 50, 50, 50, 30, 30, 25, 10, 5, 5, 10, 10, 20 };
+int PinataDoomLegendaryQualityInt[maxPinataLegendaryQuality] = { 100, 100, 100, 50, 50, 50, 50, 100 };
 
 Script "Samsara_PinataHandler" (int health, int radius, int height)
 {
