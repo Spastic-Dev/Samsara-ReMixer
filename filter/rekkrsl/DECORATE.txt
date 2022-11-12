@@ -1,3 +1,40 @@
+ACTOR SamsaraAmmo4Small_REKKR2 : SamsaraAmmo4Small_REKKR replaces SamsaraAmmo4Small_REKKR
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto "Super::Spawn"
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("SamsaraAmmo4Small_REKKR2_2",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto "Super::Spawn"
+	}
+}
+
+Actor SamsaraAmmo4Small_REKKR2_2 : Ammo4Small
+{ 
+	Speed -16
+	Height 40
+	States
+	{
+	Spawn:
+		CELL CD 3 Bright A_Look
+		goto Spawn
+	See:
+		CELL CD 3 Bright A_Chase
+		Loop
+    PickupFail:
+        CELL A 1
+        fail
+	}
+}
+
+
 actor REKKRFormerHuman_SamsaraRemixer : ZombiemanSpawner replaces REKKRFormerHuman_Samsara {}
 actor REKKRHusk_SamsaraRemixer : DemonSpawner replaces REKKRHusk_Samsara {}
 actor REKKRMeanHusk_SamsaraRemixer : SpectreSpawner replaces REKKRMeanHusk_Samsara {}
