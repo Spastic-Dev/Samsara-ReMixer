@@ -35,8 +35,8 @@ actor HLController : SamsaraMonsterAlienMedium
 			HL00 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			HL00 A 0 A_GiveInventory("AlreadySpawned",1)
 		SpawnStandard:
-			HL00 A 0 
-		SpawnLoop:	
+			HL00 A 0
+		SpawnLoop:
 			HL00 A 0 A_Jump(64,"Spawn2")
 			HL00 A 0 A_Jump(225,2)
 			HL00 A 0 A_Playsound("Controller/Idle", CHAN_VOICE)
@@ -60,7 +60,7 @@ actor HLController : SamsaraMonsterAlienMedium
 			HL04 Q 0 A_JumpIFTargetInLOS("MissileLoop",135,JLOSF_DEADNOJUMP)
 			HL04 Q 1 A_FaceTarget
 		MissileStop:
-			HL04 RSTUVWXYZ 2 A_FaceTarget		
+			HL04 RSTUVWXYZ 2 A_FaceTarget
 			Goto See
 		Missile2:
 			HL05 ABCDEFGHIJKLNOPQRSTUVWXYZ 2 A_FaceTarget
@@ -70,7 +70,7 @@ actor HLController : SamsaraMonsterAlienMedium
 			HL03 A 0 A_ChangeFlag(NOPAIN,1)
 			HL03 A 0 A_Pain
 			HL03 ABCDEFGHIJKLMNOPQRSTU 2
-			TNT1 A 0 A_ChangeFlag(NOPAIN,0)			
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -82,8 +82,8 @@ actor HLController : SamsaraMonsterAlienMedium
 			HL03 U 0
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)					
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_Fall
 			HL07 ABCDEFGHIJKLMNOPQRSTUVWXY 2
@@ -91,14 +91,14 @@ actor HLController : SamsaraMonsterAlienMedium
 			Stop
 		Death.HLLaser:
 		Death.HLExplosive:
-		Death.HLRPGExplosive:	
+		Death.HLRPGExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-20,1)
 			Goto Death
 		Death.HLEgon:
 		Death.FreemanGibs:
 		XDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("HLAlienGibSpawner",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR)
 			TNT1 A 5 A_NoBlocking
 			Stop
@@ -152,7 +152,7 @@ actor HLController : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -182,7 +182,7 @@ actor HLController : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -395,7 +395,7 @@ actor HLController_ShrinkEffect : HLController
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -441,36 +441,35 @@ actor ControllerProjectile
 		Spawn:
 			TNT1 A 0
 		SpawnLoop:
-			CSPK ABCDEFGHIJK 2 bright
+			CSPK ABCDEFGHIJK 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_SMALL_X1")
 			loop
 		Death:
-			CSPK AAAAAAAAAAA 2 bright A_Fadeout(0.1)
-			stop
+			CSPK AA 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_SMALL_X2") A_Fadeout(0.1)
+			CSPK AA 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_SMALL_X3") A_Fadeout(0.1)
+			CSPK AA 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_SMALL_X4") A_Fadeout(0.1)
+			CSPK A 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_SMALL_X5") A_Fadeout(0.1)
+			Wait
 	}
 }
 
-actor ControllerProjectileHoming
+actor ControllerProjectileHoming : ControllerProjectile
 {
-	Renderstyle add
-	+NOGRAVITY
 	+SEEKERMISSILE
 	damage (25)
 	Speed 6
-	Height 6
-	Radius 3
 	Scale 1.0
-	Projectile
-	DamageType Electric
-	Deathsound "ControllerProjectile/Impact"
 	States
 	{
 		Spawn:
 			TNT1 A 0
 		SpawnLoop:
-			CSPK ABCDEFGHIJK 2 bright A_SeekerMissile(10,15)
+			CSPK ABCDEFGHIJK 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_LARGE_X1") A_SeekerMissile(10,15)
 			loop
 		Death:
-			CSPK AAAAAAAAAAA 2 bright A_Fadeout(0.1)
-			stop
+			CSPK AA 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_LARGE_X2") A_Fadeout(0.1)
+			CSPK AA 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_LARGE_X3") A_Fadeout(0.1)
+			CSPK AA 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_LARGE_X4") A_Fadeout(0.1)
+			CSPK A 2 bright Light("HALFLIFE_CONTROLLER_PROJECTILE_LARGE_X5") A_Fadeout(0.1)
+			Wait
 	}
 }
