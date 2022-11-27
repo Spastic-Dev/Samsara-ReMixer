@@ -9,14 +9,15 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 	Speed 8
 	PainChance 45
 	DamageFactor "CorvusCrossbow", 1.1
-    DamageFactor "DragonClaw", 1.5
-    PainChance "MightyBoot", 255
+	DamageFactor "DragonClaw", 1.5
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	MONSTER
 	+FLOORCLIP
 	+NOTDMATCH
 	+NOINFIGHTING
 	MinMissileChance 150
+	AttackSound "acolyte/fire"
 	SeeSound "acolyte/see"
 	PainSound "acolyte/pain"
 	CrushPainSound "acolyte/crush"
@@ -36,27 +37,24 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			AGRD A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 			AGRD A 1 A_Look
-			loop			
+			loop
 		See:
 			AGRD ABCD 5 A_Chase
 			loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGRD E 8 A_FaceTarget
-			AGRD E 0 A_PlaySound("acolyte/fire")
-			AGRD F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGRD F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGRD E 0 A_FaceTarget
-			AGRD E 0 A_PlaySound("acolyte/fire")
-			AGRD E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGRD E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGRD E 0 A_FaceTarget
-			AGRD E 0 A_PlaySound("acolyte/fire")
-			AGRD F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGRD F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			goto See
 		Pain:
 			AGRD O 8 A_Pain
 			goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGRD O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -64,14 +62,12 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGRD G 4
+			AGRD G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGRD H 4 A_Scream
 			AGRD I 4
 			AGRD J 3
 			AGRD K 3 A_NoBlocking
-			AGRD L 3
-			AGRD M 3
+			AGRD LM 3
 			AGRD N -1
 			stop
 		XDeath:
@@ -84,8 +80,8 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			G_1B E 4 A_PlaySound("acolyte/explode")
 			G_1B F 4 A_TossGib
 			G_1B GH 4
-			G_1B I 5 A_NoBlocking
-			G_1B J 5
+			G_1B I 5
+			G_1B J 5 A_NoBlocking
 			G_1B KL 5
 			G_1B L -1
 			stop
@@ -106,8 +102,7 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			AGRD O 2
 			Loop
 		Crush:
-			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
-			AGRD N -1
+			AGRD N -1 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			Stop
 		XCrush:
 			TNT1 A -1
@@ -125,9 +120,9 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			SBRN NOPQPQ 5 Bright
 			SBRN RSTU 7 Bright
 			SBRN V -1
-			Stop		
+			Stop
 		Disintegrate:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			SDIS A 5 A_PlaySoundEx("strife/disruptdeath", CHAN_VOICE)
 			SDIS BC 5
 			SDIS D 5 A_NoBlocking
@@ -170,14 +165,14 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGRD O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -185,7 +180,7 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -215,7 +210,7 @@ Actor StrifeAcolyte : SamsaraMonsterHumanoidMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -326,9 +321,9 @@ actor StrifeAcolyte_Shrink : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -356,7 +351,7 @@ actor StrifeAcolyte_ShrinkEffect : StrifeAcolyte
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -398,27 +393,24 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			AGD2 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 			AGD2 A 1 A_Look
-			loop			
+			loop
 		See:
 			AGD2 ABCD 5 A_Chase
 			loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGD2 E 8 A_FaceTarget
-			AGD2 E 0 A_PlaySound("acolyte/fire")
-			AGD2 F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGD2 F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGD2 E 0 A_FaceTarget
-			AGD2 E 0 A_PlaySound("acolyte/fire")
-			AGD2 E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGD2 E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGD2 E 0 A_FaceTarget
-			AGD2 E 0 A_PlaySound("acolyte/fire")
-			AGD2 F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGD2 F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			goto See
 		Pain:
 			AGD2 O 8 A_Pain
 			goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGD2 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -426,14 +418,12 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGD2 G 4
+			AGD2 G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGD2 H 4 A_Scream
 			AGD2 I 4
 			AGD2 J 3
 			AGD2 K 3 A_NoBlocking
-			AGD2 L 3
-			AGD2 M 3
+			AGD2 LM 3
 			AGD2 N -1
 			stop
 		StakeDeath:
@@ -442,7 +432,7 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			G_2B A 5 A_UnsetSolid
 			G_2B BC 5 A_TossGib
 			G_2B D 4 A_TossGib
@@ -453,7 +443,7 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			G_2B J 5 A_NoBlocking
 			G_2B KL 5
 			G_2B L -1
-			stop				
+			stop
 		Crush:
 			TNT1 A 0 A_JumpIfInventory("IsGibbed",1,"XCrush")
 			AGD2 N -1
@@ -496,14 +486,14 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGD2 O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -511,7 +501,7 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -541,7 +531,7 @@ Actor StrifeAcolyte2 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -652,9 +642,9 @@ actor StrifeAcolyte2_Shrink : StrifeAcolyte2
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -682,7 +672,7 @@ actor StrifeAcolyte2_ShrinkEffect : StrifeAcolyte2
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -728,48 +718,43 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			loop
 		See:
 			AGD3 ABCD 5 A_Chase
-			loop		
+			loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGD3 E 8 A_FaceTarget
-			AGD3 E 0 A_PlaySound("acolyte/fire")
-			AGD3 F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGD3 F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGD3 E 0 A_FaceTarget
-			AGD3 E 0 A_PlaySound("acolyte/fire")
-			AGD3 E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGD3 E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGD3 E 0 A_FaceTarget
-			AGD3 E 0 A_PlaySound("acolyte/fire")
-			AGD3 F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
-			goto See		
+			AGD3 F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
+			goto See
 		Pain:
 			AGD3 O 8 A_Pain
-			goto See	
+			goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGD3 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			AGD3 O 16 A_Pain
-			Goto See			
+			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGD3 G 4
+			AGD3 G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGD3 H 4 A_Scream
 			AGD3 I 4
 			AGD3 J 3
 			AGD3 K 3 A_NoBlocking
-			AGD3 L 3
-			AGD3 M 3
+			AGD3 LM 3
 			AGD3 N -1
-			stop	
+			stop
 		StakeDeath:
 			AGD3 O 2
 			Loop
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			G_3B A 5 A_UnsetSolid
 			G_3B BC 5 A_TossGib
 			G_3B D 4 A_TossGib
@@ -780,7 +765,7 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			G_3B J 5 A_NoBlocking
 			G_3B KL 5
 			G_3B L -1
-			stop		
+			stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
@@ -830,14 +815,14 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGD3 O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -845,7 +830,7 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -875,7 +860,7 @@ Actor StrifeAcolyte3 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -986,9 +971,9 @@ actor StrifeAcolyte3_Shrink : StrifeAcolyte3
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1016,7 +1001,7 @@ actor StrifeAcolyte3_ShrinkEffect : StrifeAcolyte3
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1066,20 +1051,17 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGD4 E 8 A_FaceTarget
-			AGD4 E 0 A_PlaySound("acolyte/fire")
-			AGD4 F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGD4 F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGD4 E 0 A_FaceTarget
-			AGD4 E 0 A_PlaySound("acolyte/fire")
-			AGD4 E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGD4 E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGD4 E 0 A_FaceTarget
-			AGD4 E 0 A_PlaySound("acolyte/fire")
-			AGD4 F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
-			goto See	
+			AGD4 F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
+			goto See
 		Pain:
 			AGD4 O 8 A_Pain
 			goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGD4 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -1087,14 +1069,12 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGD4 G 4
+			AGD4 G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGD4 H 4 A_Scream
 			AGD4 I 4
 			AGD4 J 3
 			AGD4 K 3 A_NoBlocking
-			AGD4 L 3
-			AGD4 M 3
+			AGD4 LM 3
 			AGD4 N -1
 			stop
 		StakeDeath:
@@ -1103,7 +1083,7 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			G_4B A 5 A_UnsetSolid
 			G_4B BC 5 A_TossGib
 			G_4B D 4 A_TossGib
@@ -1164,14 +1144,14 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGD4 O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -1179,7 +1159,7 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1209,7 +1189,7 @@ Actor StrifeAcolyte4 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1320,9 +1300,9 @@ actor StrifeAcolyte4_Shrink : StrifeAcolyte4
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1350,7 +1330,7 @@ actor StrifeAcolyte4_ShrinkEffect : StrifeAcolyte4
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1394,27 +1374,24 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 			AGR5 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 			AGR5 A 1 A_Look
-			loop	
+			loop
 		See:
 			AGR5 ABCD 5 A_Chase
 			loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGR5 E 8 A_FaceTarget
-			AGR5 E 0 A_PlaySound("acolyte/fire")
-			AGR5 F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR5 F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR5 E 0 A_FaceTarget
-			AGR5 E 0 A_PlaySound("acolyte/fire")
-			AGR5 E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR5 E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR5 E 0 A_FaceTarget
-			AGR5 E 0 A_PlaySound("acolyte/fire")
-			AGR5 F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
-			goto See		
+			AGR5 F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
+			goto See
 		Pain:
 			AGR5 O 8 A_Pain
 			goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGD5 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -1422,14 +1399,12 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGR5 G 4
+			AGR5 G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGR5 H 4 A_Scream
 			AGR5 I 4
 			AGR5 J 3
 			AGR5 K 3 A_NoBlocking
-			AGR5 L 3
-			AGR5 M 3
+			AGR5 LM 3
 			AGR5 N -1
 			stop
 		StakeDeath:
@@ -1438,7 +1413,7 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			G_5B A 5 A_UnsetSolid
 			G_5B BC 5 A_TossGib
 			G_5B D 4 A_TossGib
@@ -1499,14 +1474,14 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGR5 O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -1514,7 +1489,7 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1544,7 +1519,7 @@ Actor StrifeAcolyte5 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1655,9 +1630,9 @@ actor StrifeAcolyte5_Shrink : StrifeAcolyte5
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1685,7 +1660,7 @@ actor StrifeAcolyte5_ShrinkEffect : StrifeAcolyte5
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1719,7 +1694,7 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 	Tag "Acolyte"
 	+MISSILEMORE
 	+MISSILEEVENMORE
-	DropItem StrifeAcolyte5Drop	
+	DropItem StrifeAcolyte5Drop
 	States
 	{
 		Spawn:
@@ -1730,27 +1705,23 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 		Spawn2:
 			AGR6 A 1 A_Look
 			loop
-			
 		See:
 			AGR6 ABCD 5 A_Chase
-			loop			
+			loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGR6 E 8 A_FaceTarget
-			AGR6 E 0 A_PlaySound("acolyte/fire")
-			AGR6 F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR6 F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR6 E 0 A_FaceTarget
-			AGR6 E 0 A_PlaySound("acolyte/fire")
-			AGR6 E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR6 E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR6 E 0 A_FaceTarget
-			AGR6 E 0 A_PlaySound("acolyte/fire")
-			AGR6 F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR6 F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			goto See
 		Pain:
 			AGR6 O 8 A_Pain
 			goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGD6 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -1758,14 +1729,12 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGR6 G 4
+			AGR6 G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGR6 H 4 A_Scream
 			AGR6 I 4
 			AGR6 J 3
 			AGR6 K 3 A_NoBlocking
-			AGR6 L 3
-			AGR6 M 3
+			AGR6 LM 3
 			AGR6 N -1
 			stop
 		StakeDeath:
@@ -1774,7 +1743,7 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			G_6B A 5 A_UnsetSolid
 			G_6B BC 5 A_TossGib
 			G_6B D 4 A_TossGib
@@ -1835,14 +1804,14 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGR6 O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -1850,7 +1819,7 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1880,7 +1849,7 @@ Actor StrifeAcolyte6 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1991,9 +1960,9 @@ actor StrifeAcolyte6_Shrink : StrifeAcolyte6
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -2021,7 +1990,7 @@ actor StrifeAcolyte6_ShrinkEffect : StrifeAcolyte6
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -2071,20 +2040,17 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGR7 E 8 A_FaceTarget
-			AGR7 E 0 A_PlaySound("acolyte/fire")
-			AGR7 F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR7 F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR7 E 0 A_FaceTarget
-			AGR7 E 0 A_PlaySound("acolyte/fire")
-			AGR7 E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR7 E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR7 E 0 A_FaceTarget
-			AGR7 E 0 A_PlaySound("acolyte/fire")
-			AGR7 F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR7 F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			goto See
 		Pain:
 			AGR7 O 8 A_Pain
 			goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGD7 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -2092,14 +2058,12 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGR7 G 4
+			AGR7 G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGR7 H 4 A_Scream
 			AGR7 I 4
 			AGR7 J 3
 			AGR7 K 3 A_NoBlocking
-			AGR7 L 3
-			AGR7 M 3
+			AGR7 LM 3
 			AGR7 N -1
 			stop
 		StakeDeath:
@@ -2108,7 +2072,7 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			G_7B A 5 A_UnsetSolid
 			G_7B BC 5 A_TossGib
 			G_7B D 4 A_TossGib
@@ -2169,14 +2133,14 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGR7 O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -2184,7 +2148,7 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -2214,7 +2178,7 @@ Actor StrifeAcolyte7 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -2325,9 +2289,9 @@ actor StrifeAcolyte7_Shrink : StrifeAcolyte7
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -2355,7 +2319,7 @@ actor StrifeAcolyte7_ShrinkEffect : StrifeAcolyte7
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -2399,35 +2363,30 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			AGR8 A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
 			AGR8 A 1 A_Look
-			loop	
+			loop
 		See:
 			AGR8 ABCD 5 A_Chase
 			loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			AGR8 E 8 A_FaceTarget
-			AGR8 E 0 A_PlaySound("acolyte/fire")
-			AGR8 F 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR8 F 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR8 E 0 A_FaceTarget
-			AGR8 E 0 A_PlaySound("acolyte/fire")
-			AGR8 E 4 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR8 E 4 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			AGR8 E 0 A_FaceTarget
-			AGR8 E 0 A_PlaySound("acolyte/fire")
-			AGR8 F 6 bright A_CustomMissile("StrifeEnemyBullet",32,0,random(-8,8),8)
+			AGR8 F 6 bright A_CustomBulletAttack(8,0,1,3*random(1,5),"StrifeBulletPuff",2048,CBAF_NORANDOM)
 			goto See
 		Pain:
 			AGR8 O 8 A_Pain
 			goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			AGR8 G 4
+			AGR8 G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			AGR8 H 4 A_Scream
 			AGR8 I 4
 			AGR8 J 3
 			AGR8 K 3 A_NoBlocking
-			AGR8 L 3
-			AGR8 M 3
+			AGR8 LM 3
 			AGR8 N -1
 			stop
 		StakeDeath:
@@ -2436,7 +2395,7 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 		XDeath:
 			TNT1 A 0 A_GiveInventory("IsGibbed",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			G_8B A 5 A_UnsetSolid
 			G_8B BC 5 A_TossGib
 			G_8B D 4 A_TossGib
@@ -2456,7 +2415,7 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			AGR8 O 16 A_Pain
 			Goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",1)		
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			AGD8 O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
@@ -2504,14 +2463,14 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-	  Death.ExpanderDMG:
-	  XDeath.ExpanderDMG:
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
 			AGR8 O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
-	  ExpanderLoop:
+		ExpanderLoop:
 			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
 			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
@@ -2519,7 +2478,7 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-	  ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -2549,7 +2508,7 @@ Actor StrifeAcolyte8 : StrifeAcolyte
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -2660,9 +2619,9 @@ actor StrifeAcolyte8_Shrink : StrifeAcolyte8
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -2690,7 +2649,7 @@ actor StrifeAcolyte8_ShrinkEffect : StrifeAcolyte8
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -2724,30 +2683,14 @@ Actor StrifeEnemyBullet : DoomEnemyBullet
 	Damage (3*random(1,5))
 	States
 	{
-	    Death:
+		Death:
 			TNT1 A 0
-			TNT1 A 1 A_SpawnItemEx("AcolytePuff",0,0,0,0,0,0,0,32)
+			TNT1 A 1 A_SpawnItemEx("StrifeBulletPuff",0,0,0,0,0,0,0,32)
 			stop
 	}
 }
 
 Actor IsGibbed : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
-
-Actor AcolytePuff : BulletPuff
-{
-	+PUFFONACTORS
-	Renderstyle Add
-	VSpeed 0
-	States
-	{
-		Spawn:
-			PUFY A 4 bright
-			PUFY BCD 4
-			Stop
-		Melee:
-			Goto Spawn
-	}	
-}
 
 Actor StrifeXBowDrop : SamsaraSlotTwoDrop
 {
@@ -2756,7 +2699,7 @@ Actor StrifeXBowDrop : SamsaraSlotTwoDrop
 	Spawn:
 		SXBW A -1
 		Stop
-		}
+	}
 }
 
 Actor StrifeAssaultGunDrop : SamsaraSlotFourDrop
@@ -2766,43 +2709,35 @@ Actor StrifeAssaultGunDrop : SamsaraSlotFourDrop
 	Spawn:
 		SGRF A -1
 		Stop
-		}
+	}
 }
 
-Actor StrifeAcolyte3Drop {
+Actor StrifeAcolyte3Drop
+{
 	Height 5
 	Radius 5
 	+NOCLIP
 	+FLOORCLIP
-	States {
+	States
+	{
 		Spawn:
-			TNT1 A 0 
-			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,4,0)
-			TNT1 A 15
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",0,4,0)
 			TNT1 A 0 A_JumpIfInventory("WeaponDropToken", 1, "Spawn2")
-			TNT1 A 1 Bright A_DropItem("StrifeAcolyteDrop", 1, 256)
+			TNT1 A 1 A_DropItem("StrifeAcolyteDrop", 1)
 			Stop
 		Spawn2:
-			TNT1 A 1 Bright A_DropItem("StrifeXBowDrop", 1, 256)
+			TNT1 A 1 A_DropItem("StrifeXBowDrop", 1)
 			Stop
 	}
 }
 
-Actor StrifeAcolyte5Drop {
-	Height 5
-	Radius 5
-	+NOCLIP
-	+FLOORCLIP
-	States {
-		Spawn:
-			TNT1 A 0 
-			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,4,0)
-			TNT1 A 15
-			TNT1 A 0 A_JumpIfInventory("WeaponDropToken", 1, "Spawn2")
-			TNT1 A 1 Bright A_DropItem("StrifeAcolyteDrop", 1, 256)
-			Stop
+Actor StrifeAcolyte5Drop : StrifeAcolyte3Drop
+{
+	States
+	{
 		Spawn2:
-			TNT1 A 1 Bright A_DropItem("StrifeAssaultGunDrop", 1, 256)
+			TNT1 A 1 A_DropItem("StrifeAssaultGunDrop", 1)
 			Stop
 	}
 }

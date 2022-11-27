@@ -1,7 +1,7 @@
-Actor StrifeCrusader : Crusader2 
+Actor StrifeCrusader : Crusader2
 {
 	Tag "Crusader"
-	Species "StrifeEnemies"	
+	Species "StrifeEnemies"
 	+BOSSDEATH
 	+DONTRIP
 	+NOINFIGHTING
@@ -13,7 +13,7 @@ Actor StrifeCrusader : Crusader2
 			ROB2 Q 1 A_JumpIfInventory("AlreadySpawned",1,"Super::Spawn")
 			ROB2 Q 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			ROB2 Q 0 A_GiveInventory("AlreadySpawned",1)
-			Goto "Super::Spawn"		
+			Goto Super::Spawn
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ROB2 G 3 A_Scream
@@ -24,12 +24,10 @@ Actor StrifeCrusader : Crusader2
 			ROB2 L 4 A_Explode(64,64,1,1)
 			ROB2 MN 4 A_TossGib
 			ROB2 O 4 A_Explode(64,64,1,1)
-			ROB2 P 1
-			ROB2 P 10
 			ROB2 P -1 A_KillMaster
 			Stop
 		Crush:
 			TNT1 A -1 A_KillMaster
-			Stop					
+			Stop
 	}
 }

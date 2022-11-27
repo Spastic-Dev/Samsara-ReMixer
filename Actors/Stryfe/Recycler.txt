@@ -1,11 +1,11 @@
 ACTOR Recycler : SamsaraMonsterRoboticMedium
 {
 	MONSTER
-	Species "Enemies"	
+	Species "Enemies"
 	+NOBLOOD
 	+MISSILEMORE
 	+NOGRAVITY
-	+FLOAT	
+	+FLOAT
 	+NOINFIGHTING
 	MeleeRange 73
 	PainChance 128
@@ -14,16 +14,17 @@ ACTOR Recycler : SamsaraMonsterRoboticMedium
 	Radius 32
 	Scale 0.85
 	Health 220
+	AttackSound "recycler/ar_fire"
 	SeeSound "crusader/sight"
 	PainSound "sentinel/sight"
 	DeathSound "strife/miniexplode"
-	Obituary "%o was shot down by a Recycler." 
+	Obituary "%o was shot down by a Recycler."
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0.0		
+	DamageFactor "PoisonBolt", 0.0
 	PainChance "ShrinkerDMG", 0
 	States
 	{
@@ -36,63 +37,49 @@ ACTOR Recycler : SamsaraMonsterRoboticMedium
 		RECI ABCDEEEEE 5 A_Look
 		Loop
 	See:
-		TNT1 A 0 A_TakeInventory("TurretFire",10)			
+		TNT1 A 0 A_TakeInventory("TurretFire",10)
 		TNT1 A 0 A_Jump(64,"IDLE1","IDLE2")
-		RECS A 3 A_Chase
-		RECS A 3 A_Chase
-		RECS A 3 A_Chase
-		RECS A 3 A_Chase
-		RECS A 3 A_Chase
-		RECS A 3 A_Chase
+		RECS AAAAAA 3 A_Chase
 		Goto See+1
-	Idle1:	
-		RCR1 A 5 A_Chase
-		RCR1 B 5 A_Chase
+	Idle1:
+		RCR1 AB 5 A_Chase
 		RCR1 B 4 A_Chase
 		RCR1 CD 3 A_Chase
 		Goto See
 	Idle2:
-		RCR2 A 2 A_Chase
-		RCR2 B 2 A_Chase
-		RCR2 B 2 A_Chase
-		RCR2 C 2 A_Chase
-		RCR2 D 2 A_Chase
-		RCR2 FE 2 A_Chase
-		RCR2 FE 2 A_Chase
-		Goto See	
+		RCR2 ABBCDFEFE 2 A_Chase
+		Goto See
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		TNT1 A 0 A_TakeInventory("TurretFire",10)			
+		TNT1 A 0 A_TakeInventory("TurretFire",10)
 		RECM ABCD 3 A_FaceTarget
 		RECM E 1 A_CustomMeleeAttack(5*(random(1,3)),"weapons/plasmax")
 		RECM FEFEFEFE 1
 		Goto See
 	Missile:
-	Turret:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_JumpIfInventory("TurretFire",10,"TurretEnd")
 		TNT1 A 0 A_GiveInventory("TurretExtended",1)
 		RCR3 ABC 5 A_FaceTarget
-	  TurretCont:
+	TurretCont:
 		TNT1 A 0 A_GiveInventory("TurretFire",1)
-		TNT1 A 0 A_PlaySound("recycler/ar_fire")
-		RCR3 E 3 BRIGHT A_CustomBulletAttack(11.0,8.0,1,Random(1,2)*3,"StrifeEnemyBullet2",0,CBAF_NORANDOM)
+		RCR3 E 3 BRIGHT A_CustomBulletAttack(11.0,8.0,1,Random(1,2)*3,"StrifeBulletPuff",2048,CBAF_NORANDOM)
 		RCR3 D 3 BRIGHT
 		TNT1 A 0 A_JumpIfInventory("TurretFire",10,"TurretEnd")
 		TNT1 A 0 A_MonsterRefire(64,"TurretEnd")
-		Goto TurretCont
-	  TurretEnd:	
+		Loop
+	TurretEnd:	
 		TNT1 A 0 A_TakeInventory("TurretFire",10)
 		TNT1 A 0 A_TakeInventory("TurretExtended",1)
 		RCR3 CBA 5
 		Goto See
 	Pain:
-		TNT1 A 0 A_TakeInventory("TurretFire",10)		
+		TNT1 A 0 A_TakeInventory("TurretFire",10)
 		TNT1 A 0 A_JumpIfInventory("TurretExtended",1,"PainTurretExtend")
 		RECP A 3 A_Pain
 		RECP BABAB 3
 		Goto See
-	 PainTurretExtend:
+	PainTurretExtend:
 		TNT1 A 0 A_TakeInventory("TurretExtended",1)
 		RPT1 C 3 A_Pain
 		RPT1 DCDEFEFABAB 3
@@ -109,7 +96,7 @@ ACTOR Recycler : SamsaraMonsterRoboticMedium
 	Death:
 		RECD A 4 A_Fall
 		RECD A 1 A_Scream
-		RECD BCD 5 A_Explode(2,96)
+		RECD BCD 5 A_Explode(2,96,XF_NOTMISSILE)
 		RECD E 5
 		RECD F -1
 		Stop
@@ -118,15 +105,3 @@ ACTOR Recycler : SamsaraMonsterRoboticMedium
 
 ACTOR TurretExtended : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
 ACTOR TurretFire : Inventory { Inventory.Amount 1 Inventory.MaxAmount 10 }
-
-Actor StrifeEnemyBullet2 : DoomEnemyBullet
-{
-	Damage (Random(1,2)*3)
-	States
-	{
-	    Death:
-	    TNT1 A 0
-        TNT1 A 5 A_SpawnItemEx("AcolytePuff",0,0,0,0,0,0,0,32)
-        stop
-	}
-}
