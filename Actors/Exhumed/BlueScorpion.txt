@@ -47,7 +47,12 @@ Actor BlueScorpion : SamsaraMonsterBeastSmallTotalGib
     Pain:
 		P_BS A 0 A_Pain
 		goto See
-    Death:
+	XDeathForJon:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		TNT1 A -1 A_Jump(256,"Death")
+		wait
+	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 		P_BS D 3 A_Scream
 		P_BS E 3 A_NoBlocking

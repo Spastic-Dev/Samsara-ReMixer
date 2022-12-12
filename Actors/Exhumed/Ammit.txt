@@ -83,7 +83,12 @@ Actor Ammit : SamsaraMonsterBeastLargeTotalGib
 		AMIT G 3
 		AMIT G 3
 		goto See
-    Death:
+	XDeathForJon:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		TNT1 A -1 A_Jump(256,"Death")
+		wait
+	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		AMIT L 8
 		AMIT M 14

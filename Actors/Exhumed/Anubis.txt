@@ -86,7 +86,12 @@ Actor AnubisWarrior : SamsaraMonsterHumanoidMedium
 		ANUB U 4 A_NoBlocking
 		ANUB U -1
 		Stop
-    XDeath:
+	XDeathForJon:
+		TNT1 A 0 A_Jump(218, "XDeath")
+		TNT1 A 0 A_GiveToTarget("JonDMTaunt1", 1)
+		TNT1 A -1 A_Jump(256,"XDeath")
+		wait
+	XDeath:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
 		ANUB VV 3 A_Scream	
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
