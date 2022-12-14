@@ -107,34 +107,34 @@ Actor Corridor7_AI
 		TNT1 A 0 A_Jump(128, "See")
 		goto Missile
 	FireSlot4:
-		C7PY E 2 A_FaceTarget
+		C7PY E 2 A_FaceTarget(Random(3,16))
 		C7PY SS 0 A_PlayWeaponSound("C7/DualBlaster")  
-		C7PY F 2 Bright A_CustomMissile("C7DBBullet",38)
+		C7PY F 2 Bright A_CustomBulletAttack(0,0,1,Random(3,16),"BlankPuff",2048,CBAF_NORANDOM)
 		C7PY T 0 A_Jump(8,"See")
 		C7PY E 2 A_FaceTarget
 		C7PY SS 0 A_PlayWeaponSound("C7/DualBlaster")  
-		C7PY F 2 Bright A_CustomMissile("C7DBBullet",38)
+		C7PY F 2 Bright A_CustomBulletAttack(0,0,1,Random(3,16),"BlankPuff",2048,CBAF_NORANDOM)
 		C7PY T 0 A_Jump(8,"See")
 		C7PY E 2 A_FaceTarget
 		C7PY SS 0 A_PlayWeaponSound("C7/DualBlaster")  
-		C7PY F 2 Bright A_CustomMissile("C7DBBullet",38)
+		C7PY F 2 Bright A_CustomBulletAttack(0,0,1,Random(3,16),"BlankPuff",2048,CBAF_NORANDOM)
 		C7PY T 0 A_Jump(8,"See")
 		C7PY E 2 A_FaceTarget
 		C7PY SS 0 A_PlayWeaponSound("C7/DualBlaster")  
-		C7PY F 2 Bright A_CustomMissile("C7DBBullet",38)
+		C7PY F 2 Bright A_CustomBulletAttack(0,0,1,Random(3,16),"BlankPuff",2048,CBAF_NORANDOM)
 		C7PY T 0 A_Jump(8,"See")
 		C7PY E 2 A_FaceTarget
 		C7PY SS 0 A_PlayWeaponSound("C7/DualBlaster")  
-		C7PY F 2 Bright A_CustomMissile("C7DBBullet",38)
+		C7PY F 2 Bright A_CustomBulletAttack(0,0,1,Random(3,16),"BlankPuff",2048,CBAF_NORANDOM)
 		C7PY T 0 A_Jump(8,"See")
 		C7PY E 2 A_FaceTarget
 		C7PY SS 0 A_PlayWeaponSound("C7/DualBlaster")  
-		C7PY F 2 Bright A_CustomMissile("C7DBBullet",38)
+		C7PY F 2 Bright A_CustomBulletAttack(0,0,1,Random(3,16),"BlankPuff",2048,CBAF_NORANDOM)
 		C7PY T 0 A_Jump(8,"See")
 		C7PY E 2 A_FaceTarget
 		C7PY SS 0 A_PlayWeaponSound("C7/DualBlaster")  
-		C7PY F 2 Bright A_CustomMissile("C7DBBullet",38)
-		C7PY T 0 A_CPOSRefire
+		C7PY F 2 Bright A_CustomBulletAttack(0,0,1,Random(3,16),"BlankPuff",2048,CBAF_NORANDOM)
+		C7PY T 0 A_CPosRefire
 		goto FireSlot4	
 	Pain:
 		TNT1 A 0
@@ -277,5 +277,3 @@ Actor Corridor7_AI
 		Stop  
 	}
 }
-
-actor C7DBBulletAI : C7DBBullet { Species "" -THRUSPECIES }
