@@ -8,20 +8,28 @@ flickerlight BLOOD_CULTIST_ATK
 	offset 0 28 0
 }
 
+flickerlight BLOOD_CULTIST_PRONE_ATK
+{
+	color 0.6 0.4 0.2
+	size 42
+	secondarysize 48
+	chance 0.4
+}
+
 object Cultist
 {
 	frame YCUFB { light BLOOD_CULTIST_ATK }
 	frame YCULQ { light BLOOD_CULTIST_ATK }
 	frame YCULS { light BLOOD_CULTIST_ATK }
-	frame YCUBO { light BLOOD_CULTIST_ATK }
+	frame YCUBO { light BLOOD_CULTIST_PRONE_ATK }
 }
 
 object Fanatic
 {
 	frame YCU8B { light BLOOD_CULTIST_ATK }
 	frame YCUGQ { light BLOOD_CULTIST_ATK }
-	frame YCU9O { light BLOOD_CULTIST_ATK }
-	frame YCUBO { light BLOOD_CULTIST_ATK }
+	frame YCUGS { light BLOOD_CULTIST_ATK }
+	frame YCU9O { light BLOOD_CULTIST_PRONE_ATK }
 }
 
 object Zealot
@@ -29,14 +37,13 @@ object Zealot
 	frame YCU0B { light BLOOD_CULTIST_ATK }
 	frame YCUJQ { light BLOOD_CULTIST_ATK }
 	frame YCUJS { light BLOOD_CULTIST_ATK }
-	frame YCU1O { light BLOOD_CULTIST_ATK }
+	frame YCU1O { light BLOOD_CULTIST_PRONE_ATK }
 }
 
 object BloodAcolyte
 {
 	frame YCUDQ { light BLOOD_CULTIST_ATK }
 	frame YCUDS { light BLOOD_CULTIST_ATK }
-	frame YCUJS { light BLOOD_CULTIST_ATK }
 }
 
 object BloodPriest
@@ -44,6 +51,24 @@ object BloodPriest
 	frame YCU7B { light BLOOD_CULTIST_ATK }
 	frame YCURQ { light BLOOD_CULTIST_ATK }
 	frame YCURS { light BLOOD_CULTIST_ATK }
+}
+
+object CalebBulletSpark_2
+{
+	frame FSPKN { light BLOOD_PUFF_X1 }
+	frame FSPKO { light BLOOD_PUFF_X2 }
+	frame FSPKP { light BLOOD_PUFF_X2 }
+	frame FSPKQ { light BLOOD_PUFF_X3 }
+	frame FSPKR { light BLOOD_PUFF_X4 }
+}
+
+object CalebBulletSpark_2_Fanatic
+{
+	frame FSPKN { light BLOOD_PUFF_X1 }
+	frame FSPKO { light BLOOD_PUFF_X2 }
+	frame FSPKP { light BLOOD_PUFF_X2 }
+	frame FSPKQ { light BLOOD_PUFF_X3 }
+	frame FSPKR { light BLOOD_PUFF_X4 }
 }
 
 pointlight BLOOD_SMALL_DYNAMITE_EXPLOSION_X1
