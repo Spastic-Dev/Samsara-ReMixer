@@ -7,7 +7,7 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 	PainChance 10
 	Mass 4000
 	Meleedamage 10
-	REACTIONTIME 8 
+	REACTIONTIME 8
 	+NOGRAVITY
 	+FLOAT
 	+MISSILEMORE
@@ -18,41 +18,41 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 	+NOFEAR
 	+SPAWNFLOAT
 	+FLOORCLIP
-	+DONTRIP	
+	+DONTRIP
 	+NOINFIGHTING
 	+NOBLOODDECALS
 	FloatSpeed 12
-	BloodType "NashGore_Blood_Monolith"		
+	BloodType "NashGore_Blood_Monolith"
 	Monster
-	Species "BloodEnemies"	
-	PainChance "CalebFire", 0	
-	PainChance "Shock", 128	
+	Species "BloodEnemies"
+	PainChance "CalebFire", 0
+	PainChance "Shock", 128
 	Scale 0.92
 	SeeSound "cheogh/roam"
 	DeathSound "cheogh/die"
 	PainSound "cheogh/pain"
 	ActiveSound "cheogh/roam"
-	Obituary "%o was toasted by Cheogh." 
-    DamageFactor "Mace", 1.4
-	DamageFactor "CorvusHellstaffTomed", 0.2	
-    DamageFactor "CorvusCrossbow", 1.1	
-    DamageFactor "DragonClaw", 1.5
+	Obituary "%o was toasted by Cheogh."
+	DamageFactor "Mace", 1.4
+	DamageFactor "CorvusHellstaffTomed", 0.2
+	DamageFactor "CorvusCrossbow", 1.1
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "MarathonShotgun", 0.8
 	DamageFactor "MarathonPlasmaFire", 0.7
 	DamageFactor "MarathonFusion", 0.8
-    DamageFactor "WMCNade", 0.8
-    DamageFactor "BJSpear", 0.4	
-	DamageFactor "DCannonProj", 0.7	
+	DamageFactor "WMCNade", 0.8
+	DamageFactor "BJSpear", 0.4
+	DamageFactor "DCannonProj", 0.7
 	DamageFactor "Tesla", 0.7
-	DamageFactor "Shock", 0.3	
-	DamageFactor "LifeLeech", 0.3		
+	DamageFactor "Shock", 0.3
+	DamageFactor "LifeLeech", 0.3
 	DamageFactor "CalebFire", 0.7
-    DamageFactor "CalebBullet", 0.7
+	DamageFactor "CalebBullet", 0.7
 	DamageFactor "Vodoo", 0.9
 	DamageFactor "DisruptorWall", 0.4
 	DamageFactor "EradNova", 0.3
-    DamageFactor "EradGreenFire", 0.1
-    DamageFactor "EradCoopGreenFire", 0.1	
+	DamageFactor "EradGreenFire", 0.1
+	DamageFactor "EradCoopGreenFire", 0.1
 	DamageFactor "RottFire", 0.3
 	DamageFactor "HLLaser", 0.4
 	DamageFactor "WTRangedFire", 0.4
@@ -60,17 +60,17 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 	DamageFactor "SWNuke", 0.4
 	DamageFactor "SWNukeCoop", 0.4
 	DamageFactor "SWFlame", 0.1
-	DamageFactor "SWFlameCoop", 0.1	
+	DamageFactor "SWFlameCoop", 0.1
 	DamageFactor "SWFlame2", 0.1
 	DamageFactor "SWFlame2Coop", 0.1
-	DamageFactor "SWFlame3", 0.4	
-    DamageFactor "RMR-BigPlasma", 0.1		
-	DamageFactor "CMDMGSHIT", 0.7	
+	DamageFactor "SWFlame3", 0.4
+	DamageFactor "RMR-BigPlasma", 0.1
+	DamageFactor "CMDMGSHIT", 0.7
 	DamageFactor "Disintegrate", 0.7
 	DamageFactor "PSFire", 0.7
 	DamageFactor "Normal", 0.7
 	DamageFactor "Explosive", 0.8
-	DamageFactor "FireExplosive", 0.8	
+	DamageFactor "FireExplosive", 0.8
 	DamageFactor "RottExplosive", 0.8
 	DamageFactor "RottBullet", 0.7
 	DamageFactor "Fire", 0.7
@@ -83,19 +83,19 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 		GARG A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		GARG A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 		GARG A 0 A_GiveInventory("AlreadySpawned",1)
-	Spawn2:	
+	Spawn2:
 		GARG AABBCCDD 2 A_Look
-		Loop 
+		Loop
 	See:
 		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
 		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-		TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+		TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
 		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
 		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 		TNT1 A 0 A_GiveInventory("HLBossSee",1)
@@ -103,9 +103,9 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
-	See2: 
+	See2:
 		GARG AA 3 A_Chase("Melee","")
 		GARG BB 3 A_Chase
 		GARG CC 3 A_Chase("Melee","")
@@ -113,7 +113,6 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 		Loop
 	Missile: 
 		TNT1 A 0 A_Jump(72,"MissileCont")
-		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,350,60)		
 		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,1200,60)
 	MissileCont:
 		GARG A 5 A_FaceTarget
@@ -123,7 +122,7 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 		GARG A 10 A_FaceTarget
 		Goto A
 		GARG A 15 A_FaceTarget
-	A:	
+	A:
 		TNT1 A 0 A_Jump(110,"See2")
 		TNT1 A 0 A_CPosRefire
 		Goto MissileCont+1
@@ -134,62 +133,62 @@ Actor Cheogh : SamsaraMonsterBeastHuge
 		GARG J 5 A_FaceTarget
 		Goto See2
 	Pursue:
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget					
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget
 		TNT1 A 0 A_Jump(15,"SlowDown")
 		Loop
 	SlowDown:
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_Jump(55,"See")
 		Goto MissileCont
-	Pain: 
-		GARG K 2 
-		GARG K 3 A_Pain 
+	Pain:
+		GARG K 2
+		GARG K 3 A_Pain
 		GARG K 4
 		GARG AA 5
-		Goto See2 
+		Goto See2
 	Pain.Shock:
-		GARG K 2 
-		GARG K 3 A_PlaySound("GargoylePain",CHAN_VOICE) 
+		GARG K 2
+		GARG K 3 A_PlaySound("GargoylePain",CHAN_VOICE)
 		GARG K 5
 		GARG A 10
-		Goto See2 		
-	Death: 
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+		Goto See2
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		GARG M 5 A_Scream
 		GARG N 5 A_Fall
-		GARG O 5 
+		GARG O 5
 		GARG PQ 6
 		GARG R -1 A_KillMaster
-		Stop 
+		Stop
 	}
 }
 
@@ -212,8 +211,8 @@ Actor CheoghBall
 		EYEB ABCD 3 Bright
 		Loop
 	Death:
-//		TNT1 A 0 A_Explode(10*Random(2,1),random(20,60),0)
-		BFIR BBBBB 0 A_SpawnDebris("BloodTeslaSparkDebris")
+		// TNT1 A 0 A_Explode(10*Random(2,1),random(20,60),0)
+		TNT1 AAAAA 0 A_SpawnDebris("BloodTeslaSparkDebris")
 		TNT1 A 5
 		Stop
 	}
@@ -228,7 +227,7 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 	PainChance 10
 	Mass 4000
 	Meleedamage 10
-	REACTIONTIME 8 
+	REACTIONTIME 8
 	+NOGRAVITY
 	+FLOAT
 	+MISSILEMORE
@@ -239,16 +238,16 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 	+NOFEAR
 	+SPAWNFLOAT
 	+FLOORCLIP
-	+DONTRIP	
+	+DONTRIP
 	+NOINFIGHTING
 	+NOBLOODDECALS
 	+NOBLOOD
 	FloatSpeed 12
-	BloodType "NashGore_Blood_Monolith"		
+	BloodType "NashGore_Blood_Monolith"
 	Monster
-	Species "BloodEnemies"	
-	PainChance "CalebFire", 0	
-	PainChance "Shock", 128	
+	Species "BloodEnemies"
+	PainChance "CalebFire", 0
+	PainChance "Shock", 128
 	Scale 0.92
 	SeeSound "cheogh/roam"
 	DeathSound "cheogh/die"
@@ -256,26 +255,26 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 	ActiveSound "cheogh/roam"
 	Obituary "%o was toasted by a Stone Gargoyle."
 	Tag "Stone Gargoyle"
-    DamageFactor "Mace", 1.4
-	DamageFactor "CorvusHellstaffTomed", 0.2	
-    DamageFactor "CorvusCrossbow", 1.1	
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "Mace", 1.4
+	DamageFactor "CorvusHellstaffTomed", 0.2
+	DamageFactor "CorvusCrossbow", 1.1
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "MarathonShotgun", 0.8
 	DamageFactor "MarathonPlasmaFire", 0.7
 	DamageFactor "MarathonFusion", 0.8
-    DamageFactor "WMCNade", 0.8
-    DamageFactor "BJSpear", 0.4	
-	DamageFactor "DCannonProj", 0.7	
+	DamageFactor "WMCNade", 0.8
+	DamageFactor "BJSpear", 0.4
+	DamageFactor "DCannonProj", 0.7
 	DamageFactor "Tesla", 0.7
-	DamageFactor "Shock", 0.3	
-	DamageFactor "LifeLeech", 0.3		
+	DamageFactor "Shock", 0.3
+	DamageFactor "LifeLeech", 0.3
 	DamageFactor "CalebFire", 0.7
-    DamageFactor "CalebBullet", 0.7
+	DamageFactor "CalebBullet", 0.7
 	DamageFactor "Vodoo", 0.9
 	DamageFactor "DisruptorWall", 0.4
 	DamageFactor "EradNova", 0.3
-    DamageFactor "EradGreenFire", 0.1
-    DamageFactor "EradCoopGreenFire", 0.1	
+	DamageFactor "EradGreenFire", 0.1
+	DamageFactor "EradCoopGreenFire", 0.1
 	DamageFactor "RottFire", 0.3
 	DamageFactor "HLLaser", 0.4
 	DamageFactor "WTRangedFire", 0.4
@@ -283,17 +282,17 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 	DamageFactor "SWNuke", 0.4
 	DamageFactor "SWNukeCoop", 0.4
 	DamageFactor "SWFlame", 0.1
-	DamageFactor "SWFlameCoop", 0.1	
+	DamageFactor "SWFlameCoop", 0.1
 	DamageFactor "SWFlame2", 0.1
 	DamageFactor "SWFlame2Coop", 0.1
-	DamageFactor "SWFlame3", 0.4	
-    DamageFactor "RMR-BigPlasma", 0.1		
-	DamageFactor "CMDMGSHIT", 0.7	
+	DamageFactor "SWFlame3", 0.4
+	DamageFactor "RMR-BigPlasma", 0.1
+	DamageFactor "CMDMGSHIT", 0.7
 	DamageFactor "Disintegrate", 0.7
 	DamageFactor "PSFire", 0.7
 	DamageFactor "Normal", 0.7
 	DamageFactor "Explosive", 0.8
-	DamageFactor "FireExplosive", 0.8	
+	DamageFactor "FireExplosive", 0.8
 	DamageFactor "RottExplosive", 0.8
 	DamageFactor "RottBullet", 0.7
 	DamageFactor "Fire", 0.7
@@ -306,19 +305,19 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 		GARG A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		GARG A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 		GARG A 0 A_GiveInventory("AlreadySpawned",1)
-	Spawn2:	
+	Spawn2:
 		GARG AABBCCDD 2 A_Look
-		Loop 
+		Loop
 	See:
 		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
 		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-		TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+		TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
 		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
 		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 		TNT1 A 0 A_GiveInventory("HLBossSee",1)
@@ -326,17 +325,16 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
-	See2: 
+	See2:
 		GARG AA 3 A_Chase("Melee","")
 		GARG BB 3 A_Chase
 		GARG CC 3 A_Chase("Melee","")
 		GARG DD 3 A_Chase
 		Loop
-	Missile: 
+	Missile:
 		TNT1 A 0 A_Jump(72,"MissileCont")
-		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,350,60)		
 		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,1200,60)
 	MissileCont:
 		GARG A 5 A_FaceTarget
@@ -346,7 +344,7 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 		GARG A 10 A_FaceTarget
 		Goto A
 		GARG A 15 A_FaceTarget
-	A:	
+	A:
 		TNT1 A 0 A_Jump(110,"See2")
 		TNT1 A 0 A_CPosRefire
 		Goto MissileCont+1
@@ -357,61 +355,61 @@ Actor Cheogh_2 : SamsaraMonsterSkeletonHuge
 		GARG J 5 A_FaceTarget
 		Goto See2
 	Pursue:
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget					
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						GARG A 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG A 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG B 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						GARG B 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG C 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG C 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		GARG D 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						GARG D 1 A_FaceTarget
 		TNT1 A 0 A_Jump(15,"SlowDown")
 		Loop
 	SlowDown:
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_Jump(55,"See")
 		Goto MissileCont
-	Pain: 
-		GARG K 2 
-		GARG K 3 A_Pain 
+	Pain:
+		GARG K 2
+		GARG K 3 A_Pain
 		GARG K 4
 		GARG AA 5
-		Goto See2 
+		Goto See2
 	Pain.Shock:
-		GARG K 2 
-		GARG K 3 A_PlaySound("GargoylePain",CHAN_VOICE) 
+		GARG K 2
+		GARG K 3 A_PlaySound("GargoylePain",CHAN_VOICE)
 		GARG K 5
 		GARG A 10
-		Goto See2 		
-	Death: 
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+		Goto See2
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		GARG M 5 A_Scream
 		GARG N 5 A_Fall
-		GARG O 5 
+		GARG O 5
 		GARG PQ 6
 		GARG R -1 A_KillMaster
-		Stop 
+		Stop
 	}
 }

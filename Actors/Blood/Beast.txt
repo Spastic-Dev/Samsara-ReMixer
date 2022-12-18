@@ -5,12 +5,12 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 	Height 64
 	Speed 14
 	Mass 300
-	Tag "Beast"	
+	Tag "Beast"
 	PainChance 8
 	Scale 0.53
 	+FLOORCLIP
 	+BOSSDEATH
-	+DONTRIP	
+	+DONTRIP
 	Species "BloodEnemies"
 	+DONTHARMSPECIES
 	+NOINFIGHTING
@@ -24,7 +24,7 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 	PainChance "CalebFire", 0
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
-	BloodType "NashGore_Blood_Monolith"	
+	BloodType "NashGore_Blood_Monolith"
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -34,7 +34,7 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 		BESC A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		BESC A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 		BESC A 0 A_GiveInventory("AlreadySpawned",1)
-	Spawn2:	
+	Spawn2:
 		BESC A 5 A_Look
 		Loop
 	See:
@@ -51,9 +51,9 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 		Goto See
 	Stomp:
 		BESS A 5 A_FaceTarget
-		BESS BC 5 
+		BESS BC 5
 		BESS D 5 A_CustomMissile("BloodBeastStompBoom",0,0,0,CMF_CHECKTARGETDEAD|CMF_TRACKOWNER)
-		BESS EEE 5
+		BESS E 15
 		Goto See
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
@@ -66,12 +66,12 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 		TNT1 A 0 A_PlaySound("BeastSlash")
 		BESC H 5 A_CustomMeleeAttack(50, "Pitchfork/Flesh", none)
 		BESC IJ 6 A_FaceTarget
-		Goto See		
+		Goto See
 	Pain:
 		BESP A 2
 		BESP A 3 A_Pain
 		BESP A 4
-		BESC AA 5
+		BESC A 10
 		Goto See
 	Pain.MightyBoot:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -87,29 +87,27 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 	Pain.Tesla:
 		CULC N 4 A_Pain
 		CULC N 4
-		Goto See		
+		Goto See
 	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")		
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		BESD A 5 A_Scream
 		BESD B 5 A_Fall
-		BESD C 5 
+		BESD C 5
 		BESD D 5 A_KillMaster
 		BESD EF 5
 		TNT1 A 0 A_Jump(128,"FakeRevive")
-		BESD F 0 A_SpawnItemEx("BloodBeastCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
+		TNT1 A -1 A_SpawnItemEx("BloodBeastCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		stop
 	FakeRevive:
-		BESD F 0 A_SpawnItemEx("BloodBeastCorpse_Fake", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-		TNT1 A -1
+		TNT1 A -1 A_SpawnItemEx("BloodBeastCorpse_Fake", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
 		stop
 	Death.CalebNapalm:
 	Death.Vodoo:
 	Death.VoodooPuff:
 	Death.DynamiteCoop:
-	Death.Dynamite:	  
-	Death.Shock:	  	  
+	Death.Dynamite:
+	Death.Shock:
 	Death.Tesla:
 	Death.CalebBullet:
 		TNT1 A 0 A_Jump(218, "Death")
@@ -179,7 +177,7 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -210,7 +208,7 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -257,12 +255,12 @@ Actor BloodBeastCorpse
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_UnsetSolid
-			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")	
+			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
-			TNT1 A 0 A_Jump(128,1,2,3)		
-			TNT1 AAAAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")		
+			TNT1 A 0 A_Jump(128,1,2,3)
+			TNT1 AAAAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")
 			TNT1 A 0 A_Jump(128,1,2,3,4,5)
-			TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)		
+			TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)
 			stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
@@ -377,12 +375,12 @@ Actor BloodBeastCorpse_Fake
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_UnsetSolid
-			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")	
+			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
-			TNT1 A 0 A_Jump(128,1,2,3)		
-			TNT1 AAAAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")		
+			TNT1 A 0 A_Jump(128,1,2,3)
+			TNT1 AAAAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")
 			TNT1 A 0 A_Jump(128,1,2,3,4,5)
-			TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)		
+			TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)
 			stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
@@ -582,9 +580,9 @@ actor BloodBeast_Shrink : BloodBeast
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -613,7 +611,7 @@ actor BloodBeast_ShrinkEffect : BloodBeast
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -644,46 +642,38 @@ actor BloodBeast_ShrinkEffect : BloodBeast
 
 Actor BloodBeastStompBoom
 {
-	PROJECTILE
-	Height 1
-	Radius 1
-	Damage (0)
-	Speed 0
 	Species "Enemies"
-	+NODAMAGETHRUST	
+	+NODAMAGETHRUST
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
-	+THRUSPECIES
 	DONTHURTSHOOTER
 	Seesound "BeastStomp"
-	Obituary "%o would rather die than be cursed by a beast."
 	States
 	{
 	Spawn:
-		TNT1 A 0 A_Die
-		Goto Death
-	Death:
-		TNT1 A 0 Radius_Quake(9,90,5,50,0)		
+		TNT1 A 0
+		TNT1 A 0 Radius_Quake(9,90,5,50,0)
 		TNT1 A 5 A_Explode(150,240,0)
 		stop
 	}
 }
 
-Actor BloodBeast_Boss : SamsaraMonsterBeastHuge {
+Actor BloodBeast_Boss : SamsaraMonsterBeastHuge
+{
 	Health 5000
 	Radius 40
 	Height 80
 	+BOSS
 	Mass 500
 	Scale 0.75
-	MeleeRange 64	
+	MeleeRange 64
 	Speed 14
 	Mass 300
-	Tag "Beast"	
+	Tag "Beast"
 	PainChance 8
 	+FLOORCLIP
 	+BOSSDEATH
-	+DONTRIP	
+	+DONTRIP
 	Species "BloodEnemies"
 	+DONTHARMSPECIES
 	+NOINFIGHTING
@@ -697,19 +687,19 @@ Actor BloodBeast_Boss : SamsaraMonsterBeastHuge {
 	PainChance "CalebFire", 0
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
-	BloodType "NashGore_Blood_Monolith"	
-	
-	States {
+	BloodType "NashGore_Blood_Monolith"
+	States
+	{
 		See:
 			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
 			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+			TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
 			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
 			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 			TNT1 A 0 A_GiveInventory("HLBossSee",1)
@@ -717,53 +707,53 @@ Actor BloodBeast_Boss : SamsaraMonsterBeastHuge {
 			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
-		See2: 		
+		See2:
 			BESW AA 2 A_Chase("Melee","")
 			BESW BB 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
 			BESW CC 2 A_Chase
 			BESW DD 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
 			BESW EE 2 A_Chase("Melee","")
 			BESW FF 2 A_Chase("Melee","Missile",CHF_NOPLAYACTIVE)
-			Loop	
+			Loop
 		Missile:
 			TNT1 A 0 A_JumpIfCloser(2000,1)
 			Goto See2
 		Stomp:
 			BESS A 5 A_FaceTarget
-			BESS BC 5 
+			BESS BC 5
 			BESS D 5 A_CustomMissile("BloodBeastStompBoom_Boss",0,0,0,CMF_CHECKTARGETDEAD|CMF_TRACKOWNER)
-			BESS EEEEEE 5
+			BESS E 30
 			Goto See2
 		Melee:
 			BESC ABC 6 A_FaceTarget
 			TNT1 A 0 A_PlaySound("BeastSlash")
-			BESC D 5 A_MeleeAttack
+			BESC D 5 A_CustomMeleeAttack(60, "Pitchfork/Flesh", none)
 			TNT1 A 0 A_JumpIfCloser(90, 1)
 			Goto See2
 			BESC EFG 6 A_FaceTarget
 			TNT1 A 0 A_PlaySound("BeastSlash")
-			BESC H 5 A_MeleeAttack
+			BESC H 5 A_CustomMeleeAttack(60, "Pitchfork/Flesh", none)
 			BESC IJ 6 A_FaceTarget
-			Goto See2	
+			Goto See2
 		Pain:
 			BESP A 2
 			BESP A 3 A_Pain
 			BESP A 4
-			BESC AA 5
+			BESC A 10
 			Goto See2
 		Pain.Shock:
 		Pain.Tesla:
 			CULC N 4 A_Pain
 			CULC N 4
-			Goto See2	
+			Goto See2
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			BESD A 5 A_Scream
 			BESD B 5 A_Fall
-			BESD C 5 
+			BESD C 5
 			BESD D 5
 			BESD EF 5
 			BESD F -1 A_KillMaster
@@ -771,14 +761,14 @@ Actor BloodBeast_Boss : SamsaraMonsterBeastHuge {
 	}
 }
 
-Actor BloodBeastStompBoom_Boss : BloodBeastStompBoom {
-	States {
+Actor BloodBeastStompBoom_Boss : BloodBeastStompBoom
+{
+	States
+	{
 		Spawn:
-			TNT1 A 0 A_Die
-			Goto Death
-		Death:
-			TNT1 A 0 Radius_Quake(9,90,5,50,0)		
+			TNT1 A 0
+			TNT1 A 0 Radius_Quake(9,90,5,50,0)
 			TNT1 A 5 A_Explode(150,240,0)
-			stop			
+			stop
 	}
 }

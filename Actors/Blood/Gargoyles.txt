@@ -1,5 +1,5 @@
 Actor BloodGargoyle : SamsaraMonsterBeastLarge
-{ 
+{
 	Health 300
 	Speed 18
 	Radius 31
@@ -7,17 +7,17 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 	PainChance 20
 	Mass 400
 	Meleedamage 5
-	REACTIONTIME 8 
+	REACTIONTIME 8
 	+NOGRAVITY
 	+FLOAT
 	+FLOORCLIP
 	+MISSILEMORE
 	+NOINFIGHTING
 	+NOBLOODDECALS
-	Tag "Gargoyle"	
+	Tag "Gargoyle"
 	FloatSpeed 8
 	Monster
-	Species "BloodEnemies"	
+	Species "BloodEnemies"
 	Scale 0.58
 	PainChance "CalebFire", 0
 	PainChance "MightyBoot", 255
@@ -28,7 +28,7 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 	PainSound "GargoylePain"
 	ActiveSound "GargoyleAct"
 	Obituary "%o was killed by a gargoyle."
-	BloodType "NashGore_Blood_Monolith"	
+	BloodType "NashGore_Blood_Monolith"
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -38,18 +38,18 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 		BGAR A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		BGAR A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 		BGAR A 0 A_GiveInventory("AlreadySpawned",1)
-	Spawn2:	
-		BGAR ABCD 4 A_Look 
-		Loop 
-	See: 		
+	Spawn2:
+		BGAR ABCD 4 A_Look
+		Loop
+	See:
 		BGAR AA 3 A_Chase("Melee","")
 		BGAR BB 3 A_Chase
 		BGAR CC 3 A_Chase("Melee","")
 		BGAR DD 3 A_Chase
-		Loop 
+		Loop
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		TNT1 A 0 A_Stop	
+		TNT1 A 0 A_Stop
 		BGAR EFG 3 A_FaceTarget
 		BGAR H 3 A_CustomMeleeAttack(16,"GargoyleMelee")
 		BGAR I 8 A_FaceTarget
@@ -57,61 +57,60 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(64,2)
-		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,350,60)		
 		TNT1 A 0 A_JumpIfTargetInLOS("Pursue",0,0,1200,60)
 		BGAR FEG 3 A_FaceTarget
 		BGAR H 3 A_CustomMissile("GargoyleBone",34)
 		BGAR I 3 A_FaceTarget
 		Goto See
 	Pursue:
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR A 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR A 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR A 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR A 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR A 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR B 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR B 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR B 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR C 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR C 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR C 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR C 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR C 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)			
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR D 1 A_FaceTarget					
-		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR D 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR D 1 A_FaceTarget					
-		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)					
-		BGAR D 1 A_FaceTarget								TNT1 A 0 A_Chase						
-		TNT1 A 0 A_SkullAttack(5.50)						BGAR D 1 A_FaceTarget					
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		BGAR A 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR A 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		BGAR A 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR A 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		BGAR A 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR B 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		BGAR B 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR B 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		BGAR B 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR B 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		BGAR C 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR C 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		BGAR C 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR C 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		BGAR C 1 A_FaceTarget								TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR D 1 A_FaceTarget
+		TNT1 A 0 A_Chase									TNT1 A 0 A_SkullAttack(5.50)
+		BGAR D 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR D 1 A_FaceTarget
+		TNT1 A 0 A_Chase("Melee","",CHF_NOPLAYACTIVE)		TNT1 A 0 A_SkullAttack(5.50)
+		BGAR D 1 A_FaceTarget								TNT1 A 0 A_Chase
+		TNT1 A 0 A_SkullAttack(5.50)						BGAR D 1 A_FaceTarget
 		TNT1 A 0 A_Jump(20,"SlowDown")
 		Loop
 	SlowDown:
 		TNT1 A 0 A_Stop
 		Goto See
-	Pain: 
-		BGAR J 2 
-		BGAR J 3 A_Pain 
+	Pain:
+		BGAR J 2
+		BGAR J 3 A_Pain
 		BGAR J 4
 		BGAR AA 5
 		Goto See
 	Pain.MightyBoot:
-        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-        BGAR J 2 A_FaceTarget
-        TNT1 A 0 A_Recoil(10)
-        BGAR J 16 A_Pain
-        Goto See
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		BGAR J 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(10)
+		BGAR J 16 A_Pain
+		Goto See
  	Pain.QuakeElectric:
 	Pain.Hexen2Electric:
 	Pain.Electric:
@@ -119,28 +118,28 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 	Pain.Tesla:
 		CULC J 4 A_Pain
 		CULC J 4
-		Goto See		
-    Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		BGAR K 5 A_Scream
 		BGAR L 5 A_Fall
-		BGAR M 5 
+		BGAR M 5
 		BGAR NO 6
 		BGAR P 0 A_SpawnItemEx("BloodGargoyleCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
-	XDeath: 
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")	
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 		BGAR Q 3 A_Scream
-	    TNT1 A 0 A_UnsetSolid		
-		TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")	
+		TNT1 A 0 A_UnsetSolid
+		TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 		TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
-		TNT1 A 0 A_Jump(128,1,2,3)		
-		TNT1 AAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")				
+		TNT1 A 0 A_Jump(128,1,2,3)
+		TNT1 AAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")
 		TNT1 A 0 A_Jump(128,1,2,3,4,5)
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)		
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)
 		TNT1 A 0 A_SpawnDebris("GargoyleWingGib")
 		TNT1 A 0 A_SpawnDebris("GargoyleHeadGib")
 		TNT1 A 0 A_SpawnDebris("GargoyleBoneGib")
@@ -152,8 +151,8 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 	Death.Vodoo:
 	Death.VoodooPuff:
 	Death.DynamiteCoop:
-	Death.Dynamite:	  
-	Death.Shock:	  	  
+	Death.Dynamite:
+	Death.Shock:
 		TNT1 A 0 A_JumpIfHealthLower(-50, "XDeathForCaleb")
 	Death.Tesla:
 	Death.CalebBullet:
@@ -167,7 +166,7 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 	Burn:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_Jump(128,"BurnStyle2")
-		TNT1 A 0 A_UnsetSolid		
+		TNT1 A 0 A_UnsetSolid
 		TNT1 A 0 A_PlaySound("Blood/BurningBody",CHAN_BODY,1.0,0,ATTN_NORM)
 		TNT1 A 0 A_Playsound("GargoylePain",CHAN_VOICE,1.0,0,ATTN_NORM)
 		TNT1 A 0 A_Jump(60,"CrispyYum")
@@ -175,12 +174,12 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 		GARF AABBCCDD 2 Bright
 		GARF AABBCCDD 2 Bright
 		Goto Burn+5
-	CrispyYum:	
+	CrispyYum:
 		GARF AABBCCDD 2 Bright
-        TNT1 A 0 A_SpawnItemEx("BloodBurnDeathSmoke",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)		
-	    TNT1 A 0 A_PlaySound("Blood/CrispyBody",CHAN_BODY,1.0,0,ATTN_NORM)		
+		TNT1 A 0 A_SpawnItemEx("BloodBurnDeathSmoke",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("Blood/CrispyBody",CHAN_BODY,1.0,0,ATTN_NORM)
 		TNT1 A 0 A_Jump(128,2)
-		TNT1 A 0 A_Scream		
+		TNT1 A 0 A_Scream
 		TNT1 A 0
 		GARF E 4 Bright A_Fall
 		GARF FG 4 Bright
@@ -188,8 +187,8 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 		GARF HIJIJHJIJIHIJHHIJHJHIHJHIJHIHJHIJIHIJ 4
 		GARF K -1
 		Stop
-	BurnStyle2:	
-		TNT1 A 0 A_UnsetSolid		
+	BurnStyle2:
+		TNT1 A 0 A_UnsetSolid
 		TNT1 A 0 A_PlaySound("Blood/BurningBody",CHAN_BODY,1.0,0,ATTN_NORM)
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_Jump(60,"CrispyYum2")
@@ -197,10 +196,10 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 		GARF AABBCCDD 2 Bright
 		GARF AABBCCDD 2 Bright
 		Goto BurnStyle2+3
-	CrispyYum2:	
+	CrispyYum2:
 		GARF AABBCCDD 2 Bright
-        TNT1 A 0 A_SpawnItemEx("BloodBurnDeathSmoke",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)		
-	    TNT1 A 0 A_PlaySound("Blood/CrispyBody",CHAN_BODY,1.0,0,ATTN_NORM)		
+		TNT1 A 0 A_SpawnItemEx("BloodBurnDeathSmoke",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_PlaySound("Blood/CrispyBody",CHAN_BODY,1.0,0,ATTN_NORM)
 		GARF E 4 Bright A_Fall
 		GARF FG 4 Bright
 		GARF HIJIJHJIJIHIJHHIJHJHIHJHIJHIHJHIJIHIJ 4 Bright
@@ -281,7 +280,7 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -311,7 +310,7 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -326,8 +325,8 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 		TNT1 A 1
 		Stop
-	} 
-} 
+	}
+}
 
 Actor BloodGargoyleCorpse
 {
@@ -357,12 +356,12 @@ Actor BloodGargoyleCorpse
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_UnsetSolid
-			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")	
+			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
-			TNT1 A 0 A_Jump(128,1,2,3)		
-			TNT1 AAAAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")		
+			TNT1 A 0 A_Jump(128,1,2,3)
+			TNT1 AAAAAAA 0 A_SpawnDebris("ZBloodOrganDebris2")
 			TNT1 A 0 A_Jump(128,1,2,3,4,5)
-			TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)		
+			TNT1 AAAAAAAA 0 A_SpawnItemEx("NashGore_FlyingBlood_Monolith", 0, 0, 0, FRandom(0.1, 6.0) * Random(-1, 1), FRandom(0.1, 6.0) * Random(-1, 1), FRandom((Random(3.0,1.0)), (Random(8.0,6.0))) * FRandom((Random(3,2)), 1), 0, NASHGORE_MONOLITH_BLOODFLAGS1, 64)
 			stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_RemoveMaster
@@ -472,7 +471,7 @@ actor BloodGargoyle_Shrink : BloodGargoyle
 			BGAR J 10
 			Goto See
 		SpawnLoop:
-			BGAR ABCD 4 A_Look 
+			BGAR ABCD 4 A_Look
 			Loop
 		See:
 			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
@@ -554,9 +553,9 @@ actor BloodGargoyle_Shrink : BloodGargoyle
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -584,7 +583,7 @@ actor BloodGargoyle_ShrinkEffect : BloodGargoyle
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -624,7 +623,7 @@ ACTOR GargoyleBone
 	Damage (10+Random(0,10))
 	PROJECTILE
 	+RANDOMIZE
-	States 
+	States
 	{
 		Spawn:
 			GARF LLMMNNOOPPQQRRSS 2 Bright
