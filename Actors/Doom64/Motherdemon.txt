@@ -164,22 +164,23 @@ ACTOR MotherBall64
 	Radius 11
 	Height 8
 	Projectile
+	+BRIGHT
 	+SEEKERMISSILE
 	+RANDOMIZE
 	SeeSound "skeleton64/attack"
 	DeathSound "doom64guy/explode"
+	Decal "RevenantScorch"
 	States
 	{
 		Spawn:
-			64RB A 0 BRIGHT A_CustomMissile("MotherBallTrail64", 0, 0, 0, 2, 0)
-			64RB A 2 BRIGHT A_SeekerMissile(5, 15)
-			64RB B 0 BRIGHT A_CustomMissile("MotherBallTrail64", 0, 0, 0, 2, 0)
-			64RB B 2 BRIGHT A_SeekerMissile(5, 15)
+			64RB A 0 A_CustomMissile("MotherBallTrail64", 0, 0, 0, 2, 0)
+			64RB A 2 A_SeekerMissile(5, 15)
+			64RB B 0 A_CustomMissile("MotherBallTrail64", 0, 0, 0, 2, 0)
+			64RB B 2 A_SeekerMissile(5, 15)
 			Loop
 		Death:
-			64RB C 5 BRIGHT
-			64RB D 3 BRIGHT A_FadeOut(0.20)
-			64RB EFGH 3 BRIGHT A_FadeOut(0.20)
+			64RB C 5
+			64RB DEFGH 3 A_FadeOut(0.20)
 			Stop
 	}
 }
@@ -209,8 +210,8 @@ ACTOR MotherFire64
 	Alpha 0.50
 	DamageType "Vertigo"
 	SeeSound "skeleton64/attack"
-	DeathSound "Null"
 	PROJECTILE
+	+BRIGHT
 	+RANDOMIZE
 	+NODAMAGETHRUST
 	+FLOORHUGGER
@@ -218,15 +219,15 @@ ACTOR MotherFire64
 	States
 	{
 		Spawn:
-			64FR A 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
+			64FR A 4 A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
 			TNT1 A 0 A_SeekerMissile(5, 5)
-			64FR B 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
+			64FR B 4 A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
 			TNT1 A 0 A_SeekerMissile(5, 5)
-			64FR C 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
+			64FR C 4 A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
 			TNT1 A 0 A_SeekerMissile(5, 5)
-			64FR D 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
+			64FR D 4 A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
 			TNT1 A 0 A_SeekerMissile(5, 5)
-			64FR E 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
+			64FR E 4 A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
 			TNT1 A 0 A_SeekerMissile(5, 5)
 			Loop
 		Death:
@@ -243,13 +244,14 @@ ACTOR MotherFireTrail64
 	Damage 0
 	RenderStyle Translucent
 	Alpha 0.60
+	+BRIGHT
 	+NOGRAVITY
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	States
 	{
 		Spawn:
-			64FR ABCDE 4 BRIGHT A_FadeOut(0.20)
+			64FR ABCDE 4 A_FadeOut(0.20)
 			Loop
 	}
 }

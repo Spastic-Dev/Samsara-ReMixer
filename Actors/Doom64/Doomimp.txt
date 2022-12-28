@@ -222,19 +222,20 @@ ACTOR DoomImpBall64
 	FastSpeed 20
 	Damage 3
 	Projectile
+	+BRIGHT
 	+RANDOMIZE
 	Renderstyle Normal
 	Alpha 0.75
 	SeeSound "friendlyimp64/attack"
 	DeathSound "friendlyimp64/shotx"
-
+	Decal "DoomImpScorch"
 	States
 	{
 		Spawn:
-			64TP ABC 4 BRIGHT
+			64TP ABC 4
 			Loop
 		Death:
-			64TP DEFGHI 2 BRIGHT
+			64TP DEFGHI 2
 			Stop
 	}
 }

@@ -203,19 +203,19 @@ ACTOR CacodemonBall64
 	Height 8
 	Damage 5
 	Projectile
+	+BRIGHT
 	+RANDOMIZE
 	SeeSound "friendlyimp64/attack"
 	DeathSound "friendlyimp64/shotx"
+	Decal "CacoScorch"
 	States
 	{
 		Spawn:
-			64CB ABC 4 BRIGHT
+			64CB ABC 4
 			Loop
 		Death:
-			64CB D 5 BRIGHT
-			64CB E 3 BRIGHT A_FadeOut(0.15)
-			64CB F 3 BRIGHT A_FadeOut(0.15)
-			64CB GHIJ 3 BRIGHT A_FadeOut(0.15)
+			64CB D 5
+			64CB EFGHIJ 3 A_FadeOut(0.15)
 			Stop
 	}
 }

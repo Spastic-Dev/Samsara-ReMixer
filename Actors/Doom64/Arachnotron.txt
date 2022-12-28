@@ -230,21 +230,22 @@ ACTOR ArachnotronPlasma64
 	Damage 3
 	Alpha 0.85
 	RenderStyle Add
-	SeeSound "Null"
 	Radius 13
 	Height 8
 	Speed 25
 	Projectile
+	+BRIGHT
 	+RANDOMIZE
 	SeeSound "doom64guy/plasmaf"
 	DeathSound "friendlyimp64/shotx"
+	Decal "PlasmaScorchLower"
 	States
 	{
 		Spawn:
-			64PP AB 2 BRIGHT
+			64PP AB 2
 			Loop
 		Death:
-			64PP CDEFGH 5 BRIGHT
+			64PP CDEFGH 5
 			Stop
 	}
 }

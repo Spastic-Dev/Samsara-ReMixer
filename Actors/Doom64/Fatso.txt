@@ -216,21 +216,21 @@ ACTOR FatShot64
 	Speed 20
 	Damage 8
 	Projectile
+	+BRIGHT
 	+RANDOMIZE
 	RenderStyle Normal
 	Alpha 1
 	SeeSound "friendlyimp64/attack"
 	DeathSound "friendlyimp64/shotx"
+	Decal "Scorch"
 	States
 	{
 		Spawn:
-			64MF ABC 3 BRIGHT
+			64MF ABC 3
 			Loop
 		Death:
-			64MF D 6 BRIGHT
-			64MF E 3 BRIGHT A_FadeOut(0.20)
-			64MF F 3 BRIGHT A_FadeOut(0.20)
-			64MF GHI 3 BRIGHT A_FadeOut(0.20)
+			64MF D 6
+			64MF EFGHI 3 A_FadeOut(0.20)
 			Stop
 	}
 }
