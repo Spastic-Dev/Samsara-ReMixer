@@ -20,15 +20,15 @@ ACTOR DoomImp64 : SamsaraMonsterHumanoidMedium
 	Obituary "$OB_IMP"
 	HitObituary "$OB_IMPHIT"
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	DamageFactor "WitchMelee", 1.1
 	PainChance "CalebFire", 0
 	PainChance "WTMelee", 255
 	PainChance "WTMeleeIce", 255
-    BloodType "Doom64Blood"
+	BloodType "Doom64Blood"
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -166,7 +166,7 @@ ACTOR DoomImp64 : SamsaraMonsterHumanoidMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -227,7 +227,7 @@ ACTOR DoomImpBall64
 	Alpha 0.75
 	SeeSound "friendlyimp64/attack"
 	DeathSound "friendlyimp64/shotx"
-	
+
 	States
 	{
 		Spawn:
@@ -358,9 +358,9 @@ actor DoomImp64_Shrink : DoomImp64
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop

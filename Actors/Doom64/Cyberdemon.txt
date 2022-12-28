@@ -9,9 +9,9 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 	Monster
 	Scale 0.75
 	MinMissileChance 160
-	Species "Enemies"	
+	Species "Enemies"
 	Tag "Cyberdemon"
-	+BOSS 
+	+BOSS
 	+MISSILEMORE
 	+FLOORCLIP
 	+NORADIUSDMG
@@ -23,39 +23,39 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 	DeathSound "64cyber/death"
 	ActiveSound "64demon/active"
 	Obituary "$OB_CYBORG"
-	PainChance "PhosFireCoop", 0 	
+	PainChance "PhosFireCoop", 0
 	PainChance "EradCoopGreenFire", 0
 	PainChance "EradGreenFire", 0
 	PainChance "StrifeExplosive", 0
-	PainChance "PSFire", 5	
+	PainChance "PSFire", 5
 	PainChance "WTMelee", 96
 	PainChance "WTMeleeIce", 96
 	PainChance "ShrinkerDMG", 0
-	DamageFactor "Shock", 0.5	
-	DamageFactor "PhosFireCoop", 0.6		
+	DamageFactor "Shock", 0.5
+	DamageFactor "PhosFireCoop", 0.6
 	DamageFactor "EradGreenFire", 0.7
 	DamageFactor "EradCoopGreenFire", 0.7
 	DamageFactor "Tesla", 1.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0.5		
+	DamageFactor "PoisonBolt", 0.5
 	DamageFactor "RottFire", 0.85
 	DamageFactor "RottPistolBullet", 0.9
-	DamageFactor "StrifeExplosive", 0.5	
-	DamageFactor "DisruptorWall", 0.6	
+	DamageFactor "StrifeExplosive", 0.5
+	DamageFactor "DisruptorWall", 0.6
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
-	DamageFactor "PhosFireCoop", 0.6				
+	DamageFactor "PhosFireCoop", 0.6
 	DamageFactor "RottPistolBullet", 0.9
-	DamageFactor "StrifeExplosive", 0.5	
+	DamageFactor "StrifeExplosive", 0.5
 	DamageFactor "WitchMelee", 1.1
 	DamageFactor "WTMelee", 1.5
 	DamageFactor "PGBullet", 1.25
 	DamageFactor "PGPlasma", 1.25
 	DamageFactor "PGLaser", 1.25
 	DamageFactor "PGFire", 1.25
-	DamageFactor "PGExplosive", 1.25		
-    BloodType "Doom64Blood"	
+	DamageFactor "PGExplosive", 1.25
+	BloodType "Doom64Blood"
 	States
 	{
 		Spawn:
@@ -68,14 +68,14 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 			Loop
 		See:
 			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
 			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+			TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
 			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
 			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 			TNT1 A 0 A_GiveInventory("HLBossSee",1)
@@ -83,9 +83,9 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
-		See2:	
+		See2:
 			64CY A 3 A_Playsound("64spider/metal")
 			64CY AA 3 A_Chase
 			64CY B 3 A_Playsound("64cyber/hoof", CHAN_BODY)
@@ -107,7 +107,7 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 			64CY E 12 A_CustomMissile("CyberRocket64", 73, -25, 0)
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			64CY G 10
 			64CY G 0 A_Scream
 			64CY G 4 A_SpawnItemEx("BossExplosion64", 0, 0, 0, 0, 0, 0, 0, 130)
@@ -135,17 +135,16 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 			64CY J 4 A_SpawnItemEx("BossExplosion64", -20, -20, 0, 0, 0, 0, 0, 130)
 			64CY K 4 A_SpawnItemEx("BossExplosion64", 20, 20, 55, 0, 0, 0, 0, 130)
 			64CY K 4 A_SpawnItemEx("BossExplosion64", 0, 0, 110, 0, 0, 0, 0, 130)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)	
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			64CY L 6 A_NoBlocking
 			64CY MN 6
 			64CY O 30
 			64CY O -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 		Crush:
-			A027 A 0
 			A027 A 0 A_PlaySound("friendlyimp64/crush")
 			A027 A -1 A_KillMaster
-			Stop	
+			Stop
 		Death.DukeIce:
 			"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
 		Ice:
@@ -186,15 +185,15 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 			"####" "#" 3 A_SetTranslucent(0.4,0)
 			"####" "#" 3 A_SetTranslucent(0.3,0)
 			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.1,0) 
+			"####" "#" 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
-			stop					
+			stop
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_PlaySoundEx("chex/cyberzorch","soundslot6",0,2)
-			"####" "#" 0 A_NoBlocking	
+			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 			"####" "#" 0 A_Stop
 			"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -255,7 +254,7 @@ ACTOR Cyberdemon64 : SamsaraMonsterMechanicalHuge
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			"####" "#" 0 A_PlaySoundEx("chex/cyberzorch","soundslot6",0,2)
-			"####" "#" 0 A_NoBlocking		
+			"####" "#" 0 A_NoBlocking
 			"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
 			"####" "#################" 3 A_Fadeout(0.05)
 			TNT1 A 5 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")

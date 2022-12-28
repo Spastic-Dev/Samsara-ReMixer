@@ -2,7 +2,7 @@ ACTOR Spectre64 : Demon64
 {
 	RenderStyle Translucent
 	Alpha 1.0
-	PainChance 160 
+	PainChance 160
 	HitObituary "$OB_SPECTREHIT"
 	+SHADOW
 	Tag "Spectre"
@@ -52,8 +52,8 @@ ACTOR Spectre64 : Demon64
 			64S2 H 16 A_Pain
 			Goto See+12
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			64S2 I 8 A_FadeIn(0.20)
 			64S2 J 0 A_FadeIn(0.20)
 			64S2 J 8 A_Scream
@@ -84,10 +84,8 @@ ACTOR Spectre64 : Demon64
 			64S2 I 5 A_SetTranslucent(0.20, 0)
 			Goto See+12
 		Crush:
-			A027 A 0
-			A027 A 0 A_PlaySound("friendlyimp64/crush")
-			A027 A -1
-			Stop	
+			A027 A -1 A_PlaySound("friendlyimp64/crush")
+			Stop
 		Pain.ShrinkerDMG:
 			64S2 H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -138,7 +136,7 @@ ACTOR Spectre64 : Demon64
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -168,7 +166,7 @@ ACTOR Spectre64 : Demon64
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -305,9 +303,9 @@ actor Spectre64_Shrink : Spectre64
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -335,7 +333,7 @@ actor Spectre64_ShrinkEffect : Spectre64
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	//Renderstyle Translucent
 	Alpha 0.4
 	States

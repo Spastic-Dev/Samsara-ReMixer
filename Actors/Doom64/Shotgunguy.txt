@@ -11,7 +11,7 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 	+FLOORCLIP
 	+NOINFIGHTING
 	Tag "Sergeant"
-	Species "Enemies"	
+	Species "Enemies"
 	SeeSound "64grunt/sight"
 	AttackSound "doom64guy/shotgf"
 	PainSound "64grunt/pain"
@@ -19,16 +19,16 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 	ActiveSound "64grunt/active"
 	Obituary "$OB_SHOTGUY"
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
-	DamageFactor "WitchMelee", 1.1	
+	DamageFactor "WitchMelee", 1.1
 	PainChance "CalebFire", 0
 	PainChance "WTMelee", 255
-	PainChance "WTMeleeIce", 255		
+	PainChance "WTMeleeIce", 255
 	DropItem "Shotgun64"
-    BloodType "Doom64Blood" 
+	BloodType "Doom64Blood"
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -47,15 +47,12 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			64SP E 10 A_FaceTarget
-			TNT1 A 0
 			64SP F 10 A_CustomBulletAttack(22.5, 0, 3, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
 			64SP E 10
 			Goto See
 		Pain.Vertigo:
-			64SP G 0 ThrustThingZ(0, 55, 0, 0)
-			64SP G 3
-			64SP G 3 A_Pain
-			Goto See
+			64SP G 3 ThrustThingZ(0, 55, 0, 0)
+			Goto Pain+1
 		Pain:
 			64SP G 3
 			64SP G 3 A_Pain
@@ -74,8 +71,8 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			TNT1 A -1 A_Jump(256,"See")
 			wait
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			64SP H 5
 			64SP I 5 A_Scream
 			64SP J 5 A_NoBlocking
@@ -101,14 +98,14 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			64SP G 2
 			Loop
 		XDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		    TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 			64SP M 5
 			64SP N 5 A_PlaySound("friendlyimp64/gibbed", CHAN_VOICE)
 			64SP O 5 A_NoBlocking
 			64SP PQRST 5
 			64SP U -1
-			Stop			
+			Stop
 		Raise:
 			64SP L 5 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			64SP KJIH 5
@@ -131,9 +128,7 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			64SP A 1 A_SetShootable
 			Goto See
 		Crush:
-			A027 A 0
-			A027 A 0 A_PlaySound("friendlyimp64/crush")
-			A027 A -1
+			A027 A -1 A_PlaySound("friendlyimp64/crush")
 			Stop
 		Pain.ShrinkerDMG:
 			64SP G 0
@@ -185,7 +180,7 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -215,7 +210,7 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -229,7 +224,7 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
-			Stop						
+			Stop
 	}
 }
 
@@ -239,12 +234,12 @@ Actor Shotgun64 : SamsaraSlotTwoDrop
 {
 	+DROPPED
 	Scale 0.65
-    States
-    {
-      Spawn:
-        64SG Z -1
-        stop
-    }
+	States
+	{
+	Spawn:
+		64SG Z -1
+		stop
+	}
 }
 
 actor ShotGunGuy64_Shrink : ShotGunGuy64
@@ -364,9 +359,9 @@ actor ShotGunGuy64_Shrink : ShotGunGuy64
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -394,7 +389,7 @@ actor ShotGunGuy64_ShrinkEffect : ShotGunGuy64
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

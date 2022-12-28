@@ -7,7 +7,7 @@ ACTOR MotherDemon64 : SamsaraMonsterDemonicHuge
 	Speed 18
 	PainChance 10
 	ReactionTime 8
-	Species "Enemies"	
+	Species "Enemies"
 	Tag "Mother Demon"
 	SeeSound "64mother/sight"
 	AttackSound "64mother/attack"
@@ -23,38 +23,38 @@ ACTOR MotherDemon64 : SamsaraMonsterDemonicHuge
 	+MISSILEMORE
 	+MISSILEEVENMORE
 	+NOFEAR
-	+BOSS	
+	+BOSS
 	+BOSSDEATH
 	+NOINFIGHTING
-    BloodType "Doom64Blood"	
-	PainChance "PhosFireCoop", 0 	
+	BloodType "Doom64Blood"
+	PainChance "PhosFireCoop", 0
 	PainChance "EradCoopGreenFire", 0
 	PainChance "EradGreenFire", 0
 	PainChance "StrifeExplosive", 0
-	PainChance "PSFire", 5	
+	PainChance "PSFire", 5
 	PainChance "WTMelee", 96
-	PainChance "WTMeleeIce", 96	
+	PainChance "WTMeleeIce", 96
 	PainChance "ShrinkerDMG", 0
-	DamageFactor "Shock", 0.5	
-	DamageFactor "PhosFireCoop", 0.6		
+	DamageFactor "Shock", 0.5
+	DamageFactor "PhosFireCoop", 0.6
 	DamageFactor "EradGreenFire", 0.7
 	DamageFactor "EradCoopGreenFire", 0.7
 	DamageFactor "Tesla", 1.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0.5		
+	DamageFactor "PoisonBolt", 0.5
 	DamageFactor "RottFire", 0.85
 	DamageFactor "RottPistolBullet", 0.9
-	DamageFactor "StrifeExplosive", 0.5	
-	DamageFactor "DisruptorWall", 0.6	
+	DamageFactor "StrifeExplosive", 0.5
+	DamageFactor "DisruptorWall", 0.6
 	DamageFactor "WitchMelee", 1.1
 	DamageFactor "WTMelee", 1.5
 	DamageFactor "PGBullet", 1.25
 	DamageFactor "PGPlasma", 1.25
 	DamageFactor "PGLaser", 1.25
 	DamageFactor "PGFire", 1.25
-	DamageFactor "PGExplosive", 1.25			
+	DamageFactor "PGExplosive", 1.25
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
 	States
 	{
@@ -68,14 +68,14 @@ ACTOR MotherDemon64 : SamsaraMonsterDemonicHuge
 			Loop
 		See:
 			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
 			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+			TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
 			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
 			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 			TNT1 A 0 A_GiveInventory("HLBossSee",1)
@@ -83,9 +83,9 @@ ACTOR MotherDemon64 : SamsaraMonsterDemonicHuge
 			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
-		See2:	
+		See2:
 			64MD AA 3 A_Chase
 			64MD A 3 A_Chase("","")
 			64MD BB 3 A_Chase
@@ -97,14 +97,14 @@ ACTOR MotherDemon64 : SamsaraMonsterDemonicHuge
 			Loop
 		Missile:
 			64MD E 8 A_FaceTarget
-			64MD E 0 A_PlaySoundEx("64mother/attack", "BODY")
+			64MD E 0 A_PlaySound("64mother/attack", CHAN_BODY)
 			64MD G 0 BRIGHT A_CustomMissile("MotherFire64", 0, 0, 0, 2, 0)
 			64MD G 0 BRIGHT A_CustomMissile("MotherFire64", 0, 0, 90, 2, 0)
 			64MD G 0 BRIGHT A_CustomMissile("MotherFire64", 0, 0, -90, 2, 0)
 			64MD G 14 BRIGHT A_CustomMissile("MotherFire64", 0, 0, 180, 2, 0)
-			64MD E 8 A_FaceTarget //              
-			64MD F 0 BRIGHT A_CustomMissile("MotherBall64", 144, -25, 90) 
-			64MD F 0 BRIGHT A_CustomMissile("MotherBall64", 72, -50, 90) 
+			64MD E 8 A_FaceTarget
+			64MD F 0 BRIGHT A_CustomMissile("MotherBall64", 144, -25, 90)
+			64MD F 0 BRIGHT A_CustomMissile("MotherBall64", 72, -50, 90)
 			64MD F 0 BRIGHT A_CustomMissile("MotherBall64", 144, 25, -90)
 			64MD F 14 BRIGHT A_CustomMissile("MotherBall64", 72, 50, -90)
 			64MD E 8
@@ -113,12 +113,10 @@ ACTOR MotherDemon64 : SamsaraMonsterDemonicHuge
 			64MD H 10 A_Pain
 			Goto See
 		Pain.Vertigo:
-			64MD H 0 ThrustThingZ(0, 5, 0, 0)
-			64MD H 10
-			64MD H 10 A_Pain
-			Goto See
+			64MD H 10 ThrustThingZ(0, 5, 0, 0)
+			Goto Pain
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			64MD I 10
 			64MD I 0 A_Scream
 			64MD I 4 A_SpawnItemEx("BossExplosion64", 0, 0, 0, 0, 0, 0, 0, 130)
@@ -147,12 +145,11 @@ ACTOR MotherDemon64 : SamsaraMonsterDemonicHuge
 			64MD L 0 A_NoBlocking
 			64MD L 4 A_SpawnItemEx("BossExplosion64", 20, 20, 55, 0, 0, 0, 0, 130)
 			64MD L 4 A_SpawnItemEx("BossExplosion64", 0, 0, 110, 0, 0, 0, 0, 130)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)		
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			64MD MNO 6
 			TNT1 A 5 A_KillMaster
 			Stop
 		Crush:
-			A027 A 0
 			A027 A 0 A_PlaySound("friendlyimp64/crush")
 			A027 A -1 A_KillMaster
 			Stop
@@ -166,8 +163,8 @@ ACTOR MotherBall64
 	Damage 10
 	Radius 11
 	Height 8
-	Projectile 
-	+SEEKERMISSILE 
+	Projectile
+	+SEEKERMISSILE
 	+RANDOMIZE
 	SeeSound "skeleton64/attack"
 	DeathSound "doom64guy/explode"
@@ -193,7 +190,7 @@ ACTOR MotherBallTrail64 : Doom64RocketSmokeTrail
 	Alpha 0.50
 	VSpeed 1
 	+NOINTERACTION
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	States
 	{
 		Spawn:
@@ -222,15 +219,15 @@ ACTOR MotherFire64
 	{
 		Spawn:
 			64FR A 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
-			TNT1 A 0 A_SeekerMissile(5, 5)			
+			TNT1 A 0 A_SeekerMissile(5, 5)
 			64FR B 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
 			TNT1 A 0 A_SeekerMissile(5, 5)
 			64FR C 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
-			TNT1 A 0 A_SeekerMissile(5, 5)			
+			TNT1 A 0 A_SeekerMissile(5, 5)
 			64FR D 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
-			TNT1 A 0 A_SeekerMissile(5, 5)			
+			TNT1 A 0 A_SeekerMissile(5, 5)
 			64FR E 4 BRIGHT A_CustomMissile("MotherFireTrail64", 0, 0, 0, 2, 0)
-			TNT1 A 0 A_SeekerMissile(5, 5)			
+			TNT1 A 0 A_SeekerMissile(5, 5)
 			Loop
 		Death:
 			TNT1 A 5

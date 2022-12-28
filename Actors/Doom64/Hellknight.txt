@@ -4,7 +4,7 @@ ACTOR HellKnight64 : SamsaraMonsterDemonicLargeTotalGib
 	Height 64
 	PainChance 25
 	BloodColor "18 8C 31"
-	Health 500	
+	Health 500
 	Mass 1000
 	Speed 8
 	PainChance 50
@@ -13,24 +13,24 @@ ACTOR HellKnight64 : SamsaraMonsterDemonicLargeTotalGib
 	+FLOORCLIP
 	+MISSILEMORE
 	+NOINFIGHTING
-	Species "Enemies"	
+	Species "Enemies"
 	SeeSound "64knight/sight"
 	PainSound "64demon/pain"
 	DeathSound "64knight/death"
 	ActiveSound "64demon/active"
-	Tag "Hell Knight"	
+	Tag "Hell Knight"
 	Obituary "$OB_KNIGHT"
 	HitObituary "$OB_KNIGHTHIT"
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	PainChance "CalebFire", 0
 	PainChance "WTMelee", 255
-	PainChance "WTMeleeIce", 255	
-	DamageFactor "WitchMelee", 1.1		
-    BloodType "Doom64Blood"
+	PainChance "WTMeleeIce", 255
+	DamageFactor "WitchMelee", 1.1
+	BloodType "Doom64Blood"
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -57,10 +57,8 @@ ACTOR HellKnight64 : SamsaraMonsterDemonicLargeTotalGib
 			64HK H 2 A_Pain
 			Goto See
 		Pain.Vertigo:
-			64HK H 0 ThrustThingZ(0, 55, 0, 0)
-			64HK H 2
-			64HK H 2 A_Pain
-			Goto See
+			64HK H 2 ThrustThingZ(0, 55, 0, 0)
+			Goto Pain+1
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
@@ -69,7 +67,7 @@ ACTOR HellKnight64 : SamsaraMonsterDemonicLargeTotalGib
 			64HK H 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			64HK I 8
 			64HK J 8 A_Scream
@@ -80,11 +78,9 @@ ACTOR HellKnight64 : SamsaraMonsterDemonicLargeTotalGib
 			Stop
 		Raise:
 			64HK NMLKJI 8
-			Goto See			
+			Goto See
 		Crush: // Uses a green version of the gib to match blood color
-			A054 A 0
-			A054 A 0 A_PlaySound("friendlyimp64/crush")
-			A054 A -1
+			A054 A -1 A_PlaySound("friendlyimp64/crush")
 			Stop
 		Pain.ShrinkerDMG:
 			64HK H 0
@@ -151,7 +147,7 @@ ACTOR HellKnight64 : SamsaraMonsterDemonicLargeTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SetDamageType("DukeExplosive")
 			TNT1 A 0 A_Explode((height * 2) * 1.75, 80)
@@ -183,7 +179,7 @@ ACTOR HellKnight64 : SamsaraMonsterDemonicLargeTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -209,7 +205,7 @@ ACTOR BaronBall64
 	Speed 15
 	FastSpeed 20
 	Damage 8
-	Projectile 
+	Projectile
 	+RANDOMIZE
 	RenderStyle Normal
 	Alpha 1
@@ -348,9 +344,9 @@ actor HellKnight64_Shrink : HellKnight64
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -379,7 +375,7 @@ actor HellKnight64_ShrinkEffect : HellKnight64
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

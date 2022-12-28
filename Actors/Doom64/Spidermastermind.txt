@@ -22,15 +22,15 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 	DeathSound "64spider/death"
 	ActiveSound "64demon/active"
 	Obituary "$OB_SPIDER"
-	PainChance "PhosFireCoop", 0 	
+	PainChance "PhosFireCoop", 0
 	PainChance "EradCoopGreenFire", 0
 	PainChance "EradGreenFire", 0
 	PainChance "StrifeExplosive", 0
-	PainChance "PSFire", 5	
+	PainChance "PSFire", 5
 	PainChance "WTMelee", 96
 	PainChance "WTMeleeIce", 96
 	PainChance "ShrinkerDMG", 0
-	DamageFactor "PhosFireCoop", 0.7	
+	DamageFactor "PhosFireCoop", 0.7
 	DamageFactor "EradGreenFire", 0.7
 	DamageFactor "EradCoopGreenFire", 0.7
 	DamageFactor "Tesla", 1.2
@@ -39,13 +39,13 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 	DamageFactor "RottFire", 0.4
 	DamageFactor "RottPistolBullet", 0.9
 	DamageFactor "DCannonProj", 0.45
-	DamageFactor "Shock", 0.5	
+	DamageFactor "Shock", 0.5
 	DamageFactor "StrifeExplosive", 0.5
-	DamageFactor "DisruptorWall", 0.5	
+	DamageFactor "DisruptorWall", 0.5
 	DamageFactor "WitchMelee", 1.1
 	DamageFactor "WTMelee", 1.5
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
 	BloodType "Doom64Blood"
 	States
@@ -59,32 +59,32 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 		64SM AB 10 A_Look
 		Loop
 	See:
-        TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-        TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-        TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-        TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-        TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
-        TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-        TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-        TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
-        TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
-        TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
+		TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
+		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
+		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 		TNT1 A 0 A_GiveInventory("HLBossSee",1)
-        TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-        TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-        TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-        TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-        TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+		TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
-	See2:	
+	See2:
 		TNT1 A 0 A_PlaySound("64spider/metal2",5)
 		64SM A 3 A_Chase
 		64SM ABB 3 A_Chase
-		TNT1 A 0 A_PlaySound("64spider/metal2",5)	
+		TNT1 A 0 A_PlaySound("64spider/metal2",5)
 		64SM C 3 A_Chase
 		64SM CDD 3 A_Chase
-		TNT1 A 0 A_PlaySound("64spider/metal2",5)	
+		TNT1 A 0 A_PlaySound("64spider/metal2",5)
 		64SM E 3 A_Chase
 		64SM EFF 3 A_Chase
 		Loop
@@ -92,7 +92,7 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 		64SM A 20 Bright A_FaceTarget
 		TNT1 A 0 A_PlaySound("doom64guy/pistol",5)
 		64SM G 4 Bright A_CustomBulletAttack(22.5, 0, 3, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
-		TNT1 A 0 A_PlaySound("doom64guy/pistol",6)	
+		TNT1 A 0 A_PlaySound("doom64guy/pistol",6)
 		64SM H 4 Bright A_CustomBulletAttack(22.5, 0, 3, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
 		64SM H 1 Bright A_SpidRefire
 		Goto Missile+1
@@ -101,10 +101,10 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 		64SM I 3 A_Pain
 		Goto See
 	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		64SM J 20 A_Scream
 		64SM K 10 A_NoBlocking
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)		
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		64SM LMNO 10
 		64SM O -1 A_KillMaster
 		Stop
@@ -116,20 +116,20 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 	Ice:
 	Death.HexenIce:
 	Death.WTMeleeIce:
-	Death.WTRangedIce:	
+	Death.WTRangedIce:
 	Death.Ice:
-        "####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-        "####" "#" 0 A_NoBlocking
-        "####" "#" 0 A_PlaySoundEx("freeze/spidermind","soundslot6",0,0)
-        "####" "#" 0 A_GenericFreezeDeath
-        "####" "#" 0 A_UnsetShootable
-        "####" "#" 140 A_UnsetSolid
-        "####" "#" 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
-        "####" "##############################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
-        "####" "#" 0 A_IceGuyDie
-        "####" "#" 1 A_IceGuyDie
-        TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
-        stop			
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_PlaySoundEx("freeze/spidermind","soundslot6",0,0)
+		"####" "#" 0 A_GenericFreezeDeath
+		"####" "#" 0 A_UnsetShootable
+		"####" "#" 140 A_UnsetSolid
+		"####" "#" 0 A_PlaySoundEx("freeze/break","soundslot6",0,0)
+		"####" "##############################" 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(16,96),random(-2,2),random(-2,2),random(5,15))
+		"####" "#" 0 A_IceGuyDie
+		"####" "#" 1 A_IceGuyDie
+		TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+		stop
 	Death.ZorchPistol:
 	Death.Zorch:
 	Death.ZorchKamikaze:
@@ -151,11 +151,11 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 		"####" "#" 3 A_SetTranslucent(0.4,0)
 		"####" "#" 3 A_SetTranslucent(0.3,0)
 		"####" "#" 3 A_SetTranslucent(0.2,0)
-		"####" "#" 3 A_SetTranslucent(0.1,0) 
+		"####" "#" 3 A_SetTranslucent(0.1,0)
 		TNT1 A 1 A_SetTranslucent(1,0)
 		TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
-		stop			
-	Death.DukeExplosive:			
+		stop
+	Death.DukeExplosive:
 	Death.DukeDamage:
 	Death.DukePistol:
 		TNT1 A 0 A_Jump(218,"Death")
@@ -165,12 +165,12 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		TNT1 A 0 A_Jump(64,"Death")
 		TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-		goto Death			
+		goto Death
 	Death.RottDisintegrate:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_PlaySoundEx("chex/spidmzorch","soundslot6",0,2)
-		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -231,33 +231,33 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_PlaySoundEx("chex/spidmzorch","soundslot6",0,2)
-		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_SpawnItem("WTNukeDeathHuge")
 		"####" "#################" 3 A_Fadeout(0.05)
 		TNT1 A 5 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
-		stop										
+		stop
 	}
 }
 
 Actor MultiSpiderMastermind64 : SpiderMastermind64 { +THRUSPECIES }
 
-Actor SpiderMastermind64Disintegrate : ZombiemanDisintegrate 
+Actor SpiderMastermind64Disintegrate : ZombiemanDisintegrate
 {
-   Scale 1.3
-   States
-   {
-      Spawn:
-        TNT1 A 0
-        64SM I 6 A_SpawnItem("DisintEffectRoundHuge",0,45)
-        64SM I 6 A_SetTranslucent(0.9,0)
-        64SM I 6 A_SetTranslucent(0.8,0)
-        64SM I 6 A_SetTranslucent(0.7,0)
-        64SM I 6 A_SetTranslucent(0.6,0)
-        64SM I 6 A_SetTranslucent(0.5,0)
-        64SM I 4 A_SetTranslucent(0.4,0)
-        64SM I 4 A_SetTranslucent(0.3,0)
-        64SM I 4 A_SetTranslucent(0.2,0)
-        64SM I 4 A_SetTranslucent(0.1,0)
-        Stop
-   }
+	 Scale 1.3
+	 States
+	 {
+		Spawn:
+			TNT1 A 0
+			64SM I 6 A_SpawnItem("DisintEffectRoundHuge",0,45)
+			64SM I 6 A_SetTranslucent(0.9,0)
+			64SM I 6 A_SetTranslucent(0.8,0)
+			64SM I 6 A_SetTranslucent(0.7,0)
+			64SM I 6 A_SetTranslucent(0.6,0)
+			64SM I 6 A_SetTranslucent(0.5,0)
+			64SM I 4 A_SetTranslucent(0.4,0)
+			64SM I 4 A_SetTranslucent(0.3,0)
+			64SM I 4 A_SetTranslucent(0.2,0)
+			64SM I 4 A_SetTranslucent(0.1,0)
+			Stop
+	 }
 }

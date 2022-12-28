@@ -19,16 +19,16 @@ ACTOR SuperShotgunGuy64 : SamsaraMonsterHumanoidMedium
 	ActiveSound "64grunt/active"
 	Obituary "$OB_SSGGUY"
 	DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
-    PainChance "MightyBoot", 255
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	DamageFactor "WitchMelee", 1.1
 	PainChance "CalebFire", 0
 	PainChance "WTMelee", 255
 	PainChance "WTMeleeIce", 255
 	DropItem "SuperShotgun64"
-    BloodType "Doom64Blood"
+	BloodType "Doom64Blood"
 	var int user_scalex;
 	var int user_scaley;
 	States
@@ -222,7 +222,7 @@ ACTOR SuperShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
-			Stop						
+			Stop
 	}
 }
 
@@ -232,12 +232,12 @@ Actor SuperShotgun64 : SamsaraSlotThreeDrop
 {
 	+DROPPED
 	Scale 0.65
-    States
-    {
-      Spawn:
-        64DB Z -1
-        stop
-    }
+	States
+	{
+	Spawn:
+		64DB Z -1
+		stop
+	}
 }
 
 actor SuperShotgunGuy64_Shrink : SuperShotgunGuy64
@@ -357,9 +357,9 @@ actor SuperShotgunGuy64_Shrink : SuperShotgunGuy64
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
