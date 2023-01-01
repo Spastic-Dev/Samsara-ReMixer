@@ -2,7 +2,7 @@ ACTOR BlueProtectorDrone : SamsaraMonsterAlienLarge
 {
 	Health 600
 	Radius 20
-	Height 56//64
+	Height 56
 	Mass 400
 	Speed 7
 	Scale 0.65
@@ -20,15 +20,14 @@ ACTOR BlueProtectorDrone : SamsaraMonsterAlienLarge
 	DeathSound "prodrone/death"
 	ActiveSound "prodrone/roam"
 	AttackSound "prodrone/attack"
-	//Dropitem "DefaultPinataPop"
 	Obituary "%o was clawed to death by a Protector Drone."
 	MeleeRange 42
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	BloodType "ProDroneBlood"
 	BloodColor Green
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "Mace", 1.1
+	DamageFactor "DragonClaw", 1.5
 	PainChance "ShrinkerDMG", 0
 	States
 	{
@@ -96,16 +95,13 @@ ACTOR BlueProtectorDrone : SamsaraMonsterAlienLarge
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			BLDR FFF 2 A_FaceTarget
 			BLDR F 1
-			BLDR G 7 
-			BLDR H 7
-			TNT1 A 0 A_CustomMeleeAttack((22),"prodrone/attack1","prodrone/attack2")
+			BLDR GH 7
+			TNT1 A 0 A_CustomMeleeAttack(22,"prodrone/attack1","prodrone/attack2")
 			TNT1 A 0 A_JumpIfCloser(64,"See")
 			Goto MeleeEnd
 		MeleeEnd:
 			BLDR A 26
-			TNT1 A 0 A_Jump(96,1)
-			TNT1 A 0 A_PlaySound("prodrone/roam")
-			BLDR A 14
+			BLDR A 14 A_PlaySound("prodrone/roam")
 			Goto See
 		Pain:
 			BLDR O 3
@@ -119,7 +115,7 @@ ACTOR BlueProtectorDrone : SamsaraMonsterAlienLarge
 			BLDR O 16 A_Pain
 			Goto See
 		Death.DukeExplosive:
-			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -214,7 +210,6 @@ Actor BlueProtectorDroneCorpse : SamsaraCorpseActorSmall
 			TNT1 AA 0 A_SpawnDebris("ProtectorDroneGibs9")
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs8")
-			TNT1 AA 0
 			TNT1 A 5 A_PlaySound("duke/enemygib")
 			Stop
 	}
@@ -225,7 +220,8 @@ Actor MultiBlueProtectorDrone : BlueProtectorDrone
 	+THRUSPECIES
 }
 
-/*ACTOR NewProtectorDrone
+/*
+ACTOR NewProtectorDrone
 {
 	Height 56
 	Radius 28
@@ -234,7 +230,6 @@ Actor MultiBlueProtectorDrone : BlueProtectorDrone
 	Bloodcolor Green
 	+SOLID
 	+SHOOTABLE
-
 	States
 	{
 		Spawn:
@@ -304,4 +299,5 @@ ACTOR InvisProtectorDrone : ProtectorDrone
 			TNT1 A 16 A_Pain
 			Goto See
 	}
-}*/
+}
+*/

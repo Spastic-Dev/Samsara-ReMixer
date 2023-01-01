@@ -3,7 +3,7 @@ ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 	Health 150
 	Radius 16
 	Height 30
-	Speed  8
+	Speed 8
 	PainChance 256
 	Scale 0.65
 	MONSTER
@@ -29,7 +29,7 @@ ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0	
+	DamageFactor "PoisonBolt", 0
 	PainChance "MarathonStun", 255
 	PainChance "ShrinkerDMG", 0
 	States
@@ -43,7 +43,7 @@ ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 			SEDR A 1 A_Look
 			Loop
 		See:
-			TNT1 A 0 A_PlaySound ("sentdrone/active", 6, 1.0, 1, 2)
+			TNT1 A 0 A_PlaySound("sentdrone/active", CHAN_6, 1.0, 1, 2)
 		See2:
 			SEDR A 1 A_Wander
 			SEDR A 1 A_Chase
@@ -54,44 +54,35 @@ ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 			Goto See
 		Missile:
 			SEDR AAAAAAAAAAAAAAA 2 A_FaceTarget
-			TNT1 A 0 A_PlaySound ("sentdrone/charge") 
+			TNT1 A 0 A_PlaySound("sentdrone/charge")
 			SEDR A 4 A_SkullAttack
-			TNT1 A 0 A_Recoil(5)			
+			TNT1 A 0 A_Recoil(5)
 			SEDR A 1
-			Goto Missile+18
+			Wait
 		Melee:
 			SEDR A 1 A_FaceTarget
-			SEDR A 1 A_Die
+			SEDR A 1 A_Die("Suicide")
 			Wait
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)    		
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("SentryDroneBomb",0,0,32,0,0,0,0,1,0)
-			TNT1 A 5 A_PlaySound ("sentdrone/detonate", CHAN_AUTO)
-			stop
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			Goto Death.Suicide
 		Death.Suicide:
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("SentryDroneBomb",0,0,32,0,0,0,0,1,0)
-			TNT1 A 5 A_PlaySound ("sentdrone/detonate", CHAN_AUTO)
-			stop			
+			TNT1 A 0 A_Scream
+			TNT1 A 5 A_SpawnItemEx("SentryDroneBomb",0,0,32)
+			stop
 	}
 }
 
 ACTOR SentryDroneBomb
 {
-	Radius 1
-	Height 1
-	Speed 0
-	+NOCLIP
-	PROJECTILE
+	+NOINTERACTION
 	States
 	{
 		Spawn:
 			TNT1 A 0
-			Goto Death
-		Death:
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
-			TNT1 A 0 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,160)
+			TNT1 A 0 A_PlaySound("duke/explosion", CHAN_6, 1.0, 0, ATTN_NONE)
+			TNT1 A 0 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			TNT1 AAAAAAAA 0 A_SpawnDebris("DukeShrapnel1")
 			TNT1 AAAA 0 A_SpawnDebris("DukeShrapnel2")
 			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel3")

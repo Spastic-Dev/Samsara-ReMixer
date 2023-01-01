@@ -1,35 +1,15 @@
-ACTOR PiginaDress : SamsaraMonsterAlienMedium
+ACTOR PiginaDress : PigCop
 {
 	Health 110
-	Radius 20
-	Height 51
-	Speed 7
-	PainChance 32
-	Scale 0.65
-	MONSTER
-	+FLOORCLIP
-    +NOTDMATCH
-	+NOINFIGHTING
-    +THRUGHOST
-	+MISSILEMORE
-	+NOBLOODDECALS
 	SeeSound "dresspig/sight"
 	PainSound "dresspig/pain"
 	DeathSound "dresspig/death"
 	ActiveSound "dresspig/roam"
-	AttackSound ""
+	AttackSound "zombiepigcop/attack"
 	Tag "Pig-in-a-Dress"
 	Obituary "%o was charmed by a Pig in a Dress."
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
-    PainChance "MightyBoot", 255
-	PainChance "MarathonStun", 255
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	Decal BulletChip
-	var int user_scalex;
-	var int user_scaley;
-	States 
+	DropItem ""
+	States
 	{
 		Spawn:
 			PIGD A 0
@@ -40,63 +20,71 @@ ACTOR PiginaDress : SamsaraMonsterAlienMedium
 			PIGD A 1 A_Look
 			Loop
 		See:
-			PIGD A 3 A_Chase
-			PIGD A 3 A_Chase
+			PIGD AA 3 A_Chase
 			PIGD B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			PIGD B 3 A_Chase
-			PIGD C 3 A_Chase
+			PIGD BC 3 A_Chase
 			PIGD C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			PIGD D 3 A_Chase
-			PIGD D 3 A_Chase
+			PIGD DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			PIGD EE 5 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD E 2 Bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD E 2 Bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD E 4 Bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD E 4 Bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD F 2 Bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD F 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD F 2 Bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD F 8 Bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD F 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD F 8 Bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD E 2 Bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD E 2 Bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD E 4 Bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD E 4 Bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			PIGD E 1 A_FaceTarget
 			TNT1 A 0 A_PlaySound("zombiepigcop/reload", CHAN_WEAPON)
 			PIGD E 1 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			PIGD G 11 A_FaceTarget
 			PIGD HHHHHH 3 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD H 2 bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD H 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD H 2 bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD H 4 bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD H 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD H 4 bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD I 2 bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD I 2 bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD I 8 bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD I 8 bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD H 2 bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD H 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD H 2 bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("zombiepigcop/attack", CHAN_WEAPON)
-			PIGD H 4 bright A_CustomMissile("ZPigCopBullet",32,0,random(-12,12),8,random(-12,12))
+			PIGD H 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			PIGD H 4 bright A_CustomBulletAttack(12,12,1,random(1,8)*2,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
 			TNT1 A 0 A_PlaySound("zombiepigcop/reload", CHAN_WEAPON)
 			PIGD H 1 A_CPosRefire
 			Goto See
@@ -112,7 +100,7 @@ ACTOR PiginaDress : SamsaraMonsterAlienMedium
 			PIGD J 16 A_Pain
 			Goto See
 		Death.DukeExplosive:
-			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -149,19 +137,6 @@ ACTOR PiginaDress : SamsaraMonsterAlienMedium
 			PIGD O 0 A_SpawnItemEx("PigInaDressCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
-		XDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 		Pain.ShrinkerDMG:
 			PIGD J 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -203,97 +178,24 @@ ACTOR PiginaDress : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			PIGD A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor PigInaDressCorpse : SamsaraCorpseActorSmall
+Actor PigInaDressCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			PIGD O 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -414,9 +316,9 @@ actor PiginaDress_Shrink : PiginaDress
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -444,7 +346,7 @@ actor PiginaDress_ShrinkEffect : PiginaDress
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

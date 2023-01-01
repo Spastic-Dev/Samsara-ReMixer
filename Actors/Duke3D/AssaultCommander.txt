@@ -9,8 +9,8 @@ ACTOR AssaultCommander : SamsaraMonsterAlienLarge
 	Scale 0.65
  	MONSTER
 	+FLOORCLIP
-    +NOTDMATCH
-    +THRUGHOST
+	+NOTDMATCH
+	+THRUGHOST
 	+NOGRAVITY
 	+NOINFIGHTING
 	+FLOAT
@@ -21,20 +21,20 @@ ACTOR AssaultCommander : SamsaraMonsterAlienLarge
 	ActiveSound "assaultcom/roam"
 	AttackSound "assaultcom/attack"
 	Obituary "%o was blown to bits by an Assault Commander."
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "Mace", 1.1
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0	
-    PainChance "MightyBoot", 255
+	DamageFactor "PoisonBolt", 0
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	BloodType "DukeBloodAC"
 	BloodColor "ff 40 00"
-	Tag "Assault Commander"	
+	Tag "Assault Commander"
 	var int user_scalex;
 	var int user_scaley;
-	States 
+	States
 	{
 		Spawn:
 			ASCO A 0
@@ -42,104 +42,103 @@ ACTOR AssaultCommander : SamsaraMonsterAlienLarge
 			ASCO A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			ASCO A 0 A_GiveInventory("AlreadySpawned",1)
 		Spawn2:
-			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_StopSound(CHAN_BODY)
 			ASCO A 5 A_Look
 			Goto Spawn2+1
 		Idle:
-			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_StopSound(CHAN_BODY)
 			ASCO A 5 A_Look
-			Goto Idle+1		
+			Goto Idle+1
 		See:
 			TNT1 A 0 A_StopSound(CHAN_BODY)
-		SeeLoop:	
+		SeeLoop:
 			ASCO AAAAA 1 A_Chase
 			ASCO BBBBBCCCCC 1 A_Chase("","",CHF_NOPLAYACTIVE)
 			Goto SeeLoop
 		Missile:
-			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_StopSound(CHAN_BODY)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASCO E 5 A_FaceTarget
-			TNT1 A 0 A_Jump (96, 2)
+			TNT1 A 0 A_Jump(96, 2)
 			TNT1 A 0 A_PlaySound("assaultcom/attack", CHAN_WEAPON)
 			ASCO EEEEEEE 5 A_FaceTarget
-			ASCO E 0 Bright A_CustomMissile("ACommanderRocket",20,0,0,8)
+			ASCO E 0 A_CustomMissile("ACommanderRocket",20,0,0,CMF_CHECKTARGETDEAD)
 			ASCO EEE 5 A_FaceTarget
 			Goto See
 		Melee:
-			TNT1 A 0 A_ChangeFlag(NOPAIN,1)		
+			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 			ASCO D 6 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcom/spin",CHAN_BODY,1.0,1,ATTN_NORM)
 			TNT1 A 0 A_CustomMeleeAttack(4,"","")
 			ASCO FF 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")	
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
 			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO FF 2 A_SetAngle(angle - 15)
 			TNT1 A 0 A_CustomMeleeAttack(4,"","")
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO FF 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")		
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO FF 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)	
-		LoopThis:	
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)		
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+		LoopThis:
 			ASCO F 2 A_SetAngle(angle - 15)
 			TNT1 A 0 A_CustomMeleeAttack(4,"","")
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)						
-			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")	
 			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")	
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO F 2 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")	
-			TNT1 A 0 A_JumpIfCloser(64,"LoopThis")			
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASCO F 2 A_SetAngle(angle - 15)
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			TNT1 A 0 A_JumpIfCloser(64,"LoopThis")
 			ASCO F 1 A_StopSound(CHAN_BODY)
-		FinishSpin:	
-			TNT1 A 0 A_ChangeFlag(NOPAIN,0)		
+		FinishSpin:
+			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 			TNT1 A 0 A_CustomMeleeAttack(4,"","")
 			ASCO F 1 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")	
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
 			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO F 1 A_SetAngle(angle - 15)
 			TNT1 A 0 A_CustomMeleeAttack(4,"","")
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO FF 1 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")		
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)			
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			ASCO FFF 1 A_SetAngle(angle - 15)
-			TNT1 A 0 A_CustomMeleeAttack(4,"","")			
-			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)	
+			TNT1 A 0 A_CustomMeleeAttack(4,"","")
+			ASCO F 0 A_Chase("","",CHF_NOPLAYACTIVE)
 			Goto See
 		Pain:
-			TNT1 A 0 A_StopSound(CHAN_BODY)		
-			ASCO D 3
+			ASCO D 3 A_StopSound(CHAN_BODY)
 			ASCO D 3 A_Pain
 			Goto See
 		Pain.MightyBoot:
-			TNT1 A 0 A_StopSound(CHAN_BODY)				
+			TNT1 A 0 A_StopSound(CHAN_BODY)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 			ASCO D 2 A_FaceTarget
@@ -147,7 +146,7 @@ ACTOR AssaultCommander : SamsaraMonsterAlienLarge
 			ASCO D 16 A_Pain
 			Goto See
 		Death.DukeExplosive:
-			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -167,17 +166,17 @@ ACTOR AssaultCommander : SamsaraMonsterAlienLarge
 			TNT1 A -1 A_Jump(256,"XDeath")
 			wait
 		Death:
-			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_StopSound(CHAN_BODY)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			ASCO G 5 A_Scream
 			ASCO H 5 A_NoBlocking
-			ASCO IJKLMN 5 
+			ASCO IJKLMN 5
 			ASCO N 0 A_SpawnItemEx("AssaultCommanderCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		XDeath:
-			TNT1 A 0 A_StopSound(CHAN_BODY)		
+			TNT1 A 0 A_StopSound(CHAN_BODY)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
@@ -240,7 +239,7 @@ ACTOR AssaultCommander : SamsaraMonsterAlienLarge
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -270,7 +269,7 @@ ACTOR AssaultCommander : SamsaraMonsterAlienLarge
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -490,9 +489,9 @@ actor AssaultCommander_Shrink : AssaultCommander
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -520,7 +519,7 @@ actor AssaultCommander_ShrinkEffect : AssaultCommander
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

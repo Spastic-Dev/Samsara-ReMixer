@@ -12,46 +12,43 @@ ACTOR BlueBeachPig : PigCop
 			DN53 A 1 A_Look
 			Loop
 		See:
-			DN53 A 3 A_Chase
-			DN53 A 3 A_Chase
+			DN53 AA 3 A_Chase
 			DN53 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN53 B 3 A_Chase
-			DN53 C 3 A_Chase
+			DN53 BC 3 A_Chase
 			DN53 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN53 D 3 A_Chase
-			DN53 D 3 A_Chase
+			DN53 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN53 EE 5 A_FaceTarget
 			DN53 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN53 F 15 Bright
-			DN53 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN53 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN53 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN53 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN53 EE 5 A_FaceTarget
-			DN53 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN53 F 16 Bright
-			DN53 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN53 E 7
+			DN53 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN53 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN53 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN53 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN53 H 11 A_FaceTarget
 			DN53 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN53 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN53 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN53 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN53 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN53 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN53 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN53 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN53 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN53 K 3
@@ -70,7 +67,7 @@ ACTOR BlueBeachPig : PigCop
 			DN53 K 3 A_Scream
 			DN53 L 5
 			DN53 M 5 A_NoBlocking
-			DN53 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN53 N 4
 			DN53 OP 5
 			DN53 P 0 A_SpawnItemEx("BlueBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -116,97 +113,24 @@ ACTOR BlueBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN53 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor BlueBeachPigCorpse : SamsaraCorpseActorSmall
+Actor BlueBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN53 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -327,9 +251,9 @@ actor BlueBeachPig_Shrink : BlueBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -357,7 +281,7 @@ actor BlueBeachPig_ShrinkEffect : BlueBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -400,46 +324,43 @@ ACTOR RedBeachPig : PigCop
 			DN54 A 1 A_Look
 			Loop
 		See:
-			DN54 A 3 A_Chase
-			DN54 A 3 A_Chase
+			DN54 AA 3 A_Chase
 			DN54 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN54 B 3 A_Chase
-			DN54 C 3 A_Chase
+			DN54 BC 3 A_Chase
 			DN54 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN54 D 3 A_Chase
-			DN54 D 3 A_Chase
+			DN54 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN54 EE 5 A_FaceTarget
 			DN54 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN54 F 15 Bright
-			DN54 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN54 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN54 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN54 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN54 EE 5 A_FaceTarget
-			DN54 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN54 F 16 Bright
-			DN54 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN54 E 7
+			DN54 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN54 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN54 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN54 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN54 H 11 A_FaceTarget
 			DN54 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN54 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN54 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN54 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN54 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN54 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN54 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN54 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN54 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN54 K 3
@@ -458,7 +379,7 @@ ACTOR RedBeachPig : PigCop
 			DN54 K 3 A_Scream
 			DN54 L 5
 			DN54 M 5 A_NoBlocking
-			DN54 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN54 N 4
 			DN54 OP 5
 			DN54 P 0 A_SpawnItemEx("RedBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -504,97 +425,24 @@ ACTOR RedBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN54 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor RedBeachPigCorpse : SamsaraCorpseActorSmall
+Actor RedBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN54 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -715,9 +563,9 @@ actor RedBeachPig_Shrink : RedBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -745,7 +593,7 @@ actor RedBeachPig_ShrinkEffect : RedBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -788,46 +636,43 @@ ACTOR GreenBeachPig : PigCop
 			DN55 A 1 A_Look
 			Loop
 		See:
-			DN55 A 3 A_Chase
-			DN55 A 3 A_Chase
+			DN55 AA 3 A_Chase
 			DN55 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN55 B 3 A_Chase
-			DN55 C 3 A_Chase
+			DN55 BC 3 A_Chase
 			DN55 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN55 D 3 A_Chase
-			DN55 D 3 A_Chase
+			DN55 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN55 EE 5 A_FaceTarget
 			DN55 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN55 F 15 Bright
-			DN55 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN55 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN55 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN55 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN55 EE 5 A_FaceTarget
-			DN55 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN55 F 16 Bright
-			DN55 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN55 E 7
+			DN55 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN55 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN55 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN55 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN55 H 11 A_FaceTarget
 			DN55 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN55 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN55 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN55 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN55 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN55 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN55 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN55 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN55 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN55 K 3
@@ -846,7 +691,7 @@ ACTOR GreenBeachPig : PigCop
 			DN55 K 3 A_Scream
 			DN55 L 5
 			DN55 M 5 A_NoBlocking
-			DN55 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN55 N 4
 			DN55 OP 5
 			DN55 P 0 A_SpawnItemEx("GreenBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -892,97 +737,24 @@ ACTOR GreenBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN55 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor GreenBeachPigCorpse : SamsaraCorpseActorSmall
+Actor GreenBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN55 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -1103,9 +875,9 @@ actor GreenBeachPig_Shrink : GreenBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1133,7 +905,7 @@ actor GreenBeachPig_ShrinkEffect : GreenBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1176,46 +948,43 @@ ACTOR GrayBeachPig : PigCop
 			DN56 A 1 A_Look
 			Loop
 		See:
-			DN56 A 3 A_Chase
-			DN56 A 3 A_Chase
+			DN56 AA 3 A_Chase
 			DN56 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN56 B 3 A_Chase
-			DN56 C 3 A_Chase
+			DN56 BC 3 A_Chase
 			DN56 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN56 D 3 A_Chase
-			DN56 D 3 A_Chase
+			DN56 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN56 EE 5 A_FaceTarget
 			DN56 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN56 F 15 Bright
-			DN56 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN56 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN56 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN56 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN56 EE 5 A_FaceTarget
-			DN56 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN56 F 16 Bright
-			DN56 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN56 E 7
+			DN56 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN56 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN56 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN56 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN56 H 11 A_FaceTarget
 			DN56 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN56 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN56 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN56 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN56 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN56 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN56 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN56 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN56 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN56 K 3
@@ -1234,7 +1003,7 @@ ACTOR GrayBeachPig : PigCop
 			DN56 K 3 A_Scream
 			DN56 L 5
 			DN56 M 5 A_NoBlocking
-			DN56 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN56 N 4
 			DN56 OP 5
 			DN56 P 0 A_SpawnItemEx("GrayBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -1280,97 +1049,24 @@ ACTOR GrayBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN56 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor GrayBeachPigCorpse : SamsaraCorpseActorSmall
+Actor GrayBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN56 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -1491,9 +1187,9 @@ actor GrayBeachPig_Shrink : GrayBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1521,7 +1217,7 @@ actor GrayBeachPig_ShrinkEffect : GrayBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1564,46 +1260,43 @@ ACTOR DarkGrayBeachPig : PigCop
 			DN57 A 1 A_Look
 			Loop
 		See:
-			DN57 A 3 A_Chase
-			DN57 A 3 A_Chase
+			DN57 AA 3 A_Chase
 			DN57 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN57 B 3 A_Chase
-			DN57 C 3 A_Chase
+			DN57 BC 3 A_Chase
 			DN57 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN57 D 3 A_Chase
-			DN57 D 3 A_Chase
+			DN57 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN57 EE 5 A_FaceTarget
 			DN57 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN57 F 15 Bright
-			DN57 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN57 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN57 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN57 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN57 EE 5 A_FaceTarget
-			DN57 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN57 F 16 Bright
-			DN57 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN57 E 7
+			DN57 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN57 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN57 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN57 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN57 H 11 A_FaceTarget
 			DN57 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN57 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN57 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN57 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN57 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN57 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN57 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN57 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN57 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN57 K 3
@@ -1622,7 +1315,7 @@ ACTOR DarkGrayBeachPig : PigCop
 			DN57 K 3 A_Scream
 			DN57 L 5
 			DN57 M 5 A_NoBlocking
-			DN57 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN57 N 4
 			DN57 OP 5
 			DN57 P 0 A_SpawnItemEx("DarkGrayBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -1668,97 +1361,24 @@ ACTOR DarkGrayBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN57 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor DarkGrayBeachPigCorpse : SamsaraCorpseActorSmall
+Actor DarkGrayBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN57 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -1879,9 +1499,9 @@ actor DarkGrayBeachPig_Shrink : DarkGrayBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1909,7 +1529,7 @@ actor DarkGrayBeachPig_ShrinkEffect : DarkGrayBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1952,46 +1572,43 @@ ACTOR DarkBlueBeachPig : PigCop
 			DN58 A 1 A_Look
 			Loop
 		See:
-			DN58 A 3 A_Chase
-			DN58 A 3 A_Chase
+			DN58 AA 3 A_Chase
 			DN58 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN58 B 3 A_Chase
-			DN58 C 3 A_Chase
+			DN58 BC 3 A_Chase
 			DN58 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN58 D 3 A_Chase
-			DN58 D 3 A_Chase
+			DN58 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN58 EE 5 A_FaceTarget
 			DN58 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN58 F 15 Bright
-			DN58 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN58 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN58 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN58 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN58 EE 5 A_FaceTarget
-			DN58 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN58 F 16 Bright
-			DN58 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN58 E 7
+			DN58 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN58 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN58 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN58 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN58 H 11 A_FaceTarget
 			DN58 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN58 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN58 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN58 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN58 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN58 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN58 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN58 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN58 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN58 K 3
@@ -2056,97 +1673,24 @@ ACTOR DarkBlueBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN58 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor DarkBlueBeachPigCorpse : SamsaraCorpseActorSmall
+Actor DarkBlueBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN58 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -2267,9 +1811,9 @@ actor DarkBlueBeachPig_Shrink : DarkBlueBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -2297,7 +1841,7 @@ actor DarkBlueBeachPig_ShrinkEffect : DarkBlueBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -2340,46 +1884,43 @@ ACTOR BrownBeachPig : PigCop
 			DN59 A 1 A_Look
 			Loop
 		See:
-			DN59 A 3 A_Chase
-			DN59 A 3 A_Chase
+			DN59 AA 3 A_Chase
 			DN59 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN59 B 3 A_Chase
-			DN59 C 3 A_Chase
+			DN59 BC 3 A_Chase
 			DN59 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN59 D 3 A_Chase
-			DN59 D 3 A_Chase
+			DN59 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN59 EE 5 A_FaceTarget
 			DN59 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN59 F 15 Bright
-			DN59 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN59 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN59 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN59 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN59 EE 5 A_FaceTarget
-			DN59 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN59 F 16 Bright
-			DN59 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN59 E 7
+			DN59 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN59 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN59 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN59 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN59 H 11 A_FaceTarget
 			DN59 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN59 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN59 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN59 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN59 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN59 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN59 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN59 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN59 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN59 K 3
@@ -2398,7 +1939,7 @@ ACTOR BrownBeachPig : PigCop
 			DN59 K 3 A_Scream
 			DN59 L 5
 			DN59 M 5 A_NoBlocking
-			DN59 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN59 N 4
 			DN59 OP 5
 			DN59 P 0 A_SpawnItemEx("BrownBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -2444,97 +1985,24 @@ ACTOR BrownBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN59 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor BrownBeachPigCorpse : SamsaraCorpseActorSmall
+Actor BrownBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN59 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -2655,9 +2123,9 @@ actor BrownBeachPig_Shrink : BrownBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -2685,7 +2153,7 @@ actor BrownBeachPig_ShrinkEffect : BrownBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -2728,46 +2196,43 @@ ACTOR YellowBeachPig : PigCop
 			DN60 A 1 A_Look
 			Loop
 		See:
-			DN60 A 3 A_Chase
-			DN60 A 3 A_Chase
+			DN60 AA 3 A_Chase
 			DN60 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN60 B 3 A_Chase
-			DN60 C 3 A_Chase
+			DN60 BC 3 A_Chase
 			DN60 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN60 D 3 A_Chase
-			DN60 D 3 A_Chase
+			DN60 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN60 EE 5 A_FaceTarget
 			DN60 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN60 F 15 Bright
-			DN60 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN60 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN60 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN60 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN60 EE 5 A_FaceTarget
-			DN60 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN60 F 16 Bright
-			DN60 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN60 E 7
+			DN60 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN60 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN60 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN60 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN60 H 11 A_FaceTarget
 			DN60 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN60 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN60 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN60 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN60 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN60 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN60 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN60 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN60 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN60 K 3
@@ -2786,7 +2251,7 @@ ACTOR YellowBeachPig : PigCop
 			DN60 K 3 A_Scream
 			DN60 L 5
 			DN60 M 5 A_NoBlocking
-			DN60 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN60 N 4
 			DN60 OP 5
 			DN60 P 0 A_SpawnItemEx("YellowBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -2846,97 +2311,24 @@ ACTOR YellowBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN60 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor YellowBeachPigCorpse : SamsaraCorpseActorSmall
+Actor YellowBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN60 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -3057,9 +2449,9 @@ actor YellowBeachPig_Shrink : YellowBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -3087,7 +2479,7 @@ actor YellowBeachPig_ShrinkEffect : YellowBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -3130,46 +2522,43 @@ ACTOR DarkGreenBeachPig : PigCop
 			DN61 A 1 A_Look
 			Loop
 		See:
-			DN61 A 3 A_Chase
-			DN61 A 3 A_Chase
+			DN61 AA 3 A_Chase
 			DN61 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN61 B 3 A_Chase
-			DN61 C 3 A_Chase
+			DN61 BC 3 A_Chase
 			DN61 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN61 D 3 A_Chase
-			DN61 D 3 A_Chase
+			DN61 DD 3 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump (64, "ProneShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Jump(64, "ProneShot")
 			Goto StandShot
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN61 EE 5 A_FaceTarget
 			DN61 E 3
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN61 F 15 Bright
-			DN61 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN61 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN61 F 15 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN61 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN61 EE 5 A_FaceTarget
-			DN61 E 7 
-			TNT1 A 0 A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigCopBullet",32,0,random(-12,12),8,random(-12,12))
-			DN61 F 16 Bright
-			DN61 G 7 A_PlaySound("duke/mosspump2", 5)
+			DN61 E 7
+			DN61 E 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN61 F 16 Bright A_CustomBulletAttack(12,12,7,8,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN61 G 7 A_PlaySound("duke/mosspump2", CHAN_5)
 			DN61 E 9 A_CPosRefire
 			Goto See
 		ProneShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN61 H 11 A_FaceTarget
 			DN61 IIIIII 5 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN61 J 18 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			DN61 I 17 A_PlaySound("duke/mosspump2", 5)
+			DN61 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN61 J 18 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			DN61 I 17 A_PlaySound("duke/mosspump2", CHAN_5)
 			TNT1 A 0 A_FaceTarget
-			TNT1 AAAAAAA 0 Bright A_CustomMissile("PigProneBullet",32,0,random(-12,12),8,random(-12,12))
-			DN61 J 16 Bright A_PlaySound("duke/mossberg", CHAN_WEAPON)
-			TNT1 A 0 A_PlaySound("duke/mosspump2", 5)
-			TNT1 A 0 A_CPosRefire
+			DN61 I 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See
+			DN61 J 16 Bright A_CustomBulletAttack(12,12,7,6,"DukeEnemyBulletPuff",0,CBAF_NORANDOM)
+			TNT1 A 0 A_PlaySound("duke/mosspump2", CHAN_5)
 			Goto See
 		Pain:
 			DN61 K 3
@@ -3188,7 +2577,7 @@ ACTOR DarkGreenBeachPig : PigCop
 			DN61 K 3 A_Scream
 			DN61 L 5
 			DN61 M 5 A_NoBlocking
-			DN61 N 4 //A_SpawnItemEx("RandomPigDrop",0,0,0,0,0,10,0,40,128)
+			DN61 N 4
 			DN61 OP 5
 			DN61 P 0 A_SpawnItemEx("DarkGreenBeachPigCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
@@ -3234,97 +2623,24 @@ ACTOR DarkGreenBeachPig : PigCop
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN61 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor DarkGreenBeachPigCorpse : SamsaraCorpseActorSmall
+Actor DarkGreenBeachPigCorpse : PigCopCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN61 P 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 5 A_PlaySound("duke/enemygib")
-			Stop
 	}
 }
 
@@ -3445,9 +2761,9 @@ actor DarkGreenBeachPig_Shrink : DarkGreenBeachPig
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -3475,7 +2791,7 @@ actor DarkGreenBeachPig_ShrinkEffect : DarkGreenBeachPig
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -3504,8 +2820,8 @@ actor DarkGreenBeachPig_ShrinkEffect : DarkGreenBeachPig
 	}
 }
 
-Actor BeachPig : RandomSpawner 
-{ 
+Actor BeachPig : RandomSpawner
+{
 	DropItem "BlueBeachPig"
 	DropItem "RedBeachPig"
 	DropItem "GreenBeachPig"

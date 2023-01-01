@@ -11,82 +11,43 @@ Actor BeachGeneral : AssaultGeneral
 			DN52 A 1 A_Look
 			Loop
 		See:
-			DN52 A 3 A_Chase
-			DN52 A 3 A_Chase		
+			DN52 AA 3 A_Chase
 			DN52 B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			DN52 B 3 A_Chase					
-			DN52 C 3 A_Chase
-			DN52 C 3 A_Chase("","",CHF_NOPLAYACTIVE)					
-			DN52 D 3 A_Chase
-			DN52 D 3 A_Chase					
+			DN52 BC 3 A_Chase
+			DN52 C 3 A_Chase("","",CHF_NOPLAYACTIVE)
+			DN52 DD 3 A_Chase
 			Loop
 		Missile:
-//			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"FlyShot")
-			TNT1 A 0 A_Jump (64, "CrouchShot", "Teleport")
+			// TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"FlyShot")
+			TNT1 A 0 A_Jump(64, "CrouchShot")
 			Goto StandShot
 		StandShot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			DN52 SS 9 A_Facetarget 
+			DN52 SS 9 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			DN52 E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			DN52 S 9 A_Facetarget 
+			DN52 E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			DN52 S 9 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			DN52 E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			DN52 S 2 A_Facetarget 
+			DN52 E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			DN52 S 2 A_FaceTarget
 			Goto See
 		CrouchShot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			DN52 GG 9 A_FaceTarget
 			DN52 HH 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			DN52 GG 4 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			DN52 GG 4 Bright A_FaceTarget
 			DN52 HH 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			DN52 GG 4 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			DN52 GG 4 Bright A_FaceTarget
 			DN52 HH 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			DN52 GG 4 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			DN52 GG 4 Bright A_FaceTarget
 			DN52 HH 4 A_FaceTarget
 			Goto See
-		Teleport:
-			DN52 Q 12
-			DN52 R 1 A_ChangeFlag("NOPAIN",1)
-			DN52 R 1 A_SetTranslucent(0.96,0)
-			DN52 R 1 A_SetTranslucent(0.90,0)
-			DN52 R 1 A_SetTranslucent(0.84,0)
-			DN52 R 1 A_SetTranslucent(0.78,0)
-			DN52 R 1 A_SetTranslucent(0.72,0)
-			DN52 R 1 A_SetTranslucent(0.66,0)
-			DN52 R 1 A_SetTranslucent(0.60,0)
-			DN52 R 1 A_SetTranslucent(0.54,0)
-			DN52 R 1 A_SetTranslucent(0.48,0)
-			DN52 R 1 A_SetTranslucent(0.42,0)
-			DN52 R 1 A_SetTranslucent(0.36,0)
-			DN52 R 1 A_SetTranslucent(0.30,0)
-			DN52 R 1 A_SetTranslucent(0.24,0)
-			DN52 R 1 A_SetTranslucent(0.18,0)
-			DN52 R 1 A_SetTranslucent(0.12,0)
-			DN52 R 1 A_SetTranslucent(0.06,0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
-			TNT1 A 0 A_SpawnItem("DukeTeleportFlash")
-			TNT1 A 1 A_SetTranslucent(1,0)
-			Goto Invisible
-		Invisible:
-			TNT1 AA 5 A_Wander
-			TNT1 AA 5 A_Chase("","",CHF_NOPLAYACTIVE)
-			TNT1 A 0 A_Jump(30,"TeleEnd")
-			Loop
-		TeleEnd:
-			TNT1 A 13 A_SpawnItem("DukeTeleportFlash")
-			TNT1 A 0 A_SetSolid
-			TNT1 A 0 A_SetShootable
-			DN52 E 1 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
-			Goto StandShot
 		Pain:
 			DN52 I 3
 			DN52 I 3 A_Pain
@@ -99,27 +60,26 @@ Actor BeachGeneral : AssaultGeneral
 			DN52 I 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 A_SetTranslucent(1.0, 0)		
+			TNT1 A 0 A_SetTranslucent(1.0, 0)
 			TNT1 A 0 A_Jump(30, "FakeDeath")
 		Continue:
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			DN52 I 7 A_Scream
 			DN52 J 5 A_NoBlocking
 			DN52 K 6
-			DN52 L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
+			DN52 L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,SXF_NOCHECKPOSITION,160)
 			DN52 M 0 A_SpawnItemEx("BeachGeneralCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		PermDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			DN52 M 5 A_NoBlocking
 			DN52 M -1
-			stop			
+			stop
 		FakeDeath:
-			DN52 N 1 A_Fall     
-			DN52 A 0 A_SpawnItemEx("BeachGeneralChoking",0, 0, 0, 0, 0, 0, 0,  SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
-			DN52 N 1
+			DN52 N 1 A_Fall
+			DN52 N 1 A_SpawnItemEx("BeachGeneralChoking",0, 0, 0, 0, 0, 0, 0,  SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
 			DN52 N 0 A_Die("Faking")
 			Stop
 		Death.Faking:
@@ -166,132 +126,41 @@ Actor BeachGeneral : AssaultGeneral
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			DN52 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor BeachGeneralCorpse : SamsaraCorpseActorSmall
+Actor BeachGeneralCorpse : AssaultGeneralCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "DukeBlood"
-	BloodColor "ff 40 00"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			DN52 M 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnDebris("DukeJibs2")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs3")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs4")
-			TNT1 AA 0 A_SpawnDebris("DukeJibs5")
-			TNT1 AAA 0 A_SpawnDebris("DukeJibs6")
-			TNT1 A 0 A_Jump(32,2)
-			TNT1 A 0 A_SpawnDebris("DukeJibs1")
-			TNT1 A 0 A_Jump(64,2)
-			TNT1 A 0 A_SpawnDebris("DukeJibs10")
-			TNT1 A 0 A_Jump(64,2)
-			TNT1 AA 0 A_SpawnDebris("DukeJibs12")
-			TNT1 A 0 A_Jump(64,2)
-			TNT1 A 0 A_SpawnDebris("DukeJibs11")
-			TNT1 AA 0
-			ACLO E 1 A_PlaySound("duke/enemygib",6)
-			ACLO E 5
-			stop
 	}
 }
 
-Actor BeachGeneralChoking : BeachGeneral {
+Actor BeachGeneralChoking : BeachGeneral
+{
 	Health 5
-	SeeSound ""	
-	States {
-		Spawn:	
+	SeeSound ""
+	States
+	{
+		Spawn:
 		See:
-			TNT1 A 0		
+			TNT1 A 0
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_Scream
-			TNT1 A 0
-		    TNT1 A 0 A_PlaySound("assaultcapt/choking",6)
-			DN52 N 7
-		FakeDeath:	
-			DN52 O 8
-			DN52 N 8
-			DN52 O 8
-			DN52 N 8
-			DN52 O 8
-			DN52 N 8
-			DN52 O 8
-			DN52 N 8
-			DN52 O 8
-			DN52 N 8
+			DN52 N 7 A_PlaySound("assaultcapt/choking",CHAN_6)
+		FakeDeath:
+			DN52 ONONONONON 8
 			DN52 P 6
 			TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
 			TNT1 A 0 A_ChangeFlag(VULNERABLE,1)
@@ -301,9 +170,9 @@ Actor BeachGeneralChoking : BeachGeneral {
 		Faking:
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 			TNT1 A 0 A_Jump(192,4)
-		    TNT1 A 0 A_Jump(128,4)
-		    TNT1 A 0 A_Jump(96,4)
-		    TNT1 A 0 A_Jump(64,3)
+			TNT1 A 0 A_Jump(128,4)
+			TNT1 A 0 A_Jump(96,4)
+			TNT1 A 0 A_Jump(64,3)
 			DN52 M 115
 			DN52 M 115
 			DN52 M 115
@@ -312,7 +181,7 @@ Actor BeachGeneralChoking : BeachGeneral {
 		Rising:
 			DN52 M 5 A_Fall
 			DN52 LKJI 5
-			DN52 I 0 A_SpawnItemEx("BeachGeneralAltFake2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
+			DN52 I 0 A_SpawnItemEx("BeachGeneralAltFake2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
 			TNT1 A 0 A_Die("Remove")
 			Stop
 		Death.Remove:
@@ -324,11 +193,11 @@ Actor BeachGeneralChoking : BeachGeneral {
 			DN52 M 5 A_NoBlocking
 			DN52 M 0 A_SpawnItemEx("BeachGeneralCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
-			stop	
+			stop
 		Pain:
 		Pain.MightyBoot:
 		Pain.MarathonStun:
-			Goto FakeDeath			
+			Goto FakeDeath
 		Death:
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_StopSound(CHAN_BODY)
@@ -362,7 +231,7 @@ Actor BeachGeneralChoking : BeachGeneral {
 			DN52 O 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
-			Stop		
+			Stop
 		Death.DukeIce:
 			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
 			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
@@ -376,10 +245,9 @@ Actor BeachGeneralChoking : BeachGeneral {
 			TNT1 A 0 A_NoBlocking
 			DN52 N 0 A_GenericFreezeDeath
 			DN52 N 70 A_UnsetSolid
-			DN52 N 0 A_IceGuyDie
 			DN52 N 1 A_IceGuyDie
 			TNT1 A -1
-			stop			
+			stop
 		Death.DukeDamage:
 		Death.DukeSpectral:
 		Death.DukePistol:
@@ -405,14 +273,14 @@ Actor BeachGeneralChoking : BeachGeneral {
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_SpawnItemEx("SWFisted")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			goto Death	
+			goto Death
 		Death.SWKatana:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_SpawnItemEx("SWKatanad")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			goto Death	
+			goto Death
 		Death.SWShuriken:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(218, "Death")
@@ -422,30 +290,32 @@ Actor BeachGeneralChoking : BeachGeneral {
 	}
 }
 
-Actor BeachGeneralAltFake2 : BeachGeneral {
+Actor BeachGeneralAltFake2 : BeachGeneral
+{
    Health 10
-   +LOOKALLAROUND   
+   +LOOKALLAROUND
    SeeSound ""
-   States {
-	    FakeDeath:
-	    Death:
+   States
+   {
+		FakeDeath:
+		Death:
 		Continue:
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
-			TNT1 A 0 A_SetTranslucent(1.0, 0)			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SetTranslucent(1.0, 0)
 			DN52 I 7 A_Scream
 			DN52 J 5 A_NoBlocking
 			DN52 K 6
 			DN52 L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
 			DN52 M -1
-			Stop	   
+			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
 		Death.PhasingZorch:
 		Death.ZorchSpectral:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SetTranslucent(1.0, 0)			
+			TNT1 A 0 A_SetTranslucent(1.0, 0)
 			DN52 I 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
 			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
@@ -485,7 +355,7 @@ Actor BeachGeneralAltFake2 : BeachGeneral {
 			Goto Death
 		Death.FireExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
-			Goto Death			
+			Goto Death
 	}
 }
 
@@ -606,9 +476,9 @@ actor BeachGeneral_Shrink : BeachGeneral
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -636,7 +506,7 @@ actor BeachGeneral_ShrinkEffect : BeachGeneral
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
