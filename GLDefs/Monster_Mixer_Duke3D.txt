@@ -117,25 +117,25 @@ pointlight DUKE3D_OCTABRAIN_PROJECTILE_X16
 pointlight DUKE3D_OCTABRAIN_PROJECTILE_X17
 {
 	color 0.56 0.24 0.24
-	size 56
+	size 60
 }
 
 pointlight DUKE3D_OCTABRAIN_PROJECTILE_X18
 {
 	color 0.48 0.16 0.16
-	size 52
+	size 60
 }
 
 pointlight DUKE3D_OCTABRAIN_PROJECTILE_X19
 {
 	color 0.4 0.08 0.08
-	size 48
+	size 60
 }
 
 pointlight DUKE3D_OCTABRAIN_PROJECTILE_X20
 {
 	color 0.32 0.0 0.0
-	size 44
+	size 60
 }
 
 object Octabrain
@@ -192,7 +192,16 @@ object OctabrainProjectile
 // Pig Cop
 flickerlight DUKE3D_PIGCOP_ATK
 {
-	color 1.0 0.5 0.28
+	color 1.0 0.6 0.3
+	size 46
+	secondarysize 54
+	chance 0.4
+	offset 0 20 0
+}
+
+flickerlight DUKE3D_PIGCOP_PRONE_ATK
+{
+	color 1.0 0.6 0.3
 	size 46
 	secondarysize 54
 	chance 0.4
@@ -201,85 +210,79 @@ flickerlight DUKE3D_PIGCOP_ATK
 object PigCop
 {
 	frame PIGCF { light DUKE3D_PIGCOP_ATK }
-	frame PIGCJ { light DUKE3D_PIGCOP_ATK }
+	frame PIGCJ { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object MagnumPig
 {
 	frame MPIGF { light DUKE3D_PIGCOP_ATK }
-	frame MPIGJ { light DUKE3D_PIGCOP_ATK }
+	frame MPIGJ { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object ZombiePigCop
 {
 	frame PIGZF { light DUKE3D_PIGCOP_ATK }
-	frame PIGZI { light DUKE3D_PIGCOP_ATK }
+	frame PIGZI { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object PiginaDress
 {
 	frame PIGDF { light DUKE3D_PIGCOP_ATK }
-	frame PIGDI { light DUKE3D_PIGCOP_ATK }
-}
-
-object PigCopTank
-{
-	frame PIGTB { light DUKE3D_PIGCOP_ATK }
-	frame PIGTC { light DUKE3D_PIGCOP_ATK }
+	frame PIGDI { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object BlueBeachPig
 {
 	frame DN53F { light DUKE3D_PIGCOP_ATK }
-	frame DN53J { light DUKE3D_PIGCOP_ATK }
+	frame DN53J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object RedBeachPig
 {
 	frame DN54F { light DUKE3D_PIGCOP_ATK }
-	frame DN54J { light DUKE3D_PIGCOP_ATK }
+	frame DN54J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object GreenBeachPig
 {
 	frame DN55F { light DUKE3D_PIGCOP_ATK }
-	frame DN55J { light DUKE3D_PIGCOP_ATK }
+	frame DN55J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object GrayBeachPig
 {
 	frame DN56F { light DUKE3D_PIGCOP_ATK }
-	frame DN56J { light DUKE3D_PIGCOP_ATK }
+	frame DN56J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object DarkGrayBeachPig
 {
 	frame DN57F { light DUKE3D_PIGCOP_ATK }
-	frame DN57J { light DUKE3D_PIGCOP_ATK }
+	frame DN57J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object DarkBlueBeachPig
 {
 	frame DN58F { light DUKE3D_PIGCOP_ATK }
-	frame DN58J { light DUKE3D_PIGCOP_ATK }
+	frame DN58J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object BrownBeachPig
 {
 	frame DN59F { light DUKE3D_PIGCOP_ATK }
-	frame DN59J { light DUKE3D_PIGCOP_ATK }
+	frame DN59J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object YellowBeachPig
 {
 	frame DN60F { light DUKE3D_PIGCOP_ATK }
-	frame DN60J { light DUKE3D_PIGCOP_ATK }
+	frame DN60J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 object DarkGreenBeachPig
 {
 	frame DN61F { light DUKE3D_PIGCOP_ATK }
-	frame DN61J { light DUKE3D_PIGCOP_ATK }
+	frame DN61J { light DUKE3D_PIGCOP_PRONE_ATK }
 }
 
 // Assault Enforcer
@@ -300,18 +303,53 @@ object ACommanderRocket
 	frame RPGXA { light DUKE3D_ASSAULTCOMMANDER_ROCKET }
 }
 
+// Pig Cop Tank
+flickerlight DUKE3D_PIGCOP_TANK_ATK_LEFT
+{
+	color 1.0 0.6 0.3
+	size 36
+	secondarysize 40
+	chance 0.4
+	offset 0 48 -24
+}
+
+flickerlight DUKE3D_PIGCOP_TANK_ATK_RIGHT
+{
+	color 1.0 0.6 0.3
+	size 36
+	secondarysize 40
+	chance 0.4
+	offset 0 48 24
+}
+
+object PigCopTank
+{
+	frame PIGTB { light DUKE3D_PIGCOP_TANK_ATK_LEFT }
+	frame PIGTC { light DUKE3D_PIGCOP_TANK_ATK_RIGHT }
+}
+
 // Cycloid Emperor
 flickerlight DUKE3D_CYCLOIDEMPEROR_ATK
 {
 	color 1.0 0.92 0.74
-	size 76
-	secondarySize 84
+	size 48
+	secondarySize 56
 	chance 0.4
+	offset 48 60 0
+}
+
+flickerlight DUKE3D_LARGE_CYCLOIDEMPEROR_ATK
+{
+	color 1.0 0.92 0.74
+	size 64
+	secondarySize 72
+	chance 0.4
+	offset 62 78 0
 }
 
 object CycloidEmperor
 {
-	frame CYEMH { light DUKE3D_CYCLOIDEMPEROR_ATK }
+	frame CYEMH { light DUKE3D_LARGE_CYCLOIDEMPEROR_ATK }
 }
 
 object CycloidEmperorDoom
@@ -326,7 +364,7 @@ object MultiCycloidEmperorDoom
 
 object BeachCycloidEmperor
 {
-	frame DN75H { light DUKE3D_CYCLOIDEMPEROR_ATK }
+	frame DN75H { light DUKE3D_LARGE_CYCLOIDEMPEROR_ATK }
 }
 
 object BeachCycloidEmperorDoom
@@ -366,15 +404,25 @@ object OctabrainProjectileCy
 // Overlord
 flickerlight DUKE3D_OVERLORD_ATK
 {
-	color 1.0 0.54 0.22
-	size 76
-	secondarySize 84
+	color 1.0 0.6 0.3
+	size 62
+	secondarysize 70
 	chance 0.4
+	offset 0 88 0
+}
+
+flickerlight DUKE3D_LARGE_OVERLORD_ATK
+{
+	color 1.0 0.6 0.3
+	size 80
+	secondarysize 90
+	chance 0.4
+	offset 0 114 0
 }
 
 object SamsaraMixerOverlord
 {
-	frame OVRLH { light DUKE3D_OVERLORD_ATK }
+	frame OVRLH { light DUKE3D_LARGE_OVERLORD_ATK }
 }
 
 object SamsaraMixerOverlordDoom
@@ -408,16 +456,26 @@ object AlienShrinkerAttack
 // Alien Queen
 flickerlight DUKE3D_ALIENQUEEN_ATK
 {
-	color 0.95 0.95 1.0
-	size 76
-	secondarySize 84
+	color 0.9 0.9 1.0
+	size 80
+	secondarySize 88
 	chance 0.4
+	offset 0 50 0
+}
+
+flickerlight DUKE3D_LARGE_ALIENQUEEN_ATK
+{
+	color 0.9 0.9 1.0
+	size 95
+	secondarySize 104
+	chance 0.4
+	offset 0 59 0
 }
 
 object AlienQueen
 {
-	frame QUEEF { light DUKE3D_ALIENQUEEN_ATK }
-	frame QUEEG { light DUKE3D_ALIENQUEEN_ATK }
+	frame QUEEF { light DUKE3D_LARGE_ALIENQUEEN_ATK }
+	frame QUEEG { light DUKE3D_LARGE_ALIENQUEEN_ATK }
 }
 
 object AlienQueenDoom
@@ -429,15 +487,25 @@ object AlienQueenDoom
 // Battlelord
 flickerlight DUKE3D_BATTLELORD_ATK
 {
-	color 1.0 0.5 0.28
-	size 74
-	secondarysize 84
+	color 1.0 0.6 0.3
+	size 70
+	secondarysize 82
 	chance 0.4
+	offset 0 30 0
+}
+
+flickerlight DUKE3D_LARGE_BATTLELORD_ATK
+{
+	color 1.0 0.6 0.3
+	size 91
+	secondarysize 107
+	chance 0.4
+	offset 0 39 0
 }
 
 object Battlelord
 {
-	frame BTLOF { light DUKE3D_BATTLELORD_ATK }
+	frame BTLOF { light DUKE3D_LARGE_BATTLELORD_ATK }
 }
 
 object BattlelordDoom

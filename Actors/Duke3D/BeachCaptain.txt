@@ -76,8 +76,8 @@ Actor BeachCaptain : AssaultCaptain
 			DN51 R 1 A_SetTranslucent(0.06,0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
-			TNT1 A 0 A_SpawnItem("DukeTeleportFlash")
+			TNT1 A 0 A_PlaySound("assaultcapt/teleport",CHAN_5)
+			TNT1 A 0 A_SpawnItemEx("DukeTeleportFlash",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			TNT1 A 1 A_SetTranslucent(1,0)
 			Goto Invisible
 		Invisible:
@@ -86,10 +86,10 @@ Actor BeachCaptain : AssaultCaptain
 			TNT1 A 0 A_Jump(30,"TeleEnd")
 			Loop
 		TeleEnd:
-			TNT1 A 13 A_SpawnItem("DukeTeleportFlash")
+			TNT1 A 13 A_SpawnItemEx("DukeTeleportFlash",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			TNT1 A 0 A_SetSolid
 			TNT1 A 0 A_SetShootable
-			DN51 E 1 A_PlaySoundEx("assaultcapt/teleport","soundslot5",0,0)
+			DN51 E 1 A_PlaySound("assaultcapt/teleport",CHAN_5)
 			Goto StandShot
 		Pain:
 			DN51 I 3

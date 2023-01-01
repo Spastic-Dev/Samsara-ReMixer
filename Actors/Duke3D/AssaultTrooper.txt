@@ -90,6 +90,7 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 */
 		Missile:
 			// TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"FlyShot")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_Jump(64, "CrouchShot")
 			Goto StandShot
 /*
@@ -100,7 +101,6 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			Goto SeeFly
 */
 		StandShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASTR QQ 9 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
 			ASTR E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
@@ -110,7 +110,6 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			ASTR Q 2 A_FaceTarget
 			Goto See
 		CrouchShot:
-			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASTR GG 9 A_FaceTarget
 			ASTR HH 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
