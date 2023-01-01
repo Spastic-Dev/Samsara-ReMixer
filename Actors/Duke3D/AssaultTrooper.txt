@@ -8,20 +8,19 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 	Scale 0.65
 	MONSTER
 	+FLOORCLIP
-    +NOTDMATCH
+	+NOTDMATCH
 	+NOINFIGHTING
-    +THRUGHOST
+	+THRUGHOST
 	+MISSILEMORE
 	+NOBLOODDECALS
 	SeeSound "assaultenf/sight"
 	PainSound "assaultenf/pain"
 	DeathSound "assaultenf/death"
 	ActiveSound "assaultcapt/roam"
-	AttackSound ""
 	Obituary "An Assault Trooper killed %o with his laser."
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
-    PainChance "MightyBoot", 255
+	DamageFactor "Mace", 1.1
+	DamageFactor "DragonClaw", 1.5
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	BloodType "DukeBlood"
 	BloodColor "ff 40 00"
@@ -29,7 +28,7 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 	Decal BulletChip
 	var int user_scalex;
 	var int user_scaley;
-	States 
+	States
 	{
 		Spawn:
 			ASTR A 0
@@ -40,16 +39,14 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			ASTR A 1 A_Look
 			Loop
 		See:
-			ASTR A 3 A_Chase
-			ASTR A 3 A_Chase		
+			ASTR AA 3 A_Chase
 			ASTR B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			ASTR B 3 A_Chase					
-			ASTR C 3 A_Chase
-			ASTR C 3 A_Chase("","",CHF_NOPLAYACTIVE)					
-			ASTR D 3 A_Chase
-			ASTR D 3 A_Chase					
+			ASTR BC 3 A_Chase
+			ASTR C 3 A_Chase("","",CHF_NOPLAYACTIVE)
+			ASTR DD 3 A_Chase
 			Loop
-/*		See:						//Experimental stuff - Extremely buggy
+/*
+		See: //Experimental stuff - Extremely buggy
 			ASTR A 3 A_Chase
 			TNT1 A 0 A_CustomMissile("D3DHeightCheck")
 			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"JetpackStart")
@@ -89,41 +86,44 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 		SeeFly:
 			ASTR F 3 A_Chase
 			TNT1 A 0 A_JumpIf(Z - FloorZ < 32, "JetpackEnd")
-			Loop*/
+			Loop
+*/
 		Missile:
-//			TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"FlyShot")
-			TNT1 A 0 A_Jump (64, "CrouchShot")
+			// TNT1 A 0 A_JumpIfInventory("JetpackToken",1,"FlyShot")
+			TNT1 A 0 A_Jump(64, "CrouchShot")
 			Goto StandShot
-//		FlyShot:
-//			TNT1 A 0 A_FaceTarget
-//			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-//			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-//			Goto SeeFly
-		StandShot:	
+/*
+		FlyShot:
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			Goto SeeFly
+*/
+		StandShot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			ASTR QQ 9 A_Facetarget 
+			ASTR QQ 9 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			ASTR E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			ASTR Q 9 A_Facetarget 
+			ASTR E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			ASTR Q 9 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			ASTR E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			ASTR Q 2 A_Facetarget 
+			ASTR E 9 Bright A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			ASTR Q 2 A_FaceTarget
 			Goto See
 		CrouchShot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			ASTR GG 9 A_FaceTarget
 			ASTR HH 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			ASTR GG 4 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			ASTR GG 4 Bright A_FaceTarget
 			ASTR HH 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			ASTR GG 4 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			ASTR GG 4 Bright A_FaceTarget
 			ASTR HH 4 A_FaceTarget
 			TNT1 A 0 A_PlaySound("assaultcapt/fire", CHAN_WEAPON)
-			TNT1 A 0 Bright A_CustomMissile("TrooperLaser",32,10,0,8)
-			ASTR GG 4 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("TrooperLaser",32,10,0,CMF_CHECKTARGETDEAD)
+			ASTR GG 4 Bright A_FaceTarget
 			ASTR HH 4 A_FaceTarget
 			Goto See
 		Pain:
@@ -152,7 +152,7 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			TNT1 A 5
 			stop
 		Death.DukeExplosive:
-			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")		
+			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
 		Death.DukeDamage:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
@@ -182,30 +182,29 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			TNT1 A 0 A_Jump(30, "FakeDeath")
 		Continue:
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASTR I 7 A_Scream
 			ASTR J 5 A_NoBlocking
 			ASTR K 6
-			ASTR L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
+			ASTR L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,SXF_NOCHECKPOSITION,160)
 			ASTR M 0 A_SpawnItemEx("AssaultTrooperCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
 		PermDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASTR M 5 A_NoBlocking
 			ASTR M -1
-			stop			
+			stop
 		FakeDeath:
-			ASTR N 1 A_Fall     
-			ASTR A 0 A_SpawnItemEx("AssaultTrooperChoking",0, 0, 0, 0, 0, 0, 0,  SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
-			ASTR N 1
+			ASTR N 1 A_Fall
+			ASTR N 1 A_SpawnItemEx("AssaultTrooperChoking",0, 0, 0, 0, 0, 0, 0,  SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
 			ASCA N 0 A_Die("Faking")
 			Stop
 		Death.Faking:
 			TNT1 A 1
 			Stop
 		XDeath:
-			ACLO E 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
@@ -222,9 +221,7 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			TNT1 AA 0 A_SpawnDebris("DukeJibs12")
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_SpawnDebris("DukeJibs11")
-			TNT1 AA 0
-			ACLO E 1 A_PlaySound("duke/enemygib",6)
-			ACLO E 5
+			TNT1 A 5 A_PlaySound("duke/enemygib")
 			Stop
 		Pain.ShrinkerDMG:
 			ASTR I 0
@@ -276,7 +273,7 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -306,7 +303,7 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -324,9 +321,7 @@ ACTOR AssaultTrooper : SamsaraMonsterAlienMedium
 	}
 }
 
-Actor ATChoked : Inventory {
-	inventory.maxamount 1
-}
+Actor ATChoked : Boolean {}
 
 ACTOR MultiAssaultTrooper : AssaultTrooper
 {
@@ -336,7 +331,7 @@ ACTOR MultiAssaultTrooper : AssaultTrooper
 
 ACTOR InvisAssaultTrooper : AssaultTrooper
 {
-	States 
+	States
 	{
 		Spawn:
 			TNT1 A 1 A_Look
@@ -397,36 +392,25 @@ Actor AssaultTrooperCorpse : SamsaraCorpseActorSmall
 			TNT1 AA 0 A_SpawnDebris("DukeJibs12")
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_SpawnDebris("DukeJibs11")
-			TNT1 AA 0
-			ACLO E 1 A_PlaySound("duke/enemygib",6)
-			ACLO E 5
+			TNT1 A 5 A_PlaySound("duke/enemygib",CHAN_6)
 			stop
 	}
 }
 
-Actor AssaultTrooperChoking : AssaultTrooper {
+Actor AssaultTrooperChoking : AssaultTrooper
+{
 	Health 5
-	SeeSound ""	
-	States {
+	SeeSound ""
+	States
+	{
 		Spawn:
 		See:
 			TNT1 A 0
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_Scream
-			TNT1 A 0			
-		    TNT1 A 0 A_PlaySound("assaultcapt/choking",6)
-			ASTR N 7
+			ASTR N 7 A_PlaySound("assaultcapt/choking",CHAN_6)
 		FakeDeath:
-			ASTR O 8
-			ASTR N 8
-			ASTR O 8
-			ASTR N 8
-			ASTR O 8
-			ASTR N 8
-			ASTR O 8
-			ASTR N 8
-			ASTR O 8
-			ASTR N 8
+			ASTR ONONONONON 8
 			ASTR P 6
 			TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
 			TNT1 A 0 A_ChangeFlag(VULNERABLE,1)
@@ -436,9 +420,9 @@ Actor AssaultTrooperChoking : AssaultTrooper {
 		Faking:
 			TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 			TNT1 A 0 A_Jump(192,4)
-		    TNT1 A 0 A_Jump(128,4)
-		    TNT1 A 0 A_Jump(96,4)
-		    TNT1 A 0 A_Jump(64,3)
+			TNT1 A 0 A_Jump(128,4)
+			TNT1 A 0 A_Jump(96,4)
+			TNT1 A 0 A_Jump(64,3)
 			ASTR M 115
 			ASTR M 115
 			ASTR M 115
@@ -447,7 +431,7 @@ Actor AssaultTrooperChoking : AssaultTrooper {
 		Rising:
 			ASTR M 5 A_Fall
 			ASTR LKJI 5
-			ASTR I 0 A_SpawnItemEx("AssaultTrooperAltFake2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
+			ASTR I 0 A_SpawnItemEx("AssaultTrooperAltFake2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
 			TNT1 A 0 A_Die("Remove")
 			Stop
 		Death.Remove:
@@ -464,7 +448,7 @@ Actor AssaultTrooperChoking : AssaultTrooper {
 		Pain:
 		Pain.MightyBoot:
 		Pain.MarathonStun:
-			Goto FakeDeath			
+			Goto FakeDeath
 		Death:
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_StopSound(CHAN_BODY)
@@ -498,7 +482,7 @@ Actor AssaultTrooperChoking : AssaultTrooper {
 			ASTR O 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
-			Stop		
+			Stop
 		Death.DukeIce:
 			TNT1 A 0 A_PlaySound("duke/enemyfreeze")
 			TNT1 A 0 A_GiveInventory("FreezethrowerWeakness")
@@ -512,10 +496,9 @@ Actor AssaultTrooperChoking : AssaultTrooper {
 			TNT1 A 0 A_NoBlocking
 			ASTR N 0 A_GenericFreezeDeath
 			ASTR N 70 A_UnsetSolid
-			ASTR N 0 A_IceGuyDie
 			ASTR N 1 A_IceGuyDie
 			TNT1 A -1
-			stop			
+			stop
 		Death.DukeDamage:
 		Death.DukeSpectral:
 		Death.DukePistol:
@@ -541,13 +524,13 @@ Actor AssaultTrooperChoking : AssaultTrooper {
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_SpawnItemEx("SWFisted")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			goto Death	
+			goto Death
 		Death.SWKatana:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_SpawnItemEx("SWKatanad")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			goto Death	
+			goto Death
 		Death.SWShuriken:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(218, "Death")
@@ -557,22 +540,24 @@ Actor AssaultTrooperChoking : AssaultTrooper {
 	}
 }
 
-ACTOR AssaultTrooperAltFake2 : AssaultTrooper {
+ACTOR AssaultTrooperAltFake2 : AssaultTrooper
+{
    Health 10
    +LOOKALLAROUND
    SeeSound ""
-   States {
-	    FakeDeath:
-	    Death:
+   States
+   {
+		FakeDeath:
+		Death:
 		Continue:
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASTR I 7 A_Scream
 			ASTR J 5 A_NoBlocking
 			ASTR K 6
 			ASTR L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
 			ASTR M -1
-			Stop	   
+			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
@@ -618,7 +603,7 @@ ACTOR AssaultTrooperAltFake2 : AssaultTrooper {
 			Goto Death
 		Death.FireExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
-			Goto Death			
+			Goto Death
 	}
 }
 
@@ -739,9 +724,9 @@ actor AssaultTrooper_Shrink : AssaultTrooper
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -769,7 +754,7 @@ actor AssaultTrooper_ShrinkEffect : AssaultTrooper
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

@@ -109,9 +109,7 @@ ACTOR ProtectorDrone : SamsaraMonsterAlienLarge
 			Goto MeleeEnd
 		MeleeEnd:
 			PRDR A 26
-			TNT1 A 0 A_Jump(96,1)
-			TNT1 A 0 A_PlaySound("prodrone/roam")
-			PRDR A 14
+			PRDR A 14 A_PlaySound("prodrone/roam")
 			Goto See
 		Missile:
 			PRDR I 0 A_FaceTarget
@@ -179,7 +177,6 @@ ACTOR ProtectorDrone : SamsaraMonsterAlienLarge
 			TNT1 AA 0 A_SpawnDebris("ProtectorDroneGibs9")
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs8")
-			TNT1 AA 0
 			TNT1 A 5 A_PlaySound("duke/enemygib")
 			Stop
 		Death.ExpanderDMG:
@@ -284,7 +281,6 @@ Actor ProtectorDroneCorpse
 			TNT1 AA 0 A_SpawnDebris("ProtectorDroneGibs9")
 			TNT1 A 0 A_Jump(64,2)
 			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs8")
-			TNT1 AA 0
 			TNT1 A 5 A_PlaySound("duke/enemygib")
 			Stop
 	}
@@ -373,9 +369,7 @@ ACTOR InvisibleDroneDoom : ProtectorDroneDoom
 			Goto MeleeEnd
 		MeleeEnd:
 			PRDR A 26 A_SetTranslucent(0,0)
-			TNT1 A 0 A_Jump(96,1)
-			TNT1 A 0 A_PlaySound("prodrone/roam")
-			PRDR A 14
+			PRDR A 14 A_PlaySound("prodrone/roam")
 			Goto See
 		Death:
 			TNT1 A 0 A_SetTranslucent(1,0)

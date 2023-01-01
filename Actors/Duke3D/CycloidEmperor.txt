@@ -10,10 +10,10 @@ ACTOR CycloidEmperor : SamsaraMonsterMechanicalHuge
 	MONSTER
 	+BOSS
 	+FLOORCLIP
-    +NOTDMATCH
-    +NOICEDEATH
+	+NOTDMATCH
+	+NOICEDEATH
 	+NOINFIGHTING
-    +THRUGHOST
+	+THRUGHOST
 	+MISSILEMORE
 	+MISSILEEVENMORE
 	+DONTMORPH
@@ -24,46 +24,46 @@ ACTOR CycloidEmperor : SamsaraMonsterMechanicalHuge
 	DeathSound "cycloid/death"
 	ActiveSound "cycloid/roam"
 	AttackSound "cycloid/attack"
-	Tag "Cycloid Emperor"	
+	Tag "Cycloid Emperor"
 	Obituary "%o was stomped on by the Cycloid Emperor."
-    DamageFactor "CorvusCrossbow", 1.15
-    DamageFactor "DragonClaw", 1.6
-    DamageFactor "MarathonFusion", 2.0
+	DamageFactor "CorvusCrossbow", 1.15
+	DamageFactor "DragonClaw", 1.6
+	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0	
-    DamageFactor "WMCNade", 0.75
+	DamageFactor "PoisonBolt", 0
+	DamageFactor "WMCNade", 0.75
 	DamageFactor "CorvusHellstaffTomed", 0.2
 	DamageFactor "BJSpear", 0.5
 	DamageFactor "Tesla", 0.68
 	DamageFactor "Shock", 0.3
 	DamageFactor "LifeLeech", 0.7
-	DamageFactor "CalebFire", 0.8	
-    DamageFactor "CalebBullet", 1.0	
+	DamageFactor "CalebFire", 0.8
+	DamageFactor "CalebBullet", 1.0
 	DamageFactor "Vodoo", 0.32
 	DamageFactor "DisruptorWall", 0.5
 	DamageFactor "EradNova", 0.4
-    DamageFactor "EradGreenFire", 0.2	
-    DamageFactor "EradCoopGreenFire", 0.2	
-	DamageFactor "RottFire", 0.6	
-	DamageFactor "WTRangedFire", 0.7	
+	DamageFactor "EradGreenFire", 0.2
+	DamageFactor "EradCoopGreenFire", 0.2
+	DamageFactor "RottFire", 0.6
+	DamageFactor "WTRangedFire", 0.7
 	DamageFactor "Nuke", 0.6
 	DamageFactor "SWNuke", 0.5
 	DamageFactor "SWNukeCoop", 0.5
 	DamageFactor "SWFlame", 0.2
 	DamageFactor "SWFlameCoop", 0.2
-	DamageFactor "SWFlame2", 0.2	
+	DamageFactor "SWFlame2", 0.2
 	DamageFactor "SWFlame2Coop", 0.2
 	DamageFactor "SWFlame3", 0.5
-    DamageFactor "RMR-BigPlasma", 0.3		
+	DamageFactor "RMR-BigPlasma", 0.3
 	DamageFactor "CMDMGSHIT", 0.7
-	DamageFactor "Disintegrate", 0.8	
+	DamageFactor "Disintegrate", 0.8
 	DamageFactor "RottExplosive", 0.8
-	DamageFactor "RottBullet", 1.0		
-	DamageFactor "C7Disintegrate", 0.5	
+	DamageFactor "RottBullet", 1.0
+	DamageFactor "C7Disintegrate", 0.5
 	PainChance "ShrinkerDMG", 0
 	BloodType "DukeBloodBoss"
 	BloodColor "ff 40 00"
-	States 
+	States
 	{
 		Spawn:
 			CYEM A 0
@@ -75,14 +75,14 @@ ACTOR CycloidEmperor : SamsaraMonsterMechanicalHuge
 			Loop
 		See:
 			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
 			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 			TNT1 A 0 A_GiveInventory("DukeCycloidSee")
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+			TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
 			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
 			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 			TNT1 A 0 A_GiveInventory("HLBossSee",1)
@@ -90,78 +90,65 @@ ACTOR CycloidEmperor : SamsaraMonsterMechanicalHuge
 			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
 		See2:
 			CYEM AAA 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			CYEM B 2 A_Chase
 			CYEM B 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			CYEM B 2 A_Chase
-			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)	
+			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)
 			CYEM CCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			CYEM D 2 A_Chase
 			CYEM D 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			CYEM D 2 A_Chase
-			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)	
+			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)
 			Loop
 		Missile:
-			TNT1 A 0 A_TakeInventory("CycloidEmperorRocketToken",5)
-			TNT1 A 0 A_TakeInventory("CycloidEmperorEnergyToken",12)
 			TNT1 A 0 A_PlaySound("cycloid/attack", CHAN_WEAPON)
 			TNT1 A 0 A_Jump(38, "Rocketatk")
 			TNT1 A 0 A_JumpIfCloser(468, "EnergyAtk")
 			goto RocketAtk
 		RocketAtk:
-			//TNT1 A 0 A_JumpIfInventory("CycloidEmperorRocketToken",5,"RocketAtkContinue")
 			CYEM EEEEE 1 A_FaceTarget
-			//TNT1 A 0 A_GiveInventory("CycloidEmperorRocketToken",1)
-			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-24,24),8)
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-24,24),CMF_CHECKTARGETDEAD)
+			CYEM FFEEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),CMF_CHECKTARGETDEAD)
+			CYEM FFEEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-8,8),CMF_CHECKTARGETDEAD)
+			CYEM FFEEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),CMF_CHECKTARGETDEAD)
+			CYEM FFEEEEE 1 A_FaceTarget
+			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-24,24),CMF_CHECKTARGETDEAD)
 			CYEM FF 1 A_FaceTarget
-			CYEM EEEEE 1 A_FaceTarget
-			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
-			CYEM FF 1 A_FaceTarget
-			CYEM EEEEE 1 A_FaceTarget
-			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-8,8),8)
-			CYEM FF 1 A_FaceTarget
-			CYEM EEEEE 1 A_FaceTarget
-			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
-			CYEM FF 1 A_FaceTarget
-			CYEM EEEEE 1 A_FaceTarget
-			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-24,24),8)
-			CYEM FF 1 A_FaceTarget
-			//CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-16,16),8)
-			//Loop
-		//RocketAtkContinue:
 			TNT1 A 0 A_Jump(130,"See2")
-			Goto RocketAtk
+			Loop
 		EnergyAtk:
-			//TNT1 A 0 A_JumpIfInventory("CycloidEmperorEnergyToken",12,"See2")
 			CYEM GGGGGGGGGG 2 A_FaceTarget
 			TNT1 A 0 A_PlaySound("octabrain/attack", CHAN_WEAPON)
-			//TNT1 A 0 A_GiveInventory("CycloidEmperorEnergyToken",1)
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),8)
+			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
 			goto See2
 		Pain:
@@ -173,7 +160,7 @@ ACTOR CycloidEmperor : SamsaraMonsterMechanicalHuge
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			CYEM I 10 A_Scream
 			CYEM J 10 A_NoBlocking
-			CYEM KLMNOPQ 10 
+			CYEM KLMNOPQ 10
 			CYEM Q 30
 			CYEM Q -1 A_KillMaster
 			Stop
@@ -188,34 +175,32 @@ ACTOR CycloidEmperorDoom : CycloidEmperor
 	Scale 1.00
 	States
 	{
-		EnergyAtk:
-		//TNT1 A 0 A_JumpIfInventory("CycloidEmperorEnergyToken",12,"See2")
+	EnergyAtk:
 		CYEM GGGGGGGGGG 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("octabrain/attack", CHAN_WEAPON)
-		//TNT1 A 0 A_GiveInventory("CycloidEmperorEnergyToken",1)
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),8)
+		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
 		goto See2
 	}

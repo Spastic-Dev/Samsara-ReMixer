@@ -1,14 +1,7 @@
-ACTOR DukeEnemyBullet : DoomEnemyBullet
+ACTOR DukeEnemyBulletPuff : DukeBulletPuff
 {
-	Damage (5)
-	Decal DukeBulletchip
-	States
-	{
-		Death:
-			TNT1 A 0
-			TNT1 A 1 A_SpawnItemEx("DukeBulletPuff",0,0,0,0,0,0,0,32)
-			stop
-	}
+	-PUFFONACTORS
+	DamageType "DoomBullet"
 }
 
 ACTOR DukeBloodAC : Blood
@@ -188,63 +181,61 @@ ACTOR JetpackToken : Counter {}
 
 ACTOR D3DHeightCheck	//Thanks to PresidentPeople for this!
 {
-   Speed 1
-   Projectile
-   +NOCLIP
-   -ACTIVATEIMPACT
-   -ACTIVATEPCROSS
-   States
-   {
-	  Spawn:
-	   TNT1 A 0
-	   TNT1 A 4 Bright A_JumpIf(momz > 0.05,"TargetHigher")
+	Speed 1
+	Projectile
+	+NOCLIP
+	-ACTIVATEIMPACT
+	-ACTIVATEPCROSS
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 4 A_JumpIf(momz > 0.05,"TargetHigher")
 		stop
-
-	  TargetHigher:
-	   TNT1 A 10 A_GiveToTarget("JetpackToken",1)
+	TargetHigher:
+		TNT1 A 10 A_GiveToTarget("JetpackToken",1)
 		stop
-
-	  Death:
-	   TNT1 A 1
+	Death:
+		TNT1 A 1
 		stop
-   }
+	}
 }
 
 ACTOR TrooperLaser
 {
-  Radius 13
-  Height 8
-  Speed 35
-  Damage (7)
-  PROJECTILE
-  Decal bulletchip
-  Scale 0.3
-  States
-  {
+	Radius 13
+	Height 8
+	Speed 35
+	Damage (7)
+	PROJECTILE
+	+BRIGHT
+	Decal BulletChip
+	Scale 0.3
+	States
+	{
 	Spawn:
-		ASLS A 0 bright A_SpawnItemEx("TrooperLaserTrail",-20,0,0,0,0,0,0,128,0)
-		ASLS A 0 bright A_SpawnItemEx("TrooperLaserTrail",-15,0,0,0,0,0,0,128,0)
-		ASLS A 0 bright A_SpawnItemEx("TrooperLaserTrail",-10,0,0,0,0,0,0,128,0)
-		ASLS A 1 bright A_SpawnItemEx("TrooperLaserTrail",-5,0,0,0,0,0,0,128,0)
+		ASLS A 0
+		ASLS A 0 A_SpawnItemEx("TrooperLaserTrail",-20,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+		ASLS A 0 A_SpawnItemEx("TrooperLaserTrail",-15,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+		ASLS A 0 A_SpawnItemEx("TrooperLaserTrail",-10,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+		ASLS A 1 A_SpawnItemEx("TrooperLaserTrail",-5,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 		loop
 	Death:
 		TNT1 A 1
 		Stop
-  }
+	}
 }
 
 ACTOR TrooperLaserTrail
 {
-	Radius 0
-	Height 0
-	Speed 0
-	Damage 0
-	PROJECTILE
+	+BRIGHT
+	+NOINTERACTION
+	+CLIENTSIDEONLY
 	scale 0.3
 	States
 	{
-	  Spawn:
-		ASLS A 2 bright
+	Spawn:
+		ASLS A 2
 		stop
 	}
 }
@@ -256,15 +247,13 @@ ACTOR DukeTeleportFlash
 	Scale 0.75
 	States
 	{
-	  Spawn:
-			TFLA ABCD 1
-			TFLA EF 2
-			TFLA EDC 1
-			TFLA B 2
-			TFLA A 1
-	  Death:
-			TNT1 A 5 A_FadeOut
-			Stop
+	Spawn:
+		TFLA ABCD 1
+		TFLA EF 2
+		TFLA EDC 1
+		TFLA B 2
+		TFLA A 1
+		Stop
 	}
 }
 
@@ -276,7 +265,7 @@ ACTOR SamsaraMixerOverlordRocketPuff : SamsaraDukeRocketPuff
 	Alpha 0.5
 	States
 	{
-	  Spawn:
+	Spawn:
 		TNT1 A 2
 		DKPF ABCD 4
 		Stop
@@ -289,19 +278,20 @@ ACTOR ACommanderRocket
 	Height 8
 	Speed 30
 	PROJECTILE
+	+BRIGHT
+	+FORCERADIUSDMG
 	Obituary "%o was blown to bits by an Assault Commander."
 	Scale 0.4
 	Decal Scorch
-	+FORCERADIUSDMG
 	States
 	{
 		Spawn:
-			RPGX A 1 bright A_SpawnItemEx("SamsaraDukeRocketPuff",0,0,0,0,0,0,0,160)
+			RPGX A 1 A_SpawnItemEx("SamsaraDukeRocketPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			loop
 		Death:
 			TNT1 A 0 A_Explode(35, 111)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
-			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,160)
+			TNT1 A 0 A_PlaySound("duke/explosion", CHAN_6, 1.0, 0, ATTN_NONE)
+			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			stop
 	}
 }
@@ -312,7 +302,7 @@ ACTOR ACommanderRocketBeach : ACommanderRocket
 	States
 	{
 		Spawn:
-			RPGX W 1 bright A_SpawnItemEx("SamsaraDukeRocketPuff",0,0,0,0,0,0,0,160)
+			RPGX W 1 A_SpawnItemEx("SamsaraDukeRocketPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			loop
 	}
 }
@@ -327,8 +317,8 @@ ACTOR SamsaraMixerOverlordRocket : ACommanderRocket
 	{
 		Death:
 			TNT1 A 0 A_Explode(70*Random(2,1), Random(111,131))
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
-			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,160)
+			TNT1 A 0 A_PlaySound("duke/explosion", CHAN_6, 1.0, 0, ATTN_NONE)
+			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			stop
 	}
 }
@@ -341,12 +331,12 @@ ACTOR CyEmperorRocket : ACommanderRocket
 	States
 	{
 		Spawn:
-			RPGX A 1 bright
+			RPGX A 1
 			loop
 		Death:
 			TNT1 A 0 A_Explode(Random(54,70)*Random(2,1), Random(111,131))
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
-			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,160)
+			TNT1 A 0 A_PlaySound("duke/explosion", CHAN_6, 1.0, 0, ATTN_NONE)
+			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			stop
 	}
 }
@@ -357,7 +347,7 @@ ACTOR CyEmperorRocketBeach : CyEmperorRocket
 	States
 	{
 		Spawn:
-			RPGX W 1 bright
+			RPGX W 1
 			loop
 	}
 }
@@ -556,16 +546,16 @@ actor DukeGibPopSpawner_Duke2
 	States
 	{
 		Spawn:
-		  TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs1",true)
-		  TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs2",true)
-		  TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs3",true)
-		  TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnDebris("ProtectorDroneGibs4",true)
-		  TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs5",true)
-		  TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs6",true)
-		  //TNT1 A 0 A_Jump(128,2)
-		  //TNT1 A 0 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
-		  TNT1 A 0 A_PlaySound("duke/enemygib")
-		  Stop
+			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs1",true)
+			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs2",true)
+			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs3",true)
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnDebris("ProtectorDroneGibs4",true)
+			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs5",true)
+			TNT1 A 0 A_SpawnDebris("ProtectorDroneGibs6",true)
+			//TNT1 A 0 A_Jump(128,2)
+			//TNT1 A 0 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+			TNT1 A 0 A_PlaySound("duke/enemygib")
+			Stop
 	}
 }
 
@@ -647,79 +637,13 @@ ACTOR DukeJibs12 : DukeJibs1 //Assault Trooper leg
 	}
 }
 
-actor NewDukeGibs1_DukeOrange : NewDukeGibs1 replaces DukeGibs1_DukeOrange
-{
-	Translation "16:47=[255,64,0]:[66,18,0]"
-	States
-	{
-		Spawn:
-			DKG1 ABCD 5
-			Loop
-	}
-}
-
-actor NewDukeGibs2_DukeOrange : NewDukeGibs2 replaces DukeGibs2_DukeOrange
-{
-	Translation "16:47=[255,64,0]:[66,18,0]"
-	States
-	{
-		Spawn:
-			DKG2 ABCD 5
-			Loop
-	}
-}
-
-actor NewDukeGibs3_DukeOrange : NewDukeGibs3 replaces DukeGibs3_DukeOrange
-{
-	Translation "16:47=[255,64,0]:[66,18,0]"
-	States
-	{
-		Spawn:
-			DKG3 ABCD 5
-			Loop
-	}
-}
-
-actor NewDukeGibs4_DukeOrange : NewDukeGibs4 replaces DukeGibs4_DukeOrange
-{
-	Translation "16:47=[255,64,0]:[66,18,0]"
-	States
-	{
-		Spawn:
-			DKG4 ABCD 5
-			Loop
-	}
-}
-
-actor NewDukeGibs5_DukeOrange : NewDukeGibs5 replaces DukeGibs5_DukeOrange
-{
-	Translation "16:47=[255,64,0]:[66,18,0]"
-	States
-	{
-		Spawn:
-			DKG5 ABCD 5
-			Loop
-	}
-}
-
-actor NewDukeGibs6_DukeOrange : NewDukeGibs6 replaces DukeGibs6_DukeOrange
-{
-	Translation "16:47=[255,64,0]:[66,18,0]"
-	States
-	{
-		Spawn:
-			DKG6 AB 5
-			Loop
-	}
-}
-
 ACTOR AEnforcerAmmoDrop : Ammo1Big
 {
 	Scale 0.65
 	+DROPPED
 	States
 	{
-	  Spawn:
+	Spawn:
 		DCAP A -1
 		stop
 	}
@@ -731,10 +655,10 @@ ACTOR ATrooperAmmoDrop : Ammo1Small
 	+DROPPED
 	States
 	{
-	  Spawn:
+	Spawn:
 		DPAP A -1
 		stop
-	  Pickup:
+	Pickup:
 		TNT1 A 0 A_GiveInventory("Clip2",2)
 		Goto "Super::Pickup"
 	}
@@ -746,7 +670,7 @@ Actor PigDrop : SamsaraSlotTwoDrop
 	Scale 0.65
 	States
 	{
-	  Spawn:
+	Spawn:
 		DSGP A -1
 		stop
 	}
@@ -758,7 +682,7 @@ Actor BeachPigDrop : SamsaraSlotTwoDrop
 	Scale 0.65
 	States
 	{
-	  Spawn:
+	Spawn:
 		SHTP B -1
 		stop
 	}
@@ -770,7 +694,7 @@ ACTOR AEnforcerDrop : SamsaraSlotFourDrop
 	+DROPPED
 	States
 	{
-	  Spawn:
+	Spawn:
 		DCCP A -1
 		stop
 	}
@@ -782,7 +706,7 @@ ACTOR BeachEnforcerDrop : SamsaraSlotFourDrop
 	+DROPPED
 	States
 	{
-	  Spawn:
+	Spawn:
 		CHGP B -1
 		stop
 	}
@@ -790,47 +714,47 @@ ACTOR BeachEnforcerDrop : SamsaraSlotFourDrop
 
 ACTOR DukeArmor : BasicArmorPickup
 {
-  inventory.pickupmessage "Got Used Armor (50 Armor)"
-  inventory.icon "DARPA0"
-  Inventory.PickupSound "duke/kickhit"
-  armor.saveamount 50
-  armor.savepercent 35
-  Scale 0.65
-  +DROPPED
-  states
-  {
-  Spawn:
-	DARP A 6
-	loop
-  }
+	inventory.pickupmessage "Got Used Armor (50 Armor)"
+	inventory.icon "DARPA0"
+	Inventory.PickupSound "duke/kickhit"
+	armor.saveamount 50
+	armor.savepercent 35
+	Scale 0.65
+	+DROPPED
+	states
+	{
+	Spawn:
+		DARP A 6
+		loop
+	}
 }
 
 ACTOR RandomPigDrop : RandomSpawner
 {
 	+DROPPED
-	dropitem "PigDrop" 255 34
-	dropitem "DukeArmor" 255 6
+	DropItem "PigDrop" 255 34
+	DropItem "DukeArmor" 255 6
 }
 
 ACTOR RandomBeachPigDrop : RandomSpawner
 {
 	+DROPPED
-	dropitem "BeachPigDrop" 255 34
-	dropitem "DukeArmor" 255 6
+	DropItem "BeachPigDrop" 255 34
+	DropItem "DukeArmor" 255 6
 }
 
 ACTOR RandomEnforcerDrop : RandomSpawner
 {
 	+DROPPED
-	dropitem "AEnforcerAmmoDrop" 255 8
-	dropitem "AEnforcerDrop" 255 32
+	DropItem "AEnforcerAmmoDrop" 255 8
+	DropItem "AEnforcerDrop" 255 32
 }
 
 ACTOR RandomBeachEnforcerDrop : RandomSpawner
 {
 	+DROPPED
-	dropitem "AEnforcerAmmoDrop" 255 8
-	dropitem "BeachEnforcerDrop" 255 32
+	DropItem "AEnforcerAmmoDrop" 255 8
+	DropItem "BeachEnforcerDrop" 255 32
 }
 
 ACTOR BattleLordMortar
@@ -841,8 +765,7 @@ ACTOR BattleLordMortar
 	damage (10)
 	Gravity 0.6
 	PROJECTILE
-	+DOOMBOUNCE //+HERETICBOUNCE
-	//+BOUNCEONFLOORS
+	+DOOMBOUNCE
 	-NOGRAVITY
 	+DONTFALL
 	BounceFactor 0.9
@@ -857,8 +780,8 @@ ACTOR BattleLordMortar
 			Loop
 		Death:
 			TNT1 A 0 A_Explode(50, 156)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
-			TNT1 A 5 A_SpawnItemEx("RPGExplosion")
+			TNT1 A 0 A_PlaySound("duke/explosion", CHAN_6, 1.0, 0, ATTN_NONE)
+			TNT1 A 5 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
 			stop
 	}
 }
@@ -881,9 +804,6 @@ ACTOR BattleLordMortarToken : CustomInventory { Inventory.MaxAmount 4 }
 ACTOR BattleLordMortar1 : BattleLordMortar { Speed 26 }
 ACTOR BattleLordMortar2 : BattleLordMortar { Speed 32 }
 ACTOR BattleLordMortar3 : BattleLordMortar { Speed 38 }
-
-ACTOR CycloidEmperorRocketToken : CustomInventory { Inventory.MaxAmount 5 }
-ACTOR CycloidEmperorEnergyToken : CustomInventory { Inventory.MaxAmount 12 }
 
 ACTOR TankMissileToken : Inventory { Inventory.MaxAmount 11 }
 
@@ -911,10 +831,6 @@ ACTOR OctabrainProjectile
 }
 
 ACTOR OctabrainProjectileCy : OctabrainProjectile {	Speed 20 }
-
-ACTOR PigCopBullet : DukeEnemyBullet { Damage (8) }
-ACTOR PigProneBullet : DukeEnemyBullet { Damage (6) }
-//ACTOR HighGuardBullet : DukeEnemyBullet { Damage (10) }
 
 Actor ProtozoidAttackOMG : Inventory { Inventory.Amount 1 Inventory.Maxamount 1 }
 
