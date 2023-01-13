@@ -8,12 +8,12 @@ Redneck/Thud RR_THUD
 Coot/DieA 		 		CT_DIE
 Coot/DieB 		 		CT_DIE2
 Coot/DieC 		 		CT_DIE3
-$Random Coot/Die 		{ Coot/DieA Coot/DieC }
+$Random Coot/Die 		{ Coot/DieA Coot/DieC Coot/DieA Coot/DieC Coot/DieB }
 Coot/NewshooterA 		CT_GET
 Coot/FuckU		 		CT_GET2
 Coot/ImaGetU 	 		CT_GET3
-$Random Coot/Newshooter { Coot/NewshooterA  }
-$Random Coot/SkinnyS 	{ Coot/ImaGetU  }
+$Random Coot/Newshooter { Coot/NewshooterA Coot/NewshooterA Coot/NewshooterA Coot/FuckU }
+$Random Coot/SkinnyS 	{ Coot/ImaGetU Coot/ImaGetU Coot/ImaGetU Coot/FuckU }
 Coot/Laugh1 			CT_LAF
 Coot/Laugh2			    CT_LAF2
 Coot/Laugh3 			CT_LAF3
@@ -21,20 +21,23 @@ Coot/GroovyA 			CT_LAND
 Coot/GTFOLand			CT_LAND2
 Coot/GetOfLand			CT_LAND3
 $Random Coot/Groovy 	{ Coot/GroovyA Coot/Newshooter }
-$Random Coot/LandF 		{ Coot/GetOfLand Coot/SkinnyS }
+$Random Coot/LandF 		{ Coot/GetOfLand Coot/SkinnyS Coot/GetOfLand Coot/SkinnyS Coot/GTFOLand }
 Coot/Pain1 				CT_PAIN
 Coot/Pain2 				CT_PAIN2
 Coot/Pain3 				CT_PAIN3
-$Random Coot/Pain 		{ Coot/Pain1 Coot/Pain3 }
+$Random Coot/Pain 		{ Coot/Pain1 Coot/Pain3 Coot/Pain1 Coot/Pain3 Coot/Pain2 }
 $Random Coot/Talk 		{ Coot/Laugh1 Coot/Laugh2 Coot/Groovy Coot/Laugh3 }
 $Random Coot/Yell 		{ Coot/Laugh1 Coot/Laugh2 Coot/LandF Coot/Laugh3 }
 
 //Billy Ray Jeeter
-Billy/Die			BR_DTH
-Billy/Itch			BR_ITCH
+Billy/DieA			BR_DTH
+$Random Billy/Die 		{ Billy/DieA Billy/DieA Billy/DieA Billy/Pain2 }
+Billy/Itch1			BR_ITCH
 Billy/Itch2 			BR_ITC2
-Billy/Pain			BR_PAIN
+$Random Billy/Itch 		{ Billy/Itch1 Billy/Itch1 Billy/Itch1 Billy/Itch2 }
+Billy/Pain1			BR_PAIN
 Billy/Pain2 			BR_PAI2
+$Random Billy/Pain 		{ Billy/Pain1 Billy/Pain1 Billy/Pain1 Billy/Pain2 }
 Billy/See1 				BR_RECOG
 Billy/See2 				BR_RECO2
 $Random Billy/See 		{ Billy/See1 Billy/See2 }
@@ -46,7 +49,7 @@ Billy/Roam5 			BR_ROAMB
 Billy/Roam6 			BR_ROAMC
 Billy/Scratch			BR_SCRTH
 Billy/Sniff 			BR_SNIFF
-$random Billy/Talk 		{ Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 }
+$random Billy/Talk 		{ Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 Billy/Roam4 Billy/Roam5 Billy/Roam6 }
 
 //Frank Doyle
 Doyle/Alive 	BK_ALIVE
