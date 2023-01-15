@@ -50,7 +50,10 @@ Actor StrifeCultist : SamsaraMonsterHumanoidMediumTotalGib
 			CULT H 2
 			CULT H 2 A_Pain
 			Goto See
+		Death.PhosFire:	
+		Death.PhosFireCoop:
 		Burn:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			SBRN A 3 Bright A_PlaySoundEx("strife/burndeath",CHAN_VOICE)
 			SBRN B 3 Bright A_SpawnItemEx("FireDroplet", 0, 0, 24, 0, 0, -1)
 			SBRN C 3 Bright A_Wander
