@@ -302,6 +302,15 @@ ACTOR DrinniolMinor : SamsaraMonsterMarathonAlienLarge
 			M_HU I 2 A_CheckFloor("XDeathForCaleb4")
 			TNT1 A -1 A_Jump(256,"XDeathForCaleb3")
 			wait
+		XDeathForStrifeguy2:
+			M_HU I 4
+			TNT1 A -1 A_Jump(256,"XDeathForStrifeguy3")
+			wait
+		XDeathForStrifeguy3:
+			M_HU IIIIIIIIIIII 2 A_JumpIf(momx < 0.8 && momy < 0.8 && momz == 0, "XDeathForStrifeguy4")
+			M_HU I 2 A_CheckFloor("XDeathForStrifeguy4")
+			TNT1 A -1 A_Jump(256,"XDeathForStrifeguy3")
+			wait
 		XDeathForCatBitch2:
 			M_HU I 4
 			TNT1 A -1 A_Jump(256,"XDeathForCatBitch3")
