@@ -359,6 +359,8 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 
 Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 {
+	if (GetCvar("sv_nomonsters")) { terminate; }
+
 	str pickMonster = "";
 	int thisMonOld = ActivatorTid();
 	int thisMonNew = UniqueTid();
