@@ -7,11 +7,12 @@ ACTOR Programmer3 : SamsaraMonsterRemixProgrammer
 	DeathSound "programmer/death"
 	ActiveSound "programmer/active"
 	Obituary "$OB_PROGRAMMER"
+	-NOBLOCKMONST
 	+DONTRIP
 	+NOINFIGHTING
 	+LOOKALLAROUND
-	Species "StrifeEnemies"	
-    Health 750
+	Species "StrifeEnemies"
+	Health 750
 	Radius 31
 	Height 56
 	MinMissileChance 400
@@ -62,7 +63,7 @@ ACTOR Programmer3 : SamsaraMonsterRemixProgrammer
 			PRGR S 6 Bright
 			PRGR TUVW 5 Bright
 			PRGR X 32 Bright
-			PRGR X 0 
+			PRGR X 0
 			PRGR X -1 Bright A_KillMaster
 			Stop
 /*
@@ -117,7 +118,7 @@ ACTOR Programmer3 : SamsaraMonsterRemixProgrammer
 			TNT1 A 1 A_KillMaster
 			stop
 */
-    }
+	}
 }
 
 actor Programmer3_Shrink : Programmer3
@@ -213,9 +214,9 @@ actor Programmer3_Shrink : Programmer3
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -244,7 +245,7 @@ actor Programmer3_ShrinkEffect : Programmer3
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
