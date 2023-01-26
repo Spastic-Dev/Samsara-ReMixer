@@ -1,0 +1,151 @@
+Actor Morph_BloodBeastMeleeContinue : Boolean {}
+Actor Morph_BloodBeast : Caleb
+{
+	Radius 20
+	Height 64
+	Mass 300
+	Scale 0.53
+	PainChance 8
+	PainChance "CalebFire", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Player.Soundclass "BloodBeast"
+	Player.ForwardMove 0.33
+	Player.SideMove 0.33
+	Player.JumpZ 0
+	Player.ViewHeight 64
+	Player.MaxHealth 1240
+	Player.MorphWeapon "Morph_BloodBeastWeapon"
+	BloodType "NashGore_Blood_Monolith"	
+	//Player.AttackZOffset -32
+	+DONTTRANSLATE
+	+NOSKIN
+	States
+	{
+		Spawn:	
+			BESC A 5 
+			Loop
+		See:
+			BESW AABBCCDDEEFF 2
+			Loop
+		Missile:
+			BESS A 5
+			BESS BC 5 
+			BESS D 5
+			BESS EEE 5
+			Goto Spawn
+		Melee:
+			BESC ABC 6
+			BESC D 5
+			TNT1 A 0 A_JumpIfInventory("Morph_BloodBeastMeleeContinue",1,1)
+			Goto Spawn
+			BESC EFG 6
+			TNT1 A 0
+			BESC H 5
+			BESC IJ 6
+			Goto Spawn
+		Pain:
+			BESP A 2
+			BESP A 3 A_Playsound("*pain100",CHAN_VOICE)
+			BESP A 4
+			BESC AA 5
+			Goto Spawn
+		Pain.QuakeElectric:
+		Pain.Hexen2Electric:
+		Pain.Electric:
+		Pain.Shock:
+		Pain.Tesla:
+			CULC N 4 A_Playsound("*pain100",CHAN_VOICE)
+			CULC N 4
+			Goto Spawn
+		Death:
+		XDeath:	
+			BESD A 5 A_Scream
+			BESD B 5 A_Fall
+			BESD C 5 
+			BESD D 5
+			BESD EF 5
+			BESD F -1
+			stop
+	}
+}
+
+Actor Morph_BloodBeastWeapon : Weapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+			
+		Select:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+			TNT1 A 1 A_Raise
+			loop
+
+		Deselect:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+			TNT1 A 1 A_Lower
+			loop
+
+		Ready:
+			TNT1 A 0 A_TakeInventory("Morph_BloodBeastMeleeContinue", 1)
+			TNT1 A 1 A_WeaponReady
+			loop
+
+		Fire:
+			TNT1 A 0 A_JumpIfCloser(radius+32,"MeleeAttack")
+			TNT1 A 15
+			TNT1 A 5 A_FireCustomMissile("Morph_BloodBeastStompBoom",0,0,0,-32)
+			TNT1 A 15
+			Goto Ready		
+			
+		MeleeAttack:
+			TNT1 A 0 A_GunFlash
+			TNT1 AAA 6
+			TNT1 A 0 A_PlaySound("BeastSlash", CHAN_WEAPON)
+			TNT1 A 4 A_CustomPunch(18,1)
+			TNT1 A 0 A_JumpIfCloser(64, 1)
+			Goto Ready
+			TNT1 A 0 A_GiveInventory("Morph_BloodBeastMeleeContinue", 1)
+			TNT1 AAA 6
+			TNT1 A 0 A_PlaySound("BeastSlash", CHAN_WEAPON)
+			TNT1 A 5 A_CustomPunch(18,1)
+			TNT1 AA 6
+			TNT1 A 0 A_TakeInventory("Morph_BloodBeastMeleeContinue", 1)
+			Goto Ready
+		
+		Flash:
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Morph_BloodBeastStompBoom
+{
+	PROJECTILE
+	Height 1
+	Radius 1
+	Damage (0)
+	Speed 0
+	Species "Player"
+	+NODAMAGETHRUST	
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+THRUSPECIES
+	Seesound "BeastStomp"
+	States
+	{
+		Spawn:
+		Death:
+			TNT1 A 0 NoDelay Radius_Quake(9,90,0,50,0)		
+			TNT1 A 5 A_Explode(60,400,0)
+			stop
+	}
+}

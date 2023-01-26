@@ -1,0 +1,960 @@
+Actor Morph_LightningGuard : IPFreeley
+{
+	Radius 16
+	Height 48
+	Mass 80
+	Scale 0.60
+	PainChance 255
+	Player.MaxHealth 50
+	Player.Soundclass "LightningGuard"
+	Player.MorphWeapon "Morph_LightningGuardWeapon"
+	Player.ForwardMove 0.25
+	Player.SideMove 0.25
+	Player.JumpZ 0
+	Player.ViewHeight 50
+	Player.AttackZOffset 32
+	+DONTTRANSLATE
+	+NOSKIN
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			LIGW A 10
+			Loop
+		See:
+			LIGW B 3
+			LIGW B 2
+			LIGW C 3
+			LIGW C 2
+			LIGW D 3
+			LIGW D 2
+			LIGW E 3
+			LIGW E 2
+			Loop
+		Missile:
+		Melee:
+			Goto Spawn
+		PistolFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LIGW F 8
+			LIGW G 8 Bright
+			LIGW H 8
+			LIGW G 8 Bright
+			LIGW H 8
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MissileFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LIGW G 8 Bright
+			LIGW H 8
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MissileSlowFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LIGW G 16 Bright
+			LIGW H 16
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MachineGunFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LIGW F 3
+			LIGW G 3 Bright
+			LIGW H 3
+			LIGW G 3 Bright
+			LIGW H 3
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		BatFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LIGW F 16
+			LIGW G 11 Bright
+			LIGW H 16
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		StaffFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LIGW F 37
+			LIGW G 4 Bright
+			LIGW H 4
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Stealing:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LGUS A 12
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_Jump(128,"Pain2")
+			LIGW J 3
+			LIGW J 4 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain2:
+			LIGW I 3
+			LIGW I 4 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+			LIGW K 5 A_Fall
+			LIGW L 6 A_PlayerScream
+			LIGW M 7 
+			LIGW N 6
+			LIGW O -1
+			Stop
+		BeginPlead:
+			TNT1 A 0 A_Stop
+			LIGW R 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			LIGW R 0 A_ChangeFlag("NOPAIN",1)
+			LIGW R 4
+			LIGW S 5 
+			LIGW T 5 
+			LIGW U 5 
+			LIGW V 5
+			LIGW W 5 A_PlaySound("LnGuardplea")
+		Pleading:
+			LIGW V 5 
+			LIGW U 5 
+			LIGW T 5 
+			LIGW U 5 
+			LIGW V 5 
+			LIGW W 5 
+			LIGW V 5 A_PlaySound("LnGuardplea3")
+			LIGW U 5 
+			LIGW V 5 
+			LIGW W 5 
+			LIGW T 5 
+			LIGW U 5 
+			LIGW V 5 
+			LIGW W 5 
+			LIGW V 5 
+			LIGW U 5 
+			LIGW V 5
+			LIGW W 5
+			LIGW T 5 A_PlaySound("LnGuardplea2")
+			LIGW U 5
+			LIGW V 5
+			LIGW W 5
+			RISE E 5
+			RISE F 5 A_PlaySound("LnGuardFake")
+			Goto Faking
+		Faking:
+			RISE G 1 
+			Loop
+		Rising:
+			RISE A 5
+			RISE B 5
+			RISE C 5
+			RISE D 5
+			RISE D 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			RISE D 0 A_ChangeFlag("NOPAIN",0)
+			Goto Spawn
+	}
+}
+
+Actor Morph_LightningGuardWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"Plead")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"Steal")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"MissileWeapon")
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,2)
+			TNT1 A 8
+			TNT1 A 0 A_Playsound("rott/pistolf",CHAN_WEAPON)
+			TNT1 A 8 A_FireBullets(13,0,-1,10,"RottPuff",FBF_NORANDOM|FBF_NOFLASH)
+			TNT1 A 8
+			TNT1 A 0 A_Playsound("rott/pistolf",CHAN_WEAPON)
+			TNT1 A 8 A_FireBullets(13,0,-1,10,"RottPuff",FBF_NORANDOM|FBF_NOFLASH)
+			TNT1 A 8
+			Goto Ready
+		MissileWeapon:
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 9, "FireFlameWall")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 8, "FireDrunkMissile")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 7, "FireFirebomb")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 6, "FireMP40")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 5, "FireBazooka")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 4, "FireHeatSeeker")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 3, "FireSplitMissile")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 2, "FireExcalibat")
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 1, "FireDarkStaff")
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,3)
+			TNT1 A 0 A_Playsound("bazooka/shoot",CHAN_WEAPON)
+			TNT1 A 16 A_FireCustomMissile("MissileLow")
+			Goto Ready
+		FireMP40:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,6)
+			TNT1 A 0 A_Playsound("mp40/shoot",CHAN_WEAPON)
+			TNT1 A 6 A_FireBullets(13,5,-1,10,"RottPuff",FBF_NORANDOM|FBF_NOFLASH)
+			TNT1 A 0 A_Playsound("mp40/shoot",CHAN_WEAPON)
+			TNT1 A 3 A_FireBullets(13,5,-1,10,"RottPuff",FBF_NORANDOM|FBF_NOFLASH)
+			Goto Ready
+		FireHeatSeeker:  
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,3)
+			TNT1 A 0 A_Playsound("hseek/shoot",CHAN_WEAPON)
+			TNT1 A 16 A_FireCustomMissile("HSMissile_2")
+			Goto Ready
+		FireDrunkMissile:  
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,5)
+			TNT1 A 0 A_Playsound("drunk/shoot",CHAN_WEAPON)
+			TNT1 A 16
+			TNT1 A 0 A_FireCustomMissile("DrunkMLow",0,0,-8,-4)
+			TNT1 A 0 A_FireCustomMissile("DrunkMLow",0,0,-8,-4)
+			TNT1 A 0 A_FireCustomMissile("DrunkMLow",0,0,-8,-4)
+			TNT1 A 0 A_FireCustomMissile("DrunkMLow",0,0,-8,-4)
+			TNT1 A 0 A_FireCustomMissile("DrunkMLow",0,0,-8,-4)
+			TNT1 A 16
+			Goto Ready
+		FireFireBomb:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,5)
+			TNT1 A 16
+			TNT1 A 0 A_Playsound("firebomb/shoot",CHAN_WEAPON)
+			TNT1 A 16 A_FireCustomMissile("FBombLow")
+			Goto Ready
+		FireFlameWall:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,5)
+			TNT1 A 16
+			TNT1 A 0 A_PlaySound("FireWall/Shoot",CHAN_WEAPON)
+			TNT1 A 16 A_FireCustomMissile("FwallLow")
+			Goto Ready
+		FireExcalibat:
+			TNT1 A 16 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,7)
+			TNT1 A 0 A_Playsound("excalibat/swing",CHAN_WEAPON)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",-35)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",-28)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",-21)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",-14)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",-7)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",0)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",7)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",14)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",21)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",28)
+			TNT1 A 1 A_FireCustomMissile("BaseballLow",35)
+			TNT1 A 16
+			Goto Ready
+		FireSplitMissile:       
+			TNT1 A 16 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,5)
+			TNT1 A 0 A_Playsound("split/shoot1",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("SMissile1Low")
+			TNT1 A 0 A_FireCustomMissile("SMissile2Low")
+			TNT1 A 16
+			Goto Ready
+		FireDarkStaff:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,8)
+			TNT1 A 38 A_PlaySound("ksphere/charge",CHAN_WEAPON)
+			TNT1 A 0 A_PlaySound("ksphere/fire",CHAN_WEAPON)
+			TNT1 A 9 A_FireCustomMissile("Ksphere_RottLow",0,0,0,-5)
+			Goto Ready
+		Steal:
+			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 1, "MissileWeapon")
+			TNT1 A 12 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,4)
+			TNT1 A 0 A_FireCustomMissile("Morph_LightningGuardStealProjectile")
+			TNT1 A 0 ACS_NamedExecuteWithResult("LightningGuardDeadDrop")
+			Goto Ready
+		Plead:
+			TNT1 A 0 A_JumpIfInventory("Morph_LightningGuardFakeToken",1,"PleadEnd")
+			TNT1 A 0 A_WeaponReady(WRF_NOFIRE)
+			TNT1 A 149 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8)
+			TNT1 A 0 A_GiveInventory("Morph_LightningGuardFakeToken",1)
+		PleadLoop:
+			TNT1 A 1 A_WeaponReady(WRF_NOSECONDARY)
+			Loop
+		PleadEnd:
+			TNT1 A 0 A_WeaponReady(WRF_NOFIRE)
+			TNT1 A 0 A_TakeInventory("Morph_LightningGuardFakeToken",1)
+			TNT1 A 0 A_TakeInventory("StrongHold_MorphAttackMode",16)
+			TNT1 A 20 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,1)
+			Goto Ready		
+		AltFire:
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,1)
+			Goto AltFire+2
+			TNT1 A 0 A_TakeInventory("StrongHold_MorphAttackMode",16)
+			Goto AltFire+3
+			TNT1 A 0 A_GiveInventory("StrongHold_MorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"SwitchPlead")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"SwitchSteal")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"SwitchMissile")
+			Goto SwitchRegular
+		SwitchRegular:
+			TNT1 A 0 A_Print("Pistol mode")
+			Goto AltFireFinish
+		SwitchMissile:
+			TNT1 A 0 A_Print("Missile mode")
+			Goto AltFireFinish
+		SwitchSteal:
+			TNT1 A 0 A_Print("Steal mode")
+			Goto AltFireFinish
+		SwitchPlead:
+			TNT1 A 0 A_Print("Plead mode")
+			Goto AltFireFinish
+		AltFireFinish:
+			TNT1 A 17
+			Goto Ready
+	}
+}
+
+Actor Morph_LightningGuardFakeToken : Boolean {}
+Actor Morph_LightningGuardGimmeDat : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_Playsound("LnGuardSteal",CHAN_VOICE)
+			Stop
+	}
+}
+
+Actor Morph_LightningGuardStealProjectile
+{
+	Speed 32
+	Height 32
+	Radius 16
+	Damage (1)
+	Projectile
+	+NOTRIGGER
+	+BLOODLESSIMPACT
+	+HITTRACER
+	States
+	{
+		Spawn:
+			TNT1 A 2
+			Stop
+		Death:
+			TNT1 A 1
+			Stop
+		XDeath:
+			TNT1 A 0 A_ReArrangePointers(AAPTR_TRACER,AAPTR_NULL,AAPTR_TARGET)
+			TNT1 A 1 A_JumpIf(CallACS("LightningGuardSteal", 1) == 1, 1) 
+			Stop
+			TNT1 A 0 A_GiveInventory("StoleWeapon", CallACS("LightningGuardSteal",2),AAPTR_TRACER)
+			TNT1 A 0 A_GiveInventory("Morph_LightningGuardGimmeDat",1,AAPTR_TRACER)
+			Stop
+	}
+}
+
+Actor Morph_RobotGuard : IPFreeley
+{
+	Radius 20
+	Height 48
+	Mass 5000
+	Scale 0.65
+	Player.MaxHealth 125
+	Player.Soundclass "RobotGuard"
+	Player.MorphWeapon "Morph_RobotGuardWeapon"
+	Player.ForwardMove 0.15
+	Player.SideMove 0.15
+	Player.JumpZ 0
+	Player.ViewHeight 40
+	Player.AttackZOffset 32
+	RadiusDamageFactor 12.0
+	DamageFactor "normal", 0.5
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOICEDEATH
+	+FLOORCLIP
+	+NOBLOOD
+	+NOPAIN
+	States
+	{
+		Spawn:
+			ROBT A 10 A_StopSound(CHAN_BODY)
+			Loop
+		See:
+			ROBT A 1 A_PlaySound("Robot/move",CHAN_BODY,1.0,1,ATTN_NORM)
+		SeeLoop:	   
+			ROBT AAAAAAAAAAAAAAAA 1
+			Loop
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_StopSound(CHAN_BODY)
+			ROBT A 8
+		KeepFiring:
+			ROBT A 41
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto See
+		Death:   
+		XDeath:
+			TNT1 A 0 A_StopSound(CHAN_BODY)   
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("ash1", 0.0, 0.0, 16.0, random(5.0,10.0), random(5.0,10.0), random(3.0,8.0), random(0,360))
+			TNT1 A 0 A_PlayerScream
+			ROBT B 3 A_Fall
+			ROBT CDEFGHIJ 3 
+			ROBT K -1
+			Stop  	
+	}
+}
+
+Actor Morph_RobotGuardWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8
+			TNT1 A 0 A_PlaySound("Robot/fire",CHAN_WEAPON)
+			TNT1 A 8 A_FireCustomMissile("RobotMissile",0,0,0,-12)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAA 1 A_SetAngle(angle + 15)
+			TNT1 A 1 A_SetAngle(angle + 15)
+			Goto Ready
+	}
+}
+
+Actor Morph_TriadEnforcer : IPFreeley
+{
+	Radius 20
+	Height 48
+	Mass 120
+	Scale 0.65
+	PainChance 96
+	Player.MaxHealth 475
+	Player.Soundclass "TriadEnforcer"
+	Player.MorphWeapon "Morph_TriadEnforcerWeapon"
+	Player.ForwardMove 0.2
+	Player.SideMove 0.2
+	Player.JumpZ 0
+	Player.ViewHeight 50
+	Player.AttackZOffset 36
+	DamageFactor "normal", 0.75
+	RadiusDamageFactor 1.25
+	+DONTTRANSLATE
+	+NOSKIN
+	+FLOORCLIP
+	+DONTRIP
+	States
+	{
+		Spawn:
+			TRIW A 10
+			Loop
+		See:
+			TRIW BCDE 6
+			Loop
+		Missile:
+		Melee:
+			Goto Spawn
+		MachineGun:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TRIR A 4
+			TRIW J 12 Bright
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Throw:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TRIT A 1 A_PlaySound("enforcer/throw",CHAN_VOICE)
+			TRIT BCDEFG 4 
+			TRIT H 8
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_Jump(128, "Pain2")
+			TRIW F 3
+			TRIW F 4 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto See
+		Pain2:
+			TRIW G 3
+			TRIW G 4 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto See
+		Death:
+			TRIW K 5
+			TRIW L 6 A_PlayerScream
+			TRIW M 7 A_Fall
+			TRIW N 8
+			TRIW O -1
+			Stop
+	}
+}
+
+Actor Morph_TriadEnforcerWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 4 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,2,0)
+			TNT1 A 0 A_PlaySound("enforcer/fire",CHAN_WEAPON)
+			TNT1 AAA 4 A_FireBullets(10,7,-1,10,"RottPuff",FBF_NORANDOM|FBF_NOFLASH)
+			Goto Ready
+		Altfire:
+			TNT1 A 1 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,2,1)
+			TNT1 A 12 A_FireCustomMissile("TriadEnforcerGrenade",0,0,0,-6)
+			TNT1 A 20
+			Goto Ready	
+	}
+}
+
+Actor Morph_GeneralDarian : IPFreeley
+{
+	Radius 24
+	Height 64
+	Mass 5000
+	Scale 0.55
+	PainChance 64
+	Player.Soundclass "GeneralDarian"
+	Player.ForwardMove 0.25
+	Player.SideMove 0.25
+	Player.JumpZ 0
+	Player.ViewHeight 60
+	Player.MaxHealth 750
+	Player.MorphWeapon "Morph_GeneralDarianWeapon"
+	+DONTTRANSLATE
+	+NOSKIN
+	+DONTRIP
+	States
+	{
+		Spawn:
+			DARI A 10
+			Loop
+		See:
+			DARI B 3
+			DARI B 2
+			DARI C 3
+			DARI C 2
+			DARI D 3
+			DARI D 2
+			DARI E 3
+			DARI E 2
+			Loop
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DARI A 1
+			TNT1 A 0 A_JumpIfInventory("DoWackaMole",1,"WackaMole")
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			DARS A 8
+			DARS B 8
+			TNT1 A 0
+			DARS C 8 Bright
+			DARS D 1
+			DARS D 7
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		WackaMole:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("DoWackaMole", 1)
+			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
+			DARH ABCD 2
+			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_PlaySound("Darian/Hide",CHAN_BODY)
+			DARH EFGH 2
+			TNT1 A 0 A_UnsetSolid
+			TNT1 A 10
+		UndoWackaMole:
+			TNT1 A 0 A_SetSolid
+			DARH HGFE 2
+			TNT1 A 0 A_SetShootable
+			DARH DCBA 2
+			TNT1 A 0 A_ChangeFlag("NOPAIN", 0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_Jump(128, "Pain2")
+			DARI F 3
+			DARI F 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto See
+		Pain2:
+			DARI G 3
+			DARI G 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto See
+		Death:
+		XDeath:
+			DARI I 6 A_PlayerScream
+			DARI J 7 A_Fall
+			DARI K 24
+			GUTS DDDDDDDDDDDDDDDDDDDDDDD 0 A_SpawnItemex ("giblets",0, 0, 32, random(3.0,5.0),random(3.0,5.0),random(0.0,10.0),random(0.0,360.0), SXF_ABSOLUTEANGLE , 0)
+			DARI LMNOPQ 4
+			DARI R -1
+			Stop
+	}
+}
+
+Actor Morph_GeneralDarianWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop	
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		//Increased Rate of fire
+		Fire:
+			TNT1 A 16
+			TNT1 A 0 A_PlaySound("bazooka/shoot",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DarianMissile",0,0,-8,24)
+			TNT1 A 4
+			Goto Ready		
+		AltFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_GiveInventory("DoWackaMole",1)
+			TNT1 AAAAAAAAAAAAAAAA 1 A_Stop
+			TNT1 A 0 A_FireCustomMissile("Morph_DarianWackaMoleLocation")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Stop
+			TNT1 A 0 A_TakeInventory("DoWackaMole",1)
+			Goto Ready
+	}
+}
+
+Actor Morph_DarianWackaMoleLocation : FastProjectile
+{
+	Radius 24
+	Height 64
+	Speed 1024
+	+THRUACTORS
+	+SKYEXPLODE
+	States
+	{
+		Spawn:
+			TNT1 AA 1
+		Death:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,3,1)
+			TNT1 A 1
+			Stop
+	}
+}
+
+Actor Morph_ElOscuro : IPFreeley
+{
+	Radius 40
+	Height 96
+	Mass 5000
+	Scale 0.7
+	PainChance 96
+	Player.MaxHealth 3600
+	Player.Soundclass "ElOscuro"
+	Player.MorphWeapon "Morph_ElOscuroWeapon"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.JumpZ 0
+	Player.ViewHeight 72
+	DamageFactor "Mace", 1.4
+	DamageFactor "CorvusHellstaffTomed", 0.2	
+	DamageFactor "CorvusCrossbow", 1.2	
+	DamageFactor "DragonClaw", 1.6
+	DamageFactor "MarathonShotgun", 1.0
+	DamageFactor "MarathonPlasmaFire", 0.5
+	DamageFactor "MarathonFusion", 0.7	
+	DamageFactor "WMCNade", 0.70   
+	DamageFactor "RottDisintegrate", 0.0
+	DamageFactor "BJSpear", 0.4
+	DamageFactor "DCannonProj", 0.70	
+	DamageFactor "Tesla", 0.6
+	DamageFactor "Shock", 0.3	
+	DamageFactor "LifeLeech", 0.8
+	DamageFactor "CalebFire", 0.7	
+	DamageFactor "CalebBullet", 0.8	
+	DamageFactor "Vodoo", 0.1
+	DamageFactor "DisruptorWall", 0.4
+	DamageFactor "EradNova", 0.3
+	DamageFactor "EradGreenFire", 0.1	
+	DamageFactor "EradCoopGreenFire", 0.1	
+	DamageFactor "RottFire", 0.3
+	DamageFactor "HLLaser", 0.6
+	DamageFactor "WTRangedFire", 0.3
+	DamageFactor "Nuke", 0.2
+	DamageFactor "SWNuke", 0.2
+	DamageFactor "SWNukeCoop", 0.2
+	DamageFactor "SWFlame", 0.1
+	DamageFactor "SWFlameCoop", 0.1	
+	DamageFactor "SWFlame2", 0.1
+	DamageFactor "SWFlame2Coop", 0.1
+	DamageFactor "SWFlame3", 0.7
+	DamageFactor "RMR-BigPlasma", 0.4
+	DamageFactor "CMDMGSHIT", 0.7
+	DamageFactor "Disintegrate", 0.6
+	DamageFactor "C7Disintegrate", 0.5  
+	+DONTTRANSLATE
+	+NOSKIN
+	+FLOORCLIP
+	+DONTRIP
+	+NOPAIN
+	States
+	{
+		
+		Spawn:
+			TNT1 A 0 NoDelay A_TakeInventory("IsFloating", 1)
+			TOMS A 10 A_TakeInventory("MorphPlayerFlight",1)
+			Loop
+		See:
+			TNT1 A 0 A_JumpIfInventory("IsFloating", 1, "SeeLoop")
+			TOMS B 5 ThrustThingZ(0, 48, 0, 0)
+			TNT1 A 0 A_GiveInventory("MorphPlayerFlight",1)
+			TOMS B 5 A_GiveInventory("IsFloating", 1)
+		SeeLoop:
+			TOMS C 2
+			Loop
+		Missile:
+		Melee:
+			TNT1 A 0 A_JumpIfInventory("IsFloating", 1, "SeeLoop")
+			Goto Spawn
+		LightningStorm:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TOML ABCDEF 3
+			TOML H 24
+			TOML IJK 3
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		FlameFace:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TOM3 A 15
+			TOM3 BCD 3
+			TOM3 EFGHI 3
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		GreenBlast:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TOML ABCDEF 3
+			TOML H 5
+			TOML IJK 3
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		RedBlast:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TOM1 ABCDE 3
+			TOM1 FGHI 4
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		FlameSpit:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TOMR ABCDE 3
+			TOMR F 24
+			TOMR GH 5
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		FlameGround:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TOMU ABC 4
+			TOMU D 32
+			TOMU EF 4
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		DarkMatter:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TOM1 ABCDEFGHI 3
+			TOML ABCDEFHIJK 3
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 A_JumpIfInventory("IsFloating", 1, "SeeLoop")
+			Goto Spawn
+		Death:
+			TNT1 A 0 A_TakeInventory("IsFloating", 1)
+			TNT1 A 0 ACS_NamedExecuteAlways("RoTTBossScript", 0, Tom_ID, 2)
+			TNT1 A 0 A_GiveToTarget("RoTT_BossDeathPlayer", 1)
+			TOM5 A 9 A_PlayerScream
+			TOM5 B 8 A_NoBlocking
+			TOM5 CDEF 7
+			TOM5 G 7
+		DeathLoop:
+			TOM5 H 2 A_FadeOut(0.01)
+			Loop
+	}
+}
+
+Actor Morph_ElOscuroAlreadySpawned : Boolean {}
+
+Actor Morph_ElOscuroWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_TakeInventory("TomLightningCount", 8)
+			TNT1 A 0 A_TakeInventory("TomFlameGroundCount", 8)
+			TNT1 A 0 A_TakeInventory("TomFlameSpitCount", 8)
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",6,"DarkMatter")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",5,"FlameGround")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",4,"FlameSpit")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"RedEnergy")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"GreenEnergy")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"FlameFace")
+			TNT1 A 18
+		LightningLoop:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4)
+			TNT1 A 0 A_JumpIfInventory("TomLightningCount", 8, "FinishLightning")
+			TNT1 A 0 A_PlaySound("TomHall/fire2",CHAN_WEAPON)
+			TNT1 A 3 A_FireCustomMissile("TomLightning",0,0,0,24)
+			TNT1 A 0 A_GiveInventory("TomLightningCount", 1)
+			Loop
+		FinishLightning:
+			TNT1 A 9
+			Goto Ready
+		FlameFace:
+			TNT1 A 24 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4,1)
+			TNT1 A 0 A_PlaySound("TomHall/fire1",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("TomFace",0,0,0,32)
+			TNT1 A 15
+			Goto Ready
+		GreenEnergy:
+			TNT1 A 18 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4,2)
+			TNT1 A 0 A_PlaySound("TomHall/fire2",CHAN_WEAPON)
+			TNT1 A 14 A_FireCustomMissile("TomGreenBlast",0,0,0,24)
+			Goto Ready
+		RedEnergy:
+			TNT1 A 15 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4,3)
+			TNT1 A 0 A_PlaySound("TomHall/fire2",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("TomRedSeeker",0,0,0,24)
+			TNT1 A 16
+			Goto Ready
+		FlameSpit:
+			TNT1 A 15 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4,4)
+			TNT1 A 0 A_PlaySound("TomHall/fire4",CHAN_WEAPON)
+		FlameSpitLoop:
+			TNT1 A 0 A_JumpIfInventory("TomFlameSpitCount", 8, "FinishFlameSpit")
+			TNT1 A 3 A_FireCustomMissile("TomFlameSpit",0,0,0,24)
+			TNT1 A 0 A_GiveInventory("TomFlameSpitCount", 1)
+			Loop
+		FinishFlameSpit:
+			TNT1 A 10
+			Goto Ready
+		FlameGround:
+			TNT1 A 12 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4,5)
+			TNT1 A 0 A_PlaySound("TomHall/fire4",CHAN_WEAPON)
+		FlameGroundLoop:
+			TNT1 A 0 A_JumpIfInventory("TomFlameGroundCount", 8, "FinishFlameGround")
+			TNT1 A 4
+			TNT1 A 0 A_FireCustomMissile("TomFlameGround")
+			TNT1 A 0 A_FireCustomMissile("TomFlameGround",12)
+			TNT1 A 0 A_FireCustomMissile("TomFlameGround",-12)
+			TNT1 A 0 A_GiveInventory("TomFlameGroundCount", 1)
+			Loop
+		FinishFlameGround:
+			TNT1 A 8
+			Goto Ready
+		DarkMatter:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4,6)
+			TNT1 A 0 A_PlaySound("TomHall/Fire1",CHAN_5)
+			TNT1 A 45
+			TNT1 A 0 A_PlaySound("TomHall/Fire2",CHAN_6)
+			TNT1 A 12 A_FireCustomMissile("TomDarkMatter",0,0,0,16)
+			Goto Ready
+		AltFire:
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",6,1)
+			Goto AltFire+2
+			TNT1 A 0 A_TakeInventory("StrongHold_MorphAttackMode",16)
+			Goto AltFire+3
+			TNT1 A 0 A_GiveInventory("StrongHold_MorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",6,"SwitchDarkMatter")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",5,"SwitchGround")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",4,"SwitchSpit")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"SwitchRed")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"SwitchGreen")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"SwitchFace")
+			Goto SwitchLightning
+		SwitchLightning:
+			TNT1 A 0 A_Print("Lightning Spray mode")
+			Goto AltFireFinish
+		SwitchFace:
+			TNT1 A 0 A_Print("Flaming Face mode")
+			Goto AltFireFinish
+		SwitchGreen:
+			TNT1 A 0 A_Print("Green blast mode")
+			Goto AltFireFinish
+		SwitchRed:
+			TNT1 A 0 A_Print("Red blast mode")
+			Goto AltFireFinish	
+		SwitchSpit:
+			TNT1 A 0 A_Print("Flame Spit mode")
+			Goto AltFireFinish	
+		SwitchGround:
+			TNT1 A 0 A_Print("Flame Ground mode")
+			Goto AltFireFinish	
+		SwitchDarkMatter:
+			TNT1 A 0 A_Print("Dark Matter mode")
+			Goto AltFireFinish	
+		AltFireFinish:
+			TNT1 A 17
+			Goto Ready
+	}
+}

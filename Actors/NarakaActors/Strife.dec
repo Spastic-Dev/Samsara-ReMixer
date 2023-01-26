@@ -1,0 +1,105 @@
+Actor Morph_Programmer : StrifeguyPlayer
+{
+	Radius 24
+	Height 60
+	Mass 800
+	PainChance 50
+	Player.Soundclass "Programmer"
+	Player.ForwardMove 0.66
+	Player.SideMove 0.66
+	Player.JumpZ 0
+	Player.ViewHeight 60
+	Player.MaxHealth 1100
+	Player.MorphWeapon "Morph_ProgrammerWeapon"
+	//Player.AttackZOffset -30
+	DamageFactor "Fire", 0.5
+	+FLOATBOB
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOBLOODDECALS
+	+NOBLOOD
+	States 
+	{
+		Spawn:
+			TNT1 AA 0 A_GiveInventory("MorphPlayerFlight",1)
+			PRGR EF 2
+			PRGR EF 3
+			Loop
+		See:
+			TNT1 AA 0 A_GiveInventory("MorphPlayerFlight",1)
+			PRGR EF 2
+			PRGR EF 3
+			Loop
+		Melee:
+			PRGR E 2 
+			PRGR F 3
+			PRGR E 3
+			PRGR F 4
+			Goto Spawn
+		Missile:
+			PRGR G 5
+			PRGR H 5
+			PRGR I 5 Bright
+			PRGR J 6 Bright
+			Goto Spawn
+		Pain:
+			PRGR K 5 A_Playsound("*pain100",CHAN_VOICE)
+			PRGR L 5
+			Goto Spawn
+		Death:
+		XDeath:
+			PRGR L 7 Bright A_TossGib
+			PRGR M 7 Bright A_Scream
+			PRGR N 7 Bright A_TossGib
+			PRGR O 7 Bright A_NoBlocking
+			PRGR P 7 Bright A_TossGib
+			PRGR Q 7 Bright A_SpawnItemEx("ProgrammerBase",0,0,24,0,0,frandom(0.0,2.0),random(90,270),SXF_NOCHECKPOSITION)
+			PRGR R 7 Bright
+			PRGR S 6 Bright
+			PRGR TUVW 5 Bright
+			PRGR X 32 Bright
+			PRGR X -1 Bright
+			Stop
+	}
+}
+
+Actor Morph_ProgrammerWeapon : Weapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+			
+		Select:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+			TNT1 A 1 A_Raise
+			loop
+
+		Deselect:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+			TNT1 A 1 A_Lower
+			loop
+
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+
+		Fire:
+			TNT1 A 0 A_JumpIfCloser(64,"MeleeAttack")
+			TNT1 A 15
+			//TNT1 A 0 A_Playsound("programmer/attack",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("StrifeSigilLightningSpot",0,0,0,-30)
+			Goto Ready
+		MeleeAttack:
+			TNT1 A 8
+			TNT1 A 0 A_PlaySound("programmer/clank",CHAN_WEAPON)
+			TNT1 A 4 A_CustomPunch(6*random(1,10),1,0,"BlankPuff",64)
+			Goto Ready
+	}
+}

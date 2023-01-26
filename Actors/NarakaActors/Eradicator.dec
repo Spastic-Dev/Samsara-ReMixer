@@ -1,0 +1,284 @@
+Actor Morph_RotoDroidMines : Boolean {}
+Actor Morph_RotoDroidDarts : Boolean {}
+Actor Morph_RotoDroidShuriken : Boolean {}
+ACTOR Morph_RotoDroid : Eleena
+{
+	Radius 20
+	Height 64
+	Mass 1000
+	Scale 0.6
+	PainChance 25
+	PainChance "CalebFire", 0
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
+	Player.Soundclass "RotoDroid"
+	Player.MorphWeapon "Morph_RotoDroidWeapon"
+	Player.ForwardMove 0.25
+	Player.SideMove 0.25
+	Player.JumpZ 0
+	Player.ViewHeight 64
+	Player.MaxHealth 750
+	Player.AttackZOffset -32
+	+DONTTRANSLATE
+	+NOSKIN
+	States
+	{
+		Spawn:
+			RO_D E 5
+			Loop
+		See:
+			RO_D AA 2
+			RO_D BB 2
+			RO_D CC 2
+			RO_D DD 2
+			Loop
+		Melee:
+			TNT1 A 0 A_JumpIfInventory("Morph_RotoDroidMines",3,"Shuriken")
+			TNT1 A 0 A_JumpIfInventory("Morph_RotoDroidMines",2,"Darts")
+			TNT1 A 0 A_JumpIfInventory("Morph_RotoDroidMines",1,"Mines")
+		Missile:
+			RO_D F 6
+			RO_D G 8
+			RO_D F 8
+			Goto Spawn
+		Mines:
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 2
+			RO_D G 5
+			RO_D F 3
+			Goto Spawn
+		Darts:
+			RO_D F 6
+			RO_D G 6
+			RO_D F 4
+			RO_D G 6
+			RO_D F 5
+			Goto Spawn
+		Shuriken:
+			RO_D F 6
+			RO_D G 3
+			RO_D F 2
+			RO_D G 3 
+			RO_D F 2
+			RO_D G 3
+			RO_D F 3
+			Goto Spawn	
+		Pain:
+			RO_D H 4 A_Playsound("*pain100",CHAN_VOICE)
+			RO_D H 4
+			Goto Spawn
+		Death:
+			RO_D I 7 A_Scream
+			RO_D J 6 A_NoBlocking
+			RO_D KLMN 8
+			RO_D O -1
+			Stop		
+		XDeath:
+			TNT1 A 0 A_PlaySound("Eleena/Gibbed",CHAN_AUTO,1.0,0,ATTN_NORM)	
+			TNT1 AAAA 0 A_SpawnItemex("EleGibs1", 0, 0, random(8, 56), random(-4, 4), 0, random(0, 6))		
+			TNT1 AAAA 0 A_SpawnItemex("EradBloodDrop",0, 0, 32, random(3.0,5.0),random(3.0,5.0),random(0.0,10.0),random(0.0,360.0), SXF_ABSOLUTEANGLE , 0)		
+			TNT1 A 0 A_SpawnItemEx("RotoDGun",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)							
+			TNT1 A 0 A_SpawnItemEx("RotoDArm",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)		
+			TNT1 A 0 A_SpawnItemEx("RotoDLeg",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)	
+			TNT1 A 0 A_SpawnItemEx("RotoDFlesh",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)				
+			TNT1 A 0 A_SpawnItemEx("RotoDHand",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)							
+			TNT1 A 5 A_NoBlocking
+			TNT1 A -1
+			Stop							
+	}
+}
+
+Actor Morph_RotoDroidWeapon : Weapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	//+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+			
+		Select:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+			TNT1 A 1 A_Raise
+			loop
+
+		Deselect:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+			TNT1 A 1 A_Lower
+			loop
+
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"Shuriken")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"Darts")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"Mines")
+			TNT1 A 6
+			TNT1 A 0 A_PlaySound("erad/throwball", CHAN_WEAPON)
+			TNT1 A 8 A_FireCustomMissile("RotoDBall",0,0,-20,40)
+			TNT1 A 7
+			TNT1 A 0
+			Goto Ready
+		Mines:
+			TNT1 A 0 A_GiveInventory("Morph_RotoDroidMines",1)
+			TNT1 A 0 A_GunFlash
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",-12,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",-9,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",-7,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",-5,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",-1,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",3,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",6,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",8,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",10,0,-20,40,-10)
+			TNT1 A 2	
+			TNT1 A 5 A_FireCustomMissile("Morph_RotoDMine",13,0,-20,40,-10)
+			TNT1 A 2
+			TNT1 A 0 A_TakeInventory("Morph_RotoDroidMines",1)
+			Goto Ready
+		Darts:
+			TNT1 A 0 A_GiveInventory("Morph_RotoDroidDarts",1)
+			TNT1 A 0 A_GunFlash
+			TNT1 A 6
+			TNT1 A 0 A_PlaySound("erad/laser2_b")
+			TNT1 A 6 A_FireCustomMissile("RotoDDart",0,0,-20,40)
+			TNT1 A 4
+			TNT1 A 6 A_FireCustomMissile("RotoDDart",0,0,-20,40)
+			TNT1 A 4
+			TNT1 A 0 A_TakeInventory("Morph_RotoDroidDarts",1)
+			Goto Ready
+		Shuriken:
+			TNT1 A 0 A_GiveInventory("Morph_RotoDroidShuriken",1)
+			TNT1 A 0 A_GunFlash
+			TNT1 A 6
+			TNT1 A 0 A_PlaySound("erad/laser1_b")
+			TNT1 A 3 A_FireCustomMissile("RotoDShuriken",0,0,-20,40)
+			TNT1 A 2
+			TNT1 A 3 A_FireCustomMissile("RotoDShuriken",0,0,-20,40)
+			TNT1 A 2
+			TNT1 A 3 A_FireCustomMissile("RotoDShuriken",0,0,-20,40)
+			TNT1 A 2	
+			TNT1 A 0 A_TakeInventory("Morph_RotoDroidShuriken",1)
+			Goto Ready
+			
+		AltFire:
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,1)
+			Goto AltFire+2
+			TNT1 A 0 A_TakeInventory("StrongHold_MorphAttackMode",16)
+			Goto AltFire+3
+			TNT1 A 0 A_GiveInventory("StrongHold_MorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"SwitchShruiken")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"SwitchDarts")
+			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"SwitchMines")
+			Goto SwitchRegular
+		
+		SwitchRegular:
+			TNT1 A 0 A_Print("Energy mode")
+			Goto AltFireFinish
+		SwitchMines:
+			TNT1 A 0 A_Print("Mines mode")
+			Goto AltFireFinish
+		SwitchDarts:
+			TNT1 A 0 A_Print("Darts mode")
+			Goto AltFireFinish
+		SwitchShruiken:
+			TNT1 A 0 A_Print("Shuriken mode")
+			Goto AltFireFinish
+		
+		AltFireFinish:
+			TNT1 A 17
+			Goto Ready
+			
+		Flash:
+			TNT1 A 1
+			Stop
+			
+	}
+}
+
+Actor Morph_RotoDMine : RotoDMine
+{
+	Species "Player"
+	States
+	{
+		XDeath:
+		Crash:
+			TNT1 A 0 A_PlaySound("erad/expshot1")
+			GLBB A 4 bright A_Explode(random(8,21),67)
+			GLBB BCDE 4 bright
+			GLBB F 3 Bright
+			GLBB F 1 bright A_FadeOut
+			Stop
+		Death:
+			TNT1 A 5 A_SpawnItem("Morph_RotoDMineFloor")
+			Stop
+	}
+}
+
+Actor Morph_RotoDMineFloor : RotoDMineFloor
+{
+    HitObituary "%o was blind."
+	Species "Player"
+    states
+    {
+		Spawn:
+			TNT1 A 0
+		SpawnLoop:
+			TNT1 A 0 A_CountDown
+			RO_D SSSS 3 Bright A_LookEx(LOF_NOSOUNDCHECK ,0,60,0,360,"See")
+			Loop
+		See:
+			TNT1 A 0 A_ScreamAndUnblock
+			GLBB A 4 bright A_Explode(random(8,21),67)
+			GLBB BCDE 4 bright
+			GLBB F 3 Bright
+			GLBB F 1 bright A_FadeOut
+			Stop
+		Death:		
+			TNT1 A 0 A_ScreamAndUnblock
+			TNT1 A 0 A_SpawnItemEx("EradMetalDebris_2",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)					
+			TNT1 A 0 A_SpawnItemEx("EradMetalDebris_5",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)		
+			TNT1 A 0 A_SpawnItemEx("EradMetalDebris",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)		
+			TNT1 A 0 A_SpawnItemEx("EradMetalDebris_3",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)		
+			TNT1 A 0 A_SpawnItemEx("EradMetalDebris_4",0,0,0,random(-30,30)/10.00,random(-30,30)/10.00,random(50,150)/10.00)			
+			GLBB A 4 bright A_Explode(random(8,31),67)
+			GLBB BCDE 4 bright
+			GLBB F 3 Bright
+			GLBB F 1 bright A_FadeOut
+			Stop
+	
+    }
+}

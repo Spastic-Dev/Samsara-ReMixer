@@ -1,0 +1,110 @@
+Actor Morph_BattlelordMortar : Boolean {}
+Actor Morph_MiniBattlelord : DukePlayer
+{
+	Radius 24
+	Height 64
+	Mass 1200
+	Scale 0.65
+	PainChance 32
+	Player.Soundclass "BattleLord"
+	Player.ForwardMove 0.33
+	Player.SideMove 0.33
+	Player.JumpZ 0
+	Player.ViewHeight 64
+	Player.MaxHealth 1000
+	Player.MorphWeapon "Morph_MiniBattlelordWeapon"
+	Player.AttackZOffset 32
+	DamageFactor "CorvusCrossbow", 1.15
+    DamageFactor "DragonClaw", 1.6
+    DamageFactor "WMCNade", 0.75
+	DamageFactor "CorvusHellstaffTomed", 0.2
+	BloodType "DukeBloodBoss"
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOBLOODDECALS
+	States 
+	{
+		Spawn:
+			BTLO A 1
+			Loop
+		See:
+			BTLO AAAA 2 
+			BTLO BBBB 2
+			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)	
+			BTLO CCCC 2
+			BTLO DDDD 2
+			TNT1 A 0 A_PlaySound("duke/thud", CHAN_BODY)	
+			Loop
+		Missile:
+		Melee:
+			TNT1 A 0 A_JumpIfInventory("Morph_BattlelordMortar",1,"Mortar")
+			BTLO E 2
+			BTLO F 2 Bright
+			BTLO E 3
+			Goto Spawn
+		Mortar:
+			BTLO GGGG 2
+			BTLO HHHH 2
+			BTLO G 9 Bright
+			Goto Spawn
+		Pain:
+			BTLO I 3
+			BTLO I 3 A_Playsound("*pain100",CHAN_VOICE)
+			Goto Spawn
+		Death:
+		XDeath:
+			BTLO I 10 A_Scream
+			BTLO JK 10
+			BTLO L 10 A_NoBlocking
+			BTLO MN 10
+			BTLO N 20
+			TNT1 A -1
+			stop
+	}
+}
+
+Actor Morph_MiniBattlelordWeapon : Weapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	//+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+			
+		Select:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+			TNT1 A 1 A_Raise
+			loop
+
+		Deselect:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+			TNT1 A 1 A_Lower
+			loop
+
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+
+		Fire:
+			TNT1 A 0 A_PlaySound("duke/chaingun", CHAN_WEAPON)
+			TNT1 A 2 A_FireBullets(7,0,-1,5,"DukeBulletPuff")
+			TNT1 A 2
+			TNT1 A 0 A_Refire("Fire")
+			Goto Ready		
+
+		AltFire:
+			TNT1 A 0 A_GiveInventory("Morph_BattlelordMortar",1)
+			TNT1 A 16
+			TNT1 A 0 A_PlaySound("duke/rocketfire", CHAN_WEAPON)
+			TNT1 A 8 A_FireCustomMissile("BattleLordMortar1",random(-7,7),0,0,0,0,random(10,20))
+			TNT1 A 0 A_TakeInventory("Morph_BattlelordMortar",1)
+			Goto Ready
+
+	}
+}

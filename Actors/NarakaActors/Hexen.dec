@@ -1,0 +1,92 @@
+ACTOR Morph_DeathWyvern : HexenPlayer
+{
+	Radius 24
+	Height 64
+	Mass 0x7fffffff
+	PainChance 128
+	Player.Soundclass "DeathWyvern"
+	Player.ForwardMove 0.45
+	Player.SideMove 0.45
+	Player.JumpZ 0
+	Player.ViewHeight 64
+	Player.MaxHealth 1280 //doubled
+	Player.MorphWeapon "Morph_DeathWyvernWeapon"
+	Player.AttackZOffset -32
+	BloodColor Gray
+	-NOBLOODDECALS
+	+DONTTRANSLATE
+	+NOSKIN
+	-NOBLOOD //eh?
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_GiveInventory("MorphPlayerFlight",1)
+			DRAG BBCCDDCCBBAA 3
+			Loop
+		See:
+			TNT1 AA 0 A_GiveInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_PlaySound("DragonWingflap",CHAN_BODY)
+			DRAG BBCCDDCCBBAA 3
+			Loop
+		Missile:
+			DRAG E 1
+			DRAG E 7
+			DRAG E 1
+			DRAG E 17
+			Goto Spawn
+		Pain:
+			DRAG F 10 A_Playsound("*pain100",CHAN_VOICE)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_UnsetSolid		
+			DRAG G 5 A_Scream
+			DRAG H 4 A_NoBlocking
+			DRAG I 4
+		DeathLoopC:	
+			DRAG J 4 A_CheckFloor("Crash")
+			Goto DeathLoopC		
+		Crash:
+			TNT1 A 0 A_UnsetSolid
+			DRAG KL 5
+			DRAG M -1 
+			Stop
+	}
+}
+
+Actor Morph_DeathWyvernWeapon : Weapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	//+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+			
+		Select:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+			TNT1 A 1 A_Raise
+			loop
+
+		Deselect:
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+			TNT1 A 1 A_Lower
+			loop
+
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+
+		Fire:
+			TNT1 A 1
+			TNT1 A 7 A_FireCustomMissile("DragonFireball_Mix",0,0,0,25)
+			TNT1 A 1
+			TNT1 A 16 A_FireCustomMissile("DragonFireball_Mix",0,0,0,25)
+			Goto Ready
+	}
+}
