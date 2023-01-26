@@ -1,0 +1,757 @@
+Actor NarakaMorph_ArmoredBipedicus : SamsaraNarakaPawnTier1Normal
+{
+	Radius 20
+	Height 56
+	Mass 100
+	PainChance 200
+	DamageFactor "Flem", 0.0
+    DamageFactor "Slime", 0.0 //in chex3.exe the slam now has slime damagetype
+	Player.Soundclass "NarakaArmoredBipedicus"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.JumpZ 0
+	Player.ViewHeight 50
+	Player.MaxHealth 90
+	Player.MorphWeapon "NarakaMorph_ArmoredBipedicusWeapon"
+	Bloodcolor "6f ef 67"
+	-NOBLOODDECALS
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOICEDEATH
+	States
+	{
+		Spawn:
+			TROC AB 10
+			Loop
+		See:
+			TROC AABBCCDD 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TROC EFG 6
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TROC A 2 A_SpawnDebris("FlemoidGib",1)
+			TROC A 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_PlaySound("flemdie")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnDebris("FlemoidGib",1)
+			TNT1 A 0 A_SpawnItem("ArmoredBipedicusBody")
+			SPOD A 10
+			SPOD ABC 7
+			SPOD D -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_ArmoredBipedicusWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop	
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			Loop
+		Fire:
+			TNT1 A 0 A_JumpIfCloser(64,"MeleeAttack")
+			TNT1 A 12
+			TNT1 A 6 A_FireCustomMissile("NarakaBipedicusBall2",0,0,0,16)
+			Goto Ready		
+		MeleeAttack:
+			TNT1 A 12
+			TNT1 A 6 A_CustomPunch(random(1,8)*3,1,0,"NarakaMorph_ArmoredBipedicusPuff",64)
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_ArmoredBipedicusPuff
+{
+	DamageType "Zorch"
+	SeeSound "cqimp/melee"
+	ActiveSound "cqimp/melee"
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	States
+    {
+		Spawn:
+			TNT1 A 1
+			Stop
+    }
+}
+
+actor NarakaBipedicusBall2 : BipedicusBallV3
+{
+	DamageType "Zorch"
+	SeeSound "cqimp/attack"
+    DeathSound "cqimp/shotx"
+    States
+    {
+      Spawn:
+        BAC1 AB 4
+        Loop
+
+      Death:
+        BAC1 CDE 6
+        Stop
+    }
+}
+
+Actor NarakaMorph_Quadrumpus : SamsaraNarakaPawnTier2Normal
+{
+	Radius 20
+	Height 56
+	Mass 100
+	PainChance 200
+	DamageFactor "Flem", 0.0
+    DamageFactor "Slime", 0.0 //in chex3.exe the slam now has slime damagetype
+	Player.Soundclass "NarakaQuadrumpus"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.JumpZ 0
+	Player.ViewHeight 50
+	Player.MaxHealth 125
+	Player.MorphWeapon "NarakaMorph_QuadrumpusWeapon"
+	Bloodcolor "6f ef 67"
+	-NOBLOODDECALS
+	+DONTTRANSLATE
+	+NOSKIN
+	+DONTGIB
+	+NOICEDEATH
+	States
+	{
+		Spawn:
+			QUAD AB 10
+			Loop
+		See:
+			QUAD AABBCCDD 3
+			Loop
+		Melee:
+			QUAD EFG 6
+			Goto Spawn
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			QUAD EF 8
+			QUAD G 6
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			QUAD A 2 A_SpawnDebris("FlemoidGib",1)
+			QUAD A 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_PlaySound("flemdie2")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(-1,1),random(26,56),random(-2,2),random(-2,2),random(5,15))
+			TNT1 AA 0 A_CustomMissile("QuadrumpusArm1",32,0,random(-45,-135),2,random(0,90))
+			TNT1 AA 0 A_CustomMissile("QuadrumpusArm2",32,0,random(45,135),2,random(0,90))
+			QUDT A 10
+			QUDT ABC 7
+			QUDT D -1
+			stop
+	}
+}
+
+Actor NarakaMorph_QuadrumpusWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop	
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			Loop
+		Fire:
+			TNT1 A 0 A_JumpIfCloser(64,"MeleeAttack")
+			TNT1 A 16
+			TNT1 A 0 A_FireCustomMissile("NarakaQuadrumpusBall2",0,0,-16,11)
+			TNT1 A 0 A_FireCustomMissile("NarakaQuadrumpusBall2",0,0,-16,21)
+			TNT1 A 0 A_FireCustomMissile("NarakaQuadrumpusBall2",0,0,16,11)
+			TNT1 A 6 A_FireCustomMissile("NarakaQuadrumpusBall2",0,0,16,21)
+			Goto Ready		
+		MeleeAttack:
+			TNT1 A 12
+			TNT1 A 6 A_CustomPunch(random(1,8)*3,1,0,"NarakaMorph_ArmoredBipedicusPuff",64)
+			Goto Ready
+	}
+}
+
+actor NarakaQuadrumpusBall2 : QuadrumpusBall
+{
+    Radius 6
+    Height 8
+    Speed 15
+    FastSpeed 25
+    Damage 1
+    Projectile
+    DamageType "Zorch"
+    +RANDOMIZE
+    SeeSound "cqimp/attack"
+    DeathSound "cqimp/shotx"
+    States
+    {
+      Spawn:
+        BAC1 AB 4
+        Loop
+
+      Death:
+        BAC1 CDE 6
+        Stop
+    }
+}
+
+Actor NarakaMorph_SuperCycloptis : SamsaraNarakaPawnTier3Normal
+{
+	Radius 31
+	Height 56
+	Mass 400
+	PainChance 128
+	DamageFactor "Flem", 0.0
+    DamageFactor "Slime", 0.0 //in chex3.exe the slam now has slime damagetype
+	Player.Soundclass "NarakaSuperCycloptis"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.JumpZ 0
+	Player.ViewHeight 50
+	Player.MaxHealth 400
+	Player.MorphWeapon "NarakaMorph_SuperCycloptisWeapon"
+	Bloodcolor "6f ef 67"
+	-NOBLOODDECALS
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOICEDEATH
+	States
+	{
+		Spawn:
+			SCYC A 10 A_GiveInventory("NarakaPlayerFlight",1)
+			Loop
+		See:
+			SCYC A 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			SCYC BCD 5
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			SCYC A 3 A_SpawnDebris("FlemoidGib",1)
+			SCYC A 3 A_Playsound("*pain100",CHAN_VOICE)
+			SCYC A 6
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_NoBlocking
+			TNT1 A 0 A_PlaySound("flemdie")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnDebris("FlemoidGib",1)
+			TNT1 A 0 A_CustomMissile("SuperCyclopsBody",0,0,random(-180,180))
+			TNT1 A 0 A_CustomMissile("SuperCyclopsArm1",0,0,random(-45,-135),2,random(0,90))
+			TNT1 A 0 A_CustomMissile("SuperCyclopsArm2",0,0,random(45,135),2,random(0,90))
+			TNT1 A -1 A_SetFloorClip
+			stop
+	}
+}
+
+Actor NarakaMorph_SuperCycloptisWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop	
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			Loop
+		Fire:
+			TNT1 A 0 A_JumpIfCloser(64,"MeleeAttack")
+			TNT1 A 10
+			TNT1 A 5 A_FireCustomMissile("NarakaCycloptisBall2")
+			Goto Ready		
+		MeleeAttack:
+			TNT1 A 10
+			TNT1 A 5 A_CustomPunch(random(1,6)*10,1,0,"NarakaMorph_SuperCycloptisPuff",64)
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_SuperCycloptisPuff
+{
+	DamageType "Zorch"
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	States
+    {
+		Spawn:
+			TNT1 A 1
+			Stop
+    }
+}
+
+actor NarakaCycloptisBall2 : CycloptisBall
+{
+	DamageType "Zorch"
+	SeeSound "cqcaco/attack"
+    DeathSound "cqcaco/shotx"
+    States
+    {
+      Spawn:
+        BAC2 AB 4
+        Loop
+
+      Death:
+        BAC2 CDE 6
+        Stop
+    }
+}
+
+Actor NarakaMorph_Maximus : SamsaraNarakaPawnTier4Normal
+{
+	Radius 24
+	Height 64
+	Mass 1000
+	PainChance 20
+	DamageFactor "Flem", 0.0
+    DamageFactor "Slime", 0.0 //in chex3.exe the slam now has slime damagetype
+    DamageFactor "BFG", 0.75
+    DamageFactor "BFGSpray", 0.75
+	DamageFactor "CorvusHellstaffTomed", 0.2
+	Player.Soundclass "NarakaMaximus"
+	Player.ForwardMove 0.33
+	Player.SideMove 0.33
+	Player.JumpZ 0
+	Player.ViewHeight 64
+	Player.MaxHealth 2000
+	Player.MorphWeapon "NarakaMorph_MaximusWeapon"
+	Bloodcolor "6f ef 67"
+	-NOBLOODDECALS
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOICEDEATH
+	States
+	{
+		Spawn:
+			BOSC AB 10
+			Loop
+		See:
+			BOSC AABBCCDD 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			BOSC EFG 4
+			FMAX IJK 4
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MissileRapid:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			BOSC EFGEFG 1
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn	
+		MissileSpray:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			BOSC EF 4 
+			BOSC GGE 3
+			BOSC EF 4
+			BOSC GGE 3
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MissileHeavy:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			FMAX IJ 4
+			FMAX KKII 2
+			FMAX IJ 4
+			FMAX KKII 2
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MissileGrenade:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			FMAX IJ 4
+			FMAX KI 4
+			FMAX J 8
+			FMAX K 8
+			FMAX J 8
+			FMAX KI 4
+			FMAX IJKI 4
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn  
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			BOSC AAAA 0 A_SpawnDebris("FlemoidGib",1)
+			BOSC A 4 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			FMAX A 5
+			TNT1 A 0 A_PlaySound("flemdie")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(16,20),random(56,62),random(-2,2),random(-2,2),random(5,10))
+			TNT1 A 0 A_CustomMissile("MaximusArmRight",48,8,random(-45,-135),2,random(15,90))
+			FMAX B 15
+			TNT1 A 0 A_PlaySound("flemdie")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(-16,-20),random(56,62),random(-2,2),random(-2,2),random(5,10))
+			TNT1 A 0 A_CustomMissile("MaximusArmLeft",48,-8,random(45,135),2,random(15,90))
+			FMAX C 20
+			TNT1 A 0 A_Playsound("*pain100",CHAN_VOICE)
+			FMAX C 15
+			TNT1 A 0 A_PlaySound("flemdie2")
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,25))
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-10,10),random(-10,10),random(36,46),random(-2,2),random(-2,2),random(5,20))
+			FMAX DEF 5
+			FMAX G 5 A_NoBlocking
+			FMAX H -1
+			stop
+	}
+}
+
+Actor NarakaMorph_MaximusWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+WEAPON.MELEEWEAPON
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop	
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_JumpIfCloser(80,"MeleeAttack")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"GrenadeAttack")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"MegaBall")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"RapidFire")
+			TNT1 A 8 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,3)
+			TNT1 AAAAAA 0 A_FireCustomMissile("NarakaMaximusBall3",random(-15,15),0,20,20)
+			TNT1 A 17
+			TNT1 AAAAAA 0 A_FireCustomMissile("NarakaMaximusBall3",random(-15,15),0,20,20)
+			TNT1 AAA 3
+			Goto Ready		
+		RapidFire:
+			TNT1 A 2 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,3,1)
+			TNT1 A 3 A_FireCustomMissile("NarakaMaximusBall3",random(-5,5),0,20,20)
+			TNT1 A 3 A_FireCustomMissile("NarakaMaximusBall3",random(-5,5),0,20,20)
+			Goto Ready
+		MegaBall:
+			TNT1 A 8 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,3,2)
+			TNT1 A 16 A_FireCustomMissile("NarakaSnotfolusBall",0,0,-20,20)
+			TNT1 A 8 A_FireCustomMissile("NarakaSnotfolusBall",0,0,-20,20)
+			Goto Ready
+		GrenadeAttack:
+			TNT1 A 8 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,3,3)
+			TNT1 A 16 A_FireCustomMissile("NarakaSlimeGrenade2",0,0,-20,20)
+			TNT1 A 16 A_FireCustomMissile("NarakaSlimeGrenade2",0,0,-20,20)
+			TNT1 A 16 A_FireCustomMissile("NarakaSlimeGrenade2",0,0,-20,20)
+			TNT1 A 8 A_FireCustomMissile("NarakaSlimeGrenade2",0,0,-20,20)
+			Goto Ready  
+		MeleeAttack:
+			TNT1 A 8 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,3,4)
+			TNT1 A 4 A_CustomPunch(random(2,6)*8,1,0,"NarakaMorph_MaximusPuff",80)
+			TNT1 A 8
+			TNT1 A 4 A_CustomPunch(random(2,6)*8,1,0,"NarakaMorph_MaximusPuff",80)
+			Goto Ready
+		AltFire:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,1)
+			Goto AltFire+2
+			TNT1 A 0 A_TakeInventory("NarakaMorphAttackMode",16)
+			Goto AltFire+3
+			TNT1 A 0 A_GiveInventory("NarakaMorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"SwitchGrenade")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"SwitchHeavy")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"SwitchRapid")
+			Goto SwitchRegular	
+		SwitchRegular:
+			TNT1 A 0 A_Print("Spray mode")
+			Goto AltFireFinish
+		SwitchRapid:
+			TNT1 A 0 A_Print("Rapid Fire mode")
+			Goto AltFireFinish
+		SwitchHeavy:
+			TNT1 A 0 A_Print("Heavy mode")
+			Goto AltFireFinish
+		SwitchGrenade:
+			TNT1 A 0 A_Print("Grenade mode")
+			Goto AltFireFinish	
+		AltFireFinish:
+			TNT1 A 17
+			Goto Ready
+			
+	}
+}
+
+Actor NarakaMorph_MaximusPuff
+{
+	DamageType "Zorch"
+	SeeSound "cqbaron/melee"
+	ActiveSound "cqbaron/melee"
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	States
+    {
+		Spawn:
+			TNT1 A 1
+			Stop
+    }
+}
+
+ACTOR NarakaMaximusBall3 : SnotfolusBall2 
+{
+	DamageType "Zorch"
+	Damage 4
+	Scale 0.925
+	+STRIFEDAMAGE
+}
+
+actor NarakaSnotfolusBall : SnotfolusBall
+{
+	DamageType "Zorch"
+	SeeSound "cqbaron/attack"
+    DeathSound "cqbaron/shotx"
+    States
+    {
+      Spawn:
+        BAC7 AB 4
+        Loop
+
+      Death:
+        BAC7 CDE 6
+        Stop
+    }
+}
+
+ACTOR NarakaSlimeGrenade2 : SlimeGrenade 
+{
+   DamageType "Zorch"
+   SeeSound "cqgrunt/attack"
+   States
+   {
+   Spawn:
+      BAC2 AB 3
+      Loop
+   Death:
+      TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-1,1),random(-1,1),random(-1,1),random(-2,2),random(-2,2),random(5,10))
+      BAC2 C 4 A_Explode(64,96)
+      BAC2 D 4
+      BAC2 E 4
+      Stop
+   }
+}
+
+Actor NarakaMorph_Snotfolus : SamsaraNarakaPawnTier5Normal
+{
+	Radius 40
+	Height 110
+	Mass 1000
+	PainChance 10
+	DamageFactor "Flem", 0.0
+    DamageFactor "Slime", 0.0 //in chex3.exe the slam now has slime damagetype
+	Player.Soundclass "NarakaSnotfolus"
+	Player.ForwardMove 0.16
+	Player.SideMove 0.16
+	Player.JumpZ 0
+	Player.ViewHeight 92
+	Player.MaxHealth 4000
+	Player.MorphWeapon "NarakaMorph_SnotfolusWeapon"
+	Bloodcolor "6f ef 67"
+	-NOBLOODDECALS
+	+DONTTRANSLATE
+	+NOSKIN
+	+DONTRIP
+	+DONTGIB
+	+NOICEDEATH
+	States
+	{
+		Spawn:
+			CYBC AB 10
+			Loop
+		See:
+			CYBC A 6 A_PlaySound("cqcyber/hoof",CHAN_BODY,1.0,0)
+			CYBC BC 6 A_GiveInventory("NarakaMorph_SnotfolusSpawnTrigger",1)
+			CYBC D 6 A_PlaySound("cqspider/walk",CHAN_BODY,1.0,0)
+			Loop
+		Melee:
+		Missile:
+			Goto Spawn
+		StandardFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CYBC EFEFEFEFEFEF 6
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		VolleyFire:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CYBC E 12
+			CYBC F 45
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 AAAA 0 A_SpawnDebris("FlemoidGib",1)
+			TNT1 AA 0 A_GiveInventory("NarakaMorph_SnotfolusSpawnTrigger",1)
+			CYBC A 10 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_TakeInventory("NarakaMorph_SnotfolusDeathLoopCounter",20)
+		DeathLoop:
+			CYBC A 5 A_JumpIfInventory("NarakaMorph_SnotfolusDeathLoopCounter",0,"DeathFinish")
+			TNT1 A 0 A_GiveInventory("NarakaMorph_SnotfolusDeathLoopCounter",1)
+			TNT1 A 0 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 A_PlaySound("flemdie")
+			TNT1 AAAAA 0 A_SpawnItemEx("FlemoidGib",random(-32,32),random(-32,32),random(16,56),random(-10,10),random(-10,10),random(5,25))
+			TNT1 AAAAA 0 A_SpawnItemEx("FlemoidGib",random(-32,32),random(-32,32),random(16,56),random(-10,10),random(-10,10),random(5,25))
+			Loop
+		DeathFinish:
+			CYBC A 5
+			TNT1 A 0 A_PlaySound("flemdie",6)
+			TNT1 A 0 A_PlaySound("flemdie2",5)
+			TNT1 A 0 A_Scream
+			TNT1 AAAAAA 0 A_CustomMissile("QuadrumpusArm1",random(20,40),random(-50,50),random(-45,-135),2,random(0,90))
+			TNT1 AAAAAAA 0 A_CustomMissile("QuadrumpusArm2",random(20,40),random(-50,50),random(45,135),2,random(0,90))
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-32,32),random(-32,32),random(16,56),random(-10,10),random(-10,10),random(5,25))
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-32,32),random(-32,32),random(16,56),random(-10,10),random(-10,10),random(5,25))
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-32,32),random(-32,32),random(16,56),random(-10,10),random(-10,10),random(5,25))
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-32,32),random(-32,32),random(16,56),random(-10,10),random(-10,10),random(5,25))
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlemoidGib",random(-32,32),random(-32,32),random(16,56),random(-10,10),random(-10,10),random(5,25))
+			TNT1 A 0 A_NoBlocking
+			SNTD AAAAABCD 6
+			SNTD D -1 A_KillMaster
+			stop
+	}
+}
+
+Actor NarakaMorph_SnotfolusDeathLoopCounter : Counter { Inventory.MaxAmount 20 }
+
+Actor NarakaMorph_SnotfolusSpawnTrigger : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_Jump(224,2)
+			TNT1 A 0 A_FireCustomMissile("FlemSporeSummonball2")
+			TNT1 A 0
+			Stop
+	}
+}
+
+Actor NarakaMorph_SnotfolusWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"SummonMode")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"AlternativeMode")
+			TNT1 A 6 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,4)
+			TNT1 A 0 A_FireCustomMissile("FlemSporeSummonball2")
+			TNT1 A 6 A_FireCustomMissile("NarakaSnotfolusBall",0,0,0,53)
+			TNT1 A 6
+			TNT1 A 6 A_FireCustomMissile("NarakaSnotfolusBall",0,0,0,53)
+			TNT1 A 6
+			TNT1 A 6 A_FireCustomMissile("NarakaSnotfolusBall",0,0,0,53)
+			TNT1 A 0 A_FireCustomMissile("FlemSporeSummonball2")
+			TNT1 A 6
+			TNT1 A 6 A_FireCustomMissile("NarakaSnotfolusBall",0,0,0,53)
+			TNT1 A 6
+			TNT1 A 6 A_FireCustomMissile("NarakaSnotfolusBall",0,0,0,53)
+			TNT1 A 6
+			TNT1 A 6 A_FireCustomMissile("NarakaSnotfolusBall",0,0,0,53)
+			Goto Ready	
+		AltFire:
+			TNT1 A 6 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,4,1)
+			TNT1 A 6 A_FireCustomMissile("FlemSporeSummonball2")
+			TNT1 A 3 A_FireCustomMissile("NarakaSnotfolusBall",random(-15,15),0,0,53)
+			TNT1 AAAA 3 A_FireCustomMissile("NarakaSnotfolusBall2",random(-15,15),0,0,53)
+			TNT1 A 3 A_FireCustomMissile("NarakaSnotfolusBall",random(-15,15),0,0,53)
+			TNT1 AAAA 3 A_FireCustomMissile("NarakaSnotfolusBall2",random(-15,15),0,0,53)
+			TNT1 A 3 A_FireCustomMissile("NarakaSnotfolusBall",random(-15,15),0,0,53)
+			TNT1 AAAA 3 A_FireCustomMissile("NarakaSnotfolusBall2",random(-15,15),0,0,53)
+			Goto Ready
+	}
+}
+
+actor NarakaSnotfolusBall2 : SnotfolusBall2
+{
+	SeeSound "cqbaron/attack"
+    DeathSound "cqbaron/shotx"
+    States
+    {
+      Spawn:
+        BAC1 AB 4
+        Loop
+
+      Death:
+        BAC1 CDE 6
+        Stop
+    }
+}
