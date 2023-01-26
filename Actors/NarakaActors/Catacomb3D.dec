@@ -1,0 +1,352 @@
+// Catacomb 3-D
+Actor NarakaMorph_C3DMage : SamsaraNarakaPawnTier1Normal
+{
+	Radius 20
+	Height 50
+	Mass 2000
+	Scale 1.2
+	Player.Soundclass "NarakaC3DMage"
+	Player.ForwardMove 0.5
+	Player.SideMove 0.5
+	Player.MorphWeapon "NarakaMorph_C3DMageWeapon"
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			CT04 A 2 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			CT04 AAAAAABBBBBB 2 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT04 D 5 Bright
+			CT04 A 10
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT04 C 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			CT04 E 10 A_Scream
+			CT04 F 0 A_NoBlocking
+			CT04 F -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_C3DMageWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 5 A_FireCustomMissile("Catacomb_MageBall", 0, 0, 0, 0)
+			TNT1 A 10
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_CASuccubus : SamsaraNarakaPawnTier2Normal
+{
+	Radius 20
+	Height 50
+	Mass 2000
+	Scale 1.2
+	Player.Soundclass "NarakaCASuccubus"
+	Player.ForwardMove 0.5
+	Player.SideMove 0.5
+	Player.MorphWeapon "NarakaMorph_CASuccubusWeapon"
+	Player.ViewHeight 44.0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			CT17 AB 10 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			CT17 AABBCCDD 4 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT17 EF 4
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT17 G 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			CT17 G 10 A_Scream
+			CT17 H 10 A_NoBlocking
+			CT17 I -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_CASuccubusWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 4
+			TNT1 A 4 A_FireCustomMissile("CatacombArmageddon_HeartMissile", 0, 0, 0, 0)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_CATreant : SamsaraNarakaPawnTier3NoBlood
+{
+	Radius 32
+	Height 56
+	Mass 2000
+	Scale 1.2
+	Player.Soundclass "NarakaCATreant"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.MorphWeapon "NarakaMorph_CATreantWeapon"
+	Player.ViewHeight 45.0
+	+NOBLOOD
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			CT18 A 10 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			CT18 BBBCCCDDD 4 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT17 EFG 4
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT18 E 2
+			CT18 E 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			CT18 E 5 A_Scream
+			CT18 H 5 A_NoBlocking
+			CT18 I 5 A_Explode(1, 60, 1, false, 90)
+			CT18 J 5 A_Explode(1, 60, 1, false, 90)
+			Goto Death+2
+	}
+}
+
+Actor NarakaMorph_CATreantWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 4
+			TNT1 AA 4 A_CustomPunch(20, true, 0, "NarakaMorph_CATreantWeaponPuff", 80)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_CATreantWeaponPuff : BlankPuff
+{
+	-NOEXTREMEDEATH
+	DamageType "CatacombDamage"
+	States
+    {
+		Spawn:
+		Crash:
+		Melee:
+			TNT1 A 0 A_PlaySound("Catacomb/XTerm")
+			TNT1 A 2
+			stop
+    }
+}
+
+Actor NarakaMorph_CATwoHeadedDemon : SamsaraNarakaPawnTier4Normal
+{
+	Radius 34
+	Height 64
+	Mass 2000
+	Scale 1.2
+	Player.Soundclass "NarakaCATwoHeadedDemon"
+	Player.ForwardMove 0.6
+	Player.SideMove 0.6
+	Player.MorphWeapon "NarakaMorph_CATwoHeadedDemonWeapon"
+	Player.ViewHeight 48.0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			CT16 AB 10 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			CT16 AABBCCDD 4 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT16 EFG 6
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT16 H 2
+			CT16 H 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			CT16 H 5 A_Scream
+			CT16 I 5 A_NoBlocking
+			CT16 HIHIHI 5
+			CT16 J 5 
+			CT16 K -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_CATwoHeadedDemonWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 4
+			TNT1 AA 4 A_CustomPunch(40, true, 0, "NarakaMorph_CATreantWeaponPuff", 80)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_CPNemesis : SamsaraNarakaPawnTier5Normal
+{
+	Radius 21
+	Height 64
+	Mass 2000
+	Scale 1.2
+	Player.Soundclass "NarakaCPNemesis"
+	Player.ForwardMove 0.6
+	Player.SideMove 0.6
+	Player.MorphWeapon "NarakaMorph_CPNemesisWeapon"
+	Player.ViewHeight 50.0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			CT28 AB 10 Bright A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			CT28 AAABBB 3 Bright A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT28 AABB 2 Bright
+			CT28 C 15 Bright
+			CT28 ABAB 10 Bright
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			CT17 G 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			CT28 D 5 A_Scream
+			CT28 E 5 A_NoBlocking
+			CT28 FGH 5
+			CT28 I -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_CPNemesisWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8
+			TNT1 A 55 A_FireCustomMissile("CatacombApocalypse_NemesisSkull", 0, 0, 0, 0)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
