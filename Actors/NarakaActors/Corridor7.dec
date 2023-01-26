@@ -1,0 +1,504 @@
+// Corridor 7
+Actor NarakaMorph_AnimatedProbe : SamsaraNarakaPawnTier1Normal
+{
+	Radius 16
+	Height 44
+	Mass 45
+	Player.Soundclass "NarakaAnimatedProbe"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.MorphWeapon "NarakaMorph_AnimatedProbeWeapon"
+	Player.StartItem "CanWolfMovement", 1
+	Player.ViewHeight 24.0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_GiveInventory("NarakaPlayerFlight",1)
+			6PRO B 5 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			TNT1 AA 0 A_GiveInventory("NarakaPlayerFlight",1)
+			6PRO A 2
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			6PRO DE 5 Bright
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			6PRO F 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			6PRO G 3 A_Scream
+			6PRO H 3 
+			6PRO I 3 A_NoBlocking
+			6PRO J 3 
+			6PRO K -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_AnimatedProbeWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	Decal BulletChip
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_PlaySound("aprobe/fire",CHAN_WEAPON)
+			TNT1 A 0 A_JumpIfCloser(118, "Fire1")
+			TNT1 A 0 A_JumpIfCloser(246, "Fire2")
+			TNT1 A 0 A_JumpIfCloser(374, "Fire3")
+			TNT1 A 0 A_JumpIfCloser(502, "Fire4")
+			TNT1 A 0 A_JumpIfCloser(630, "Fire5")
+			TNT1 A 0 A_JumpIfCloser(758, "Fire6")
+			Goto Fire7
+		Fire1:
+			TNT1 A 10 A_FireCustomMissile("C7EnemyBulletD1", random(-6,6))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire2:
+			TNT1 A 10 A_FireCustomMissile("C7EnemyBulletD2", random(-7,7))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire3:
+			TNT1 A 10 A_FireCustomMissile("C7EnemyBulletD3", random(-8,8))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire4:
+			TNT1 A 10 A_FireCustomMissile("C7EnemyBulletD4", random(-9,9))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire5:
+			TNT1 A 10 A_FireCustomMissile("C7EnemyBulletD5", random(-10,10))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire6:
+			TNT1 A 10 A_FireCustomMissile("C7EnemyBulletD6", random(-11,11))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire7:
+			TNT1 A 10 A_FireCustomMissile("C7EnemyBulletD7", random(-12,12))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_Semaj : SamsaraNarakaPawnTier2Normal
+{
+	Radius 16
+	Height 48
+	Mass 250
+	Player.Soundclass "NarakaSemaj"
+	Player.ForwardMove 0.25
+	Player.SideMove 0.25
+	Player.MorphWeapon "NarakaMorph_SemajWeapon"
+	Player.StartItem "CanWolfMovement", 1
+	BloodColor "Green"
+	Player.ViewHeight 24.0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			C703 A 5 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			C703 AABB 2 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			C703 CDEF 3
+			C703 EDC 2
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			C703 G 3
+			C703 H 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			C703 I 5 A_Scream
+			C703 JK 5 
+			C703 L 5 A_NoBlocking
+			C703 M 5 
+			C703 M -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_SemajWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 6
+			TNT1 A 3 A_PlaySound("semaj/crunch",CHAN_WEAPON)
+			TNT1 A 6 A_CustomPunch((random(7,24)*2), true, 0, "BlankPuffC7", 80)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_Ttocs : SamsaraNarakaPawnTier3Normal
+{
+	Radius 24
+	Height 64
+	Mass 1000
+	Player.Soundclass "NarakaTtocs"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.MorphWeapon "NarakaMorph_TtocsWeapon"
+	Player.StartItem "CanWolfMovement", 1
+	Player.ViewHeight 54.0
+	BloodColor "Green"
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			8PRO A 5 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			8PRO BBCCDDEE 2 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			8PRO PQ 4 Bright
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			8PRO F 3
+			8PRO F 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			8PRO G 6 A_Scream
+			8PRO H 7 A_NoBlocking
+			8PRO IJKLM 6
+			8PRO N -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_TtocsWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	Decal BulletChip
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_PlaySound("ttocs/fire",CHAN_WEAPON)
+			TNT1 A 0 A_JumpIfCloser(118, "Fire1")
+			TNT1 A 0 A_JumpIfCloser(246, "Fire2")
+			TNT1 A 0 A_JumpIfCloser(374, "Fire3")
+			TNT1 A 0 A_JumpIfCloser(502, "Fire4")
+			TNT1 A 0 A_JumpIfCloser(630, "Fire5")
+			TNT1 A 0 A_JumpIfCloser(758, "Fire6")
+			Goto Fire7
+		Fire1:
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD1", random(-6,6))
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD1", random(-6,6))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire2:
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD2", random(-7,7))
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD2", random(-7,7))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire3:
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD3", random(-8,8))
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD3", random(-8,8))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire4:
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD4", random(-9,9))
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD4", random(-9,9))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire5:
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD5", random(-10,10))
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD5", random(-10,10))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire6:
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD6", random(-11,11))
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD6", random(-11,11))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire7:
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD7", random(-12,12))
+			TNT1 A 4 A_FireCustomMissile("C7EnemyBulletD7", random(-12,12))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_Eniram : SamsaraNarakaPawnTier4Normal
+{
+	Radius 24
+	Height 64
+	Mass 1000
+	Player.Soundclass "NarakaEniram"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.MorphWeapon "NarakaMorph_EniramWeapon"
+	Player.StartItem "CanWolfMovement", 1
+	Player.ViewHeight 54.0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			C702 A 5 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			C702 AABBCCDD 3 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			C702 FE 5 Bright
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			C702 G 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			C702 G 6 A_Scream
+			C702 H 7 A_NoBlocking
+			C702 IJK 6
+			C702 L -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_EniramWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	Decal BulletChip
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_PlaySound("c7alien/firer",CHAN_WEAPON)
+			TNT1 A 10 A_FireCustomMissile("EniramMissile", 0, 0, 0, 0)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_Tebazile : SamsaraNarakaPawnTier5Normal
+{
+	Radius 35
+	Height 68
+	Mass 1000
+	Player.Soundclass "NarakaTebazile"
+	Player.ForwardMove 0.4
+	Player.SideMove 0.4
+	Player.MorphWeapon "NarakaMorph_TebazileWeapon"
+	Player.StartItem "CanWolfMovement", 1
+	Player.ViewHeight 56.0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_TakeInventory("WolfCheckMoving")
+			C710 E 5 A_JumpIfInventory("WolfMoving", 1, "See")
+			Loop
+		See:
+			C710 EEFFGGHH 2 A_GiveInventory("WolfCheckMoving")
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			C710 BCBC 5
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			C710 E 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			C710 EIJKLMN 5
+			C710 OPQRST 5
+			C710 UVWXYZ 5
+			C711 ABCDEF 5
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			C711 G 5 A_Scream
+			C711 H 5 A_NoBlocking
+			C711 IJKLMN 5
+			TNT1 A 0 A_PlaySound("tebazile/melt",6,1.0,0,ATTN_NONE)
+			C711 OPQR 5
+			C711 R -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_TebazileWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.DONTBOB
+	+NOALERT
+	Decal BulletChip
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 0 A_JumpIfCloser(118, "Fire1")
+			TNT1 A 0 A_JumpIfCloser(246, "Fire2")
+			TNT1 A 0 A_JumpIfCloser(374, "Fire3")
+			TNT1 A 0 A_JumpIfCloser(502, "Fire4")
+			TNT1 A 0 A_JumpIfCloser(630, "Fire5")
+			TNT1 A 0 A_JumpIfCloser(758, "Fire6")
+			Goto Fire7
+		Fire1:
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB1", random(-5,5))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB1", random(-5,5))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB1", random(-5,5))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB1", random(-5,5))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire2:
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB2", random(-6,6))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB2", random(-6,6))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB2", random(-6,6))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB2", random(-6,6))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire3:
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB3", random(-7,7))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB3", random(-7,7))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB3", random(-7,7))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB3", random(-7,7))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire4:
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB4", random(-8,8))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB4", random(-8,8))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB4", random(-8,8))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB4", random(-8,8))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire5:
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB5", random(-9,9))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB5", random(-9,9))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB5", random(-9,9))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB5", random(-9,9))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire6:
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB6", random(-10,10))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB6", random(-10,10))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB6", random(-10,10))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB6", random(-10,10))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Fire7:
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB7", random(-11,11))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB7", random(-11,11))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB7", random(-11,11))
+			TNT1 A 0 A_PlaySound("solrac/fire",CHAN_WEAPON)
+			TNT1 A 5 A_FireCustomMissile("C7EnemyBulletB7", random(-11,11))
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}

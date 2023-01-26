@@ -1,0 +1,58 @@
+Actor SamsaraMonsterSphere : CustomInventory
+{
+	Inventory.MaxAmount 1
+	Inventory.Icon "ARTIINVU"	// Use a placeholder sprite for now
+	+INVENTORY.INVBAR
+	+INVENTORY.UNDROPPABLE
+	States
+	{
+		Spawn:
+			TNT1 A 2
+			Loop
+		Use:
+			TNT1 A 0 ACS_NamedExecuteWithResult("MonsterSphereInitiate")
+			fail
+	}
+}
+
+Actor NarakaPlayerFlight : PowerFlight
+{
+	+INVENTORY.HUBPOWER
+	Powerup.Duration -0x7fffffff
+}
+
+Actor NarakaPlayerPartialInvisibility : PowerInvisibility
+{
+	+INVENTORY.HUBPOWER
+	+SHADOW
+	Powerup.Mode "Fuzzy"
+	Powerup.Duration -0x7fffffff
+	Powerup.Strength 80
+}
+
+Actor SamsaraMonsterMorpherChecker
+{
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 2
+			Stop
+	}
+}
+
+/*
+  Here are a couple of guidelines that I'm following for the monsters:
+
+* Hitscanners don't need any additional buffs or changes made to them, since they
+  usually good enough to hold off enemies on their own.
+  
+* Any morphs that fire projectiles and aren't Tier V monsters should be launched
+  faster to compensate for their relatively weak damage output.
+  
+* Melee attacks from morphs should be doubled since they're pretty weak against
+  beefier monsters, along with having their ranges increased.
+*/
+
+// I don't know if I should include Stronghold stuff in here, so for now,
+// I'll just skip them.

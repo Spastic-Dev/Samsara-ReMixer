@@ -1,0 +1,257 @@
+#define MAXMODES          	5
+#define MAXTIERS          	5
+
+Str MonsterTiers[MAX_GAME_TYPES][MAXMODES][MAXTIERS] =
+{
+	{
+		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
+		{ "NarakaMorph_NightmareImp", "NarakaMorph_Spectre64", "NarakaMorph_Arachnotron64", "NarakaMorph_Baron64", "NarakaMorph_MotherDemon"},
+		{ "NarakaMorph_SuperShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
+	},
+	{
+		{ "Morph_ArmoredBipedicus", "Morph_Quadrumpus", "Morph_SuperCycloptis", "Morph_Maximus", "Morph_Snotfolus"},
+	},
+	{
+		{ "Morph_NitroMummy", "Morph_Knight", "Morph_Weredragon", "Morph_Ironlich", "Morph_DSparil"},
+	},
+	{
+		{ "Morph_SS", "Morph_Mutant", "Morph_HansGrosse", "Morph_BarnacleWilhelm", "Morph_Hitler" },
+		{ "Morph_SS", "Morph_Mutant", "Morph_HansGrosse", "Morph_ProfessorQuarkblitz", "Morph_Hitler" },
+		{ "Morph_SS", "Morph_Mutant", "Morph_HansGrosse", "Morph_Narbengesicht", "Morph_Hitler" },
+	},
+	{
+		{ "Morph_Disciple", "Morph_CentaurLeader", "Morph_BrownChaosSerpent", "Morph_DeathWyvern", "Morph_Korax"},
+		{ "Morph_Disciple", "Morph_CentaurLeader", "Morph_BrownChaosSerpent", "Morph_DeathWyvern", "Morph_Korax"},
+		{ "Morph_Disciple", "Morph_CentaurLeader", "Morph_BrownChaosSerpent", "Morph_DeathWyvern", "Morph_Korax"},
+	},
+	{
+		{ "Morph_PigCop", "Morph_AssaultCommander", "Morph_PigCopTank", "Morph_MiniBattleLord", "Morph_CycloidEmperor"},
+		{ "Morph_PigCop", "Morph_AssaultCommander", "Morph_PigCopTank", "Morph_MiniBattleLord", "Morph_CycloidEmperor"},
+		{ "Morph_PigCop", "Morph_AssaultCommander", "Morph_PigCopTank", "Morph_MiniBattleLord", "Morph_CycloidEmperor"},
+	},
+	{
+		{ "Morph_ProjectileFighterMajor", "Morph_SphtKrMajor", "Morph_MotherofAllHunters", "Morph_MotherofAllCyborgs", "Morph_JuggernautMajor"},
+	},
+	{
+		{ "Morph_QGrunt", "Morph_QMultiOgre", "Morph_QVore", "Morph_QOverlord", "Morph_QDragon"},
+	},
+	{
+		{ "Morph_LightningGuard", "Morph_RobotGuard", "Morph_TriadEnforcer", "Morph_GeneralDarian", "Morph_ElOscuro"},
+		{ "Morph_LightningGuard", "Morph_RobotGuard", "Morph_TriadEnforcer", "Morph_GeneralDarian", "Morph_ElOscuro"},
+		{ "Morph_LightningGuard", "Morph_RobotGuard", "Morph_TriadEnforcer", "Morph_GeneralDarian", "Morph_ElOscuro"},
+		{ "Morph_LightningGuard", "Morph_RobotGuard", "Morph_TriadEnforcer", "Morph_GeneralDarian", "Morph_ElOscuro"},
+		{ "Morph_LightningGuard", "Morph_RobotGuard", "Morph_TriadEnforcer", "Morph_GeneralDarian", "Morph_ElOscuro"},
+	},
+	{
+		{ "Morph_SectorGuard", "Morph_StarTrooper", "Morph_BioMech", "Morph_BreatherBeast", "Morph_Goldfire"},
+		{ "Morph_SectorGuard", "Morph_StarTrooper", "Morph_BioMech", "Morph_BreatherBeast", "Morph_Goldfire"},
+	},
+	{
+		{ "Morph_Cultist", "Morph_Butcher", "Morph_BloodGargoyle", "Morph_BloodBeast", "Morph_Tchernobog"},
+	},
+	{
+		{ "Morph_Acolyte", "Morph_Templar", "Morph_Crusader", "Morph_Programmer", "Morph_Entity"},
+	},
+	{
+		{ "Morph_LSD", "Morph_HSD", "Morph_LSD2", "Morph_RotoDroid", "Morph_Gor"},
+	},
+	{
+		{ "NarakaMorph_AnimatedProbe", "NarakaMorph_Semaj", "NarakaMorph_Ttocs", "NarakaMorph_Eniram", "NarakaMorph_Tebazile"},
+	},
+};
+
+// Remove this once debugging is finished
+Script "ForceGiveSphere" Enter
+{
+	if (GetCvar("mm_narakamode") >= 1)
+	{
+		GiveInventory("SamsaraMonsterSphere",1);
+	}
+}
+
+Script "MonsterSphereInitiate" (void)
+{
+	int class = PlayerClass(PlayerNumber());
+	int hudboundsx = 1440;
+	int hudboundsy = 972;
+	int cursorx = hudboundsx/2;
+	int cursory = hudboundsy/2;
+	int hudcenterx = hudboundsx/2;
+	int hudcentery = hudboundsy/2;
+	int hoverindex, lasthover;
+	int squarecenter = FixedDiv(hudboundsx+hudboundsy,2.0);
+	int breakloop = false;
+	SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+	UnMorphActor(0,1);
+	
+	until(breakloop)
+	{			
+		int mouseX = GetCvar("m_yaw") + 0.2;
+		int mouseY = GetCvar("m_pitch") + 0.2;
+		int yaw = GetPlayerInput(-1, INPUT_YAW);
+		int pitch = GetPlayerInput(-1, INPUT_PITCH);
+		int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+		int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+		if(buttons & BT_USE || buttons & BT_ATTACK)
+			breakloop = 1;
+	
+		if(yaw > 1 || yaw < -1)
+			cursorx -= FixedMul(yaw/16,mouseX);
+		
+		if(pitch > 1 || pitch < -1)
+			cursory -= FixedMul(pitch/16,mouseY);
+		
+		if(cursorx < 0)
+			cursorx = 0;	
+		else if(cursorx > hudboundsx)
+			cursorx = hudboundsx;
+			
+		if(cursory < 0)
+			cursory = 0;
+		else if(cursory > hudboundsy)
+			cursory = hudboundsy;
+			
+		SetFont("SXHCURS");
+		SetHudSize(hudboundsx,hudboundsy,true);
+		HudMessage(s:"a"; HUDMSG_PLAIN|HUDMSG_NOTWITHFULLMAP|HUDMSG_LAYER_OVERHUD, 15986, CR_UNTRANSLATED, (cursorx*1.0), (cursory*1.0), 1.0);
+		
+		int wheelangle = 0.0;
+		int wheelItems = MAXTIERS+1;
+		int cursorAngle = VectorAngle(cursorx - hudcenterx, cursory - hudcentery);
+		int cursorDistance = VectorLength(cursorx - hudcenterx, cursory - hudcentery);
+		int sector = 1.0/wheelItems;
+		int halfsector = sector/2;
+		for(int a = 0; a < wheelItems; a++)
+		{		
+			//SetHudClipRect(hudcenterx-64,16,128,rectboundariesy+16);
+			//HudMessage(s:ClassInfo[a][0]; HUDMSG_PLAIN|HUDMSG_NOTWITHFULLMAP|HUDMSG_LAYER_OVERHUD, 16000+a, CR_UNTRANSLATED, hudcenterx*1.0, offsety*1.0, 1.0);
+			int locationx = hudcenterx+((squarecenter/4*cos(wheelangle+(FixedDiv(1.0,wheelItems*1.0)*a)))>>16);
+			int locationy = hudcentery+((squarecenter/4*sin(wheelangle+(FixedDiv(1.0,wheelItems*1.0)*a)))>>16);
+			if(cursorAngle < 0) cursorAngle += 1.0;
+			int pass = a == 0 ? (cursorAngle - 1.0) > -halfsector || cursorAngle < halfsector : cursorAngle > ((a * sector) - halfsector) && cursorAngle < ((a * sector) + halfsector);
+			SetFont("CMPSDOOM");
+			if(pass)
+			{
+				hoverindex = a+1;
+				if(hoverindex != lasthover && hoverindex != 0)	{ lasthover = hoverindex; /*LocalAmbientSound("Compendium/Hover",104);*/ }		
+				HudMessage(s:a == 0 ? "Exit" : MonsterTiers[class][CheckInventory("SamsaraModeCounter")][a-1]; HUDMSG_PLAIN|HUDMSG_NOTWITHFULLMAP|HUDMSG_LAYER_OVERHUD|HUDMSG_ALPHA, 16000+a, "white", locationx*1.0, locationy*1.0, 1.0, 0.9);
+			}
+			else
+			{
+				HudMessage(s:a == 0 ? "Exit" : MonsterTiers[class][CheckInventory("SamsaraModeCounter")][a-1]; HUDMSG_PLAIN|HUDMSG_NOTWITHFULLMAP|HUDMSG_LAYER_OVERHUD|HUDMSG_COLORSTRING|HUDMSG_ALPHA, 16000+a, "black", locationx*1.0, locationy*1.0, 1.0, 0.9); 	
+				locationx = hudcenterx+((squarecenter/4*cos(wheelangle+(FixedDiv(1.0,wheelItems*1.0)*(lasthover-1))))>>16);
+				locationy = hudcentery+((squarecenter/4*sin(wheelangle+(FixedDiv(1.0,wheelItems*1.0)*(lasthover-1))))>>16);
+			}
+			//SetHudClipRect(0,0,0,0);
+		}
+			
+		Delay(1);
+	}
+	
+	if(hoverindex > 1)
+	{
+		MorphActor(0, MonsterTiers[class][CheckInventory("SamsaraModeCounter")][hoverindex-2], "", 0x7FFFFFFF, MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
+		SetActorProperty(0,APROP_Health,GetActorProperty(0,APROP_SpawnHealth));
+		SetActorProperty(0,APROP_SoundClass,"");
+	}
+	
+	SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+}
+
+Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
+{
+	switch(class)
+	{
+		// Quake
+		case 7:
+			SetActorProperty(0,APROP_Speed,8.0);
+			Delay(40);
+			SetActorProperty(0,APROP_Speed,1.0);
+			break;
+		// Rise of the Triad
+		case 8:
+			switch(tier)
+			{
+				case 0:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"BeginPlead",true);
+							break;
+						case 1:
+							SetActorState(0,"Rising",true);
+							break;
+						case 2:
+							SetActorState(0,"PistolFire",true);
+							break;
+						case 3:
+							SetActorState(0,"MissileFire",true);
+							break;
+						case 4:
+							SetActorState(0,"Stealing",true);
+							break;
+						case 5:
+							SetActorState(0,"MissileSlowFire",true);
+							break;
+						case 6:
+							SetActorState(0,"MachineGunFire",true);
+							break;
+						case 7:
+							SetActorState(0,"BatFire",true);
+							break;
+						case 8:
+							SetActorState(0,"StaffFire",true);
+							break;
+					}
+					break;
+				case 2:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"MachineGun",true);
+							break;
+						case 1:
+							SetActorState(0,"Throw",true);
+							break;
+					}
+					break;
+				case 3:
+					if(action == 1)
+					{
+						int x = GetActorX(0);
+						int y = GetActorY(0);
+						int z = GetActorFloorZ(0);
+						SetActivator(0,AAPTR_Target);
+						SetActorPosition(0,x,y,z,0);
+					}
+					break;
+				case 4:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"LightningStorm",true);
+							break;
+						case 1:
+							SetActorState(0,"FlameFace",true);
+							break;
+						case 2:
+							SetActorState(0,"GreenBlast",true);
+							break;
+						case 3:
+							SetActorState(0,"RedBlast",true);
+							break;
+						case 4:
+							SetActorState(0,"FlameSpit",true);
+							break;
+						case 5:
+							SetActorState(0,"FlameGround",true);
+							break;
+						case 6:
+							SetActorState(0,"DarkMatter",true);
+							break;
+					}
+					break;
+			}
+			break;
+	}
+}
