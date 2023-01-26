@@ -1,19 +1,19 @@
-Actor Morph_QOverlordTeleport : Boolean {}
-Actor Morph_QOverlordTeleportCoolDown : Counter { Inventory.MaxAmount 35 }
-Actor Morph_QOverlord : QuakePlayer
+Actor NarakaMorph_QOverlordTeleport : Boolean {}
+Actor NarakaMorph_QOverlordTeleportCoolDown : Counter { Inventory.MaxAmount 35 }
+Actor NarakaMorph_QOverlord : SamsaraNarakaPawnTier4Normal
 {
 	Radius 24
 	Height 64
 	Mass 99999999
 	PainChance 8
 	Scale 1.0
-	Player.Soundclass "QOverlord"
+	Player.Soundclass "NarakaQOverlord"
 	Player.ForwardMove 0.45
 	Player.SideMove 0.45
 	Player.JumpZ 0
 	Player.ViewHeight 64
 	Player.MaxHealth 1000
-	Player.MorphWeapon "Morph_QOverlordWeapon"
+	Player.MorphWeapon "NarakaMorph_QOverlordWeapon"
 	//Player.AttackZOffset -32
 	BloodType "Quake_NewParticles"
 	DamageFactor "CorvusCrossbow", 1.1
@@ -54,11 +54,11 @@ Actor Morph_QOverlord : QuakePlayer
 	States
 	{
 	Spawn:
-		TNT1 AA 0 A_GiveInventory("MorphPlayerFlight",1)
+		TNT1 AA 0 A_GiveInventory("NarakaPlayerFlight",1)
 		WIZ1 A 10 
 		Loop
 	See:
-		TNT1 AA 0 A_GiveInventory("MorphPlayerFlight",1)
+		TNT1 AA 0 A_GiveInventory("NarakaPlayerFlight",1)
 		WIZ1 ABCDEFGHIJKLMNO 3
 		Loop
 	/*Teleport:
@@ -121,7 +121,7 @@ Actor Morph_QOverlord : QuakePlayer
 	}
 }
 
-Actor Morph_QOverLordWeapon : Weapon
+Actor NarakaMorph_QOverLordWeapon : Weapon
 {
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.CHEATNOTWEAPON
@@ -146,8 +146,8 @@ Actor Morph_QOverLordWeapon : Weapon
 			loop
 
 		Ready:
-			TNT1 A 0 A_TakeInventory("Morph_QOverlordTeleportCoolDown",1)
-			TNT1 A 0 A_JumpIfInventory("Morph_QOverlordTeleportCoolDown",1,2)
+			TNT1 A 0 A_TakeInventory("NarakaMorph_QOverlordTeleportCoolDown",1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_QOverlordTeleportCoolDown",1,2)
 			TNT1 A 1 A_WeaponReady
 			loop
 			TNT1 A 1 A_WeaponReady(WRF_NOSECONDARY)
@@ -157,22 +157,22 @@ Actor Morph_QOverLordWeapon : Weapon
 			TNT1 A 0 A_JumpIfCloser(164,"MeleeAttack")
 			TNT1 A 0 A_PlaySound("QWrath/attack",CHAN_WEAPON)
 			TNT1 A 18
-			TNT1 A 3 A_FireCustomMissile("Morph_QLordBall",0,0,0,18)
+			TNT1 A 3 A_FireCustomMissile("NarakaMorph_QLordBall",0,0,0,18)
 			TNT1 A 21
 			Goto Ready
 			
 		MeleeAttack:
 			TNT1 A 0 A_GunFlash("Flash")
 			TNT1 A 15
-			TNT1 A 3 A_CustomPunch(random(21,42)*Random(2,1),1,0,"Morph_QOverLordMelee",164)
+			TNT1 A 3 A_CustomPunch(random(21,42)*Random(2,1),1,0,"NarakaMorph_QOverLordMelee",164)
 			TNT1 A 0 A_Recoil(-2)
 			TNT1 A 12
-			TNT1 A 3 A_CustomPunch(random(21,42)*Random(2,1),1,0,"Morph_QOverLordMelee",164)
+			TNT1 A 3 A_CustomPunch(random(21,42)*Random(2,1),1,0,"NarakaMorph_QOverLordMelee",164)
 			TNT1 A 9
 			Goto Ready
 			
 		AltFire:
-			TNT1 A 0 A_GiveInventory("Morph_QOverlordTeleportCoolDown",35)
+			TNT1 A 0 A_GiveInventory("NarakaMorph_QOverlordTeleportCoolDown",35)
 			TNT1 A 0 A_ChangeFlag("NEVERTARGET",1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 A_HideThing
@@ -200,7 +200,7 @@ Actor Morph_QOverLordWeapon : Weapon
 }
 
 //The original is really really weak
-Actor Morph_QLordBall : QLordBall
+Actor NarakaMorph_QLordBall : QLordBall
 {
 	Damage 15
 	States
@@ -212,7 +212,7 @@ Actor Morph_QLordBall : QLordBall
 	}
 }
 
-Actor Morph_QOverLordMelee
+Actor NarakaMorph_QOverLordMelee
 {
 	+NOINTERACTION
 	SeeSound "QSWrath/attack"

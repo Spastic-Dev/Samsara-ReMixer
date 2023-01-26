@@ -1,4 +1,4 @@
-Actor Morph_LightningGuard : IPFreeley
+Actor NarakaMorph_LightningGuard : SamsaraNarakaPawnTier1Normal
 {
 	Radius 16
 	Height 48
@@ -6,8 +6,8 @@ Actor Morph_LightningGuard : IPFreeley
 	Scale 0.60
 	PainChance 255
 	Player.MaxHealth 50
-	Player.Soundclass "LightningGuard"
-	Player.MorphWeapon "Morph_LightningGuardWeapon"
+	Player.Soundclass "NarakaLightningGuard"
+	Player.MorphWeapon "NarakaMorph_LightningGuardWeapon"
 	Player.ForwardMove 0.25
 	Player.SideMove 0.25
 	Player.JumpZ 0
@@ -162,7 +162,7 @@ Actor Morph_LightningGuard : IPFreeley
 	}
 }
 
-Actor Morph_LightningGuardWeapon : InstantSwitchWeapon
+Actor NarakaMorph_LightningGuardWeapon : InstantSwitchWeapon
 {
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.CHEATNOTWEAPON
@@ -177,9 +177,9 @@ Actor Morph_LightningGuardWeapon : InstantSwitchWeapon
 			TNT1 A 1 A_WeaponReady
 			loop
 		Fire:
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"Plead")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"Steal")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"MissileWeapon")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"Plead")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"Steal")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"MissileWeapon")
 			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,2)
 			TNT1 A 8
 			TNT1 A 0 A_Playsound("rott/pistolf",CHAN_WEAPON)
@@ -270,32 +270,32 @@ Actor Morph_LightningGuardWeapon : InstantSwitchWeapon
 		Steal:
 			TNT1 A 0 A_JumpIfInventory("StoleWeapon", 1, "MissileWeapon")
 			TNT1 A 12 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,4)
-			TNT1 A 0 A_FireCustomMissile("Morph_LightningGuardStealProjectile")
+			TNT1 A 0 A_FireCustomMissile("NarakaMorph_LightningGuardStealProjectile")
 			TNT1 A 0 ACS_NamedExecuteWithResult("LightningGuardDeadDrop")
 			Goto Ready
 		Plead:
-			TNT1 A 0 A_JumpIfInventory("Morph_LightningGuardFakeToken",1,"PleadEnd")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_LightningGuardFakeToken",1,"PleadEnd")
 			TNT1 A 0 A_WeaponReady(WRF_NOFIRE)
 			TNT1 A 149 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8)
-			TNT1 A 0 A_GiveInventory("Morph_LightningGuardFakeToken",1)
+			TNT1 A 0 A_GiveInventory("NarakaMorph_LightningGuardFakeToken",1)
 		PleadLoop:
 			TNT1 A 1 A_WeaponReady(WRF_NOSECONDARY)
 			Loop
 		PleadEnd:
 			TNT1 A 0 A_WeaponReady(WRF_NOFIRE)
-			TNT1 A 0 A_TakeInventory("Morph_LightningGuardFakeToken",1)
-			TNT1 A 0 A_TakeInventory("StrongHold_MorphAttackMode",16)
+			TNT1 A 0 A_TakeInventory("NarakaMorph_LightningGuardFakeToken",1)
+			TNT1 A 0 A_TakeInventory("NarakaMorphAttackMode",16)
 			TNT1 A 20 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,0,1)
 			Goto Ready		
 		AltFire:
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,1)
 			Goto AltFire+2
-			TNT1 A 0 A_TakeInventory("StrongHold_MorphAttackMode",16)
+			TNT1 A 0 A_TakeInventory("NarakaMorphAttackMode",16)
 			Goto AltFire+3
-			TNT1 A 0 A_GiveInventory("StrongHold_MorphAttackMode",1)
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"SwitchPlead")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"SwitchSteal")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"SwitchMissile")
+			TNT1 A 0 A_GiveInventory("NarakaMorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"SwitchPlead")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"SwitchSteal")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"SwitchMissile")
 			Goto SwitchRegular
 		SwitchRegular:
 			TNT1 A 0 A_Print("Pistol mode")
@@ -315,8 +315,8 @@ Actor Morph_LightningGuardWeapon : InstantSwitchWeapon
 	}
 }
 
-Actor Morph_LightningGuardFakeToken : Boolean {}
-Actor Morph_LightningGuardGimmeDat : Trigger
+Actor NarakaMorph_LightningGuardFakeToken : Boolean {}
+Actor NarakaMorph_LightningGuardGimmeDat : Trigger
 {
 	States
 	{
@@ -326,7 +326,7 @@ Actor Morph_LightningGuardGimmeDat : Trigger
 	}
 }
 
-Actor Morph_LightningGuardStealProjectile
+Actor NarakaMorph_LightningGuardStealProjectile
 {
 	Speed 32
 	Height 32
@@ -349,20 +349,20 @@ Actor Morph_LightningGuardStealProjectile
 			TNT1 A 1 A_JumpIf(CallACS("LightningGuardSteal", 1) == 1, 1) 
 			Stop
 			TNT1 A 0 A_GiveInventory("StoleWeapon", CallACS("LightningGuardSteal",2),AAPTR_TRACER)
-			TNT1 A 0 A_GiveInventory("Morph_LightningGuardGimmeDat",1,AAPTR_TRACER)
+			TNT1 A 0 A_GiveInventory("NarakaMorph_LightningGuardGimmeDat",1,AAPTR_TRACER)
 			Stop
 	}
 }
 
-Actor Morph_RobotGuard : IPFreeley
+Actor NarakaMorph_RobotGuard : SamsaraNarakaPawnTier2Normal
 {
 	Radius 20
 	Height 48
 	Mass 5000
 	Scale 0.65
 	Player.MaxHealth 125
-	Player.Soundclass "RobotGuard"
-	Player.MorphWeapon "Morph_RobotGuardWeapon"
+	Player.Soundclass "NarakaRobotGuard"
+	Player.MorphWeapon "NarakaMorph_RobotGuardWeapon"
 	Player.ForwardMove 0.15
 	Player.SideMove 0.15
 	Player.JumpZ 0
@@ -407,7 +407,7 @@ Actor Morph_RobotGuard : IPFreeley
 	}
 }
 
-Actor Morph_RobotGuardWeapon : InstantSwitchWeapon
+Actor NarakaMorph_RobotGuardWeapon : InstantSwitchWeapon
 {
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.CHEATNOTWEAPON
@@ -432,7 +432,7 @@ Actor Morph_RobotGuardWeapon : InstantSwitchWeapon
 	}
 }
 
-Actor Morph_TriadEnforcer : IPFreeley
+Actor NarakaMorph_TriadEnforcer : SamsaraNarakaPawnTier3Normal
 {
 	Radius 20
 	Height 48
@@ -440,8 +440,8 @@ Actor Morph_TriadEnforcer : IPFreeley
 	Scale 0.65
 	PainChance 96
 	Player.MaxHealth 475
-	Player.Soundclass "TriadEnforcer"
-	Player.MorphWeapon "Morph_TriadEnforcerWeapon"
+	Player.Soundclass "NarakaTriadEnforcer"
+	Player.MorphWeapon "NarakaMorph_TriadEnforcerWeapon"
 	Player.ForwardMove 0.2
 	Player.SideMove 0.2
 	Player.JumpZ 0
@@ -502,7 +502,7 @@ Actor Morph_TriadEnforcer : IPFreeley
 	}
 }
 
-Actor Morph_TriadEnforcerWeapon : InstantSwitchWeapon
+Actor NarakaMorph_TriadEnforcerWeapon : InstantSwitchWeapon
 {
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.CHEATNOTWEAPON
@@ -530,20 +530,20 @@ Actor Morph_TriadEnforcerWeapon : InstantSwitchWeapon
 	}
 }
 
-Actor Morph_GeneralDarian : IPFreeley
+Actor NarakaMorph_GeneralDarian : SamsaraNarakaPawnTier4Normal
 {
 	Radius 24
 	Height 64
 	Mass 5000
 	Scale 0.55
 	PainChance 64
-	Player.Soundclass "GeneralDarian"
+	Player.Soundclass "NarakaGeneralDarian"
 	Player.ForwardMove 0.25
 	Player.SideMove 0.25
 	Player.JumpZ 0
 	Player.ViewHeight 60
 	Player.MaxHealth 750
-	Player.MorphWeapon "Morph_GeneralDarianWeapon"
+	Player.MorphWeapon "NarakaMorph_GeneralDarianWeapon"
 	+DONTTRANSLATE
 	+NOSKIN
 	+DONTRIP
@@ -621,7 +621,7 @@ Actor Morph_GeneralDarian : IPFreeley
 	}
 }
 
-Actor Morph_GeneralDarianWeapon : InstantSwitchWeapon
+Actor NarakaMorph_GeneralDarianWeapon : InstantSwitchWeapon
 {
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.CHEATNOTWEAPON
@@ -647,14 +647,14 @@ Actor Morph_GeneralDarianWeapon : InstantSwitchWeapon
 			TNT1 A 0 A_Stop
 			TNT1 A 0 A_GiveInventory("DoWackaMole",1)
 			TNT1 AAAAAAAAAAAAAAAA 1 A_Stop
-			TNT1 A 0 A_FireCustomMissile("Morph_DarianWackaMoleLocation")
+			TNT1 A 0 A_FireCustomMissile("NarakaMorph_DarianWackaMoleLocation")
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Stop
 			TNT1 A 0 A_TakeInventory("DoWackaMole",1)
 			Goto Ready
 	}
 }
 
-Actor Morph_DarianWackaMoleLocation : FastProjectile
+Actor NarakaMorph_DarianWackaMoleLocation : FastProjectile
 {
 	Radius 24
 	Height 64
@@ -672,7 +672,7 @@ Actor Morph_DarianWackaMoleLocation : FastProjectile
 	}
 }
 
-Actor Morph_ElOscuro : IPFreeley
+Actor NarakaMorph_ElOscuro : SamsaraNarakaPawnTier5Normal
 {
 	Radius 40
 	Height 96
@@ -680,8 +680,8 @@ Actor Morph_ElOscuro : IPFreeley
 	Scale 0.7
 	PainChance 96
 	Player.MaxHealth 3600
-	Player.Soundclass "ElOscuro"
-	Player.MorphWeapon "Morph_ElOscuroWeapon"
+	Player.Soundclass "NarakaElOscuro"
+	Player.MorphWeapon "NarakaMorph_ElOscuroWeapon"
 	Player.ForwardMove 0.3
 	Player.SideMove 0.3
 	Player.JumpZ 0
@@ -732,12 +732,12 @@ Actor Morph_ElOscuro : IPFreeley
 		
 		Spawn:
 			TNT1 A 0 NoDelay A_TakeInventory("IsFloating", 1)
-			TOMS A 10 A_TakeInventory("MorphPlayerFlight",1)
+			TOMS A 10 A_TakeInventory("NarakaPlayerFlight",1)
 			Loop
 		See:
 			TNT1 A 0 A_JumpIfInventory("IsFloating", 1, "SeeLoop")
 			TOMS B 5 ThrustThingZ(0, 48, 0, 0)
-			TNT1 A 0 A_GiveInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_GiveInventory("NarakaPlayerFlight",1)
 			TOMS B 5 A_GiveInventory("IsFloating", 1)
 		SeeLoop:
 			TOMS C 2
@@ -750,7 +750,7 @@ Actor Morph_ElOscuro : IPFreeley
 			TNT1 A 0 A_TakeInventory("IsFloating", 1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
-			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_TakeInventory("NarakaPlayerFlight",1)
 			TOML ABCDEF 3
 			TOML H 24
 			TOML IJK 3
@@ -760,7 +760,7 @@ Actor Morph_ElOscuro : IPFreeley
 			TNT1 A 0 A_TakeInventory("IsFloating", 1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
-			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_TakeInventory("NarakaPlayerFlight",1)
 			TOM3 A 15
 			TOM3 BCD 3
 			TOM3 EFGHI 3
@@ -770,7 +770,7 @@ Actor Morph_ElOscuro : IPFreeley
 			TNT1 A 0 A_TakeInventory("IsFloating", 1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
-			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_TakeInventory("NarakaPlayerFlight",1)
 			TOML ABCDEF 3
 			TOML H 5
 			TOML IJK 3
@@ -780,7 +780,7 @@ Actor Morph_ElOscuro : IPFreeley
 			TNT1 A 0 A_TakeInventory("IsFloating", 1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
-			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_TakeInventory("NarakaPlayerFlight",1)
 			TOM1 ABCDE 3
 			TOM1 FGHI 4
 			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
@@ -789,7 +789,7 @@ Actor Morph_ElOscuro : IPFreeley
 			TNT1 A 0 A_TakeInventory("IsFloating", 1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
-			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_TakeInventory("NarakaPlayerFlight",1)
 			TOMR ABCDE 3
 			TOMR F 24
 			TOMR GH 5
@@ -799,7 +799,7 @@ Actor Morph_ElOscuro : IPFreeley
 			TNT1 A 0 A_TakeInventory("IsFloating", 1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
-			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_TakeInventory("NarakaPlayerFlight",1)
 			TOMU ABC 4
 			TOMU D 32
 			TOMU EF 4
@@ -809,7 +809,7 @@ Actor Morph_ElOscuro : IPFreeley
 			TNT1 A 0 A_TakeInventory("IsFloating", 1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
-			TNT1 A 0 A_TakeInventory("MorphPlayerFlight",1)
+			TNT1 A 0 A_TakeInventory("NarakaPlayerFlight",1)
 			TOM1 ABCDEFGHI 3
 			TOML ABCDEFHIJK 3
 			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
@@ -832,9 +832,9 @@ Actor Morph_ElOscuro : IPFreeley
 	}
 }
 
-Actor Morph_ElOscuroAlreadySpawned : Boolean {}
+Actor NarakaMorph_ElOscuroAlreadySpawned : Boolean {}
 
-Actor Morph_ElOscuroWeapon : InstantSwitchWeapon
+Actor NarakaMorph_ElOscuroWeapon : InstantSwitchWeapon
 {
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.CHEATNOTWEAPON
@@ -853,12 +853,12 @@ Actor Morph_ElOscuroWeapon : InstantSwitchWeapon
 			TNT1 A 0 A_TakeInventory("TomLightningCount", 8)
 			TNT1 A 0 A_TakeInventory("TomFlameGroundCount", 8)
 			TNT1 A 0 A_TakeInventory("TomFlameSpitCount", 8)
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",6,"DarkMatter")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",5,"FlameGround")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",4,"FlameSpit")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"RedEnergy")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"GreenEnergy")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"FlameFace")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",6,"DarkMatter")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",5,"FlameGround")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",4,"FlameSpit")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"RedEnergy")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"GreenEnergy")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"FlameFace")
 			TNT1 A 18
 		LightningLoop:
 			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",8,4)
@@ -920,17 +920,17 @@ Actor Morph_ElOscuroWeapon : InstantSwitchWeapon
 			TNT1 A 12 A_FireCustomMissile("TomDarkMatter",0,0,0,16)
 			Goto Ready
 		AltFire:
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",6,1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",6,1)
 			Goto AltFire+2
-			TNT1 A 0 A_TakeInventory("StrongHold_MorphAttackMode",16)
+			TNT1 A 0 A_TakeInventory("NarakaMorphAttackMode",16)
 			Goto AltFire+3
-			TNT1 A 0 A_GiveInventory("StrongHold_MorphAttackMode",1)
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",6,"SwitchDarkMatter")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",5,"SwitchGround")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",4,"SwitchSpit")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",3,"SwitchRed")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",2,"SwitchGreen")
-			TNT1 A 0 A_JumpIfInventory("StrongHold_MorphAttackMode",1,"SwitchFace")
+			TNT1 A 0 A_GiveInventory("NarakaMorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",6,"SwitchDarkMatter")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",5,"SwitchGround")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",4,"SwitchSpit")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"SwitchRed")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"SwitchGreen")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"SwitchFace")
 			Goto SwitchLightning
 		SwitchLightning:
 			TNT1 A 0 A_Print("Lightning Spray mode")
