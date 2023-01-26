@@ -373,7 +373,6 @@ Actor NarakaMorph_Maximus : SamsaraNarakaPawnTier4Normal
 			BOSC AABBCCDD 3
 			Loop
 		Melee:
-		Missile:
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -381,6 +380,8 @@ Actor NarakaMorph_Maximus : SamsaraNarakaPawnTier4Normal
 			FMAX IJK 4
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Missile:
 			Goto Spawn
 		MissileRapid:
 			TNT1 A 0 A_Stop
