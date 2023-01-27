@@ -86,7 +86,7 @@ Str MonsterTiers[MAX_GAME_TYPES][MAXMODES][MAXTIERS] =
 		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
 	},
 	{
-		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
+		{ "NarakaMorph_FrankDoyle", "NarakaMorph_SheriffHobbes", "NarakaMorph_AlienHulk", "NarakaMorph_AlienVixen", "NarakaMorph_Assface"},
 	},
 	{
 		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
@@ -222,6 +222,7 @@ Script "MonsterSphereInitiate" (void)
 
 Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 {
+	int x, y, z;
 	switch(class)
 	{
 		// Chex
@@ -317,9 +318,9 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 				case 3:
 					if(action == 1)
 					{
-						int x = GetActorX(0);
-						int y = GetActorY(0);
-						int z = GetActorFloorZ(0);
+						x = GetActorX(0);
+						y = GetActorY(0);
+						z = GetActorFloorZ(0);
 						SetActivator(0,AAPTR_Target);
 						SetActorPosition(0,x,y,z,0);
 					}
@@ -461,6 +462,104 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 						case 4:
 							TakeInventory("NarakaMorph_TebazileBossConverter",3);
 							SetActorState(0,"ConvertToBoss4",true);
+							break;
+					}
+					break;
+			}
+			break;
+		case 24:
+			switch(tier)
+			{
+				case 0:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"ShotgunAttack",true);
+							break;
+						case 1:
+							SetActorState(0,"Pee",true);
+							break;
+					}
+					break;
+				case 1:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"ReloadPistols",true);
+							break;
+					}
+					break;
+				case 2:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"Laser",true);
+							break;
+						case 1:
+							SetActorState(0,"LandMine",true);
+							break;
+						case 2:
+							SetActorState(0,"MeleeAttack",true);
+							break;
+						case 3:
+							UnMorphActor(0,1);
+							MorphActor(0, "NarakaMorph_AlienHulkRevive", "", 0x7FFFFFFF, MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
+							SetActorProperty(0,APROP_Health,GetActorProperty(0,APROP_SpawnHealth));
+							break;
+						case 4:
+							SetPlayerProperty(0,1,PROP_BUDDHA);
+							while(ClassifyActor(0) & ACTOR_Alive)
+							{
+								if(GetActorProperty(0,APROP_Health) <= 1)
+								{
+									SetActorState(0,"FakeDeath",true);
+									SetPlayerProperty(0,0,PROP_BUDDHA);
+								}
+								Delay(1);
+							}
+							break;
+						case 5:
+							UnMorphActor(0,1);
+							MorphActor(0, "NarakaMorph_AlienHulk", "", 0x7FFFFFFF, MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
+							SetActorProperty(0,APROP_Health,GetActorProperty(0,APROP_SpawnHealth));
+							break;
+					}
+					break;
+				case 3:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"TeatFire",true);
+							break;
+						case 1:
+							SetActorState(0,"Dildo1",true);
+							break;
+						case 2:
+							SetActorState(0,"Dildo2",true);
+							break;
+						case 3:
+							SetActorState(0,"DoTeleport",true);
+							break;
+						case 4:
+							SetActorState(0,"Kick",true);
+							break;
+						case 5:
+							x = GetActorX(0);
+							y = GetActorY(0);
+							z = GetActorFloorZ(0);
+							SetActivator(0,AAPTR_Target);
+							SetActorPosition(0,x,y,z,0);
+							break;
+					}
+					break;
+				case 4:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"ShitThrow",true);
+							break;
+						case 1:
+							SetActorState(0,"ShitSpit",true);
 							break;
 					}
 					break;
