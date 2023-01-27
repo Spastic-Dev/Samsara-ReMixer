@@ -360,11 +360,11 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 					switch(action)
 					{
 						case 0:
-							while(ClassifyActor(0) & ACTOR_Alive && !CheckInventory("Morph_GoldFireBossConverter"))
+							while(ClassifyActor(0) & ACTOR_Alive && !CheckInventory("NarakaMorph_GoldFireBossConverter"))
 							{
 								if(GetActorProperty(0,APROP_Health) <= 1)
 								{
-									GiveInventory("Morph_GoldFireBossConverter",1);
+									GiveInventory("NarakaMorph_GoldFireBossConverter",1);
 									SetActorState(0,"ConvertToBoss",true);
 									SetActorProperty(0,APROP_SpawnHealth,4800);
 									SetActorProperty(0,APROP_Health,4800);
@@ -373,7 +373,7 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 							}
 							break;
 						case 1:
-							GiveInventory("Morph_GoldFireBossConverter",1);
+							GiveInventory("NarakaMorph_GoldFireBossConverter",1);
 							SetActorState(0,"ConvertToBoss",true);
 							SetActorProperty(0,APROP_SpawnHealth,4800);
 							SetActorProperty(0,APROP_Health,4800);
@@ -412,7 +412,7 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 							SetActorState(0,"MeleeAttack",true);
 							break;
 						case 2:
-							while(ClassifyActor(0) & ACTOR_Alive && !CheckInventory("Morph_EntityBossConverter"))
+							while(ClassifyActor(0) & ACTOR_Alive && !CheckInventory("NarakaMorph_EntityBossConverter"))
 							{
 								if(GetActorProperty(0,APROP_Health) <= 1)
 								{
