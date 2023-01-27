@@ -142,6 +142,8 @@ Script "MonsterSphereInitiate" (void)
 	int squarecenter = FixedDiv(hudboundsx+hudboundsy,2.0);
 	int breakloop = false;
 	SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+	TakeInventory("AlreadySpawned",1);
+	TakeInventory("NarakaPlayerFlight",1);
 	UnMorphActor(0,1);
 	
 	until(breakloop)
@@ -222,6 +224,43 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 {
 	switch(class)
 	{
+		// Chex
+		case 1:
+			switch(tier)
+			{
+				case 3:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"MissileSpray",true);
+							break;
+						case 1:
+							SetActorState(0,"MissileRapid",true);
+							break;
+						case 2:
+							SetActorState(0,"MissileHeavy",true);
+							break;
+						case 3:
+							SetActorState(0,"MissileGrenade",true);
+							break;
+						case 4:
+							SetActorState(0,"Melee",true);
+							break;
+					}
+					break;
+				case 4:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"StandardFire",true);
+							break;
+						case 1:
+							SetActorState(0,"VolleyFire",true);
+							break;
+					}
+					break;
+			}
+			break;
 		// Quake
 		case 7:
 			SetActorProperty(0,APROP_Speed,8.0);
@@ -308,6 +347,82 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 							break;
 						case 6:
 							SetActorState(0,"DarkMatter",true);
+							break;
+					}
+					break;
+			}
+			break;
+		// Blake Stone
+		case 9:
+			switch(tier)
+			{
+				case 4:
+					switch(action)
+					{
+						case 0:
+							while(ClassifyActor(0) & ACTOR_Alive && !CheckInventory("Morph_GoldFireBossConverter"))
+							{
+								if(GetActorProperty(0,APROP_Health) <= 1)
+								{
+									GiveInventory("Morph_GoldFireBossConverter",1);
+									SetActorState(0,"ConvertToBoss",true);
+									SetActorProperty(0,APROP_SpawnHealth,4800);
+									SetActorProperty(0,APROP_Health,4800);
+								}
+								Delay(1);
+							}
+							break;
+						case 1:
+							GiveInventory("Morph_GoldFireBossConverter",1);
+							SetActorState(0,"ConvertToBoss",true);
+							SetActorProperty(0,APROP_SpawnHealth,4800);
+							SetActorProperty(0,APROP_Health,4800);
+							break;
+					}
+					break;
+			}
+			break;
+		// Strife
+		case 11:
+			switch(tier)
+			{
+				case 0:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"BulletAttack",true);
+							break;
+					}
+					break;
+				case 2:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"MissileAttack",true);
+							break;
+					}
+					break;
+				case 4:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"SigilAttack",true);
+							break;
+						case 1:
+							SetActorState(0,"MeleeAttack",true);
+							break;
+						case 2:
+							while(ClassifyActor(0) & ACTOR_Alive && !CheckInventory("Morph_EntityBossConverter"))
+							{
+								if(GetActorProperty(0,APROP_Health) <= 1)
+								{
+									GiveInventory("Morph_EntityBossConverter",1);
+									SetActorProperty(0,APROP_SpawnHealth,990);
+									SetActorProperty(0,APROP_Health,990);
+									SetActorState(0,"Split",true);
+								}
+								Delay(1);
+							}
 							break;
 					}
 					break;

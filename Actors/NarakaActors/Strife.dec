@@ -1,17 +1,345 @@
-Actor NarakaMorph_Programmer : SamsaraNarakaPawnTier4Normal
+Actor NarakaMorph_Acolyte : StrifeguyPlayer
+{
+	Radius 20
+	Height 56
+	Mass 400
+	PainChance 45
+	Player.Soundclass "NarakaAcolyte"
+	Player.ForwardMove 0.33
+	Player.SideMove 0.33
+	Player.JumpZ 0
+	Player.MaxHealth 70
+	Player.MorphWeapon "NarakaMorph_AcolyteWeapon"
+	Player.ViewHeight 50
+	+DONTTRANSLATE
+	+NOSKIN
+	+FLOORCLIP
+	States 
+	{
+		Spawn:
+			AGRD A 1
+			Loop
+		See:
+			TNT1 A 0 A_Jump(224,2)
+			TNT1 A 0 A_PlaySound("acolyte/active",CHAN_BODY)
+			AGRD ABCD 5
+			Loop
+		Missile:
+		Melee:
+			Goto Spawn	
+		BulletAttack:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			AGRD E 8
+			AGRD FE 4 Bright
+			AGRD F 6 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			AGRD O 8 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+			AGRD G 4 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+			AGRD H 4 A_PlayerScream
+			AGRD I 4
+			AGRD J 3
+			AGRD K 3 A_NoBlocking
+			AGRD LM 3
+			AGRD N -1
+			stop
+		XDeath:
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			G_1B A 5 A_UnsetSolid
+			G_1B BC 5 A_TossGib
+			G_1B D 4 A_TossGib
+			G_1B E 4 A_PlaySound("acolyte/explode")
+			G_1B F 4 A_TossGib
+			G_1B GH 4
+			G_1B I 5
+			G_1B J 5 A_NoBlocking
+			G_1B KL 5
+			G_1B L -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_AcolyteWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",11,0)
+			TNT1 A 0 A_PlaySound("acolyte/fire",CHAN_WEAPON)
+			TNT1 A 4 bright A_FireBullets(8,0,-1,3*random(1,5),"StrifeBulletPuff",FBF_NORANDOM|FBF_NOFLASH,2048)
+			TNT1 A 0 A_PlaySound("acolyte/fire",CHAN_WEAPON)
+			TNT1 A 4 bright A_FireBullets(8,0,-1,3*random(1,5),"StrifeBulletPuff",FBF_NORANDOM|FBF_NOFLASH,2048)
+			TNT1 A 0 A_PlaySound("acolyte/fire",CHAN_WEAPON)
+			TNT1 A 6 bright A_FireBullets(8,0,-1,3*random(1,5),"StrifeBulletPuff",FBF_NORANDOM|FBF_NOFLASH,2048)
+			Goto Ready
+		AltFire:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_AcolyteShadowForm",1,"ClearShadow")
+			TNT1 A 0 A_ChangeFlag("SHADOW",1)
+			TNT1 A 0 A_SetTranslucent(0.4)
+			TNT1 A 17 A_GiveInventory("NarakaMorph_AcolyteShadowForm",1)
+			Goto Ready
+		ClearShadow:
+			TNT1 A 0 A_ChangeFlag("SHADOW",0)
+			TNT1 A 0 A_SetTranslucent(1.0)
+			TNT1 A 17 A_TakeInventory("NarakaMorph_AcolyteShadowForm",1)
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_AcolyteShadowForm : Boolean {}
+
+Actor NarakaMorph_Templar : StrifeguyPlayer
+{
+	Radius 20
+	Height 56
+	Mass 500
+	Painchance 100
+	Player.Soundclass "NarakaTemplar"
+	Player.ForwardMove 0.3
+	Player.SideMove 0.3
+	Player.JumpZ 0
+	Player.MaxHealth 300
+	Player.MorphWeapon "NarakaMorph_TemplarWeapon"
+	Player.ViewHeight 50
+	+DONTTRANSLATE
+	+NOSKIN
+	+DONTRIP
+	+NOBLOOD
+	States 
+	{
+		Spawn:
+			PGRD A 5
+			Loop
+		See:
+			TNT1 A 0 A_Jump(224,2)
+			TNT1 A 0 A_PlaySound("templar/active",CHAN_BODY)
+			PGRD AABBCCDD 3
+			Loop
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			PGRD G 8 BRIGHT
+			PGRD H 8 BRIGHT
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn	
+		Melee:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			PGRD E 8
+			PGRD F 8
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			PGRD A 2
+			PGRD A 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+			PGRD I 4 A_TossGib
+			PGRD J 4 A_PlayerScream
+			PGRD K 4 A_TossGib
+			PGRD L 4 A_NoBlocking
+			PGRD MN 4
+			PGRD O 4 A_TossGib
+			PGRD "PQRSTUVWXYZ[" 4
+			PGRD "\" -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_TemplarWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8 A_JumpIfCloser(64,"MeleeAttack")
+			TNT1 A 0 A_PlaySound("templar/shoot",CHAN_WEAPON)
+			TNT1 A 8 A_FireBullets(11.25,7,10,random(1,4)*2,"StrifeMaulerPuff",FBF_NORANDOM|FBF_NOFLASH)
+			Goto Ready
+		MeleeAttack:
+			PGRD E 8
+			PGRD F 8 A_CustomPunch(random(1,8)*3,1,0,"NarakaMorph_StrifeTemplarPuff")
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_StrifeTemplarPuff
+{
+	SeeSound "reaver/blade"
+	ActiveSound "reaver/blade"
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	States
+    {
+		Spawn:
+			TNT1 A 1
+			Stop
+    }
+}
+
+Actor NarakaMorph_Crusader : StrifeguyPlayer
+{
+	Radius 40
+	Height 56
+	Mass 400
+	Painchance 100
+	Player.Soundclass "NarakaCrusader"
+	Player.ForwardMove 0.25
+	Player.SideMove 0.25
+	Player.JumpZ 0
+	Player.MaxHealth 600 //Buffed by 50%. It's slow and needs a bit more bulk to be an upgrade.
+	Player.MorphWeapon "NarakaMorph_CrusaderWeapon"
+	Player.ViewHeight 50
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOICEDEATH
+	+NOBLOOD
+	+FLOORCLIP
+	States 
+	{
+		Spawn:
+			ROB2 Q 10
+			Loop
+		See:
+			TNT1 A 0 A_Jump(224,2)
+			TNT1 A 0 A_PlaySound("crusader/active",CHAN_BODY)
+			ROB2 AABBCCDD 3
+			Loop
+		Missile:
+		Melee:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			ROB2 E 3
+			ROB2 F 2 Bright
+			ROB2 E 2 Bright
+			ROB2 F 3 Bright
+			ROB2 EF 2 Bright
+			ROB2 EFE 2 Bright
+			ROB2 F 2
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MissileAttack:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			ROB2 F 3 Bright
+			ROB2 E 15
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			ROB2 D 1 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+			ROB2 G 3 A_PlayerScream
+			ROB2 H 5 A_TossGib
+			ROB2 I 4 Bright A_TossGib
+			ROB2 J 4 Bright A_Explode(64, 64, 1, 1)
+			ROB2 K 4 Bright A_Fall
+			ROB2 L 4 A_Explode(64, 64, 1, 1)
+			ROB2 MN 4 A_TossGib
+			ROB2 O 4 A_Explode(64, 64, 1, 1)
+			ROB2 P -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_CrusaderWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",11,2)
+			TNT1 A 0 A_FireCustomMissile("CrusaderMissile",0,0,0,24)
+			TNT1 A 0 A_FireCustomMissile("CrusaderMissile",-1.4,0,0,8)
+			TNT1 A 0 A_FireCustomMissile("CrusaderMissile",1.4,0,0,8)
+			TNT1 A 15
+			Goto Ready
+		AltFire:
+			TNT1 A 3
+		AltFireLoop:
+			TNT1 A 2 A_SetAngle(angle+11.5)
+			TNT1 A 0 A_FireCustomMissile("FastFlameMissile",0,0,0,8)
+			TNT1 A 0 A_SetAngle(angle-5.625)
+			TNT1 A 2 A_FireCustomMissile("FastFlameMissile",0,0,0,16)
+			TNT1 A 0 A_SetAngle(angle-5.625)
+			TNT1 A 3 A_FireCustomMissile("FastFlameMissile",0,0,0,16)
+			TNT1 A 0 A_SetAngle(angle-5.625)
+			TNT1 A 2 A_FireCustomMissile("FastFlameMissile",0,0,0,16)
+			TNT1 A 0 A_SetAngle(angle-5.625)
+			TNT1 A 2 A_FireCustomMissile("FastFlameMissile",0,0,0,16)
+			TNT1 A 0 A_SetAngle(angle+5.625)
+			TNT1 A 2 A_FireCustomMissile("FastFlameMissile",0,0,0,16)
+			TNT1 A 0 A_SetAngle(angle+5.625)
+			TNT1 A 2 A_FireCustomMissile("FastFlameMissile",0,0,0,16)
+			TNT1 A 0 A_SetAngle(angle+5.625)
+			TNT1 A 2 A_FireCustomMissile("FastFlameMissile",0,0,0,16)
+			TNT1 A 0 A_SetAngle(angle-5.625)
+			TNT1 A 2 A_Refire("AltFireLoop")
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_Programmer : StrifeguyPlayer
 {
 	Radius 24
 	Height 60
 	Mass 800
 	PainChance 50
 	Player.Soundclass "NarakaProgrammer"
-	Player.ForwardMove 0.66
-	Player.SideMove 0.66
+	Player.ForwardMove 0.4
+	Player.SideMove 0.4
 	Player.JumpZ 0
 	Player.ViewHeight 60
 	Player.MaxHealth 1100
 	Player.MorphWeapon "NarakaMorph_ProgrammerWeapon"
-	//Player.AttackZOffset -30
 	DamageFactor "Fire", 0.5
 	+FLOATBOB
 	+DONTTRANSLATE
@@ -21,35 +349,47 @@ Actor NarakaMorph_Programmer : SamsaraNarakaPawnTier4Normal
 	States 
 	{
 		Spawn:
-			TNT1 AA 0 A_GiveInventory("NarakaPlayerFlight",1)
+			TNT1 A 0 NoDelay A_GiveInventory("NarakaPlayerFlight",1)
 			PRGR EF 2
 			PRGR EF 3
 			Loop
 		See:
-			TNT1 AA 0 A_GiveInventory("NarakaPlayerFlight",1)
 			PRGR EF 2
 			PRGR EF 3
 			Loop
 		Melee:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			PRGR E 2 
 			PRGR F 3
 			PRGR E 3
 			PRGR F 4
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
 			Goto Spawn
 		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			PRGR G 5
 			PRGR H 5
 			PRGR I 5 Bright
 			PRGR J 6 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
 			Goto Spawn
 		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
 			PRGR K 5 A_Playsound("*pain100",CHAN_VOICE)
 			PRGR L 5
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
 			Goto Spawn
 		Death:
 		XDeath:
 			PRGR L 7 Bright A_TossGib
-			PRGR M 7 Bright A_Scream
+			PRGR M 7 Bright A_PlayerScream
 			PRGR N 7 Bright A_TossGib
 			PRGR O 7 Bright A_NoBlocking
 			PRGR P 7 Bright A_TossGib
@@ -63,37 +403,23 @@ Actor NarakaMorph_Programmer : SamsaraNarakaPawnTier4Normal
 	}
 }
 
-Actor NarakaMorph_ProgrammerWeapon : Weapon
+Actor NarakaMorph_ProgrammerWeapon : InstantSwitchWeapon
 {
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.CHEATNOTWEAPON
 	+WEAPON.NOAUTOAIM
-	+WEAPON.NOAUTOFIRE
 	+NOALERT
 	States
 	{
 		Spawn:
 			TNT1 A -1
 			Stop
-			
-		Select:
-			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
-			TNT1 A 1 A_Raise
-			loop
-
-		Deselect:
-			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
-			TNT1 A 1 A_Lower
-			loop
-
 		Ready:
 			TNT1 A 1 A_WeaponReady
 			loop
-
 		Fire:
 			TNT1 A 0 A_JumpIfCloser(64,"MeleeAttack")
 			TNT1 A 15
-			//TNT1 A 0 A_Playsound("programmer/attack",CHAN_WEAPON)
 			TNT1 A 5 A_FireCustomMissile("StrifeSigilLightningSpot",0,0,0,-30)
 			Goto Ready
 		MeleeAttack:
@@ -103,3 +429,273 @@ Actor NarakaMorph_ProgrammerWeapon : Weapon
 			Goto Ready
 	}
 }
+
+Actor NarakaMorph_Entity : StrifeguyPlayer
+{
+	Radius 128
+	Height 100
+	Mass 1000
+	PainChance 50
+	Player.Soundclass "NarakaEntity"
+	Player.ForwardMove 0.33
+	Player.SideMove 0.33
+	Player.JumpZ 0
+	Player.ViewHeight 75
+	Player.MaxHealth 4500
+	Player.MorphWeapon "NarakaMorph_EntityWeapon"
+	Renderstyle Translucent
+	Alpha 0.5
+	+FLOATBOB
+	+DONTTRANSLATE
+	+NOSKIN
+	+NOBLOODDECALS
+	+NOBLOOD
+	+NOICEDEATH
+	+SHADOW
+	States 
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_GiveInventory("NarakaPlayerFlight",1)
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",11,4,2)
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_BUDDHA)
+			MNAL A 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			MNAL B 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			Loop
+		SpawnSub:
+			MNAL R 5 Bright A_JumpIf(abs(velx) > 0 || abs(vely) > 0,"SeeSub")
+			Loop
+		See:
+			TNT1 A 0 A_Jump(224,2)
+			TNT1 A 0 A_PlaySound("entity/active",CHAN_BODY)
+			MNAL AB 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			MNAL C 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			MNAL DEF 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			MNAL G 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			MNAL HIJ 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			MNAL K 4 Bright A_Explode(1,radius+32,XF_NOTMISSILE,0,radius+32)
+			Loop
+		SeeSub:
+			TNT1 A 0 A_Jump(224,2)
+			TNT1 A 0 A_PlaySound("alienspectre/active",CHAN_BODY)
+			MNAL R 5 Bright A_JumpIf(abs(velx) <= 0 && abs(vely) <=0,"SpawnSub")
+			MNAL ST 5 Bright A_JumpIf(abs(velx) <= 0 && abs(vely) <=0,"SpawnSub")
+			MNAL U 5 Bright A_JumpIf(abs(velx) <= 0 && abs(vely) <=0,"SpawnSub")
+			MNAL V 5 Bright A_JumpIf(abs(velx) <= 0 && abs(vely) <=0,"SpawnSub")
+			MNAL W 5 Bright A_JumpIf(abs(velx) <= 0 && abs(vely) <=0,"SpawnSub")
+			Loop
+		Missile:
+		Melee:
+			Goto Spawn
+		MeleeAttack:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_EntityBossConverter",1,"MeleeAttackSub")
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			MNAL S 4 Bright
+			MNAL R 4 Bright
+			MNAL T 4 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		MeleeAttackSub:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_EntityBossConverter",1,"MeleeAttackSub")
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			MNAL J 4 Bright
+			MNAL I 4 Bright
+			MNAL C 4 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto SpawnSub
+		SigilAttack:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_EntityBossConverter",1,"SigilAttackSub")
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			MNAL F 4 Bright
+			MNAL I 4 Bright
+			MNAL E 4 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		SigilAttackSub:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			MNAL W 4 Bright
+			MNAL U 4 Bright
+			MNAL V 4 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto SpawnSub
+		Pain:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_EntityBossConverter",1,"PainSub")
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			MNAL J 2 Bright A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		PainSub:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			MNAL R 2 Bright A_Playsound("alienspectre/pain",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto SpawnSub
+		Split:
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_BUDDHA)
+			TNT1 A 0 SetPlayerProperty(0,2,PROP_INVULNERABILITY)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			MNAL L 7 Bright A_SpawnItemEx("AlienChunkSmall",0,0,10,random(-7,8),random(-7,8),random(0,15))
+			MNAL M 7 Bright A_PlaySound("entity/death",CHAN_VOICE)
+			MNAL NO 7 Bright A_SpawnItemEx("AlienChunkSmall",0,0,10,random(-7,8),random(-7,8),random(0,15))
+			MNAL P 7 Bright A_SpawnItemEx("AlienChunkLarge",0,0,10,random(-7,8),random(-7,8),random(0,15))
+			MNAL Q 16 Bright A_SpawnItemEx("AlienChunkSmall",0,0,10,random(-7,8),random(-7,8),random(0,15))
+			TNT1 A 0 A_SpawnItemEx("NarakaMorph_EntitySubFriend",64,0,70,2,0,0,90,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			TNT1 A 0 A_SpawnItemEx("NarakaMorph_EntitySubFriend",0,64,70,0,0,2,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
+			MNAL Q 6 Bright A_TakeInventory("NarakaMorphAttackMode",4)
+			TNT1 A 0 A_GiveInventory("NarakaMorphAttackMode",1)
+			TNT1 A 0 A_SetTranslucent(0.25)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_INVULNERABILITY)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto SpawnSub
+		Death:
+		XDeath:
+			MDTH A 3 Bright A_PlayerScream
+			MDTH B 3 Bright A_TossGib
+			MDTH C 3 Bright A_NoBlocking
+			MDTH DEFGHIJKLMN 3 Bright A_TossGib
+			MDTH OP 3 Bright 
+			TNT1 A -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_EntityWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_JumpIfCloser(radius+32,"MeleeAttack")
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",11,4)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",4,"LightningStorm")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"HomingLightning")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"LightningWall")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"LightningBolt")
+			TNT1 A 4
+			TNT1 A 24 A_FireCustomMissile("StrifeSigilLightningSpot",0,0,0,-32)
+			Goto Ready
+		LightningBolt:
+			TNT1 A 4
+			TNT1 A 24 A_FireCustomMissile("StrifeSpectralLightningH1")
+			Goto Ready
+		LightningWall:
+			TNT1 A 4
+			TNT1 A 0 A_GiveInventory("Sigil3AttackCounter", 20)
+			TNT1 A 0 A_SetAngle(angle-90)
+		LightningWallLoop:
+			TNT1 A 0 A_SetAngle(angle+9)
+			TNT1 A 0 A_FireCustomMissile("StrifeSpectralLightningBall1", 0, 0)
+			Goto ContinueLightningWall
+		ContinueLightningWall:
+			TNT1 A 0 A_TakeInventory("Sigil3AttackCounter", 1)
+			TNT1 A 0 A_JumpIfInventory("Sigil3AttackCounter", 1, "LightningWallLoop")
+			TNT1 A 0 A_SetAngle(angle-90)
+			TNT1 A 24
+			Goto Ready
+		HomingLightning:
+			TNT1 A 4
+			TNT1 A 24 A_FireCustomMissile("StrifeSigilLightningBigV1")
+			Goto Ready
+		LightningStorm:
+			TNT1 A 4
+			TNT1 A 24 A_FireCustomMissile("StrifeSpectralLightningBigBall")
+			Goto Ready
+		MeleeAttack:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_EntityBossConverter",1,"MeleeAttack2")
+			TNT1 A 4 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",11,4,1)
+			TNT1 A 0 A_PlaySound("programmer/clank",CHAN_WEAPON)
+			TNT1 A 8 A_CustomPunch(5*random(1,28),1,0,"Morph_EntityPuff",radius+32)
+			Goto Ready
+		MeleeAttack2:
+			TNT1 A 4 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",11,4,1)
+			TNT1 A 0 A_PlaySound("programmer/clank",CHAN_WEAPON)
+			TNT1 A 8 A_CustomPunch(5*random(1,28),1,0,"Morph_Entity2Puff",radius+32)
+			Goto Ready
+		AltFire:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorph_EntityBossConverter",1,"AltFireFinish")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",4,1)
+			Goto AltFire+3
+			TNT1 A 0 A_TakeInventory("NarakaMorphAttackMode",16)
+			Goto AltFire+4
+			TNT1 A 0 A_GiveInventory("NarakaMorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",4,"SwitchStorm")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",3,"SwitchHomer")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"SwitchWall")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"SwitchBolt")
+			Goto SwitchStrike	
+		SwitchStrike:
+			TNT1 A 0 A_Print("Lightning Strike")
+			Goto AltFireFinish
+		SwitchBolt:
+			TNT1 A 0 A_Print("Lightning Bolt")
+			Goto AltFireFinish
+		SwitchWall:
+			TNT1 A 0 A_Print("Lightning Wall")
+			Goto AltFireFinish
+		SwitchHomer:
+			TNT1 A 0 A_Print("Homing Lightning")
+			Goto AltFireFinish	
+		SwitchStorm:
+			TNT1 A 0 A_Print("Lightning Storm")
+			Goto AltFireFinish	
+		AltFireFinish:
+			TNT1 A 17
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_EntityPuff
+{
+	SeeSound "entity/melee"
+	ActiveSound "entity/melee"
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	States
+    {
+		Spawn:
+			TNT1 A 1
+			Stop
+    }
+}
+
+Actor NarakaMorph_Entity2Puff
+{
+	SeeSound "alienspectre/blade"
+	ActiveSound "alienspectre/blade"
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	States
+    {
+		Spawn:
+			TNT1 A 1
+			Stop
+    }
+}
+
+Actor NarakaMorph_EntityBossConverter : Boolean {}
+
+Actor NarakaMorph_EntitySubFriend : StrifeSubEntity { -SPECIAL -SOLID }
