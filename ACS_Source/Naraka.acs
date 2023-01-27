@@ -428,5 +428,43 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 					break;
 			}
 			break;
+		// Corridor 7
+		case 13:
+			switch(tier)
+			{
+				case 4:
+					switch(action)
+					{
+						case 0:
+							while(ClassifyActor(0) & ACTOR_Alive && !CheckInventory("NarakaMorph_TebazileBossConverter"))
+							{
+								if(GetActorProperty(0,APROP_Health) <= 1)
+								{
+									GiveInventory("NarakaMorph_TebazileBossConverter",1);
+									SetActorState(0,"ConvertToBoss",true);
+								}
+								Delay(1);
+							}
+							break;
+						case 1:
+							GiveInventory("NarakaMorph_TebazileBossConverter",1);
+							SetActorState(0,"ConvertToBoss",true);
+							break;
+						case 2:
+							GiveInventory("NarakaMorph_TebazileBossConverter",1);
+							SetActorState(0,"ConvertToBoss2",true);
+							break;
+						case 3:
+							GiveInventory("NarakaMorph_TebazileBossConverter",1);
+							SetActorState(0,"ConvertToBoss3",true);
+							break;
+						case 4:
+							TakeInventory("NarakaMorph_TebazileBossConverter",3);
+							SetActorState(0,"ConvertToBoss4",true);
+							break;
+					}
+					break;
+			}
+			break;
 	}
 }
