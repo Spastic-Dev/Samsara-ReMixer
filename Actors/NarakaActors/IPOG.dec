@@ -1,0 +1,389 @@
+// In Pursuit of Greed
+Actor NarakaMorph_IPOGHuntress : SamsaraNarakaPawnTier1Normal
+{
+	Radius 20
+	Height 56
+	Mass 100
+	Player.Soundclass "NarakaIPOGHuntress"
+	Player.ForwardMove 0.5
+	Player.SideMove 0.5
+	Player.MorphWeapon "NarakaMorph_IPOGHuntressWeapon"
+	Player.ViewHeight 48.0
+	Scale 0.45
+	BloodType "IPOGBloodMonster"
+	States
+	{
+		Spawn:
+			IPOB B 5
+			Loop
+		See:
+			IPOB AABBCCBB 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPOB E 2
+			IPOB E 6 bright
+			IPOB E 2
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPOB F 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			IPOB G 3
+			IPOB H 3 A_Scream
+			IPOB I 3 
+			IPOB J 3
+			IPOB K 3
+			IPOB L 3 A_NoBlocking
+			IPOB M 3
+			IPOB N 3
+			IPOB O -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_IPOGHuntressWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 2
+			TNT1 A 0 A_PlaySound("ipoghuntress/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("PGShotgunPlasmaBall0", -16, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShotgunPlasmaBall0", -8, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShotgunPlasmaBall0", 0, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShotgunPlasmaBall0", 8, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShotgunPlasmaBall0", 16, 0, 0, 0)
+			TNT1 A 8
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_IPOGBerserker : SamsaraNarakaPawnTier2Normal
+{
+	Radius 20
+	Height 56
+	Mass 255
+	Player.Soundclass "NarakaIPOGBerserker"
+	Player.ForwardMove 0.5
+	Player.SideMove 0.5
+	Player.MorphWeapon "NarakaMorph_IPOGBerserkerWeapon"
+	Player.ViewHeight 48.0
+	Scale 0.45
+	BloodType "IPOGBloodMonster"
+	States
+	{
+		Spawn:
+			IPO5 B 5
+			Loop
+		See:
+			IPO5 AABBCCDDCCBB 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPO5 E 10
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPO5 D 8 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			IPO5 G 3
+			IPO5 H 3 A_Scream
+			IPO5 I 3 
+			IPO5 J 3
+			IPO5 K 3 A_NoBlocking
+			IPO5 L 3
+			IPO5 M 3
+			IPO5 N 3
+			IPO5 N -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_IPOGBerserkerWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_PlaySound("ipogberserker/attack", CHAN_WEAPON)
+			TNT1 A 0 A_CustomPunch(8 * random(1, 4), true, 0, "PGBulletPuff", 80)
+			TNT1 A 10
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_IPOGGuard : SamsaraNarakaPawnTier3NoBlood
+{
+	Radius 22
+	Height 64
+	Mass 500
+	Player.Soundclass "NarakaIPOGGuard"
+	Player.ForwardMove 0.4
+	Player.SideMove 0.4
+	Player.MorphWeapon "NarakaMorph_IPOGGuardWeapon"
+	Player.ViewHeight 60.0
+	Scale 0.50
+	States
+	{
+		Spawn:
+			IPO2 B 5
+			Loop
+		See:
+			IPO2 AABBCCBB 4
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPO2 D 4
+			IPO2 E 4
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPO2 F 3
+			IPO2 F 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			IPO2 G 4
+			IPO2 H 4 A_Scream
+			IPO2 I 4 A_NoBlocking
+			IPO2 J 4
+			IPO2 K 4
+			IPO2 L 4
+			IPO2 M 4
+			IPO2 N 4
+			IPO2 N -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_IPOGGuardWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_PlaySound("ipogguard/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("IPOGGuardShot", random(-4,4), 0, 0, 0)
+			TNT1 A 8
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_IPOGWizard : SamsaraNarakaPawnTier4Normal
+{
+	Radius 24
+	Height 64
+	Mass 700
+	Player.Soundclass "NarakaIPOGWizard"
+	Player.ForwardMove 0.45
+	Player.SideMove 0.45
+	Player.MorphWeapon "NarakaMorph_IPOGWizardWeapon"
+	Player.ViewHeight 60.0
+	Scale 0.60
+	BloodType "IPOGBloodMonster"
+	States
+	{
+		Spawn:
+			IPO8 B 5
+			Loop
+		See:
+			IPO8 AABBCCDDCCBB 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPO8 F 3
+			IPO8 E 8
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPO8 F 3
+			IPO8 F 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			IPO8 G 4
+			IPO8 H 4 A_Scream
+			IPO8 I 4 
+			IPO8 J 4
+			IPO8 K 4
+			IPO8 L 4
+			IPO8 M 4 A_NoBlocking
+			IPO8 N 4
+			IPO8 N -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_IPOGWizardWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 3
+			TNT1 A 0 A_PlaySound("ipoghuntress/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("IPOGWizardBall", -8, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("IPOGWizardBall", 0, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("IPOGWizardBall", 8, 0, 0, 0)
+			TNT1 A 8
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_IPOGChancellor : SamsaraNarakaPawnTier5Normal
+{
+	Radius 36
+	Height 102
+	Mass 2000
+	Player.Soundclass "NarakaIPOGChancellor"
+	Player.ForwardMove 0.6
+	Player.SideMove 0.6
+	Player.MorphWeapon "NarakaMorph_IPOGChancellorWeapon"
+	Player.ViewHeight 86.0
+	Scale 0.75
+	BloodType "IPOGBloodMonster"
+	States
+	{
+		Spawn:
+			IPOE B 5
+			Loop
+		See:
+			IPOE AABBCCDDCCBB 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPOE C 6
+			IPOE E 12 Bright
+			IPOE E 8
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			IPOE F 4
+			IPOE F 4 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			IPOE G 5
+			IPOE H 5 A_Scream
+			IPOE I 5 
+			IPOE J 5
+			IPOE K 5 A_NoBlocking
+			IPOE L 5
+			IPOE M 5
+			IPOE N 5
+			IPOE N 5
+			IPOE N -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_IPOGChancellorWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 6
+			TNT1 A 0 A_PlaySound("ipogchanc/attack",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("PGShellSuperPlasmaBall0", -16, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShellSuperPlasmaBall0", -12, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShellSuperPlasmaBall0", -8, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShellSuperPlasmaBall0", 0, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShellSuperPlasmaBall0", 8, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShellSuperPlasmaBall0", 12, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("PGShellSuperPlasmaBall0", 16, 0, 0, 0)
+			TNT1 A 20
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
