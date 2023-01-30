@@ -711,8 +711,6 @@ Actor NarakaMorph_SnotfolusWeapon : InstantSwitchWeapon
 			TNT1 A 1 A_WeaponReady
 			loop
 		Fire:
-			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"SummonMode")
-			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"AlternativeMode")
 			TNT1 A 6 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",1,4)
 			TNT1 A 0 A_FireCustomMissile("FlemSporeSummonball2")
 			TNT1 A 6 A_FireCustomMissile("NarakaSnotfolusBall",0,0,0,53)
