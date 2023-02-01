@@ -71,7 +71,7 @@ Str MonsterTiers[MAX_GAME_TYPES][MAXMODES][MAXTIERS] =
 		{ "NarakaMorph_Cryopirate", "NarakaMorph_TerroristDroid", "NarakaMorph_MBrute", "NarakaMorph_Disruptor", "NarakaMorph_Krieger"},
 	},
 	{
-		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
+		{ "NarakaMorph_Argothonian", "NarakaMorph_MuckDemoness", "NarakaMorph_MinoDrake", "NarakaMorph_MidianWarrior", "NarakaMorph_CiraeArgoth"},
 	},
 	{
 		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
@@ -467,6 +467,24 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 					break;
 			}
 			break;
+		// Witchaven
+		case 18:
+			switch(tier)
+			{
+				case 4:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"FireMissile",true);
+							break;
+						case 1:
+							SetActorState(0,"NukeMissile",true);
+							break;
+					}
+					break;
+			}
+			break;
+		// Redneck Rampage
 		case 24:
 			switch(tier)
 			{
