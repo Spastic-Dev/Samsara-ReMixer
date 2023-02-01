@@ -1,0 +1,637 @@
+// Disruptor
+Actor NarakaMorph_Cryopirate : SamsaraNarakaPawnTier1Normal
+{
+	Radius 20
+	Height 56
+	Mass 250
+	Player.Soundclass "NarakaCryopirate"
+	Player.ForwardMove 0.5
+	Player.SideMove 0.5
+	Player.MorphWeapon "NarakaMorph_CryopirateWeapon"
+	Scale 0.415
+	States
+	{
+		Spawn:
+			DIS9 A 5
+			Loop
+		See:
+			DIS9 AABBCCDDEEFF 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DIS9 GGHHIIJJ 1
+			DIS9 K 1 Bright
+			DIS9 KLLMMNN 1
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DIS9 O 1 A_Playsound("*pain100",CHAN_VOICE)
+			DIS9 PQPO 1
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			DIS9 R 4 bright
+			DIS9 S 4 bright A_Scream
+			DIS9 T 4 bright A_NoBlocking
+			DIS9 U 4 bright
+			DIS9 V 4 bright
+			DIS9 WXYZ 4 bright 
+			DIS9 Z -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_CryopirateWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8
+			TNT1 A 0 A_PlaySound("ds_terrorist3/att",CHAN_WEAPON)
+			TNT1 AAAAAAA 0 A_FireCustomMissile("DisruptorEnemyBullet_Z1", random(-16.68,16.68))
+			TNT1 A 8
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_TerroristDroid : SamsaraNarakaPawnTier2NoBlood
+{
+	Radius 20
+	Height 56
+	Mass 800
+	Player.Soundclass "NarakaTerroristDroid"
+	Player.ForwardMove 0.45
+	Player.SideMove 0.45
+	Player.MorphWeapon "NarakaMorph_TerroristDroidWeapon"
+	Scale 0.50
+	+NOBLOOD
+	States
+	{
+		Spawn:
+			DIS7 A 5
+			Loop
+		See:
+			DIS7 AABBCCDDEEFFGGHH 2
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DIS7 IIJJKKLLM 1
+			DIS7 M 2 Bright
+			DIS7 LLKKJJII 2
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DIS7 S 2 A_Playsound("*pain100",CHAN_VOICE)
+			DIS7 STTUUTTSS 2 
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			DIS8 A 2 bright
+			DIS8 A 2 bright A_Scream
+			DIS8 B 2 bright A_NoBlocking
+			DIS8 B 2 bright
+			DIS8 CC 2 bright
+			DIS8 DDEEFFGGHHIILLMMNNOOPPQQ 2 bright 
+			DIS8 Q -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_TerroristDroidWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 9
+			TNT1 A 0 A_PlaySound("terroristdroid/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_1_Enemy")
+			TNT1 A 18
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_MBrute : SamsaraNarakaPawnTier3Normal
+{
+	Radius 20
+	Height 56
+	Mass 250
+	Player.Soundclass "NarakaMBrute"
+	Player.ForwardMove 0.45
+	Player.SideMove 0.45
+	Player.MorphWeapon "NarakaMorph_MBruteWeapon"
+	Scale 0.50
+	BloodColor Tan
+	States
+	{
+		Spawn:
+			DISC A 5
+			Loop
+		See:
+			DISC AABBCCDDEEFF 4
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DISC GGHHIIJJ 1
+			DISC K 2 Bright
+			DISC KLLMM 2
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DISC N 2 A_Playsound("*pain100",CHAN_VOICE)
+			DISC NOOPPNN 2 
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			DISD A 2 bright
+			DISD A 2 bright A_Scream
+			DISD B 2 bright A_NoBlocking
+			DISD B 2 bright
+			DISD C 2 bright
+			DISD CDDEEFFGGHHIIJJKKLLMMNNO 2 bright
+			DISD O -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_MBruteWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8
+			TNT1 A 0 A_PlaySound("ds_mutantbrute/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DisruptorMeteoriteShit_E")
+			TNT1 A 12
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_Disruptor : SamsaraNarakaPawnTier4NoBlood
+{
+	Radius 20
+	Height 56
+	Mass 500
+	Player.Soundclass "NarakaDisruptor"
+	Player.ForwardMove 0.45
+	Player.SideMove 0.45
+	Player.MorphWeapon "NarakaMorph_DisruptorWeapon"
+	Scale 0.625
+	+NOBLOOD
+	States
+	{
+		Spawn:
+			DISW A 5
+			Loop
+		See:
+			DISW AABBCCDDEEFFGG 3
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DISW HHII 2
+			DISW J 3 Bright
+			DISW KK 2
+			DISW J 3 Bright
+			DISW KK 2
+			DISW J 3 Bright
+			DISW KK 2
+			DISW LLMM 2
+			DISW [ 2
+			DISW [ 2
+			DISW ] 2
+			DISW ] 2
+			DISW ^ 2
+			DISW ^ 2
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DISW N 2 A_Playsound("*pain100",CHAN_VOICE)
+			DISW NOOPPOONN 2 
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			DISW Q 2
+			DISW Q 2 A_Scream
+			DISW R 2 A_NoBlocking
+			DISW R 2 
+			DISW SS 2
+			DISW TTUUVVWWXXYYZZ 2
+			DISW Z -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_DisruptorWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8
+			TNT1 A 0 A_PlaySound("disruptor_e/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_2_Enemy")
+			TNT1 A 7
+			TNT1 A 0 A_PlaySound("disruptor_e/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_2_Enemy")
+			TNT1 A 7
+			TNT1 A 0 A_PlaySound("disruptor_e/fire",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_2_Enemy")
+			TNT1 A 13
+			TNT1 A 12 A_PlaySound("disruptor_e/reload",CHAN_WEAPON)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
+
+Actor NarakaMorph_Krieger : SamsaraNarakaPawnTier5Normal
+{
+	Radius 20
+	Height 56
+	Mass 250
+	Player.Soundclass "NarakaKrieger"
+	Player.ForwardMove 0.5
+	Player.SideMove 0.5
+	Player.MorphWeapon "NarakaMorph_KriegerWeapon"
+    Scale 0.50
+	YScale 0.45
+	States
+	{
+		Spawn:
+			DS21 A 5
+			Loop
+		See:
+			DS21 AABBCCDDEEFFGGHH 2
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DS21 IIJJKK 2
+			DS21 L 2 Bright
+			DS21 LMMNNOOII 2
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			DS21 P 2 A_Playsound("*pain100",CHAN_VOICE)
+			DS21 PQQPP 2
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+		    DS21 R 1 bright A_FaceTarget
+			DS21 R 1 bright A_Scream
+			DS21 R 2 bright A_NoBlocking 
+			DS21 S 2 bright A_CustomMissile("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS21 S 2 bright
+			DS21 T 2 bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 26)
+			DS21 TUUVVWWXX 2 bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, random(-132,170), 2, random(18,26))
+			DS21 YYZZ 2 bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, random(-132,170), 2, random(18,26))
+			DS20 AABBCCDDEEFFGGHHI 2 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, random(-132,170), 2, random(18,26))
+			DS20 I 2
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -80, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -80, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -80, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -80, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -80, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 26)
+			DS20 C 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 18)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 D 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 18)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 26)
+			DS20 E 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -80, 2, 18)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 26)
+			DS20 F 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 48, 2, 18)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -64, 2, 26)
+			DS20 G 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 112, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -24, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 16, 2, 18)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -132, 2, 26)
+			DS20 H 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 120, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -11, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 133, 2, 18)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, -42, 2, 26)
+			DS20 I 1 Bright A_CustomMissile ("KriegerDEnergyBall", 32, 0, 170, 2, 18)
+			DS20 "^" 4 Bright
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 5 A_SpawnItemEx("PresidentFakeBoomB",32,-54,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 7 A_SpawnItemEx("PresidentFakeBoomB",4,6,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 6 A_SpawnItemEx("PresidentFakeBoomB",-56,48,18,0)
+			TNT1 A 10 
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomR",92,-92,56,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomR",92,92,56,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomR",-92,92,56,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomR",-92,-92,56,0)
+			TNT1 A 10
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomB",78,-54,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomB",0,0,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",-70,-54,18,0)
+			TNT1 A 10
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",128,128,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",112,-128,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",128,-112,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",-128,112,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",-112,-96,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",-96,128,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",112,-128,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",96,-112,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",96,-96,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",-96,96,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",128,-128,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",112,112,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",-112,-112,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",64,-64,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 2 A_SpawnItemEx("PresidentFakeBoomB",-64,64,18,0)
+			TNT1 A 15
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 1 A_SpawnItemEx("PresidentFakeBoomR",8,-8,18,0)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomB",0,0,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 1 A_SpawnItemEx("PresidentFakeBoomR",-8,8,18,0)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomB",0,0,18,0)
+			TNT1 A 0 A_PlaySound("Disruptor/EnergyBallE", CHAN_AUTO)
+			TNT1 A 1 A_SpawnItemEx("PresidentFakeBoomR",0,0,18,0)
+			TNT1 A 3 A_SpawnItemEx("PresidentFakeBoomB",0,0,18,0)
+			TNT1 A -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_KriegerWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 12
+			TNT1 A 0 A_PlaySound("ds_president/bomb",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DisruptorMeteoriteShit_EF")
+			TNT1 A 20
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		AltFire:
+			TNT1 A 12
+			TNT1 A 0 A_PlaySound("ds_president/energy",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", -20)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", -16)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", -12)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", -8)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", -4)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", 0)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", 4)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", 8)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", 12)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", 16)
+			TNT1 A 0 A_FireCustomMissile("DisruptorEnergyBall_Z_Boss", 20)
+			TNT1 A 20
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
