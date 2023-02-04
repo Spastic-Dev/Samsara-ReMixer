@@ -77,7 +77,7 @@ Str MonsterTiers[MAX_GAME_TYPES][MAXMODES][MAXTIERS] =
 		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
 	},
 	{
-		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
+		{ "NarakaMorph_SWNinja", "NarakaMorph_SWAssassin", "NarakaMorph_SWRipper", "NarakaMorph_SerpentGod", "NarakaMorph_MasterZilla"},
 	},
 	{
 		{ "NarakaMorph_ShotgunGuy", "NarakaMorph_Spectre", "NarakaMorph_Cacodemon", "NarakaMorph_Baron", "NarakaMorph_Cyberdemon"},
@@ -479,6 +479,48 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 							break;
 						case 1:
 							SetActorState(0,"NukeMissile",true);
+							break;
+					}
+					break;
+			}
+			break;
+		// Shadow Warrior
+		case 20:
+			switch(tier)
+			{
+				case 0:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"GunMissile",true);
+							break;
+						case 1:
+							SetActorState(0,"ShurikenMissile",true);
+							break;
+					}
+					break;
+				case 1:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"DartMissile",true);
+							break;
+						case 1:
+							SetActorState(0,"BombMissile",true);
+							break;
+					}
+					break;
+				case 4:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"RocketMissile",true);
+							break;
+						case 1:
+							SetActorState(0,"GunMissile",true);
+							break;
+						case 2:
+							SetActorState(0,"RailgunMissile",true);
 							break;
 					}
 					break;
