@@ -41,6 +41,7 @@ Actor NarakaMorph_SWNinja : SamsaraNarakaPawnTier1Normal
 			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
 			Goto Spawn
 		ShurikenMissile:
+			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			NINJ OOO 3
@@ -159,6 +160,7 @@ Actor NarakaMorph_SWAssassin : SamsaraNarakaPawnTier2Normal
 			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
 			Goto Spawn
 		BombMissile:
+			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			ASSA QQQ 3
@@ -240,11 +242,321 @@ Actor NarakaMorph_SWAssassinWeapon : InstantSwitchWeapon
 	}
 }
 
+Actor NarakaMorph_SWRipper : SamsaraNarakaPawnTier3Normal
+{
+	Radius 24
+	Height 56
+	Mass 224
+	Player.Soundclass "NarakaSWRipper"
+	Player.ForwardMove 0.55
+	Player.SideMove 0.55
+	Player.MorphWeapon "NarakaMorph_SWRipperWeapon"
+	BloodType "SWDefaultBloodSpawner"
+	Scale 0.78
+	+NOBLOODDECALS
+	States
+	{
+		Spawn:
+			RIPR A 5
+			Loop
+		See:
+			RIPR AAABBBCCCDDD 2
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			RIPR Q 4
+			RIPR R 4
+			RIPR ST 4
+			RIPR T 1
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			RIPD A 3
+			RIPD A 3 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			RIPD A 2 A_StopSound(CHAN_BODY)
+			RIPD B 4 A_Scream
+			RIPD C 4 A_NoBlocking
+			RIPD D 4
+			RIPD EFG 5
+			RIPD H -1
+			Stop
+	}
+}
 
+Actor NarakaMorph_SWRipperWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 4
+			TNT1 A 0 A_PlaySound("Ripper/Attack", CHAN_WEAPON)
+			TNT1 A 4 A_CustomPunch(random(20, 60), true, 0, "NarakaMorph_SWRipperWeaponPuff", 80)
+			TNT1 A 9
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
 
+Actor NarakaMorph_SWRipperWeaponPuff : SWPuffSmoke
+{
+	States
+    {
+		Spawn:
+		Crash:
+			WMI1 A 0
+			WMI1 A 0 A_SpawnItemEx("SWPuffSmoke",0,0,0,0,0,random(1,2) * 0.4,0,SXF_CLIENTSIDE)
+			WMI1 ABC 3 bright
+			stop
+		Melee:
+			TNT1 A 0
+			stop
+    }
+}
 
+Actor NarakaMorph_SerpentGod : SamsaraNarakaPawnTier4Normal
+{
+	Radius 28
+	Height 64
+	Mass 768
+	Player.Soundclass "NarakaSerpentGod"
+	Player.ForwardMove 0.5
+	Player.SideMove 0.5
+	Player.MorphWeapon "NarakaMorph_SerpentGodWeapon"
+	Player.ViewHeight 58.0
+	BloodType "SWDefaultBloodSpawner"
+	XScale 0.98
+	Yscale 0.86
+	+NOBLOODDECALS
+	States
+	{
+		Spawn:
+			SERP A 10
+			Loop
+		See:
+			SERP AAABBBCCC
+			Loop
+		Melee:
+		Missile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			SERP LK 4
+			SERP J 4
+			SERP I 6
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			SERP A 2
+			SERP A 2 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			SERP M 6 A_Scream
+			SERP NOPQRSTUW 6
+			TNT1 A 0 A_NoBlocking
+			SERP X 6
+			SERP Y -1
+			Stop
+	}
+}
 
+Actor NarakaMorph_SerpentGodWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 8
+			TNT1 A 0 A_PlaySound("Serpent/Magic", CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("SerpentProj", 0, 0, 0, 0)
+			TNT1 A 6 A_FireCustomMissile("SerpentProj", 0, 0, 0, 0)
+			TNT1 A 0 A_ReFire
+			Goto Ready
+	}
+}
 
+Actor NarakaMorph_MasterZilla : SamsaraNarakaPawnTier5NoBlood
+{
+	Radius 30
+	Height 80
+	Mass 5000
+	Player.Soundclass "NarakaMasterZilla"
+	Player.ForwardMove 0.6
+	Player.SideMove 0.6
+	Player.MorphWeapon "NarakaMorph_MasterZillaWeapon"
+	Player.ViewHeight 74.0
+	BloodType "SWDefaultBloodSpawner"
+	Scale 0.7
+	+NOBLOODDECALS
+	States
+	{
+		Spawn:
+			ZILL A 5
+			Loop
+		See:
+			ZILL A 0 A_PlaySound("Master_Zilla/Walk",CHAN_BODY)
+			ZILL AAAAAAAAAAAAAA 1
+			ZILL BBBBBBBBBBBBBB 1
+			ZILL A 0 A_PlaySound("Master_Zilla/Walk",CHAN_BODY)
+			ZILL CCCCCCCCCCCCCC 1
+			ZILL DDDDDDDDDDDDDD 1
+			Loop
+		Melee:
+		Missile:
+			Goto Spawn
+		RocketMissile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			ZILL E 4 Bright
+			ZILL F 3 Bright
+			ZILL G 14 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		GunMissile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			ZILL QQQQQQ 3 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		RailgunMissile:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			ZILL I 1 Bright
+			ZILL J 2 Bright
+			ZILL K 4
+			ZILL J 3 Bright
+			ZILL I 1 Bright
+			ZILL J 2 Bright
+			ZILL K 4 Bright
+			ZILL J 3 Bright
+			ZILL I 1 Bright
+			ZILL J 2 Bright
+			ZILL K 4 Bright
+			ZILL J 3 Bright
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Pain:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 SetPlayerProperty(0,1,PROP_FROZEN)
+			ZILL U 8 A_Playsound("*pain100",CHAN_VOICE)
+			TNT1 A 0 SetPlayerProperty(0,0,PROP_FROZEN)
+			Goto Spawn
+		Death:
+		XDeath:
+			ZILL V 190 A_PlaySound("Master_Zilla/Die",CHAN_VOICE,1.0,0,ATTN_NONE)
+			TNT1 A 0 A_Scream
+			ZILL VVVVVVVVVV 8 Bright A_SpawnItemEx("MasterZillaDeathExplode",random(-40,40), random(-30, 30), 70)
+			ZILL VVVVV 8 Bright A_SpawnItemEx("MasterZillaDeathExplode",random(-40,40), random(-30, 30), 70)
+			ZILL W 8 Bright
+			ZILL X 9 Bright
+			ZILL Y 9 Bright
+			ZILL Z 9 Bright
+			ZIL2 A 8 Bright
+			ZIL2 B 9 Bright
+			ZIL2 C 26 Bright
+			ZIL2 D 1 A_NoBlocking
+			ZIL2 D -1
+			Stop
+	}
+}
+
+Actor NarakaMorph_MasterZillaWeapon : InstantSwitchWeapon
+{
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	+WEAPON.DONTBOB
+	+NOALERT
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Ready:
+			TNT1 A 1 A_WeaponReady
+			loop
+		Fire:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"BombFire")
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",19,1)
+			TNT1 A 6
+			TNT1 A 0 A_PlaySound("sw/swing",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("AssassinArrow")
+			TNT1 A 12
+			TNT1 A 0 A_PlaySound("sw/swing",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("AssassinArrow")
+			TNT1 A 10
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		ShurikenFire:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_MorphMonsterFunctions",19,1,1)
+			TNT1 A 9
+			TNT1 A 0 A_PlaySound("sw/swing",CHAN_WEAPON)
+			TNT1 A 0 A_FireCustomMissile("AssassinBomb")
+			TNT1 A 8
+			TNT1 A 0 A_ReFire
+			Goto Ready
+		Altfire:
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,1)
+			Goto AltFire+2
+			TNT1 A 0 A_TakeInventory("NarakaMorphAttackMode",16)
+			Goto AltFire+3
+			TNT1 A 0 A_GiveInventory("NarakaMorphAttackMode",1)
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",1,"SwitchGun")
+			TNT1 A 0 A_JumpIfInventory("NarakaMorphAttackMode",2,"SwitchRailgun")
+			Goto SwitchRegular
+		SwitchRegular:
+			TNT1 A 0 A_Print("Missile mode")
+			Goto AltFireFinish
+		SwitchGun:
+			TNT1 A 0 A_Print("Gun mode")
+			Goto AltFireFinish
+		SwitchRailgun:
+			TNT1 A 0 A_Print("Railgun mode")
+			Goto AltFireFinish
+		AltFireFinish:
+			TNT1 A 17
+			Goto Ready
+	}
+}
 
 
 
