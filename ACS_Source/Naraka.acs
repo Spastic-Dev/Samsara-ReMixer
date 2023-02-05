@@ -125,7 +125,10 @@ Script "ForceGiveSphere" Enter
 {
 	if (GetCvar("mm_narakamode") >= 1)
 	{
-		GiveInventory("SamsaraMonsterSphere",1);
+		if(SpawnForced("SamsaraMonsterMorpherChecker",0,0,0,0))
+		{
+			GiveInventory("SamsaraMonsterSphere",1);
+		}	
 	}
 }
 
