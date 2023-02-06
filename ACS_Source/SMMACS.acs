@@ -634,7 +634,7 @@ Script "ReMixerCVarCheck" (int pick) //680
 		break;
 		
 		case 13:
-		response = GetCvar("mm_performancemode");
+		response = GetCvar("mm_performancemode") && (!StrICmp(strparam(l:"CC_CARD_LOCKED"),"Undiscovered Card") == 0);
 		break;
 	}
 	SetResultValue(response);
