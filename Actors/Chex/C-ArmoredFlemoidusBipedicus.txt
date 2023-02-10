@@ -25,7 +25,7 @@ actor NewArmoredFlemoidusBipedicus : ArmoredFlemoidusBipedicusV3_2
       Missile:
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         TROC EF 6 A_FaceTarget
-        TROC G 6 A_CustomComboAttack("BipedicusBallV3", 32, random[TROCpattack](1,8)*3, "cqimp/melee", "flem")
+        TROC G 6 A_CustomComboAttack("BipedicusBallV3", 32, random[TROCpattack](1,8)*3, "cqimp/melee", "flem", false)
         Goto See
       Pain:
         TROC A 2 A_SpawnDebris("FlemoidGib",1)
@@ -227,7 +227,7 @@ ACTOR YellowArmoredFlemoid : NewArmoredFlemoidusBipedicus
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TROC EF 6 A_FaceTarget
-			TROC G 6 A_CustomComboAttack("YellowBipedicusBall2", 32, random[troopattack](1,8)*3, "cqimp/melee", "flem")
+			TROC G 6 A_CustomComboAttack("YellowBipedicusBall2", 32, random[troopattack](1,8)*3, "cqimp/melee", "flem", false)
 			Goto See
 		Pain.ShrinkerDMG:
 			TROC A 0
@@ -277,7 +277,7 @@ ACTOR DarkArmoredFlemoid : NewArmoredFlemoidusBipedicus
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TROC EF 6 A_FaceTarget
-			TROC G 6 A_CustomComboAttack("DarkBipedicusBall", 32, random[troopattack](1,8)*3, "cqimp/melee", "flem")
+			TROC G 6 A_CustomComboAttack("DarkBipedicusBall", 32, random[troopattack](1,8)*3, "cqimp/melee", "flem", false)
 			Goto See
 		Pain.ShrinkerDMG:
 			TROC A 0

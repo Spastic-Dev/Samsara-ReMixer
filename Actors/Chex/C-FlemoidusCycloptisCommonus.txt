@@ -22,7 +22,7 @@ actor NewFlemoidusCycloptisCommonus : FlemoidusCycloptisCommonusV3_2
         Loop
       Melee:
         CYCL EF 6 A_FaceTarget
-        CYCL G 6 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem")
+        CYCL G 6 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem", false)
         Goto See
       Pain:
         CYCL A 2 A_SpawnDebris("FlemoidGib",1)

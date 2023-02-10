@@ -21,7 +21,7 @@ actor NewQuadrumpus : Quadrumpus_2
         Loop
       Melee:
         QUAD EF 6 A_FaceTarget
-        QUAD G 6 A_CustomMeleeAttack(random[TROCpattack](1,8)*3, "cqimp/melee", "cqimp/melee", "flem")
+        QUAD G 6 A_CustomMeleeAttack(random[TROCpattack](1,8)*3, "cqimp/melee", "cqimp/melee", "flem", false)
         Goto See
       Missile:
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)

@@ -42,6 +42,7 @@
 			Option "Initialization Reset", "mm_init", "OnOff"
 			StaticText ""
 			StaticText "Monster Spawning Options"
+			Option "Skill Override" , "mm_skilloverride", "DifficultyMode"
 			Option "Spawn Mode", "mm_spawnmode", "SpawnMode"
 			Slider "Random Sets Per Map", "mm_randomcycle", 1, 26, 1
 			Option "Enemy Drop Mode", "mm_dropmode", "DropMode"
@@ -133,6 +134,16 @@
 			0, "Default"
 			1, "Doom-Style"
 	}		
+	
+	OptionValue DifficultyMode
+	{
+			0, "Difficulty-Based"
+			1, "I'm Too Young to Die!"
+			2, "Hey, Not Too Rough"
+			3, "Hurt Me Plenty"
+			4, "Ultra-Violence"
+			5, "Nightmare!"
+	}
 
 	OptionMenu "SamsaraMonsterSpawnOptions"
     {

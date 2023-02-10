@@ -24,7 +24,7 @@ actor NewFlemoidusStridicus : FlemoidusStridicus2
       Melee:
         TNT1 A 0 A_ChangeFlag("NOPAIN",0)
         SARC EF 6 A_FaceTarget
-        SARC G 6 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem")
+        SARC G 6 A_CustomMeleeAttack(random[SARCattack](1,10)*4, "", "", "Flem", false)
         Goto See
       Pain:
         SARC A 2 A_SpawnDebris("FlemoidGib",1)
