@@ -53,16 +53,16 @@ ACTOR Revenant64 : SamsaraMonsterDemonicMediumTotalGib
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_FaceTarget
-		64RV G 8 A_PlaySound("skeleton64/melee",5)
-		64RV H 8 A_FaceTarget
-		64RV I 8 A_CustomMeleeAttack(6*random(1,10),"skeleton64/hit","")
+		64RV G 16 A_PlaySound("skeleton64/melee",5)
+		64RV H 16 A_FaceTarget
+		64RV I 16 A_CustomMeleeAttack(6*random(1,10),"skeleton64/hit","")
 		Goto See
 	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_FaceTarget
-		64RV J 12 Bright A_FaceTarget
-		64RV K 12 A_CustomMissile("RevenantTracer64",48)
-		64RV K 12 A_FaceTarget
+		64RV J 24 Bright A_FaceTarget
+		64RV K 24 A_CustomMissile("RevenantTracer64",48)
+		64RV K 24 A_FaceTarget
 		Goto See
 	Pain:
 		64RV L 5
