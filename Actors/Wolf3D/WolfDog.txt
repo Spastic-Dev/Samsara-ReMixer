@@ -12,9 +12,9 @@ ACTOR WolfDog : SamsaraMonsterBeastSmallTotalGib
     +NOTDMATCH
     +NOICEDEATH
     +THRUGHOST
-	SeeSound "dog/sight"
+	SeeSound "wolfdog/bark"
 	PainSound ""
-	DeathSound "dog/death"
+	DeathSound "wolfdog/death"
 	ActiveSound ""
 	AttackSound ""
 	Tag "Dog"
@@ -62,7 +62,7 @@ ACTOR WolfDog : SamsaraMonsterBeastSmallTotalGib
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WDOG E 5 A_FaceTarget
 			WDOG F 6 A_FaceTarget
-			WDOG G 4 A_CustomMeleeAttack(random(1,16),"dog/bite","dog/bite")
+			WDOG G 4 A_CustomMeleeAttack(random(1,16),"wolfdog/bite","wolfdog/bite")
 			WDOG E 5
 			WDOG A 5
 			Goto See

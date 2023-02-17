@@ -12,9 +12,9 @@ ACTOR SODDog : SamsaraMonsterBeastSmallTotalGib
     +NOTDMATCH
     +NOICEDEATH
     +THRUGHOST
-	SeeSound "sdog/sight"
+	SeeSound "soddog/bark"
 	PainSound ""
-	DeathSound "sdog/death"
+	DeathSound "soddog/death"
 	ActiveSound ""
 	AttackSound ""
 	Tag "Dog"
@@ -62,7 +62,7 @@ ACTOR SODDog : SamsaraMonsterBeastSmallTotalGib
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			SDOG E 5 A_FaceTarget
 			SDOG F 6 A_FaceTarget
-			SDOG G 4 A_CustomMeleeAttack(random(1,16),"sdog/bark","sdog/bark")
+			SDOG G 4 A_CustomMeleeAttack(random(1,16),"soddog/bite","soddog/bite")
 			SDOG E 5
 			SDOG A 5
 			Goto See
