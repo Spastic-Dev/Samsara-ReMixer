@@ -63,6 +63,7 @@ Actor GangerMale : SamsaraMonsterHumanoidMediumTotalGib
 		Goto See
     Death:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         C_GM J 2
         C_GM J 8 A_Scream
         C_GM K 2 A_Fall
@@ -426,6 +427,7 @@ Actor GangerFemale : SamsaraMonsterHumanoidMediumTotalGib
 		Goto See
     Death:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         C_GF J 2
         C_GF J 8 A_Scream
         C_GF K 2 A_Fall

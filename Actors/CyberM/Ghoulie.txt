@@ -50,6 +50,7 @@ Actor Ghoulie : SamsaraMonsterHumanoidMediumTotalGib
 		Goto See
     Death:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         C_GH J 2
         C_GH J 8 A_Scream
         C_GH K 2 A_Fall

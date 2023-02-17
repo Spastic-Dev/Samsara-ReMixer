@@ -57,6 +57,7 @@ Actor CMMung : SamsaraMonsterAlienMediumTotalGib
         Goto See
     Death:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
         C_MU I 2
         C_MU I 10 A_Scream
         C_MU J 2 A_Fall
