@@ -77,6 +77,7 @@ Script "ReMixerInit" OPEN //667
 	//pickClear = 0;
 	if (!GetCVar("mm_init"))
 	{
+		/*
 		SetCVar("mm_doom", true);
 		SetCVar("mm_heretic", true);
 		SetCVar("mm_hexen1", true);
@@ -122,6 +123,7 @@ Script "ReMixerInit" OPEN //667
 		SetCVar("mm_maratele", true);
 
 		SetCVar("mm_init", true);
+		*/
 	}
 
 	if (alreadyshowedbs == 0 && GameType() != GAME_TITLE_MAP)
@@ -1052,3 +1054,350 @@ Script "Samsara_PinataHandler" (int health, int radius, int height)
 }
 
 Script "HeresiarchScriptTokens" (void) { SetResultValue(CheckInventory("HeresiarchScriptTokens")); }
+
+script "ReMixerPresetSelection" (void)
+{	
+	switch(GetCvar("mm_presetvalue"))
+	{
+		case 0: // Vanilla
+		
+		// General Options
+		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_pinataparty", false);
+		SetCVar("mm_narakamode", false);
+		SetCVar("mm_performancemode", true);
+		
+		// Monster Spawning Options
+		SetCVar("mm_skilloverride", 1);
+		SetCVar("mm_spawnmode", 0);
+		SetCVar("mm_randomcycle", 1);
+		SetCVar("mm_dropmode", 0);
+		SetCVar("mm_multiply", 1);
+		SetCVar("mm_generate", 0);
+		
+		// Monster Specific Options
+		SetCVar("mm_specpermdeath", false);
+		SetCVar("mm_wolffastdeath", false);
+		SetCVar("mm_fakehitlerfire", false);
+		
+		// Enemy Modes
+		SetCVar("mm_doommode", 1);
+		SetCVar("mm_wolfmode", 1);
+		SetCVar("mm_dukemode", 1);
+		SetCVar("mm_halflifemode", 1);
+		
+		// Enemy Spawns
+		SetCVar("mm_doomspawns", 0);
+		SetCVar("mm_doom64spawns", 0);
+		
+		// ReMixer Spawn Options
+		SetCVar("mm_doom", 1);
+		SetCVar("mm_chex", 1);
+		SetCVar("mm_heretic", 1);
+		SetCVar("mm_hexen1", 1);
+		SetCVar("mm_wolf3d", 1);
+		SetCVar("mm_duke3d", 1);
+		SetCVar("mm_marathon", 1);
+		SetCVar("mm_quake1", 1);
+		SetCVar("mm_rott", 1);
+		SetCVar("mm_bstone", 1);
+		SetCVar("mm_blood", 1);
+		SetCVar("mm_strife", 1);
+		SetCVar("mm_erad", 1);
+		SetCVar("mm_c7", 1);
+		SetCVar("mm_rmr", 1);
+		SetCVar("mm_darkf", 1);
+		SetCVar("mm_ipog", 1);
+		SetCVar("mm_disrup", 1);
+		SetCVar("mm_witch", 1);
+		SetCVar("mm_halflife", 1);
+		SetCVar("mm_sw", 1);
+		SetCVar("mm_cm", 1);
+		SetCVar("mm_ps", 1);
+		SetCVar("mm_rr", 1);
+		SetCVar("mm_quake2", 1);
+		SetCVar("mm_hexen2", 1);
+		SetCVar("mm_goldeneye", 1);
+		SetCVar("mm_catacomb", 1);
+		SetCVar("mm_painkiller", 1);
+		SetCVar("mm_unreal", 1);
+		SetCVar("mm_rtcw", 1);
+		SetCVar("mm_quake3", 1);
+		SetCVar("mm_descent", 1);
+		SetCVar("mm_deusex", 1);
+		break;
+		
+		case 1: // Samsara
+		
+		// General Options
+		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_pinataparty", false);
+		SetCVar("mm_narakamode", false);
+		SetCVar("mm_performancemode", true);
+		
+		// Monster Spawning Options
+		SetCVar("mm_skilloverride", 0);
+		SetCVar("mm_spawnmode", 0);
+		SetCVar("mm_randomcycle", 1);
+		SetCVar("mm_dropmode", 0);
+		SetCVar("mm_multiply", 1);
+		SetCVar("mm_generate", 0);
+		
+		// Monster Specific Options
+		SetCVar("mm_specpermdeath", true);
+		SetCVar("mm_wolffastdeath", false);
+		SetCVar("mm_fakehitlerfire", true);
+		
+		// Enemy Modes
+		SetCVar("mm_doommode", 0);
+		SetCVar("mm_wolfmode", 0);
+		SetCVar("mm_dukemode", 0);
+		SetCVar("mm_halflifemode", 0);
+		
+		// Enemy Spawns
+		SetCVar("mm_doomspawns", 0);
+		SetCVar("mm_doom64spawns", 0);
+		
+		// ReMixer Spawn Options
+		SetCVar("mm_doom", 1);
+		SetCVar("mm_chex", 1);
+		SetCVar("mm_heretic", 1);
+		SetCVar("mm_hexen1", 1);
+		SetCVar("mm_wolf3d", 1);
+		SetCVar("mm_duke3d", 1);
+		SetCVar("mm_marathon", 1);
+		SetCVar("mm_quake1", 1);
+		SetCVar("mm_rott", 1);
+		SetCVar("mm_bstone", 1);
+		SetCVar("mm_blood", 1);
+		SetCVar("mm_strife", 1);
+		SetCVar("mm_erad", 1);
+		SetCVar("mm_c7", 1);
+		SetCVar("mm_rmr", 1);
+		SetCVar("mm_darkf", 1);
+		SetCVar("mm_ipog", 1);
+		SetCVar("mm_disrup", 1);
+		SetCVar("mm_witch", 1);
+		SetCVar("mm_halflife", 1);
+		SetCVar("mm_sw", 1);
+		SetCVar("mm_cm", 1);
+		SetCVar("mm_ps", 1);
+		SetCVar("mm_rr", 1);
+		SetCVar("mm_quake2", 1);
+		SetCVar("mm_hexen2", 1);
+		SetCVar("mm_goldeneye", 1);
+		SetCVar("mm_catacomb", 1);
+		SetCVar("mm_painkiller", 1);
+		SetCVar("mm_unreal", 1);
+		SetCVar("mm_rtcw", 1);
+		SetCVar("mm_quake3", 1);
+		SetCVar("mm_descent", 1);
+		SetCVar("mm_deusex", 1);
+		break;
+		
+		case 2: // Samsara Reincarnation
+		
+		// General Options
+		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_pinataparty", false);
+		SetCVar("mm_narakamode", false);
+		SetCVar("mm_performancemode", true);
+		
+		// Monster Spawning Options
+		SetCVar("mm_skilloverride", 0);
+		SetCVar("mm_spawnmode", 0);
+		SetCVar("mm_randomcycle", 1);
+		SetCVar("mm_dropmode", 1);
+		SetCVar("mm_multiply", 1);
+		SetCVar("mm_generate", 0);
+		
+		// Monster Specific Options
+		SetCVar("mm_specpermdeath", true);
+		SetCVar("mm_wolffastdeath", false);
+		SetCVar("mm_fakehitlerfire", true);
+		
+		// Enemy Modes
+		SetCVar("mm_doommode", 0);
+		SetCVar("mm_wolfmode", 0);
+		SetCVar("mm_dukemode", 0);
+		SetCVar("mm_halflifemode", 0);
+		
+		// Enemy Spawns
+		SetCVar("mm_doomspawns", 1);
+		SetCVar("mm_doom64spawns", 1);
+		
+		// ReMixer Spawn Options
+		SetCVar("mm_doom", 1);
+		SetCVar("mm_chex", 1);
+		SetCVar("mm_heretic", 1);
+		SetCVar("mm_hexen1", 1);
+		SetCVar("mm_wolf3d", 1);
+		SetCVar("mm_duke3d", 1);
+		SetCVar("mm_marathon", 1);
+		SetCVar("mm_quake1", 1);
+		SetCVar("mm_rott", 1);
+		SetCVar("mm_bstone", 1);
+		SetCVar("mm_blood", 1);
+		SetCVar("mm_strife", 1);
+		SetCVar("mm_erad", 1);
+		SetCVar("mm_c7", 1);
+		SetCVar("mm_rmr", 1);
+		SetCVar("mm_darkf", 1);
+		SetCVar("mm_ipog", 1);
+		SetCVar("mm_disrup", 1);
+		SetCVar("mm_witch", 1);
+		SetCVar("mm_halflife", 1);
+		SetCVar("mm_sw", 1);
+		SetCVar("mm_cm", 1);
+		SetCVar("mm_ps", 1);
+		SetCVar("mm_rr", 1);
+		SetCVar("mm_quake2", 1);
+		SetCVar("mm_hexen2", 1);
+		SetCVar("mm_goldeneye", 1);
+		SetCVar("mm_catacomb", 1);
+		SetCVar("mm_painkiller", 1);
+		SetCVar("mm_unreal", 1);
+		SetCVar("mm_rtcw", 1);
+		SetCVar("mm_quake3", 1);
+		SetCVar("mm_descent", 1);
+		SetCVar("mm_deusex", 1);
+		break;
+		
+		// Secret presets
+		case 100: // cubebert's Settings
+		
+		// General Options
+		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_pinataparty", false);
+		SetCVar("mm_narakamode", false);
+		SetCVar("mm_performancemode", false);
+		
+		// Monster Spawning Options
+		SetCVar("mm_skilloverride", 1);
+		SetCVar("mm_spawnmode", 2);
+		SetCVar("mm_randomcycle", 1);
+		SetCVar("mm_dropmode", 1);
+		SetCVar("mm_multiply", 1);
+		SetCVar("mm_generate", 0);
+		
+		// Monster Specific Options
+		SetCVar("mm_specpermdeath", true);
+		SetCVar("mm_wolffastdeath", false);
+		SetCVar("mm_fakehitlerfire", true);
+		
+		// Enemy Modes
+		SetCVar("mm_doommode", 1);
+		SetCVar("mm_wolfmode", 4);
+		SetCVar("mm_dukemode", 1);
+		SetCVar("mm_halflifemode", 1);
+		
+		// Enemy Spawns
+		SetCVar("mm_doomspawns", 0);
+		SetCVar("mm_doom64spawns", 0);
+		
+		// ReMixer Spawn Options
+		SetCVar("mm_doom", 1);
+		SetCVar("mm_chex", 0);
+		SetCVar("mm_heretic", 0);
+		SetCVar("mm_hexen1", 0);
+		SetCVar("mm_wolf3d", 0);
+		SetCVar("mm_duke3d", 0);
+		SetCVar("mm_marathon", 0);
+		SetCVar("mm_quake1", 0);
+		SetCVar("mm_rott", 0);
+		SetCVar("mm_bstone", 0);
+		SetCVar("mm_blood", 0);
+		SetCVar("mm_strife", 0);
+		SetCVar("mm_erad", 0);
+		SetCVar("mm_c7", 0);
+		SetCVar("mm_rmr", 0);
+		SetCVar("mm_darkf", 0);
+		SetCVar("mm_ipog", 0);
+		SetCVar("mm_disrup", 0);
+		SetCVar("mm_witch", 0);
+		SetCVar("mm_halflife", 0);
+		SetCVar("mm_sw", 0);
+		SetCVar("mm_cm", 0);
+		SetCVar("mm_ps", 0);
+		SetCVar("mm_rr", 0);
+		SetCVar("mm_quake2", 0);
+		SetCVar("mm_hexen2", 0);
+		SetCVar("mm_goldeneye", 0);
+		SetCVar("mm_catacomb", 0);
+		SetCVar("mm_painkiller", 0);
+		SetCVar("mm_unreal", 0);
+		SetCVar("mm_rtcw", 0);
+		SetCVar("mm_quake3", 0);
+		SetCVar("mm_descent", 0);
+		SetCVar("mm_deusex", 0);
+		break;
+		
+		case 101: // Meleemario's Settings
+		
+		// General Options
+		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_pinataparty", true);
+		SetCVar("mm_narakamode", false);
+		SetCVar("mm_performancemode", true);
+		
+		// Monster Spawning Options
+		SetCVar("mm_skilloverride", 0);
+		SetCVar("mm_spawnmode", 0);
+		SetCVar("mm_randomcycle", 1);
+		SetCVar("mm_dropmode", 1);
+		SetCVar("mm_multiply", 1);
+		SetCVar("mm_generate", 15);
+		
+		// Monster Specific Options
+		SetCVar("mm_specpermdeath", true);
+		SetCVar("mm_wolffastdeath", false);
+		SetCVar("mm_fakehitlerfire", true);
+		
+		// Enemy Modes
+		SetCVar("mm_doommode", 1);
+		SetCVar("mm_wolfmode", 0);
+		SetCVar("mm_dukemode", 0);
+		SetCVar("mm_halflifemode", 0);
+		
+		// Enemy Spawns
+		SetCVar("mm_doomspawns", 1);
+		SetCVar("mm_doom64spawns", 1);
+		
+		// ReMixer Spawn Options
+		SetCVar("mm_doom", 1);
+		SetCVar("mm_chex", 1);
+		SetCVar("mm_heretic", 1);
+		SetCVar("mm_hexen1", 1);
+		SetCVar("mm_wolf3d", 1);
+		SetCVar("mm_duke3d", 1);
+		SetCVar("mm_marathon", 1);
+		SetCVar("mm_quake1", 1);
+		SetCVar("mm_rott", 1);
+		SetCVar("mm_bstone", 1);
+		SetCVar("mm_blood", 1);
+		SetCVar("mm_strife", 1);
+		SetCVar("mm_erad", 1);
+		SetCVar("mm_c7", 1);
+		SetCVar("mm_rmr", 1);
+		SetCVar("mm_darkf", 1);
+		SetCVar("mm_ipog", 1);
+		SetCVar("mm_disrup", 1);
+		SetCVar("mm_witch", 1);
+		SetCVar("mm_halflife", 1);
+		SetCVar("mm_sw", 1);
+		SetCVar("mm_cm", 1);
+		SetCVar("mm_ps", 1);
+		SetCVar("mm_rr", 1);
+		SetCVar("mm_quake2", 1);
+		SetCVar("mm_hexen2", 1);
+		SetCVar("mm_goldeneye", 1);
+		SetCVar("mm_catacomb", 1);
+		SetCVar("mm_painkiller", 1);
+		SetCVar("mm_unreal", 1);
+		SetCVar("mm_rtcw", 1);
+		SetCVar("mm_quake3", 1);
+		SetCVar("mm_descent", 1);
+		SetCVar("mm_deusex", 1);
+		break;
+	}
+}

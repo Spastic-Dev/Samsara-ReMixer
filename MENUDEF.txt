@@ -31,7 +31,11 @@
 	
 	OptionMenu "SamsaraMonsterMixerOptions"
 	{
-			Title "Samsara Monster Mixer Options"
+			Title "Samsara ReMixer Options"
+			StaticText ""
+			StaticText "Preset Options", 1
+			Option "Selected Preset", "mm_presetvalue", "ReMixerPresetOptions"
+			SafeCommand "Change Preset", "pukename ReMixerPresetSelection"
 			StaticText ""
 			StaticText "General Options", 1
 			//Option "Rare Spawns" , "mm_rarespawns", "OnOff"
@@ -39,7 +43,7 @@
 			Option "Pinata Party", "mm_pinataparty", "OnOff"
 			Option "Naraka Mode", "mm_narakamode", "OnOff"
 			Option "Performance Mode", "mm_performancemode", "OnOff"
-			Option "Initialization Reset", "mm_init", "OnOff"
+			//Option "Initialization Reset", "mm_init", "OnOff"
 			StaticText ""
 			StaticText "Monster Spawning Options"
 			Option "Skill Override" , "mm_skilloverride", "DifficultyMode"
@@ -144,10 +148,17 @@
 			4, "Ultra-Violence"
 			5, "Nightmare!"
 	}
+	
+	OptionValue ReMixerPresetOptions
+	{
+		0, "Vanilla"
+		1, "Samsara"
+		2, "Samsara Reincarnation"
+	}
 
 	OptionMenu "SamsaraMonsterSpawnOptions"
     {
-			Title "Samsara Monster Spawn Options"
+			Title "Samsara ReMixer Spawn Options"
 			Option "Enable Doom",               				"mm_doom", "OnOff"
 			Option "Enable Chex Quest",         				"mm_chex", "OnOff"
 			Option "Enable Heretic",         					"mm_heretic", "OnOff"
@@ -156,8 +167,8 @@
 			Option "Enable Duke Nukem 3D",         				"mm_duke3d", "OnOff"
 			Option "Enable Marathon",         					"mm_marathon", "OnOff"
 			Option "Enable Quake",         						"mm_quake1", "OnOff"
-			Option "Enable Blake Stone",         				"mm_bstone", "OnOff"
 			Option "Enable Rise of the Triad",         			"mm_rott", "OnOff"
+			Option "Enable Blake Stone",         				"mm_bstone", "OnOff"
 			Option "Enable Blood",         						"mm_blood", "OnOff"
 			Option "Enable Strife: Quest for the Sigil",        "mm_strife", "OnOff"
 			Option "Enable Eradicator",         				"mm_erad", "OnOff"
