@@ -83,7 +83,7 @@ Str MonsterTiers[MAX_GAME_TYPES][MAXMODES][MAXTIERS] =
 		{ "NarakaMorph_Metacop", "NarakaMorph_Stynx", "NarakaMorph_Aircar", "NarakaMorph_CMTank", "NarakaMorph_NeCrom"},
 	},
 	{
-		{ "NarakaMorph_Metacop", "NarakaMorph_Stynx", "NarakaMorph_Aircar", "NarakaMorph_CMTank", "NarakaMorph_NeCrom"},
+		{ "NarakaMorph_AnubisWarrior", "NarakaMorph_KilmaatSentry", "NarakaMorph_OmenWasp", "NarakaMorph_ExMummy", "NarakaMorph_ExMummy"},
 	},
 	{
 		{ "NarakaMorph_FrankDoyle", "NarakaMorph_SheriffHobbes", "NarakaMorph_AlienHulk", "NarakaMorph_AlienVixen", "NarakaMorph_Assface"},
@@ -538,6 +538,34 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 							break;
 						case 1:
 							SetActorState(0,"MeleeMissile",true);
+							break;
+					}
+					break;
+			}
+			break;
+		// Exhumed
+		case 22:
+			switch(tier)
+			{
+				case 0:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"MeleeMissile",true);
+							break;
+						case 1:
+							SetActorState(0,"ProjectileMissile",true);
+							break;
+					}
+					break;
+				case 3:
+					switch(action)
+					{
+						case 0:
+							SetActorState(0,"MeleeMissile",true);
+							break;
+						case 1:
+							SetActorState(0,"ProjectileMissile",true);
 							break;
 					}
 					break;
