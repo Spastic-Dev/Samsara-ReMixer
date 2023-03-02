@@ -4371,36 +4371,3 @@ Actor SkinnyOldCoot : RandomSpawner
 	DropItem "DarkGreenGroovyOldCoot", 255, 8
 	DropItem "GhostGroovyOldCoot", 255, 4
 }
-
-ACTOR CootAmmoDrop : Ammo1Small
-{
-	Scale 0.25
-	+DROPPED
-	inventory.pickupmessage "Speedloader! (6 rounds of Ammo 1)"
-	States
-    {
-      Spawn:
-        RR00 A -1
-        stop
-	  Pickup:
-        TNT1 A 0 A_JumpIfInventory("MarathonClass", 0, "PickupMarathon")
-		TNT1 A 0 A_JumpIfInventory("WitchavenClass", 0, "PickupWitchaven")	
-  		TNT1 A 0 A_JumpIfInventory("RottClass", 0, "PickupRott")				
-        TNT1 A 0 A_JumpIfInventory("QuakeClass", 0, "PickupQuake")
-        TNT1 A 0 A_GiveInventory("Clip", 6)
-        stop
-	  PickupRott:
-	    TNT1 A 0 A_JumpIfInventory("SMissiles", 0, "PickupFail")	  
-		TNT1 A 0 A_GiveInventory("SMissiles", 3)
-		Stop
-	  PickupWitchaven:
-        TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
-        TNT1 A 0 A_GiveInventory("Clip", 6)
-        stop
-      PickupMarathon:
-        TNT1 A 0 A_JumpIfInventory("Clip", 0, "PickupFail")
-        TNT1 A 0 A_GiveInventory("Clip", 6)
-        TNT1 A 0 A_SetBlend("Green", 0.3, 3)
-        stop
-    }
-}
