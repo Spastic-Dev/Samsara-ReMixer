@@ -2,6 +2,67 @@
 // and needed to be updated for the new ammo pickups, so they'll be in this
 // file for easier reference.
 
+// Wolfenstein 3D
+Actor WolfClip : Clip2
+{
+	-INVENTORY.ALWAYSPICKUP
+    -COUNTITEM
+	+INVENTORY.QUIET
+	+FLOORCLIP
+	+FLOATBOB
+	+DROPPED
+	+DONTGIB
+	+INVENTORY.NEVERRESPAWN
+	//Inventory.PickupMessage "$SAMSARA_CLIP_2"
+	Inventory.PickupSound "nosoundforyoubitch"
+	States
+	{
+	Spawn:
+		WMAG A -1
+		stop
+	PickupFail:
+		WMAG A 1
+		fail
+	}
+}
+
+// Wolfenstein 3D: Spear of Destiny
+Actor SODClip : Clip2
+{
+	-INVENTORY.ALWAYSPICKUP
+    -COUNTITEM
+	+INVENTORY.QUIET
+	+FLOORCLIP
+	+FLOATBOB
+	+DROPPED
+	+DONTGIB
+	+INVENTORY.NEVERRESPAWN
+	//Inventory.PickupMessage "$SAMSARA_CLIP_2"
+	Inventory.PickupSound "nosoundforyoubitch"
+	States
+	{
+	Spawn:
+		SMAG A -1
+		stop
+	PickupFail:
+		SMAG A 1
+		fail
+	}
+}
+
+ACTOR SSDrop2 : SSDrop //SOD M2/3 graphic
+{
+	States
+	{
+		Spawn:
+			SSDR A -1
+			stop
+		PickupFail:
+			SSDR A 1
+			fail
+	}
+}
+
 // Castle Totenkopf SDL
 Actor Totenkopf_PistolEnemyDrop : CustomInventory
 {
