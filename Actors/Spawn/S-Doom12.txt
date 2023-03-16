@@ -30,7 +30,7 @@ ACTOR PainElementalSpawner replaces PainElemental
 		LookWait:
 			TNT1 A 0 A_CheckSightOrRange(512,1)
 			Goto See
-			TNT1 A 4
+			TNT1 A 4 A_TurretLook
 			Loop
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,11)	
