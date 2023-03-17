@@ -6,20 +6,20 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 	Mass 400
 	Speed 8
 	PainChance 128
-    PainChance "DoomDamageTypeStunner", 160
+	PainChance "DoomDamageTypeStunner", 160
 	Monster
-	+FLOAT 
+	+FLOAT
 	+NOGRAVITY
-    +NOTDMATCH
-    +NOICEDEATH
+	+NOTDMATCH
+	+NOICEDEATH
 	SeeSound "doom/pain/sight"
 	PainSound "doom/pain/pain"
 	DeathSound "doom/pain/death"
 	ActiveSound "doom/pain/active"
-	Tag "Pain Elemental"	
+	Tag "Pain Elemental"
 	var int user_scalex;
 	var int user_scaley;
-	States 
+	States
 	{
 		Spawn:
 			PAN2 A 0
@@ -40,7 +40,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			PAN2 D 5 A_FaceTarget
 			PAN2 E 5 A_FaceTarget
 			PAN2 F 4 BRIGHT A_FaceTarget
-			PAN2 F 1 BRIGHT A_PainAttack("LostSoul22")
+			PAN2 F 1 BRIGHT A_PainAttack("LostSoul3")
 			Goto See
 		Pain:
 			PAN2 G 6
@@ -64,7 +64,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			PAN2 I 8 BRIGHT A_Scream
 			PAN2 JK 8 BRIGHT
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			PAN2 L 8 BRIGHT A_PainDie("LostSoul22")
+			PAN2 L 8 BRIGHT A_PainDie("LostSoul3")
 			PAN2 M 8 BRIGHT
 			Stop
 		Raise:
@@ -81,14 +81,14 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 		Death.WTRangedIce:
 		Death.DoomDamageTypeIce:
 		Death.Ice:
-			"####" "#" 0 A_PainDie("LostSoul22")
+			"####" "#" 0 A_PainDie("LostSoul3")
 			"####" "#" -1 A_Jump(256, "IceDeathContinue")
 			Wait
 		SpawnTheLostSoul:
-			TNT1 A 0 A_PainDie("LostSoul22")
+			TNT1 A 0 A_PainDie("LostSoul3")
 			Stop
 		SpawnTheLostSoulPK:
-			TNT1 A 0 A_PainDie("LostSoul22")
+			TNT1 A 0 A_PainDie("LostSoul3")
 			TNT1 A 350	// Needed for souls to appear when gibbed
 			wait
 		Pain.ShrinkerDMG:
@@ -141,7 +141,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -171,7 +171,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -186,7 +186,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
 			Stop
-    }
+	}
 }
 
 actor PainElemental2_Shrink : PainElemental3
@@ -294,9 +294,9 @@ actor PainElemental2_Shrink : PainElemental3
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
