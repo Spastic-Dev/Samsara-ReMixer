@@ -956,14 +956,28 @@ int PinataDoomRareQualityInt[maxPinataRareQuality] = { 50, 50, 30, 30, 30, 30, 2
 int PinataDoomEpicQualityInt[maxPinataEpicQuality] = { 50, 50, 50, 50, 50, 30, 30, 30, 25, 10, 5, 5, 10, 10, 20 };
 int PinataDoomLegendaryQualityInt[maxPinataLegendaryQuality] = { 100, 100, 100, 100, 100, 100, 100, 100, 100 };
 
-Script "Samsara_PinataHandler" (int health, int radius, int height)
+Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly)
 {
 	if(!GetCvar("mm_pinataparty"))
 		terminate;
 
 	int spawneditems, randomchance, randomitem, newtid;
 	int maxitems = ((height*4)*(radius*radius))/4096;
-	if(health < 200)
+	if(GetActorProperty(0,APROP_MASS) == 2 && GetCvar("samsara_merrychristmas"))
+	{
+		newtid = UniqueTid();
+		While(spawneditems < maxitems)
+		{
+			randomchance = random(0,100);
+			randomitem = random(0,maxPinataCommonQuality-1);
+			SpawnForced("SamsaraXmasCoal",GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
+			ThrustThing(random(0,256),2,0,newtid);
+			ThrustThingZ(newtid,random(17,35),0,1);
+			Thing_ChangeTid(newtid,0);
+			spawneditems++;
+		}
+	}
+	else if(health < 200)
 	{
 		newtid = UniqueTid();
 		While(spawneditems < maxitems)
