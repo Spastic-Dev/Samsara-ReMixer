@@ -123,22 +123,15 @@ ACTOR MotherCyborgExplosion : JuggernautExplosion
 	}
 }
 
-ACTOR JuggernautDeathFlash : CustomInventory
+ACTOR JuggernautDeathFlash : Trigger
 {
-    Inventory.MaxAmount 0
-    +AUTOACTIVATE
     States
     {
-    Spawn:
-        TNT1 A 0
-        stop
-    Pickup:
-        TNT1 A 0
-        TNT1 A 0 A_SetBlend("fdffc3",1,175)
-        stop
-    UseStop:
-        TNT1 A 0
-        stop
+      Pickup:
+		TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+		TNT1 A 0 A_SetBlend("fdffc3",1.0,175)
+		TNT1 A 0
+		stop
     }
 }
 
@@ -1473,6 +1466,7 @@ ACTOR M2EnforcerDrop : SamsaraSlotSixDrop
 			TNT1 A 0 A_JumpIfInventory("UnknownAmmo",0,"PickupFailure")
 			TNT1 A 0 A_GiveInventory("UnknownAmmo", 50)
 			TNT1 A 0 A_GiveInventory("Alien Weapon")
+			TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
 			TNT1 A 0 A_SetBlend("Green",0.4,8)
 			TNT1 A 0 A_PlaySound("marathon/itemget",5)
 			stop
@@ -1498,6 +1492,7 @@ ACTOR M1EnforcerDrop : SamsaraSlotFourDrop
 			TNT1 A 0 A_JumpIfInventory("UnknownAmmo2",0,"PickupFailure")
 			TNT1 A 0 A_GiveInventory("UnknownAmmo2", 50)
 			TNT1 A 0 A_GiveInventory(" Alien Weapon ")
+			TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
 			TNT1 A 0 A_SetBlend("Green",0.4,8)
 			TNT1 A 0 A_PlaySound("marathon/itemget",5)
 			stop
