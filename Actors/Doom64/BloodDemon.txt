@@ -28,7 +28,7 @@ ACTOR BloodDemon64 : Demon64
 			Goto See
 		Pain.MightyBoot:
 			64BD H 0 A_ChangeFlag("NOPAIN",1)
-			64BD H 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64BD H 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			64BD H 2 A_FaceTarget
 			64BD H 0 A_Recoil(14)
 			64BD H 16 A_Pain
@@ -113,8 +113,6 @@ ACTOR BloodDemon64 : Demon64
 			Goto Super::ExpanderLoopCoop
 	}
 }
-
-Actor MultiBloodDemon64 : BloodDemon64 { +THRUSPECIES }
 
 actor BloodDemon64_Shrink : BloodDemon64
 {

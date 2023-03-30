@@ -33,7 +33,7 @@ ACTOR NightmareSpectre64 : Spectre64
 			Goto See
 		Pain.MightyBoot:
 			64NS H 0 A_ChangeFlag("NOPAIN",1)
-			64NS H 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64NS H 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			64NS H 2 A_FaceTarget
 			64NS H 0 A_Recoil(14)
 			64NS H 16 A_Pain
@@ -114,8 +114,6 @@ ACTOR NightmareSpectre64 : Spectre64
 			Goto Super::ExpanderLoopCoop
 	}
 }
-
-Actor MultiNightmareSpectre64 : NightmareSpectre64 { +THRUSPECIES }
 
 actor NightmareSpectre64_Shrink : NightmareSpectre64
 {

@@ -51,3 +51,15 @@ ACTOR LostSoul3 : LostSoul2
 		Stop
 	}
 }
+
+ACTOR LostSoul3PE : LostSoul3
+{
+	States
+	{
+	Spawn:
+		SKL2 A 0 BRIGHT
+		SKL2 A 1 BRIGHT A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		SKL2 A 0 BRIGHT A_GiveInventory("MultiplyOverflowToken", 1)
+		Goto Super::Spawn+2
+	}
+}

@@ -40,7 +40,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			PAN2 D 5 A_FaceTarget
 			PAN2 E 5 A_FaceTarget
 			PAN2 F 4 BRIGHT A_FaceTarget
-			PAN2 F 1 BRIGHT A_PainAttack("LostSoul3")
+			PAN2 F 1 BRIGHT A_PainAttack("LostSoul3PE")
 			Goto See
 		Pain:
 			PAN2 G 6
@@ -48,7 +48,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			PAN2 E 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			PAN2 E 16 A_Pain
@@ -64,7 +64,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			PAN2 I 8 BRIGHT A_Scream
 			PAN2 JK 8 BRIGHT
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			PAN2 L 8 BRIGHT A_PainDie("LostSoul3")
+			PAN2 L 8 BRIGHT A_PainDie("LostSoul3PE")
 			PAN2 M 8 BRIGHT
 			Stop
 		Raise:
@@ -81,14 +81,14 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 		Death.WTRangedIce:
 		Death.DoomDamageTypeIce:
 		Death.Ice:
-			"####" "#" 0 A_PainDie("LostSoul3")
+			"####" "#" 0 A_PainDie("LostSoul3PE")
 			"####" "#" -1 A_Jump(256, "IceDeathContinue")
 			Wait
 		SpawnTheLostSoul:
-			TNT1 A 0 A_PainDie("LostSoul3")
+			TNT1 A 0 A_PainDie("LostSoul3PE")
 			Stop
 		SpawnTheLostSoulPK:
-			TNT1 A 0 A_PainDie("LostSoul3")
+			TNT1 A 0 A_PainDie("LostSoul3PE")
 			TNT1 A 350	// Needed for souls to appear when gibbed
 			wait
 		Pain.ShrinkerDMG:

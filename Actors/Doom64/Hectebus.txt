@@ -53,7 +53,7 @@ ACTOR Hectebus64 : Fatso64
 			Goto Pain+1
 		Pain.MightyBoot:
 			64HT I 0 A_ChangeFlag("NOPAIN",1)
-			64HT I 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64HT I 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			64HT I 2 A_FaceTarget
 			64HT I 0 A_Recoil(14)
 			64HT I 16 A_Pain
@@ -155,8 +155,6 @@ ACTOR HectShot64 : FatShot64
 			Stop
 	}
 }
-
-Actor MultiHectebus64 : Hectebus64 { +THRUSPECIES }
 
 actor Hectebus64_Shrink : Hectebus64
 {

@@ -33,18 +33,18 @@ ACTOR Arachnotron3 : Arachnotron2
 		BSP2 I 3
 		BSP2 I 3 A_Pain
 		Goto See+1
-    Pain.MightyBoot:
-        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-        BSP2 I 2 A_FaceTarget
-        TNT1 A 0 A_Recoil(10)
-        BSP2 I 16 A_Pain
-        goto See
-    Pain.DoomDamageTypeStunner:
-        BSP2 I 2 A_ChangeFlag("NOPAIN",true)
-        BSP2 I 300 A_Pain
-        TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-        goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
+		BSP2 I 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(10)
+		BSP2 I 16 A_Pain
+		goto See
+	Pain.DoomDamageTypeStunner:
+		BSP2 I 2 A_ChangeFlag("NOPAIN",true)
+		BSP2 I 300 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+		goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
@@ -54,10 +54,10 @@ ACTOR Arachnotron3 : Arachnotron2
 		BSP2 P -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 		Stop
 	Raise:
-        BSP2 A 0
+		BSP2 A 0
 		"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-        BSP2 PONMLKJ 5
-        goto See+1
+		BSP2 PONMLKJ 5
+		goto See+1
 	ZorchRaise:
 		"####" "#" 1 A_UnsetShootable
 		"####" "#" 1 A_SpawnItem("SpawnFire2")
@@ -139,7 +139,7 @@ ACTOR Arachnotron3 : Arachnotron2
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -148,11 +148,11 @@ ACTOR Arachnotron3 : Arachnotron2
 		TNT1 A 0 A_Jump(96,2)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
 		TNT1 A 0 A_SetScale (1.0, 1.0)
-	    TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_UnsetSolid
 		TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 		TNT1 A 1
 		Stop
 	Death.ExpanderDMGCoop:
@@ -170,7 +170,7 @@ ACTOR Arachnotron3 : Arachnotron2
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -179,11 +179,11 @@ ACTOR Arachnotron3 : Arachnotron2
 		TNT1 A 0 A_Jump(96,2)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
 		TNT1 A 0 A_SetScale (1.0, 1.0)
-	    TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_UnsetSolid
 		TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
+		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 		TNT1 A 1
 		Stop
 	}
@@ -244,7 +244,7 @@ actor Arachnotron2_Shrink : Arachnotron3
 			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
 			"####" "#" 0 A_Jump(256, 2)
 			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
-			BSP2 A 4 
+			BSP2 A 4
 			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
 			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
@@ -351,14 +351,14 @@ actor Arachnotron2_Shrink : Arachnotron3
 			TNT1 A 2 Thing_Remove(0)
 			stop
 		Squish:
-            "####" "#" 0 A_GiveInventory("SquishToken", 1)
-            "####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
-            "####" "#" 0 A_Jump(256,3)
-            "####" "#" 2 
-            "####" "#" 0 A_Jump(256,3)
-            "####" "#" 0 
-            "####" "#" 2 A_Die("Squish")
-            "####" "#" 0
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
 			loop
 		Death:
 		XDeath:
@@ -413,24 +413,18 @@ actor Arachnotron2_ShrinkEffect : Arachnotron3
 	}
 }
 
-ACTOR ArachnotronPlasma_Samsara
+ACTOR ArachnotronPlasma_Samsara : ArachnotronPlasma
 {
-  Radius 13
-  Height 8
-  Speed 25
-  Damage 5
-  Projectile
-  +RANDOMIZE
-  RenderStyle Normal
-  SeeSound "doom/baby/attack"
-  DeathSound "doom/baby/shotx"
-  States
-  {
-  Spawn:
-    DMP1 AB 5 Bright
-    Loop
-  Death:
-    DMP1 CDEFG 5 Bright
-    Stop
-  }
+	RenderStyle Normal
+	SeeSound "doom/baby/attack"
+	DeathSound "doom/baby/shotx"
+	States
+	{
+	Spawn:
+		DMP1 AB 5 Bright
+		Loop
+	Death:
+		DMP1 CDEFG 5 Bright
+		Stop
+	}
 }

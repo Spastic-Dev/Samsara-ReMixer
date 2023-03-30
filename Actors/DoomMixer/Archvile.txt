@@ -5,7 +5,6 @@ ACTOR Archvile3 : Archvile2
 	DeathSound "doom/vile/death"
 	ActiveSound "doom/vile/active"
 	MeleeSound "doom/vile/stop"
-	-NOTARGET // test
 	States
 	{
 	Spawn:
@@ -38,7 +37,7 @@ ACTOR Archvile3 : Archvile2
 		Goto See
 	Pain.MightyBoot:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 		VIL2 Q 2 A_FaceTarget
 		TNT1 A 0 A_Recoil(12)
 		VIL2 Q 16 A_Pain
@@ -380,10 +379,8 @@ actor Archvile2_ShrinkEffect : Archvile3
 	}
 }
 
-ACTOR ArchvileFire_Samsara
+ACTOR ArchvileFire_Samsara : ArchvileFire
 {
-	+NOBLOCKMAP
-	+NOGRAVITY
 	+BRIGHT
 	RenderStyle Normal
 	States

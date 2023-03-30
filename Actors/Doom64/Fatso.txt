@@ -71,7 +71,7 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			64FT I 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			64FT I 16 A_Pain
@@ -233,8 +233,6 @@ ACTOR FatShot64
 			Stop
 	}
 }
-
-Actor MultiFatso64 : Fatso64 { +THRUSPECIES }
 
 actor Mancubus64_Shrink : Fatso64
 {

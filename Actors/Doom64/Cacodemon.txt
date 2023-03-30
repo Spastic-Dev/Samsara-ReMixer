@@ -57,7 +57,7 @@ ACTOR Cacodemon64 : SamsaraMonsterDemonicLargeTotalGib
 			Goto Pain+1
 		Pain.MightyBoot:
 			64HD D 0 A_ChangeFlag("NOPAIN",1)
-			64HD D 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			64HD D 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			64HD D 2 A_FaceTarget
 			64HD D 0 A_Recoil(14)
 			64HD D 16 A_Pain
@@ -218,8 +218,6 @@ ACTOR CacodemonBall64
 			Stop
 	}
 }
-
-Actor MultiCacodemon64 : Cacodemon64 { +THRUSPECIES }
 
 actor Cacodemon64_Shrink : Cacodemon64
 {

@@ -15,48 +15,48 @@ ACTOR HellKnight3 : HellKnight2
 		BOS4 A 0 A_GiveInventory("AlreadySpawned",1)
 		BOS4 A 0
 	Spawn2:
-		BOS4 AB 10 A_Look 
+		BOS4 AB 10 A_Look
 		Loop
 	See:
 		BOS4 AABBCCDD 3 A_Chase
 		Loop
 	Missile:
-        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-    Melee:
-        BOS4 EF 8 A_FaceTarget
-        BOS4 G 8 A_CustomComboAttack("BaronBall_Samsara", 32, 10 * random(1, 8), "doom/baron/melee")//A_CustomMissile("BaronBall3")
-        goto See
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	Melee:
+		BOS4 EF 8 A_FaceTarget
+		BOS4 G 8 A_CustomComboAttack("BaronBall_Samsara", 32, 10 * random(1, 8), "doom/baron/melee")//A_CustomMissile("BaronBall3")
+		goto See
 	Pain:
 		BOS4 H 2
 		BOS4 H 2 A_Pain
-		Goto See	
-    Pain.MightyBoot:
-        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-        BOS4 H 2 A_FaceTarget
-        TNT1 A 0 A_Recoil(10)
-        BOS4 H 16 A_Pain
-        Goto See
-    Pain.DoomDamageTypeStunner:
-        BOS4 H 2 A_ChangeFlag("NOPAIN",true)
-        BOS4 H 300 A_Pain
-        TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-        goto See
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
+		BOS4 H 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(10)
+		BOS4 H 16 A_Pain
+		Goto See
+	Pain.DoomDamageTypeStunner:
+		BOS4 H 2 A_ChangeFlag("NOPAIN",true)
+		BOS4 H 300 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+		goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        BOS4 I 8
+		BOS4 I 8
 		BOS4 J 8 A_Scream
 		BOS4 K 8
 		BOS4 L 8 A_NoBlocking
 		BOS4 MN 8
-		BOS4 O -1  
+		BOS4 O -1
 		Stop
 	Raise:
-        BOS4 A 0
+		BOS4 A 0
 		"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-        BOS4 ONMLKJI 8
-        goto See
+		BOS4 ONMLKJI 8
+		goto See
 	ZorchRaise:
 		"####" "#" 1 A_UnsetShootable
 		"####" "#" 1 A_SpawnItem("SpawnFire2")
@@ -138,7 +138,7 @@ ACTOR HellKnight3 : HellKnight2
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SetDamageType("DukeExplosive")
 		TNT1 A 0 A_Explode((height * 2) * 1.75, 80)
@@ -170,7 +170,7 @@ ACTOR HellKnight3 : HellKnight2
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -185,7 +185,7 @@ ACTOR HellKnight3 : HellKnight2
 		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 		TNT1 A 1
-		Stop	
+		Stop
 	}
 }
 
@@ -303,14 +303,14 @@ actor HellKnight2_Shrink : Hellknight3
 			TNT1 A 2 Thing_Remove(0)
 			stop
 		Squish:
-            "####" "#" 0 A_GiveInventory("SquishToken", 1)
-            "####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
-            "####" "#" 0 A_Jump(256,3)
-            "####" "#" 2 
-            "####" "#" 0 A_Jump(256,3)
-            "####" "#" 0 
-            "####" "#" 2 A_Die("Squish")
-            "####" "#" 0
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
 			loop
 		Death:
 		XDeath:
@@ -380,48 +380,48 @@ ACTOR BaronOfHell3 : BaronOfHell2
 		BOS3 A 0 A_GiveInventory("AlreadySpawned",1)
 		BOS3 A 0
 	Spawn2:
-		BOS3 AB 10 A_Look 
+		BOS3 AB 10 A_Look
 		Loop
 	See:
 		BOS3 AABBCCDD 3 A_Chase
 		Loop
 	Missile:
-        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-    Melee:
-        BOS3 EF 8 A_FaceTarget
-        BOS3 G 8 A_CustomComboAttack("BaronBall_Samsara", 32, 10 * random(1, 8), "doom/baron/melee")//A_CustomMissile("BaronBall3")
-        goto See
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	Melee:
+		BOS3 EF 8 A_FaceTarget
+		BOS3 G 8 A_CustomComboAttack("BaronBall_Samsara", 32, 10 * random(1, 8), "doom/baron/melee")//A_CustomMissile("BaronBall3")
+		goto See
 	Pain:
 		BOS3 H 2
 		BOS3 H 2 A_Pain
-		Goto See	
-    Pain.MightyBoot:
-        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-        TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-        BOS3 H 2 A_FaceTarget
-        TNT1 A 0 A_Recoil(10)
-        BOS3 H 16 A_Pain
-        Goto See
-    Pain.DoomDamageTypeStunner:
-        BOS3 H 2 A_ChangeFlag("NOPAIN",true)
-        BOS3 H 300 A_Pain
-        TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-        goto See
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
+		BOS3 H 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(10)
+		BOS3 H 16 A_Pain
+		Goto See
+	Pain.DoomDamageTypeStunner:
+		BOS3 H 2 A_ChangeFlag("NOPAIN",true)
+		BOS3 H 300 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+		goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        BOS3 I 8
+		BOS3 I 8
 		BOS3 J 8 A_Scream
 		BOS3 K 8
 		BOS3 L 8 A_NoBlocking
 		BOS3 MN 8
-		BOS3 O -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")   
+		BOS3 O -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 		Stop
 	Raise:
-        BOS3 A 0
+		BOS3 A 0
 		"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-        BOS3 ONMLKJI 8
-        goto See
+		BOS3 ONMLKJI 8
+		goto See
 	ZorchRaise:
 		"####" "#" 1 A_UnsetShootable
 		"####" "#" 1 A_SpawnItem("SpawnFire2")
@@ -503,7 +503,7 @@ ACTOR BaronOfHell3 : BaronOfHell2
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SetDamageType("DukeExplosive")
 		TNT1 A 0 A_Explode((height * 2) * 1.75, 80)
@@ -535,7 +535,7 @@ ACTOR BaronOfHell3 : BaronOfHell2
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -668,14 +668,14 @@ actor BaronofHell2_Shrink : BaronOfHell3
 			TNT1 A 2 Thing_Remove(0)
 			stop
 		Squish:
-            "####" "#" 0 A_GiveInventory("SquishToken", 1)
-            "####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
-            "####" "#" 0 A_Jump(256,3)
-            "####" "#" 2 
-            "####" "#" 0 A_Jump(256,3)
-            "####" "#" 0 
-            "####" "#" 2 A_Die("Squish")
-            "####" "#" 0
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
 			loop
 		Death:
 		XDeath:
@@ -730,26 +730,19 @@ actor BaronofHell2_ShrinkEffect : BaronOfHell3
 	}
 }
 
-ACTOR BaronBall_Samsara
+ACTOR BaronBall_Samsara : BaronBall
 {
-  Radius 6
-  Height 16
-  Speed 15
-  FastSpeed 20
-  Damage 8
-  Projectile
-  +RANDOMIZE
-  RenderStyle Normal
-  SeeSound "doom/baron/attack"
-  DeathSound "doom/baron/shotx"
-  Decal "BaronScorch"
-  States
-  {
-  Spawn:
-    DMP1 RS 4 Bright
-    Loop
-  Death:
-    DMP1 TUV 6 Bright
-    Stop
-  }
+	RenderStyle Normal
+	SeeSound "doom/baron/attack"
+	DeathSound "doom/baron/shotx"
+	Decal "BaronScorch"
+	States
+	{
+	Spawn:
+		DMP1 RS 4 Bright
+		Loop
+	Death:
+		DMP1 TUV 6 Bright
+		Stop
+	}
 }
