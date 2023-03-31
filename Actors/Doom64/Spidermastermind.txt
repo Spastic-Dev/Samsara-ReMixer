@@ -82,23 +82,54 @@ ACTOR SpiderMastermind64 : SamsaraMonsterMechanicalHuge
 		64SM AABB 3 A_Chase
 		TNT1 A 0 A_PlaySound("64spider/metal2",CHAN_5)
 		64SM CCDD 3 A_Chase
+		TNT1 A 0 A_PlaySound("64spider/metal2",CHAN_5)
+		64SM EEFF 3 A_Chase
 		Loop
 	Missile:
-		64SM G 20 Bright A_FaceTarget
-		64SM EF 4 Bright A_CustomBulletAttack(22.5, 0, 3, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
-		64SM F 1 Bright A_SpidRefire
-		Goto Missile+1
+		64SM G 10 Bright A_FaceTarget
+		64SM H 10 Bright
+		64SM IJ 4 Bright A_CustomBulletAttack(22.5, 0, 3, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
+		64SM J 1 Bright A_SpidRefire
+		Goto Missile+2
 	Pain:
-		64SM H 3
-		64SM H 3 A_Pain
+		64SM K 3
+		64SM K 3 A_Pain
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		64SM I 20 A_Scream
-		64SM J 10 A_NoBlocking
-		64SM K 10 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		64SM LMN 10
-		64SM N -1 A_KillMaster
+		64SM L 10 A_Scream
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 0, 0, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 0, 0, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", -64, -64, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 64, 64, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 64, 64, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 0, 0, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 0, 0, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", -64, -64, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 64, 64, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", -64, -64, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 0, 0, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", -64, -64, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", -64, -64, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 64, 64, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 64, 64, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 0, 0, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM L 4 A_SpawnItemEx("BossExplosion64", 64, 64, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM M 0 A_NoBlocking
+		64SM M 4 A_SpawnItemEx("BossExplosion64", 0, 0, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM M 4 A_SpawnItemEx("BossExplosion64", 64, 64, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM N 4 A_SpawnItemEx("BossExplosion64", -64, -64, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM N 4 A_SpawnItemEx("BossExplosion64", -64, -64, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM O 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		64SM O 4 A_SpawnItemEx("BossExplosion64", 64, 64, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM O 2 A_SpawnItemEx("BossExplosion64", -64, -64, 0, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM P 2
+		64SM P 4 A_SpawnItemEx("BossExplosion64", 64, 64, 50, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM Q 4 A_SpawnItemEx("BossExplosion64", 0, 0, 100, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION|SXF_CLIENTSIDE)
+		64SM Q 2
+		64SM RS 6
+		64SM TU 8
+		64SM U -1 A_KillMaster
 		Stop
 	Death.DukeIce:
 		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
@@ -238,16 +269,16 @@ Actor SpiderMastermind64Disintegrate : ZombiemanDisintegrate
 	{
 		Spawn:
 			TNT1 A 0
-			64SM H 6 A_SpawnItem("DisintEffectRoundHuge",0,45)
-			64SM H 6 A_SetTranslucent(0.9,0)
-			64SM H 6 A_SetTranslucent(0.8,0)
-			64SM H 6 A_SetTranslucent(0.7,0)
-			64SM H 6 A_SetTranslucent(0.6,0)
-			64SM H 6 A_SetTranslucent(0.5,0)
-			64SM H 4 A_SetTranslucent(0.4,0)
-			64SM H 4 A_SetTranslucent(0.3,0)
-			64SM H 4 A_SetTranslucent(0.2,0)
-			64SM H 4 A_SetTranslucent(0.1,0)
+			64SM K 6 A_SpawnItem("DisintEffectRoundHuge",0,45)
+			64SM K 6 A_SetTranslucent(0.9,0)
+			64SM K 6 A_SetTranslucent(0.8,0)
+			64SM K 6 A_SetTranslucent(0.7,0)
+			64SM K 6 A_SetTranslucent(0.6,0)
+			64SM K 6 A_SetTranslucent(0.5,0)
+			64SM K 4 A_SetTranslucent(0.4,0)
+			64SM K 4 A_SetTranslucent(0.3,0)
+			64SM K 4 A_SetTranslucent(0.2,0)
+			64SM K 4 A_SetTranslucent(0.1,0)
 			Stop
 	}
 }
