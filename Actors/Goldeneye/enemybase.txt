@@ -4853,6 +4853,10 @@ Actor Goldeneye_EnemyBase
 		Death.BittermanDamage:
 			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
 			goto Death
+		Death.BittermanFire:
+			TNT1 A 0 A_JumpIfHealthLower(-50, "XdeathForBitterman")
+			goto Death
+		Death.BittermanTrap:
 		XdeathForBitterman:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  
