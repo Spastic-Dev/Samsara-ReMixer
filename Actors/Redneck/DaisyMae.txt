@@ -1076,11 +1076,11 @@ Actor DarkDaisyMae : RedDaisyMae
     Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		CHR0 A 0 A_Noblocking
-		CHR0 A 0 A_Scream	
-		CHR0 ABCDEFGHIJKLM 3
+		DDR0 A 0 A_Noblocking
+		DDR0 A 0 A_Scream	
+		DDR0 ABCDEFGHIJKLM 3
 		TNT1 A 0 A_playsound("redneck/thud")
-		CHR0 M 0 A_SpawnItemEx("DarkDaisyMaeCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+		DDR0 M 0 A_SpawnItemEx("DarkDaisyMaeCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
 		TNT1 A -1
 		stop
 	Pain.ShrinkerDMG:
@@ -1201,9 +1201,9 @@ Actor DarkDaisyMaeCorpse : SamsaraCorpseActorSmall
 	{
 		Spawn:
 			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			CHR0 M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
+			DDR0 M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
 			Goto Spawn
-			CHR0 M 4
+			DDR0 M 4
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
