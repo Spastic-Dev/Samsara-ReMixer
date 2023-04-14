@@ -142,9 +142,10 @@ Actor Q2Stalker : Q2SoldierBase
 		STK3 KLMN 3
 		Goto See
 	Death:
-		"----" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		"----" A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
-		"----" A 3 A_ScreamAndUnblock
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+		"####" "#" 3 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
 		STK4 A 0 A_SpawnItemEx("Q2StalkerDeathAnimation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
 		stop
@@ -154,8 +155,8 @@ Actor Q2Stalker : Q2SoldierBase
 //		"----" A 6 A_TakeInventory(ResurrectedToken,1)
 		Goto See
 	Burn:
-		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-		Goto Death	
+		TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+		Goto Death+1	
 	Pain.ShrinkerDMG:
 		STK2 W 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)

@@ -118,9 +118,10 @@ Actor Q2Tank : Q2HeavyBase
 		TNK5 CD 6
 		Goto See
 	Death:
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)					
-		TNT1 A 0 A_ScreamAndUnblock
 		TNT1 A 0 A_KillMaster
 		TNK6 A 0 A_SpawnItemEx("Q2TankDeathAnimation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A -1
@@ -138,8 +139,8 @@ Actor Q2Tank : Q2HeavyBase
 //		"----" A 6 A_TakeInventory(ResurrectedToken,1)
 		Goto See
 	Burn:
-		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-		Goto Death
+		TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+		Goto Death+1	
 	Pain.ShrinkerDMG:
 		TNK5 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)

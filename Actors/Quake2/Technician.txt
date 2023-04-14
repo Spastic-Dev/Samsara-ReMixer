@@ -97,10 +97,11 @@ Actor Q2Technician : Q2HeavyBase
 		TEK6 IJKLMN 3
 		Goto See
 	Death:
-		TNT1 A 0 A_StopSound(CHAN_BODY)
-		"----" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		"----" A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
-		"----" A 3 A_ScreamAndUnblock
+		"####" "#" 0 A_Scream
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_StopSound(CHAN_BODY)
+		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+		"####" "#" 3 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)							
 		TEK7 M 0 A_ChangeFlag(FLOATBOB,0)
 		TEK7 M 0 A_SpawnItemEx("Q2TechnicianDeath", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A 0
@@ -111,8 +112,8 @@ Actor Q2Technician : Q2HeavyBase
 		TNT1 A 0 A_SpawnItem(Q2Explosion,0,32)
 		Goto Super::XDeath
 	Burn:
-		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-		Goto Death		
+		TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+		Goto Death+1		
 	Pain.ShrinkerDMG:
 		TEK6 H 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)

@@ -10,11 +10,12 @@ Actor Q2LightGuard : Q2SoldierBase
 	States
 	{
 		Death:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
 			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -40,9 +41,9 @@ Actor Q2LightGuard : Q2SoldierBase
 			GRD2 A 0 A_SpawnItemEx("Q2LightGuardDeath6Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			TNT1 A -1
 			stop
-	Burn:
-		TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-		Goto Death		
+		Burn:
+			TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+			Goto Death+1		
 		Pain.ShrinkerDMG:
 			GRD3 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -635,11 +636,12 @@ Actor Q2ShotgunGuard : Q2SoldierBase
 	States
 	{
 		Death:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
 			GRD2 A 0 A_SpawnItemEx("Q2ShotgunGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -672,8 +674,8 @@ Actor Q2ShotgunGuard : Q2SoldierBase
 			GRD2 A 4
 			Goto See
 		Burn:
-			TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-			Goto Death			
+			TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+			Goto Death+1	
 		Pain.ShrinkerDMG:
 			GRD3 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1127,11 +1129,12 @@ Actor Q2MachinegunGuard : Q2SoldierBase
 	States
 	{	
 		Death:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
 			GRD2 A 0 A_SpawnItemEx("Q2MachineGunGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -1164,8 +1167,8 @@ Actor Q2MachinegunGuard : Q2SoldierBase
 			GRD2 A 4
 			Goto See
 		Burn:
-			TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-			Goto Death		
+			TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+			Goto Death+1		
 		Pain.ShrinkerDMG:
 			GRD3 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1639,11 +1642,12 @@ Actor Q2EnhancedLightGuard : Q2SoldierBase
 	States
 	{
 		Death:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
 			GRD2 A 0 A_SpawnItemEx("Q2EnhancedLightGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -1676,8 +1680,8 @@ Actor Q2EnhancedLightGuard : Q2SoldierBase
 			GRD2 A 4
 			Goto See
 		Burn:
-			TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-			Goto Death		
+			TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+			Goto Death+1			
 		Pain.ShrinkerDMG:
 			GRD3 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2130,11 +2134,12 @@ Actor Q2RipperGuard : Q2SoldierBase
 	States
 	{
 		Death:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
 			GRD2 A 0 A_SpawnItemEx("Q2RipperGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -2167,8 +2172,8 @@ Actor Q2RipperGuard : Q2SoldierBase
 			GRD2 A 4
 			Goto See
 		Burn:
-			TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-			Goto Death		
+			TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+			Goto Death+1	
 		Pain.ShrinkerDMG:
 			GRD3 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2624,11 +2629,12 @@ Actor Q2HyperBlasterGuard : Q2SoldierBase
 	States
 	{
 		Death:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
 			GRD2 A 0 A_SpawnItemEx("Q2HyperBlasterGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -2661,8 +2667,8 @@ Actor Q2HyperBlasterGuard : Q2SoldierBase
 			GRD2 A 4
 			Goto See
 		Burn:
-			TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-			Goto Death		
+			TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+			Goto Death+1		
 		Pain.ShrinkerDMG:
 			GRD3 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3139,11 +3145,12 @@ Actor Q2LaserGuard : Q2SoldierBase
 	States
 	{
 		Death:
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 //A_SpawnItemEx(DestroyableBodyThing,0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_Jump(256,"Death1","Death2","Death3","Death4","Death5","Death6")
 		Death1:
 			GRD2 A 0 A_SpawnItemEx("Q2LaserGuardDeath1Animation", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -3176,8 +3183,8 @@ Actor Q2LaserGuard : Q2SoldierBase
 			GRD2 A 4
 			Goto See
 		Burn:
-			TNT1 A 0 ACS_NamedExecuteWithResult("Quake2_StroggBurn")
-			Goto Death		
+			TNT1 A 0 A_Playsound("Strogg/Lava",CHAN_VOICE)
+			Goto Death+1			
 		Pain.ShrinkerDMG:
 			GRD3 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
