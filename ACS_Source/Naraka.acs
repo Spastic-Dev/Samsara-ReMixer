@@ -120,15 +120,6 @@ Str MonsterTiers[MAX_GAME_TYPES][MAXMODES][MAXTIERS] =
 	},
 };
 
-// Remove this once debugging is finished
-Script "ForceGiveSphere" Enter
-{
-	if (GetCvar("mm_narakamode") >= 1)
-		GiveInventory("SamsaraMonsterSphere",1);
-	else
-		TakeInventory("SamsaraMonsterSphere",999);
-}
-
 Script "MonsterSphereInitiate" (void)
 {
 	int class = PlayerClass(PlayerNumber());
