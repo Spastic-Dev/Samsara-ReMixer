@@ -430,20 +430,21 @@ Script "SMMReducer" (int pruneMax, int important)
 	int posX = GetActorX(0)>>16;
 	int posY = GetActorY(0)>>16;
 	int posZ = GetActorZ(0)>>16;
-	int positionValue = sqrt(posX * posX + posY * posY + posZ * posZ);
+	//int positionValue = sqrt(posX * posX + posY * posY + posZ * posZ);
+	int positionValue = abs(posX) + abs(posY) + abs(posZ);
 	
 	pruneMax += GetCvar("mm_reduceMonsters");
 	
-	if(pruneMax < 0) pruneMax = 0;
-	if(pruneMax > 9) pruneMax = 9;
-	
-	if((positionValue % 10) <= pruneMax) 
-		pruneIt = 0;
-		
 	if(important && (typeCount <= totalMonsters / 10))
-		pruneIt = 0;
+		if(pruneMax < 33) pruneMax += 67;
 	else if(typeCount <= totalMonsters / 20)
+		if(pruneMax < 78) pruneMax += 20;
+		
+	if(pruneMax < 0) pruneMax = 0;
+	if(pruneMax > 99) pruneMax = 99;
+	
+	if((positionValue % 100) <= pruneMax) 
 		pruneIt = 0;
-			
+					
 	SetResultValue(pruneIt);
 }
