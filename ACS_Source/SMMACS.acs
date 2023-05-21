@@ -40,6 +40,10 @@ str gameClassesSTR[MAX_GAME_TYPES] = {
 	"Q3Sarge2", "DescentPyroGX2", "JCDenton2"
 };
 
+int gamePruneValues[MAX_GAME_TYPES][MAX_ADDON_SETS] = {
+	{9,9,9},{9},{7},{8,8,6},{8,8,8},{5,5,5},{6},{6},{8,8,8,8,8},{8,8},{5,5},{7,7},{6,6,6,6,6},{8},{7},{7},{6,6,6,6,6},{6},{7},{3,3},{5,5},{6},{5},{4},{4},{3},{7},{4},{5},{3},{5},{6},{3}
+};
+
 str doomModes[4] = { "SetDoom", "SetDoom64", "SetDoomRandom", "SetDoom64AbsolutionOutcasrt" };
 str wolfModes[3] = { "SetWolf3D", "SetSpear", "SetTotenkopf" };
 str dukeModes[2] = { "SetDuke3D", "SetDukeLAB" };
@@ -340,6 +344,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					break;
 			}
 
+			if(ACS_NamedExecuteWithResult("SMMPruner",gamePruneValues[pickFromSets[setselect]][altSetSelect],CheckFlag(0,"BOSSDEATH")))
+			{
+				Thing_Remove(0);
+				terminate;
+			}
+				
 			ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
 			SetActorState(0,"Continue",1);
 

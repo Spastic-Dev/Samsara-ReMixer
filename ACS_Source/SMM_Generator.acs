@@ -421,3 +421,24 @@ Script "SMMGeneratorSelector" (void)
 	SetActorAngle(newTid,0.125*random(0,8));
 	Thing_ChangeTid(newTid,0);
 }
+
+Script "SMMPruner" (int pruneMax, int important)
+{
+	str type = GetActorClass(0);
+	int typeCount = ThingCountName(type,0);
+	int pruneIt = 1;
+	int posX = GetActorX(0)>>16;
+	int posY = GetActorY(0)>>16;
+	int posZ = GetActorZ(0)>>16;
+	int positionValue = sqrt(posX * posX + posY * posY + posZ * posZ);
+	
+	if((positionValue % 10) <= pruneMax) 
+		pruneIt = 0;
+		
+	if(important && (typeCount <= GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) / 10))
+		pruneIt = 0;
+	else if(typeCount <= GetLevelInfo(LEVELINFO_TOTAL_MONSTERS) / 20)
+		pruneIt = 0;
+			
+	SetResultValue(pruneIt);
+}
