@@ -476,7 +476,7 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 	if(typeCount <= 1)
 		pruneMax += 1.0;
 	else if((important && (typeCount <= totalMonsters / 10)) || typeCount <= totalMonsters / 20)
-		if(pruneMax < 80) pruneMax = (pruneMax * 3) / 2;
+		pruneMax = important ? (pruneMax * 3) / 2 : (pruneMax * 4) / 3;
 	else if(typeCount >= ((totalMonsters * 3) / 10))
 		pruneMax /= 2;
 		
