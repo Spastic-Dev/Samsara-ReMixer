@@ -21,13 +21,41 @@ ACTOR EttinReplacer : ZombiemanSpawner replaces Ettin
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,53)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,54)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
 ACTOR EttinMashReplacer : EttinReplacer replaces EttinMash { Game Hexen SpawnID 102 }
+
+ACTOR FireDemonReplacer : LostSoulSpawner replaces FireDemon 
+{ 
+	Game Hexen 
+	SpawnID 5 
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SetUserVar("user_special",special)
+			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
+			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
+			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
+			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_TurretLook
+			Loop
+		See:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,55)			
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
 
 ACTOR BishopReplacer : DoomImpSpawner replaces Bishop 
 {
@@ -50,12 +78,13 @@ ACTOR BishopReplacer : DoomImpSpawner replaces Bishop
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,54)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,56)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 } 	
+
 ACTOR CentaurReplacer : DemonSpawner replaces Centaur 
 { 
 	Game Hexen 
@@ -77,7 +106,7 @@ ACTOR CentaurReplacer : DemonSpawner replaces Centaur
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,55)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,57)			
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -105,7 +134,7 @@ ACTOR CentaurLeaderReplacer : SpectreSpawner replaces CentaurLeader
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,56)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,58)			
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -132,67 +161,14 @@ ACTOR Demon1Replacer : HellKnightSpawner replaces Demon1
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,57)			
-		Deciding:
-			TNT1 A 1
-			Loop
-	}
-}
-ACTOR Demon2Replacer : BaronOfHellSpawner replaces Demon2 
-{ 
-	States
-	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
-		See:
-			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,58)			
-		Deciding:
-			TNT1 A 1
-			Loop
-	}
-}
-ACTOR Demon1MashReplacer : Demon1Replacer replaces Demon1Mash { Game Hexen SpawnID 100 }
-ACTOR Demon2MashReplacer : Demon2Replacer replaces Demon2Mash { Game Hexen SpawnID 101 }
-
-ACTOR FireDemonReplacer : LostSoulSpawner replaces FireDemon 
-{ 
-	Game Hexen 
-	SpawnID 5 
-	States
-	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
-		See:
-			TNT1 A 0
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,59)			
 		Deciding:
 			TNT1 A 1
 			Loop
 	}
 }
+ACTOR Demon1MashReplacer : Demon1Replacer replaces Demon1Mash { Game Hexen SpawnID 100 }
+
 ACTOR IceGuyReplacer : RevenantSpawner replaces IceGuy 
 { 
 	Game Hexen 
@@ -220,6 +196,7 @@ ACTOR IceGuyReplacer : RevenantSpawner replaces IceGuy
 			Loop
 	}
 }
+
 ACTOR SerpentReplacer : ShotgunGuySpawner replaces Serpent 
 { 
 	Game Hexen 
@@ -247,6 +224,7 @@ ACTOR SerpentReplacer : ShotgunGuySpawner replaces Serpent
 			Loop
 	}
 }
+
 ACTOR SerpentLeaderReplacer : ChaingunGuySpawner replaces SerpentLeader 
 { 
 	Game Hexen 
@@ -274,6 +252,7 @@ ACTOR SerpentLeaderReplacer : ChaingunGuySpawner replaces SerpentLeader
 			Loop
 	}
 } 
+
 ACTOR WraithReplacer : CacodemonSpawner replaces Wraith 
 { 
 	Game Hexen 
@@ -301,6 +280,7 @@ ACTOR WraithReplacer : CacodemonSpawner replaces Wraith
 			Loop
 	}
 }
+
 ACTOR WraithBuriedReplacer : PainElementalSpawner replaces WraithBuried 
 { 
 	Game Hexen 
@@ -328,6 +308,34 @@ ACTOR WraithBuriedReplacer : PainElementalSpawner replaces WraithBuried
 			Loop
 	}
 }
+
+ACTOR Demon2Replacer : BaronOfHellSpawner replaces Demon2 
+{ 
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SetUserVar("user_special",special)
+			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
+			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
+			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
+			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_TurretLook
+			Loop
+		See:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,65)			
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+ACTOR Demon2MashReplacer : Demon2Replacer replaces Demon2Mash { Game Hexen SpawnID 101 }
+
 ACTOR ClericBossReplacer : ArchvileSpawner replaces ClericBoss 
 {
 	States
@@ -347,7 +355,7 @@ ACTOR ClericBossReplacer : ArchvileSpawner replaces ClericBoss
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,65)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,66)			
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -397,7 +405,7 @@ ACTOR MageBossReplacer : ArchvileSpawner replaces MageBoss
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,66)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,68)			
 		Deciding:
 			TNT1 A 1
 			Loop

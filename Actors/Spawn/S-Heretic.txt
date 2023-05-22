@@ -55,9 +55,10 @@ ACTOR HereticImpLeaderReplacer : DoomImpSpawner replaces HereticImpLeader {
 			Loop		
 	}
 }
-ACTOR WizardReplacer : CacoDemonSpawner replaces Wizard {
+
+ACTOR MummyReplacer : ZombiemanSpawner replaces Mummy {
 	Game Heretic
-	SpawnID 19
+	SpawnID 4
 	States
 	{
 		Spawn:
@@ -79,11 +80,12 @@ ACTOR WizardReplacer : CacoDemonSpawner replaces Wizard {
 		Deciding:
 			TNT1 A 1
 			Loop		
-	}
+	}	
 }
-ACTOR MummyReplacer : ZombiemanSpawner replaces Mummy {
+
+ACTOR MummyGhostReplacer : SpectreSpawner replaces MummyGhost {
 	Game Heretic
-	SpawnID 4
+	SpawnID 8
 	States
 	{
 		Spawn:
@@ -105,11 +107,12 @@ ACTOR MummyReplacer : ZombiemanSpawner replaces Mummy {
 		Deciding:
 			TNT1 A 1
 			Loop		
-	}	
+	}
 }
-ACTOR MummyGhostReplacer : SpectreSpawner replaces MummyGhost {
+
+ACTOR MummyLeaderReplacer : ShotgunGuySpawner replaces MummyLeader {
 	Game Heretic
-	SpawnID 8
+	SpawnID 2
 	States
 	{
 		Spawn:
@@ -133,32 +136,7 @@ ACTOR MummyGhostReplacer : SpectreSpawner replaces MummyGhost {
 			Loop		
 	}
 }
-ACTOR MummyLeaderReplacer : ShotgunGuySpawner replaces MummyLeader {
-	Game Heretic
-	SpawnID 2
-	States
-	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
-		See:
-			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,43)			
-		Deciding:
-			TNT1 A 1
-			Loop		
-	}
-}
+
 ACTOR MummyLeaderGhostReplacer : SpectreSpawner replaces MummyLeaderGhost {
 	Game Heretic
 	SpawnID 9
@@ -185,6 +163,34 @@ ACTOR MummyLeaderGhostReplacer : SpectreSpawner replaces MummyLeaderGhost {
 			Loop		
 	}
 }
+
+ACTOR WizardReplacer : CacoDemonSpawner replaces Wizard {
+	Game Heretic
+	SpawnID 19
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SetUserVar("user_special",special)
+			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
+			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
+			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
+			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_TurretLook
+			Loop
+		See:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,44)			
+		Deciding:
+			TNT1 A 1
+			Loop		
+	}
+}
+
 ACTOR KnightReplacer : ChaingunguySpawner replaces Knight {
 	Game Heretic
 	SpawnID 6
@@ -205,7 +211,7 @@ ACTOR KnightReplacer : ChaingunguySpawner replaces Knight {
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,44)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,45)			
 		Deciding:
 			TNT1 A 1
 			Loop		
@@ -231,38 +237,13 @@ ACTOR KnightGhostReplacer : SpectreSpawner replaces KnightGhost {
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,45)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,46)			
 		Deciding:
 			TNT1 A 1
 			Loop		
 	}
 }
-ACTOR IronlichReplacer : ArchVileSpawner replaces Ironlich {
-	Game Heretic
-	SpawnID 20
-	States
-	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
-		See:
-			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,46)			
-		Deciding:
-			TNT1 A 1
-			Loop		
-	}	
-}
+
 ACTOR ClinkReplacer : DemonSpawner replaces Clink {
 	Game Heretic
 	SpawnID 1
@@ -289,9 +270,10 @@ ACTOR ClinkReplacer : DemonSpawner replaces Clink {
 			Loop		
 	}
 }
-ACTOR BeastReplacer : HellKnightSpawner replaces Beast {
+
+ACTOR SnakeReplacer : RevenantSpawner replaces Snake {
 	Game Heretic
-	SpawnID 3
+	SpawnID 132
 	States
 	{
 		Spawn:
@@ -315,9 +297,10 @@ ACTOR BeastReplacer : HellKnightSpawner replaces Beast {
 			Loop		
 	}	
 }
-ACTOR SnakeReplacer : RevenantSpawner replaces Snake {
+
+ACTOR BeastReplacer : HellKnightSpawner replaces Beast {
 	Game Heretic
-	SpawnID 132
+	SpawnID 3
 	States
 	{
 		Spawn:
@@ -341,8 +324,62 @@ ACTOR SnakeReplacer : RevenantSpawner replaces Snake {
 			Loop		
 	}	
 }
-ACTOR MinotaurReplacer : CyberDemonSpawner replaces Minotaur { }
-ACTOR Sorcerer1Replacer : SpiderMastermindSpawner replaces Sorcerer1 {
+
+ACTOR IronlichReplacer : ArchVileSpawner replaces Ironlich {
+	Game Heretic
+	SpawnID 20
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SetUserVar("user_special",special)
+			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
+			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
+			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
+			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_TurretLook
+			Loop
+		See:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,50)			
+		Deciding:
+			TNT1 A 1
+			Loop		
+	}	
+}
+
+ACTOR MinotaurReplacer : CyberDemonSpawner replaces Minotaur 
+{ 
+	Game Heretic
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SetUserVar("user_special",special)
+			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
+			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
+			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
+			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
+		LookWait:
+			TNT1 A 0 A_CheckSightOrRange(512,1)
+			Goto See
+			TNT1 A 4 A_TurretLook
+			Loop
+		See:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,51)			
+		Deciding:
+			TNT1 A 1
+			Loop
+	}
+}
+ACTOR Sorcerer1Replacer : SpiderMastermindSpawner replaces Sorcerer1 
+{
 	Game Heretic
 	SpawnID 142
 	States
@@ -362,7 +399,7 @@ ACTOR Sorcerer1Replacer : SpiderMastermindSpawner replaces Sorcerer1 {
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,51)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,52)			
 		Deciding:
 			TNT1 A 1
 			Loop
@@ -419,7 +456,7 @@ ACTOR ChickenReplacer : WolfensteinSSSpawner replaces Chicken
 			Loop
 		See:
 			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,52)			
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,53)			
 		Deciding:
 			TNT1 A 1
 			Loop

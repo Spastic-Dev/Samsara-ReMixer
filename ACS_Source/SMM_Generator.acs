@@ -1,7 +1,7 @@
 #define MAXMONSTERS_DOOM 25
 #define MAXMONSTERS_CHEX 13
 #define MAXMONSTERS_HERETIC 15
-#define MAXMONSTERS_HEXEN 16
+#define MAXMONSTERS_HEXEN 17
 #define MAXMONSTERS_HACX 15
 #define MAXMONSTERS_HARMONY 9
 #define MAXMONSTERS_ROTWB 19
@@ -17,7 +17,7 @@ int generatorCountersHeretic[MAXMONSTERS_HERETIC];
 str SpawnersHeretic[MAXMONSTERS_HERETIC] = { "HereticImpReplacer", "HereticImpLeaderReplacer", "MummyReplacer", "MummyGhostReplacer", "MummyLeaderReplacer", "MummyLeaderGhostReplacer", "WizardReplacer", "KnightReplacer", "KnightGhostReplacer", "ClinkReplacer", "SnakeReplacer", "BeastReplacer", "IronlichReplacer", "MinotaurReplacer", "Sorcerer1Replacer" };
 
 int generatorCountersHexen[MAXMONSTERS_HEXEN];
-str SpawnersHexen[MAXMONSTERS_HEXEN] = { "EttinReplacer", "FireDemonReplacer", "BishopReplacer", "CentaurReplacer", "Demon1Replacer", "SerpentReplacer", "SerpentLeaderReplacer", "IceGuyReplacer", "WraithReplacer", "Demon2Replacer", "ClericBossReplacer", "FighterBossReplacer", "MageBossReplacer", "Dragon2", "HeresiarchReplacer", "KoraxReplacer" };
+str SpawnersHexen[MAXMONSTERS_HEXEN] = { "EttinReplacer", "FireDemonReplacer", "BishopReplacer", "CentaurReplacer", "CentaurLeaderReplacer", "Demon1Replacer", "SerpentReplacer", "SerpentLeaderReplacer", "IceGuyReplacer", "WraithReplacer", "Demon2Replacer", "ClericBossReplacer", "FighterBossReplacer", "MageBossReplacer", "Dragon2", "HeresiarchReplacer", "KoraxReplacer" };
 
 int generatorCountersHacx[MAXMONSTERS_HACX];
 str SpawnersHacx[MAXMONSTERS_HACX] = { "HacxThug_SamsaraRemixer", "HacxAndroid_SamsaraRemixer", "HacxPhage_SamsaraRemixer", "HacxBuzzer_SamsaraRemixer", "HacxStealth_SamsaraRemixer", "HacxICE_SamsaraRemixer", "HacxDMan_SamsaraRemixer", "HacxMajong7_SamsaraRemixer", "HacxMonstruct_SamsaraRemixer", "HacxTerminatrix_SamsaraRemixer", "HacxMechaManiac_SamsaraRemixer", "HacxThornThing_SamsaraRemixer", "HacxMummy_SamsaraRemixer", "HacxSkeleton_SamsaraRemixer", "HacxRoamingMine_SamsaraRemixer" };
@@ -37,16 +37,18 @@ int DoomSecretLevel = 0;
 int minSelector = 32;
 int maxSelector = 0;
 int selectorBias = 0;
+int processedCounts = 0;
 
 Script "DetermineValidSpawnReMixer" Open
 {
-	if(GetCvar("mm_generate") <= 0)
+	if(GetCvar("mm_generate") <= 0 && GetCvar("mm_reducemonsters") >= 99)
 		terminate;
 		
 	until(GetCvar("samsara_processedgame")) { Delay(1); }
 	
 	ACS_NamedExecuteWithResult("SMMGenerator_DetermineGameChoice");
-	
+	processedCounts = 1;
+
 	for(int a = 512; a <= 0.5; a+=1024)
 	{
 		for(int b = 512; b <= 0.5; b+=1024)
@@ -422,23 +424,61 @@ Script "SMMGeneratorSelector" (void)
 	Thing_ChangeTid(newTid,0);
 }
 
-Script "SMMReducer" (int pruneMax, int important)
+Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 {
-	str type = GetActorClass(0);
-	int typeCount = ThingCountName(type,0);
+	int typeCount = 0;
 	int pruneIt = 1;
 	int posX = GetActorX(0)>>16;
 	int posY = GetActorY(0)>>16;
 	int posZ = GetActorZ(0)>>16;
 	//int positionValue = sqrt(posX * posX + posY * posY + posZ * posZ);
 	int positionValue = abs(posX) + abs(posY) + abs(posZ);
+		
+	switch(GetCvar("samsara_currentgame"))
+	{
+		case 1:
+			typeCount = generatorCountersDoom[monsterSlot];
+			break;
+		case 2:
+			monsterSlot -= MAXMONSTERS_DOOM;
+			typeCount = generatorCountersChex[monsterSlot];
+			break;
+		case 4:
+			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX;
+			typeCount = generatorCountersHeretic[monsterSlot];
+			break;
+		case 8:
+			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC;
+			typeCount = generatorCountersHexen[monsterSlot];
+			break;
+		case 32:
+			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN;
+			typeCount = generatorCountersHacx[monsterSlot];
+			break;
+		case 64:
+			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN-MAXMONSTERS_HACX;
+			typeCount = generatorCountersHarmony[monsterSlot];
+			break;
+		case 128:
+			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN-MAXMONSTERS_HACX-MAXMONSTERS_HARMONY;
+			typeCount = generatorCountersROTWB[monsterSlot];
+			break;
+		case 256:
+			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN-MAXMONSTERS_HACX-MAXMONSTERS_HARMONY-MAXMONSTERS_REKKR;
+			typeCount = generatorCountersREKKR[monsterSlot];
+			break;
+	}
+	
+	pruneMax = FixedMul(pruneMax * 1.0,(1.0 - monsterSlot * 0.025))>>16;
 	
 	pruneMax += GetCvar("mm_reduceMonsters");
 	
-	if(typeCount < 2)
+	if(typeCount <= 1)
 		pruneMax += 1.0;
 	else if((important && (typeCount <= totalMonsters / 10)) || typeCount <= totalMonsters / 20)
-		if(pruneMax < 80) pruneMax += 20;
+		if(pruneMax < 80) pruneMax = (pruneMax * 3) / 2;
+	else if(typeCount >= ((totalMonsters * 3) / 10))
+		pruneMax /= 2;
 		
 	if(pruneMax < 0) pruneMax = 0;
 	if(pruneMax > 99) pruneMax = 99;

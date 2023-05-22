@@ -4,7 +4,7 @@
 
 #define MAX_GAME_TYPES 34
 #define MAX_ALTS 5
-#define MONSTER_SLOT 72
+#define MONSTER_SLOT 73
 #define MAXPERSLOT 20
 #define MAX_ITEMS 15
 #define MAX_STRING_ITEMS 6
@@ -346,12 +346,15 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					break;
 			}
 
-			if(ACS_NamedExecuteWithResult("SMMReducer",gamePruneValues[pickFromSets[setselect]][altSetSelect],CheckFlag(0,"BOSSDEATH")))
+			if(GetCvar("mm_reducemonsters") < 99)
 			{
-				Thing_Remove(0);
-				terminate;
+				until(processedCounts) { Delay(1); }
+				if(ACS_NamedExecuteWithResult("SMMReducer",gamePruneValues[pickFromSets[setselect]][altSetSelect],CheckFlag(0,"BOSSDEATH"),monsterSlot))
+				{
+					Thing_Remove(0);
+					terminate;
+				}
 			}
-				
 			ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
 			SetActorState(0,"Continue",1);
 
@@ -931,8 +934,8 @@ Script "ReMixer_PickSets" (void)
 			break;
 	}
 	//Call this manually. I prefer this to be done right away instead of after 1 tic.
-	if(activesets & (1 << 30))
-		ACS_NamedExecuteWithResult("RTCWPartsCacher");
+	/*if(activesets & (1 << 30))
+		ACS_NamedExecuteWithResult("RTCWPartsCacher");*/
 	pickClear = 1;
 	monsterProcessing = 0;
 }
