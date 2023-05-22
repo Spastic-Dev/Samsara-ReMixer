@@ -480,6 +480,9 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 	else if(typeCount >= ((totalMonsters * 3) / 10))
 		pruneMax /= 2;
 		
+	if(GetActorProperty(0,APROP_Height) >= 100)
+		pruneMax = (pruneMax * 4) / 3;
+		
 	if(pruneMax < 0) pruneMax = 0;
 	if(pruneMax > 99) pruneMax = 99;
 	
