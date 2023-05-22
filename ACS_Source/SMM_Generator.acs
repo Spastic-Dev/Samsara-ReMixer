@@ -435,10 +435,10 @@ Script "SMMReducer" (int pruneMax, int important)
 	
 	pruneMax += GetCvar("mm_reduceMonsters");
 	
-	if(important && (typeCount <= totalMonsters / 10))
-		if(pruneMax < 33) pruneMax += 67;
-	else if(typeCount <= totalMonsters / 20)
-		if(pruneMax < 78) pruneMax += 20;
+	if(typeCount < 2)
+		pruneMax += 1.0;
+	else if((important && (typeCount <= totalMonsters / 10)) || typeCount <= totalMonsters / 20)
+		if(pruneMax < 80) pruneMax += 20;
 		
 	if(pruneMax < 0) pruneMax = 0;
 	if(pruneMax > 99) pruneMax = 99;
