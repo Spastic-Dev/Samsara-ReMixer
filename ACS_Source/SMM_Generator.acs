@@ -433,6 +433,7 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 	int posZ = GetActorZ(0)>>16;
 	//int positionValue = sqrt(posX * posX + posY * posY + posZ * posZ);
 	int positionValue = abs(posX) + abs(posY) + abs(posZ);
+	int noPruning = pruneMax == 99;
 		
 	switch(GetCvar("samsara_currentgame"))
 	{
@@ -473,15 +474,20 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 	
 	pruneMax += GetCvar("mm_reduceMonsters");
 	
-	if(typeCount <= 1)
-		pruneMax += 1.0;
-	else if((important && (typeCount <= totalMonsters / 10)) || typeCount <= totalMonsters / 20)
-		pruneMax = important ? (pruneMax * 3) / 2 : (pruneMax * 4) / 3;
-	else if(typeCount >= ((totalMonsters * 3) / 10))
-		pruneMax /= 2;
+	if(!noPruning)
+	{
+		if(typeCount <= 1)
+			pruneMax += 1.0;
+		else if((important && (typeCount <= totalMonsters / 10)) || typeCount <= totalMonsters / 20)
+			pruneMax = important ? (pruneMax * 3) / 2 : (pruneMax * 4) / 3;
+		else if(typeCount >= ((totalMonsters * 3) / 10))
+			pruneMax /= 2;
+			
+		if(GetActorProperty(0,APROP_Height) >= 100)
+			pruneMax = (pruneMax * 4) / 3;
+	}
+	else if(GetCvar("mm_reduceMonsters") >= 0) pruneMax += 1.0;
 		
-	if(GetActorProperty(0,APROP_Height) >= 100)
-		pruneMax = (pruneMax * 4) / 3;
 		
 	if(pruneMax < 0) pruneMax = 0;
 	if(pruneMax > 99) pruneMax = 99;
