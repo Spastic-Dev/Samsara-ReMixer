@@ -433,17 +433,6 @@ Actor Goldeneye_PP7EnemyDrop : CustomInventory
 		TNT1 A 0 A_JumpIfInventory("Cell", 0, "PickupFail")
 		Goto PickupActual
 	CheckMarathon:
-		TNT1 A 0 A_JumpIfInventory("HSMissiles", 0, 1)
-		Goto PickupActual
-		TNT1 A 0 A_JumpIfInventory("RottMissiles", 0, 1)
-		Goto PickupActual
-		TNT1 A 0 A_JumpIfInventory("DMissiles", 0, 1)
-		Goto PickupActual
-		TNT1 A 0 A_JumpIfInventory("SMissiles", 0, 1)
-		Goto PickupActual
-		TNT1 A 0 A_JumpIfInventory("CanDualPistols", 0, "PickupFail")
-		Goto PickupActual
-	CheckRott:
 		TNT1 A 0 A_JumpIfInventory("Clip", 0, 1)
 		Goto PickupActual
 		TNT1 A 0 A_JumpIfInventory("Shell", 0, 1)
@@ -451,6 +440,21 @@ Actor Goldeneye_PP7EnemyDrop : CustomInventory
 		TNT1 A 0 A_JumpIfInventory("RocketAmmo", 0, 1)
 		Goto PickupActual
 		TNT1 A 0 A_JumpIfInventory("Cell", 0, 1)
+		Goto PickupActual
+		TNT1 A 0 A_JumpIfInventory("CanDualPistols", 0, "PickupFail")
+		Goto PickupActual
+	CheckRott:
+		TNT1 A 0 A_JumpIfInventory("HSMissiles", 0, 1)
+		Goto PickupActual
+		TNT1 A 0 A_JumpIfInventory("RottMissiles", 0, 1)
+		Goto PickupActual
+		TNT1 A 0 A_JumpIfInventory("FBMissiles", 0, 1)
+		Goto PickupActual
+		TNT1 A 0 A_JumpIfInventory("DMMissiles", 0, 1)
+		Goto PickupActual
+		TNT1 A 0 A_JumpIfInventory("DMissiles", 0, 1)
+		Goto PickupActual
+		TNT1 A 0 A_JumpIfInventory("SMissiles", 0, 1)
 		Goto PickupActual
 		TNT1 A 0 A_JumpIfInventory("Double Pistols", 0, "PickupFail")
 		Goto PickupActual
@@ -537,18 +541,20 @@ Actor Goldeneye_PP7EnemyDrop : CustomInventory
 	PickupRott:
 		TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
 		TNT1 A 0 A_SetBlend("d7ba45", 0.3, 4)
-		TNT1 A 0 A_JumpIfInventory("Double Pistols", 0, 9)
+		TNT1 A 0 A_JumpIfInventory("Double Pistols", 0, 10)
 		TNT1 A 0 A_GiveInventory("Double Pistols", 1)
 		TNT1 A 0 A_GiveInventory("GotWeapon2", 1)
 		TNT1 A 0 A_GiveInventory("HSMissiles", 5)
 		TNT1 A 0 A_GiveInventory("RottMissiles", 5)
 		TNT1 A 0 A_GiveInventory("FBMissiles", 1)
+		TNT1 A 0 A_GiveInventory("DMMissiles", 1)
 		TNT1 A 0 A_GiveInventory("DMissiles", 8)
 		TNT1 A 0 A_GiveInventory("SMissiles", 5)
 		TNT1 A 0 A_Jump(256,"PickupSoundNormal")
 		TNT1 A 0 A_GiveInventory("HSMissiles", 5)
 		TNT1 A 0 A_GiveInventory("RottMissiles", 5)
 		TNT1 A 0 A_GiveInventory("FBMissiles", 1)
+		TNT1 A 0 A_GiveInventory("DMMissiles", 1)
 		TNT1 A 0 A_GiveInventory("DMissiles", 8)
 		TNT1 A 0 A_GiveInventory("SMissiles", 5)
 		TNT1 A -1 A_Jump(256,"PickupSoundNormal")
