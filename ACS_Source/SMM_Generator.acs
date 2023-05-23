@@ -469,29 +469,33 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 			typeCount = generatorCountersREKKR[monsterSlot];
 			break;
 	}
-	
-	pruneMax = FixedMul(pruneMax * 1.0,(1.0 - monsterSlot * 0.025))>>16;
-	
+
 	pruneMax += GetCvar("mm_reduceMonsters");
 	
 	if(!noPruning)
 	{
 		if(typeCount <= 1)
 			pruneMax += 1.0;
-		else if((important && (typeCount <= totalMonsters / 10)) || typeCount <= totalMonsters / 20)
-			pruneMax = important ? (pruneMax * 3) / 2 : (pruneMax * 4) / 3;
-		else if(typeCount >= ((totalMonsters * 3) / 10))
-			pruneMax /= 2;
-			
-		if(GetActorProperty(0,APROP_Height) >= 100)
+		else
+		{
+			if(typeCount <= totalMonsters / 20)
+				pruneMax = important ? (pruneMax * 7) / 4 : (pruneMax * 3) / 2;
+			else if(typeCount <= totalMonsters / 10)
+				pruneMax = important ? (pruneMax * 3) / 2 : (pruneMax * 4) / 3;
+			else if(typeCount >= (totalMonsters / 3))
+				pruneMax = (pruneMax * 3) / 4;
+				
+			pruneMax = FixedMul(pruneMax * 1.0,(1.0 - monsterSlot * 0.025))>>16;
+		}
+
+		if(GetActorProperty(0,APROP_Height) >= 100.0)
 			pruneMax = (pruneMax * 4) / 3;
 	}
 	else if(GetCvar("mm_reduceMonsters") >= 0) pruneMax += 1.0;
-		
-		
+			
 	if(pruneMax < 0) pruneMax = 0;
 	if(pruneMax > 99) pruneMax = 99;
-	
+
 	if((positionValue % 100) <= pruneMax) 
 		pruneIt = 0;
 					
