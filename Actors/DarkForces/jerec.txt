@@ -26,6 +26,7 @@ ACTOR jerec : SamsaraMonsterDFJerec
 	+MISSILEEVENMORE
 	+DROPOFF
 	+DONTRIP
+	+DONTGIB
     DamageFactor "Mace", 1.4
 	DamageFactor "CorvusHellstaffTomed", 0.1
     DamageFactor "CorvusCrossbow", 1.1	
@@ -324,6 +325,7 @@ ACTOR JerecTrick : jerec
 	obituary "%o joined the dark side."
 	+INVULNERABLE
 	+NOTARGETSWITCH
+	+DONTGIB
 	States
 	{
 		Spawn:
@@ -481,6 +483,7 @@ ACTOR JerecLastStand : jerec
 	DeathSound	"jerec/death"
 	obituary "%o fell for Jerec's trick."
 	+NOTARGETSWITCH
+	+DONTGIB
 	States
 	{
 		XDeath:
