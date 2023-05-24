@@ -485,11 +485,9 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 			else if(typeCount >= (totalMonsters / 3))
 				pruneMax = (pruneMax * 3) / 4;
 				
-			pruneMax = FixedMul(pruneMax * 1.0,(1.0 - monsterSlot * 0.025))>>16;
+			if(GetActorProperty(0,APROP_Height) < 100.0)
+				pruneMax = FixedMul(pruneMax * 1.0,(1.0 - monsterSlot * 0.025))>>16;
 		}
-
-		if(GetActorProperty(0,APROP_Height) >= 100.0)
-			pruneMax = (pruneMax * 4) / 3;
 	}
 	else if(GetCvar("mm_reduceMonsters") >= 0) pruneMax += 1.0;
 			
