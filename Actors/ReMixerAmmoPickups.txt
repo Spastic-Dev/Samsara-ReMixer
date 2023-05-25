@@ -308,21 +308,19 @@ Actor CootAmmoDrop : Clip2
 		RR00 B -1
 		stop
 	PickupNormal:
-		TNT1 A 0 ACS_NamedExecuteAlways("ReMixerPickupMessages", 0, 76, 0, 0)
 		TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
 		TNT1 A 0 A_SetBlend("d7ba45", 0.3, 4)
 		TNT1 A 0 A_GiveInventory("Clip", 6)
 		TNT1 A -1 A_Jump(256,"PickupSoundNormal")
 		wait
 	PickupMarathon:
-		TNT1 A 0 ACS_NamedExecuteAlways("ReMixerPickupMessages", 0, 76, 0, 0)
 		TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
 		TNT1 A 0 A_SetBlend("Green", 0.3, 3)
 		TNT1 A 0 A_GiveInventory("Clip", 6)
 		TNT1 A -1 A_Jump(256,"PickupSoundNormal")
 		wait
 	PickupSoundNormal:
-		TNT1 A 0 ACS_NamedExecuteAlways("ReMixerPickupMessages", 0, 3, 0, 0)
+		TNT1 A 0 ACS_NamedExecuteAlways("ReMixerPickupMessages", 0, 76, 0, 0)
 		TNT1 A 1 A_PlaySound("ammo/bulletsmall", CHAN_ITEM)
 		stop
 	PickupFail:
