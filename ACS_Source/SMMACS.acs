@@ -161,6 +161,16 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 	int gameTypeMap;
 	int numGameTypes = 0;
 	int altSetSelect;
+	
+	// Check for Lexicon compatibility
+	int isLexiconEnabled = 0;
+	int LexiconTid = UniqueTid();
+	
+	if(SpawnForced("IKPuff",0,0,0,LexiconTid))
+	{
+		Thing_Remove(LexiconTid);
+		isLexiconEnabled = 1;
+	}
 
 	map = GetLevelInfo(LEVELINFO_LEVELNUM);
 
@@ -350,12 +360,8 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			{
 				until(processedCounts) { Delay(1); }
 				
-				// Check for Lexicon compatibility
-				int LexiconTid = UniqueTid();
-				
-				if(SpawnForced("IKPuff",0,0,0,LexiconTid))
+				if(isLexiconEnabled == 1)
 				{
-					Thing_Remove(LexiconTid);
 					Delay(1);
 				}
 				
