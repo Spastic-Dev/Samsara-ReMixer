@@ -349,6 +349,16 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			if(GetCvar("mm_reducemonsters") < 99)
 			{
 				until(processedCounts) { Delay(1); }
+				
+				// Check for Lexicon compatibility
+				int LexiconTid = UniqueTid();
+				
+				if(SpawnForced("IKPuff",0,0,0,LexiconTid))
+				{
+					Thing_Remove(LexiconTid);
+					Delay(1);
+				}
+				
 				if(ACS_NamedExecuteWithResult("SMMReducer",gamePruneValues[pickFromSets[setselect]][altSetSelect],CheckFlag(0,"BOSSDEATH"),monsterSlot))
 				{
 					Thing_Remove(0);

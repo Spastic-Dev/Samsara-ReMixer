@@ -46,6 +46,15 @@ Script "DetermineValidSpawnReMixer" Open
 		
 	until(GetCvar("samsara_processedgame")) { Delay(1); }
 	
+	// Check for Lexicon compatibility
+	int LexiconTid = UniqueTid();
+	
+	if(SpawnForced("IKPuff",0,0,0,LexiconTid))
+	{
+		Thing_Remove(LexiconTid);
+		Delay(5);
+	}
+	
 	ACS_NamedExecuteWithResult("SMMGenerator_DetermineGameChoice");
 	processedCounts = 1;
 
