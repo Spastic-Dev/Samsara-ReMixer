@@ -462,23 +462,19 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 			typeCount = generatorCountersHexen[monsterSlot];
 			break;
 		case 32:
-			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN;
 			typeCount = generatorCountersHacx[monsterSlot];
 			break;
 		case 64:
-			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN-MAXMONSTERS_HACX;
 			typeCount = generatorCountersHarmony[monsterSlot];
 			break;
 		case 128:
-			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN-MAXMONSTERS_HACX-MAXMONSTERS_HARMONY;
 			typeCount = generatorCountersROTWB[monsterSlot];
 			break;
 		case 256:
-			monsterSlot -= MAXMONSTERS_DOOM-MAXMONSTERS_CHEX-MAXMONSTERS_HERETIC-MAXMONSTERS_HEXEN-MAXMONSTERS_HACX-MAXMONSTERS_HARMONY-MAXMONSTERS_REKKR;
 			typeCount = generatorCountersREKKR[monsterSlot];
 			break;
 	}
-
+		
 	pruneMax += GetCvar("mm_reduceMonsters");
 	
 	if(!noPruning)
