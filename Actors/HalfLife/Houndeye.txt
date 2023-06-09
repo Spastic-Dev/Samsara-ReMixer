@@ -534,12 +534,13 @@ Actor HoundEyeWave_Weak
 	DONTHURTSHOOTER
 	DeathSound "Houndeye/Blast"
 	DamageType "Sound"
+	ReactionTime 0
 	States
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Die
-		Goto Death
+		TNT1 A -1 A_Countdown
+		wait
 	Death:
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_WeakEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -566,8 +567,8 @@ Actor HoundEyeWave_Normal : HoundEyeWave_Weak
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Die
-		Goto Death
+		TNT1 A -1 A_Countdown
+		wait
 	Death:
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_NormalEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -594,8 +595,8 @@ Actor HoundEyeWave_Strong : HoundEyeWave_Weak
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Die
-		Goto Death
+		TNT1 A -1 A_Countdown
+		wait
 	Death:
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_StrongEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -622,8 +623,8 @@ Actor HoundEyeWave_OP : HoundEyeWave_Weak
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Die
-		Goto Death
+		TNT1 A -1 A_Countdown
+		wait
 	Death:
 		TNT1 A 0 A_Scream
 		TNT1 A 2 A_SpawnItemEx("HoundEyeWave_OPEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
