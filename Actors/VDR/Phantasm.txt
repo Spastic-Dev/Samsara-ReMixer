@@ -13,71 +13,89 @@ actor MMRandomizer_Phantasm : LostSoul3
 	+NOICEDEATH
 	-NOBLOOD
 	RenderStyle Add
-	BloodColor "green"
+	BloodColor "Green"
 	Obituary "%o was smoked by a Phantasm."
 	Tag "Phantasm"
+	DamageFactor "LostSoul64Explosion", 0
 	States
 	{
 		Spawn:
-			VD64 A 0
-			VD64 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			VD64 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			VD64 A 0 bright
+			VD64 A 1 bright A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			VD64 A 1 bright ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			VD64 A 0 A_GiveInventory("AlreadySpawned",1)
 			VD64 A 0 A_GiveInventory("IsAFlyingActor")
 			VD64 A 0
 		Spawn2:
 			TNT1 A 0 A_GiveInventory("IsAFlyingActor")
 		Spawn3:
-			VD64 AB 5 BRIGHT A_Look
+			VD64 AB 5 bright A_Look
 			Loop
 		See:
-			VD64 AABB 3 BRIGHT A_Chase
+			VD64 AABB 3 bright A_Chase
 			Loop
 		Missile:
-			VD64 C 10 BRIGHT A_FaceTarget
-			VD64 D 4 BRIGHT A_SkullAttack
-			VD64 CD 4 BRIGHT
-			Goto Missile +2
+			VD64 C 10 bright A_FaceTarget
+			VD64 D 4 bright A_SkullAttack
+			VD64 CD 4 bright
+			Goto Missile+2
 		Pain.MightyBoot:
-			TNT1 A 0 BRIGHT A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 BRIGHT A_PlaySoundEx("duke/kickhit","body",0,0)
-			VD64 E 2 BRIGHT A_FaceTarget
-			TNT1 A 0 BRIGHT A_Recoil(14)
-			VD64 E 16 BRIGHT A_Pain
-			Goto See	
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+			VD64 E 2 bright A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			VD64 E 16 bright A_Pain
+			Goto See
 		Pain.DoomDamageTypeStunner:
-			VD64 E 2 BRIGHT A_ChangeFlag("NOPAIN",true)
-			VD64 E 300 BRIGHT A_Pain
-			TNT1 A 0 BRIGHT A_ChangeFlag("NOPAIN",false)
-			goto See
+			VD64 E 2 bright A_ChangeFlag("NOPAIN",true)
+			VD64 E 300 bright A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			Goto See
 		Pain:
-			VD64 E 3 BRIGHT
-			VD64 E 3 BRIGHT A_Pain
+			VD64 E 3 bright
+			VD64 E 3 bright A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-			VD64 F 6 BRIGHT
-			VD64 F 6 BRIGHT A_Scream
-			VD64 FFFFFFFFFFFF 3 BRIGHT A_SpawnItemEx("MMRandomizer_PhantasmPuff", random(-15,15), random(-15,15), random(12, 24), 0, 0, 1)
-			VD64 G 6 BRIGHT
-			TNT1 A 0 A_Explode(64, 128, XF_HURTSOURCE | XF_NOTMISSILE, false, 32)
+			VD64 F 6 bright ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			VD64 F 6 bright A_Scream
+			VD64 FFFFFFFFFFFF 3 bright A_SpawnItemEx("MMRandomizer_PhantasmPuff", random(-15,15), random(-15,15), random(12, 24), 0, 0, 1)
+			VD64 G 6 bright
+			TNT1 A 0 A_Explode(64, 128, XF_HURTSOURCE|XF_NOTMISSILE, false, 32)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			VD64 H 6 BRIGHT A_PlaySound("phantasm/explode")
-			VD64 I 6 BRIGHT A_NoBlocking
-			VD64 J 6
-			VD64 K 6
+			VD64 H 6 bright A_PlaySound("phantasm/explode")
+			VD64 I 6 bright A_NoBlocking
+			VD64 JK 6
 			Stop
 	}
 }
 
-Actor MMRandomizer_PhantasmPuff : DoomBulletPuff_Samsara
+ACTOR MMRandomizer_PhantasmPE : MMRandomizer_Phantasm
 {
 	States
 	{
 	Spawn:
-		VD64 L 4 Bright
+		VD64 A 0 bright
+		VD64 A 1 bright A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		VD64 A 0 bright A_GiveInventory("MultiplyOverflowToken", 1)
+		Goto Super::Spawn+2
+	}
+}
+
+Actor MMRandomizer_PhantasmPuff
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	RenderStyle Translucent
+	Alpha 0.5
+	Mass 5
+	States
+	{
+	Spawn:
+		VD64 L 4 bright
 		PFF2 M 4
-    // Intentional fall-through
+	// Intentional fall-through
 	Melee:
 		VD64 NO 4
 		Stop

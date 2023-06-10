@@ -48,16 +48,16 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			64FT H 0 A_Playsound("64fatso/raiseguns")
+			TNT1 A 0 A_PlaySound("64fatso/raiseguns")
 			64FT HHHH 5 A_FaceTarget
-			64FT G 0 BRIGHT A_CustomMissile("FatShot64", 56, -35, 0)
-			64FT G 10 BRIGHT A_CustomMissile("FatShot64", 56, 35, -6)
+			TNT1 A 0 A_CustomMissile("FatShot64", 56, -35, 0)
+			64FT G 10 bright A_CustomMissile("FatShot64", 56, 35, -6)
 			64FT HH 5 A_FaceTarget
-			64FT G 0 BRIGHT A_CustomMissile("FatShot64", 56, -35, 6)
-			64FT G 10 BRIGHT A_CustomMissile("FatShot64", 56, 35, 0)
+			TNT1 A 0 A_CustomMissile("FatShot64", 56, -35, 6)
+			64FT G 10 bright A_CustomMissile("FatShot64", 56, 35, 0)
 			64FT HH 5 A_FaceTarget
-			64FT G 0 BRIGHT A_CustomMissile("FatShot64", 56, -35, 6)
-			64FT G 10 BRIGHT A_CustomMissile("FatShot64", 56, 35, -6)
+			TNT1 A 0 A_CustomMissile("FatShot64", 56, -35, 6)
+			64FT G 10 bright A_CustomMissile("FatShot64", 56, 35, -6)
 			64FT HH 5 A_FaceTarget
 			Goto See
 		Pain:
@@ -65,10 +65,8 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			64FT I 3 A_Pain
 			Goto See
 		Pain.Vertigo:
-			64FT I 0 ThrustThingZ(0, 55, 0, 0)
-			64FT I 3
-			64FT I 3 A_Pain
-			Goto See
+			TNT1 A 0 ThrustThingZ(0, 55, 0, 0)
+			Goto Pain
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
@@ -78,8 +76,7 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			64FT J 6
+			64FT J 6 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			64FT K 6 A_Scream
 			64FT L 6 A_NoBlocking
 			64FT MN 6
@@ -89,9 +86,7 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			64FT ONMLKJ 5
 			Goto See
 		Crush:
-			A027 A 0
-			A027 A 0 A_PlaySound("friendlyimp64/crush")
-			A027 A -1
+			A027 A -1 A_PlaySound("friendlyimp64/crush")
 			Stop
 		Pain.ShrinkerDMG:
 			64FT I 0
@@ -133,15 +128,13 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			Goto ShrunkLoop
 		ShrunkLoop:
 			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
+			Loop
 		ShrunkDie:
-			TNT1 A 0
 			TNT1 A 1 A_Die("Shrink")
-			stop
+			Stop
 		Death.Shrink:
-			TNT1 A 0
 			TNT1 A 1 A_KillMaster
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			64FT A 0
@@ -156,7 +149,7 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SetDamageType("DukeExplosive")
@@ -188,7 +181,7 @@ ACTOR Fatso64 : SamsaraMonsterMechanicalLargeTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -212,13 +205,11 @@ ACTOR FatShot64
 {
 	Radius 6
 	Height 8
-	Speed 20
+	Speed 17
 	Damage 8
 	Projectile
 	+BRIGHT
 	+RANDOMIZE
-	RenderStyle Normal
-	Alpha 1
 	SeeSound "friendlyimp64/attack"
 	DeathSound "friendlyimp64/shotx"
 	Decal "Scorch"
@@ -229,7 +220,7 @@ ACTOR FatShot64
 			Loop
 		Death:
 			64MF D 6
-			64MF EFGHI 3 A_FadeOut(0.20)
+			64MF EFGHI 3 A_FadeOut(0.2)
 			Stop
 	}
 }
@@ -370,7 +361,7 @@ actor Mancubus64_Shrink : Fatso64
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -380,7 +371,7 @@ actor Mancubus64_Shrink : Fatso64
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -391,7 +382,7 @@ actor Mancubus64_Shrink : Fatso64
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish

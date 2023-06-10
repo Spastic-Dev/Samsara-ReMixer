@@ -26,7 +26,9 @@ ACTOR LostSoul64 : SamsaraMonsterSkeletonSmall
 	PainSound "64demon/pain"
 	DeathSound "doom64guy/plasmax"
 	ActiveSound "64demon/active"
-	Obituary "$OB_SKULL"
+	Obituary "%o was blown up by a lost soul."
+	HitObituary "$OB_SKULL"
+	DamageFactor "LostSoul64Explosion", 0
 	DamageFactor "Mace", 1.1
 	DamageFactor "DragonClaw", 1.5
 	DamageFactor "BlakeEnemyBullet", 0.0
@@ -57,17 +59,17 @@ ACTOR LostSoul64 : SamsaraMonsterSkeletonSmall
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			64LS D 10 A_FaceTarget
-			64LS E 4 A_SkullAttack(30)
+			64LS D 6 A_FaceTarget
+			64LS E 4 A_SkullAttack(34)
 			64LS DE 4 A_ChangeFlag("NOTARGET", FALSE)
-			Goto Missile+2
+			Goto Missile+3
 		Pain:
 			64LS F 3
 			64LS F 3 A_Pain
 			Goto See
 		Pain.Vertigo:
-			64LS F 3 BRIGHT ThrustThingZ(0, 55, 0, 0)
-			Goto Pain+1
+			64LS F 0 ThrustThingZ(0, 55, 0, 0)
+			Goto Pain
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
@@ -75,12 +77,11 @@ ACTOR LostSoul64 : SamsaraMonsterSkeletonSmall
 			TNT1 A 0 A_Recoil(14)
 			64LS F 16 A_Pain
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			64LS G 6
+			64LS G 6 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			64LS H 6 A_Scream
 			64LS I 4
 			64LS J 3 A_NoBlocking
-			64LS KLMNOP 3 A_FadeOut(0.20)
+			64LS KLMNOP 3 A_FadeOut(0.2)
 			Stop
 		Crush:
 			TNT1 A 1
@@ -94,8 +95,46 @@ ACTOR LostSoul64PE : LostSoul64
 	{
 		Spawn:
 			64LS A 0
+			64LS A 0 A_GiveInventory("LostSoul64Spawned", 1)
 			64LS A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			64LS A 0 A_GiveInventory("MultiplyOverflowToken", 1)
 			Goto Super::Spawn+2
+		See:
+			64LS A 0 A_GiveInventory("LostSoul64Spawned", 1)
+			Goto Super::See
+		Pain:
+			64LS F 0 A_GiveInventory("LostSoul64Spawned", 1)
+			Goto Super::Pain
+		Pain.Vertigo:
+			64LS F 0 A_GiveInventory("LostSoul64Spawned", 1)
+			Goto Super::Pain.Vertigo
+		Pain.MightyBoot:
+			64LS F 0 A_GiveInventory("LostSoul64Spawned", 1)
+			Goto Super::Pain.MightyBoot
+		Death:
+			TNT1 A 0 A_JumpIfInventory("LostSoul64Spawned",1,1)
+			Goto DeathExplode
+			TNT1 A 0
+			Goto Super::Death
+		DeathExplode:
+			64LS G 6 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			64LS H 0 A_SpawnItemEx("LostSoul64DeathExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			Goto Super::Death+1
 	}
 }
+
+ACTOR LostSoul64DeathExplosion
+{
+	DamageType "LostSoul64Explosion"
+	+NOINTERACTION
+	+NODAMAGETHRUST
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_Explode(128, 128, 0)
+			Stop
+	}
+}
+
+ACTOR LostSoul64Spawned : Boolean {}

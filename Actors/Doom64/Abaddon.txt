@@ -20,7 +20,7 @@ ACTOR Abaddon64 : Cacodemon64
 			64AB ABCD 15 A_Look
 			Loop
 		See:
-			64AB A 0 A_ScaleVelocity(0.50)
+			TNT1 A 0 A_ScaleVelocity(0.5)
 			64AB AABBCCDD 3 A_Chase
 			Loop
 		Pain:
@@ -28,28 +28,28 @@ ACTOR Abaddon64 : Cacodemon64
 			64AB D 3 A_Pain
 			Goto See
 		Pain.Vertigo:
-			64AB D 3 ThrustThingZ(0, 55, 0, 0)
-			Goto Pain+1
+			TNT1 A 0 ThrustThingZ(0, 55, 0, 0)
+			Goto Pain
 		Pain.MightyBoot:
-			64AB D 0 A_ChangeFlag("NOPAIN",1)
-			64AB D 0 A_PlaySound("duke/kickhit", CHAN_BODY)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			64AB D 2 A_FaceTarget
-			64AB D 0 A_Recoil(14)
+			TNT1 A 0 A_Recoil(14)
 			64AB D 16 A_Pain
 			Goto See
 		Missile:
-			64AB E 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			64AB EF 5 A_FaceTarget
-			64AB G 5 BRIGHT A_CustomComboAttack("AbaddonBall64", 48, 8 * random(1,8))
+			64AB G 5 bright A_CustomComboAttack("AbaddonBall64", 48, random(1,8)*8)
 			64AB EF 5 A_FaceTarget
-			64AB G 5 BRIGHT A_CustomComboAttack("AbaddonBall64", 48, 8 * random(1,8))
+			64AB G 5 bright A_CustomComboAttack("AbaddonBall64", 48, random(1,8)*8)
 			Goto See
 		Death:
-			64AB H 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			64AB H 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			64AB H 0 A_ChangeFlag("THRUACTORS", TRUE)
-			64AB H 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", FALSE)
-			64AB H 8 A_ScaleVelocity(0.50)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+			TNT1 A 0 A_ChangeFlag("THRUACTORS", TRUE)
+			TNT1 A 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", FALSE)
+			64AB H 8 A_ScaleVelocity(0.5)
 			64AB I 8 A_Scream
 			64AB JK 8
 			64AB L 8 A_NoBlocking
@@ -69,9 +69,6 @@ ACTOR Abaddon64 : Cacodemon64
 			64AB M 8 A_UnSetFloorClip
 			64AB LKJIH 8
 			Goto See
-		Crush:
-			A027 A -1 A_PlaySound("friendlyimp64/crush")
-			Stop
 		Pain.ShrinkerDMG:
 			64AB D 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -106,7 +103,7 @@ ACTOR Abaddon64 : Cacodemon64
 			"####" "#" 0 A_SpawnItemEx("Abaddon64_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			64AB A 0
@@ -126,8 +123,7 @@ ACTOR Abaddon64 : Cacodemon64
 
 ACTOR AbaddonBall64 : CacodemonBall64
 {
-	Speed 20
-	FastSpeed 25
+	Speed 26
 	Damage 10
 	States
 	{
@@ -253,7 +249,7 @@ actor Abaddon64_Shrink : Abaddon64
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -263,7 +259,7 @@ actor Abaddon64_Shrink : Abaddon64
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -273,7 +269,7 @@ actor Abaddon64_Shrink : Abaddon64
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
