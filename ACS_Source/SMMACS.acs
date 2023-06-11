@@ -557,9 +557,29 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 Script "ReMixerAwakenMonster" (int monTid)
 {
 	SetActivator(monTid);
-	int seeAttempts = 0;
-	until(CheckInventory("AlreadySpawned") && seeAttempts < 5) { Delay(1); seeAttempts++; }
+
+	int seeAttempts = 5;
+	until (CheckInventory("AlreadySpawned") || seeAttempts <= 0)
+	{
+		Delay(1);
+		seeAttempts--;
+	}
+
 	SetActorState(0,"See",1);
+
+	bool isFullVol = CheckFlag(0, "BOSS");
+	if (!isFullVol && GetCVar("samsara_runninginzdoom"))
+	{
+		isFullVol = CheckFlag(0, "FULLVOLSEE");
+	}
+
+	int attenuation = ATTN_NORM;
+	if (isFullVol)
+	{
+		attenuation = ATTN_NONE;
+	}
+
+	PlayActorSound(0, SOUND_See, CHAN_VOICE, 1.0, false, attenuation);
 }
 
 Script "ReMixerInvasion" OPEN //670
