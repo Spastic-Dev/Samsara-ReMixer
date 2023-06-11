@@ -10,7 +10,7 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 	Scale 0.65
 	+FLOORCLIP
 	Tag "Sergeant"
-	Species "Enemies"
+	Species "SamsaraShotgunGuy64"
 	SeeSound "64grunt/sight"
 	AttackSound "doom64guy/shotgf"
 	PainSound "64grunt/pain"
@@ -104,25 +104,26 @@ ACTOR ShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			64SP U -1
 			Stop
 		Raise:
-			64SP L 5 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-			64SP KJIH 5
+			64SP A 0
+			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			64SP LKJIH 5
 			Goto See
 		ZorchRaise:
-			TNT1 A 1 A_UnsetShootable
-			TNT1 A 1 A_SpawnItem("SpawnFire2")
-			TNT1 A 0 A_PlaySound("archvile/resummon")
-			TNT1 A 1 A_TakeInventory("EnemyZorched",1)
-			TNT1 A 0 A_SetTranslucent(0.1,0)
-			64SP A 3 A_SetTranslucent(0.2,0)
-			64SP A 3 A_SetTranslucent(0.3,0)
-			64SP A 3 A_SetTranslucent(0.4,0)
-			64SP A 3 A_SetTranslucent(0.5,0)
-			64SP A 3 A_SetTranslucent(0.6,0)
-			64SP A 3 A_SetTranslucent(0.7,0)
-			64SP A 3 A_SetTranslucent(0.8,0)
-			64SP A 3 A_SetTranslucent(0.9,0)
-			64SP A 3 A_SetTranslucent(1,0)
-			64SP A 1 A_SetShootable
+			"####" "#" 1 A_UnsetShootable
+			"####" "#" 1 A_SpawnItem("SpawnFire2")
+			"####" "#" 0 A_PlaySound("archvile/resummon")
+			"####" "#" 1 A_TakeInventory("EnemyZorched",1)
+			"####" "#" 0 A_SetTranslucent(0.1,0)
+			"####" "#" 3 A_SetTranslucent(0.2,0)
+			"####" "#" 3 A_SetTranslucent(0.3,0)
+			"####" "#" 3 A_SetTranslucent(0.4,0)
+			"####" "#" 3 A_SetTranslucent(0.5,0)
+			"####" "#" 3 A_SetTranslucent(0.6,0)
+			"####" "#" 3 A_SetTranslucent(0.7,0)
+			"####" "#" 3 A_SetTranslucent(0.8,0)
+			"####" "#" 3 A_SetTranslucent(0.9,0)
+			"####" "#" 3 A_SetTranslucent(1,0)
+			"####" "#" 1 A_SetShootable
 			Goto See
 		Crush:
 			A027 A -1 A_PlaySound("friendlyimp64/crush")
