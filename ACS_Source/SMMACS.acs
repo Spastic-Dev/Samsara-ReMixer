@@ -564,6 +564,9 @@ Script "ReMixerAwakenMonster" (int monTid)
 		Delay(1);
 		seeAttempts--;
 	}
+	
+	if(ClassifyActor(0) <= 1 || strlen(GetActorProperty(0,APROP_SeeSound)) <= 0)
+		terminate;
 
 	SetActorState(0,"See",1);
 
