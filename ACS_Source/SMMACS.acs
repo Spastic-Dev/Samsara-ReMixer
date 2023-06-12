@@ -564,7 +564,7 @@ Script "ReMixerAwakenMonster" (int monTid)
 		Delay(1);
 		seeAttempts--;
 	}
-	
+
 	if(ClassifyActor(0) <= 1 || strlen(GetActorProperty(0,APROP_SeeSound)) <= 0)
 		terminate;
 
@@ -576,11 +576,7 @@ Script "ReMixerAwakenMonster" (int monTid)
 		isFullVol = CheckFlag(0, "FULLVOLSEE");
 	}
 
-	int attenuation = ATTN_NORM;
-	if (isFullVol)
-	{
-		attenuation = ATTN_NONE;
-	}
+	int attenuation = isFullVol ? ATTN_NONE : ATTN_NORM;
 
 	PlayActorSound(0, SOUND_See, CHAN_VOICE, 1.0, false, attenuation);
 }
