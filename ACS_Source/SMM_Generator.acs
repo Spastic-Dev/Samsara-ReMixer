@@ -8,7 +8,7 @@
 #define MAXMONSTERS_REKKR 18
 
 int generatorCountersDoom[MAXMONSTERS_DOOM];
-str SpawnersDoom[MAXMONSTERS_DOOM] = { "ZombiemanSpawner", "ShotGunGuySpawner", "DoomImpSpawner", "ChainGunGuySpawner", "SuperShotgunGuySpawner", "DemonSpawner", "DarkImpSpawner", "SpectreSpawner", "BloodDemonSpawner", "LostSoulSpawner", "CacodemonSpawner", "RevenantSpawner", "CacolanternSpawner", "PainElementalSpawner", "HellKnightSpawner", "ArachnotronSpawner", "FatsoSpawner", "AbaddonSpawner", "ArchvileSpawner", "BaronofHellSpawner", "HectebusSpawner", "BelphegorSpawner", "SpiderMastermindSpawner", "CyberDemonSpawner", "WolfensteinSSSpawner" };
+str SpawnersDoom[MAXMONSTERS_DOOM] = { "ZombiemanSpawner", "ShotGunGuySpawner", "DoomImpSpawner", "WolfensteinSSSpawner", "ChainGunGuySpawner", "SuperShotgunGuySpawner", "DemonSpawner", "DarkImpSpawner", "LostSoulSpawner", "SpectreSpawner", "BloodDemonSpawner", "CacodemonSpawner", "RevenantSpawner", "CacolanternSpawner", "PainElementalSpawner", "HellKnightSpawner", "ArachnotronSpawner", "FatsoSpawner", "BaronofHellSpawner", "ArchvileSpawner", "AbaddonSpawner", "HectebusSpawner", "BelphegorSpawner", "SpiderMastermindSpawner", "CyberDemonSpawner" };
 
 int generatorCountersChex[MAXMONSTERS_CHEX];
 str SpawnersChex[MAXMONSTERS_CHEX] = { "FlemoidusCommonusSpawner", "FlemoidusBipedicusSpawner", "ArmoredFlemoidusBipedicusSpawner", "FlemoidusStridicusSpawner", "LarvaSpawner", "FlemMineSpawner", "FlemoidusCycloptisCommonusSpawner", "SuperCycloptisSpawner", "QuadrumpusSpawner", "FlemoidusMaximusSpawner", "FlembraneSpawner", "FlembominationSpawner", "SnotfolusSpawner" };
@@ -43,18 +43,18 @@ Script "DetermineValidSpawnReMixer" Open
 {
 	if(GetCvar("mm_generate") <= 0 && GetCvar("mm_reducemonsters") >= 99)
 		terminate;
-		
+
 	until(GetCvar("samsara_processedgame")) { Delay(1); }
-	
+
 	// Check for Lexicon compatibility
 	int LexiconTid = UniqueTid();
-	
+
 	if(SpawnForced("IKPuff",0,0,0,LexiconTid))
 	{
 		Thing_Remove(LexiconTid);
 		Delay(5);
 	}
-	
+
 	ACS_NamedExecuteWithResult("SMMGenerator_DetermineGameChoice");
 	processedCounts = 1;
 
@@ -69,13 +69,13 @@ Script "DetermineValidSpawnReMixer" Open
 			if(b > 0)
 				b = -b - 1024;
 			else
-				b = -b;			
+				b = -b;
 		}
 		if(a > 0)
 			a = -a - 1024;
 		else
-			a = -a;	
-	}	
+			a = -a;
+	}
 }
 
 Script "SMMGenerator_DetermineGameChoice" (void)
@@ -89,8 +89,8 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			{
 				generatorCountersDoom[counters] = ThingCountName(SpawnersDoom[counters],0);
 			}
-			
-			if(generatorCountersDoom[24] > 0)
+
+			if(generatorCountersDoom[3] > 0)
 				DoomSecretLevel = 1;
 
 			for(selector = 0; selector < MAXMONSTERS_DOOM; selector++)
@@ -102,10 +102,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersDoom[selector];	
+				totalTypes += generatorCountersDoom[selector];
 				generationAmount += generatorCountersDoom[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -124,10 +124,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersChex[selector];	
+				totalTypes += generatorCountersChex[selector];
 				generationAmount += generatorCountersChex[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -146,10 +146,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHeretic[selector];	
+				totalTypes += generatorCountersHeretic[selector];
 				generationAmount += generatorCountersHeretic[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -168,10 +168,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHexen[selector];	
+				totalTypes += generatorCountersHexen[selector];
 				generationAmount += generatorCountersHexen[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -190,10 +190,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHacx[selector];	
+				totalTypes += generatorCountersHacx[selector];
 				generationAmount += generatorCountersHacx[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -212,10 +212,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHarmony[selector];	
+				totalTypes += generatorCountersHarmony[selector];
 				generationAmount += generatorCountersHarmony[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -234,10 +234,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersROTWB[selector];	
+				totalTypes += generatorCountersROTWB[selector];
 				generationAmount += generatorCountersROTWB[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -256,10 +256,10 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersREKKR[selector];	
+				totalTypes += generatorCountersREKKR[selector];
 				generationAmount += generatorCountersREKKR[selector]*(selector+1);
 			}
-				
+
 			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
 			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
@@ -274,7 +274,7 @@ script "CellDoneScanningReMixer" (void)
 		for(int b = -512; b < 512; b+=64)
 		{
 			if(random(1,12000 + (2000 * (4 - GameSkill()))) <= (GetCvar("mm_generate")*GetCvar("mm_generate")))
-			{	
+			{
 				SpawnForced("DetermineValidSpawnTestObject",GetActorX(0)+(a*1.0),GetActorY(0)+(b*1.0),0,newtid);
 				if(GetCVar("samsara_zscriptready") == 1)
 					Spawn("DetermineValidSpawnReMixerZS",GetActorX(0)+(a*1.0),GetActorY(0)+(b*1.0),GetActorFloorZ(newtid),0);
@@ -289,34 +289,34 @@ Script "SMMGeneratorSelector" (void)
 {
 	if(generationAmount <= 0)
 		terminate;
-		
+
 	int game = GetCvar("samsara_currentgame");
-		
+
 	Delay(1);
 	int newTid = UniqueTid();
 	int influence = 1.0;
 	int pickMonster = 0;
 	int selectionAttempts = 0;
 	int maxSelectionAttempts = 8;
-	
+
 	int actorX = GetActorX(0)/1.0;
 	int actorY = GetActorY(0)/1.0;
-	
+
 	int floor1 = GetSectorFloorZ(0,actorX-32,actorY);
 	int floor2 = GetSectorFloorZ(0,actorX+32,actorY);
 	int floor3 = GetSectorFloorZ(0,actorX,actorY-32);
 	int floor4 = GetSectorFloorZ(0,actorX,actorY+32);
-	
+
 	if(floor1 != floor2 || floor1 != floor3 || floor1 != floor4)
 		terminate;
-		
+
 	int rnd, mix;
-		
+
 	switch(game)
 	{
-		case 1:	
-			pickMonster = DoomSecretLevel ? 25 : 24; 
-			while((pickMonster == 24 || pickMonster == 25 || pickMonster == 26) && selectionAttempts < maxSelectionAttempts)
+		case 1:
+			pickMonster = 24;
+			while((pickMonster == 23 || pickMonster == 24) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
@@ -325,11 +325,16 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersDoom[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			if(!DoomSecretLevel && pickMonster == 3)
+			{
+				pickMonster = 2;
+			}
+
+			SpawnForced(strparam(s:SpawnersDoom[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
-		case 2:	
-			pickMonster = 13; 
+		case 2:
+			pickMonster = 13;
 			while((pickMonster == 13 || pickMonster == 14) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
@@ -339,11 +344,11 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersChex[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			SpawnForced(strparam(s:SpawnersChex[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
-		case 4:	
-			pickMonster = 14; 
+		case 4:
+			pickMonster = 14;
 			while((pickMonster == 14 || pickMonster == 15) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
@@ -353,11 +358,11 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersHeretic[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			SpawnForced(strparam(s:SpawnersHeretic[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
-		case 8:	
-			pickMonster = 14; 
+		case 8:
+			pickMonster = 14;
 			while((pickMonster == 14 || pickMonster == 15) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
@@ -367,11 +372,11 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersHexen[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			SpawnForced(strparam(s:SpawnersHexen[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
-		case 32:	
-			pickMonster = 15; 
+		case 32:
+			pickMonster = 15;
 			while((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
@@ -381,11 +386,11 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersHacx[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			SpawnForced(strparam(s:SpawnersHacx[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
-		case 64:	
-			pickMonster = 8; 
+		case 64:
+			pickMonster = 8;
 			while((pickMonster == 8 || pickMonster == 9) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
@@ -395,11 +400,11 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersHarmony[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			SpawnForced(strparam(s:SpawnersHarmony[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
-		case 128:	
-			pickMonster = 15; 
+		case 128:
+			pickMonster = 15;
 			while((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
@@ -409,11 +414,11 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersROTWB[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			SpawnForced(strparam(s:SpawnersROTWB[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
-		case 256:	
-			pickMonster = 18; 
+		case 256:
+			pickMonster = 18;
 			while((pickMonster == 18 || pickMonster == 19) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
@@ -423,11 +428,11 @@ Script "SMMGeneratorSelector" (void)
 			}
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
-				
-			SpawnForced(strparam(s:SpawnersREKKR[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid); break;
+
+			SpawnForced(strparam(s:SpawnersREKKR[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
 	}
-	
+
 	ThrustThing(random(0,1.0),random(0,8),0,newTid);
 	SetActorAngle(newTid,0.125*random(0,8));
 	Thing_ChangeTid(newTid,0);
@@ -443,7 +448,7 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 	//int positionValue = sqrt(posX * posX + posY * posY + posZ * posZ);
 	int positionValue = abs(posX) + abs(posY) + abs(posZ);
 	int noPruning = pruneMax == 99;
-		
+
 	switch(GetCvar("samsara_currentgame"))
 	{
 		case 1:
@@ -474,9 +479,9 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 			typeCount = generatorCountersREKKR[monsterSlot];
 			break;
 	}
-		
+
 	pruneMax += GetCvar("mm_reduceMonsters");
-	
+
 	if(!noPruning)
 	{
 		if(typeCount <= 1)
@@ -489,18 +494,18 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 				pruneMax = important ? (pruneMax * 3) / 2 : (pruneMax * 4) / 3;
 			else if(typeCount >= (totalMonsters / 3))
 				pruneMax = (pruneMax * 3) / 4;
-				
+
 			if(GetActorProperty(0,APROP_Height) < 100.0)
 				pruneMax = FixedMul(pruneMax * 1.0,(1.0 - monsterSlot * 0.025))>>16;
 		}
 	}
 	else if(GetCvar("mm_reduceMonsters") >= 0) pruneMax += 1.0;
-			
+
 	if(pruneMax < 0) pruneMax = 0;
 	if(pruneMax > 99) pruneMax = 99;
 
-	if((positionValue % 100) <= pruneMax) 
+	if((positionValue % 100) <= pruneMax)
 		pruneIt = 0;
-					
+
 	SetResultValue(pruneIt);
 }

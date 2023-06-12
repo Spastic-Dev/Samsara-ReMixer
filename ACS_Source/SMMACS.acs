@@ -161,11 +161,11 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 	int gameTypeMap;
 	int numGameTypes = 0;
 	int altSetSelect;
-	
+
 	// Check for Lexicon compatibility
 	int isLexiconEnabled = 0;
 	int LexiconTid = UniqueTid();
-	
+
 	if(SpawnForced("IKPuff",0,0,0,LexiconTid))
 	{
 		Thing_Remove(LexiconTid);
@@ -359,12 +359,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			if(GetCvar("mm_reducemonsters") < 99)
 			{
 				until(processedCounts) { Delay(1); }
-				
+
 				if(isLexiconEnabled == 1)
 				{
 					Delay(1);
 				}
-				
+
 				if(ACS_NamedExecuteWithResult("SMMReducer",gamePruneValues[pickFromSets[setselect]][altSetSelect],CheckFlag(0,"BOSSDEATH"),monsterSlot))
 				{
 					Thing_Remove(0);
@@ -564,11 +564,11 @@ Script "ReMixerAwakenMonster" (int monTid)
 		Delay(1);
 		seeAttempts--;
 	}
-	
-	if(ClassifyActor(0) <= 1 || strlen(GetActorProperty(0,APROP_SeeSound)) <= 0)
-		terminate;
 
-	SetActorState(0,"See",1);
+	if (ClassifyActor(0) <= 1 || CheckActorProperty(0, APROP_SeeSound, ""))
+	{
+		terminate;
+	}
 
 	bool isFullVol = CheckFlag(0, "BOSS");
 	if (!isFullVol && GetCVar("samsara_runninginzdoom"))
@@ -576,11 +576,9 @@ Script "ReMixerAwakenMonster" (int monTid)
 		isFullVol = CheckFlag(0, "FULLVOLSEE");
 	}
 
-	int attenuation = ATTN_NORM;
-	if (isFullVol)
-	{
-		attenuation = ATTN_NONE;
-	}
+	SetActorState(0, "See", 1);
+
+	int attenuation = isFullVol ? ATTN_NONE : ATTN_NORM;
 
 	PlayActorSound(0, SOUND_See, CHAN_VOICE, 1.0, false, attenuation);
 }
@@ -688,7 +686,7 @@ Script "ReMixerCVarCheck" (int pick) //680
 		response = 1;
 		}
 		break;
-		
+
 		case 13:
 		response = GetCvar("mm_performancemode") && (!StrICmp(strparam(l:"CC_CARD_LOCKED"),"Undiscovered Card") == 0);
 		break;
@@ -1124,16 +1122,16 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 Script "HeresiarchScriptTokens" (void) { SetResultValue(CheckInventory("HeresiarchScriptTokens")); }
 
 script "ReMixerPresetSelection" (void)
-{	
+{
 	switch(GetCvar("mm_presetvalue"))
 	{
 		case 0: // Vanilla
-		
+
 		// General Options
 		SetCVar("mm_invisiblemode", false);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_performancemode", true);
-		
+
 		// Monster Spawning Options
 		SetCVar("mm_skilloverride", 1);
 		SetCVar("mm_spawnmode", 0);
@@ -1142,23 +1140,23 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 99);
-		
+
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", false);
 		SetCVar("mm_wolffastdeath", false);
 		SetCVar("mm_fakehitlerfire", false);
 		SetCVar("mm_fullradiusdmg", false);
-		
+
 		// Enemy Modes
 		SetCVar("mm_doommode", 1);
 		SetCVar("mm_wolfmode", 1);
 		SetCVar("mm_dukemode", 1);
 		SetCVar("mm_halflifemode", 1);
-		
+
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 0);
 		SetCVar("mm_doom64spawns", 0);
-		
+
 		// ReMixer Spawn Options
 		SetCVar("mm_doom", 1);
 		SetCVar("mm_chex", 1);
@@ -1195,14 +1193,14 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_descent", 1);
 		SetCVar("mm_deusex", 1);
 		break;
-		
+
 		case 1: // Samsara
-		
+
 		// General Options
 		SetCVar("mm_invisiblemode", false);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_performancemode", true);
-		
+
 		// Monster Spawning Options
 		SetCVar("mm_skilloverride", 0);
 		SetCVar("mm_spawnmode", 0);
@@ -1211,23 +1209,23 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 99);
-		
+
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", true);
 		SetCVar("mm_wolffastdeath", false);
 		SetCVar("mm_fakehitlerfire", true);
 		SetCVar("mm_fullradiusdmg", true);
-		
+
 		// Enemy Modes
 		SetCVar("mm_doommode", 0);
 		SetCVar("mm_wolfmode", 0);
 		SetCVar("mm_dukemode", 0);
 		SetCVar("mm_halflifemode", 0);
-		
+
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 0);
 		SetCVar("mm_doom64spawns", 0);
-		
+
 		// ReMixer Spawn Options
 		SetCVar("mm_doom", 1);
 		SetCVar("mm_chex", 1);
@@ -1264,14 +1262,14 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_descent", 1);
 		SetCVar("mm_deusex", 1);
 		break;
-		
+
 		case 2: // Samsara Reincarnation
-		
+
 		// General Options
 		SetCVar("mm_invisiblemode", false);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_performancemode", true);
-		
+
 		// Monster Spawning Options
 		SetCVar("mm_skilloverride", 0);
 		SetCVar("mm_spawnmode", 0);
@@ -1280,23 +1278,23 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 0);
-		
+
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", true);
 		SetCVar("mm_wolffastdeath", false);
 		SetCVar("mm_fakehitlerfire", true);
 		SetCVar("mm_fullradiusdmg", true);
-		
+
 		// Enemy Modes
 		SetCVar("mm_doommode", 0);
 		SetCVar("mm_wolfmode", 0);
 		SetCVar("mm_dukemode", 0);
 		SetCVar("mm_halflifemode", 0);
-		
+
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 1);
 		SetCVar("mm_doom64spawns", 1);
-		
+
 		// ReMixer Spawn Options
 		SetCVar("mm_doom", 1);
 		SetCVar("mm_chex", 1);
@@ -1333,15 +1331,15 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_descent", 1);
 		SetCVar("mm_deusex", 1);
 		break;
-		
+
 		// Secret presets
 		case 100: // cubebert's Settings
-		
+
 		// General Options
 		SetCVar("mm_invisiblemode", false);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_performancemode", false);
-		
+
 		// Monster Spawning Options
 		SetCVar("mm_skilloverride", 1);
 		SetCVar("mm_spawnmode", 2);
@@ -1350,23 +1348,23 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 99);
-		
+
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", true);
 		SetCVar("mm_wolffastdeath", false);
 		SetCVar("mm_fakehitlerfire", true);
 		SetCVar("mm_fullradiusdmg", true);
-		
+
 		// Enemy Modes
 		SetCVar("mm_doommode", 1);
 		SetCVar("mm_wolfmode", 4);
 		SetCVar("mm_dukemode", 1);
 		SetCVar("mm_halflifemode", 1);
-		
+
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 0);
 		SetCVar("mm_doom64spawns", 0);
-		
+
 		// ReMixer Spawn Options
 		SetCVar("mm_doom", 1);
 		SetCVar("mm_chex", 0);
@@ -1403,14 +1401,14 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_descent", 0);
 		SetCVar("mm_deusex", 0);
 		break;
-		
+
 		case 101: // Meleemario's Settings
-		
+
 		// General Options
 		SetCVar("mm_invisiblemode", false);
 		SetCVar("mm_pinataparty", true);
 		SetCVar("mm_performancemode", true);
-		
+
 		// Monster Spawning Options
 		SetCVar("mm_skilloverride", 0);
 		SetCVar("mm_spawnmode", 0);
@@ -1419,23 +1417,23 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 15);
 		SetCVar("mm_reducemonsters", 0);
-		
+
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", true);
 		SetCVar("mm_wolffastdeath", false);
 		SetCVar("mm_fakehitlerfire", true);
 		SetCVar("mm_fullradiusdmg", true);
-		
+
 		// Enemy Modes
 		SetCVar("mm_doommode", 1);
 		SetCVar("mm_wolfmode", 0);
 		SetCVar("mm_dukemode", 0);
 		SetCVar("mm_halflifemode", 0);
-		
+
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 1);
 		SetCVar("mm_doom64spawns", 1);
-		
+
 		// ReMixer Spawn Options
 		SetCVar("mm_doom", 1);
 		SetCVar("mm_chex", 1);
