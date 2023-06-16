@@ -8,26 +8,26 @@ Redneck/Thud RR_THUD
 Coot/DieA 		 		CT_DIE
 Coot/DieB 		 		CT_DIE2
 Coot/DieC 		 		CT_DIE3
-$Random Coot/Die 		{ Coot/DieA Coot/DieC Coot/DieA Coot/DieC Coot/DieB }
 Coot/NewshooterA 		CT_GET
 Coot/FuckU		 		CT_GET2
 Coot/ImaGetU 	 		CT_GET3
-$Random Coot/Newshooter { Coot/NewshooterA Coot/NewshooterA Coot/NewshooterA Coot/FuckU }
-$Random Coot/SkinnyS 	{ Coot/ImaGetU Coot/ImaGetU Coot/ImaGetU Coot/FuckU }
 Coot/Laugh1 			CT_LAF
 Coot/Laugh2			    CT_LAF2
 Coot/Laugh3 			CT_LAF3
 Coot/GroovyA 			CT_LAND
 Coot/GTFOLand			CT_LAND2
 Coot/GetOfLand			CT_LAND3
-$Random Coot/Groovy 	{ Coot/GroovyA Coot/Newshooter }
-$Random Coot/LandF 		{ Coot/GetOfLand Coot/SkinnyS Coot/GetOfLand Coot/SkinnyS Coot/GTFOLand }
 Coot/Pain1 				CT_PAIN
 Coot/Pain2 				CT_PAIN2
 Coot/Pain3 				CT_PAIN3
-$Random Coot/Pain 		{ Coot/Pain1 Coot/Pain3 Coot/Pain1 Coot/Pain3 Coot/Pain2 }
-$Random Coot/Talk 		{ Coot/Laugh1 Coot/Laugh2 Coot/Groovy Coot/Laugh3 }
-$Random Coot/Yell 		{ Coot/Laugh1 Coot/Laugh2 Coot/LandF Coot/Laugh3 }
+
+$random Coot/Die { Coot/DieB Coot/DieC }
+$random Coot/See { Coot/ImaGetU Coot/FuckU }
+$random Coot/Talk { Coot/Laugh3 Coot/GetOfLand Coot/GTFOLand }
+$random Coot/Pain { Coot/Pain2 CCoot/Pain3 }
+$random GroovyCoot/Talk { Coot/GroovyA Coot/Laugh1 Coot/Laugh2 }
+$random Coot/Talk/NoCuss { Coot/Laugh3 Coot/GetOfLand }
+$random Coot/Talk/Cuss { Coot/Laugh3 Coot/GTFOLand  }
 
 //Billy Ray Jeeter
 Billy/DieA			BR_DTH
@@ -35,7 +35,7 @@ $Random Billy/Die 		{ Billy/DieA Billy/DieA Billy/DieA Billy/Pain2 }
 Billy/Itch1			BR_ITCH
 Billy/Itch2 			BR_ITC2
 $Random Billy/Itch 		{ Billy/Itch1 Billy/Itch1 Billy/Itch1 Billy/Itch2 }
-Billy/Pain1			BR_PAIN
+Billy/Pain1				BR_PAIN
 Billy/Pain2 			BR_PAI2
 $Random Billy/Pain 		{ Billy/Pain1 Billy/Pain1 Billy/Pain1 Billy/Pain2 }
 Billy/See1 				BR_RECOG
@@ -49,7 +49,11 @@ Billy/Roam5 			BR_ROAMB
 Billy/Roam6 			BR_ROAMC
 Billy/Scratch			BR_SCRTH
 Billy/Sniff 			BR_SNIFF
-$random Billy/Talk 		{ Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 Billy/Roam4 Billy/Roam5 Billy/Roam6 }
+$random Billy/Talk 				{ Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 Billy/Roam4 Billy/Roam5 Billy/Roam6 }
+$Random Billy/Die/NoCuss 		{ Billy/DieA Billy/DieA Billy/DieA Billy/Pain1 }
+$random Billy/Talk/NoCuss 		{ Billy/Roam1 Billy/Roam2 Billy/Roam3 Billy/See1 Billy/See2 }
+$Random Billy/Die/Cuss 			{ Billy/DieA Billy/DieA Billy/DieA Billy/Pain2 }
+$random Billy/Talk/Cuss 		{ Billy/See2 Billy/Roam4 Billy/Roam5 Billy/Roam6 }
 
 //Frank Doyle
 Doyle/Alive 	BK_ALIVE
@@ -167,6 +171,10 @@ $random Hobbes/Talk 	{ Hobbes/Attention Hobbes/Getya Hobbes/Laugh Hobbes/Name Ho
 $random Hobbes/Reloadin { Hobbes/Reload Hobbes/Reload2 Hobbes/Reload4 Hobbes/Reload3 }
 $random Hobbes/Pain 	{ Hobbes/Pain1 Hobbes/Pain2 Hobbes/Pain3 Hobbes/Pain4 }
 $random Hobbes/Death 	{ Hobbes/Death1 Hobbes/Death2 Hobbes/Death3 }
+$random Hobbes/Reloadin/NoCuss { Hobbes/Reload Hobbes/Reload2 }
+$random Hobbes/Reloadin/Cuss { Hobbes/Reload3 Hobbes/Reload4 }
+$random Hobbes/Talk/NoCuss 	{ Hobbes/Attention Hobbes/Getya Hobbes/Laugh Hobbes/Name Hobbes/Over Hobbes/TheLaw Hobbes/TheLaw2 Hobbes/Hold }
+$random Hobbes/Talk/Cuss 	{ Hobbes/Attention Hobbes/Getya Hobbes/Laugh Hobbes/TheLaw Hobbes/TheLaw2 Hobbes/Over2 Hobbes/Name2 Hobbes/Hold }
 
 //Alien Hulk
 Hulk/Attack 	HULKATTK
@@ -226,6 +234,8 @@ $Random Vixen/TeleIn	 { vixen/tpin2 vixen/tpin4 }
 $Random Vixen/HighKick 	 { Vixen/Kick vixen/takeit vixen/hiya3 }
 $Random Vixen/Swing1 	 { vixen/hiya vixen/hiya2 vixen/kick2 }
 $Random Vixen/Swing2 	 { vixen/kick3 vixen/hiya3 Vixen/Swing1 vixen/takeit }
+$random Vixen/KickNoCuss 		 { vixen/hiya vixen/hiya2 vixen/kick2 vixen/kick3 }
+$random Vixen/KickCuss 		 { vixen/hiya3 vixen/kick2 vixen/kick3 }
 
 //Momma jack
 Momma/Attack 	MJ_ATTK1

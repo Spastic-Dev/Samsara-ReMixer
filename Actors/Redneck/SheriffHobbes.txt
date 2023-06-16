@@ -36,6 +36,7 @@ Actor SheriffHobbes : SamsaraMonsterHumanoidMediumTotalGib
 		HOBB O 0
 		HOBB O 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		HOBB O 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		HOBB O 0 ACS_NamedExecuteWithResult("RR_CussPack",2)
 		HOBB O 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		HOBB O 4 A_Look
@@ -57,7 +58,7 @@ Actor SheriffHobbes : SamsaraMonsterHumanoidMediumTotalGib
 		HOBB C 0 A_JumpIfInventory("HobbesReload",6,"Reload")	
 		loop
 	Reload:
-		HOBB A 0 A_PlaySound("hobbes/reloadin")
+		HOBB A 0 ACS_NamedExecuteWithResult("RR_CussPack",2,1)
 		HOBB OPQPQPQPQPQR 7
 		HOBB RS 4
 		HOBB A 0 A_TakeInventory("HobbesReload",6)
@@ -495,6 +496,7 @@ Actor SheriffHobbes_Ghost : SamsaraMonsterSkeletonMedium
 		RR47 O 0
 		RR47 O 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		RR47 O 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		RR47 O 0 ACS_NamedExecuteWithResult("RR_CussPack",2)
 		RR47 O 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		RR47 O 4 A_Look
@@ -516,7 +518,7 @@ Actor SheriffHobbes_Ghost : SamsaraMonsterSkeletonMedium
 		RR47 C 0 A_JumpIfInventory("HobbesReload",6,"Reload")	
 		loop
 	Reload:
-		RR47 A 0 A_PlaySound("hobbes/reloadin")
+		RR47 A 0 ACS_NamedExecuteWithResult("RR_CussPack",2,1)
 		RR47 OPQPQPQPQPQR 7
 		RR47 RS 4
 		RR47 A 0 A_TakeInventory("HobbesReload",6)

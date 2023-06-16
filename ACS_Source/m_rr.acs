@@ -44,3 +44,133 @@ Script "RR_DoylePatrolPointMove" (int newtid)
 		Delay(3);
 	}
 }
+
+Script "RR_CussPack" (int monster, int funct)
+{
+	int cussPack = GetCVAR("mm_redneckcusspack");
+	switch(monster)
+	{
+		case 0:
+			switch(funct)
+			{
+				case 1:
+					switch(cussPack)
+					{
+						default:
+							SetActorProperty(0,APROP_SeeSound,"Coot/See");
+							SetActorProperty(0,APROP_ActiveSound,"Coot/Talk");
+							SetActorProperty(0,APROP_PainSound,"Coot/Pain");
+							SetActorProperty(0,APROP_DeathSound,"Coot/Die");
+							break;
+						case 1:
+							SetActorProperty(0,APROP_SeeSound,"Coot/ImaGetU");
+							SetActorProperty(0,APROP_ActiveSound,"Coot/Talk/NoCuss");
+							SetActorProperty(0,APROP_PainSound,"Coot/Pain3");
+							SetActorProperty(0,APROP_DeathSound,"Coot/DieC");
+							break;
+						case 2:
+							SetActorProperty(0,APROP_SeeSound,"Coot/FuckU");
+							SetActorProperty(0,APROP_ActiveSound,"Coot/Talk/Cuss");
+							SetActorProperty(0,APROP_PainSound,"Coot/Pain2");
+							SetActorProperty(0,APROP_DeathSound,"Coot/DieB");
+							break;
+					}
+					break;
+			}
+			break;
+		case 1:
+			switch(funct)
+			{
+				case 0:
+					switch(cussPack)
+					{
+						default:
+							SetActorProperty(0,APROP_SeeSound,"Billy/See");
+							SetActorProperty(0,APROP_ActiveSound,"Billy/Talk");
+							SetActorProperty(0,APROP_PainSound,"Billy/Pain");
+							SetActorProperty(0,APROP_DeathSound,"Billy/Die");
+							break;
+						case 1:
+							SetActorProperty(0,APROP_SeeSound,"Billy/See1");
+							SetActorProperty(0,APROP_ActiveSound,"Billy/Talk/NoCuss");
+							SetActorProperty(0,APROP_PainSound,"Billy/Pain1");
+							SetActorProperty(0,APROP_DeathSound,"Billy/Die/NoCuss");
+							break;
+						case 2:
+							SetActorProperty(0,APROP_SeeSound,"Billy/See2");
+							SetActorProperty(0,APROP_ActiveSound,"Billy/Talk/Cuss");
+							SetActorProperty(0,APROP_PainSound,"Billy/Pain2");
+							SetActorProperty(0,APROP_DeathSound,"Billy/Die/Cuss");
+							break;
+					}
+					break;
+				case 1:
+					switch(cussPack)
+					{
+						default:
+							PlaySound(0,"Billy/Itch",CHAN_BODY,1.0,0,ATTN_NORM);
+							break;
+						case 1:
+							PlaySound(0,"Billy/Itch1",CHAN_BODY,1.0,0,ATTN_NORM);
+							break;
+						case 2:
+							PlaySound(0,"Billy/Itch2",CHAN_BODY,1.0,0,ATTN_NORM);
+							break;
+					}
+					break;
+			}
+			break;
+		case 2:
+			switch(funct)
+			{
+				case 0:
+					switch(cussPack)
+					{
+						default:
+							SetActorProperty(0,APROP_ActiveSound,"Hobbes/Talk");
+							break;
+						case 1:
+							SetActorProperty(0,APROP_ActiveSound,"Hobbes/Talk/NoCuss");
+							break;
+						case 2:
+							SetActorProperty(0,APROP_ActiveSound,"Hobbes/Talk/Cuss");
+							break;
+					}
+					break;
+				case 1:
+					switch(cussPack)
+					{
+						default:
+							PlaySound(0,"Hobbes/Reloadin",CHAN_VOICE,1.0,0,ATTN_NORM);
+							break;
+						case 1:
+							PlaySound(0,"Hobbes/Reloadin/NoCuss",CHAN_VOICE,1.0,0,ATTN_NORM);
+							break;
+						case 2:
+							PlaySound(0,"Hobbes/Reloadin/Cuss",CHAN_VOICE,1.0,0,ATTN_NORM);
+							break;
+					}
+					break;
+			}
+			break;
+		case 3:
+			switch(funct)
+			{
+				case 0:
+					switch(cussPack)
+					{
+						default:
+							PlaySound(0,"Vixen/Kick",CHAN_VOICE,1.0,0,ATTN_NORM);
+							break;
+						case 1:
+							PlaySound(0,"Vixen/Kick/NoCuss",CHAN_VOICE,1.0,0,ATTN_NORM);
+							break;
+						case 2:
+							PlaySound(0,"Vixen/Kick/Cuss",CHAN_VOICE,1.0,0,ATTN_NORM);
+							break;
+					}
+					break;
+			}
+			break;
+	}
+}

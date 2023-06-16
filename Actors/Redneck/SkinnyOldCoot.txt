@@ -8,10 +8,10 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 	PainChance 80
 	Species "RedneckEnemies"	
 	Monster
-	SeeSound "Coot/Groovy"
-	PainSound "Coot/Pain"
-	DeathSound "Coot/Die"
-	ActiveSound "Coot/Talk"
+	SeeSound "Coot/NewshooterA"
+	PainSound "Coot/Pain1"
+	DeathSound "Coot/DieA"
+	ActiveSound "GroovyCoot/Talk"
 	Obituary "%o wasnt invited to a Groovy Old Coot's party."
 	DropItem "CootAmmoDrop",64,1
 	Tag "Groovy Old Coot"
@@ -3844,8 +3844,10 @@ ACTOR GhostGroovyOldCoot : SamsaraMonsterSkeletonMedium
 Actor OldSkinnyCoot : BlueGroovyOldCoot
 {
 	Tag "Old Skinny Coot"
-	SeeSound "Coot/SkinnyS"
-	ActiveSound "Coot/Yell"
+	SeeSound "Coot/See"
+	PainSound "Coot/Pain"
+	DeathSound "Coot/Die"
+	ActiveSound "Coot/Talk"
 	Obituary "%o was trespassing on a Skinny Old Coot's land."	
 	States
 	{
@@ -3853,6 +3855,7 @@ Actor OldSkinnyCoot : BlueGroovyOldCoot
 		S_O2 A 0
 		S_O2 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		S_O2 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		S_O2 A 0 ACS_NamedExecuteWithResult("RR_CussPack",0,1)
 		S_O2 A 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		S_O2 A 10 A_Look
