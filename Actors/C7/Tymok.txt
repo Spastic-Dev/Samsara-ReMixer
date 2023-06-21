@@ -422,10 +422,8 @@ actor TymokMissile : EniramMissile
     States
     {
       Death:
-        7MIS I 8 Bright A_Explode(random(15,30)-Random(10,5),126/random(1,2))
-        7MIS J 6 Bright
-        7MIS K 4 Bright
-        Stop
+        TNT1 A 0 A_Explode(random(15,30)-Random(10,5),126/random(1,2))
+        goto DeathFinish
     }
 }
 
@@ -437,4 +435,4 @@ Actor TymokDrop : SamsaraSlotFiveDrop
 		7RL2 A -1
 		Stop
 		}
-}		
+}
