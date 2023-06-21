@@ -1,9 +1,9 @@
 ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 {
-	Health 150
+	Health 75
 	Radius 16
 	Height 30
-	Speed 8
+	Speed 6
 	PainChance 256
 	Scale 0.65
 	MONSTER
@@ -23,7 +23,7 @@ ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 	DeathSound "sentdrone/detonate"
 	ActiveSound "sentdrone/active"
 	Tag "Sentry Drone"
-	Obituary "A Sentry Drone delivered its payload to %o"
+	Obituary "A Sentry Drone delivered its payload to %o."
 	DamageFactor "Mace", 1.1
 	DamageFactor "DragonClaw", 1.5
 	DamageFactor "MarathonFusion", 2.0
@@ -49,7 +49,6 @@ ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 			SEDR A 1 A_Chase
 			Loop
 		Pain:
-			TNT1 A 0 A_FastChase
 			TNT1 A 0 A_Pain
 			Goto See
 		Missile:
@@ -86,7 +85,7 @@ ACTOR SentryDroneBomb
 			TNT1 AAAAAAAA 0 A_SpawnDebris("DukeShrapnel1")
 			TNT1 AAAA 0 A_SpawnDebris("DukeShrapnel2")
 			TNT1 AAAAAAA 0 A_SpawnDebris("DukeShrapnel3")
-			TNT1 A 5 A_Explode(18, 142, 1)
+			TNT1 A 5 A_Explode(12, 142, 1)
 			stop
   }
 }
