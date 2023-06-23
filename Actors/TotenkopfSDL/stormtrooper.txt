@@ -34,58 +34,57 @@ Actor TotenkopfMechanoidStormtrooper : SamsaraMonsterMechanicalMediumTotalGib
 			TK39 A 1 A_Look
 			Loop
 		See:
-			"####" AAABBCCCDD 2 A_Chase
+			TK39 AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
-			"####" E 15 A_FaceTarget
+			TK39 E 15 A_FaceTarget
 		MissileHold:
-			"####" F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" F 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
-			"####" F 2 Bright 
-			"####" F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" F 1 Bright 
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
-			"####" G 3 Bright 
-			"####" F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" F 2 Bright 
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
-			"####" G 3 Bright 
-			"####" F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" F 2 Bright 
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
-			"####" G 3 Bright 
-			"####" F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" F 2 Bright 
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
-			"####" G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
-			"####" G 3 Bright 
-			"####" G 0 A_MonsterRefire(0,"See")
+			TK39 F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 F 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
+			TK39 F 2 Bright 
+			TK39 F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 F 1 Bright 
+			TK39 G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
+			TK39 G 3 Bright 
+			TK39 F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 F 2 Bright 
+			TK39 G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
+			TK39 G 3 Bright 
+			TK39 F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 F 2 Bright 
+			TK39 G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
+			TK39 G 3 Bright 
+			TK39 F 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 F 2 Bright 
+			TK39 G 0 A_CustomMissile("Totenkopf_Tracer_Stormtrooper",48,0,random(-6,6))
+			TK39 G 0 A_PlaySound("Totenkopf/AtkMG42", CHAN_WEAPON)
+			TK39 G 3 Bright 
+			TK39 G 0 A_MonsterRefire(0,"See")
 			Loop
 		Death:
-			TK39 A 0
-			"####" A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" H 0 A_SpawnItemEx("Totenkopf_Spark",0,0,48,0,0,0,0,SXF_NOCHECKPOSITION)
-			"####" H 2
-			"####" H 0 A_Scream
-			"####" H 3
-			"####" I 0 A_SpawnItemEx("Totenkopf_Spark",0,0,48,0,0,0,0,SXF_NOCHECKPOSITION)
-			"####" I 0 A_NoBlocking
-			"####" I 5
-			"####" J 0 A_SpawnItemEx("Totenkopf_Spark",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
-			"####" J 5
-			"####" K 5
-			"####" L -1 A_KillMaster
+			TK39 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TK39 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TK39 H 0 A_SpawnItemEx("Totenkopf_Spark",0,0,48,0,0,0,0,SXF_NOCHECKPOSITION)
+			TK39 H 2
+			TK39 H 0 A_Scream
+			TK39 H 3
+			TK39 I 0 A_SpawnItemEx("Totenkopf_Spark",0,0,48,0,0,0,0,SXF_NOCHECKPOSITION)
+			TK39 I 0 A_NoBlocking
+			TK39 I 5
+			TK39 J 0 A_SpawnItemEx("Totenkopf_Spark",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION)
+			TK39 J 5
+			TK39 K 5
+			TK39 L -1 A_KillMaster
 			Stop
 		Pain.MightyBoot:
-			"####" A 0 A_ChangeFlag("NOPAIN",1)
-			"####" A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			"####" A 2 A_FaceTarget
-			"####" A 0 A_Recoil(14)
-			"####" A 16 A_Pain
+			TK39 A 0 A_ChangeFlag("NOPAIN",1)
+			TK39 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TK39 A 2 A_FaceTarget
+			TK39 A 0 A_Recoil(14)
+			TK39 A 16 A_Pain
 			Goto See
 		Pain.ShrinkerDMG:
 			"####" A 0
@@ -419,7 +418,7 @@ Actor Totenkopf_Spark
 	States
 	{
 		Spawn:
-			"####" A 0
+			TK60 A 0
 			TK60 ABCD 4
 			Stop
 	}

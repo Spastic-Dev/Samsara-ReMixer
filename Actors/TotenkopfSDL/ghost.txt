@@ -31,27 +31,26 @@ Actor TotenkopfGhost : SamsaraMonsterSkeletonMedium
 			TK49 A 1 A_Look
 			Loop
 		See:
-			"####" AAAAABBBBB 1 A_Chase
+			TK49 AAAAABBBBB 1 A_Chase
 			loop
 		Melee:
-			"####" AB 1 A_CustomMeleeAttack(3,0,0,0,0)
+			TK49 AB 1 A_CustomMeleeAttack(3,0,0,0,0)
 			Goto See
 		Pain.MightyBoot:
-			"####"A 0 A_ChangeFlag("NOPAIN",1)
-			"####"A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-			"####" A 2 A_FaceTarget
-			"####"A 0 A_Recoil(14)
-			"####" B 16 A_Pain
+			TK49 A 0 A_ChangeFlag("NOPAIN",1)
+			TK49 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TK49 A 2 A_FaceTarget
+			TK49 A 0 A_Recoil(14)
+			TK49 B 16 A_Pain
 			Goto See
 		Death:
-			TK49 A 0
-			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" C 0 A_Scream
-			"####" C 0 A_NoBlocking
-			"####" C 7
-			"####" D 8 
-			"####" E 7
-			"####" F 8
+			TK49 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TK49 C 0 A_Scream
+			TK49 C 0 A_NoBlocking
+			TK49 C 7
+			TK49 D 8 
+			TK49 E 7
+			TK49 F 8
 			Stop
 	}
 }

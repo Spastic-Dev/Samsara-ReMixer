@@ -186,98 +186,97 @@ ACTOR TotenkopfPanzGrosse : SamsaraMonsterHumanoidHuge
 			TK43 A 1 A_Look
 			Loop
 		See:
-			"####" A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			"####" A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-			"####" A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-			"####" A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-			"####" A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
-			"####" A 0 A_JumpIfInventory("HLBossSee",1,"See2")
-			"####" A 0 A_GiveInventory("DukeBossSee",1)
-			"####" A 0 A_GiveInventory("CalebBossSee",1)		
-			"####" A 0 A_GiveInventory("EleenaBossSee",1)	
-			"####" A 0 A_GiveInventory("LoWangBossSee",1)
-			"####" A 0 A_GiveInventory("LeonardBossSee",1)
-			"####" A 0 A_GiveInventory("HLBossSee",1)
-			"####" A 0 A_GiveToTarget("DukeBossSightTaunt")
-			"####" A 0 A_GiveToTarget("CalebBossSightTaunt")
-			"####" A 0 A_GiveToTarget("EleenaBossSightTaunt")
-			"####" A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			"####" A 0 A_GiveToTarget("LeonardBossSightTaunt")		
-			"####" A 0 A_GiveToTarget("HLBossSightMusicQueue")
+			TK43 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+			TK43 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
+			TK43 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
+			TK43 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
+			TK43 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+			TK43 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
+			TK43 A 0 A_GiveInventory("DukeBossSee",1)
+			TK43 A 0 A_GiveInventory("CalebBossSee",1)		
+			TK43 A 0 A_GiveInventory("EleenaBossSee",1)	
+			TK43 A 0 A_GiveInventory("LoWangBossSee",1)
+			TK43 A 0 A_GiveInventory("LeonardBossSee",1)
+			TK43 A 0 A_GiveInventory("HLBossSee",1)
+			TK43 A 0 A_GiveToTarget("DukeBossSightTaunt")
+			TK43 A 0 A_GiveToTarget("CalebBossSightTaunt")
+			TK43 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+			TK43 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+			TK43 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+			TK43 A 0 A_GiveToTarget("HLBossSightMusicQueue")
 		See2:
-			"####" AAABBCCCDD 2 A_Chase
+			TK43 AAABBCCCDD 2 A_Chase
 			Loop
 		Missile:
-			"####" E 15 A_FaceTarget
-			"####" F 0 A_Playsound("Totenkopf/missilefire", CHAN_WEAPON)
-			"####" F 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_Trooper",56,-16)
-			"####" F 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_Trooper",56,16)
-			"####" F 5 Bright A_FaceTarget
+			TK43 E 15 A_FaceTarget
+			TK43 F 0 A_Playsound("Totenkopf/missilefire", CHAN_WEAPON)
+			TK43 F 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_Trooper",56,-16)
+			TK43 F 0 A_CustomMissile("Totenkopf_Panzerschreck_Projectile_Trooper",56,16)
+			TK43 F 5 Bright A_FaceTarget
 		MissileHold:
-			"####" G 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 1 Bright
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 2 Bright
-			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 2 Bright
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 2 Bright
-			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 2 Bright
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 2 Bright
-			"####" H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 2 Bright
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" G 0 A_FaceTarget
-			"####" G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" G 2 Bright
-			"####" H 0 A_FaceTarget
-			"####" H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
-			"####" H 2 Bright
-			"####" H 0 A_MonsterRefire(0,"See")
+			TK43 G 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 1 Bright
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 2 Bright
+			TK43 H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 2 Bright
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 2 Bright
+			TK43 H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 2 Bright
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 2 Bright
+			TK43 H 0 A_Playsound("Totenkopf/atkchaingun", CHAN_WEAPON)
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 2 Bright
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 G 0 A_FaceTarget
+			TK43 G 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 G 2 Bright
+			TK43 H 0 A_FaceTarget
+			TK43 H 0 A_CustomMissile("Totenkopf_Tracer_ChaingunTrooper",40,0,random(-8,8))
+			TK43 H 2 Bright
+			TK43 H 0 A_MonsterRefire(0,"See")
 			Loop
 		Death:
-			TK43 A 0
-			"####" A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			"####" A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			"####" A 1 A_Scream	
-			"####" A 150
-			"####" I 7		
-			"####" J 8
-			"####" K 7 A_NoBlocking
-			"####" L -1 A_KillMaster
+			TK43 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+			TK43 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TK43 A 1 A_Scream	
+			TK43 A 150
+			TK43 I 7		
+			TK43 J 8
+			TK43 K 7 A_NoBlocking
+			TK43 L -1 A_KillMaster
 			Stop
 	}
 }
