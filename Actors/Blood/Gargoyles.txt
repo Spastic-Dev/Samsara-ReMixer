@@ -116,8 +116,11 @@ Actor BloodGargoyle : SamsaraMonsterBeastLarge
 	Pain.Electric:
 	Pain.Shock:
 	Pain.Tesla:
-		CULC J 4 A_Pain
-		CULC J 4
+		CULC J 0 A_ChangeFlag("NOPAIN",1)
+		CULC J 0 A_Pain
+		CULC JJJJJJJJJJJJJJJJ 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC J 0 A_ChangeFlag("NOPAIN",0)
+		CULC J 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)

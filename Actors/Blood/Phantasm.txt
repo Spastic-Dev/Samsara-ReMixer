@@ -182,8 +182,11 @@ Actor BloodPhantasm : SamsaraMonsterSkeletonMedium
 	Pain.Electric:
 	Pain.Shock:
 	Pain.Tesla:
-		CULC M 4 A_Pain
-		CULC M 4
+		CULC M 0 A_ChangeFlag("NOPAIN",1)
+		CULC M 0 A_Pain
+		CULC MMMMMMMMMMMMMMMM 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC M 0 A_ChangeFlag("NOPAIN",0)
+		CULC M 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)

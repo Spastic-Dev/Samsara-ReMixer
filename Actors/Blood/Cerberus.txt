@@ -256,8 +256,11 @@ Actor Cerberus : SamsaraMonsterBeastHuge
 	Pain.Electric:
 	Pain.Shock:
 	Pain.Tesla:
-		CULC O 5 A_Pain
-		CULC O 5
+		CULC O 0 A_ChangeFlag("NOPAIN",1)
+		CULC O 0 A_Pain
+		CULC OOOOOOOOOOOOOOOO 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC O 0 A_ChangeFlag("NOPAIN",0)
+		CULC O 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Pain2:
 		CERX C 5 A_Pain

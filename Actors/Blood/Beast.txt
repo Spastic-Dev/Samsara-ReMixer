@@ -85,8 +85,11 @@ Actor BloodBeast : SamsaraMonsterBeastLargeTotalGib
 	Pain.Electric:
 	Pain.Shock:
 	Pain.Tesla:
-		CULC N 4 A_Pain
-		CULC N 4
+		CULC N 0 A_ChangeFlag("NOPAIN",1)
+		CULC N 0 A_Pain
+		CULC NNNNNNNNNNNNNNNN 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC N 0 A_ChangeFlag("NOPAIN",0)
+		CULC N 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -618,8 +621,11 @@ Actor BloodBeast_Boss : SamsaraMonsterBeastHuge
 			Goto See2
 		Pain.Shock:
 		Pain.Tesla:
-			CULC N 4 A_Pain
-			CULC N 4
+			CULC N 0 A_ChangeFlag("NOPAIN",1)
+			CULC N 0 A_Pain
+			CULC NNNNNNNNNNNNNNNN 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+			CULC N 0 A_ChangeFlag("NOPAIN",0)
+			CULC N 0 A_ChangeFlag("BRIGHT",0)
 			Goto See2
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)

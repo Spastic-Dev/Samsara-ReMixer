@@ -288,8 +288,11 @@ Actor Cultist : SamsaraMonsterHumanoidMedium
 	Pain.Shock:
 	Pain.Tesla:
 		TNT1 A 0 A_TakeInventory("CultistIsCrawling",1)
-		CULC G 4 A_Pain
-		CULC G 4
+		CULC G 0 A_ChangeFlag("NOPAIN",1)
+		CULC G 0 A_Pain
+		CULC GGGGGGGGGGGGGGGG 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC G 0 A_ChangeFlag("NOPAIN",0)
+		CULC G 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1096,8 +1099,11 @@ Actor Fanatic : Cultist
 	Pain.Shock:
 	Pain.Tesla:
 		TNT1 A 0 A_TakeInventory("CultistIsCrawling",1)
-		CULC G 4 A_Pain
-		CULC G 4
+		CULC G 0 A_ChangeFlag("NOPAIN",1)
+		CULC G 0 A_Pain
+		CULC GGGGGGGGGGGGGGGG 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC G 0 A_ChangeFlag("NOPAIN",0)
+		CULC G 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1877,8 +1883,11 @@ Actor BloodAcolyte : Cultist
 	Pain.Shock:
 	Pain.Tesla:
 		TNT1 A 0 A_TakeInventory("CultistIsCrawling",1)
-		CULC G 4 A_Pain
-		CULC G 4
+		CULC G 0 A_ChangeFlag("NOPAIN",1)
+		CULC G 0 A_Pain
+		CULC GGGGGGGGGGGGGGGG 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC G 0 A_ChangeFlag("NOPAIN",0)
+		CULC G 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -2680,8 +2689,11 @@ Actor Zealot : Cultist
 	Pain.Shock:
 	Pain.Tesla:
 		TNT1 A 0 A_TakeInventory("CultistIsCrawling",1)
-		CULC G 4 A_Pain
-		CULC G 4
+		CULC G 0 A_ChangeFlag("NOPAIN",1)
+		CULC G 0 A_Pain
+		CULC GGGGGGGGGGGGGGGG 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC G 0 A_ChangeFlag("NOPAIN",0)
+		CULC G 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -3425,8 +3437,12 @@ Actor BloodPriest : Zealot
 	Pain.Electric:
 	Pain.Shock:
 	Pain.Tesla:
-		CULC G 4 A_Pain
-		CULC G 4
+		TNT1 A 0 A_TakeInventory("CultistIsCrawling",1)
+		CULC G 0 A_ChangeFlag("NOPAIN",1)
+		CULC G 0 A_Pain
+		CULC GGGGGGGGGGGGGGGG 2 A_ChangeFlag("BRIGHT",CallACS("CalebTeslaBlink"))
+		CULC G 0 A_ChangeFlag("NOPAIN",0)
+		CULC G 0 A_ChangeFlag("BRIGHT",0)
 		Goto See
 	Death:
 		TNT1 A 0 A_Jump (228,"Style1")
