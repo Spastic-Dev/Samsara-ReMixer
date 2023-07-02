@@ -19,7 +19,8 @@ str ClassesAISTR[CLASSCOUNT] =
 {
 	"Doom_AI", "Chex_AI", "Corvus_AI", "Blaskowicz_AI", "Parias_AI", "Duke_AI", "SecurityOfficer_AI", "Ranger_AI", "IPFreeley_AI", "Blake_AI",
 	"Caleb_AI", "StrifeGuy_AI", "Eleena_AI", "Corridor7_AI", "RMR_AI", "Katarn_AI", "POGreed_AI", "Jack_AI", "Grondoval_AI", 
-	"Freeman_AI", "LoWang_AI", "Cybermage_AI", "Jon_AI", "Leonard_AI", "Bitterman_AI", "Demoness_AI", "JamesBond_AI", "PettonEverhail_AI"
+	"Freeman_AI", "LoWang_AI", "Cybermage_AI", "Jon_AI", "Leonard_AI", "Bitterman_AI", "Demoness_AI", "JamesBond_AI", "PettonEverhail_AI",
+	"Painkiller_AI", "Unreal_AI", "RTCWBlazkowicz_AI", "Quake3_AI", "Descent_AI", "DeusEx_AI"
 };
 
 Script "DFSummonClone" (void) //2527
@@ -32,58 +33,63 @@ Script "DFSummonClone" (void) //2527
 	{
 		default: SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid); break;
 		case 0:
-			if(CheckInventory("DoomClassMode") == 2)
-				SpawnSpotFacingForced("DoomStronghold_AI", 0, usertid);
-			else if(CheckInventory("DoomClassMode") == 1)
+			if(CheckInventory("DoomClassMode")==1)
 				SpawnSpotFacingForced("Doom64_AI", 0, usertid);
+			else if(CheckInventory("DoomClassMode")==2)
+				SpawnSpotFacingForced("DoomStronghold_AI ", 0, usertid);
 			else
 				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
 			break;
 		case 3:
-			if(CheckInventory("WolfenClassMode") == 2)
-				SpawnSpotFacingForced("Blaskowicz_Totenkopf_AI ", 0, usertid);
-			else if(CheckInventory("WolfenClassMode") == 1)
+			if(CheckInventory("WolfenMode")==1)
 				SpawnSpotFacingForced("Blaskowicz_SOD_AI", 0, usertid);
+			else if(CheckInventory("WolfenMode")==2)
+				SpawnSpotFacingForced("Blaskowicz_Totenkopf_AI ", 0, usertid);
 			else
 				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
 			break;
 		case 4:
-			if(CheckInventory("HexenClassMode") == 2)
-				SpawnSpotFacingForced("Baratus_AI", 0, usertid);
-			else if(CheckInventory("HexenClassMode") == 1)
+			if(CheckInventory("HexenMode")==1)
 				SpawnSpotFacingForced("Daedalon_AI", 0, usertid);
+			else if(CheckInventory("HexenMode")==2)
+				SpawnSpotFacingForced("Baratus_AI", 0, usertid);
 			else
 				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
 			break;
 		case 5:
-			/*if(CheckInventory("DukeClassMode") == 2)
-				SpawnSpotFacingForced("Duke_64_AI", 0, usertid);
-			else*/ if(CheckInventory("DukeClassMode") == 1)
+			if(CheckInventory("DukeClassMode")==1)
 				SpawnSpotFacingForced("Duke_LAB_AI", 0, usertid);
+			else if(CheckInventory("DukeClassMode")==2)
+				SpawnSpotFacingForced("Duke_64_AI", 0, usertid);
 			else
 				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
 			break;
 		case 8:
-			if(CheckInventory("RottMode") == 4)
-				SpawnSpotFacingForced("DougWendt_AI", 0, usertid);
-			else if(CheckInventory("RottMode") == 3)
-				SpawnSpotFacingForced("LoreleiNi_AI", 0, usertid);
-			else if(CheckInventory("RottMode") == 2)
-				SpawnSpotFacingForced("ThiBarret_AI", 0, usertid);
-			else if(CheckInventory("RottMode") == 1)
+			if(CheckInventory("RoTTMode")==1)
 				SpawnSpotFacingForced("TaradinoCassatt_AI ", 0, usertid);
+			else if(CheckInventory("RoTTMode")==2)
+				SpawnSpotFacingForced("ThiBarret_AI", 0, usertid);
+			else if(CheckInventory("RoTTMode")==3)
+				SpawnSpotFacingForced("LoreleiNi_AI", 0, usertid);
+			else if(CheckInventory("RoTTMode")==4)
+				SpawnSpotFacingForced("DougWendt_AI", 0, usertid);
 			else
 				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
 			break;
+		/*
+		// Put the Eradicator characters here once they're done.
+		case 12:
+			break;
+		*/
 		case 16:
-			if(CheckInventory("IpogMode") == 4)
-				SpawnSpotFacingForced("POGreed5_AI", 0, usertid);
-			else if(CheckInventory("IpogMode") == 3)
-				SpawnSpotFacingForced("POGreed4_AI", 0, usertid);
-			else if(CheckInventory("IpogMode") == 2)
-				SpawnSpotFacingForced("POGreed3_AI", 0, usertid);
-			else if(CheckInventory("IpogMode") == 1)
+			if(CheckInventory("IPoGMode")==1)
 				SpawnSpotFacingForced("POGreed2_AI ", 0, usertid);
+			else if(CheckInventory("IPoGMode")==2)
+				SpawnSpotFacingForced("POGreed3_AI", 0, usertid);
+			else if(CheckInventory("IPoGMode")==3)
+				SpawnSpotFacingForced("POGreed4_AI", 0, usertid);
+			else if(CheckInventory("IPoGMode")==4)
+				SpawnSpotFacingForced("POGreed5_AI", 0, usertid);
 			else
 				SpawnSpotFacingForced(ClassesAISTR[PlayerClass(PlayerNumber())], 0, usertid);
 			break;
