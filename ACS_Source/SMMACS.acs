@@ -531,12 +531,10 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SetActivator(thisMonNew,AAPTR_Default);
 	Thing_ChangeTid(thisMonNew,thisMonOld);
 
-	int ambush = GetActorProperty(0,APROP_Ambush);
-
-	SetActorProperty(newMonTid,APROP_Ambush,ambush);
+	SetActorProperty(newMonTid,APROP_Ambush,GetActorProperty(0,APROP_Ambush));
 	SetThingSpecial(newMonTid,GetUserVariable(0,"user_special"),GetUserArray(0,"user_args",0),GetUserArray(0,"user_args",1),GetUserArray(0,"user_args",2),GetUserArray(0,"user_args",3));
 
-	if(!ambush && alert)
+	if(!GetActorProperty(newMonTid,APROP_Ambush) && alert)
 	{
 		ACS_NamedExecuteWithResult("ReMixerAwakenMonster",newMonTid);
 	}
