@@ -1,48 +1,17 @@
-ACTOR ZombiemanSpawner replaces Zombieman 
+ACTOR ZombiemanSpawner : ReMixerBaseSpawner replaces Zombieman
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
 	SpawnID 4
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2)			
-		Deciding:
-			TNT1 A 1
-			Loop
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
-	}		
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2)
+			Goto Super::SeeWait
+	}
 }
 
 ACTOR ZombiemanSpawnerGenerator : ZombiemanSpawner {}
@@ -55,7 +24,7 @@ actor ZombieManRandomizer : RandomSpawner
 	DropItem "MMRandomizer_ZombieScientist6", 255, 5
 	DropItem "ZombieMan3", 255, 5
 	DropItem "MMRandomizer_ZombieManVariant1", 255, 5
-    DropItem "MMRandomizer_ZombieManVariant2", 255, 5
+	DropItem "MMRandomizer_ZombieManVariant2", 255, 5
 	DropItem "MMRandomizer_ZombieManVariant3", 255, 5
 	DropItem "MMRandomizer_ZombieScientist3", 255, 3
 	DropItem "MMRandomizer_ZombieScientist4", 255, 3
@@ -66,49 +35,19 @@ actor ZombieManRandomizer : RandomSpawner
 	DropItem "MMRandomizer_FemaleSergeant", 255, 1
 }
 
-ACTOR ShotgunGuySpawner replaces ShotgunGuy
+ACTOR ShotgunGuySpawner : ReMixerBaseSpawner replaces ShotgunGuy
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
 	SpawnID 1
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,1)			
-		Deciding:
-			TNT1 A 1
-			Loop
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,1)
+			Goto Super::SeeWait
 	}
 }
 
@@ -118,7 +57,7 @@ actor ShotgunguyRandomizer : RandomSpawner
 {
 	DropItem "Shotgunguy3", 255, 6
 	DropItem "MMRandomizer_ShotgunguyVariant1", 255, 6
-    DropItem "MMRandomizer_ShotgunguyVariant2", 255, 6
+	DropItem "MMRandomizer_ShotgunguyVariant2", 255, 6
 	DropItem "MMRandomizer_ShotgunguyVariant3", 255, 6
 	DropItem "MMRandomizer_PlasmaZombie", 255, 4
 	DropItem "MMRandomizer_FemalePlasma", 255, 3
@@ -126,49 +65,19 @@ actor ShotgunguyRandomizer : RandomSpawner
 	DropItem "MMRandomizer_ChainsawZombie", 255, 1
 }
 
-ACTOR DoomImpSpawner replaces DoomImp
+ACTOR DoomImpSpawner : ReMixerBaseSpawner replaces DoomImp
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
 	SpawnID 5
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,2)			
-		Deciding:
-			TNT1 A 1
-			Loop
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,2)
+			Goto Super::SeeWait
 	}
 }
 
@@ -178,7 +87,7 @@ actor DoomImpRandomizer : RandomSpawner
 {
 	DropItem "DoomImp3", 255, 5
 	DropItem "MMRandomizer_VoidImp", 255, 5
-    DropItem "MMRandomizer_STImp", 255, 5
+	DropItem "MMRandomizer_STImp", 255, 5
 	DropItem "MMRandomizer_ImpAbomination", 255, 5
 	DropItem "DarkImp2", 255, 3
 	DropItem "MMRandomizer_Shadow", 255, 3
@@ -191,53 +100,23 @@ actor DoomImpRandomizer : RandomSpawner
 	DropItem "MMRandomizer_DarkDevil", 255, 2
 	DropItem "MMRandomizer_NamiDarkImp", 255, 2
 	DropItem "MMRandomizer_NetherDarkImp", 255, 2
-	DropItem "MMRandomizer_VoidDarkImp", 255, 2	
+	DropItem "MMRandomizer_VoidDarkImp", 255, 2
 	DropItem "MMRandomizer_CyberImp", 255, 2
 }
 
-ACTOR ChaingunGuySpawner replaces ChaingunGuy
+ACTOR ChaingunGuySpawner : ReMixerBaseSpawner replaces ChaingunGuy
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
 	SpawnID 2
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,3)			
-		Deciding:
-			TNT1 A 1
-			Loop
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,3)
+			Goto Super::SeeWait
 	}
 }
 
@@ -256,85 +135,35 @@ actor ChaingunguyRandomizer : RandomSpawner
 	DropItem "MMRandomizer_FemaleRail", 255, 1
 }
 
-ACTOR SuperShotgunGuySpawner : ShotgunGuySpawner replaces SuperShotgunGuy 
+ACTOR SuperShotgunGuySpawner : ShotgunGuySpawner replaces SuperShotgunGuy
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+		Initialize:
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,4)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,4)
+			Goto Super::SeeWait
 	}
 }
 
 ACTOR SuperShotgunGuySpawnerGenerator : SuperShotgunGuySpawner {}
 
-ACTOR DemonSpawner replaces Demon 
+ACTOR DemonSpawner : ReMixerBaseSpawner replaces Demon
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 30
-	Mass 0x7fffffff
 	SpawnID 8
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,5)			
-		Deciding:
-			TNT1 A 1
-			Loop	
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,5)
+			Goto Super::SeeWait
 	}
 }
 
@@ -351,85 +180,36 @@ actor DoomDemonRandomizer : RandomSpawner
 	DropItem "MMRandomizer_MechBloodDemon", 255, 2
 }
 
-ACTOR DarkImpSpawner: DoomImpSpawner replaces DarkImp
+ACTOR DarkImpSpawner : DoomImpSpawner replaces DarkImp
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
-	+INVULNERABLE
 	-COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+		Initialize:
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,6)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,6)
+			Goto Super::SeeWait
 	}
 }
 
 ACTOR DarkImpSpawnerGenerator : DarkImpSpawner {}
 
-ACTOR SpectreSpawner replaces Spectre
+ACTOR SpectreSpawner : ReMixerBaseSpawner replaces Spectre
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 30
-	Mass 0x7fffffff
 	SpawnID 9
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,7)			
-		Deciding:
-			TNT1 A 1
-			Loop		
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,7)
+			Goto Super::SeeWait
 	}
 }
 
@@ -444,84 +224,34 @@ actor SpectreRandomizer : RandomSpawner
 
 ACTOR BloodDemonSpawner : DemonSpawner replaces BloodDemon
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 30
-	Mass 0x7fffffff
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+		Initialize:
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,8)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,8)
+			Goto Super::SeeWait
 	}
 }
 
 ACTOR BloodDemonSpawnerGenerator : BloodDemonSpawner {}
 
-ACTOR LostSoulSpawner replaces LostSoul 
+ACTOR LostSoulSpawner : ReMixerBaseSpawner replaces LostSoul
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 16
-	Mass 0x7fffffff
 	SpawnID 110
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	+NOGRAVITY
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,9)			
-		Deciding:
-			TNT1 A 1
-			Loop	
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,9)
+			Goto Super::SeeWait
 	}
 }
 
@@ -537,50 +267,20 @@ actor LostSoulRandomizer : RandomSpawner
 	DropItem "MMRandomizer_Arachnorb", 255, 3
 }
 
-ACTOR CacodemonSpawner replaces Cacodemon 
+ACTOR CacodemonSpawner : ReMixerBaseSpawner replaces Cacodemon
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 31
-	Mass 0x7fffffff
 	SpawnID 19
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	+NOGRAVITY
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,10)			
-		Deciding:
-			TNT1 A 1
-			Loop	
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,10)
+			Goto Super::SeeWait
 	}
 }
 
@@ -596,49 +296,19 @@ Actor CacodemonRandomizer : RandomSpawner
 	DropItem "MMRandomizer_Abaddon", 255, 2
 }
 
-ACTOR RevenantSpawner replaces Revenant
+ACTOR RevenantSpawner : ReMixerBaseSpawner replaces Revenant
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
 	SpawnID 20
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,11)			
-		Deciding:
-			TNT1 A 1
-			Loop		
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,11)
+			Goto Super::SeeWait
 	}
 }
 
@@ -654,84 +324,34 @@ Actor RevenantRandomizer : RandomSpawner
 
 ACTOR CacolanternSpawner : CacodemonSpawner replaces Cacolantern
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 31
-	Mass 0x7fffffff
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+		Initialize:
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,12)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,12)
+			Goto Super::SeeWait
 	}
 }
 
 ACTOR CacolanternSpawnerGenerator : CacolanternSpawner {}
 
-ACTOR PainElementalSpawner replaces PainElemental 
+ACTOR PainElementalSpawner : ReMixerBaseSpawner replaces PainElemental
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 31
-	Mass 0x7fffffff
 	SpawnID 115
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	+NOGRAVITY
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,13)	
-		Deciding:
-			TNT1 A 1
-			Loop		
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,13)
+			Goto Super::SeeWait
 	}
 }
 
@@ -744,49 +364,19 @@ Actor PainElementalRandomizer : RandomSpawner
 	DropItem "MMRandomizer_Afrit", 255, 4
 }
 
-ACTOR HellKnightSpawner replaces HellKnight
+ACTOR HellKnightSpawner : ReMixerBaseSpawner replaces HellKnight
 {
-	Health 0x7fffffff
 	Height 64
 	Radius 24
-	Mass 0x7fffffff
 	SpawnID 113
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,14)			
-		Deciding:
-			TNT1 A 1
-			Loop			
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,14)
+			Goto Super::SeeWait
 	}
 }
 
@@ -800,123 +390,61 @@ actor HellKnightRandomizer : RandomSpawner
 	DropItem "MMRandomizer_CyberKnight", 255, 2
 }
 
-ACTOR ArachnotronSpawner replaces Arachnotron
+ACTOR ArachnotronSpawner : ReMixerBaseSpawner replaces Arachnotron
 {
-	Health 0x7fffffff
 	Height 64
 	Radius 64
-	Mass 0x7fffffff
 	SpawnID 6
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+NOTDMATCH
-	+SHOOTABLE
 	+BOSSDEATH
-	+SOLID
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,15)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,15)
+			Goto Super::SeeWait
 		Continue:
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
-			TNT1 A 2
+			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
 			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			Goto Super::SeeWait
 		Death:
 			TNT1 A 6 A_BossDeath
-			stop
+			Stop
 	}
 }
 
 ACTOR ArachnotronSpawnerGenerator : ArachnotronSpawner { -BOSSDEATH }
 
-ACTOR FatsoSpawner replaces Fatso
+ACTOR FatsoSpawner : ReMixerBaseSpawner replaces Fatso
 {
-	Health 0x7fffffff
 	Height 64
 	Radius 48
-	Mass 0x7fffffff
 	SpawnID 112
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+NOTDMATCH
-	+SHOOTABLE
 	+BOSSDEATH
-	+SOLID
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,16)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,16)
+			Goto Super::SeeWait
 		Continue:
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
-			TNT1 A 2
+			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
 			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			Goto Super::SeeWait
 		Death:
 			TNT1 A 6 A_BossDeath
-			stop
+			Stop
 	}
 }
 
@@ -924,96 +452,45 @@ ACTOR FatsoSpawnerGenerator : FatsoSpawner { -BOSSDEATH }
 
 ACTOR AbaddonSpawner : CacodemonSpawner replaces Abaddon
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 31
-	Mass 0x7fffffff
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+		Initialize:
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,17)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,17)
+			Goto Super::SeeWait
 	}
 }
 
 ACTOR AbaddonSpawnerGenerator : AbaddonSpawner {}
 
-ACTOR ArchvileSpawner replaces Archvile 
+ACTOR ArchvileSpawner : ReMixerBaseSpawner replaces Archvile
 {
-	Health 0x7fffffff
 	Height 56
 	Radius 20
-	Mass 0x7fffffff
 	SpawnID 111
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+NOTDMATCH
-	+SHOOTABLE
 	+BOSSDEATH
-	+SOLID
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,18)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,18)
+			Goto Super::SeeWait
 		Continue:
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
-			TNT1 A 2
+			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
 			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			Goto Super::SeeWait
 		Death:
 			TNT1 A 6 A_BossDeath
-			stop
+			Stop
 	}
 }
 
@@ -1026,62 +503,31 @@ Actor ArchvileRandomizer : RandomSpawner
 	DropItem "MMRandomizer_Hierophant", 255, 2
 }
 
-ACTOR BaronOfHellSpawner replaces BaronOfHell
+ACTOR BaronOfHellSpawner : ReMixerBaseSpawner replaces BaronOfHell
 {
-	Health 0x7fffffff
 	Height 64
 	Radius 24
-	Mass 0x7fffffff
 	SpawnID 3
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+NOTDMATCH
-	+SHOOTABLE
 	+BOSSDEATH
-	+SOLID
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,19)		
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,19)
+			Goto Super::SeeWait
 		Continue:
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
-			TNT1 A 2
+			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
 			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			Goto Super::SeeWait
 		Death:
 			TNT1 A 6 A_BossDeath
-			stop
+			Stop
 	}
 }
 
@@ -1089,229 +535,105 @@ ACTOR BaronOfHellSpawnerGenerator : BaronOfHellSpawner { -BOSSDEATH }
 
 ACTOR HectebusSpawner : FatsoSpawner replaces Hectebus
 {
-	Health 0x7fffffff
 	Height 64
 	Radius 48
-	Mass 0x7fffffff
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+		Initialize:
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,20)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,20)
+			Goto Super::SeeWait
 	}
 }
 
 ACTOR HectebusSpawnerGenerator : HectebusSpawner {}
 
-ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor 
+ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor
 {
-	Health 0x7fffffff
 	Height 64
 	Radius 24
-	Mass 0x7fffffff
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+SOLID
-	+NOTDMATCH
-	+SHOOTABLE
 	-BOSSDEATH
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+		Initialize:
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,21)			
-		Deciding:
-			TNT1 A 1
-			Loop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,21)
+			Goto Super::SeeWait
 	}
 }
 
 ACTOR BelphegorSpawnerGenerator : BelphegorSpawner {}
 
-ACTOR SpiderMastermindSpawner replaces SpiderMastermind
+ACTOR SpiderMastermindSpawner : ReMixerBaseSpawner replaces SpiderMastermind
 {
-	Health 0x7fffffff
 	Height 100
 	Radius 100
-	Mass 0x7fffffff
 	SpawnID 7
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+NOTDMATCH
-	+SHOOTABLE
 	+BOSSDEATH
-	+SOLID
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,22)			
-		Deciding:
-			TNT1 A 1
-			Loop
+		Initialize:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,22)
+			Goto Super::SeeWait
 		Continue:
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
-			TNT1 A 2
+			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
 			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			Goto Super::SeeWait
 		Death:
 			TNT1 A 6 A_BossDeath
-			stop
+			Stop
 	}
 }
 
 ACTOR SpiderMastermindSpawnerGenerator : SpiderMastermindSpawner { -BOSSDEATH }
 
-ACTOR CyberDemonSpawner replaces CyberDemon
+ACTOR CyberDemonSpawner : ReMixerBaseSpawner replaces CyberDemon
 {
-	Health 0x7fffffff
 	Height 110
 	Radius 40
-	Mass 0x7fffffff
 	SpawnID 114
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+NOTDMATCH
-	+SHOOTABLE
 	+BOSSDEATH
-	+SOLID
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,23)			
-		Deciding:
-			TNT1 A 1
-			Loop
+		Initialize:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,23)
+			Goto Super::SeeWait
 		Continue:
 		BossWait:
-			TNT1 A 0 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "BossRemove")
-			TNT1 A 2
+			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
 			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnSetSolid
+			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-		BossWaitLoop:
-			TNT1 A 1
-			Loop
-		BossRemove:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			Goto Super::SeeWait
 		Death:
 			TNT1 A 6 A_BossDeath
-			stop
+			Stop
 	}
 }
 
 ACTOR CyberDemonSpawnerGenerator : CyberDemonSpawner { -BOSSDEATH }
 
-ACTOR WolfensteinSSSpawner replaces WolfensteinSS 
+ACTOR WolfensteinSSSpawner : ReMixerBaseSpawner replaces WolfensteinSS
 {
-	Health 0x7fffffff
 	Radius 20
 	Height 56
-	Mass 0x7fffffff
 	SpawnID 116
-	+INVULNERABLE
-	+COUNTKILL
-	+ISMONSTER
-	+NOTDMATCH
-	+SHOOTABLE
 	+BOSSDEATH
-	+SOLID
-	var int user_special;
-	var int user_arg0;
-	var int user_arg1;
-	var int user_arg2;
-	var int user_arg3;
 	States
 	{
-		Spawn:
-			TNT1 A 1
-			TNT1 A 0 A_SetUserVar("user_special",special)
-			TNT1 A 0 A_SetUserVar("user_arg0",args[0])
-			TNT1 A 0 A_SetUserVar("user_arg1",args[1])
-			TNT1 A 0 A_SetUserVar("user_arg2",args[2])
-			TNT1 A 0 A_SetUserVar("user_arg3",args[3])
+		Initialize:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-		LookWait:
-			TNT1 A 0 A_CheckSightOrRange(512,1)
-			Goto See
-			TNT1 A 4 A_TurretLook
-			Loop
+			Goto Super::LookWait
 		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,24)			
-		Deciding:
-			TNT1 A 1
-			Loop	
-		Continue:
-		Death:
-		DeathForInvasion:
-			TNT1 A 1 Thing_Remove(0)
-			Stop
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,24)
+			Goto Super::SeeWait
 	}
 }
 
