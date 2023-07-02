@@ -1,24 +1,20 @@
 Actor C7AlienTeleport : SamsaraMonsterSkeletonHuge {
-	Health 2500
-	Radius 35
-	Height 68
+	Health 800
+	Radius 31
+	Height 56
 	Speed 5
 	Scale 1.5
 	Mass 3000
 	Monster
 	Species "C7"
+	PainChance 100
 	+DONTMORPH
 	+FLOAT
 	+NOGRAVITY
-	+BOSS
-	+BOSSDEATH
-	+NOTIMEFREEZE
 	+MISSILEMORE
-	+MISSILEEVENMORE
 	+DONTRIP
 	+DROPOFF
 	+SPAWNFLOAT
-	+NOPAIN
 	+NOINFIGHTING
 	+NOICEDEATH
 	+NOBLOOD
@@ -29,45 +25,6 @@ Actor C7AlienTeleport : SamsaraMonsterSkeletonHuge {
 	ActiveSound "c7alient/roam"
 	AttackSound ""
 	Obituary "%o was lost in a black hole."
-	DamageFactor "WolfEnemyBullet", 0.0
-    DamageFactor "Mace", 1.45
-	DamageFactor "CorvusHellstaffTomed", 0.1
-    DamageFactor "CorvusCrossbow", 1.1	
-    DamageFactor "DragonClaw", 1.4
-	DamageFactor "MarathonShotgun", 0.8
-	DamageFactor "MarathonPlasmaFire", 0.8
-	DamageFactor "MarathonFusion", 0.7	
-    DamageFactor "WMCNade", 0.9
-    DamageFactor "BJSpear", 0.5	
-	DamageFactor "DCannonProj", 0.9	
-	DamageFactor "Tesla", 0.6
-	DamageFactor "Shock", 0.3
-	DamageFactor "LifeLeech", 0.2		
-	DamageFactor "CalebFire", 0.8	
-    DamageFactor "CalebBullet", 0.8
-	DamageFactor "Explosive", 1.0
-	DamageFactor "FireExplosive", 1.0
-	DamageFactor "Vodoo", 0.1
-	DamageFactor "DisruptorWall", 0.2
-	DamageFactor "EradNova", 0.4
-    DamageFactor "EradGreenFire", 0.1	
-    DamageFactor "EradCoopGreenFire", 0.1	
-	DamageFactor "RottFire", 0.6
-	DamageFactor "HLLaser", 0.5
-	DamageFactor "WTRangedFire", 0.4	
-	DamageFactor "Nuke", 0.2
-	DamageFactor "SWNuke", 0.2
-	DamageFactor "SWNukeCoop", 0.2	
-	DamageFactor "SWFlame", 0.1
-	DamageFactor "SWFlameCoop", 0.1	
-	DamageFactor "SWFlame2", 0.2	
-	DamageFactor "SWFlame2Coop", 0.2
-	DamageFactor "SWFlame3", 0.7
-    DamageFactor "RMR-BigPlasma", 0.4		
-	DamageFactor "CMDMGSHIT", 0.8
-	DamageFactor "Disintegrate", 0.8	
-	DamageFactor "RottBullet", 0.8	
-	DamageFactor "C7Disintegrate", 0.2	
 	PainChance "ShrinkerDMG", 0
 	States {
 		Spawn:
@@ -79,27 +36,6 @@ Actor C7AlienTeleport : SamsaraMonsterSkeletonHuge {
 			C758 H 5 A_Look
 			Loop
 		See:
-			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"SeeLoop")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"SeeLoop")		
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"SeeLoop")		
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"SeeLoop")	
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"SeeLoop")						
-			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"SeeLoop")
-			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
-			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
-			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
-			TNT1 A 0 A_GiveInventory("HLBossSee",1)
-			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
-			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
-			C758 HHGGFFEE 2
-			TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		SeeLoop:	
 			C758 A 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			C758 A 2 A_Chase("","")
 			C758 B 2 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -110,7 +46,6 @@ Actor C7AlienTeleport : SamsaraMonsterSkeletonHuge {
 			C758 D 2 A_Chase
 			Loop
 		Missile:
-			TNT1 A 0 A_Jump(120,"See")
 			C758 M 0 A_FaceTarget
 			TNT1 A 0 A_SpawnItemEx("C7AlienTAlienSpawner",50,random(Random(120,60),Random(-80,-40)),10,0,0,0,0,SXF_NOCHECKPOSITION)
 			Goto See			
