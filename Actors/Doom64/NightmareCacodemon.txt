@@ -8,6 +8,7 @@ ACTOR NightmareCacodemon64 : Cacodemon64
 	Tag "Nightmare Cacodemon"
 	Obituary "%o was scorched by a Nightmare Cacodemon."
 	HitObituary "%o got chomped on by a Nightmare Cacodemon."
+	BloodColor "C5 00 28"
 	States
 	{
 		Spawn:
@@ -49,7 +50,7 @@ ACTOR NightmareCacodemon64 : Cacodemon64
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_ChangeFlag("THRUACTORS", TRUE)
 			TNT1 A 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS", FALSE)
 			64NC H 8 A_ScaleVelocity(0.5)
