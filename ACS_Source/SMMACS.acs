@@ -12,19 +12,16 @@
 
 #include "Spawns.acs"
 
-int SMMCVARINFO =
-"Stuff";
-
-int SMMCHANGES =
-"Stuff";
+str SMMCVARINFO = "Stuff";
+str SMMCHANGES = "Stuff";
 
 str SAMSARA_CHANGELIST = "1.1 Preview Build";
 
-str gameTypesStr[MAX_GAME_TYPES] =
-		{	"mm_doom", "mm_chex", "mm_heretic", "mm_wolf3d", "mm_hexen1", "mm_duke3d", "mm_marathon", "mm_quake1",
-			"mm_rott", "mm_bstone", "mm_blood", "mm_strife", "mm_erad", "mm_c7", "mm_rmr", "mm_darkf", "mm_ipog",
-			"mm_disrup", "mm_witch", "mm_halflife", "mm_sw", "mm_cm", "mm_ps", "mm_rr", "mm_quake2", "mm_hexen2",
-			"mm_goldeneye", "mm_catacomb", "mm_painkiller", "mm_unreal", "mm_rtcw", "mm_quake3", "mm_descent", "mm_deusex"
+str gameTypesStr[MAX_GAME_TYPES] = {
+	"mm_doom", "mm_chex", "mm_heretic", "mm_wolf3d", "mm_hexen1", "mm_duke3d", "mm_marathon", "mm_quake1",
+	"mm_rott", "mm_bstone", "mm_blood", "mm_strife", "mm_erad", "mm_c7", "mm_rmr", "mm_darkf", "mm_ipog",
+	"mm_disrup", "mm_witch", "mm_halflife", "mm_sw", "mm_cm", "mm_ps", "mm_rr", "mm_quake2", "mm_hexen2",
+	"mm_goldeneye", "mm_catacomb", "mm_painkiller", "mm_unreal", "mm_rtcw", "mm_quake3", "mm_descent", "mm_deusex"
 };
 
 str gameSetsStr[MAX_GAME_TYPES] = {
@@ -137,7 +134,7 @@ Script "ReMixerInit" OPEN //667
 		HudMessage(s:"ReMixer ",s:SAMSARA_CHANGELIST; HUDMSG_FADEOUT|HUDMSG_LOG, 93003, CR_GOLD, 1.5, 0.28, 2.0, 0.5);
 		if (Singleplayer() == 1)
 		{
-			if(GetCvar("samsara_cvarinfo") == 0)
+			if(GetCVar("samsara_cvarinfo") == 0)
 			{
 				Delay(2);
 				Hudmessage(s:SMMCVARINFO; HUDMSG_PLAIN|HUDMSG_LOG, 93000, CR_GRAY, 1.5, 0.25, 2.5);
@@ -177,20 +174,16 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 	Switch(spawncode)
 	{
 		case 1:
-			if(GetCvar("samsara_runninginzdoom"))
+			if(GetCVar("samsara_runninginzdoom"))
 				SetActorFlag(0,"INTERPOLATEANGLES",1);
-			//if(SpawnForced("StrongHoldLoaded",0,0,0,0))
-				//ACS_NamedExecuteWithResult("Samsara_MonsterSpawn",0,0,0,0); //uncomment this for stronghold support, will deal with later
-			if(GetCVar("mm_skilloverride") < 5)
-			{
-				multitoken = GetCVar("mm_skilloverride");
-				GiveInventory("DifficultyToken", multitoken);
-			}
-			else
-			{
-				multitoken = GameSkill ();
-				GiveInventory("DifficultyToken", multitoken);
-			}
+			/*
+				if(SpawnForced("StrongHoldLoaded",0,0,0,0))
+					ACS_NamedExecuteWithResult("Samsara_MonsterSpawn",0,0,0,0); //uncomment this for stronghold support, will deal with later
+			*/
+
+			int useSkill = GetCVar("mm_skilloverride");
+			multitoken = useSkill < 5 ? useSkill : GameSkill();
+			GiveInventory("DifficultyToken", multitoken);
 
 			if(GetCVar("mm_invisiblemode") == 1)
 			{
@@ -198,7 +191,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 				SetActorProperty(0,APROP_Alpha,0);
 			}
 
-			if(GetCVAR("mm_dropmode") == 1)
+			if(GetCVar("mm_dropmode") == 1)
 			{
 				GiveInventory("WeaponDropToken", 1);
 			}
@@ -221,8 +214,6 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 				}
 				break;
 			}
-			else { break; }
-
 			break;
 
 		case 2:
@@ -243,14 +234,16 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 				default:
 					//SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
 					break;
+
 				case 0: // Doom
-					int doomMode = GetCvar("mm_doommode");
+					int doomMode = GetCVar("mm_doommode");
 
 					switch(doomMode)
 					{
 						default:
 							altSetSelect = doomMode-1;
 							break;
+
 						case 0:
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
 							{
@@ -263,28 +256,33 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 							{
 								default:
 								case 0:
-									altSetSelect = GetCvar("mm_doomspawns") * 2;
+									altSetSelect = GetCVar("mm_doomspawns") * 2;
 									break;
+
 								case 1:
-									altSetSelect = 1 + GetCvar("mm_doom64spawns") * 2;
+									altSetSelect = 1 + GetCVar("mm_doom64spawns") * 2;
 									break;
 							}
 							break;
+
 						case 1:
-							altSetSelect = GetCvar("mm_doomspawns") * 2;
+							altSetSelect = GetCVar("mm_doomspawns") * 2;
 							break;
+
 						case 2:
-							altSetSelect = 1 + GetCvar("mm_doom64spawns") * 2;
+							altSetSelect = 1 + GetCVar("mm_doom64spawns") * 2;
 							break;
+
 						case 3:
 							switch(random(0,1))
 							{
 								default:
 								case 0:
-									altSetSelect = GetCvar("mm_doomspawns") * 2;
+									altSetSelect = GetCVar("mm_doomspawns") * 2;
 									break;
+
 								case 1:
-									altSetSelect = 1 + GetCvar("mm_doom64spawns") * 2;
+									altSetSelect = 1 + GetCVar("mm_doom64spawns") * 2;
 									break;
 							}
 
@@ -292,13 +290,14 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					}
 					break;
 				case 3: // Wolf3d
-					int wolfMode = GetCvar("mm_wolfmode");
+					int wolfMode = GetCVar("mm_wolfmode");
 
 					switch(wolfMode)
 					{
 						default:
 							altSetSelect = wolfMode-1;
 							break;
+
 						case 0: //doing this one the crude way
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
 							{
@@ -307,22 +306,26 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 									break;
 							}
 							break;
+
 						case 4:
 							altSetSelect = random(0,1);
 							break;
+
 						case 5:
 							altSetSelect = random(0,2);
 							break;
 					}
 					break;
+
 				case 5:
-					int dukeMode = GetCvar("mm_dukemode");
+					int dukeMode = GetCVar("mm_dukemode");
 
 					switch(dukeMode)
 					{
 						default:
 							altSetSelect = dukeMode-1;
 							break;
+
 						case 0:
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
 							{
@@ -331,19 +334,22 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 									break;
 							}
 							break;
+
 						case 3:
 							altSetSelect = random(0,1);
 							break;
 					}
 					break;
+
 				case 19:
-					int halfLifeMode = GetCvar("mm_halflifemode");
+					int halfLifeMode = GetCVar("mm_halflifemode");
 
 					switch(halfLifeMode)
 					{
 						default:
 							altSetSelect = halfLifeMode-1;
 							break;
+
 						case 0:
 							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
 							{
@@ -356,7 +362,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					break;
 			}
 
-			if(GetCvar("mm_reducemonsters") < 99)
+			if(GetCVar("mm_reducemonsters") < 99)
 			{
 				until(processedCounts) { Delay(1); }
 
@@ -373,44 +379,41 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			}
 			ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
 			SetActorState(0,"Continue",1);
-
 			break;
 
 		case 3:
-		if(GetCVar("mm_multiply") > 1)
-		{
-			multitoken = GetCvar("mm_multiply");
-			GiveInventory("MultiplyToken", multitoken);
+			if(GetCVar("mm_multiply") > 1)
+			{
+				multitoken = GetCVar("mm_multiply");
+				GiveInventory("MultiplyToken", multitoken);
+			}
 			break;
-		}
-		else { break; }
+
 		case 4:
-			if(GetCVAR("mm_dropmode") == 1)
+			if(GetCVar("mm_dropmode") == 1)
 			{
 				GiveInventory("WeaponDropToken", 1);
 			}
-		else { break; }
+
+			break;
 	}
 }
 
 Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 {
-	if (GetCvar("sv_nomonsters")) { terminate; }
+	if (GetCVar("sv_nomonsters")) { terminate; }
 
-	str pickMonster = "";
-	int thisMonOld = ActivatorTid();
-	int thisMonNew = UniqueTid();
+	int oldSpawnerTid = ActivatorTid();
+	int newSpawnerTid = UniqueTid();
 	int newMonTid = UniqueTid();
-	int pick, maxPick, skillMod, choose;
+	int pick, maxPick;
 	int totalChance, currentChance;
-	int useSkill = GetCvar("mm_skilloverride");
-	int currentSkill = GameSkill();
-	int alert = 0;
+	int useSkill = GetCVar("mm_skilloverride");
 	int pickAddon = 0, addonOffsetGame, addonOffsetAltGame, addonOffsetMonSlot, addonPickOffset;
 	int a = 0, newChance = 0, oldChance = 0;
-	skillMod = ((currentSkill * !useSkill) + ((useSkill > 0) * (useSkill - 1))) * 3;
+	int skillMod = ((GameSkill() * !useSkill) + ((useSkill > 0) * (useSkill - 1))) * 3;
 
-	Thing_ChangeTid(0,thisMonNew);
+	Thing_ChangeTid(0,newSpawnerTid);
 
 	if(monGame >= MAX_GAME_TYPES)
 	{
@@ -456,7 +459,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	if(maxPick > 0)
 	{
-		choose = random(1,totalChance);
+		int choose = random(1,totalChance);
 		for(a = 0; a <= maxPick; a++)
 		{
 			if(!pickAddon)
@@ -517,21 +520,21 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	if(!(monSlot == 6|7|8|9|14|15|16|30|31|37|38|48|51|52|66|67|68|69|70|71))
 	{
-		SetActivator(thisMonNew,AAPTR_Master);
+		SetActivator(newSpawnerTid,AAPTR_Master);
 	}
 
 	SetPointerExt(AAPTR_Master,0,newMonTid);
 
-	SetActivator(thisMonNew,AAPTR_Target);
-	alert = SetPointerExt(AAPTR_Target,0,newMonTid);
+	SetActivator(newSpawnerTid,AAPTR_Target);
+	int alert = SetPointerExt(AAPTR_Target,0,newMonTid);
 
-	SetActivator(thisMonNew,AAPTR_Tracer);
+	SetActivator(newSpawnerTid,AAPTR_Tracer);
 	SetPointerExt(AAPTR_Tracer,0,newMonTid);
 
-	SetActivator(thisMonNew,AAPTR_Default);
-	Thing_ChangeTid(thisMonNew,thisMonOld);
+	SetActivator(newSpawnerTid,AAPTR_Default);
+	Thing_ChangeTid(newSpawnerTid,oldSpawnerTid);
 
-	SetActorProperty(newMonTid,APROP_Ambush,GetActorProperty(0,APROP_Ambush));
+	SetActorProperty(newMonTid,APROP_Ambush,GetUserVariable(0,"user_ambush"));
 	SetThingSpecial(newMonTid,GetUserVariable(0,"user_special"),GetUserArray(0,"user_args",0),GetUserArray(0,"user_args",1),GetUserArray(0,"user_args",2),GetUserArray(0,"user_args",3));
 
 	if(!GetActorProperty(newMonTid,APROP_Ambush) && alert)
@@ -551,7 +554,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		GiveActorInventory(newMonTid, token,1);
 	}
 
-	Thing_ChangeTid(newMonTid,thisMonOld);
+	Thing_ChangeTid(newMonTid,oldSpawnerTid);
 }
 
 Script "ReMixerAwakenMonster" (int monTid)
@@ -565,7 +568,14 @@ Script "ReMixerAwakenMonster" (int monTid)
 		seeAttempts--;
 	}
 
-	if (ClassifyActor(0) <= 1 || CheckActorProperty(0, APROP_SeeSound, ""))
+	if (ClassifyActor(0) <= 1)
+	{
+		terminate;
+	}
+
+	SetActorState(0, "See", true);
+
+	if (CheckActorProperty(0, APROP_SeeSound, ""))
 	{
 		terminate;
 	}
@@ -575,8 +585,6 @@ Script "ReMixerAwakenMonster" (int monTid)
 	{
 		isFullVol = CheckFlag(0, "FULLVOLSEE");
 	}
-
-	SetActorState(0, "See", 1);
 
 	int attenuation = isFullVol ? ATTN_NONE : ATTN_NORM;
 
@@ -588,14 +596,12 @@ Script "ReMixerInvasion" OPEN //670
 	if(GetPlayerAccountName(0) == 0)
 		terminate;
 
-	int spawnmode;
-	int oldmode;
-	int drawn;
+	int spawnmode, oldmode;
 	while(true)
 	{
 		if(GetInvasionState() == 1 || GetInvasionState() == 5)
 		{
-			spawnmode = GetCvar("mm_spawnmode");
+			spawnmode = GetCVar("mm_spawnmode");
 			if(oldmode != spawnmode)
 			{
 				ACS_NamedExecuteWithResult("ReMixer_PickSets",0,0,0,0);
@@ -608,8 +614,7 @@ Script "ReMixerInvasion" OPEN //670
 
 Script "MarathonSkillCheck" (void) //671
 {
-	int checkskill;
-	checkskill = ACS_NamedExecuteWithResult ("ReMixerCVarCheck", 3);
+	int checkskill = ACS_NamedExecuteWithResult("ReMixerCVarCheck", 3);
 
 	SetActorState(0,skill[checkskill],true);
 }
@@ -620,7 +625,6 @@ Script "MarathonTeleport" (void)
 	{
 		GiveInventory("TeleportIn", 1);
 	}
-	else { terminate; }
 }
 
 Script "ReMixerCVarCheck" (int pick) //680
@@ -630,66 +634,60 @@ Script "ReMixerCVarCheck" (int pick) //680
 	Switch (pick)
 	{
 		case 1:
-		response = GetCVar("mm_fakehitlerfire");
-		break;
+			response = GetCVar("mm_fakehitlerfire");
+			break;
 
 		case 2:
-		response = GetCVar("mm_wolffastdeath");
-		break;
+			response = GetCVar("mm_wolffastdeath");
+			break;
 
 		case 3:
-		if(GetCVar("mm_skilloverride") < 5)
-		{
-			response = GetCVar("mm_skilloverride");
-		}
-		else
-		{
-			response = GameSkill ();
-		}
-		break;
+			int useSkill = GetCVar("mm_skilloverride");
+			response = useSkill < 5 ? useSkill : GameSkill();
+			break;
 
 		case 4:
-		response = GetCVar("mm_dropdefault");
-		break;
+			response = GetCVar("mm_dropdefault");
+			break;
 
 		case 5:
-		response = GetCvar("mm_pinataparty");
-		break;
+			response = GetCVar("mm_pinataparty");
+			break;
 
 		case 6:
-		response = GetCvar("mm_newchex");
-		break;
+			response = GetCVar("mm_newchex");
+			break;
 
 		case 7:
-		response = GetCvar("mm_rarespawns");
-		break;
+			response = GetCVar("mm_rarespawns");
+			break;
 
 		case 8:
-		response = GetCvar("mm_invisiblemode");
-		break;
+			response = GetCVar("mm_invisiblemode");
+			break;
 
 		case 9:
-		response = GetCvar("mm_fullradiusdmg");
-		break;
+			response = GetCVar("mm_fullradiusdmg");
+			break;
 
 		case 10:
-		response = GetCvar("mm_nobats");
-		break;
+			response = GetCVar("mm_nobats");
+			break;
 
 		case 11:
-		response = GetCvar("mm_specpermdeath");
-		break;
+			response = GetCVar("mm_specpermdeath");
+			break;
 
 		case 12:
-		if(GetCvar("mm_spawnmode") < 3)
-		{
-		response = 1;
-		}
-		break;
+			if(GetCVar("mm_spawnmode") < 3)
+			{
+				response = 1;
+			}
+			break;
 
 		case 13:
-		response = GetCvar("mm_performancemode") && (!StrICmp(strparam(l:"CC_CARD_LOCKED"),"Undiscovered Card") == 0);
-		break;
+			response = GetCVar("mm_performancemode") && (!StrICmp(strparam(l:"CC_CARD_LOCKED"),"Undiscovered Card") == 0);
+			break;
 	}
 	SetResultValue(response);
 }
@@ -714,7 +712,7 @@ Script "ReMixer_PickSets" (void)
 		amountOfGameTypes[a] = 0;
 	}
 
-	switch(GetCvar("mm_spawnmode"))
+	switch(GetCVar("mm_spawnmode"))
 	{
 		case 0:
 			for(p = 0; p < clients; p++)
@@ -744,19 +742,21 @@ Script "ReMixer_PickSets" (void)
 							}
 							switch(b)
 							{
-								default: break;
 								case 0:
 									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_doommode")))
 										amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_doommode");
 									break;
+
 								case 3:
 									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_wolfmode")))
 										amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_wolfmode");
 									break;
+
 								case 5:
 									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_dukemode")))
 										amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_dukemode");
 									break;
+
 								case 19:
 									if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 										amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
@@ -771,12 +771,13 @@ Script "ReMixer_PickSets" (void)
 				}
 			}
 			break;
+
 		case 1:
 			for(b = 0; b < MAX_GAME_TYPES; b++)
 			{
 				str gameTypeMap = strparam(s:gameTypesStr[b], d:GetLevelInfo(LEVELINFO_LEVELNUM));;
 
-				if(GetCvar(gameTypeMap))
+				if(GetCVar(gameTypeMap))
 				{
 					if(usingAddons)
 						bitindexa = 1<<(b-MAX_GAME_TYPES);
@@ -813,19 +814,21 @@ Script "ReMixer_PickSets" (void)
 					{
 						switch(b)
 						{
-							default: break;
 							case 0:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_doommode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_doommode");
 								break;
+
 							case 3:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_wolfmode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_wolfmode");
 								break;
+
 							case 5:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_dukemode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_dukemode");
 								break;
+
 							case 19:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
@@ -835,11 +838,12 @@ Script "ReMixer_PickSets" (void)
 				}
 			}
 			break;
+
 		case 2:
 			for(b = 0; b < MAX_GAME_TYPES+addonCounter; b++)
 			{
 				usingAddons = b >= MAX_GAME_TYPES;
-				if(usingAddons ? addonCVARs[b-MAX_GAME_TYPES] : GetCvar(gameTypesStr[b]))
+				if(usingAddons ? addonCVARs[b-MAX_GAME_TYPES] : GetCVar(gameTypesStr[b]))
 				{
 					if(usingAddons)
 						bitindexa = 1<<(b-MAX_GAME_TYPES);
@@ -876,19 +880,21 @@ Script "ReMixer_PickSets" (void)
 					{
 						switch(b)
 						{
-							default: break;
 							case 0:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_doommode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_doommode");
 								break;
+
 							case 3:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_wolfmode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_wolfmode");
 								break;
+
 							case 5:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_dukemode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_dukemode");
 								break;
+
 							case 19:
 								if(!(amountOfGameTypes[b] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 									amountOfGameTypes[b] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
@@ -898,9 +904,10 @@ Script "ReMixer_PickSets" (void)
 				}
 			}
 			break;
+
 		case 3:
 			int selectloop = 0;
-			int randomvalue = GetCvar("mm_randomcycle");
+			int randomvalue = GetCVar("mm_randomcycle");
 			int randnum;
 			int erroramount = 0;
 			int randombit, randombit2, randombita;
@@ -947,19 +954,21 @@ Script "ReMixer_PickSets" (void)
 					{
 						switch(randnum)
 						{
-							default: break;
 							case 0:
 								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"samsara_cl_doommode")))
 									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"samsara_cl_doommode");
 								break;
+
 							case 3:
 								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"samsara_cl_wolfmode")))
 									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"samsara_cl_wolfmode");
 								break;
+
 							case 5:
 								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"samsara_cl_dukemode")))
 									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"samsara_cl_dukemode");
 								break;
+
 							case 19:
 								if(!(amountOfGameTypes[randnum] & 1<<GetUserCvar(p,"samsara_cl_shephardmode")))
 									amountOfGameTypes[randnum] += 1<<GetUserCvar(p,"samsara_cl_shephardmode");
@@ -1010,18 +1019,16 @@ int PinataDoomLegendaryQualityInt[maxPinataLegendaryQuality] = { 100, 100, 100, 
 
 Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly)
 {
-	if(!GetCvar("mm_pinataparty"))
+	if(!GetCVar("mm_pinataparty"))
 		terminate;
 
-	int spawneditems, randomchance, randomitem, newtid;
+	int spawneditems, randomchance, randomitem;
+	int newtid = UniqueTid();
 	int maxitems = ((height*4)*(radius*radius))/4096;
-	if(GetActorProperty(0,APROP_MASS) == 2 && GetCvar("samsara_merrychristmas"))
+	if(GetActorProperty(0,APROP_MASS) == 2 && GetCVar("samsara_merrychristmas"))
 	{
-		newtid = UniqueTid();
 		While(spawneditems < maxitems)
 		{
-			randomchance = random(0,100);
-			randomitem = random(0,maxPinataCommonQuality-1);
 			SpawnForced("SamsaraXmasCoal",GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 			ThrustThing(random(0,256),2,0,newtid);
 			ThrustThingZ(newtid,random(17,35),0,1);
@@ -1031,7 +1038,6 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 	}
 	else if(health < 200)
 	{
-		newtid = UniqueTid();
 		While(spawneditems < maxitems)
 		{
 			randomchance = random(0,100);
@@ -1048,7 +1054,6 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 	}
 	else if(health < 1000)
 	{
-		newtid = UniqueTid();
 		While(spawneditems < maxitems)
 		{
 			randomchance = random(0,100);
@@ -1065,7 +1070,6 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 	}
 	else if(health < 2500)
 	{
-		newtid = UniqueTid();
 		While(spawneditems < maxitems)
 		{
 			randomchance = random(0,100);
@@ -1082,7 +1086,6 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 	}
 	else if(health < 5000)
 	{
-		newtid = UniqueTid();
 		While(spawneditems < maxitems)
 		{
 			randomchance = random(0,100);
@@ -1099,7 +1102,6 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 	}
 	else
 	{
-		newtid = UniqueTid();
 		While(spawneditems < maxitems)
 		{
 			randomchance = random(0,100);
@@ -1123,7 +1125,7 @@ Script "HeresiarchScriptTokens" (void) { SetResultValue(CheckInventory("Heresiar
 
 script "ReMixerPresetSelection" (void)
 {
-	switch(GetCvar("mm_presetvalue"))
+	switch(GetCVar("mm_presetvalue"))
 	{
 		case 0: // Vanilla
 
