@@ -1,36 +1,36 @@
 Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 {
-    obituary "%o got introduced to Billy Ray's Scattergun."
-    scale 0.35
-    radius 20
-    height 56
-    health 100
-    mass 360
-    speed 5
-    PainChance 40
-	Species "RedneckEnemies"	
+	obituary "%o got introduced to Billy Ray's Scattergun."
+	scale 0.35
+	radius 20
+	height 56
+	health 100
+	mass 360
+	speed 5
+	PainChance 40
+	Species "RedneckEnemies"
 	monster
 	+FLOORCLIP
 	+MISSILEMORE
 	+NOINFIGHTING
 	+NOBLOODDECALS
-	Tag "Billy Ray Jeeter"		
+	Tag "Billy Ray Jeeter"
 	seesound "billy/see"
-    painsound "billy/pain"
-    deathsound "billy/die"
-    activesound "billy/talk"
+	painsound "billy/pain"
+	deathsound "billy/die"
+	activesound "billy/talk"
 	DropItem "BillyRayJeeterDrop"
-    BloodType "LeonardBlood_RR"	
+	BloodType "LeonardBlood_RR"
 	Bloodcolor "ba 2c 10"
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
-    PainChance "MightyBoot", 255
-	PainChance "MarathonStun", 255	
+	DamageFactor "Mace", 1.1
+	DamageFactor "DragonClaw", 1.5
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
-    States
-    {	
-    Spawn:
+	States
+	{
+	Spawn:
 		BRJT A 0
 		BRJT A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		BRJT A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
@@ -39,7 +39,7 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 	Spawn2:
 		BRJT A 5 A_Look
 		Loop
-    Idle:
+	Idle:
 		TNT1 A 0 A_Jump(1,"ButtScratch")
 		BRJT A 5 A_Look
 		Loop
@@ -52,31 +52,31 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 ACS_NamedExecuteWithResult("RR_CussPack",1,1)
 		Goto DoButtScratch
 		TNT1 A 0
-		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)		
-	DoButtScratch:	
+		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)
+	DoButtScratch:
 		BRJS ABCDE 5
-		BRJS F 5			
+		BRJS F 5
 		TNT1 A 0 A_Jump(128,"ContinueButtScratching")
 		BRJS EFEFEF 5
-		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")		
+		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")
 		BRJS EFEF 5
-	ScratchCheck:	
+	ScratchCheck:
 		TNT1 A 0 A_Jump(100,"DontSniff")
-    ContinueButtScratching:
+	ContinueButtScratching:
 		BRJS GHI 5 //A_Look
 		BRJS J 5 A_PlaySound("billy/sniff",CHAN_BODY)
 		BRJS KLM 5 //A_Look
 		Goto SeeAfterScratching
-    SeeAfterScratching:
+	SeeAfterScratching:
 		BRJT ABCDEFGH 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 		Goto See
 	DontSniff:
 		BRJS CBA 5
 		Goto SeeAfterScratching
-    Missile:
+	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		BRJT TU 1 A_FaceTarget
-		BRJT VW 0 A_PlayWeaponSound("RR/SGFire")  
+		BRJT VW 0 A_PlayWeaponSound("RR/SGFire")
 		BRJT XXXX 0 A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		BRJT X 5 Bright A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		BRJT Y 12 A_FaceTarget
@@ -85,12 +85,12 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		BRJT U 6 A_FaceTarget
 		BRJT A 0 A_Jump(160,"See")
 		Goto Missile
-    Pain:
+	Pain:
 		BRJT Z 2 A_Pain
-		BRJT Z 2	
+		BRJT Z 2
 		BRJT [ 2
-		BRJT ] 2	
-		BRJT ] 2	
+		BRJT ] 2
+		BRJT ] 2
 		BRJT ] 2 A_Jump(80,"ButtScratch")
 		Goto See
 	Pain.MightyBoot:
@@ -98,11 +98,11 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		BRJT Z 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
-		BRJT [ 16 A_Pain	
+		BRJT [ 16 A_Pain
 		Goto See
-    Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		BRJT A 0 A_Scream
 		BRJT IJKLMNO 4
 		BRJT P 4 A_NoBlocking
@@ -112,12 +112,12 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		TNT1 A -1
 		stop
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
 		JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 		JKLP A 0 A_CustomMissile("BillyRayHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))	
+		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -127,16 +127,16 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 A_JumpIfHealthLower(-50,1)
 		Goto Ayyyyyy
 		TNT1 A 5 A_NoBlocking
-		Stop	
+		Stop
 	Ayyyyyy:
 		TNT1 A 0 A_NoBlocking
 		BRJS N 1 A_Jump(128,2)
 		JKLP A 0 A_CustomMissile("BillyRayBody",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 AA 0
-		BRJS N 120 
+		BRJS N 120
 		BRJS O 3
-		BRJS P 3 
-		BRJS Q 3 
+		BRJS P 3
+		BRJS Q 3
 		BRJS R 0 A_playsound("redneck/thud")
 		BRJS R 3
 		BRJS R 0 A_SpawnItemEx("BillyRayJeeterCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -146,7 +146,7 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
 	Death.RRBullet:
 	Death.LeonardDamage0:
-	Death.LeonardDamage1:	
+	Death.LeonardDamage1:
 		TNT1 A 0 A_Jump(218, "Death")
 		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
 		TNT1 A -1 A_Jump(256,"Death")
@@ -155,7 +155,7 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 A_Jump(96, "XDeath")
 		TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
-		Stop	
+		Stop
 	Death.CalebFire:
 	Death.LifeLeech:
 		TNT1 A 0 A_Jump(218, 2)
@@ -164,7 +164,7 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5
-		stop	
+		stop
 	Pain.ShrinkerDMG:
 		BRJT Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -215,7 +215,7 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -245,7 +245,7 @@ Actor BillyRayJeeter : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -289,7 +289,7 @@ Actor BillyRayJeeterCorpse_Normal : SamsaraCorpseActorSmall
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 			JKLP A 0 A_CustomMissile("BillyRayHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))	
+			JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 			JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 			JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 			JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -326,7 +326,7 @@ Actor BillyRayJeeterCorpse_Gibbed : SamsaraCorpseActorSmall
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 			JKLP A 0 A_CustomMissile("BillyRayHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))	
+			JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 			JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 			JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 			JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -454,9 +454,9 @@ actor BillyRayJeeter_Shrink : BillyRayJeeter
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -484,7 +484,7 @@ actor BillyRayJeeter_ShrinkEffect : BillyRayJeeter
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -516,8 +516,8 @@ actor BillyRayJeeter_ShrinkEffect : BillyRayJeeter
 Actor BillyRayJeeter_Brown : BillyRayJeeter
 {
 	States
-    {	
-    Spawn:
+	{
+	Spawn:
 		RR06 A 0
 		RR06 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		RR06 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
@@ -526,7 +526,7 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 	Spawn2:
 		RR06 A 5 A_Look
 		Loop
-    Idle:
+	Idle:
 		TNT1 A 0 A_Jump(1,"ButtScratch")
 		RR06 A 5 A_Look
 		Loop
@@ -539,31 +539,31 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 		TNT1 A 0 ACS_NamedExecuteWithResult("RR_CussPack",1,1)
 		Goto DoButtScratch
 		TNT1 A 0
-		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)		
-	DoButtScratch:	
+		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)
+	DoButtScratch:
 		RR05 ABCDE 5
-		RR05 F 5			
+		RR05 F 5
 		TNT1 A 0 A_Jump(128,"ContinueButtScratching")
 		RR05 EFEFEF 5
-		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")		
+		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")
 		RR05 EFEF 5
-	ScratchCheck:	
+	ScratchCheck:
 		TNT1 A 0 A_Jump(100,"DontSniff")
-    ContinueButtScratching:
+	ContinueButtScratching:
 		RR05 GHI 5 //A_Look
 		RR05 J 5 A_PlaySound("billy/sniff",CHAN_BODY)
 		RR05 KLM 5 //A_Look
 		Goto SeeAfterScratching
-    SeeAfterScratching:
+	SeeAfterScratching:
 		RR06 ABCDEFGH 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 		Goto See
 	DontSniff:
 		RR05 CBA 5
 		Goto SeeAfterScratching
-    Missile:
+	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RR06 TU 1 A_FaceTarget
-		RR06 VW 0 A_PlayWeaponSound("RR/SGFire")  
+		RR06 VW 0 A_PlayWeaponSound("RR/SGFire")
 		RR06 XXXX 0 A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR06 X 5 Bright A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR06 Y 12 A_FaceTarget
@@ -572,12 +572,12 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 		RR06 U 6 A_FaceTarget
 		RR06 A 0 A_Jump(160,"See")
 		Goto Missile
-    Pain:
+	Pain:
 		RR06 Z 2 A_Pain
-		RR06 Z 2	
+		RR06 Z 2
 		RR06 [ 2
-		RR06 ] 2	
-		RR06 ] 2	
+		RR06 ] 2
+		RR06 ] 2
 		RR06 ] 2 A_Jump(80,"ButtScratch")
 		Goto See
 	Pain.MightyBoot:
@@ -585,11 +585,11 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		RR06 Z 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
-		RR06 [ 16 A_Pain	
+		RR06 [ 16 A_Pain
 		Goto See
-    Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		RR06 A 0 A_Scream
 		RR06 IJKLMNO 4
 		RR06 P 4 A_NoBlocking
@@ -599,12 +599,12 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 		TNT1 A -1
 		stop
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
 		JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 		JKLP A 0 A_CustomMissile("BillyRayHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))	
+		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -614,16 +614,16 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 		TNT1 A 0 A_JumpIfHealthLower(-50,1)
 		Goto Ayyyyyy
 		TNT1 A 5 A_NoBlocking
-		Stop	
+		Stop
 	Ayyyyyy:
 		TNT1 A 0 A_NoBlocking
 		RR05 N 1 A_Jump(128,2)
 		JKLP A 0 A_CustomMissile("BillyRayBody",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 AA 0
-		RR05 N 120 
+		RR05 N 120
 		RR05 O 3
-		RR05 P 3 
-		RR05 Q 3 
+		RR05 P 3
+		RR05 Q 3
 		RR05 R 0 A_playsound("redneck/thud")
 		RR05 R 3
 		RR05 R 0 A_SpawnItemEx("BillyRayJeeterCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -678,7 +678,7 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -708,7 +708,7 @@ Actor BillyRayJeeter_Brown : BillyRayJeeter
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -853,9 +853,9 @@ actor BillyRayJeeter_Brown_Shrink : BillyRayJeeter
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -883,7 +883,7 @@ actor BillyRayJeeter_Brown_ShrinkEffect : BillyRayJeeter
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -915,8 +915,8 @@ actor BillyRayJeeter_Brown_ShrinkEffect : BillyRayJeeter
 Actor BillyRayJeeter_Gray : BillyRayJeeter
 {
 	States
-    {	
-    Spawn:
+	{
+	Spawn:
 		RR08 A 0
 		RR08 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		RR08 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
@@ -925,7 +925,7 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 	Spawn2:
 		RR08 A 5 A_Look
 		Loop
-    Idle:
+	Idle:
 		TNT1 A 0 A_Jump(1,"ButtScratch")
 		RR08 A 5 A_Look
 		Loop
@@ -938,31 +938,31 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 		TNT1 A 0 ACS_NamedExecuteWithResult("RR_CussPack",1,1)
 		Goto DoButtScratch
 		TNT1 A 0
-		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)		
-	DoButtScratch:	
+		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)
+	DoButtScratch:
 		RR07 ABCDE 5
-		RR07 F 5			
+		RR07 F 5
 		TNT1 A 0 A_Jump(128,"ContinueButtScratching")
 		RR07 EFEFEF 5
-		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")		
+		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")
 		RR07 EFEF 5
-	ScratchCheck:	
+	ScratchCheck:
 		TNT1 A 0 A_Jump(100,"DontSniff")
-    ContinueButtScratching:
+	ContinueButtScratching:
 		RR07 GHI 5 //A_Look
 		RR07 J 5 A_PlaySound("billy/sniff",CHAN_BODY)
 		RR07 KLM 5 //A_Look
 		Goto SeeAfterScratching
-    SeeAfterScratching:
+	SeeAfterScratching:
 		RR08 ABCDEFGH 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 		Goto See
 	DontSniff:
 		RR07 CBA 5
 		Goto SeeAfterScratching
-    Missile:
+	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RR08 TU 1 A_FaceTarget
-		RR08 VW 0 A_PlayWeaponSound("RR/SGFire")  
+		RR08 VW 0 A_PlayWeaponSound("RR/SGFire")
 		RR08 XXXX 0 A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR08 X 5 Bright A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR08 Y 12 A_FaceTarget
@@ -971,12 +971,12 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 		RR08 U 6 A_FaceTarget
 		RR08 A 0 A_Jump(160,"See")
 		Goto Missile
-    Pain:
+	Pain:
 		RR08 Z 2 A_Pain
-		RR08 Z 2	
+		RR08 Z 2
 		RR08 [ 2
-		RR08 ] 2	
-		RR08 ] 2	
+		RR08 ] 2
+		RR08 ] 2
 		RR08 ] 2 A_Jump(80,"ButtScratch")
 		Goto See
 	Pain.MightyBoot:
@@ -984,11 +984,11 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		RR08 Z 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
-		RR08 [ 16 A_Pain	
+		RR08 [ 16 A_Pain
 		Goto See
-    Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		RR08 A 0 A_Scream
 		RR08 IJKLMNO 4
 		RR08 P 4 A_NoBlocking
@@ -998,12 +998,12 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 		TNT1 A -1
 		stop
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
 		JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 		JKLP A 0 A_CustomMissile("BillyRayHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))	
+		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -1013,16 +1013,16 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 		TNT1 A 0 A_JumpIfHealthLower(-50,1)
 		Goto Ayyyyyy
 		TNT1 A 5 A_NoBlocking
-		Stop	
+		Stop
 	Ayyyyyy:
 		TNT1 A 0 A_NoBlocking
 		RR07 N 1 A_Jump(128,2)
 		JKLP A 0 A_CustomMissile("BillyRayBody",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 AA 0
-		RR07 N 120 
+		RR07 N 120
 		RR07 O 3
-		RR07 P 3 
-		RR07 Q 3 
+		RR07 P 3
+		RR07 Q 3
 		RR07 R 0 A_playsound("redneck/thud")
 		RR07 R 3
 		RR07 R 0 A_SpawnItemEx("BillyRayJeeterCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -1077,7 +1077,7 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1107,7 +1107,7 @@ Actor BillyRayJeeter_Gray : BillyRayJeeter
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1252,9 +1252,9 @@ actor BillyRayJeeter_Gray_Shrink : BillyRayJeeter
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1282,7 +1282,7 @@ actor BillyRayJeeter_Gray_ShrinkEffect : BillyRayJeeter
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1314,8 +1314,8 @@ actor BillyRayJeeter_Gray_ShrinkEffect : BillyRayJeeter
 Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 {
 	States
-    {	
-    Spawn:
+	{
+	Spawn:
 		RR10 A 0
 		RR10 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		RR10 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
@@ -1324,7 +1324,7 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 	Spawn2:
 		RR10 A 5 A_Look
 		Loop
-    Idle:
+	Idle:
 		TNT1 A 0 A_Jump(1,"ButtScratch")
 		RR10 A 5 A_Look
 		Loop
@@ -1337,31 +1337,31 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 		TNT1 A 0 ACS_NamedExecuteWithResult("RR_CussPack",1,1)
 		Goto DoButtScratch
 		TNT1 A 0
-		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)		
-	DoButtScratch:	
+		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)
+	DoButtScratch:
 		RR09 ABCDE 5
-		RR09 F 5			
+		RR09 F 5
 		TNT1 A 0 A_Jump(128,"ContinueButtScratching")
 		RR09 EFEFEF 5
-		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")		
+		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")
 		RR09 EFEF 5
-	ScratchCheck:	
+	ScratchCheck:
 		TNT1 A 0 A_Jump(100,"DontSniff")
-    ContinueButtScratching:
+	ContinueButtScratching:
 		RR09 GHI 5 //A_Look
 		RR09 J 5 A_PlaySound("billy/sniff",CHAN_BODY)
 		RR09 KLM 5 //A_Look
 		Goto SeeAfterScratching
-    SeeAfterScratching:
+	SeeAfterScratching:
 		RR10 ABCDEFGH 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 		Goto See
 	DontSniff:
 		RR09 CBA 5
 		Goto SeeAfterScratching
-    Missile:
+	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RR10 TU 1 A_FaceTarget
-		RR10 VW 0 A_PlayWeaponSound("RR/SGFire")  
+		RR10 VW 0 A_PlayWeaponSound("RR/SGFire")
 		RR10 XXXX 0 A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR10 X 5 Bright A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR10 Y 12 A_FaceTarget
@@ -1370,12 +1370,12 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 		RR10 U 6 A_FaceTarget
 		RR10 A 0 A_Jump(160,"See")
 		Goto Missile
-    Pain:
+	Pain:
 		RR10 Z 2 A_Pain
-		RR10 Z 2	
+		RR10 Z 2
 		RR10 [ 2
-		RR10 ] 2	
-		RR10 ] 2	
+		RR10 ] 2
+		RR10 ] 2
 		RR10 ] 2 A_Jump(80,"ButtScratch")
 		Goto See
 	Pain.MightyBoot:
@@ -1383,11 +1383,11 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		RR10 Z 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
-		RR10 [ 16 A_Pain	
+		RR10 [ 16 A_Pain
 		Goto See
-    Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		RR10 A 0 A_Scream
 		RR10 IJKLMNO 4
 		RR10 P 4 A_NoBlocking
@@ -1397,12 +1397,12 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 		TNT1 A -1
 		stop
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
 		JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
 		JKLP A 0 A_CustomMissile("BillyRayHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))	
+		JKLP A 0 A_CustomMissile("BillyRayLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -1412,16 +1412,16 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 		TNT1 A 0 A_JumpIfHealthLower(-50,1)
 		Goto Ayyyyyy
 		TNT1 A 5 A_NoBlocking
-		Stop	
+		Stop
 	Ayyyyyy:
 		TNT1 A 0 A_NoBlocking
 		RR09 N 1 A_Jump(128,2)
 		JKLP A 0 A_CustomMissile("BillyRayBody",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 AA 0
-		RR09 N 120 
+		RR09 N 120
 		RR09 O 3
-		RR09 P 3 
-		RR09 Q 3 
+		RR09 P 3
+		RR09 Q 3
 		RR09 R 0 A_playsound("redneck/thud")
 		RR09 R 3
 		RR09 R 0 A_SpawnItemEx("BillyRayJeeterCorpse_Gibbed", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -1476,7 +1476,7 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1506,7 +1506,7 @@ Actor BillyRayJeeter_DarkGray : BillyRayJeeter
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1651,9 +1651,9 @@ actor BillyRayJeeter_DarkGray_Shrink : BillyRayJeeter
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1681,7 +1681,7 @@ actor BillyRayJeeter_DarkGray_ShrinkEffect : BillyRayJeeter
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1712,40 +1712,40 @@ actor BillyRayJeeter_DarkGray_ShrinkEffect : BillyRayJeeter
 
 Actor BillyRayJeeter_Ghost : SamsaraMonsterSkeletonMedium
 {
-    obituary "%o got introduced to Billy Ray's Scattergun."
-    scale 0.35
-    radius 20
-    height 56
-    health 100
-    mass 360
-    speed 5
-    PainChance 40
-	Species "RedneckEnemies"	
+	obituary "%o got introduced to Billy Ray's Scattergun."
+	scale 0.35
+	radius 20
+	height 56
+	health 100
+	mass 360
+	speed 5
+	PainChance 40
+	Species "RedneckEnemies"
 	monster
 	+FLOORCLIP
 	+MISSILEMORE
 	+NOINFIGHTING
 	+NOBLOODDECALS
-	Tag "Billy Ray Jeeter"		
+	Tag "Billy Ray Jeeter"
 	seesound "billy/see"
-    painsound "billy/pain"
-    deathsound "billy/die"
-    activesound "billy/talk"
+	painsound "billy/pain"
+	deathsound "billy/die"
+	activesound "billy/talk"
 	DropItem "BillyRayJeeterDrop"
-    BloodType "LeonardBlood_RR"	
+	BloodType "LeonardBlood_RR"
 	Bloodcolor "ba 2c 10"
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
-    PainChance "MightyBoot", 255
-	PainChance "MarathonStun", 255	
+	DamageFactor "Mace", 1.1
+	DamageFactor "DragonClaw", 1.5
+	PainChance "MightyBoot", 255
+	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
 	Renderstyle Translucent
 	PainChance "ShrinkerDMG", 0
 	Alpha 0.5
-    States
-    {	
-    Spawn:
+	States
+	{
+	Spawn:
 		RR12 A 0
 		RR12 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		RR12 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
@@ -1754,7 +1754,7 @@ Actor BillyRayJeeter_Ghost : SamsaraMonsterSkeletonMedium
 	Spawn2:
 		RR12 A 5 A_Look
 		Loop
-    Idle:
+	Idle:
 		TNT1 A 0 A_Jump(1,"ButtScratch")
 		RR12 A 5 A_Look
 		Loop
@@ -1767,31 +1767,31 @@ Actor BillyRayJeeter_Ghost : SamsaraMonsterSkeletonMedium
 		TNT1 A 0 ACS_NamedExecuteWithResult("RR_CussPack",1,1)
 		Goto DoButtScratch
 		TNT1 A 0
-		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)		
-	DoButtScratch:	
+		TNT1 A 0 A_PlaySound("billy/scratch",CHAN_VOICE)
+	DoButtScratch:
 		RR11 ABCDE 5
-		RR11 F 5			
+		RR11 F 5
 		TNT1 A 0 A_Jump(128,"ContinueButtScratching")
 		RR11 EFEFEF 5
-		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")		
+		TNT1 A 0 A_Jump(110,"ScratchCheck","ContinueButtScratching")
 		RR11 EFEF 5
-	ScratchCheck:	
+	ScratchCheck:
 		TNT1 A 0 A_Jump(100,"DontSniff")
-    ContinueButtScratching:
+	ContinueButtScratching:
 		RR11 GHI 5 //A_Look
 		RR11 J 5 A_PlaySound("billy/sniff",CHAN_BODY)
 		RR11 KLM 5 //A_Look
 		Goto SeeAfterScratching
-    SeeAfterScratching:
+	SeeAfterScratching:
 		RR12 ABCDEFGH 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 		Goto See
 	DontSniff:
 		RR11 CBA 5
 		Goto SeeAfterScratching
-    Missile:
+	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RR12 TU 1 A_FaceTarget
-		RR12 VW 0 A_PlayWeaponSound("RR/SGFire")  
+		RR12 VW 0 A_PlayWeaponSound("RR/SGFire")
 		RR12 XXXX 0 A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR12 X 5 Bright A_CustomBulletAttack(32, 64, 1, 10, "RRPuff",0,CBAF_NORANDOM)
 		RR12 Y 12 A_FaceTarget
@@ -1800,12 +1800,12 @@ Actor BillyRayJeeter_Ghost : SamsaraMonsterSkeletonMedium
 		RR12 U 6 A_FaceTarget
 		RR12 A 0 A_Jump(160,"See")
 		Goto Missile
-    Pain:
+	Pain:
 		RR12 Z 2 A_Pain
-		RR12 Z 2	
+		RR12 Z 2
 		RR12 [ 2
-		RR12 ] 2	
-		RR12 ] 2	
+		RR12 ] 2
+		RR12 ] 2
 		RR12 ] 2 A_Jump(80,"ButtScratch")
 		Goto See
 	Pain.MightyBoot:
@@ -1813,12 +1813,12 @@ Actor BillyRayJeeter_Ghost : SamsaraMonsterSkeletonMedium
 		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
 		RR12 Z 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
-		RR12 [ 16 A_Pain	
+		RR12 [ 16 A_Pain
 		Goto See
-    Death:
+	Death:
 		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 7
 		stop
 	}
@@ -1826,27 +1826,27 @@ Actor BillyRayJeeter_Ghost : SamsaraMonsterSkeletonMedium
 
 Actor BillyRayHead
 {
-    scale 0.29
-    radius 6
-    height 5
-    speed 10
-    +MISSILE
-	-SOLID	
-	+CLIENTSIDEONLY	
-    states
-    {
-    Spawn:
+	scale 0.29
+	radius 6
+	height 5
+	speed 10
+	+MISSILE
+	-SOLID
+	+CLIENTSIDEONLY
+	states
+	{
+	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Gravity	
+		TNT1 A 0 A_Gravity
 	SpawnLoop:
 		BRJS YZ 4
 		BRJ_ ABCDEF 4
 		loop
 	Crash:
-    Death:
+	Death:
 		TNT1 A 5
-		stop  
-    }
+		stop
+	}
 }
 
 Actor BillyRayLeg : BillyRayHead
@@ -1854,13 +1854,13 @@ Actor BillyRayLeg : BillyRayHead
 	scale 0.18
 	States
 	{
-    Spawn:
+	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Gravity		
+		TNT1 A 0 A_Gravity
 	SpawnLoop:
 		BRJ_ GHIJ 4
 		loop
-    }
+	}
 }
 
 Actor BillyRayBody : BillyRayHead
@@ -1868,18 +1868,18 @@ Actor BillyRayBody : BillyRayHead
 	scale 0.35
 	states
 	{
-    Spawn:
+	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Gravity		
+		TNT1 A 0 A_Gravity
 	SpawnLoop:
 		BRJS S 4
 		loop
 	Crash:
-    Death:
+	Death:
 		BRJS S 500
 		BRJS S 1 A_FadeOut
 		Goto Death+1
-    }
+	}
 }
 
 Actor BillyRayJeeterDrop {
@@ -1889,7 +1889,7 @@ Actor BillyRayJeeterDrop {
 	+FLOORCLIP
 	States {
 		Spawn:
-			TNT1 A 0 
+			TNT1 A 0
 			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,4,0)
 			TNT1 A 15
 			TNT1 A 0 A_JumpIfInventory("WeaponDropToken", 1, "Spawn2")
@@ -1900,35 +1900,26 @@ Actor BillyRayJeeterDrop {
 			Stop
 		Spawn3:
 			TNT1 A 1 Bright A_DropItem("JeeterAmmoDrop", 1, 70)
-			Stop			
+			Stop
 	}
 }
 
 Actor RRScatterGunDrop : SamsaraSlotThreeDrop {
 	+DROPPED
 	States
-    {
-      Spawn:
-        RR_S A -1
-        Stop
-    }
+	{
+	  Spawn:
+		RR_S A -1
+		Stop
+	}
 }
 
 Actor RRScatterGunDrop2 : SamsaraSlotTwoDrop { //looks like a scatter gun, but it's actually a slot two!
 	+DROPPED
 	States
-    {
-      Spawn:
-        RR_S A -1
-        Stop
-    }
-}
-
-Actor BillyRayJeeterSpawner : RandomSpawner
-{
-	DropItem "BillyRayJeeter", 255, 10
-	DropItem "BillyRayJeeter_Brown", 255, 1
-	DropItem "BillyRayJeeter_Gray", 255, 1
-	DropItem "BillyRayJeeter_DarkGray", 255, 1
-	DropItem "BillyRayJeeter_Ghost", 255, 1
+	{
+	  Spawn:
+		RR_S A -1
+		Stop
+	}
 }

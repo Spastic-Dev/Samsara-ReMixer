@@ -1,19 +1,19 @@
 Actor ForestGoblin : WitchavenEnemyBaseMeleeBeast
 {
 	Tag "Forest Goblin"
-    Health 30
-    Scale 0.425
-	Speed 6	
+	Health 30
+	Scale 0.425
+	Speed 6
 	SeeSound "wtgoblin/see"
 	ActiveSound "wtgoblin/see"
 	PainSound "wtgoblin/pain"
 	DeathSound "wtgoblin/die"
 	+PIERCEARMOR
-	Obituary "%o couldn't handle the uglyness."	
-    HitObituary "%o couldn't handle the uglyness."
-	DropItem "WHAdamantineRing",12,1		
+	Obituary "%o couldn't handle the uglyness."
+	HitObituary "%o couldn't handle the uglyness."
+	DropItem "WHAdamantineRing",12,1
 	DropItem "Witchaven_ShortswordMonsterDrop",64,1
-    States {
+	States {
 		Spawn:
 			WH_0 A 0
 			WH_0 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -34,7 +34,7 @@ Actor ForestGoblin : WitchavenEnemyBaseMeleeBeast
 			Goto See
 		Pain:
 			WH_0 I 4 A_Pain
-			WH_0 I 4 
+			WH_0 I 4
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -44,7 +44,7 @@ Actor ForestGoblin : WitchavenEnemyBaseMeleeBeast
 			WH_0 I 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)				
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_Jump(128,"ASD")
@@ -53,9 +53,9 @@ Actor ForestGoblin : WitchavenEnemyBaseMeleeBeast
 			WH_0 III 1 A_SetAngle(Angle - 15)
 			WH_0 III 1 A_SetAngle(Angle - 15)
 			WH_0 III 1 A_SetAngle(Angle - 15)
-		ASD:	
+		ASD:
 			WH_0 J 4
-			WH_0 K 4 
+			WH_0 K 4
 			WH_0 L 4 A_NoBlocking
 			WH_0 M 4
 			WH_0 NOPQRS 4
@@ -65,11 +65,11 @@ Actor ForestGoblin : WitchavenEnemyBaseMeleeBeast
 			WH_0 T 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			WH_0 U 4 A_NoBlocking
-			WH_0 V 4 
-			WH_0 W 4 
-			WH_0 X 4 
+			WH_0 V 4
+			WH_0 W 4
+			WH_0 X 4
 			TNT1 A -1
-			Stop	
+			Stop
 		Pain.ShrinkerDMG:
 			WH_0 I 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -120,7 +120,7 @@ Actor ForestGoblin : WitchavenEnemyBaseMeleeBeast
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -150,7 +150,7 @@ Actor ForestGoblin : WitchavenEnemyBaseMeleeBeast
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -285,9 +285,9 @@ actor ForestGoblin_Shrink : ForestGoblin
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -315,7 +315,7 @@ actor ForestGoblin_ShrinkEffect : ForestGoblin
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -369,7 +369,7 @@ Actor MountainGoblin : ForestGoblin {
 			Goto See
 		Pain:
 			WH_2 I 4 A_Pain
-			WH_2 I 4 
+			WH_2 I 4
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -379,7 +379,7 @@ Actor MountainGoblin : ForestGoblin {
 			WH_2 I 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_Jump(128,"ASD")
@@ -387,11 +387,11 @@ Actor MountainGoblin : ForestGoblin {
 			WH_2 III 1 A_SetAngle(Angle - 15)
 			WH_2 III 1 A_SetAngle(Angle - 15)
 			WH_2 III 1 A_SetAngle(Angle - 15)
-			WH_2 III 1 A_SetAngle(Angle - 15)	
-		ASD:	
-			WH_2 J 4 
+			WH_2 III 1 A_SetAngle(Angle - 15)
+		ASD:
+			WH_2 J 4
 			WH_2 K 4 A_NoBlocking
-			WH_2 L 4 
+			WH_2 L 4
 			WH_2 M 4
 			WH_2 NOPQRS 4
 			WH_2 S -1
@@ -400,11 +400,11 @@ Actor MountainGoblin : ForestGoblin {
 			WH_2 T 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			WH_2 U 4 A_NoBlocking
-			WH_2 V 4 
-			WH_2 W 4 
-			WH_2 X 4 
+			WH_2 V 4
+			WH_2 W 4
+			WH_2 X 4
 			TNT1 A -1
-			Stop	
+			Stop
 		Pain.ShrinkerDMG:
 			WH_2 I 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -455,7 +455,7 @@ Actor MountainGoblin : ForestGoblin {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -485,7 +485,7 @@ Actor MountainGoblin : ForestGoblin {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -620,9 +620,9 @@ actor MountainGoblin_Shrink : MountainGoblin
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -650,7 +650,7 @@ actor MountainGoblin_ShrinkEffect : MountainGoblin
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -682,7 +682,7 @@ actor MountainGoblin_ShrinkEffect : MountainGoblin
 Actor DesertGoblin : ForestGoblin {
 	Tag "Desert Goblin"
 	Health 70
-	Speed 10	
+	Speed 10
 	States {
 		Spawn:
 			WH_1 A 0
@@ -714,7 +714,7 @@ Actor DesertGoblin : ForestGoblin {
 			WH_1 I 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_Jump(128,"ASD")
@@ -723,10 +723,10 @@ Actor DesertGoblin : ForestGoblin {
 			WH_1 III 1 A_SetAngle(Angle - 15)
 			WH_1 III 1 A_SetAngle(Angle - 15)
 			WH_1 III 1 A_SetAngle(Angle - 15)
-		ASD:	
+		ASD:
 			WH_1 J 4
 			WH_1 K 4 A_NoBlocking
-			WH_1 L 4 
+			WH_1 L 4
 			WH_1 M 4
 			WH_1 NOPQRS 4
 			WH_1 S -1
@@ -735,11 +735,11 @@ Actor DesertGoblin : ForestGoblin {
 			WH_1 T 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			WH_1 U 4 A_NoBlocking
-			WH_1 V 4 
-			WH_1 W 4 
-			WH_1 X 4 
+			WH_1 V 4
+			WH_1 W 4
+			WH_1 X 4
 			TNT1 A -1
-			Stop	
+			Stop
 		Pain.ShrinkerDMG:
 			WH_1 I 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -790,7 +790,7 @@ Actor DesertGoblin : ForestGoblin {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -820,7 +820,7 @@ Actor DesertGoblin : ForestGoblin {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -955,9 +955,9 @@ actor DesertGoblin_Shrink : DesertGoblin
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -985,7 +985,7 @@ actor DesertGoblin_ShrinkEffect : DesertGoblin
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -1013,5 +1013,3 @@ actor DesertGoblin_ShrinkEffect : DesertGoblin
 			Stop
 	}
 }
-
-Actor WTRandomGoblin : RandomSpawner { DropItem "ForestGoblin" DropItem "MountainGoblin" DropItem "DesertGoblin" } 

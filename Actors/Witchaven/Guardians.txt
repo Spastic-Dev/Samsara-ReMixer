@@ -11,9 +11,9 @@ Actor Witchaven1Guardian : WitchavenEnemyBaseRangedSkeleton {
 	DeathSound "wtguardian/die"
 	DropItem "WHShadowAmulet",5,1
 	Scale 0.50
-	Tag "Guardian"	
-	Speed 8	
-	FloatSpeed 6	
+	Tag "Guardian"
+	Speed 8
+	FloatSpeed 6
 	Obituary "%o ashes were cursed by a Guardian."
 	PainChance "ShrinkerDMG", 0
 	States {
@@ -25,13 +25,13 @@ Actor Witchaven1Guardian : WitchavenEnemyBaseRangedSkeleton {
 		SpawnStandard:
 			WH_G A 5 A_Look
 			Loop
-		See:	
-			WH_G A 2 A_Chase		
-			WH_G A 2 A_Chase("","",CHF_NOPLAYACTIVE)		
-			WH_G A 2 A_Chase	
-			WH_G A 2 A_Chase("","",CHF_NOPLAYACTIVE)	
+		See:
 			WH_G A 2 A_Chase
-			WH_G A 2 A_Chase("","",CHF_NOPLAYACTIVE)			
+			WH_G A 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			WH_G A 2 A_Chase
+			WH_G A 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			WH_G A 2 A_Chase
+			WH_G A 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
@@ -51,30 +51,30 @@ Actor Witchaven1Guardian : WitchavenEnemyBaseRangedSkeleton {
 			WH_G J 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		    TNT1 A 0 A_NoGravity
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_NoGravity
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
 			WH_G A 1 A_SetAngle(Angle - 15)
-			TNT1 A 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))						
+			TNT1 A 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_G AA 1 A_SetAngle(Angle - 15)
-			TNT1 AA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))						
+			TNT1 AA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_G AAA 1 A_SetAngle(Angle - 15)
-			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))						
+			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_G AAAA 1 A_SetAngle(Angle - 15)
-			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))						
+			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_G AAAAA 1 A_SetAngle(Angle - 15)
 		DeathLoop:
-			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))					
-			WH_G AAAAAA 1 A_SetAngle(Angle - 15)			
+			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
+			WH_G AAAAAA 1 A_SetAngle(Angle - 15)
 			TNT1 A 0 A_FadeOut(1.0/5.0)
 			Goto DeathLoop
 		Death.Nuke:
 			WH_G J 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			WH_G K 4 A_NoBlocking
-			WH_G L 4 
-			WH_G M 4 
+			WH_G L 4
+			WH_G M 4
 			TNT1 A -1
 			Stop
 	}
@@ -88,7 +88,7 @@ Actor Witchaven2Guardian : WitchavenEnemyBaseRangedSkeleton {
 	+SPAWNFLOAT
 	+BOSSDEATH
 	+DONTRIP
-	Tag "Guardian"	
+	Tag "Guardian"
 	SeeSound "wtguardian/see"
 	ActiveSound "wtguardian/see"
 	PainSound "wtguardian/pain"
@@ -97,7 +97,7 @@ Actor Witchaven2Guardian : WitchavenEnemyBaseRangedSkeleton {
 	Speed 10
 	FloatSpeed 8
 	PainChance 67
-	Obituary "%o ashes were cursed by a Guardian."	
+	Obituary "%o ashes were cursed by a Guardian."
 	PainChance "ShrinkerDMG", 0
 	States {
 		Spawn:
@@ -108,13 +108,13 @@ Actor Witchaven2Guardian : WitchavenEnemyBaseRangedSkeleton {
 		SpawnStandard:
 			WH_J G 1 A_Look
 			Loop
-		See:	
-			WH_J G 2 A_Chase		
-			WH_J G 2 A_Chase("","",CHF_NOPLAYACTIVE)		
-			WH_J G 2 A_Chase	
-			WH_J G 2 A_Chase("","",CHF_NOPLAYACTIVE)	
+		See:
 			WH_J G 2 A_Chase
-			WH_J G 2 A_Chase("","",CHF_NOPLAYACTIVE)			
+			WH_J G 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			WH_J G 2 A_Chase
+			WH_J G 2 A_Chase("","",CHF_NOPLAYACTIVE)
+			WH_J G 2 A_Chase
+			WH_J G 2 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
@@ -138,23 +138,23 @@ Actor Witchaven2Guardian : WitchavenEnemyBaseRangedSkeleton {
 			WH_J I 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		    TNT1 A 0 A_NoGravity
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_NoGravity
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_KillMaster
 			WH_J G 1 A_SetAngle(Angle - 15)
-			TNT1 A 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))			
+			TNT1 A 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_J GG 1 A_SetAngle(Angle - 15)
-			TNT1 AA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))			
+			TNT1 AA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_J GGG 1 A_SetAngle(Angle - 15)
-			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))			
+			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_J GGGG 1 A_SetAngle(Angle - 15)
-			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))			
+			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
 			WH_J GGGGG 1 A_SetAngle(Angle - 15)
-		DeathLoop:	
-			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))		
-			WH_J GGGGGG 1 A_SetAngle(Angle - 15)			
+		DeathLoop:
+			TNT1 AAA 0 A_SpawnItemEx("WTFireMaceTrail",0,0,0,frandom(-5.00,5.00),frandom(-8.00,8.00),frandom(10.00,1.00))
+			WH_J GGGGGG 1 A_SetAngle(Angle - 15)
 			TNT1 A 0 A_FadeOut(1.0/5.0)
 			Goto DeathLoop
 	}

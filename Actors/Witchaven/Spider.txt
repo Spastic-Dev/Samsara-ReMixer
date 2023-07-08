@@ -34,7 +34,7 @@ Actor WitchavenSpider : WitchavenEnemyBaseMeleeBeast
 		WH_Y E 5 A_CustomMeleeAttack(Random(3,15),"","","Poison")
 		Goto See
 	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		WH_Y I 3
 		WH_Y J 3 A_Scream
@@ -96,7 +96,7 @@ Actor WitchavenSpider : WitchavenEnemyBaseMeleeBeast
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 		loop
-	ExpanderPop:	
+	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -126,7 +126,7 @@ Actor WitchavenSpider : WitchavenEnemyBaseMeleeBeast
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 		loop
-	ExpanderPopCoop:	
+	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -309,9 +309,9 @@ actor WitchavenSpider_Shrink : WitchavenSpider
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -339,7 +339,7 @@ actor WitchavenSpider_ShrinkEffect : WitchavenSpider
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

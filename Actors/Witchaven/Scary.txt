@@ -7,21 +7,21 @@ Actor WitchavenScaryScreamer : WitchavenEnemyBaseMeleeSkeleton {
 	+DROPOFF
 	+NOPAIN
 	+CANPASS
-	+SPAWNFLOAT	
+	+SPAWNFLOAT
 	Scale 0.50
 	Mass 1000
 	Speed 10
 	Health 80
-	DropItem "WHShadowAmulet",10,1	
+	DropItem "WHShadowAmulet",10,1
 	SeeSound "wtscary/see"
 	ActiveSound ""
 	PainSound ""
 	MeleeRange 80
 	DeathSound "wtscary/die"
 	Obituary "%o couldn't overcome %p fears."
-	DropItem "WHShadowAmulet",5,1	
+	DropItem "WHShadowAmulet",5,1
 	Tag "Demon"
-	States { 
+	States {
 		Spawn:
 			WH_P D 0
 			WH_P D 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -33,26 +33,26 @@ Actor WitchavenScaryScreamer : WitchavenEnemyBaseMeleeSkeleton {
 		See:
 			WH_P DDDEEEFFFGGG 2 Bright
 		SeenPlayer:
-			TNT1 AA 2 A_Chase("Melee","") 
-			TNT1 AA 2 A_Chase("Melee","") 			
-			TNT1 AA 2 A_Chase("Melee","") 
-			TNT1 A 0 A_Jump(20,"ScareMe")			
-			TNT1 AA 2 A_Chase("Melee","") 
-			TNT1 AA 2 A_Chase("Melee","") 
-			TNT1 AA 2 A_Chase("Melee","") 
+			TNT1 AA 2 A_Chase("Melee","")
+			TNT1 AA 2 A_Chase("Melee","")
+			TNT1 AA 2 A_Chase("Melee","")
+			TNT1 A 0 A_Jump(20,"ScareMe")
+			TNT1 AA 2 A_Chase("Melee","")
+			TNT1 AA 2 A_Chase("Melee","")
+			TNT1 AA 2 A_Chase("Melee","")
 			TNT1 A 0 A_Jump(20,"ScareMe")
 			Loop
 		ScareMe:
-			TNT1 A 0 A_PlaySound("wtscary/see",CHAN_BODY,1.0,0,ATTN_NORM)				
+			TNT1 A 0 A_PlaySound("wtscary/see",CHAN_BODY,1.0,0,ATTN_NORM)
 			WH_P DDD 2 Bright A_Chase
 			WH_P EEE 2 Bright A_Chase
 			WH_P FFF 2 Bright A_Chase
-		DontLookAtMe:	
+		DontLookAtMe:
 			WH_P GGGGGGGGGG 2 Bright A_Chase
 			TNT1 A 0 A_Jump(128,3)
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("WTFireMaceBall_Enemy_Wisp",5)			
-			TNT1 A 0 
+			TNT1 A 0 A_CustomMissile("WTFireMaceBall_Enemy_Wisp",5)
+			TNT1 A 0
 			WH_P GGGGGGGGGG 2 Bright A_Chase
 			TNT1 A 0 A_Jump(25,"DontLookAtMe")
 			Goto SeenPlayer
@@ -61,7 +61,7 @@ Actor WitchavenScaryScreamer : WitchavenEnemyBaseMeleeSkeleton {
 			WH_P DDEEFF 2 Bright A_FaceTarget
 			WH_P G 2 Bright A_CustomMeleeAttack(random(10,20)/Random(2,1),"","")
 			WH_P G 2 Bright A_FaceTarget
-		GoAway:	
+		GoAway:
 			TNT1 AAAA 2 A_Chase("","")
 			TNT1 AAAA 2 A_Chase
 			TNT1 A 0 A_ChangeFlag(FRIGHTENED,1)
@@ -69,14 +69,14 @@ Actor WitchavenScaryScreamer : WitchavenEnemyBaseMeleeSkeleton {
 			TNT1 AAAA 2 A_Wander
 			TNT1 A 0 A_ChangeFlag(FRIGHTENED,0)
 			Goto SeenPlayer
-		Death:	
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_UnsetSolid
 			WH_P G 10 Bright A_NoGravity
 			WH_P F 10 Bright A_Scream
 			WH_P E 10 Bright A_NoBlocking
-		VanishMe:	
-			WH_P D 2 Bright A_FadeOut(0.01) 
+		VanishMe:
+			WH_P D 2 Bright A_FadeOut(0.01)
 			Loop
 	}
 }

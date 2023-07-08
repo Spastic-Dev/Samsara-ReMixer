@@ -1,47 +1,47 @@
 Actor AlienHulk : SamsaraMonsterAlienLarge
 {
-    obituary "An Alien Hulk introduced %o to the superiority of it's arm cannons!"
-    hitobituary "%o got bashed in the face by an Alien Hulk."
-    scale 0.55
-    radius 24
-    height 64
-    speed 7
-    mass 4500
-    health 1200
-    painchance 40
-    meleedamage 22
-    meleerange 65	
-    SeeSound "hulk/see"
-    ActiveSound "hulk/roam"
-    PainSound "hulk/pain"
-    DeathSound "hulk/death"
-    MeleeSound "hulk/attack"
-    Monster	
+	obituary "An Alien Hulk introduced %o to the superiority of it's arm cannons!"
+	hitobituary "%o got bashed in the face by an Alien Hulk."
+	scale 0.55
+	radius 24
+	height 64
+	speed 7
+	mass 4500
+	health 1200
+	painchance 40
+	meleedamage 22
+	meleerange 65
+	SeeSound "hulk/see"
+	ActiveSound "hulk/roam"
+	PainSound "hulk/pain"
+	DeathSound "hulk/death"
+	MeleeSound "hulk/attack"
+	Monster
 	Species "RedneckEnemies"
-	Tag "Alien Hulk"	
-    +FLOORCLIP
+	Tag "Alien Hulk"
+	+FLOORCLIP
 	+MISSILEMORE
-    +MISSILEEVENMORE
-    +BOSSDEATH
-    +DONTMORPH
-	+DONTRIP	
+	+MISSILEEVENMORE
+	+BOSSDEATH
+	+DONTMORPH
+	+DONTRIP
 	+NOINFIGHTING
 	+NOBLOODDECALS
-    BloodType "LeonardBlood_RR"		
+	BloodType "LeonardBlood_RR"
 	Bloodcolor "ba 2c 10"
-    DamageFactor "Mace", 1.1
-    DamageFactor "DragonClaw", 1.5
-    PainChance "MightyBoot", 255
+	DamageFactor "Mace", 1.1
+	DamageFactor "DragonClaw", 1.5
+	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0.5	
+	DamageFactor "PoisonBolt", 0.5
 	var int user_scalex;
 	var int user_scaley;
-    States
-    {              
-    Spawn:
+	States
+	{
+	Spawn:
 		HULK A 0
 		HULK A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		HULK A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
@@ -49,7 +49,7 @@ Actor AlienHulk : SamsaraMonsterAlienLarge
 	Spawn2:
 		HULK A 4 A_Look
 		loop
-    See:
+	See:
 		HULK AA 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		HULK BB 2 A_Chase
 		HULK CC 2 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -59,7 +59,7 @@ Actor AlienHulk : SamsaraMonsterAlienLarge
 		HULK GG 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		HULK HH 2 A_Chase
 		loop
-    Missile:
+	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HULK I 0 A_Jump(40,"LandMine")
 		HULK I 6 A_FaceTarget
@@ -80,24 +80,24 @@ Actor AlienHulk : SamsaraMonsterAlienLarge
 		HULK III 1 Bright A_CustomMissile("AlienHulkPlasmashot_2_",40,30,0,0)
 		HULK IJKL 2 A_FaceTarget
 		goto See
-    LandMine:
+	LandMine:
 		HULK S 5 A_FaceTarget
 		HULK T 5 A_FaceTarget
-		HULK T 0 A_PlaySound ("Hulk/Spit")		
+		HULK T 0 A_PlaySound ("Hulk/Spit")
 		HULK U 1 A_ThrowGrenade("AlienHulklandmine",40,14,4)
 		HULK U 1 A_ThrowGrenade("AlienHulklandmine",40,16,5)
-		HULK U 3 A_ThrowGrenade("AlienHulklandmine",40,18,6)	
+		HULK U 3 A_ThrowGrenade("AlienHulklandmine",40,18,6)
 		HULK V 10
 		goto See
-    Melee:
+	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		HULK MNO 6 A_FaceTarget
 		HULK P 4 A_FaceTarget
 		HULK Q 4 A_MeleeAttack
 		HULK R 4
 		goto See
-    Pain:
-		HULK W 0 A_Jump(162,"See")	
+	Pain:
+		HULK W 0 A_Jump(162,"See")
 		HULK W 0 A_Pain
 		HULK WWXXYYXXWW 1
 		goto See
@@ -107,18 +107,18 @@ Actor AlienHulk : SamsaraMonsterAlienLarge
 		HULK Y 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		HULK Y 16 A_Pain
-		Goto See			
-	Death:		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto See
+	Death:
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		HULD A 0 A_Scream
 		TNT1 A 0 A_SpawnItemEx("AlienHulkRevive",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 //A_KillMaster
 		stop
-    XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid	
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_UnsetSolid
 		RR20 A 0 A_PlaySound("leonard/xdeath")
 		RR20 A 0 A_CustomMissile("Hulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		RR20 A 0 A_CustomMissile("HulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -128,16 +128,16 @@ Actor AlienHulk : SamsaraMonsterAlienLarge
 		JKLP A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		JKLP A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 AA 0 A_CustomMissile("Hulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))  
+		RR20 AA 0 A_CustomMissile("Hulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_KillMaster
-		stop  
+		stop
 	Death.LeonardDamage2:
 	Death.LeonardDamage3:
 		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
 	Death.RRBullet:
 	Death.LeonardDamage0:
-	Death.LeonardDamage1:	
+	Death.LeonardDamage1:
 		TNT1 A 0 A_Jump(218, "Death")
 		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
 		TNT1 A -1 A_Jump(256,"Death")
@@ -146,7 +146,7 @@ Actor AlienHulk : SamsaraMonsterAlienLarge
 		TNT1 A 0 A_Jump(96, "XDeath")
 		TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
-		Stop			
+		Stop
 	Pain.ShrinkerDMG:
 		HULK W 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -196,7 +196,7 @@ Actor AlienHulk : SamsaraMonsterAlienLarge
 		TNT1 A 0
 		TNT1 A 1 A_KillMaster
 		stop
-    }
+	}
 }
 
 actor AlienHulk_Shrink : AlienHulk
@@ -364,9 +364,9 @@ actor AlienHulk_Shrink : AlienHulk
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -395,7 +395,7 @@ actor AlienHulk_ShrinkEffect : AlienHulk
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -426,9 +426,9 @@ actor AlienHulk_ShrinkEffect : AlienHulk
 
 Actor AlienHulk_Blue : AlienHulk
 {
-    States
-    {              
-    Spawn:
+	States
+	{
+	Spawn:
 		RR16 A 0
 		RR16 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 		RR16 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
@@ -436,7 +436,7 @@ Actor AlienHulk_Blue : AlienHulk
 	Spawn2:
 		RR16 A 4 A_Look
 		loop
-    See:
+	See:
 		RR16 AA 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR16 BB 2 A_Chase
 		RR16 CC 2 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -446,7 +446,7 @@ Actor AlienHulk_Blue : AlienHulk
 		RR16 GG 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR16 HH 2 A_Chase
 		loop
-    Missile:
+	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RR16 I 0 A_Jump(40,"LandMine")
 		RR16 I 6 A_FaceTarget
@@ -467,24 +467,24 @@ Actor AlienHulk_Blue : AlienHulk
 		RR16 III 1 Bright A_CustomMissile("AlienHulkPlasmashot_2_",40,30,0,0)
 		RR16 IJKL 2 A_FaceTarget
 		goto See
-    LandMine:
+	LandMine:
 		RR16 S 5 A_FaceTarget
 		RR16 T 5 A_FaceTarget
-		RR16 T 0 A_PlaySound ("Hulk/Spit")		
+		RR16 T 0 A_PlaySound ("Hulk/Spit")
 		RR16 U 1 A_ThrowGrenade("AlienHulklandmine",40,14,4)
 		RR16 U 1 A_ThrowGrenade("AlienHulklandmine",40,16,5)
-		RR16 U 3 A_ThrowGrenade("AlienHulklandmine",40,18,6)	
+		RR16 U 3 A_ThrowGrenade("AlienHulklandmine",40,18,6)
 		RR16 V 10
 		goto See
-    Melee:
+	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		RR16 MNO 6 A_FaceTarget
 		RR16 P 4 A_FaceTarget
 		RR16 Q 4 A_MeleeAttack
 		RR16 R 4
 		goto See
-    Pain:
-		RR16 W 0 A_Jump(162,"See")	
+	Pain:
+		RR16 W 0 A_Jump(162,"See")
 		RR16 W 0 A_Pain
 		RR16 WWXXYYXXWW 1
 		goto See
@@ -494,9 +494,9 @@ Actor AlienHulk_Blue : AlienHulk
 		RR16 Y 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		RR16 Y 16 A_Pain
-		Goto See			
-	Death:		
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Goto See
+	Death:
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		RR15 A 0 A_Scream
 		TNT1 A 0 A_SpawnItemEx("AlienHulkRevive_Blue",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
 		TNT1 A 0 A_NoBlocking
@@ -507,7 +507,7 @@ Actor AlienHulk_Blue : AlienHulk
 		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
 	Death.RRBullet:
 	Death.LeonardDamage0:
-	Death.LeonardDamage1:	
+	Death.LeonardDamage1:
 		TNT1 A 0 A_Jump(218, "Death")
 		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
 		TNT1 A -1 A_Jump(256,"Death")
@@ -516,7 +516,7 @@ Actor AlienHulk_Blue : AlienHulk
 		TNT1 A 0 A_Jump(96, "XDeath")
 		TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
-		Stop			
+		Stop
 	Pain.ShrinkerDMG:
 		RR16 W 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -566,7 +566,7 @@ Actor AlienHulk_Blue : AlienHulk
 		TNT1 A 0
 		TNT1 A 1 A_KillMaster
 		stop
-    }
+	}
 }
 
 actor AlienHulk_Blue_Shrink : AlienHulk_Blue
@@ -734,9 +734,9 @@ actor AlienHulk_Blue_Shrink : AlienHulk_Blue
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -765,7 +765,7 @@ actor AlienHulk_Blue_ShrinkEffect : AlienHulk_Blue
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -796,83 +796,83 @@ actor AlienHulk_Blue_ShrinkEffect : AlienHulk_Blue
 
 Actor AlienHulklandmine
 {
-    Obituary "%o ran over a friggin mine placed by an Alien Hulk."
-    HitObituary "%o ran over a friggin mine placed by an Alien Hulk."
-    scale 0.5
-    radius 4
-    height 4
+	Obituary "%o ran over a friggin mine placed by an Alien Hulk."
+	HitObituary "%o ran over a friggin mine placed by an Alien Hulk."
+	scale 0.5
+	radius 4
+	height 4
 	+MISSILE
-    +NOICEDEATH
+	+NOICEDEATH
 	Species "RedneckEnemies"
 	+DONTHARMCLASS
-	+DONTHARMSPECIES	
+	+DONTHARMSPECIES
 	+THRUSPECIES
-    states
-    {
-    Spawn:
-		HULM ABCD 3 Bright	
+	states
+	{
+	Spawn:
+		HULM ABCD 3 Bright
 		loop
-    Crash:
+	Crash:
 		TNT1 A 0 A_Explode(50,128)
 		TNT1 A 0 A_PlaySound("Hulk/Explode")
 		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION___ZA2",0,0,0,0)
 		TNT1 A 5
 		stop
-    Death:
+	Death:
 		TNT1 A 5 A_SpawnItemEx("AlienHulklandmine2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		stop
-    }
+	}
 }
 Actor AlienHulklandmine2
 {
-    Obituary "%o ran over a friggin mine placed by an Alien Hulk."
-    HitObituary "%o ran over a friggin mine placed by an Alien Hulk."
-    Scale 0.5
-    Health 1
-    Radius 6
-    Height 6
-    Speed 0
+	Obituary "%o ran over a friggin mine placed by an Alien Hulk."
+	HitObituary "%o ran over a friggin mine placed by an Alien Hulk."
+	Scale 0.5
+	Health 1
+	Radius 6
+	Height 6
+	Speed 0
 	Species "RedneckEnemies"
 	Reactiontime 120
 	+MOVEWITHSECTOR
-    +SHOOTABLE
-    +LOOKALLAROUND
-    +NOICEDEATH
-    +DONTMORPH
+	+SHOOTABLE
+	+LOOKALLAROUND
+	+NOICEDEATH
+	+DONTMORPH
 	+NOBLOOD
 	+BLOODLESSIMPACT
-    -COUNTKILL
+	-COUNTKILL
 	+THRUSPECIES
 	+DONTHARMCLASS
-	+DONTHARMSPECIES		
-    MONSTER	
-    states
-    {
-    Spawn:
+	+DONTHARMSPECIES
+	MONSTER
+	states
+	{
+	Spawn:
 		TNT1 A 0
 	SpawnLoop:
 		TNT1 A 0 A_CountDown
 		HULM ABCD 3 Bright A_LookEx(2,0,80,0,360,"Death")
 		Loop
-    Death:	
+	Death:
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_Explode(50,128)
-		TNT1 A 0 A_PlaySound("Hulk/Explode")	
+		TNT1 A 0 A_PlaySound("Hulk/Explode")
 		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION___ZA2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 5
 		Stop
-    }
+	}
 }
 
 Actor AlienHulkRevive : SamsaraMonsterAlienLarge
 {
-	Tag "Alien Hulk"	
+	Tag "Alien Hulk"
 	scale 0.55
 	health 200
 	radius 24
-    height 24
-    speed 0
-    mass 700
+	height 24
+	speed 0
+	mass 700
 	Monster
 	+NOBLOODDECALS
 	-COUNTKILL
@@ -880,22 +880,22 @@ Actor AlienHulkRevive : SamsaraMonsterAlienLarge
 	Bloodcolor "ba 2c 10"
 	PainChance "ShrinkerDMG", 0
 	states
-    {
-	Spawn:	
+	{
+	Spawn:
 		HULD B 5
 		HULD C 5
 		HULD D 5
 		HULD E 5
 		HULD F 5
-		HULD GH 5 
+		HULD GH 5
 		TNT1 A 0 A_playsound("redneck/thud")
-		HULD I 1000 
+		HULD I 1000
 		goto Raise
 	Death:
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid	
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_UnsetSolid
 		RR20 A 0 A_PlaySound("leonard/xdeath")
 		RR20 A 0 A_CustomMissile("Hulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		RR20 A 0 A_CustomMissile("HulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -908,7 +908,7 @@ Actor AlienHulkRevive : SamsaraMonsterAlienLarge
 		RR20 AA 0 A_CustomMissile("Hulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_KillMaster
-		stop 
+		stop
 	Raise:
 		TNT1 A 0 A_Die("Rise")
 		Goto Death.Rise
@@ -926,7 +926,7 @@ Actor AlienHulkRevive : SamsaraMonsterAlienLarge
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
-		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -981,17 +981,17 @@ Actor AlienHulkRevive : SamsaraMonsterAlienLarge
 		"####" "#" 2 A_SetTranslucent(0.2,0)
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 2 A_SetTranslucent(0.1,0)
-        TNT1 A 0 A_KillMaster
-        stop
+		TNT1 A 0 A_KillMaster
+		stop
 	Death.Nuke:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
-		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_SpawnItem("WTNukeDeathBig")
 		"####" "#################" 3 A_Fadeout(0.05)
 		TNT1 A 0 A_KillMaster
-		stop	
+		stop
 	Death.DukeIce:
 		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 		"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
@@ -1007,83 +1007,83 @@ Actor AlienHulkRevive : SamsaraMonsterAlienLarge
 		"####" "#" 0 A_IceGuyDie
 		"####" "#" 1 A_IceGuyDie
 		TNT1 A 0
-		stop		
-    }
-}  
+		stop
+	}
+}
 
 Actor AlienHulkPlasmashot_2_ : AlienHulkPlasmashot { Damage (5) }
 Actor AlienHulkPlasmashot2_2_ : AlienHulkPlasmashot2 { Damage (5) }
 
 Actor HulkHead
 {
-    radius 6
-    height 5
-    scale 0.4
-    speed 10
-    +MISSILE
+	radius 6
+	height 5
+	scale 0.4
+	speed 10
+	+MISSILE
 	-SOLID
 	+CLIENTSIDEONLY
-    states
-    {
-    Spawn:
+	states
+	{
+	Spawn:
 		TNT1 A 0
-		HULG A 0 A_Gravity	
+		HULG A 0 A_Gravity
 	SpawnLoop:
 		HULG IJKL 4
 		Loop
 	Crash:
-    Death:
+	Death:
 		TNT1 A 5
 		stop
-    }
+	}
 }
 
 Actor HulkArm
 {
-    scale 0.4
-    radius 6
-    height 5
-    speed 10
-    +MISSILE
-	+CLIENTSIDEONLY	
-	-SOLID	
-    states
-    {
-    Spawn:
+	scale 0.4
+	radius 6
+	height 5
+	speed 10
+	+MISSILE
+	+CLIENTSIDEONLY
+	-SOLID
+	states
+	{
+	Spawn:
 		TNT1 A 0
-		HULG A 0 A_Gravity	
+		HULG A 0 A_Gravity
 	SpawnLoop:
 		HULG ABCD 4
 		loop
 	Crash:
-    Death:
+	Death:
 		TNT1 A 5
 		stop
-    }
+	}
 }
 
 Actor Hulkleg
 {
-    scale 0.4
-    radius 6
-    height 5
-    speed 10
-	+CLIENTSIDEONLY	
-    +MISSILE
-	-SOLID	
-    states
-    {
-    Spawn:
+	scale 0.4
+	radius 6
+	height 5
+	speed 10
+	+CLIENTSIDEONLY
+	+MISSILE
+	-SOLID
+	states
+	{
+	Spawn:
 		TNT1 A 0
-		HULG A 0 A_Gravity	
+		HULG A 0 A_Gravity
 	SpawnLoop:
 		HULG EFGH 4
 		loop
 	Crash:
-    Death:
+	Death:
 		TNT1 A 5
-		stop  
-    }
+		stop
+	}
 }
 
 Actor RRFAKEEXPLOSION___ZA2
@@ -1104,25 +1104,25 @@ Actor RRFAKEEXPLOSION___ZA2
 
 Actor AlienHulk_2Revived : AlienHulk { Tag "Alien Hulk" +LOOKALLAROUND Health 600 }
 
-Actor AlienHulkRevive_Blue : AlienHulkRevive 
+Actor AlienHulkRevive_Blue : AlienHulkRevive
 {
 	states
-    {
-	Spawn:	
+	{
+	Spawn:
 		RR15 B 5
 		RR15 C 5
 		RR15 D 5
 		RR15 E 5
 		RR15 F 5
-		RR15 GH 5 
+		RR15 GH 5
 		TNT1 A 0 A_playsound("redneck/thud")
-		RR15 I 1000 
+		RR15 I 1000
 		goto Raise
 	Death:
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-	    TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid	
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_UnsetSolid
 		RR20 A 0 A_PlaySound("leonard/xdeath")
 		RR20 A 0 A_CustomMissile("Hulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		RR20 A 0 A_CustomMissile("HulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -1135,7 +1135,7 @@ Actor AlienHulkRevive_Blue : AlienHulkRevive
 		RR20 AA 0 A_CustomMissile("Hulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_KillMaster
-		stop 
+		stop
 	Raise:
 		TNT1 A 0 A_Die("Rise")
 		Goto Death.Rise
@@ -1153,7 +1153,7 @@ Actor AlienHulkRevive_Blue : AlienHulkRevive
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
-		"####" "#" 0 A_NoBlocking	
+		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 0 A_Stop
 		"####" "#" 0 A_ChangeFlag("SHOOTABLE",FALSE)
@@ -1208,17 +1208,17 @@ Actor AlienHulkRevive_Blue : AlienHulkRevive
 		"####" "#" 2 A_SetTranslucent(0.2,0)
 		"####" "#" 0 ACS_NamedExecuteAlways("ExtraDeathFX",0,1)
 		"####" "#" 2 A_SetTranslucent(0.1,0)
-        TNT1 A 0 A_KillMaster
-        stop
+		TNT1 A 0 A_KillMaster
+		stop
 	Death.Nuke:
 		"####" "#" 0 A_ChangeFlag("SOLID", 0)
 		"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		"####" "#" 0 A_Scream
-		"####" "#" 0 A_NoBlocking		
+		"####" "#" 0 A_NoBlocking
 		"####" "#" 0 A_SpawnItem("WTNukeDeathBig")
 		"####" "#################" 3 A_Fadeout(0.05)
 		TNT1 A 0 A_KillMaster
-		stop	
+		stop
 	Death.DukeIce:
 		"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 		"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
@@ -1234,8 +1234,8 @@ Actor AlienHulkRevive_Blue : AlienHulkRevive
 		"####" "#" 0 A_IceGuyDie
 		"####" "#" 1 A_IceGuyDie
 		TNT1 A 0
-		stop		
-    }
-}  
+		stop
+	}
+}
 
 Actor AlienHulk_2Revived_Blue : AlienHulk_2Revived { Tag "Alien Hulk" +LOOKALLAROUND Health 600 }

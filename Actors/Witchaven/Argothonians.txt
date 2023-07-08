@@ -1,16 +1,16 @@
 Actor WTArgothonianFist : WitchavenEnemyBaseMelee {
-    Health 15
-    Scale 0.363
+	Health 15
+	Scale 0.363
 	Mass 1000
-	Speed 8	
+	Speed 8
 	SeeSound ""
 	ActiveSound ""
 	PainSound "wtargothonian/pain"
 	DeathSound "wtargothonian/die"
 	+NOFEAR
 	Tag "Argothonian Clansman"
-    Obituary "%o was beaten up by an Argothonian."	
-    States {
+	Obituary "%o was beaten up by an Argothonian."
+	States {
 		Spawn:
 			WH_9 V 0
 			WH_9 V 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -19,26 +19,26 @@ Actor WTArgothonianFist : WitchavenEnemyBaseMelee {
 		SpawnStandard:
 			TNT1 A 0
 			TNT1 A 0 A_Jump(128,"Spawn2")
-		Spawn1:	
+		Spawn1:
 			WH_9 V 5 A_Look
 			Loop
 		Spawn2:
 			WH_9 W 5 A_Look
 			Loop
 		Idle:
-			TNT1 A 0 A_Look		
+			TNT1 A 0 A_Look
 			WH_9 AA 3 A_Wander
 			TNT1 A 0 A_Look
 			WH_9 BB 3 A_Wander
-			TNT1 A 0 A_Look			
+			TNT1 A 0 A_Look
 			WH_9 CC 3 A_Wander
-			TNT1 A 0 A_Look			
+			TNT1 A 0 A_Look
 			WH_9 DD 3 A_Wander
-			TNT1 A 0 A_Look			
+			TNT1 A 0 A_Look
 			WH_9 EE 3 A_Wander
-			TNT1 A 0 A_Look			
+			TNT1 A 0 A_Look
 			WH_9 FF 3 A_Wander
-			TNT1 A 0 A_Look			
+			TNT1 A 0 A_Look
 			Loop
 		See:
 			WH_9 AABBCCDDEEFF 3 A_Chase
@@ -62,14 +62,14 @@ Actor WTArgothonianFist : WitchavenEnemyBaseMelee {
 			WH_9 M 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)							
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			WH_9 M 4
 			WH_9 N 4 A_Scream
 			WH_9 O 4 A_NoBlocking
 			WH_9 P 4 A_KillMaster
 			WH_9 QRSTU 4
-			WH_9 U -1 
+			WH_9 U -1
 			Stop
 		Death.CalebFire:
 		Death.LifeLeech:
@@ -130,7 +130,7 @@ Actor WTArgothonianFist : WitchavenEnemyBaseMelee {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -160,7 +160,7 @@ Actor WTArgothonianFist : WitchavenEnemyBaseMelee {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -319,9 +319,9 @@ actor WTArgothonianFist_Shrink : WTArgothonianFist
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -349,7 +349,7 @@ actor WTArgothonianFist_ShrinkEffect : WTArgothonianFist
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -380,10 +380,10 @@ actor WTArgothonianFist_ShrinkEffect : WTArgothonianFist
 
 Actor WTArgothonianPikeAxe : WTArgothonianFist {
 	Tag "Pike Axe Argothonian"
-    HitObituary "%o was sliced by an Argothonian."	
+	HitObituary "%o was sliced by an Argothonian."
 	DropItem "Witchaven_PikeAxeMonsterDrop",200,1
-    Health 50
-    States {
+	Health 50
+	States {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_9 HI 5 A_FaceTarget
@@ -577,9 +577,9 @@ actor WTArgothonianPikeAxe_Shrink : WTArgothonianPikeAxe
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -607,7 +607,7 @@ Actor WTThrownAxe_Enemy : WTThrownAxe {
 	DamageType ""
 	Damage (random(3,6)*Random(2,1))
 	scale 0.20
-    Obituary "%o was sliced by an Argothonian."	
+	Obituary "%o was sliced by an Argothonian."
 	States {
 	Spawn:
 		TNT1 A 0
@@ -622,8 +622,8 @@ Actor WTThrownAxe_Enemy : WTThrownAxe {
 
 Actor WTArgothonianSword : WTArgothonianFist {
 	Tag "Argothonian"
-    Health 50
-    States {
+	Health 50
+	States {
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_G XN 5 A_FaceTarget
@@ -811,9 +811,9 @@ actor WTArgothonianSword_Shrink : WTArgothonianSword
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -837,7 +837,7 @@ Actor WTArgothonianPikeAxeSword : WTArgothonianFist {
 	Tag "Pike Axe Argothonian"
 	DropItem "Witchaven_PikeAxeMonsterDrop",200,1
 	Health 50
-    States {
+	States {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_9 HI 5 A_FaceTarget
@@ -1032,9 +1032,9 @@ actor WTArgothonianPikeAxeSword_Shrink : WTArgothonianPikeAxeSword
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1057,7 +1057,7 @@ actor WTArgothonianPikeAxeSword_Shrink : WTArgothonianPikeAxeSword
 Actor WTArgothonianPikeAxeFist : WTArgothonianFist {
 	Tag "Pike Axe Argothonian"
 	DropItem "Witchaven_PikeAxeMonsterDrop",200,1
-    States {
+	States {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_9 HI 5 A_FaceTarget
@@ -1251,9 +1251,9 @@ actor WTArgothonianPikeAxeFist_Shrink : WTArgothonianPikeAxeFist
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1276,9 +1276,9 @@ actor WTArgothonianPikeAxeFist_Shrink : WTArgothonianPikeAxeFist
 Actor WTArgothonianPikeAxe_2 : WTArgothonianFist {
 	Tag "Pike Axe Argothonian"
 	Health 100
-	+DONTRIP	
-	DropItem "Witchaven_PikeAxeMonsterDrop",200,1	
-    States {
+	+DONTRIP
+	DropItem "Witchaven_PikeAxeMonsterDrop",200,1
+	States {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_9 HI 5 A_FaceTarget
@@ -1380,7 +1380,7 @@ Actor WTArgothonianPikeAxe_2 : WTArgothonianFist {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1411,7 +1411,7 @@ Actor WTArgothonianPikeAxe_2 : WTArgothonianFist {
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -1571,9 +1571,9 @@ actor WTArgothonianPikeAxe_2_Shrink : WTArgothonianPikeAxe_2
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1598,7 +1598,7 @@ Actor WTArgothonianPikeAxe_3 : WTArgothonianFist {
 	Tag "Pike Axe Argothonian"
 	DropItem "Witchaven_PikeAxeMonsterDrop",200,1
 	Health 150
-    States {
+	States {
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			WH_9 HI 5 A_FaceTarget
@@ -1658,7 +1658,7 @@ Actor WTArgothonianPikeAxe_3 : WTArgothonianFist {
 			TNT1 A 1 A_KillMaster
 			stop
 	}
-}	
+}
 
 actor WTArgothonianPikeAxe_3_Shrink : WTArgothonianPikeAxe_3
 {
@@ -1801,9 +1801,9 @@ actor WTArgothonianPikeAxe_3_Shrink : WTArgothonianPikeAxe_3
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -1825,5 +1825,3 @@ actor WTArgothonianPikeAxe_3_Shrink : WTArgothonianPikeAxe_3
 }
 
 Actor WTThrownAxe_Enemy_Z : WTThrownAxe_Enemy { Damage (Random(15,30)) }
-Actor WTArgothonianMixer : RandomSpawner { DropItem "WTArgothonianPikeAxeSword" DropItem "WTArgothonianPikeAxe" DropItem "WTArgothonianPikeAxeFist"  DropItem "WTArgothonianFist"  DropItem "WTArgothonianSword" }
-Actor WTArgothonianHighMixer : RandomSpawner { DropItem "WTArgothonianPikeAxe_2" DropItem "WTArgothonianPikeAxe_3"  }

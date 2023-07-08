@@ -6,7 +6,7 @@ Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton {
 	+BOSSDEATH
 	-SHOOTABLE
 	-NOBLOOD
-	+DONTRIP	
+	+DONTRIP
 	Scale 0.55
 	Speed 15
 	Health 300
@@ -16,11 +16,11 @@ Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton {
 	ActiveSound "wthound/act"
 	PainSound ""
 	DeathSound "wthound/die"
-	DropItem "WHShadowAmulet",5,1	
+	DropItem "WHShadowAmulet",5,1
 	Obituary "%o was lost in the shadows..."
 	Tag "Shadow Hound"
 	Bloodcolor "Black"
-	States { 
+	States {
 		Spawn:
 			TNT1 A 0
 			TNT1 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -31,27 +31,27 @@ Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton {
 			Loop
 		See:
 			WH_H AABB 3 A_Chase("","")
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,1)					
+			TNT1 A  0 A_ChangeFlag(SHOOTABLE,1)
 			WH_H CC 3 A_Chase
 			WH_H DD 3 A_Chase
-			WH_H EE 3 A_Chase			
-			WH_H FF 3 A_Chase 
-			WH_H GG 3 A_Chase 
-			WH_H HH 3 A_Chase 
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,0)			
-			WH_H IIJJ 3 A_Chase("","") 
+			WH_H EE 3 A_Chase
+			WH_H FF 3 A_Chase
+			WH_H GG 3 A_Chase
+			WH_H HH 3 A_Chase
+			TNT1 A  0 A_ChangeFlag(SHOOTABLE,0)
+			WH_H IIJJ 3 A_Chase("","")
 			TNT1 AAAAAAAAAAAAAAAAAAAA 2 A_Chase("","")
 			WH_H KKLL 3 A_Chase("","")
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,1)					
+			TNT1 A  0 A_ChangeFlag(SHOOTABLE,1)
 			WH_H MM 3 A_Chase
 			WH_H NN 3 A_Chase
-			WH_H OO 3 A_Chase			
-			WH_H PP 3 A_Chase 
-			WH_H QQ 3 A_Chase 
-			WH_H RR 3 A_Chase 
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,0)			
+			WH_H OO 3 A_Chase
+			WH_H PP 3 A_Chase
+			WH_H QQ 3 A_Chase
+			WH_H RR 3 A_Chase
+			TNT1 A  0 A_ChangeFlag(SHOOTABLE,0)
 			WH_H SSTT 3 A_Chase("","")
-			TNT1 AAAAAAAAAAAAAAAAAAAA 2 A_Chase("","")			
+			TNT1 AAAAAAAAAAAAAAAAAAAA 2 A_Chase("","")
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag(SHOOTABLE,1)
@@ -66,7 +66,7 @@ Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton {
 			TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			WH_H F 2 A_KillMaster
 			WH_H F 2 A_Scream
 			WH_H F 2 A_NoBlocking

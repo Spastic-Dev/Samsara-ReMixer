@@ -1,16 +1,16 @@
 Actor WTSkeleton : WitchavenEnemyBaseMeleeSkeleton
 {
 	Health 25
-	Scale 0.35	
+	Scale 0.35
 	+NOBLOOD
 	SeeSound "wtskele/see"
 	ActiveSound "wtskele/see"
 	PainSound "wtskele/pain"
 	DeathSound "wtskele/die"
-	Obituary "%o was traumatized by a skeleton."	
+	Obituary "%o was traumatized by a skeleton."
 	HitObituary "%o was traumatized by a skeleton."
 	PainChance "ShrinkerDMG", 0
-    DamageFactor "PoisonBolt", 0.0	
+	DamageFactor "PoisonBolt", 0.0
 	Tag "Skeleton"
 	States
 	{
@@ -34,8 +34,8 @@ Actor WTSkeleton : WitchavenEnemyBaseMeleeSkeleton
 		Goto See
 	Pain:
 		TNT1 A 0 A_Jump(100,1,"Pain2")
-		TNT1 AA 0 A_SpawnItemEx("WTGore_Skeleton",0,0,frandom(5.0,35.0),random(-4,4),random(-4,4),random(0,5))	
-	Pain2:	
+		TNT1 AA 0 A_SpawnItemEx("WTGore_Skeleton",0,0,frandom(5.0,35.0),random(-4,4),random(-4,4),random(0,5))
+	Pain2:
 		WH_F O 4 A_Pain
 		WH_F O 4
 		Goto See
@@ -49,7 +49,7 @@ Actor WTSkeleton : WitchavenEnemyBaseMeleeSkeleton
 		WH_F O 16 A_Pain
 		Goto See
 	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		WH_F P 3
 		WH_F Q 3 A_Scream
 		WH_F R 3 A_NoBlocking
@@ -61,13 +61,13 @@ Actor WTSkeleton : WitchavenEnemyBaseMeleeSkeleton
 		WH_F W -1
 		Stop
 	Death.Nuke:
-        WH_A H 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		WH_A H 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_Scream
-        WH_A I 4 A_NoBlocking
-        WH_A J 4 
-        WH_A K 4 
-        WH_A L 4 
-        TNT1 A -1
-        stop				
+		WH_A I 4 A_NoBlocking
+		WH_A J 4
+		WH_A K 4
+		WH_A L 4
+		TNT1 A -1
+		stop
 	}
 }
