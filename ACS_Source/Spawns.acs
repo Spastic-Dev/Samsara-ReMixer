@@ -1,115 +1,115 @@
 /*======================================================================================================================
  													Design Specs
 o MAX_GAME_TYPES
-	    - This corresponds to the game set, like Doom or Chex
+	- This corresponds to the game set, like Doom or Chex
 o MAX_ALTS
-	    - This corresponds to a game alt set, like Opposing Force
+	- This corresponds to a game alt set, like Opposing Force
 o MONSTER_SLOT
-	    - This corresponds to the monster slot, like Zombieman. Slots are in this order:
-			~ Doom ~
-				0: Zombieman
-				1: Shotgun Guy
-				2: Imp
-				3: Chaingun Guy
-				4: Super Shotgun Guy
-				5: Demon
-				6: Dark Imp
-				7: Spectre
-				8: Blood Demon
-				9: Lost Soul
-				10: Cacodemon
-				11: Revenant
-				12: Cacolantern
-				13: Pain Elemental
-				14: Hell Knight
-				15: Arachnotron
-				16: Mancubus
-				17: Abaddon
-				18: Arch-vile
-				19: Baron of Hell
-				20: Hectebus
-				21: Belphegor
-				22: Spider Mastermind
-				23: Cyberdemon
-				24: Wolfenstein SS
+	- This corresponds to the monster slot, like Zombieman. Slots are in this order:
+		~ Doom ~
+			0: Zombieman
+			1: Shotgun Guy
+			2: Imp
+			3: Chaingun Guy
+			4: Super Shotgun Guy
+			5: Demon
+			6: Dark Imp
+			7: Spectre
+			8: Blood Demon
+			9: Lost Soul
+			10: Cacodemon
+			11: Revenant
+			12: Cacolantern
+			13: Pain Elemental
+			14: Hell Knight
+			15: Arachnotron
+			16: Mancubus
+			17: Abaddon
+			18: Arch-vile
+			19: Baron of Hell
+			20: Hectebus
+			21: Belphegor
+			22: Spider Mastermind
+			23: Cyberdemon
+			24: Wolfenstein SS
 
-			~ Chex Quest ~
-				25: Flemoidus Commonus
-				26: Flemoidus Bipedicus
-				27: Armored Flemoidus Bipedicus
-				28: Flemoidus Stridicus
-				29: Larva
-				30: Flem Mine
-				31: Flemoidus Cycloptis Commonus
-				32: Super Cycloptis
-				33: Quadrumpus
-				34: Flemoidus Maximus
-				35: Flembrane
-				36: Flembomination
-				37: Snotfolus
+		~ Chex Quest ~
+			25: Flemoidus Commonus
+			26: Flemoidus Bipedicus
+			27: Armored Flemoidus Bipedicus
+			28: Flemoidus Stridicus
+			29: Larva
+			30: Flem Mine
+			31: Flemoidus Cycloptis Commonus
+			32: Super Cycloptis
+			33: Quadrumpus
+			34: Flemoidus Maximus
+			35: Flembrane
+			36: Flembomination
+			37: Snotfolus
 
-			~ Heretic ~
-				38: Gargoyle
-				39: Fire Gargoyle
-				40: Golem
-				41: Golem Ghost
-				42: Nitrogolem
-				43: Nitrogolem Ghost
-				44: Disciple of D'Sparil
-				45: Undead Warrior
-				46: Undead Warrior Ghost
-				47: Sabreclaw
-				48: Ophidian
-				49: Weredragon
-				50: Iron Lich
-				51: Maulotaur
-				52: D'Sparil
-				53: Chicken
+		~ Heretic ~
+			38: Gargoyle
+			39: Fire Gargoyle
+			40: Golem
+			41: Golem Ghost
+			42: Nitrogolem
+			43: Nitrogolem Ghost
+			44: Disciple of D'Sparil
+			45: Undead Warrior
+			46: Undead Warrior Ghost
+			47: Sabreclaw
+			48: Ophidian
+			49: Weredragon
+			50: Iron Lich
+			51: Maulotaur
+			52: D'Sparil
+			53: Chicken
 
-			~ Hexen ~
-				54: Ettin
-				55: Afrit
-				56: Dark Bishop
-				57: Centaur
-				58: Slaughtaur
-				59: Green Chaos Serpent
-				60: Stalker
-				61: Stalker Boss
-				62: Wendigo
-				63: Reiver
-				64: Reiver (Buried)
-				65: Brown Chaos Serpent
-				66: Traductus
-				67: Zedek
-				68: Menelkir
-				69: Death Wyvern
-				70: Heresiarch
-				71: Korax
-				72: Pig
+		~ Hexen ~
+			54: Ettin
+			55: Afrit
+			56: Dark Bishop
+			57: Centaur
+			58: Slaughtaur
+			59: Green Chaos Serpent
+			60: Stalker
+			61: Stalker Boss
+			62: Wendigo
+			63: Reiver
+			64: Reiver (Buried)
+			65: Brown Chaos Serpent
+			66: Traductus
+			67: Zedek
+			68: Menelkir
+			69: Death Wyvern
+			70: Heresiarch
+			71: Korax
+			72: Pig
 o MAXPERSLOT
-     - This variable is the slot for a decision on the monster from the slot, like spawning a zombieman variant
+	- This variable is the slot for a decision on the monster from the slot, like spawning a zombieman variant
 
 													- Strings -
-     o Monster name:
-         - Name of the the monster
-     o Token0-4:
-         - These are inventory items that can be given to a monster for each difficulty, to alter their behavior
+	o Monster name:
+		- Name of the the monster
+	o Token0-4:
+		- These are inventory items that can be given to a monster for each difficulty, to alter their behavior
 
 													- Stats -
-     o Speed0-4:
-         - These tokens work as a multiplier for monster speed. As such, you should never use numbers with no decimal
-           point. Please use 2.0 instead of 2. If left alone, it will have no affect.
-     o Health0-4:
-         - A health multiplier. Same as speed, these are multipliers. If left alone, it will have no affect.
-     o Weight0-4:
-         - This is a spawn chance, which functions similarly to RandomSpawner. You can use whatever numbers you want,
-           to define the chance of a monster spawning. The higher the weight compared to other monsters, the more likely
-           it is to spawn, and vice versa. If left alone, will be treated as 1. If set to a negative value, however,
-           that means the monster will not spawn at all on that difficulty.
+	o Speed0-4:
+		- These tokens work as a multiplier for monster speed. As such, you should never use numbers with no decimal
+		  point. Please use 2.0 instead of 2. If left alone, it will have no affect.
+	o Health0-4:
+		- A health multiplier. Same as speed, these are multipliers. If left alone, it will have no affect.
+	o Weight0-4:
+		- This is a spawn chance, which functions similarly to RandomSpawner. You can use whatever numbers you want,
+		  to define the chance of a monster spawning. The higher the weight compared to other monsters, the more likely
+		  it is to spawn, and vice versa. If left alone, will be treated as 1. If set to a negative value, however,
+		  that means the monster will not spawn at all on that difficulty.
 
 ======================================================================================================================*/
 
-str monsterSelectStr[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_STRING_ITEMS] = 
+str monsterSelectStr[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_STRING_ITEMS] =
 {
 	{//Doom
 		{//Classic
@@ -12009,7 +12009,7 @@ str monsterSelectStr[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_STR
 	}
 };
 
-int monsterSelectStat[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_ITEMS] = 
+int monsterSelectStat[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_ITEMS] =
 {
 	{//Doom
 		{//Classic
@@ -20536,13 +20536,13 @@ int monsterSelectStat[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_IT
 				{0,0,1,0,0,1,0,0,1,0,0,1,0,0,1}
 			},
 			{//Doom Imp
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3}
 			},
 			{//Chaingunguy
 				{0,0,2,0,0,2,0,0,2,0,0,2,0,0,2},
@@ -20698,13 +20698,13 @@ int monsterSelectStat[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_IT
 				{0,0,1,0,0,1,0,0,1,0,0,1,0,0,1}
 			},
 			{//Armored Flemoidus Bipedicus
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3}
 			},
 			{//Flemoidus Stridicus
 				{0,0,16,0,0,16,0,0,16,0,0,16,0,0,16},
@@ -20763,13 +20763,13 @@ int monsterSelectStat[MAX_GAME_TYPES][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_IT
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 			},
 			{//Heretic Imp Leader
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,4,0,0,4,0,0,4,0,0,4,0,0,4},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3},
+				{0,0,3,0,0,3,0,0,3,0,0,3,0,0,3}
 			},
 			{//Mummy
 				{0,0,8,0,0,8,0,0,8,0,0,8,0,0,8},
