@@ -1,7 +1,7 @@
-ACTOR NewFlemoidusMaximus
+ACTOR NewFlemoidusMaximus : SamsaraMonsterFlemoidLarge
 {
 	Tag "Mega Flemoidus Maximus"
-	Health 2000
+	Health 1500
 	Radius 24
 	Height 64
 	Mass 1000
@@ -18,12 +18,9 @@ ACTOR NewFlemoidusMaximus
 	+DONTGIB
     +MISSILEMORE
 	+MISSILEEVENMORE
-    +NORADIUSDMG
 	+DONTRIP
-    +DONTMORPH
     +NOTARGET
     +NOINFIGHTING
-    +BOSSDEATH
     +NOTDMATCH
     +NOICEDEATH
 	SeeSound "cqbaron/sight"
@@ -490,7 +487,7 @@ actor Maximus_ShrinkEffect : NewFlemoidusMaximusArch
 ACTOR OldFlemoidusMaximus : NewFlemoidusMaximus
 {
 	Tag "Flemoidus Maximus"
-	Health 1000
+	Health 750
 	Speed 8
 	-BOSS
 	States
