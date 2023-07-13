@@ -12,7 +12,8 @@ Actor WTSkeletalPriestess : WitchavenEnemyBaseRangedBeastLarge
 	DropItem "WHShadowAmulet",30,1
 	Obituary "%o's fate was sealed by the Skeletal Priestess."
 	Tag "Skeletal Priestess"
-	States {
+	States
+	{
 		Spawn:
 			WH_X A 0
 			WH_X A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -22,12 +23,10 @@ Actor WTSkeletalPriestess : WitchavenEnemyBaseRangedBeastLarge
 			WH_X A 5 A_Look
 			Loop
 		See:
-			WH_X A 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			WH_X A 3 A_Chase("","",CHF_NOPLAYACTIVE)
+			WH_X AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
 			WH_X B 3 A_Chase
 			WH_X B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			WH_X C 3 A_Chase
-			WH_X C 3 A_Chase
+			WH_X CC 3 A_Chase
 			WH_X D 3 A_Chase("","",CHF_NOPLAYACTIVE)
 			WH_X D 3 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 			Loop
@@ -35,17 +34,15 @@ Actor WTSkeletalPriestess : WitchavenEnemyBaseRangedBeastLarge
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("wtpriestess/spell",CHAN_BODY)
 			WH_X E 10 A_FaceTarget
-			WH_X F 5 A_FaceTarget
-			WH_X G 5 A_FaceTarget
+			WH_X FG 5 A_FaceTarget
 			WH_X G 5 A_CustomMissile("WTPriestessCurse",65,2)
 			Goto See
 		Pain:
-			WH_X H 4 A_Pain
-			WH_X H 4
+			WH_X H 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			WH_X H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			WH_X H 16 A_Pain
@@ -55,18 +52,14 @@ Actor WTSkeletalPriestess : WitchavenEnemyBaseRangedBeastLarge
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			WH_X I 5 A_Scream
 			WH_X J 5 A_NoBlocking
-			WH_X K 5
-			WH_X LMN 5
-			WH_X OPQR 5
+			WH_X KLMNOPQR 5
 			WH_X R -1 A_KillMaster
 			Stop
 		Death.Nuke:
 			WH_X S 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			WH_X T 4 A_NoBlocking
-			WH_X U 4
-			WH_X V 4
-			WH_X W 4
+			WH_X UVW 4
 			TNT1 A -1 A_KillMaster
 			Stop
 		Pain.ShrinkerDMG:
@@ -109,15 +102,13 @@ Actor WTSkeletalPriestess : WitchavenEnemyBaseRangedBeastLarge
 			Goto ShrunkLoop
 		ShrunkLoop:
 			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
+			Loop
 		ShrunkDie:
-			TNT1 A 0
 			TNT1 A 1 A_Die("Shrink")
-			stop
+			Stop
 		Death.Shrink:
-			TNT1 A 0
 			TNT1 A 1 A_KillMaster
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			WH_X A 0
@@ -132,7 +123,7 @@ Actor WTSkeletalPriestess : WitchavenEnemyBaseRangedBeastLarge
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -163,7 +154,7 @@ Actor WTSkeletalPriestess : WitchavenEnemyBaseRangedBeastLarge
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -295,7 +286,7 @@ actor WTSkeletalPriestess_Shrink : WTSkeletalPriestess
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -305,7 +296,7 @@ actor WTSkeletalPriestess_Shrink : WTSkeletalPriestess
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -316,7 +307,7 @@ actor WTSkeletalPriestess_Shrink : WTSkeletalPriestess
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -360,26 +351,28 @@ actor WTSkeletalPriestess_ShrinkEffect : WTSkeletalPriestess
 	}
 }
 
-Actor WTPriestessCurse {
-	Projectile
+Actor WTPriestessCurse
+{
 	Speed 23
 	Radius 7
 	Height 6
-	+MISSILE
 	Scale 0.75
 	Obituary "%o fate was sealed by the skeletal priestess."
+	PROJECTILE
 	+FORCEXYBILLBOARD
 	+DONTREFLECT
+	+BRIGHT
 //  +THRUREFLECT
 	Damage (random(20,45))
-	States {
+	States
+	{
 		Spawn:
-			W_HX AABBCC 2 Bright
+			W_HX ABC 4
 		SpawnLoop:
-			W_HX DDEE 2 Bright
+			W_HX DE 4
 			Loop
 		Death:
-			W_HX FFGGHHII 2 Bright
+			W_HX FGHI 4
 			Stop
 	}
 }

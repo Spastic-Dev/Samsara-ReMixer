@@ -1,18 +1,17 @@
 Actor DoyleDaisyBike : SamsaraMonsterRemixRRBike
 {
-	obituary "%o was defeated by Frank and Daisy's bike."
-	hitobituary "Frank and Daisy gave %o some tire treadmarks."
-	scale 0.34
-	radius 26
-	height 52
-	health 450
-	mass 120
-	painchance 5
-	meleedamage 2
-	meleerange 20
-	seesound "Bike/Start"
-	deathsound ""
-	activesound "doyle/daisy"
+	Obituary "%o was defeated by Frank and Daisy's bike."
+	HitObituary "Frank and Daisy gave %o some tire treadmarks."
+	Scale 0.34
+	Radius 26
+	Height 52
+	Health 450
+	Mass 120
+	PainChance 5
+	MeleeRange 20
+	SeeSound "Bike/Start"
+	DeathSound ""
+	ActiveSound "doyle/daisy"
 	Species "RedneckEnemies"
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
@@ -27,8 +26,8 @@ Actor DoyleDaisyBike : SamsaraMonsterRemixRRBike
 	+NOBLOODDECALS
 	Tag "Bike Daisy and Doyle"
 	RadiusDamageFactor 1.2
-	damage 3
-	speed 20
+	Damage 3
+	Speed 20
 	Monster
 	BloodType "LeonardBlood_RR"
 	Bloodcolor "ba 2c 10"
@@ -46,19 +45,15 @@ Actor DoyleDaisyBike : SamsaraMonsterRemixRRBike
 	{
 	Spawn:
 		_DX2 M 0
-		_DX2 M 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		_DX2 M 1 A_JumpIfInventory("AlreadySpawned",1,"Idle")
 		_DX2 M 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 		_DX2 M 0 A_GiveInventory("AlreadySpawned",1)
-	Spawn2:
-		TNT1 A 0 A_StopSound(CHAN_BODY)
-		_DX2 MNO 4 A_Look
-		Goto Spawn+1
 	Idle:
 		TNT1 A 0 A_StopSound(CHAN_BODY)
 		_DX2 MNO 4 A_Look
 		Goto Idle+1
 	See:
-		TNT1 A 0 A_PlaySound("Bike/Loop",CHAN_BODY,0.6,1,ATTN_NORM)
+		TNT1 A 0 A_PlaySound("Bike/Loop",CHAN_BODY,0.6,1)
 	SeeLoop:
 		_DX2 M 2 A_Chase("","")
 		_DX2 M 2 A_Chase
@@ -70,16 +65,16 @@ Actor DoyleDaisyBike : SamsaraMonsterRemixRRBike
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		_DX2 M 2 A_FaceTarget
-		_DX2 M 2 A_MeleeAttack
-		goto SeeLoop
+		_DX2 M 2 A_CustomMeleeAttack(2*random(1,8))
+		Goto SeeLoop
 	Pain:
 		_DX2 P 2 A_Pain
 		_DX2 QRSTUVWX 2
 		_DX2 WVUTSRQP 2
-		goto SeeLoop
+		Goto SeeLoop
 	Pain.MightyBoot:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 		_DX2 P 2 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		_DX2 P 16 A_Pain
@@ -88,47 +83,46 @@ Actor DoyleDaisyBike : SamsaraMonsterRemixRRBike
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		TNT1 A 0 A_Jump(200,"Fuu")
 		TNT1 A 0 A_JumpIfCloser(300,"Chargeatya")
+		Goto Fuu
 	Fuu:
-		_DX2 A 2 A_FaceTarget
-		_DX2 B 2 A_FaceTarget
-		_DX2 A 0 A_PlayWeaponSound("rr/ranchrf")
+		_DX2 AB 2 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 C 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX2 D 2 A_FaceTarget
-		_DX2 A 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 E 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX2 F 2 A_FaceTarget
-		_DX2 E 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 G 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX2 H 2 A_FaceTarget
-		_DX2 A 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 I 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		TNT1 A 0 A_CustomMissile("DaisyMolotov")
-		_DX2 A 2 A_FaceTarget
-		_DX2 B 2 A_FaceTarget
-		_DX2 A 0 A_PlayWeaponSound("rr/ranchrf")
+		_DX2 AB 2 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 C 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX2 D 2 A_FaceTarget
-		_DX2 A 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 E 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX2 F 2 A_FaceTarget
-		_DX2 A 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 G 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX2 H 2 A_FaceTarget
-		_DX2 A 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX2 I 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		TNT1 A 0 A_CustomMissile("DaisyMolotov")
-		TNT1 A 0 A_Jump(128, "Fuu")
-		_DX2 JKL 2
-		goto seeloop
+		_DX2 J 2 A_Jump(128, "Fuu")
+		_DX2 KL 2
+		Goto SeeLoop
 	Chargeatya:
 		_DX2 MM 5 A_FaceTarget
 		_DX2 M 2 A_FaceTarget
 		_DX2 N 1 A_SkullAttack(25)
-		_DX2 O 2 A_MeleeAttack
+		_DX2 O 2 A_CustomMeleeAttack(2*random(1,8))
 		_DX2 M 2 A_FaceTarget
 		_DX2 N 1 A_SkullAttack(25)
-		_DX2 O 2 A_MeleeAttack
-		goto seeloop
+		_DX2 O 2 A_CustomMeleeAttack(2*random(1,8))
+		Goto SeeLoop
 	Death.LeonardDamage2:
 	Death.LeonardDamage3:
 		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
@@ -147,103 +141,106 @@ Actor DoyleDaisyBike : SamsaraMonsterRemixRRBike
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_CustomMissile("BikeDebris1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		Goto XDeathEnd
+	XDeathEnd:
 		TNT1 A 0 A_StopSound(CHAN_BODY)
-		TNT1 A 0 A_PlaySound("Bike/Death",5,1.0,0,ATTN_NORM)
-		TNT1 A 0 A_PlaySound("Hulk/Explode",6,1.0,0,ATTN_NORM)
-		TNT1 A 0 A_PlaySound("Leonard/XDeath",7,1.0,0,ATTN_NORM)
+		TNT1 A 0 A_PlaySound("Bike/Death",CHAN_5)
+		TNT1 A 0 A_PlaySound("Hulk/Explode",CHAN_6)
+		TNT1 A 0 A_PlaySound("Leonard/XDeath",CHAN_7)
 		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION")
-		JKLP A 0 A_CustomMissile("DoyleHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DoyleArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DoyleLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("DoyleChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		TNT1 A 5 A_NoBlocking
-		TNT1 A -1 A_KillMaster
-		Stop
+		TNT1 A 0 A_CustomMissile("DoyleHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("DoyleArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("DoyleLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("DoyleChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		Goto DeathEnd
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_UnsetSolid
 		TNT1 A 0 A_StopSound(CHAN_BODY)
-		TNT1 A 0 A_PlaySound("Bike/Death",5,1.0,0,ATTN_NORM)
-		TNT1 A 0 A_PlaySound("Hulk/Explode",6,1.0,0,ATTN_NORM)
+		TNT1 A 0 A_PlaySound("Bike/Death",CHAN_5)
+		TNT1 A 0 A_PlaySound("Hulk/Explode",CHAN_6)
 		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION")
-		TNT1 A 0 A_Jump(128,5)
-		JKLP A 0 A_CustomMissile("BikeDebris1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		TNT1 A 1 A_Jump(256,2)
+		TNT1 A 0 A_Jump(128,2)
 		TNT1 A 0 A_SpawnItemEx("LeonardMotorCycle", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-		TNT1 A 1 A_Jump(128,"A")
-		TNT1 A 0 A_playsound("Doyle/SCHOG")
-		TNT1 A 1 A_SpawnItemEx("FrankDoyle_2",0,0,0,0,0,0,0,32)
-	A:
-		TNT1 A 1 A_Jump(128,"C")
-		TNT1 A 1 A_SpawnItemEx("DaisyMae_2",0,0,0,0,0,0,0,32)
-	C:
+		Goto SpawnDoyle
+		TNT1 A 0 A_CustomMissile("BikeDebris1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		Goto SpawnDoyle
+	SpawnDoyle:
+		TNT1 A 1 A_Jump(128,"SpawnDaisy")
+		TNT1 A 0 A_PlaySound("Doyle/SCHOG")
+		TNT1 A 1 A_SpawnItemEx("FrankDoyle_2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto SpawnDaisy
+	SpawnDaisy:
+		TNT1 A 1 A_Jump(128,"DeathEnd")
+		TNT1 A 1 A_SpawnItemEx("DaisyMae_2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto DeathEnd
+	DeathEnd:
 		TNT1 A 5 A_NoBlocking
 		TNT1 A -1 A_KillMaster
-		stop
+		Stop
 	}
 }
 
 Actor DaisyMolotov
 {
-	scale 0.33
-	height 8
-	radius 5
-	speed 20
-	damage (random(25,35)-random(5,15))
-	+MISSILE
+	Scale 0.33
+	Height 8
+	Radius 5
+	Speed 20
+	Damage (random(25,35)-random(5,15))
 	PROJECTILE
+	+BRIGHT
 	DamageType "Fire"
-	states
+	States
 	{
 	Spawn:
-		DYCH IJKL 3 Bright
-		loop
+		DYCH IJKL 3
+		Loop
 	Death:
 		TNT1 A 0 A_PlaySound("RR/XBOWXPB")
-		CH_R R 2 Bright A_Explode(11,30)
-		CH_R SSTTUUVVWWXXYYZZ 1 Bright
-		CH_7 AABBCCDDEEFFGGHHIIJJKKL 1 Bright
-		CH_7 LL 1 Bright A_FadeOut
-		stop
+		CH_R R 2 A_Explode(11,30)
+		CH_R STUVWXYZ 2
+		CH_7 ABCDEFGHIJK 2
+		CH_7 L 1
+		CH_7 LL 1 A_FadeOut
+		Stop
 	}
 }
 
 Actor DaisyMolotov_2 : DaisyMolotov { Damage (Random(5,10)) }
 
-Actor DoyleDaisyBike_Red : DoyleDaisyBike {
+Actor DoyleDaisyBike_Red : DoyleDaisyBike
+{
 	Health 700
 	Tag "Bike Daisy and Doyle"
-	States {
+	States
+	{
 	Spawn:
 		_DX4 C 0
-		_DX4 C 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		_DX4 C 1 A_JumpIfInventory("AlreadySpawned",1,"Idle")
 		_DX4 C 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 		_DX4 C 0 A_GiveInventory("AlreadySpawned",1)
-	Spawn2:
-		TNT1 A 0 A_StopSound(CHAN_BODY)
-		_DX4 CDE 4 A_Look
-		Goto Spawn+1
 	Idle:
 		TNT1 A 0 A_StopSound(CHAN_BODY)
 		_DX4 CDE 4 A_Look
 		Goto Idle+1
 	See:
-		TNT1 A 0 A_PlaySound("Bike/Loop",CHAN_BODY,0.6,1,ATTN_NORM)
+		TNT1 A 0 A_PlaySound("Bike/Loop",CHAN_BODY,0.6,1)
 	SeeLoop:
 		_DX4 C 2 A_Chase
 		_DX4 C 2 A_Chase("","")
@@ -254,149 +251,136 @@ Actor DoyleDaisyBike_Red : DoyleDaisyBike {
 		Loop
 	Melee:
 		_DX4 C 2 A_FaceTarget
-		_DX4 C 2 A_MeleeAttack
-		goto SeeLoop
+		_DX4 C 2 A_CustomMeleeAttack(2*random(1,8))
+		Goto SeeLoop
 	Pain:
 		_DX4 F 2 A_Pain
 		_DX4 GHIJKLMN 2
 		_DX4 MLKJIHGF 2
-		goto SeeLoop
+		Goto SeeLoop
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		_DX4 F 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		_DX4 F 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Missile:
 		TNT1 A 0 A_Jump(200,"Fuu")
 		TNT1 A 0 A_JumpIfCloser(300,"Chargeatya")
+		Goto Fuu
 	Fuu:
-		_DX3 Q 2 A_FaceTarget
-		_DX3 R 2 A_FaceTarget
-		_DX3 A 0 A_PlayWeaponSound("rr/ranchrf")
+		_DX3 QR 2 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX3 S 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX3 T 2 A_FaceTarget
-		_DX3 A 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX3 U 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX3 V 2 A_FaceTarget
-		_DX3 U 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX3 W 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
 		_DX3 X 2 A_FaceTarget
-		_DX3 A 0 A_PlayWeaponSound("rr/ranchrf")
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
 		_DX3 Y 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		TNT1 A 0 A_JumpIfCloser(375,"AttType2")
+		TNT1 A 0 A_JumpIfCloser(375,2)
 		TNT1 A 0 A_CustomMissile("DaisyMolotov_2")
-	KeepFiring1:
-		_DX3 Q 2 A_FaceTarget
-		_DX3 R 2 A_FaceTarget
-		_DX3 A 0 A_PlayWeaponSound("rr/ranchrf")
-		_DX3 S 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		_DX3 T 2 A_FaceTarget
-		_DX3 A 0 A_PlayWeaponSound("rr/ranchrf")
-		_DX3 U 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		_DX3 V 2 A_FaceTarget
-		_DX3 A 0 A_PlayWeaponSound("rr/ranchrf")
-		_DX3 W 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		_DX3 X 2 A_FaceTarget
-		_DX3 A 0 A_PlayWeaponSound("rr/ranchrf")
-		_DX3 Y 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		TNT1 A 0 A_JumpIfCloser(375,"AttType3")
-		TNT1 A 0 A_CustomMissile("DaisyMolotov_2")
-	KeepFiring2:
-		TNT1 A 0 A_Jump(128, "Fuu")
-		_DX3 Z 2
-		_DX4 AB 2
-		goto seeloop
-	AttType2:
+		Goto KeepFiring1
 		TNT1 A 0 A_CustomMissile("DaisyMolotov_3")
 		Goto KeepFiring1
-	AttType3:
+	KeepFiring1:
+		_DX3 QR 2 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
+		_DX3 S 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		_DX3 T 2 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
+		_DX3 U 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		_DX3 V 2 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
+		_DX3 W 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		_DX3 X 2 A_FaceTarget
+		TNT1 A 0 A_PlayWeaponSound("rr/ranchrf")
+		_DX3 Y 2 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_JumpIfCloser(375,2)
+		TNT1 A 0 A_CustomMissile("DaisyMolotov_2")
+		Goto KeepFiring2
 		TNT1 A 0 A_CustomMissile("DaisyMolotov_3")
 		Goto KeepFiring2
+	KeepFiring2:
+		_DX3 Z 2 A_Jump(128, "Fuu")
+		_DX4 AB 2
+		Goto SeeLoop
 	Chargeatya:
 		_DX4 CC 5 A_FaceTarget
 		_DX4 C 2 A_FaceTarget
 		_DX4 D 1 A_SkullAttack(25)
-		_DX4 E 2 A_MeleeAttack
+		_DX4 E 2 A_CustomMeleeAttack(2*random(1,8))
 		_DX4 C 2 A_FaceTarget
 		_DX4 D 1 A_SkullAttack(25)
-		_DX4 E 2 A_MeleeAttack
-		goto seeloop
+		_DX4 E 2 A_CustomMeleeAttack(2*random(1,8))
+		Goto SeeLoop
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_StopSound(CHAN_BODY)
-		TNT1 A 0 A_PlaySound("Bike/Death",5,1.0,0,ATTN_NORM)
-		TNT1 A 0 A_PlaySound("Hulk/Explode",6,1.0,0,ATTN_NORM)
-		TNT1 A 0 A_PlaySound("Leonard/XDeath",7,1.0,0,ATTN_NORM)
-		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION")
-		JKLP A 0 A_CustomMissile("DoyleHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DoyleArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DoyleLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("DoyleChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris1_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris2_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris3_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		TNT1 A 5 A_NoBlocking
-		TNT1 A -1 A_KillMaster
-		Stop
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_CustomMissile("BikeDebris1_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris2_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris3_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		Goto Super::XDeathEnd
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_UnsetSolid
 		TNT1 A 0 A_StopSound(CHAN_BODY)
-		TNT1 A 0 A_PlaySound("Bike/Death",5,1.0,0,ATTN_NORM)
-		TNT1 A 0 A_PlaySound("Hulk/Explode",6,1.0,0,ATTN_NORM)
+		TNT1 A 0 A_PlaySound("Bike/Death",CHAN_5)
+		TNT1 A 0 A_PlaySound("Hulk/Explode",CHAN_6)
 		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION")
-		TNT1 A 0 A_Jump(128,5)
-		JKLP A 0 A_CustomMissile("BikeDebris1_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris2_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("BikeDebris3_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		TNT1 A 1 A_Jump(256,2)
+		TNT1 A 0 A_Jump(128,2)
 		TNT1 A 0 A_SpawnItemEx("LeonardMotorCycle", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-		TNT1 A 1 A_Jump(128,"A")
-		TNT1 A 0 A_playsound("Doyle/SCHOG")
-		TNT1 A 1 A_SpawnItemEx("FrankDoyle_2_Red",0,20,0,0,0,0,0,32)
-	A:
-		TNT1 A 1 A_Jump(128,"C")
-		TNT1 A 1 A_SpawnItemEx("DaisyMae_2",0,-20,0,0,0,0,0,32)
-	C:
-		TNT1 A 5 A_NoBlocking
-		TNT1 A -1 A_KillMaster
-		stop
+		Goto SpawnDoyle
+		TNT1 A 0 A_CustomMissile("BikeDebris1_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris2_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("BikeDebris3_RR_Red",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		Goto SpawnDoyle
+	SpawnDoyle:
+		TNT1 A 1 A_Jump(128,"SpawnDaisy")
+		TNT1 A 0 A_PlaySound("Doyle/SCHOG")
+		TNT1 A 1 A_SpawnItemEx("FrankDoyle_2_Red",0,20,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto SpawnDaisy
+	SpawnDaisy:
+		TNT1 A 1 A_Jump(128,"DeathEnd")
+		TNT1 A 1 A_SpawnItemEx("DaisyMae_2",0,-20,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Goto Super::DeathEnd
 	}
 }
 
-Actor BikeDebris1_RR_Red : BikeDebris1_RR {
-	States {
+Actor BikeDebris1_RR_Red : BikeDebris1_RR
+{
+	-NOGRAVITY
+	States
+	{
 		Spawn:
-			TNT1 A 0
-			TNT1 A 0 A_Gravity
-		SpawnLoop:
 			_DX3 ABCDE 4
 			Loop
 	}
 }
 
-Actor BikeDebris2_RR_Red : BikeDebris2_RR {
-	States {
+Actor BikeDebris2_RR_Red : BikeDebris2_RR
+{
+	-NOGRAVITY
+	States
+	{
 		Spawn:
-			TNT1 A 0
-			TNT1 A 0 A_Gravity
-		SpawnLoop:
 			_DX3 FGHIJ 4
 			Loop
 	}
 }
 
-Actor BikeDebris3_RR_Red : BikeDebris3_RR {
-	States {
+Actor BikeDebris3_RR_Red : BikeDebris3_RR
+{
+	-NOGRAVITY
+	States
+	{
 		Spawn:
-			TNT1 A 0
-			TNT1 A 0 A_Gravity
-		SpawnLoop:
 			_DX3 KLMNO 4
 			Loop
 	}
@@ -406,27 +390,25 @@ Actor FrankDoyle_2_Red : RedFrankDoyle { +LOOKALLAROUND }
 
 Actor DaisyMolotov_3 : DaisyMolotov
 {
-	speed 13
-	damage (random(25,35)-random(10,20))
-	+MISSILE
-	PROJECTILE
+	Speed 13
+	Damage (random(25,35)-random(10,20))
 	-NOGRAVITY
-	DamageType "Fire"
-	states
+	States
 	{
 	Spawn:
 		TNT1 A 0
 		TNT1 A 0 ThrustThingZ(0,Random(60,50)-Random(10,0),0,1)
 	SpawnLoop:
-		DYCH IJKL 3 Bright
+		DYCH IJKL 3
 		Loop
 	Death:
 		TNT1 A 0 A_PlaySound("RR/XBOWXPB")
-		CH_R R 2 Bright A_Explode(5,60)
-		CH_R SSTTUUVVWWXXYYZZ 1 Bright
-		TNT1 A 0 A_CustomMissile("DaisyMolotovFireWave",0,0,0,CMF_TRACKOWNER|CMF_AIMDIRECTION)
-		CH_7 AABBCCDDEEFFGGHHIIJJKKL 1 Bright
-		CH_7 LL 1 Bright A_FadeOut
+		CH_R R 2 A_Explode(5,60)
+		CH_R STUVWXYZ 2
+		CH_7 A 2 A_CustomMissile("DaisyMolotovFireWave",0,0,0,CMF_TRACKOWNER|CMF_AIMDIRECTION)
+		CH_7 ABCDEFGHIJK 2
+		CH_7 L 1
+		CH_7 LL 1 A_FadeOut
 		Stop
 	}
 }
@@ -438,24 +420,25 @@ Actor DaisyMolotovFireWave
 	Height 1
 	Obituary "%o took a flame bath thanks to Daisy Mae."
 	DamageType "Fire"
+	+BRIGHT
 	-EXTREMEDEATH
 	+NOEXTREMEDEATH
 	+MOVEWITHSECTOR
-	states
+	States
 	{
 	  Spawn:
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,5),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,3),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,3),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,5),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,3),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,3),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,5),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,3),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,3),110)
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_Explode(Random(1,5),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,5),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,3),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,3),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,5),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,3),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,3),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,5),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,3),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,3),110)
+		_DX6 ABCDEFGHIJKLMN 2 A_Explode(Random(1,5),110)
 	  Death:
-		_DX6 ABCDEFGHIJKLMN 2 Bright A_FadeOut
+		_DX6 ABCDEFGHIJKLMN 2 A_FadeOut
 		Stop
 	}
 }

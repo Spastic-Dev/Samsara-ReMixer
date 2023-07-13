@@ -1,21 +1,20 @@
 Actor QueenVixen : SamsaraMonsterHumanoidHuge
 {
-	obituary "%o learned not to mess with the Queen!"
-	hitobituary "%o got impaled by the Queen Vixen's high-heeled boots."
-	health 3000
-	speed 12
-	radius 12
-	height 56
-	meleedamage 10
-	meleerange 50
+	Obituary "%o learned not to mess with the Queen!"
+	HitObituary "%o got impaled by the Queen Vixen's high-heeled boots."
+	Health 3000
+	Speed 12
+	Radius 12
+	Height 56
+	MeleeRange 50
 	Monster
 	Damage (random(15,30))
 	Mass 3000
-	seesound "Vixen/See"
-	painsound "Vixen/Pain"
-	activesound "Vixen/IDLE"
-	deathsound "vixen/die7"
-	scale 0.400
+	SeeSound "Vixen/See"
+	PainSound "Vixen/Pain"
+	ActiveSound "Vixen/IDLE"
+	DeathSound "vixen/die7"
+	Scale 0.400
 	Species "RedneckEnemies"
 	Tag "Queen Vixen"
 	+BOSS
@@ -30,10 +29,10 @@ Actor QueenVixen : SamsaraMonsterHumanoidHuge
 	+STRIFEDAMAGE
 	+NOINFIGHTING
 	+NOBLOODDECALS
-	painchance 25
-	dropitem " Alien Bra Gun Drop ",128,1
+	PainChance 25
+	DropItem " Alien Bra Gun Drop ",128,1
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	DamageFactor "Mace", 1.3
 	DamageFactor "CorvusHellstaffTomed", 0.22
 	DamageFactor "CorvusCrossbow", 1.1
@@ -208,38 +207,25 @@ Actor QueenVixen : SamsaraMonsterHumanoidHuge
 		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 		VIX7 E 5 A_Look
 		Wait
-	STOPFROMTALKING:
-		RRE8 A 0 A_TakeInventory("QueenVixenJumpKick",5)
-		RRE8 A 0 A_JumpIfinventory("VixenTaunt",1,2)
+	Idle:
+		TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		TNT1 A 0 A_TakeInventory("QueenVixenJumpKick",1)
+		TNT1 A 0 A_SetTranslucent(1,0)
+		TNT1 A 0 A_SetShootable
+		Goto IdleLoop
+	IdleLoop:
+		TNT1 A 0 A_JumpIfInventory("VixenTaunt",1,2)
 		VIX7 E 4 A_Look
 		Loop
-		VIX7 I 0 A_SetShootable
-		VIX7 I 0 A_SetTranslucent(1,0)
 		VIX7 IJKL 3 A_Look
-		VIX7 A 0 A_PlaySound("Vixen/Laugh")
+		TNT1 A 0 A_PlaySound("Vixen/Laugh")
 		VIX7 MNO 3 A_Look
 		VIX7 IJKLMNO 3 A_Look
-		VIX7 A 0 A_TakeInventory("VixenTaunt",1)
+		TNT1 A 0 A_TakeInventory("VixenTaunt",1)
 		VIX7 IJKLMNO 3 A_Look
 		VIX7 IJKLMNO 3 A_Look
-		loop
-	Idle:
-		TNT1 A 0 A_ChangeFlag(NODAMAGE,0)
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		VIX7 I 0 A_SetTranslucent(1,0)
-		RRE8 A 0 A_TakeInventory("QueenVixenJumpKick",5)
-		VIX7 A 0 A_JumpIfinventory("VixenTaunt",1,2)
-		VIX7 E 4 A_Look
-		loop
-		VIX7 I 0 A_SetShootable
-		VIX7 IJKL 3 A_Look
-		VIX7 A 0 A_PlaySound("Vixen/Laugh")
-		VIX7 MNO 3 A_Look
-		VIX7 IJKLMNO 3 A_Look
-		VIX7 A 0 A_TakeInventory("VixenTaunt",1)
-		VIX7 IJKLMNO 3 A_Look
-		VIX7 IJKLMNO 3 A_Look
-		loop
+		Loop
 	See:
 		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"OhFuckMe")
 		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"OhFuckMe")
@@ -260,52 +246,42 @@ Actor QueenVixen : SamsaraMonsterHumanoidHuge
 		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
 	OhFuckMe:
-		VIX7 A 0 A_GiveInventory("VixenTaunt",1)
+		TNT1 A 0 A_GiveInventory("VixenTaunt",1)
 	FuckSee:
-		RRE8 A 0 A_JumpIfInventory("QueenVixenJumpKick",1,"FuckBitchKick")
+		TNT1 A 0 A_JumpIfInventory("QueenVixenJumpKick",1,"FuckBitchKick")
 		VIX7 ABCDEFGH 4 A_Chase
-		VIX7 A 0 A_Jump(10,"TeleBitch")
+		TNT1 A 0 A_Jump(10,"TeleBitch")
 		Loop
 	FuckBitchKick:
-		TNT1 A 0 A_Stop
-		VIX8 GHI 3
-		RRM8 A 0 A_TakeInventory("QueenVixenJumpKick",5)
-		goto OhFuckMe
+		VIX8 G 3 A_Stop
+		VIX8 HI 3
+		TNT1 A 0 A_TakeInventory("QueenVixenJumpKick",5)
+		Goto OhFuckMe
 	Missile:
-		VIX7 A 0 A_Jump(60,"TeleBitch")
-		VIX7 A 0 A_Jump(90,"BraFire")
-		VIX7 A 0 A_Jump(112,"Dildo2")
+		TNT1 A 0 A_Jump(60,"TeleBitch")
+		TNT1 A 0 A_Jump(90,"BraFire")
+		TNT1 A 0 A_Jump(112,"Dildo2")
 		TNT1 A 0 A_Jump(128,2)
 		TNT1 A 0 A_JumpIfCloser(364,"HighKarateBitchKick")
-		TNT1 A 0
 		VIX7 P 5 A_FaceTarget
 		VIX7 Q 5 A_CustomMissile("VixenBlast_Q",46,0,0)
 		VIX7 P 5 A_FaceTarget
 		VIX7 Q 5 A_CustomMissile("VixenBlast_Q",46,0,0)
 		VIX7 P 5 A_FaceTarget
 		VIX7 Q 5 A_CustomMissile("VixenBlast_Q",46,0,0)
-		goto OhFuckMe
+		Goto OhFuckMe
 	Dildo2:
-		VIX7 A 0 A_PlaySound("vixen/swing1")
-		VIX7 S 4 A_FaceTarget
-		VIX7 R 4 A_FaceTarget
-		VIX7 T 4 A_FaceTarget
-		VIX8 O 4 A_FaceTarget
-		VIX8 P 4 A_FaceTarget
-		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)
-		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)
-		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)
-		VIX7 U 1 A_CustomMissile("VixenBlast_4",29,4,0)
+		TNT1 A 0 A_PlaySound("vixen/swing1")
+		VIX7 SRT 4 A_FaceTarget
+		VIX8 OP 4 A_FaceTarget
+		VIX7 UUUU 1 A_CustomMissile("VixenBlast_4",29,4,0)
 		VIX7 VWX 4 A_FaceTarget
-		VIX7 A 0 A_PlaySound("vixen/swing2")
+		TNT1 A 0 A_PlaySound("vixen/swing2")
 		VIX7 YZ 4 A_FaceTarget
-		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
-		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
-		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
-		VIX7 "[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
+		VIX7 "[[[[" 1 A_CustomMissile("VixenBlast_5",44,0,0)
 		VIX7 "]" 4 A_FaceTarget
 		VIX8 ABC 4 A_FaceTarget
-		goto OhFuckMe
+		Goto OhFuckMe
 	HighKarateBitchKick:
 		TNT1 A 0 A_PlaySound("Vixen/HighKick")
 		VIX8 D 4 A_FaceTarget
@@ -320,222 +296,229 @@ Actor QueenVixen : SamsaraMonsterHumanoidHuge
 		TNT1 A 0 A_TakeInventory("VixenTeatrush",20)
 		Goto FuckBitchKick
 	Melee:
-		VIX8 A 0 ACS_NamedExecuteWithResult("RR_CussPack",3)
+		TNT1 A 0 ACS_NamedExecuteWithResult("RR_CussPack",3)
 		VIX8 DEG 4 A_FaceTarget
-		VIX8 F 4 A_MeleeAttack
+		VIX8 F 4 A_CustomMeleeAttack(10*random(1,8))
 		VIX8 GHI 4 A_FaceTarget
-		goto FuckSee
+		Goto FuckSee
 	BraFire:
-		VIX8 K 1 A_FaceTarget
-		VIX8 K 1 A_FaceTarget
-		VIX8 K 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
+		VIX8 KKK 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		VIX8 LL 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 L 1 Bright A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 M 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 M 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 M 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 Bright A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 LLL 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		VIX8 MM 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 M 1 Bright A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 Bright A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 L 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 L 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 L 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 MMM 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		VIX8 NN 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 Bright A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 K 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 L 1 Bright A_FaceTarget
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 L 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 M 1 A_FaceTarget
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 M 1 A_FaceTarget
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 M 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 Bright A_FaceTarget
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 Bright A_FaceTarget
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 A_FaceTarget
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 A_FaceTarget
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 L 1 A_FaceTarget
-		VIX8 L 1 A_FaceTarget
-		VIX8 L 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 M 1 Bright A_FaceTarget
-		VIX8 M 1 Bright A_FaceTarget
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 M 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 A_FaceTarget
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 A_FaceTarget
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 Bright A_FaceTarget
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 Bright A_FaceTarget
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 L 1 A_FaceTarget
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 L 1 A_FaceTarget
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 L 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 M 1 A_FaceTarget
-		VIX8 M 1 A_FaceTarget
-		VIX8 M 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 N 1 Bright A_FaceTarget
-		VIX8 N 1 Bright A_FaceTarget
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 A_FaceTarget
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 A_FaceTarget
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 L 1 Bright A_FaceTarget
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 L 1 Bright A_FaceTarget
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 L 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 M 1 A_FaceTarget
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 M 1 A_FaceTarget
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 M 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 A_FaceTarget
-		VIX8 N 1 A_FaceTarget
-		VIX8 N 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 M 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 NNN 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		VIX8 KK 1 Bright A_FaceTarget
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 K 1 Bright A_FaceTarget
-		VIX8 K 1 Bright A_FaceTarget
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 K 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 L 1 A_FaceTarget
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 L 1 A_FaceTarget
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 L 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 L 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 L 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 L 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 M 1 Bright A_FaceTarget
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 M 1 Bright A_FaceTarget
-		VIX8 M 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 M 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 M 1 Bright A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 M 1 Bright A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 N 1 A_FaceTarget
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
 		VIX8 N 1 A_FaceTarget
-		VIX8 N 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 N 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 N 1 A_FaceTarget	VIX8 A 0 A_GiveInventory("VixenTeatrush",1)
-		VIX8 K 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		VIX8 K 0 A_PlaySound("Leonard/PistolF",CHAN_7)
-		VIX8 A 0 A_TakeInventory("VixenTeatrush",20)
-		goto TeleBitch
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		VIX8 N 1 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("VixenTeatrush",1)
+		TNT1 A 0 A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		TNT1 A 0 A_PlaySound("Leonard/PistolF",CHAN_7)
+		TNT1 A 0 A_TakeInventory("VixenTeatrush",20)
+		Goto TeleBitch
 	Pain:
-		VIX7 A 0 A_Pain
-		RRE8 A 0 A_TakeInventory("QueenVixenJumpKick",1)
-		VIX7 A 0 A_TakeInventory("VixenTeatrush",20)
-		VIX7 A 0 A_Jump(64,"FuckSee")
-		VIX7 IIIJJJKKKLLLMMMNNNOOO 1
-		VIX7 A 0 A_Jump(48,"TeleBitch")
-		goto OhFuckMe
+		TNT1 A 0 A_Pain
+		TNT1 A 0 A_TakeInventory("QueenVixenJumpKick",1)
+		TNT1 A 0 A_TakeInventory("VixenTeatrush",20)
+		VIX7 I 3 A_Jump(64,"FuckSee")
+		VIX7 JKLMNO 3
+		TNT1 A 0 A_Jump(48,"TeleBitch")
+		Goto OhFuckMe
 	TeleBitch:
-		VIXN A 0 A_PlaySound("vixen/tpot")
-		VIXN A 0 A_UnSetShootable
-		VIXN ABC 6
+		TNT1 A 0 A_PlaySound("vixen/tpot")
+		VIXN A 6 A_UnSetShootable
+		VIXN BC 6
 		VIXN D 6 A_SetTranslucent(0.7,1)
 		VIXN E 6 A_SetTranslucent(0.4,1)
 		VIXN E 6 A_SetTranslucent(0.1,1)
-		VIXN E 0 A_SetTranslucent(0,1)
+		TNT1 A 0 A_SetTranslucent(0,1)
 		VIXN AAAAAAAAAAAAAAAAAAAA 1 A_Chase(0,0,CHF_NOPLAYACTIVE)
 		VIXN E 6 A_SetTranslucent(0.1,1)
-		VIXN T 0 A_PlaySound("Vixen/TeleIn")
+		TNT1 A 0 A_PlaySound("Vixen/TeleIn")
 		VIXN E 6 A_SetTranslucent(0.4,1)
 		VIXN D 6 A_SetTranslucent(0.7,1)
-		VIXN CBA 6 A_SetTranslucent(1,0)
-		VIXN A 0 A_SetShootable
+		VIXN C 6 A_SetTranslucent(1,0)
+		VIXN BA 6
+		TNT1 A 0 A_SetShootable
 		Goto FuckSee
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		VIXG A 0 A_Scream
-		TNT1 A 0 A_NoBlocking
-		VIXG ABCDEF 5
-		VIXG GH 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		VIXG H 70
+		TNT1 A 0 A_Scream
+		VIXG A 5 A_NoBlocking
+		VIXG BCDEFGH 5
+		VIXG H 70 A_PlaySound("redneck/thud")
 		VIXG H -1 A_KillMaster
-		stop
+		Stop
 	}
 }
 
 Actor VixenBlast_4 : Vixenblast_2
 {
-	damage 10
-	states
+	Damage 10
+	States
 	{
 	Spawn:
-		VIX2 UVW 4 Bright
-		loop
+		VIX2 UVW 4
+		Loop
 	}
 }
 
 Actor VixenBlast_5 : Vixenblast_3
 {
 	damage 9
-	states
+	States
 	{
 	Spawn:
-		VIX2 Z 4 Bright
-		VIX3 AB 4 Bright
-		loop
+		VIX2 Z 4
+		VIX3 AB 4
+		Loop
 	}
 }
 
 Actor VixenBlast_Q : VixenBlast { Speed 35 Damage 8 }
-Actor QueenVixenJumpKick : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }
+Actor QueenVixenJumpKick : Boolean { }

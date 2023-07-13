@@ -1,4 +1,5 @@
-Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton {
+Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton
+{
 	+DONTMORPH
 	+NOFEAR
 	+NOPAIN
@@ -20,7 +21,8 @@ Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton {
 	Obituary "%o was lost in the shadows..."
 	Tag "Shadow Hound"
 	Bloodcolor "Black"
-	States {
+	States
+	{
 		Spawn:
 			TNT1 A 0
 			TNT1 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -31,47 +33,36 @@ Actor WitchavenShadowHound : WitchavenEnemyBaseMeleeSkeleton {
 			Loop
 		See:
 			WH_H AABB 3 A_Chase("","")
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,1)
-			WH_H CC 3 A_Chase
-			WH_H DD 3 A_Chase
-			WH_H EE 3 A_Chase
-			WH_H FF 3 A_Chase
-			WH_H GG 3 A_Chase
-			WH_H HH 3 A_Chase
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,0)
+			TNT1 A 0 A_SetShootable
+			WH_H CCDDEEFFGGHH 3 A_Chase
+			TNT1 A 0 A_UnSetShootable
 			WH_H IIJJ 3 A_Chase("","")
 			TNT1 AAAAAAAAAAAAAAAAAAAA 2 A_Chase("","")
 			WH_H KKLL 3 A_Chase("","")
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,1)
-			WH_H MM 3 A_Chase
-			WH_H NN 3 A_Chase
-			WH_H OO 3 A_Chase
-			WH_H PP 3 A_Chase
-			WH_H QQ 3 A_Chase
-			WH_H RR 3 A_Chase
-			TNT1 A  0 A_ChangeFlag(SHOOTABLE,0)
+			TNT1 A 0 A_SetShootable
+			WH_H MMNNOOPPQQRR 3 A_Chase
+			TNT1 A 0 A_UnSetShootable
 			WH_H SSTT 3 A_Chase("","")
 			TNT1 AAAAAAAAAAAAAAAAAAAA 2 A_Chase("","")
 			Loop
 		Melee:
-			TNT1 A 0 A_ChangeFlag(SHOOTABLE,1)
+			TNT1 A 0 A_SetShootable
 			TNT1 A 0 A_Jump(128,"Style2")
 			WH_H CCDDEEFF 2 Bright A_FaceTarget
 			WH_H G 4 Bright A_CustomMeleeAttack(Random(3,15),"wthound/crunch","","ShadowHoundBite")
-			TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
+			TNT1 A 0 A_UnSetShootable
 			Goto See
 		Style2:
 			WH_H MMNNOOPP 2 Bright A_FaceTarget
 			WH_H Q 4 Bright A_CustomMeleeAttack(Random(3,15),"wthound/crunch","","ShadowHoundBite")
-			TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
+			TNT1 A 0 A_UnSetShootable
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			WH_H F 2 A_KillMaster
 			WH_H F 2 A_Scream
 			WH_H F 2 A_NoBlocking
-		FadeLoop:
 			WH_H F 2 A_FadeOut(0.1)
-			Loop
+			Wait
 	}
 }

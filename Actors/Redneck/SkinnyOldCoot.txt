@@ -12,6 +12,7 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 	PainSound "Coot/Pain1"
 	DeathSound "Coot/DieA"
 	ActiveSound "GroovyCoot/Talk"
+	AttackSound "Leonard/PistolF"
 	Obituary "%o wasnt invited to a Groovy Old Coot's party."
 	DropItem "CootAmmoDrop",64,1
 	Tag "Groovy Old Coot"
@@ -21,7 +22,7 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 	+NOINFIGHTING
 	+NOBLOODDECALS
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	DamageFactor "Mace", 1.1
 	DamageFactor "DragonClaw", 1.5
 	PainChance "MightyBoot", 255
@@ -48,74 +49,6 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 		SCOO FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		SCOO GG 2 A_Chase
 		Goto See+1
-	Missile:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		SCOO I 10 A_FaceTarget
-		SCOO H 0 A_Playsound("Leonard/PistolF")
-		SCOO H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		SCOO I 10 A_FaceTarget
-		SCOO H 0 A_Playsound("Leonard/PistolF")
-		SCOO H 8 BRight
-		SCOO I 8
-		SCOO JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		SCOO Z 3 A_Pain
-		SCOO ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		SCOO Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		SCOO ] 16 A_Pain
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		SCOO M 5
-		SCOO N 5 A_Scream
-		SCOO O 5 A_NoBlocking
-		SCOO P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		SCOO Q 0 A_SpawnItemEx("BlueGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
-	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid
-		RR20 A 0 A_CustomMissile("CootHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("CootArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("CootLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("CootLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		TNT1 A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
-		ACLO E 3 A_NoBlocking
-		ACLO E 8
-		ACLO E -1
-		Stop
-	Death.LeonardDamage2:
-	Death.LeonardDamage3:
-		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
-	Death.RRBullet:
-	Death.LeonardDamage0:
-	Death.LeonardDamage1:
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
-		TNT1 A -1 A_Jump(256,"Death")
-		wait
-	XDeathForLeonard:
-		TNT1 A 0 A_Jump(96,"XDeath")
-		TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
-		TNT1 A -1 A_Jump(256,"XDeath")
-		wait
 	Crouch:
 		SCOO RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		SCOO SS 2 A_Chase
@@ -126,7 +59,72 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 		SCOO XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		SCOO YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		SCOO I 10 A_FaceTarget
+		SCOO H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		SCOO I 10 A_FaceTarget
+		SCOO H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		SCOO I 8
+		SCOO JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		SCOO Z 3 A_Pain
+		SCOO "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		SCOO Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		SCOO "]" 16 A_Pain
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		SCOO M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		SCOO N 5 A_Scream
+		SCOO O 5 A_NoBlocking
+		SCOO P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("BlueGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_CustomMissile("CootArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		Goto XDeathEnd
+	XDeathEnd:
+		TNT1 A 0 A_CustomMissile("CootHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("CootLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("CootLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY)
+		TNT1 A 11 A_NoBlocking
+		TNT1 A -1
+		Stop
+	Death.LeonardDamage2:
+	Death.LeonardDamage3:
+		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
+	Death.RRBullet:
+	Death.LeonardDamage0:
+	Death.LeonardDamage1:
+		TNT1 A 0 A_Jump(218, "Death")
+		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
+		TNT1 A -1 A_Jump(256,"Death")
+		Wait
+	XDeathForLeonard:
+		TNT1 A 0 A_Jump(96,"XDeath")
+		TNT1 A 0 A_GiveToTarget("LeonardGibTaunt",1)
+		TNT1 A -1 A_Jump(256,"XDeath")
+		Wait
 	Death.CalebFire:
 	Death.LifeLeech:
 		TNT1 A 0 A_Jump(218, 2)
@@ -135,7 +133,7 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5
-		stop
+		Stop
 	Pain.ShrinkerDMG:
 		SCOO Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -170,7 +168,7 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_SpawnItemEx("BlueGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		SCOO A 0
@@ -185,7 +183,7 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
+		Loop
 	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -215,7 +213,7 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
+		Loop
 	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -241,7 +239,7 @@ Actor BlueGroovyOldCootCorpse : SamsaraCorpseActorSmall
 	Radius 16
 	Mass 5000
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -261,7 +259,7 @@ Actor BlueGroovyOldCootCorpse : SamsaraCorpseActorSmall
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
+			Stop
 	}
 }
 
@@ -413,7 +411,7 @@ actor BlueGroovyOldCoot_Shrink : BlueGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -423,7 +421,7 @@ actor BlueGroovyOldCoot_Shrink : BlueGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -433,7 +431,7 @@ actor BlueGroovyOldCoot_Shrink : BlueGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -500,39 +498,6 @@ ACTOR RedGroovyOldCoot : BlueGroovyOldCoot
 		RR32 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR32 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR32 I 10 A_FaceTarget
-		RR32 H 0 A_Playsound("Leonard/PistolF")
-		RR32 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR32 I 10 A_FaceTarget
-		RR32 H 0 A_Playsound("Leonard/PistolF")
-		RR32 H 8 BRight
-		RR32 I 8
-		RR32 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR32 Z 3 A_Pain
-		RR32 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR32 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR32 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR32 M 5
-		RR32 N 5 A_Scream
-		RR32 O 5 A_NoBlocking
-		RR32 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR32 Q 0 A_SpawnItemEx("RedGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR32 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR32 SS 2 A_Chase
@@ -543,7 +508,36 @@ ACTOR RedGroovyOldCoot : BlueGroovyOldCoot
 		RR32 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR32 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR32 I 10 A_FaceTarget
+		RR32 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR32 I 10 A_FaceTarget
+		RR32 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR32 I 8
+		RR32 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR32 Z 3 A_Pain
+		RR32 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR32 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR32 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR32 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR32 N 5 A_Scream
+		RR32 O 5 A_NoBlocking
+		RR32 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("RedGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR32 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -578,98 +572,31 @@ ACTOR RedGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("RedGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR32 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR32 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor RedGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor RedGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR32 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -821,7 +748,7 @@ actor RedGroovyOldCoot_Shrink : RedGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -831,7 +758,7 @@ actor RedGroovyOldCoot_Shrink : RedGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -841,7 +768,7 @@ actor RedGroovyOldCoot_Shrink : RedGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -908,39 +835,6 @@ ACTOR GreenGroovyOldCoot : BlueGroovyOldCoot
 		RR33 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR33 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR33 I 10 A_FaceTarget
-		RR33 H 0 A_Playsound("Leonard/PistolF")
-		RR33 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR33 I 10 A_FaceTarget
-		RR33 H 0 A_Playsound("Leonard/PistolF")
-		RR33 H 8 BRight
-		RR33 I 8
-		RR33 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR33 Z 3 A_Pain
-		RR33 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR33 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR33 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR33 M 5
-		RR33 N 5 A_Scream
-		RR33 O 5 A_NoBlocking
-		RR33 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR33 Q 0 A_SpawnItemEx("GreenGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR33 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR33 SS 2 A_Chase
@@ -951,7 +845,36 @@ ACTOR GreenGroovyOldCoot : BlueGroovyOldCoot
 		RR33 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR33 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR33 I 10 A_FaceTarget
+		RR33 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR33 I 10 A_FaceTarget
+		RR33 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR33 I 8
+		RR33 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR33 Z 3 A_Pain
+		RR33 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR33 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR33 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR33 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR33 N 5 A_Scream
+		RR33 O 5 A_NoBlocking
+		RR33 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("GreenGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR33 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -986,98 +909,31 @@ ACTOR GreenGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("GreenGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR33 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR33 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor GreenGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor GreenGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR33 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -1229,7 +1085,7 @@ actor GreenGroovyOldCoot_Shrink : GreenGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1239,7 +1095,7 @@ actor GreenGroovyOldCoot_Shrink : GreenGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1249,7 +1105,7 @@ actor GreenGroovyOldCoot_Shrink : GreenGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1316,39 +1172,6 @@ ACTOR WhiteGroovyOldCoot : BlueGroovyOldCoot
 		RR34 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR34 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR34 I 10 A_FaceTarget
-		RR34 H 0 A_Playsound("Leonard/PistolF")
-		RR34 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR34 I 10 A_FaceTarget
-		RR34 H 0 A_Playsound("Leonard/PistolF")
-		RR34 H 8 BRight
-		RR34 I 8
-		RR34 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR34 Z 3 A_Pain
-		RR34 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR34 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR34 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR34 M 5
-		RR34 N 5 A_Scream
-		RR34 O 5 A_NoBlocking
-		RR34 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR34 Q 0 A_SpawnItemEx("WhiteGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR34 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR34 SS 2 A_Chase
@@ -1359,7 +1182,36 @@ ACTOR WhiteGroovyOldCoot : BlueGroovyOldCoot
 		RR34 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR34 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR34 I 10 A_FaceTarget
+		RR34 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR34 I 10 A_FaceTarget
+		RR34 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR34 I 8
+		RR34 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR34 Z 3 A_Pain
+		RR34 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR34 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR34 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR34 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR34 N 5 A_Scream
+		RR34 O 5 A_NoBlocking
+		RR34 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("WhiteGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR34 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1394,98 +1246,31 @@ ACTOR WhiteGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("WhiteGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR34 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR34 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor WhiteGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor WhiteGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR34 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -1637,7 +1422,7 @@ actor WhiteGroovyOldCoot_Shrink : WhiteGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1647,7 +1432,7 @@ actor WhiteGroovyOldCoot_Shrink : WhiteGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1657,7 +1442,7 @@ actor WhiteGroovyOldCoot_Shrink : WhiteGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1724,39 +1509,6 @@ ACTOR RedPantsGroovyOldCoot : BlueGroovyOldCoot
 		RR35 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR35 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR35 I 10 A_FaceTarget
-		RR35 H 0 A_Playsound("Leonard/PistolF")
-		RR35 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR35 I 10 A_FaceTarget
-		RR35 H 0 A_Playsound("Leonard/PistolF")
-		RR35 H 8 BRight
-		RR35 I 8
-		RR35 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR35 Z 3 A_Pain
-		RR35 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR35 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR35 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR35 M 5
-		RR35 N 5 A_Scream
-		RR35 O 5 A_NoBlocking
-		RR35 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR35 Q 0 A_SpawnItemEx("RedPantsGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR35 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR35 SS 2 A_Chase
@@ -1767,7 +1519,36 @@ ACTOR RedPantsGroovyOldCoot : BlueGroovyOldCoot
 		RR35 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR35 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR35 I 10 A_FaceTarget
+		RR35 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR35 I 10 A_FaceTarget
+		RR35 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR35 I 8
+		RR35 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR35 Z 3 A_Pain
+		RR35 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR35 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR35 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR35 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR35 N 5 A_Scream
+		RR35 O 5 A_NoBlocking
+		RR35 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("RedPantsGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR35 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1802,98 +1583,31 @@ ACTOR RedPantsGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("RedPantsGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR35 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR35 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor RedPantsGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor RedPantsGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR35 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -2045,7 +1759,7 @@ actor RedPantsGroovyOldCoot_Shrink : RedPantsGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -2055,7 +1769,7 @@ actor RedPantsGroovyOldCoot_Shrink : RedPantsGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -2065,7 +1779,7 @@ actor RedPantsGroovyOldCoot_Shrink : RedPantsGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -2132,39 +1846,6 @@ ACTOR GrayGroovyOldCoot : BlueGroovyOldCoot
 		RR36 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR36 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR36 I 10 A_FaceTarget
-		RR36 H 0 A_Playsound("Leonard/PistolF")
-		RR36 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR36 I 10 A_FaceTarget
-		RR36 H 0 A_Playsound("Leonard/PistolF")
-		RR36 H 8 BRight
-		RR36 I 8
-		RR36 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR36 Z 3 A_Pain
-		RR36 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR36 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR36 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR36 M 5
-		RR36 N 5 A_Scream
-		RR36 O 5 A_NoBlocking
-		RR36 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR36 Q 0 A_SpawnItemEx("GrayGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR36 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR36 SS 2 A_Chase
@@ -2175,7 +1856,36 @@ ACTOR GrayGroovyOldCoot : BlueGroovyOldCoot
 		RR36 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR36 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR36 I 10 A_FaceTarget
+		RR36 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR36 I 10 A_FaceTarget
+		RR36 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR36 I 8
+		RR36 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR36 Z 3 A_Pain
+		RR36 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR36 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR36 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR36 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR36 N 5 A_Scream
+		RR36 O 5 A_NoBlocking
+		RR36 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("GrayGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR36 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2210,98 +1920,31 @@ ACTOR GrayGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("GrayGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR36 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR36 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor GrayGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor GrayGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR36 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -2453,7 +2096,7 @@ actor GrayGroovyOldCoot_Shrink : GrayGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -2463,7 +2106,7 @@ actor GrayGroovyOldCoot_Shrink : GrayGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -2473,7 +2116,7 @@ actor GrayGroovyOldCoot_Shrink : GrayGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -2540,39 +2183,6 @@ ACTOR DarkGreenGroovyOldCoot : BlueGroovyOldCoot
 		RR37 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR37 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR37 I 10 A_FaceTarget
-		RR37 H 0 A_Playsound("Leonard/PistolF")
-		RR37 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR37 I 10 A_FaceTarget
-		RR37 H 0 A_Playsound("Leonard/PistolF")
-		RR37 H 8 BRight
-		RR37 I 8
-		RR37 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR37 Z 3 A_Pain
-		RR37 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR37 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR37 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR37 M 5
-		RR37 N 5 A_Scream
-		RR37 O 5 A_NoBlocking
-		RR37 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR37 Q 0 A_SpawnItemEx("DarkGreenGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR37 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR37 SS 2 A_Chase
@@ -2583,7 +2193,36 @@ ACTOR DarkGreenGroovyOldCoot : BlueGroovyOldCoot
 		RR37 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR37 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR37 I 10 A_FaceTarget
+		RR37 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR37 I 10 A_FaceTarget
+		RR37 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR37 I 8
+		RR37 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR37 Z 3 A_Pain
+		RR37 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR37 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR37 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR37 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR37 N 5 A_Scream
+		RR37 O 5 A_NoBlocking
+		RR37 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("DarkGreenGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR37 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2618,98 +2257,31 @@ ACTOR DarkGreenGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("DarkGreenGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR37 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR37 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor DarkGreenGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor DarkGreenGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR37 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -2861,7 +2433,7 @@ actor DarkGreenGroovyOldCoot_Shrink : DarkGreenGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -2871,7 +2443,7 @@ actor DarkGreenGroovyOldCoot_Shrink : DarkGreenGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -2881,7 +2453,7 @@ actor DarkGreenGroovyOldCoot_Shrink : DarkGreenGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -2948,39 +2520,6 @@ ACTOR BrownGroovyOldCoot : BlueGroovyOldCoot
 		RR38 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR38 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR38 I 10 A_FaceTarget
-		RR38 H 0 A_Playsound("Leonard/PistolF")
-		RR38 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR38 I 10 A_FaceTarget
-		RR38 H 0 A_Playsound("Leonard/PistolF")
-		RR38 H 8 BRight
-		RR38 I 8
-		RR38 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR38 Z 3 A_Pain
-		RR38 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR38 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR38 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR38 M 5
-		RR38 N 5 A_Scream
-		RR38 O 5 A_NoBlocking
-		RR38 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR38 Q 0 A_SpawnItemEx("BrownGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR38 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR38 SS 2 A_Chase
@@ -2991,7 +2530,36 @@ ACTOR BrownGroovyOldCoot : BlueGroovyOldCoot
 		RR38 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR38 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR38 I 10 A_FaceTarget
+		RR38 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR38 I 10 A_FaceTarget
+		RR38 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR38 I 8
+		RR38 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR38 Z 3 A_Pain
+		RR38 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR38 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR38 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR38 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR38 N 5 A_Scream
+		RR38 O 5 A_NoBlocking
+		RR38 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("BrownGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR38 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3026,98 +2594,31 @@ ACTOR BrownGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("BrownGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR38 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR38 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor BrownGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor BrownGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR38 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -3269,7 +2770,7 @@ actor BrownGroovyOldCoot_Shrink : BrownGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -3279,7 +2780,7 @@ actor BrownGroovyOldCoot_Shrink : BrownGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -3289,7 +2790,7 @@ actor BrownGroovyOldCoot_Shrink : BrownGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -3356,39 +2857,6 @@ ACTOR OrangeGroovyOldCoot : BlueGroovyOldCoot
 		RR39 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR39 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR39 I 10 A_FaceTarget
-		RR39 H 0 A_Playsound("Leonard/PistolF")
-		RR39 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR39 I 10 A_FaceTarget
-		RR39 H 0 A_Playsound("Leonard/PistolF")
-		RR39 H 8 BRight
-		RR39 I 8
-		RR39 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR39 Z 3 A_Pain
-		RR39 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR39 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR39 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		RR39 M 5
-		RR39 N 5 A_Scream
-		RR39 O 5 A_NoBlocking
-		RR39 P 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		RR39 Q 0 A_SpawnItemEx("OrangeGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
 	Crouch:
 		RR39 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR39 SS 2 A_Chase
@@ -3399,7 +2867,36 @@ ACTOR OrangeGroovyOldCoot : BlueGroovyOldCoot
 		RR39 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR39 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR39 I 10 A_FaceTarget
+		RR39 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR39 I 10 A_FaceTarget
+		RR39 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR39 I 8
+		RR39 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR39 Z 3 A_Pain
+		RR39 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR39 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR39 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		RR39 M 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		RR39 N 5 A_Scream
+		RR39 O 5 A_NoBlocking
+		RR39 P 5
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("OrangeGroovyOldCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		RR39 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3434,98 +2931,31 @@ ACTOR OrangeGroovyOldCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("OrangeGroovyOldCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		RR39 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		RR39 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor OrangeGroovyOldCootCorpse : SamsaraCorpseActorSmall
+Actor OrangeGroovyOldCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			RR39 Q 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -3677,7 +3107,7 @@ actor OrangeGroovyOldCoot_Shrink : OrangeGroovyOldCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -3687,7 +3117,7 @@ actor OrangeGroovyOldCoot_Shrink : OrangeGroovyOldCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -3697,7 +3127,7 @@ actor OrangeGroovyOldCoot_Shrink : OrangeGroovyOldCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -3755,6 +3185,7 @@ ACTOR GhostGroovyOldCoot : SamsaraMonsterSkeletonMedium
 	PainSound "Coot/Pain"
 	DeathSound "Coot/Die"
 	ActiveSound "Coot/Talk"
+	AttackSound "Leonard/PistolF"
 	Obituary "%o wasnt invited to a Groovy Old Coot's party."
 	DropItem "CootAmmoDrop",64,1
 	Tag "Groovy Old Coot"
@@ -3764,16 +3195,16 @@ ACTOR GhostGroovyOldCoot : SamsaraMonsterSkeletonMedium
 	+NOINFIGHTING
 	+NOBLOODDECALS
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	DamageFactor "Mace", 1.1
 	DamageFactor "DragonClaw", 1.5
 	PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 	var int user_scalex;
 	var int user_scaley;
-	Renderstyle Translucent
+	RenderStyle Translucent
 	Alpha 0.5
-	Painchance "ShrinkerDMG", 0
+	PainChance "ShrinkerDMG", 0
 	States
 	{
 	Spawn:
@@ -3794,34 +3225,6 @@ ACTOR GhostGroovyOldCoot : SamsaraMonsterSkeletonMedium
 		RR40 FF 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR40 GG 2 A_Chase
 		Goto See+1
-	Missile:
-		RR40 I 10 A_FaceTarget
-		RR40 H 0 A_Playsound("Leonard/PistolF")
-		RR40 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		RR40 I 10 A_FaceTarget
-		RR40 H 0 A_Playsound("Leonard/PistolF")
-		RR40 H 8 BRight
-		RR40 I 8
-		RR40 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		RR40 Z 3 A_Pain
-		RR40 ] 3
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		RR40 Z 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		RR40 ] 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 7
-		stop
 	Crouch:
 		RR40 RR 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR40 SS 2 A_Chase
@@ -3832,7 +3235,32 @@ ACTOR GhostGroovyOldCoot : SamsaraMonsterSkeletonMedium
 		RR40 XX 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		RR40 YY 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		RR40 I 10 A_FaceTarget
+		RR40 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR40 I 10 A_FaceTarget
+		RR40 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		RR40 I 8
+		RR40 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		RR40 Z 3 A_Pain
+		RR40 "]" 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		RR40 Z 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		RR40 "]" 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 7 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		Stop
 	}
 }
 
@@ -3865,58 +3293,6 @@ Actor OldSkinnyCoot : BlueGroovyOldCoot
 		S_O2 FF 2 A_Chase
 		S_O2 GG 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		Goto See+1
-	Missile:
-		S_O2 I 10 A_FaceTarget
-		S_O2 H 0 A_Playsound("Leonard/PistolF")
-		S_O2 H 8 BRight A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
-		S_O2 I 10 A_FaceTarget
-		S_O2 H 0 A_Playsound("Leonard/PistolF")
-		S_O2 H 8 BRight
-		S_O2 I 8
-		S_O2 JKL 4 A_FaceTarget
-		Goto See
-	Pain:
-		S_O2 U 1 A_Pain
-		S_O2 UUVVVWWWXXXVVVUUU 1
-		Goto See
-	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
-		S_O2 U 3 A_FaceTarget
-		TNT1 A 0 A_Recoil(14)
-		S_O2 W 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto See
-	Death:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		S_2D A 5
-		S_2D B 5 A_Scream
-		S_2D C 5 A_NoBlocking
-		S_2D DEFG 5
-		S_2D H 0 A_SpawnItemEx("OldSkinnyCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-		TNT1 A -1
-		stop
-	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid
-		RR20 A 0 A_CustomMissile("CootHead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("CootArm_2",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("CootLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("CootLeg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		TNT1 A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
-		ACLO E 3 A_NoBlocking
-		ACLO E 8
-		ACLO E -1
-		Stop
 	Crouch:
 		S_O2 MM 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		S_O2 NN 2 A_Chase
@@ -3927,7 +3303,41 @@ Actor OldSkinnyCoot : BlueGroovyOldCoot
 		S_O2 SS 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		S_O2 TT 2 A_Chase
 		TNT1 A 0 A_Jump(235,"Crouch")
-		goto see
+		Goto See+1
+	Missile:
+		S_O2 I 10 A_FaceTarget
+		S_O2 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		S_O2 I 10 A_FaceTarget
+		S_O2 H 8 Bright A_CustomBulletAttack(32, 64, 1, 20, "RRPuff",0,CBAF_NORANDOM)
+		S_O2 I 8
+		S_O2 JKL 4 A_FaceTarget
+		Goto See
+	Pain:
+		S_O2 U 3 A_Pain
+		S_O2 VWXVU 3
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		S_O2 U 3 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		S_O2 W 16 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		S_2D A 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		S_2D B 5 A_Scream
+		S_2D C 5 A_NoBlocking
+		S_2D DEFG 5
+		TNT1 A -1 A_SpawnItemEx("OldSkinnyCootCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_CustomMissile("CootArm_2",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		Goto Super::XDeathEnd
 	Pain.ShrinkerDMG:
 		S_O2 Z 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3962,98 +3372,31 @@ Actor OldSkinnyCoot : BlueGroovyOldCoot
 		"####" "#" 0 A_SpawnItemEx("OldSkinnyCoot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		S_O2 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		S_O2 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor OldSkinnyCootCorpse : SamsaraCorpseActorSmall
+Actor OldSkinnyCootCorpse : BlueGroovyOldCootCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
 			S_2D H 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			stop
 	}
 }
 
@@ -4205,7 +3548,7 @@ actor OldSkinnyCoot_Shrink : OldSkinnyCoot
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -4215,7 +3558,7 @@ actor OldSkinnyCoot_Shrink : OldSkinnyCoot
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -4225,7 +3568,7 @@ actor OldSkinnyCoot_Shrink : OldSkinnyCoot
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -4271,85 +3614,53 @@ actor OldSkinnyCoot_ShrinkEffect : OldSkinnyCoot
 
 Actor CootHead
 {
-	radius 6
-	height 5
-	scale 0.2
-	speed 10
+	Radius 6
+	Height 5
+	Scale 0.2
+	Speed 10
 	+MISSILE
-	-SOLID
 	+CLIENTSIDEONLY
-	states
+	-SOLID
+	-NOGRAVITY
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		G_SC A 0 A_Gravity
-	SpawnLoop:
 		G_SC FGHIJKLM 4
 		Loop
-	Crash:
 	Death:
 		TNT1 A 5
-		stop
+		Stop
 	}
 }
 
-Actor CootArm
+Actor CootArm : CootHead
 {
-	scale 0.15
-	radius 6
-	height 5
-	speed 10
-	+MISSILE
-	-SOLID
-	+CLIENTSIDEONLY
-	states
+	Scale 0.15
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		G_SC A 0 A_Gravity
-	SpawnLoop:
 		G_SC ABCDE 4
-		loop
-	Crash:
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }
 
 Actor CootArm_2 : CootArm
 {
-	states
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_C2X A 0 A_Gravity
-	SpawnLoop:
 		_C2X ABCDE 4
-		loop
+		Loop
 	}
 }
 
-Actor Cootleg
+Actor Cootleg : CootHead
 {
-	scale 0.29
-	radius 6
-	height 5
-	speed 10
-	+MISSILE
-	-SOLID
-	+CLIENTSIDEONLY
-	states
+	Scale 0.29
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		G_SC A 0 A_Gravity
-	SpawnLoop:
 		G_SC NOPQ 4
-		loop
-	Crash:
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }

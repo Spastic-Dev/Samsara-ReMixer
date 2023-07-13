@@ -6,10 +6,11 @@ Actor WTGreyWitch : WitchavenEnemyBaseRangedBeast
 	SeeSound "wtwitch/scream"
 	ActiveSound "wtwitch/scream"
 	DeathSound "greywitch/die"
-	HitObituary "%o couldnt handle the uglyness."
+	HitObituary "%o couldnt handle the ugliness."
 	DropItem "WHShadowAmulet",5,1
 	Tag "Grey Witch"
-	States {
+	States
+	{
 		Spawn:
 			WH_O A 0
 			WH_O A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -20,12 +21,9 @@ Actor WTGreyWitch : WitchavenEnemyBaseRangedBeast
 			Loop
 		See:
 			WH_O A 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			WH_O A 3 A_Chase
-			WH_O B 3 A_Chase
-			WH_O B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			WH_O C 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			WH_O C 3 A_Chase
-			WH_O D 3 A_Chase
+			WH_O AB 3 A_Chase
+			WH_O BC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+			WH_O CD 3 A_Chase
 			WH_O D 3 A_Chase("","",CHF_NOPLAYACTIVE)
 			Loop
 		Missile:
@@ -39,12 +37,11 @@ Actor WTGreyWitch : WitchavenEnemyBaseRangedBeast
 			WH_O I 5 A_CustomMissile("GreyWitchFlesh",20,5)
 			Goto See
 		Pain:
-			WH_O E 4 A_Pain
-			WH_O E 4
+			WH_O E 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			WH_O E 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			WH_O E 16 A_Pain
@@ -63,8 +60,7 @@ Actor WTGreyWitch : WitchavenEnemyBaseRangedBeast
 			TNT1 A 0 A_Scream
 			WH_O R 4 A_NoBlocking
 			WH_O S 4 A_KillMaster
-			WH_O T 4
-			WH_O U 4
+			WH_O TU 4
 			TNT1 A -1
 			Stop
 		Pain.ShrinkerDMG:
@@ -107,15 +103,13 @@ Actor WTGreyWitch : WitchavenEnemyBaseRangedBeast
 			Goto ShrunkLoop
 		ShrunkLoop:
 			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
+			Loop
 		ShrunkDie:
-			TNT1 A 0
 			TNT1 A 1 A_Die("Shrink")
-			stop
+			Stop
 		Death.Shrink:
-			TNT1 A 0
 			TNT1 A 1 A_KillMaster
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			WH_O A 0
@@ -130,7 +124,7 @@ Actor WTGreyWitch : WitchavenEnemyBaseRangedBeast
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -160,7 +154,7 @@ Actor WTGreyWitch : WitchavenEnemyBaseRangedBeast
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -291,7 +285,7 @@ actor WTGreyWitch_Shrink : WTGreyWitch
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -301,7 +295,7 @@ actor WTGreyWitch_Shrink : WTGreyWitch
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -311,7 +305,7 @@ actor WTGreyWitch_Shrink : WTGreyWitch
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -355,25 +349,26 @@ actor WTGreyWitch_ShrinkEffect : WTGreyWitch
 	}
 }
 
-Actor GreyWitchFlesh {
-	Projectile
+Actor GreyWitchFlesh
+{
 	Speed 18
 	Radius 7
 	Height 6
 	DamageType Poison
-	+MISSILE
 	PoisonDamage 1,2,3
-	Obituary "%o couldnt handle the uglyness."
+	PROJECTILE
+	+BRIGHT
 	+ADDITIVEPOISONDAMAGE
 	+ADDITIVEPOISONDURATION
 	Scale 0.75
 	Damage (random(30,45))
-	States {
+	States
+	{
 		Spawn:
-			WH_O VVWW 2 bright
+			WH_O VVWW 2
 			Loop
 		Death:
-			TNT1 A 5 A_FadeOut
+			TNT1 A 1
 			Stop
 	}
 }

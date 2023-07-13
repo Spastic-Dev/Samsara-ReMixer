@@ -1,16 +1,15 @@
 Actor KingHulk : SamsaraMonsterAlienHuge
 {
-	obituary "A King Hulk taught %o who the real king is!"
-	hitobituary "%o got creamed by the King, and it isn't Elvis!"
-	scale 0.55
-	radius 40
-	height 96
-	speed 7
-	mass 700
-	health 2400
-	painchance 10
-	meleedamage 25
-	meleerange 80
+	Obituary "A King Hulk taught %o who the real king is!"
+	HitObituary "%o got creamed by the King, and it isn't Elvis!"
+	Scale 0.55
+	Radius 40
+	Height 96
+	Speed 7
+	Mass 700
+	Health 2400
+	PainChance 10
+	MeleeRange 80
 	SeeSound "hulk/see"
 	ActiveSound "hulk/roam"
 	PainSound "hulk/pain"
@@ -31,7 +30,7 @@ Actor KingHulk : SamsaraMonsterAlienHuge
 	+NOINFIGHTING
 	+NOBLOODDECALS
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	DamageFactor "Mace", 1.3
 	DamageFactor "CorvusHellstaffTomed", 0.2
 	DamageFactor "CorvusCrossbow", 1.15
@@ -79,14 +78,14 @@ Actor KingHulk : SamsaraMonsterAlienHuge
 		_ULK A 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		_ULK A 4 A_Look
-		loop
+		Loop
 	See:
-		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"SeeLoop")
+		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"SeeLoop")
+		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"SeeLoop")
+		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"SeeLoop")
+		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"SeeLoop")
+		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"SeeLoop")
 		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
 		TNT1 A 0 A_GiveInventory("CalebBossSee",1)
 		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
@@ -108,7 +107,7 @@ Actor KingHulk : SamsaraMonsterAlienHuge
 		_ULK FF 2 A_Chase
 		_ULK GG 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		_ULK HH 2 A_Chase
-		loop
+		Loop
 	Missile:
 		_ULK I 0 A_Jump(80,"LandMine")
 		_ULK I 6 A_FaceTarget
@@ -136,7 +135,7 @@ Actor KingHulk : SamsaraMonsterAlienHuge
 		_ULK I 1 Bright A_CustomMissile("KingHulkPlasmashot2__",40,30,0,0)
 		_ULK III 1 Bright A_CustomMissile("KingHulkPlasmashot__",40,30,0,0)
 		_ULK IJKL 2 A_FaceTarget
-		goto SeeLoop
+		Goto SeeLoop
 	LandMine:
 		_ULK ST 5 A_FaceTarget
 		_ULK T 0 A_PlaySound ("Hulk/Spit")
@@ -144,52 +143,46 @@ Actor KingHulk : SamsaraMonsterAlienHuge
 		_ULK U 1 A_ThrowGrenade("KingHulklandmine__2",40,16,5)
 		_ULK U 3 A_ThrowGrenade("KingHulklandmine__2",40,18,6)
 		_ULK V 10
-		goto SeeLoop
+		Goto SeeLoop
 	Melee:
-		TNT1 A 0 A_ChangeFlag(EXTREMEDEATH,1)
 		_ULK MNO 6 A_FaceTarget
 		_ULK P 4 A_FaceTarget
-		_ULK Q 4 A_MeleeAttack
+		_ULK Q 4 A_CustomMeleeAttack(25*random(1,8))
 		_ULK R 4 A_FaceTarget
-		TNT1 A 0 A_ChangeFlag(EXTREMEDEATH,0)
-		goto SeeLoop
+		Goto SeeLoop
 	Pain:
 		_ULK W 0 A_Pain
-		_ULK W 0 A_Jump(162,"SeeLoop")
-		_ULK WWXXYYXXWW 1
-		goto SeeLoop
+		_ULK W 2 A_Jump(162,"SeeLoop")
+		_ULK XYXW 2
+		Goto SeeLoop
 	Death:
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		_ULD A 0 A_Scream
 		TNT1 A 0 A_SpawnItemEx("KingHulkRevive",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 5 //A_KillMaster
-		stop
+		TNT1 A 5 A_KillMaster
+		Stop
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
-		RR20 A 0 A_PlaySound("leonard/xdeath",CHAN_AUTO,1.0,0,ATTN_NONE)
-		RR20 A 0 A_CustomMissile("KingHulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("KingHulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 AA 0 A_CustomMissile("KingHulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_PlaySound("leonard/xdeath",CHAN_AUTO)
+		TNT1 A 0 A_CustomMissile("KingHulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("KingHulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("KingHulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_KillMaster
-		stop
+		Stop
 	Raise:
-		_ULD I 0 A_PlaySound("hulk/attack")
-		_ULD IHGFE 4
-		_ULD D 4
-		_ULD C 4
-		_ULD B 4
-		_ULD A 4
-		goto SeeLoop
+		_ULD I 4 A_PlaySound("hulk/attack")
+		_ULD HGFEDCBA 4
+		Goto SeeLoop
 	}
 }
 
@@ -197,19 +190,18 @@ Actor KingHulklandmine__2 : AlienHulklandmine
 {
 	Obituary "%o ran over a fuckin' mine placed by the King Hulk."
 	HitObituary "%o ran over a fuckin' mine placed by the King Hulk."
-	states
+	States
 	{
+	XDeath:
 	Crash:
-		TNT1 A 0 A_Explode(50,181)
-		TNT1 A 0 A_PlaySound("Hulk/Explode")
-		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION___ZA2",0,0,0,0)
-		TNT1 A 5
-		stop
+		TNT1 A 5 A_SpawnItemEx("KingHulkLandmineExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		Stop
 	Death:
 		TNT1 A 5 A_SpawnItemEx("KingHulklandmine2__2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		stop
+		Stop
 	}
 }
+
 Actor KingHulklandmine2__2 : AlienHulklandmine2
 {
 	ReactionTime 160
@@ -219,73 +211,69 @@ Actor KingHulklandmine2__2 : AlienHulklandmine2
 	{
 	Death:
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_Explode(50,181)
-		TNT1 A 0 A_PlaySound("Hulk/Explode")
-		TNT1 A 0 A_SpawnItemEx("RRFAKEEXPLOSION___ZA2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 5
+		TNT1 A 5 A_SpawnItemEx("KingHulkLandmineExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		Stop
+	}
+}
+
+Actor KingHulkLandmineExplosion : AlienHulklandmineExplosion
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Explode(50,181,0)
+		Goto Super::Spawn+2
 	}
 }
 
 Actor KingHulkRevive
 {
 	Tag "King Hulk"
-	scale 0.55
-	health 1000
-	radius 48
-	height 40
-	speed 0
-	mass 700
-	+Solid
-	+Shootable
+	Scale 0.55
+	Health 1000
+	Radius 48
+	Height 40
+	Speed 0
+	Mass 700
+	+SOLID
+	+SHOOTABLE
 	+NOBLOODDECALS
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	DropItem " Alien Arm Cannon ",50,1
-	states
+	States
 	{
 	Spawn:
-		_ULD B 5
-		_ULD C 5
-		_ULD D 5
-		_ULD E 5
-		_ULD F 5
-		_ULD GH 5
-		TNT1 A 0 A_playsound("redneck/thud")
-		_ULD I 1000
+		_ULD BCDEFGH 5
+		_ULD I 1000 A_PlaySound("redneck/thud")
 		Goto Raise
 	Death:
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
-		RR20 A 0 A_PlaySound("leonard/xdeath",CHAN_AUTO,1.0,0,ATTN_NONE)
-		RR20 A 0 A_CustomMissile("KingHulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 A 0 A_CustomMissile("KingHulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		RR20 AA 0 A_CustomMissile("KingHulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_PlaySound("leonard/xdeath",CHAN_AUTO)
+		TNT1 A 0 A_CustomMissile("KingHulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("KingHulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("KingHulkleg",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5 A_KillMaster
-		stop
+		Stop
 	Raise:
 		TNT1 A 0 A_Die("Rise")
 		Goto Death.Rise
 	Death.Rise:
-		_ULD I 0 A_PlaySound("hulk/attack")
-		_ULD IHGFE 4
-		_ULD D 4
-		_ULD C 4
-		_ULD B 4
-		_ULD A 4
-		_ULD A 0 A_SpawnItemEx("KingHulk_2Revived",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
-		TNT1 A 1
-		stop
-
+		_ULD I 4 A_PlaySound("hulk/attack")
+		_ULD HGFEDCBA 4
+		TNT1 A 1 A_SpawnItemEx("KingHulk_2Revived",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
+		Stop
 	}
 }
 
@@ -294,73 +282,42 @@ Actor KingHulkPlasmashot2__ : AlienHulkPlasmashot2 { damage (5) }
 
 Actor KingHulkHead
 {
-	radius 6
-	height 5
-	scale 0.65
-	speed 10
+	Radius 6
+	Height 5
+	Scale 0.65
+	Speed 10
 	+MISSILE
 	+CLIENTSIDEONLY
 	-SOLID
-	states
+	-NOGRAVITY
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_ULG A 0 A_Gravity
-	SpawnLoop:
 		_ULG IJKL 4
 		Loop
-	Crash:
 	Death:
 		TNT1 A 5
-		stop
+		Stop
 	}
 }
 
-Actor KingHulkArm
+Actor KingHulkArm : KingHulkHead
 {
-	scale 0.65
-	radius 6
-	height 5
-	speed 10
-	+MISSILE
-	-SOLID
-	+CLIENTSIDEONLY
-	states
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_ULG A 0 A_Gravity
-	SpawnLoop:
 		_ULG ABCD 4
-		loop
-	Crash:
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }
 
-Actor KingHulkleg
+Actor KingHulkleg : KingHulkHead
 {
-	scale 0.65
-	radius 6
-	height 5
-	speed 10
-	+MISSILE
-	-SOLID
-	+CLIENTSIDEONLY
-	states
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_ULG A 0 A_Gravity
-	SpawnLoop:
 		_ULG EFGH 4
-		loop
-	Crash:
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }
 

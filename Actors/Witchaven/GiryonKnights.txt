@@ -9,13 +9,14 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 	PainSound "wtgiryon/pain"
 	DeathSound "wtgiryon/die"
 	+PIERCEARMOR
-//	+BOSSDEATH
+//  +BOSSDEATH
 	+DONTRIP
 	Tag "2-H Sword Giryon Knight"
 	MeleeRange 92
 	HitObituary "%o was slashed by a Giryon Knight Servant."
 	DropItem "Witchaven_GreatswordMonsterDrop",64,1
-	States {
+	States
+	{
 		Spawn:
 			WH_5 G 0
 			WH_5 G 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -29,30 +30,26 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			WH_5 GH 4 A_FaceTarget
-			WH_5 IJ 4 A_FaceTarget
-			WH_5 H 0 A_CustomMeleeAttack(Random(45,60),"ggen/metal_l","ggen/swing4")
-			WH_5 KL 4
+			WH_5 GHIJ 4 A_FaceTarget
+			WH_5 K 4 A_CustomMeleeAttack(Random(45,60),"ggen/metal_l","ggen/swing4")
+			WH_5 L 4
 			Goto See
 		Pain:
-			WH_5 M 4 A_Pain
-			WH_5 M 4
+			WH_5 M 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			WH_5 M 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			WH_5 M 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			WH_5 M 4
+			WH_5 M 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			WH_5 N 4 A_Scream
 			WH_5 O 4 A_NoBlocking
-			WH_5 P 4
-			WH_5 QRSTUVWXY 4
+			WH_5 PQRSTUVWXY 4
 			WH_5 Z -1 //A_KillMaster
 			Stop
 		Death.CalebFire:
@@ -63,7 +60,7 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5
-			stop
+			Stop
 		Pain.ShrinkerDMG:
 			WH_5 M 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -98,7 +95,7 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			"####" "#" 0 A_SpawnItemEx("WTGiryonKnight2HSword_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			WH_5 G 0
@@ -113,7 +110,7 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -143,7 +140,7 @@ Actor WTGiryonKnight2HSword : WitchavenEnemyBaseMelee
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -298,7 +295,7 @@ actor WTGiryonKnight2HSword_Shrink : WTGiryonKnight2HSword
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -308,7 +305,7 @@ actor WTGiryonKnight2HSword_Shrink : WTGiryonKnight2HSword
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -318,7 +315,7 @@ actor WTGiryonKnight2HSword_Shrink : WTGiryonKnight2HSword
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -377,7 +374,8 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 	+DONTRIP
 	Tag "1-H Sword Giryon Knight"
 	HitObituary "%o was slashed by a Giryon Knight Servant."
-	States {
+	States
+	{
 		Spawn:
 			WH_4 G 0
 			WH_4 G 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -391,30 +389,25 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			WH_4 GHI 3 A_FaceTarget
-			WH_4 JKL 3 A_FaceTarget
-			WH_4 H 0 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
-			WH_4 M 3
+			WH_4 GHIJKL 3 A_FaceTarget
+			WH_4 M 3 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
 			Goto See
 		Pain:
-			WH_4 N 4 A_Pain
-			WH_4 N 4
+			WH_4 N 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			WH_4 N 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			WH_4 N 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			WH_4 N 4
+			WH_4 N 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			WH_4 O 4 A_Scream
 			WH_4 P 4 A_NoBlocking
-			WH_4 Q 4
-			WH_4 RSTUVW 4
+			WH_4 QRSTUVW 4
 			WH_4 X -1 A_KillMaster
 			Stop
 		Death.CalebFire:
@@ -426,7 +419,7 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_KillMaster
 			TNT1 A 5
-			stop
+			Stop
 		Pain.ShrinkerDMG:
 			WH_4 N 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -468,15 +461,13 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			Goto ShrunkLoop
 		ShrunkLoop:
 			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
+			Loop
 		ShrunkDie:
-			TNT1 A 0
 			TNT1 A 1 A_Die("Shrink")
-			stop
+			Stop
 		Death.Shrink:
-			TNT1 A 0
 			TNT1 A 1 A_KillMaster
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			WH_4 G 0
@@ -491,7 +482,7 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -522,7 +513,7 @@ Actor WTGiryonKnight1HSword : WitchavenEnemyBaseMelee
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -678,7 +669,7 @@ actor WTGiryonKnight1HSword_Shrink : WTGiryonKnight1HSword
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -688,7 +679,7 @@ actor WTGiryonKnight1HSword_Shrink : WTGiryonKnight1HSword
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -699,7 +690,7 @@ actor WTGiryonKnight1HSword_Shrink : WTGiryonKnight1HSword
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -758,7 +749,8 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 	+DONTRIP
 	Tag "Mace Giryon Knight"
 	HitObituary "%o was mashed like a potato."
-	States {
+	States
+	{
 		Spawn:
 			WH_6 G 0
 			WH_6 G 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -772,30 +764,26 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			WH_6 GH 4 A_FaceTarget
-			WH_6 IJ 4 A_FaceTarget
-			WH_6 H 0 A_CustomMeleeAttack(Random(15,23),"wtflesh/hit","gthrow/swing")
-			WH_6 KL 4
+			WH_6 GHIJ 4 A_FaceTarget
+			WH_6 K 4 A_CustomMeleeAttack(Random(15,23),"wtflesh/hit","gthrow/swing")
+			WH_6 L 4
 			Goto See
 		Pain:
-			WH_6 N 4 A_Pain
-			WH_6 N 4
+			WH_6 N 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			WH_6 N 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			WH_6 N 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			WH_6 M 4
+			WH_6 M 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			WH_6 N 4 A_Scream
 			WH_6 O 4 A_NoBlocking
-			WH_6 P 4
-			WH_6 QRSTUVWXY 4
+			WH_6 PQRSTUVWXY 4
 			WH_6 Z -1 A_KillMaster
 			Stop
 		Death.CalebFire:
@@ -807,7 +795,7 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_KillMaster
 			TNT1 A 5
-			stop
+			Stop
 		Pain.ShrinkerDMG:
 			WH_6 N 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -849,15 +837,13 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			Goto ShrunkLoop
 		ShrunkLoop:
 			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
+			Loop
 		ShrunkDie:
-			TNT1 A 0
 			TNT1 A 1 A_Die("Shrink")
-			stop
+			Stop
 		Death.Shrink:
-			TNT1 A 0
 			TNT1 A 1 A_KillMaster
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			WH_6 G 0
@@ -872,7 +858,7 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -903,7 +889,7 @@ Actor WTGiryonKnightMace : WitchavenEnemyBaseMelee
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -1059,7 +1045,7 @@ actor WTGiryonKnightMace_Shrink : WTGiryonKnightMace
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1069,7 +1055,7 @@ actor WTGiryonKnightMace_Shrink : WTGiryonKnightMace
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1080,7 +1066,7 @@ actor WTGiryonKnightMace_Shrink : WTGiryonKnightMace
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish

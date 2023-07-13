@@ -1,28 +1,27 @@
 Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 {
-	obituary "%o got killed by pieces of crap thrown by a Turd Minion!"
-	hitobituary "A turd minion gave major infections to %o!"
-	scale 0.3
-	radius 10
-	height 33
-	health 50
-	mass 110
-	painchance 50
+	Obituary "%o got killed by pieces of crap thrown by a Turd Minion!"
+	HitObituary "A turd minion gave major infections to %o!"
+	Scale 0.3
+	Radius 10
+	Height 33
+	Health 50
+	Mass 110
+	PainChance 50
 	+FLOORCLIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
 	+NOINFIGHTING
 	+NOBLOODDECALS
-	meleedamage 3
-	speed 4
-	painsound "Minion/Pain"
-	deathsound "leonard/xdeath"
-	activesound "Minion/Idle"
-	seesound "Minion/See"
+	Speed 4
+	PainSound "Minion/Pain"
+	DeathSound "leonard/xdeath"
+	ActiveSound "Minion/Idle"
+	SeeSound "Minion/See"
 	Species "RedneckEnemies"
 	Tag "Turd Minion"
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	DamageFactor "Mace", 1.1
 	DamageFactor "DragonClaw", 1.5
 	PainChance "MightyBoot", 255
@@ -39,7 +38,7 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 		_URD R 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		_URD R 4 A_Look
-		loop
+		Loop
 	See:
 		_URD AA 2 A_Chase
 		_URD BB 2 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -52,11 +51,11 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 		_URD A 0 A_Jump(20,"JumpBitch")
 		Loop
 	JumpBitch:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		_URD A 0 A_PlaySound("Minion/Freakout")
-		_URD STUVWXWVUTSTUVWXWVUTS 2
-		TNT1 A 0 A_Jump(100,"see")
-		_URD YZ 4
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		_URD S 2 A_PlaySound("Minion/Freakout")
+		_URD TUVWXWVUTSTUVWXWVUTS 2
+		_URD Y 4 A_Jump(100,"See")
+		_URD Z 4
 		_URD Y 0 A_Recoil(-6)
 		_URD Y 4 ThrustThingZ(0,25,0,0)
 		_URD "[" 3
@@ -66,23 +65,23 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 	WTFIsThis:
 		_URD "[" 3
 		_URD YZY 3
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		Goto See
 	Missile:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		_URD IJKLMN 3 A_FaceTarget
 		_URD O 3 A_CustomMissile("TurdCrapball",18,0,0)
 		_URD QR 3
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto See
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Melee:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		_URD A 0 A_Jump(64,"Melee2")
 		_URD "[" 3 A_FaceTarget
 		_URD A 3 A_FaceTarget
-		_URD Z 3 A_MeleeAttack
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto See
+		_URD Z 3 A_CustomMeleeAttack(3*random(1,8))
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Melee2:
 		TNT1 A 0 A_FaceTarget
 		TNT1 AAAA 1 A_CustomMissile("TurdMinionFreakout",0,0,0)
@@ -135,8 +134,8 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 		TNT1 A 1 A_CustomMissile("TurdMinionFreakout",0,0,315)
 		TNT1 A 0 A_Jump(20,2)
 		TNT1 A 0 A_Die
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		Goto see
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
    Pain:
 		_URD A 0 A_Pain
 		Goto See
@@ -150,9 +149,8 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 		TNT1 A 0 A_CustomMissile("TurdMinionlimb",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
 		TNT1 A 0 A_CustomMissile("TurdMinionlimb",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
 		TNT1 A 0 A_CustomMissile("TurdMinionlimb",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
-		TNT1 A 0 A_CustomMissile("TurdMinionlimb",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
-		TNT1 A 5 A_FadeOut
-		stop
+		TNT1 A 5 A_CustomMissile("TurdMinionlimb",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
+		Stop
 	Death.LeonardDamage2:
 	Death.LeonardDamage3:
 		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
@@ -202,7 +200,7 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 		"####" "#" 0 A_SpawnItemEx("TurdMinion_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		_URD R 0
@@ -217,7 +215,7 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
+		Loop
 	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -247,7 +245,7 @@ Actor TurdMinion : SamsaraMonsterBeastSmallTotalGib
 		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
+		Loop
 	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -426,7 +424,7 @@ actor TurdMinion_Shrink : TurdMinion
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -436,7 +434,7 @@ actor TurdMinion_Shrink : TurdMinion
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -446,7 +444,7 @@ actor TurdMinion_Shrink : TurdMinion
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -493,7 +491,7 @@ actor TurdMinion_ShrinkEffect : TurdMinion
 Actor TurdSwampMinion : TurdMinion
 {
 	Tag "Swamp Minion"
-	obituary "A Swamp Minion made %o swallow a toxic frog!"
+	Obituary "A Swamp Minion made %o swallow a toxic frog!"
 	States
 	{
 	Spawn:
@@ -503,7 +501,7 @@ Actor TurdSwampMinion : TurdMinion
 		_UR2 R 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		_UR2 R 4 A_Look
-		loop
+		Loop
 	See:
 		_UR2 AA 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		_UR2 BB 2 A_Chase
@@ -516,11 +514,11 @@ Actor TurdSwampMinion : TurdMinion
 		_UR2 A 0 A_Jump(20,"JumpBitch")
 		Loop
 	JumpBitch:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		_UR2 A 0 A_PlaySound("Minion/Freakout")
-		_UR2 STUVWXWVUTSTUVWXWVUTS 2
-		TNT1 A 0 A_Jump(100,"see")
-		_UR2 YZ 4
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		_UR2 S 2 A_PlaySound("Minion/Freakout")
+		_UR2 TUVWXWVUTSTUVWXWVUTS 2
+		_UR2 Y 4 A_Jump(100,"see")
+		_UR2 Z 4
 		_UR2 Y 0 A_Recoil(-6)
 		_UR2 Y 4 ThrustThingZ(0,25,0,0)
 		_UR2 "[" 3
@@ -530,23 +528,23 @@ Actor TurdSwampMinion : TurdMinion
 	WTFIsThis:
 		_UR2 "[" 3
 		_UR2 YZY 3
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		Goto See
 	Missile:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		_UR2 IJKLMN 3 A_FaceTarget
 		_UR2 O 3 A_CustomMissile("TurdCrapFrog",18,0,0)
 		_UR2 QR 3
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto See
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Melee:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		_UR2 A 0 A_Jump(64,"Melee2")
 		_UR2 "[" 3 A_FaceTarget
 		_UR2 A 3 A_FaceTarget
-		_UR2 Z 3 A_MeleeAttack
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto See
+		_UR2 Z 3 A_CustomMeleeAttack(3*random(1,8))
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Melee2:
 		TNT1 A 0 A_FaceTarget
 		TNT1 AAAA 1 A_CustomMissile("TurdMinionFreakout_2",0,0,0)
@@ -599,11 +597,11 @@ Actor TurdSwampMinion : TurdMinion
 		TNT1 A 1 A_CustomMissile("TurdMinionFreakout_2",0,0,315)
 		TNT1 A 0 A_Jump(20,2)
 		TNT1 A 0 A_Die
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto see
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto see
 	Pain:
 		_UR2 A 0 A_Pain
-		goto See
+		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
@@ -615,21 +613,6 @@ Actor TurdSwampMinion : TurdMinion
 		TNT1 A 0 A_CustomMissile("TurdMinionlimb_2",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
 		TNT1 A 0 A_CustomMissile("TurdMinionlimb_2",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
 		TNT1 A 5 A_CustomMissile("TurdMinionlimb_2",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
-		stop
-	Death.LeonardDamage2:
-	Death.LeonardDamage3:
-		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
-	Death.RRBullet:
-	Death.LeonardDamage0:
-	Death.LeonardDamage1:
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
-		TNT1 A -1 A_Jump(256,"Death")
-		wait
-	XDeathForLeonard:
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1",1)
-		TNT1 A -1 A_Jump(256,"Death")
 		Stop
 	Pain.ShrinkerDMG:
 		_UR2 R 0
@@ -665,67 +648,21 @@ Actor TurdSwampMinion : TurdMinion
 		"####" "#" 0 A_SpawnItemEx("TurdSwampMinion_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		_UR2 R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		_UR2 R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -889,7 +826,7 @@ actor TurdSwampMinion_Shrink : TurdSwampMinion
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -899,7 +836,7 @@ actor TurdSwampMinion_Shrink : TurdSwampMinion
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -909,7 +846,7 @@ actor TurdSwampMinion_Shrink : TurdSwampMinion
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -956,7 +893,7 @@ actor TurdSwampMinion_ShrinkEffect : TurdSwampMinion
 Actor TurdLavaMinion : TurdMinion
 {
 	Tag "Lava Minion"
-	obituary "%o couldnt unstick the burning crap from a Lava Minion!"
+	Obituary "%o couldnt unstick the burning crap from a Lava Minion!"
 	States
 	{
 	Spawn:
@@ -966,7 +903,7 @@ Actor TurdLavaMinion : TurdMinion
 		_UR4 R 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		_UR4 R 4 A_Look
-		loop
+		Loop
 	See:
 		_UR4 AA 2 A_Chase
 		_UR4 BB 2 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -979,11 +916,11 @@ Actor TurdLavaMinion : TurdMinion
 		_UR4 A 0 A_Jump(20,"JumpBitch")
 		Loop
 	JumpBitch:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		_UR4 A 0 A_PlaySound("Minion/Freakout")
-		_UR4 STUVWXWVUTSTUVWXWVUTS 2
-		TNT1 A 0 A_Jump(100,"see")
-		_UR4 YZ 4
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		_UR4 S 2 A_PlaySound("Minion/Freakout")
+		_UR4 TUVWXWVUTSTUVWXWVUTS 2
+		_UR4 Y 4 A_Jump(100,"see")
+		_UR4 Z 4
 		_UR4 Y 0 A_Recoil(-6)
 		_UR4 Y 4 ThrustThingZ(0,25,0,0)
 		_UR4 "[" 3
@@ -993,23 +930,23 @@ Actor TurdLavaMinion : TurdMinion
 	WTFIsThis:
 		_UR4 "[" 3
 		_UR4 YZY 3
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		Goto See
 	Missile:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		_UR4 IJKLMN 3 A_FaceTarget
 		_UR4 O 3 A_CustomMissile("TurdCrapOnFire",18,0,0)
 		_UR4 QR 3
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto See
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Melee:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 		_UR4 A 0 A_Jump(64,"Melee2")
 		_UR4 "[" 3 A_FaceTarget
 		_UR4 A 3 A_FaceTarget
-		_UR4 Z 3 A_MeleeAttack
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto See
+		_UR4 Z 3 A_CustomMeleeAttack(3*random(1,8))
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Melee2:
 		TNT1 A 0 A_FaceTarget
 		TNT1 AAAA 1 A_CustomMissile("TurdMinionFreakout_3",0,0,0)
@@ -1062,11 +999,11 @@ Actor TurdLavaMinion : TurdMinion
 		TNT1 A 1 A_CustomMissile("TurdMinionFreakout_3",0,0,315)
 		TNT1 A 0 A_Jump(20,2)
 		TNT1 A 0 A_Die
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		goto see
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		Goto See
 	Pain:
 		_UR4 A 0 A_Pain
-		goto See
+		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
@@ -1078,21 +1015,6 @@ Actor TurdLavaMinion : TurdMinion
 		TNT1 A 0 A_CustomMissile("TurdMinionlimb_3",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
 		TNT1 A 0 A_CustomMissile("TurdMinionlimb_3",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
 		TNT1 A 5 A_CustomMissile("TurdMinionlimb_3",0+Random(20,50),0+Random(25,-25),0+Random(0,370))
-		stop
-	Death.LeonardDamage2:
-	Death.LeonardDamage3:
-		TNT1 A 0 A_JumpIfHealthLower(-20, "XDeathForLeonard")
-	Death.RRBullet:
-	Death.LeonardDamage0:
-	Death.LeonardDamage1:
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1", 1)
-		TNT1 A -1 A_Jump(256,"Death")
-		wait
-	XDeathForLeonard:
-		TNT1 A 0 A_Jump(218, "Death")
-		TNT1 A 0 A_GiveToTarget("LeonardDMTaunt1",1)
-		TNT1 A -1 A_Jump(256,"Death")
 		Stop
 	Pain.ShrinkerDMG:
 		_UR4 R 0
@@ -1128,67 +1050,21 @@ Actor TurdLavaMinion : TurdMinion
 		"####" "#" 0 A_SpawnItemEx("TurdLavaMinion_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		_UR4 R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		_UR4 R 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1352,7 +1228,7 @@ actor TurdLavaMinion_Shrink : TurdLavaMinion
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1362,7 +1238,7 @@ actor TurdLavaMinion_Shrink : TurdLavaMinion
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1372,7 +1248,7 @@ actor TurdLavaMinion_Shrink : TurdLavaMinion
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1418,139 +1294,111 @@ actor TurdLavaMinion_ShrinkEffect : TurdLavaMinion
 
 Actor TurdCrapball
 {
-	scale 0.3
-	height 6
-	radius 3
-	speed 25
-	damage (8)
+	Scale 0.3
+	Height 6
+	Radius 3
+	Speed 25
+	Damage (8)
 	+MISSILE
 	+STRIFEDAMAGE
 	PROJECTILE
-	states
+	States
 	{
 	Spawn:
 		U_RG ABCD 3
-		loop
+		Loop
 	Death:
 		TNT1 A 5
-		stop
+		Stop
 	}
 }
 
-Actor TurdCrapFrog
+Actor TurdCrapFrog : TurdCrapball
 {
-	scale 0.3
-	height 6
-	radius 3
-	speed 25
-	damage (8)
-	+MISSILE
-	+STRIFEDAMAGE
-	PROJECTILE
 	DeathSound "Frog/Toss"
 	DamageType "Poison"
 	PoisonDamage 2
-	states
+	States
 	{
 	Spawn:
 		_URG PQRSTU 3
-		loop
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }
 
-Actor TurdCrapOnFire
+Actor TurdCrapOnFire : TurdCrapball
 {
-	scale 0.3
-	height 6
-	radius 3
-	speed 25
-	damage (8)
-	+MISSILE
-	+STRIFEDAMAGE
-	PROJECTILE
 	DamageType "Fire"
-	states
+	States
 	{
 	Spawn:
 		_URG VWXY 3
-		loop
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }
 
 Actor TurdMinionFreakout
 {
-	scale 0.3
-	speed 0.8
+	Scale 0.3
+	Speed 0.8
 	Damage (Random((Random(1,2)),0))
 	+MISSILE
 	+NOCLIP
 	PROJECTILE
-	states
+	States
 	{
 	Spawn:
 		_URD X 2
-		stop
+		Stop
 	}
 }
 
 Actor TurdMinionFreakout_2 : TurdMinionFreakout
 {
-	states
+	States
 	{
 	Spawn:
 		_UR2 X 2
-		stop
+		Stop
 	}
 }
 
 Actor TurdMinionFreakout_3 : TurdMinionFreakout
 {
-	states
+	States
 	{
 	Spawn:
 		_UR4 X 2
-		stop
+		Stop
 	}
 }
 
 Actor TurdMinionHead
 {
-	radius 6
-	height 5
-	scale 0.2
-	speed 10
+	Scale 0.2
+	Radius 6
+	Height 5
+	Speed 10
 	+MISSILE
 	+CLIENTSIDEONLY
 	-SOLID
-	states
+	-NOGRAVITY
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_URG A 0 A_Gravity
-	SpawnLoop:
 		_URG ABCDE 4
 		Loop
-	Crash:
 	Death:
 		TNT1 A 5
-		stop
+		Stop
 	}
 }
 
 Actor TurdMinionHead_2 : TurdMinionHead
 {
-	states
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_UR3 A 0 A_Gravity
-	SpawnLoop:
 		_UR3 ABCDE 4
 		Loop
 	}
@@ -1558,88 +1406,53 @@ Actor TurdMinionHead_2 : TurdMinionHead
 
 Actor TurdMinionHead_3 : TurdMinionHead
 {
-	states
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_UR5 A 0 A_Gravity
-	SpawnLoop:
 		_UR5 ABCDE 4
 		Loop
 	}
 }
 
-Actor TurdMinionEye
+Actor TurdMinionEye : TurdMinionHead
 {
-	scale 0.15
-	radius 6
-	height 5
-	speed 10
-	+MISSILE
-	+CLIENTSIDEONLY
-	-SOLID
-	states
+	Scale 0.15
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_URG A 0 A_Gravity
-	SpawnLoop:
 		_URG FGHIJ 4
-		loop
-	Crash:
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }
 
-Actor TurdMinionlimb
+Actor TurdMinionlimb : TurdMinionHead
 {
-	scale 0.29
-	radius 6
-	height 5
-	speed 10
-	+MISSILE
-	+CLIENTSIDEONLY
-	-SOLID
-	states
+	Scale 0.29
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_URG A 0 A_Gravity
-	SpawnLoop:
 		_URG KLMNO 4
-		loop
-	Crash:
-	Death:
-		TNT1 A 5
-		stop
+		Loop
 	}
 }
 
 Actor TurdMinionlimb_2 : TurdMinionlimb
 {
-	states
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_UR3 A 0 A_Gravity
-	SpawnLoop:
 		_UR3 KLMNO 4
-		loop
+		Loop
 	}
 }
 
 Actor TurdMinionlimb_3 : TurdMinionlimb
 {
-	states
+	States
 	{
 	Spawn:
-		TNT1 A 0
-		_UR5 A 0 A_Gravity
-	SpawnLoop:
 		_UR5 KLMNO 4
-		loop
+		Loop
 	}
 }
 

@@ -1,30 +1,29 @@
 Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 {
-	obituary "Daisy Mae snatched %o bald-headed."
-	hitobituary "Daisy Mae opened up a can of whoop-ass on %o."
-	scale 0.34
-	radius 20
-	height 56
-	health 200
-	mass 110
-	painchance 55
-	meleedamage 4
-	meleerange 94
+	Obituary "Daisy Mae snatched %o bald-headed."
+	HitObituary "Daisy Mae opened up a can of whoop-ass on %o."
+	Scale 0.34
+	Radius 20
+	Height 56
+	Health 200
+	Mass 110
+	PainChance 55
+	MeleeRange 94
 	Species "RedneckEnemies"
 	+FLOORCLIP
 	+MISSILEMORE
 	+MISSILEEVENMORE
 	+NOINFIGHTING
 	+NOBLOODDECALS
-	speed 12
-	painsound "Cheer/Pain"
-	activesound "Cheer/IDLE"
-	seesound "Cheer/See"
-	deathsound "Cheer/Pain"
+	Speed 12
+	PainSound "Cheer/Pain"
+	ActiveSound "Cheer/IDLE"
+	SeeSound "Cheer/See"
+	DeathSound "Cheer/Pain"
 	Monster
 	Tag "Daisy Mae"
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	DamageFactor "Mace", 1.1
 	DamageFactor "DragonClaw", 1.5
 	PainChance "MightyBoot", 255
@@ -40,11 +39,10 @@ Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 		DDER A 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		DDER ABCDEFGHI 4 A_Look
-		loop
+		Loop
 	See:
 		TNT1 A 0 A_Jump(128,"Style2")
-		DDER J 4 A_Chase
-		DDER K 4 A_Chase
+		DDER JK 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDER L 4 A_Chase
 		DDR3 G 4 A_Chase
@@ -52,81 +50,65 @@ Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 		DDR3 H 4 A_Chase
 		DDER M 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDER N 4 A_Chase
-		DDER O 4 A_Chase
+		DDER NO 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDER P 4 A_Chase
-		DDER Q 4 A_Chase
-		DDER R 4 A_Chase
-		DDER S 4 A_Chase
+		DDER PQRS 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDER T 4 A_Chase
-		Goto See
+		Loop
 	Style2:
-		DDR2 A 4 A_Chase
-		DDR2 B 4 A_Chase
+		DDR2 AB 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDR2 C 4 A_Chase
-		TNT1 A 0 ThrustThingZ(0,9,0,0)
-		DDR2 D 4
-		DDR2 E 4
-		DDR2 F 4
-		DDR2 G 4
+		DDR2 D 4 ThrustThingZ(0,9,0,0)
+		DDR2 EFG 4
 		DDR2 H 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDR2 I 4 A_Chase
-		DDR2 J 4 A_Chase
+		DDR2 IJ 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDR2 K 4 A_Chase
 		Goto See
 	Missile:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		DDER UUUVVVWWW 1 A_FaceTarget
-		DDER XXX 1 A_FaceTarget
-		DDER YYY 1 A_FaceTarget
+		DDER UUUVVVWWWXXXYYY 1 A_FaceTarget
 		TNT1 A 0 A_CustomMissile("CheerBaton",40,0,0)
 		DDER ZZZ 1 A_FaceTarget
 		TNT1 A 0 A_Jump(64,"Missile")
-		goto See
+		Goto See
 	FockChick:
 		DDR3 F 1
-		DDR2 VWX 3
-		DDR2 YZ 3
-		DDR2 A 0 A_Chase
-		TNT1 A 0
-		DDR2 A 0 ThrustThingZ(0,12,0,0)
-		DDR2 [ 1 A_Recoil(-12)
-		DDR2 ] 1
+		DDR2 VWXYZ 3
+		TNT1 A 0 A_Chase
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		DDR2 "[" 1 A_Recoil(-12)
+		DDR2 "]" 1
 		DDR3 AB 4 ThrustThingZ(0,12,0,0)
 		DDR3 CD 3 A_Chase
 		DDR3 E 1
 		DDR3 F 3
-		TNT1 A 0 A_JumpIfCloser(300,1)
+		TNT1 A 0 A_JumpIfCloser(300,"Melee")
 		Goto See
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		DDR3 F 1 A_FaceTarget
-		DDR2 VWX 3 A_FaceTarget
-		DDR2 YZ 3 A_FaceTarget
-		DDR2 A 0 ThrustThingZ(0,12,0,0)
-		DDR2 [ 1 A_Recoil(-12)
-		TNT1 A 0 A_CustomMeleeAttack(5,"","")
-		DDR2 ] 2 ThrustThingZ(0,12,0,0)
-		DDR3 A 1 A_CustomMeleeAttack(5,"","")
+		DDR2 VWXYZ 3 A_FaceTarget
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		DDR2 "[" 1 A_Recoil(-12)
+		TNT1 A 0 A_CustomMeleeAttack(5*random(1,8))
+		DDR2 "]" 2 ThrustThingZ(0,12,0,0)
+		DDR3 A 1 A_CustomMeleeAttack(5*random(1,8))
 		DDR3 B 2
 		DDR3 CD 3 A_Chase
-		DDR3 EEFF 1
+		DDR3 EF 2
 		DDR3 F 1 A_JumpIfCloser(500,"Melee")
-		Goto see
+		Goto See
 	Pain:
-		DDR2 M 1 A_Pain
-		DDR2 MMNNNOOOPPP 1
-		DDR2 QQQ 1
-		DDR2 RRRSSSTTTUUU 1
-		goto See
+		DDR2 M 3 A_Pain
+		DDR2 NOPQRSTU 3
+		Goto See
 	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 		DDR2 M 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		DDR2 Q 16 A_Pain
@@ -134,28 +116,27 @@ Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		DDRD A 0 A_Noblocking
-		DDRD A 0 A_Scream
-		DDRD ABCDEFGHIJKLM 3
-		TNT1 A 0 A_playsound("redneck/thud")
-		DDRD M 0 A_SpawnItemEx("RedDaisyMaeCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-		TNT1 A -1
-		stop
+		TNT1 A 0 A_NoBlocking
+		DDRD A 3 A_Scream
+		DDRD BCDEFGHIJKLM 3
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("RedDaisyMaeCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		TNT1 A 0 A_UnsetSolid
-		JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
-		JKLP A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-		JKLP A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
+		TNT1 A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+		TNT1 A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 5 A_NoBlocking
 		Stop
 	Death.LeonardDamage2:
@@ -181,7 +162,7 @@ Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 5
-		stop
+		Stop
 	Pain.ShrinkerDMG:
 		DDR2 M 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -216,7 +197,7 @@ Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_SpawnItemEx("RedDaisyMae_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		DDER A 0
@@ -231,7 +212,7 @@ Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
+		Loop
 	ExpanderPop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -261,7 +242,7 @@ Actor RedDaisyMae : SamsaraMonsterHumanoidMedium
 		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
+		Loop
 	ExpanderPopCoop:
 		"####" "#" 10
 		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -287,7 +268,7 @@ Actor RedDaisyMaeCorpse : SamsaraCorpseActorSmall
 	Radius 16
 	Mass 5000
 	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
+	BloodColor "ba 2c 10"
 	+ISMONSTER
 	-COUNTKILL
 	-SHOOTABLE
@@ -299,25 +280,22 @@ Actor RedDaisyMaeCorpse : SamsaraCorpseActorSmall
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			DDRD M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			DDRD M 4
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
-			JKLP A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
+			TNT1 A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
+			TNT1 A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 			TNT1 A 5 A_NoBlocking
 			Stop
 	}
@@ -453,7 +431,7 @@ actor RedDaisyMae_Shrink : RedDaisyMae
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -463,7 +441,7 @@ actor RedDaisyMae_Shrink : RedDaisyMae
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -473,7 +451,7 @@ actor RedDaisyMae_Shrink : RedDaisyMae
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -530,11 +508,10 @@ Actor GreenDaisyMae : RedDaisyMae
 		DDE7 A 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		DDE7 ABCDEFGHI 4 A_Look
-		loop
+		Loop
 	See:
 		TNT1 A 0 A_Jump(128,"Style2")
-		DDE7 J 4 A_Chase
-		DDE7 K 4 A_Chase
+		DDE7 JK 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDE7 L 4 A_Chase
 		DDR9 G 4 A_Chase
@@ -542,94 +519,77 @@ Actor GreenDaisyMae : RedDaisyMae
 		DDR9 H 4 A_Chase
 		DDE7 M 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDE7 N 4 A_Chase
-		DDE7 O 4 A_Chase
+		DDE7 NO 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDE7 P 4 A_Chase
-		DDE7 Q 4 A_Chase
-		DDE7 R 4 A_Chase
-		DDE7 S 4 A_Chase
+		DDE7 PQRS 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDE7 T 4 A_Chase
-		Goto See
+		Loop
 	Style2:
-		DDR8 A 4 A_Chase
-		DDR8 B 4 A_Chase
+		DDR8 AB 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDR8 C 4 A_Chase
-		TNT1 A 0 ThrustThingZ(0,9,0,0)
-		DDR8 D 4
-		DDR8 E 4
-		DDR8 F 4
-		DDR8 G 4
+		DDR8 D 4 ThrustThingZ(0,9,0,0)
+		DDR8 EFG 4
 		DDR8 H 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDR8 I 4 A_Chase
-		DDR8 J 4 A_Chase
+		DDR8 IJ 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDR8 K 4 A_Chase
 		Goto See
 	Missile:
-		DDE7 UUUVVVWWW 1 A_FaceTarget
-		DDE7 XXX 1 A_FaceTarget
-		DDE7 YYY 1 A_FaceTarget
+		DDE7 UUUVVVWWWXXXYYY 1 A_FaceTarget
 		TNT1 A 0 A_CustomMissile("CheerBaton",40,0,0)
 		DDE7 ZZZ 1 A_FaceTarget
 		TNT1 A 0 A_Jump(64,"Missile")
-		goto See
+		Goto See
 	FockChick:
 		DDR9 F 1
-		DDR8 VWX 3
-		DDR8 YZ 3
-		DDR8 A 0 A_Chase
-		TNT1 A 0
-		DDR8 A 0 ThrustThingZ(0,12,0,0)
-		DDR8 [ 1 A_Recoil(-12)
-		DDR8 ] 1
+		DDR8 VWXYZ 3
+		TNT1 A 0 A_Chase
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		DDR8 "[" 1 A_Recoil(-12)
+		DDR8 "]" 1
 		DDR9 AB 4 ThrustThingZ(0,12,0,0)
 		DDR9 CD 3 A_Chase
 		DDR9 E 1
 		DDR9 F 3
-		TNT1 A 0 A_JumpIfCloser(300,1)
+		TNT1 A 0 A_JumpIfCloser(300,"Melee")
 		Goto See
 	Melee:
 		DDR9 F 1 A_FaceTarget
-		DDR8 VWX 3 A_FaceTarget
-		DDR8 YZ 3 A_FaceTarget
-		DDR8 A 0 ThrustThingZ(0,12,0,0)
-		DDR8 [ 1 A_Recoil(-12)
-		TNT1 A 0 A_CustomMeleeAttack(5,"","")
-		DDR8 ] 2 ThrustThingZ(0,12,0,0)
-		DDR9 A 1 A_CustomMeleeAttack(5,"","")
+		DDR8 VWXYZ 3 A_FaceTarget
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		DDR8 "[" 1 A_Recoil(-12)
+		TNT1 A 0 A_CustomMeleeAttack(5*random(1,8))
+		DDR8 "]" 2 ThrustThingZ(0,12,0,0)
+		DDR9 A 1 A_CustomMeleeAttack(5*random(1,8))
 		DDR9 B 2
 		DDR9 CD 3 A_Chase
-		DDR9 EEFF 1
+		DDR9 EF 2
 		DDR9 F 1 A_JumpIfCloser(500,"Melee")
-		Goto see
+		Goto See
 	Pain:
-		DDR8 M 1 A_Pain
-		DDR8 MMNNNOOOPPP 1
-		DDR8 QQQ 1
-		DDR8 RRRSSSTTTUUU 1
-		goto See
+		DDR8 M 3 A_Pain
+		DDR8 NOPQRSTU 3
+		Goto See
 	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 		DDR8 M 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		DDR8 Q 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		DDR1 A 0 A_Noblocking
-		DDR1 A 0 A_Scream
-		DDR1 ABCDEFGHIJKLM 3
-		TNT1 A 0 A_playsound("redneck/thud")
-		DDR1 M 0 A_SpawnItemEx("GreenDaisyMaeCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-		TNT1 A -1
-		stop
+		TNT1 A 0 A_NoBlocking
+		DDR1 A 3 A_Scream
+		DDR1 BCDEFGHIJKLM 3
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("GreenDaisyMaeCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		DDE8 M 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -664,110 +624,31 @@ Actor GreenDaisyMae : RedDaisyMae
 		"####" "#" 0 A_SpawnItemEx("GreenDaisyMae_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		DDE7 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		DDE7 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor GreenDaisyMaeCorpse : SamsaraCorpseActorSmall
+Actor GreenDaisyMaeCorpse : RedDaisyMaeCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			DDR1 M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			DDR1 M 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
-			JKLP A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			TNT1 A 5 A_NoBlocking
-			Stop
 	}
 }
 
@@ -901,7 +782,7 @@ actor GreenDaisyMae_Shrink : GreenDaisyMae
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -911,7 +792,7 @@ actor GreenDaisyMae_Shrink : GreenDaisyMae
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -921,7 +802,7 @@ actor GreenDaisyMae_Shrink : GreenDaisyMae
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -978,11 +859,10 @@ Actor DarkDaisyMae : RedDaisyMae
 		DDE4 A 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		DDE4 ABCDEFGHI 4 A_Look
-		loop
+		Loop
 	See:
 		TNT1 A 0 A_Jump(128,"Style2")
-		DDE4 J 4 A_Chase
-		DDE4 K 4 A_Chase
+		DDE4 JK 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDE4 L 4 A_Chase
 		DDR6 G 4 A_Chase
@@ -990,94 +870,77 @@ Actor DarkDaisyMae : RedDaisyMae
 		DDR6 H 4 A_Chase
 		DDE4 M 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDE4 N 4 A_Chase
-		DDE4 O 4 A_Chase
+		DDE4 NO 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDE4 P 4 A_Chase
-		DDE4 Q 4 A_Chase
-		DDE4 R 4 A_Chase
-		DDE4 S 4 A_Chase
+		DDE4 PQRS 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDE4 T 4 A_Chase
-		Goto See
+		Loop
 	Style2:
-		DDR5 A 4 A_Chase
-		DDR5 B 4 A_Chase
+		DDR5 AB 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDR5 C 4 A_Chase
-		TNT1 A 0 ThrustThingZ(0,9,0,0)
-		DDR5 D 4
-		DDR5 E 4
-		DDR5 F 4
-		DDR5 G 4
+		DDR5 D 4 ThrustThingZ(0,9,0,0)
+		DDR5 EFG 4
 		DDR5 H 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		DDR5 I 4 A_Chase
-		DDR5 J 4 A_Chase
+		DDR5 IJ 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		DDR5 K 4 A_Chase
 		Goto See
 	Missile:
-		DDE4 UUUVVVWWW 1 A_FaceTarget
-		DDE4 XXX 1 A_FaceTarget
-		DDE4 YYY 1 A_FaceTarget
+		DDE4 UUUVVVWWWXXXYYY 1 A_FaceTarget
 		TNT1 A 0 A_CustomMissile("CheerBaton",40,0,0)
 		DDE4 ZZZ 1 A_FaceTarget
 		TNT1 A 0 A_Jump(64,"Missile")
-		goto See
+		Goto See
 	FockChick:
 		DDR6 F 1
-		DDR5 VWX 3
-		DDR5 YZ 3
-		DDR5 A 0 A_Chase
-		TNT1 A 0
-		DDR5 A 0 ThrustThingZ(0,12,0,0)
-		DDR5 [ 1 A_Recoil(-12)
-		DDR5 ] 1
+		DDR5 VWXYZ 3
+		TNT1 A 0 A_Chase
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		DDR5 "[" 1 A_Recoil(-12)
+		DDR5 "]" 1
 		DDR6 AB 4 ThrustThingZ(0,12,0,0)
 		DDR6 CD 3 A_Chase
 		DDR6 E 1
 		DDR6 F 3
-		TNT1 A 0 A_JumpIfCloser(300,1)
+		TNT1 A 0 A_JumpIfCloser(300,"Melee")
 		Goto See
 	Melee:
 		DDR6 F 1 A_FaceTarget
-		DDR5 VVVWWWXXX 1 A_FaceTarget
-		DDR5 YYYZZZ 1 A_FaceTarget
-		DDR5 A 0 ThrustThingZ(0,12,0,0)
-		DDR5 [ 1 A_Recoil(-12)
-		TNT1 A 0 A_CustomMeleeAttack(5,"","")
-		DDR5 ] 2 ThrustThingZ(0,12,0,0)
-		DDR6 A 1 A_CustomMeleeAttack(5,"","")
+		DDR5 VWXYZ 3 A_FaceTarget
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		DDR5 "[" 1 A_Recoil(-12)
+		TNT1 A 0 A_CustomMeleeAttack(5*random(1,8))
+		DDR5 "]" 2 ThrustThingZ(0,12,0,0)
+		DDR6 A 1 A_CustomMeleeAttack(5*random(1,8))
 		DDR6 B 2
 		DDR6 CD 3 A_Chase
-		DDR6 EEFF 1
+		DDR6 EF 2
 		DDR6 F 1 A_JumpIfCloser(500,"Melee")
-		Goto see
+		Goto See
 	Pain:
-		DDR5 M 1 A_Pain
-		DDR5 MMNNNOOOPPP 1
-		DDR5 QQQ 1
-		DDR5 RRRSSSTTTUUU 1
-		goto See
+		DDR5 M 3 A_Pain
+		DDR5 NOPQRSTU 3
+		Goto See
 	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 		DDR5 M 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		DDR5 Q 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		DDR0 A 0 A_Noblocking
-		DDR0 A 0 A_Scream
-		DDR0 ABCDEFGHIJKLM 3
-		TNT1 A 0 A_playsound("redneck/thud")
-		DDR0 M 0 A_SpawnItemEx("DarkDaisyMaeCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-		TNT1 A -1
-		stop
+		TNT1 A 0 A_NoBlocking
+		DDR0 A 3 A_Scream
+		DDR0 BCDEFGHIJKLM 3
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("DarkDaisyMaeCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		DDE5 M 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1112,110 +975,31 @@ Actor DarkDaisyMae : RedDaisyMae
 		"####" "#" 0 A_SpawnItemEx("DarkDaisyMae_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		DDE4 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		DDE4 A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor DarkDaisyMaeCorpse : SamsaraCorpseActorSmall
+Actor DarkDaisyMaeCorpse : RedDaisyMaeCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			DDR0 M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			DDR0 M 4
 			Loop
-		Death:
-			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			JKLP A 0 A_PlaySound("Leonard/XDeath",CHAN_BODY,1.0,0,ATTN_NORM)
-			JKLP A 0 A_CustomMissile("DaisyHead_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP AA 0 A_CustomMissile("DaisyArm_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP AA 0 A_CustomMissile("DaisyLeg_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("DaisyChest_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib1_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib2_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib3_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib4_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib5_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			JKLP A 0 A_CustomMissile("MiscGib6_RR",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
-			TNT1 A 5 A_NoBlocking
-			Stop
 	}
 }
 
@@ -1349,7 +1133,7 @@ actor DarkDaisyMae_Shrink : DarkDaisyMae
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1359,7 +1143,7 @@ actor DarkDaisyMae_Shrink : DarkDaisyMae
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1369,7 +1153,7 @@ actor DarkDaisyMae_Shrink : DarkDaisyMae
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1426,11 +1210,10 @@ Actor PartiDaisyMae : RedDaisyMae
 		2CHR A 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		2CHR ABCDEFGHI 4 A_Look
-		loop
+		Loop
 	See:
 		TNT1 A 0 A_Jump(128,"Style2")
-		2CHR J 4 A_Chase
-		2CHR K 4 A_Chase
+		2CHR JK 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		2CHR L 4 A_Chase
 		3CHR G 4 A_Chase
@@ -1438,94 +1221,77 @@ Actor PartiDaisyMae : RedDaisyMae
 		3CHR H 4 A_Chase
 		2CHR M 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		2CHR N 4 A_Chase
-		2CHR O 4 A_Chase
+		2CHR NO 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		2CHR P 4 A_Chase
-		2CHR Q 4 A_Chase
-		2CHR R 4 A_Chase
-		2CHR S 4 A_Chase
+		2CHR PQRS 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		2CHR T 4 A_Chase
-		Goto See
+		Loop
 	Style2:
-		0CHR A 4 A_Chase
-		0CHR B 4 A_Chase
+		0CHR AB 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		0CHR C 4 A_Chase
-		TNT1 A 0 ThrustThingZ(0,9,0,0)
-		0CHR D 4
-		0CHR E 4
-		0CHR F 4
-		0CHR G 4
+		0CHR D 4 ThrustThingZ(0,9,0,0)
+		0CHR EFG 4
 		0CHR H 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
-		0CHR I 4 A_Chase
-		0CHR J 4 A_Chase
+		0CHR IJ 4 A_Chase
 		TNT1 A 0 A_JumpIfCloser(120,"FockChick")
 		0CHR K 4 A_Chase
 		Goto See
 	Missile:
-		2CHR UUUVVVWWW 1 A_FaceTarget
-		2CHR XXX 1 A_FaceTarget
+		2CHR UUUVVVWWWXXXYYY 1 A_FaceTarget
 		TNT1 A 0 A_CustomMissile("CheerBaton",40,0,0)
-		2CHR YYY 1 A_FaceTarget
 		2CHR ZZZ 1 A_FaceTarget
 		TNT1 A 0 A_Jump(64,"Missile")
-		goto See
+		Goto See
 	FockChick:
 		3CHR F 1
-		0CHR VWX 3
-		0CHR YZ 3
-		0CHR A 0 A_Chase
-		TNT1 A 0
-		0CHR A 0 ThrustThingZ(0,12,0,0)
-		0CHR [ 1 A_Recoil(-12)
-		0CHR ] 1
+		0CHR VWXYZ 3
+		TNT1 A 0 A_Chase
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		0CHR "[" 1 A_Recoil(-12)
+		0CHR "]" 1
 		3CHR AB 4 ThrustThingZ(0,12,0,0)
 		3CHR CD 3 A_Chase
 		3CHR E 1
 		3CHR F 3
-		TNT1 A 0 A_JumpIfCloser(300,1)
+		TNT1 A 0 A_JumpIfCloser(300,"Melee")
 		Goto See
 	Melee:
 		3CHR F 1 A_FaceTarget
-		0CHR VVVWWWXXX 1 A_FaceTarget
-		0CHR YYYZZZ 1 A_FaceTarget
-		0CHR A 0 ThrustThingZ(0,12,0,0)
-		0CHR [ 1 A_Recoil(-12)
-		TNT1 A 0 A_CustomMeleeAttack(5,"","")
-		0CHR ] 2 ThrustThingZ(0,12,0,0)
-		3CHR A 1 A_CustomMeleeAttack(5,"","")
+		0CHR VWXYZ 3 A_FaceTarget
+		TNT1 A 0 ThrustThingZ(0,12,0,0)
+		0CHR "[" 1 A_Recoil(-12)
+		TNT1 A 0 A_CustomMeleeAttack(5*random(1,8))
+		0CHR "]" 2 ThrustThingZ(0,12,0,0)
+		3CHR A 1 A_CustomMeleeAttack(5*random(1,8))
 		3CHR B 2
 		3CHR CD 3 A_Chase
-		3CHR EEFF 1
+		3CHR EF 2
 		3CHR F 1 A_JumpIfCloser(500,"Melee")
-		Goto see
+		Goto See
 	Pain:
-		0CHR M 1 A_Pain
-		0CHR MMNNNOOOPPP 1
-		0CHR QQQ 1
-		0CHR RRRSSSTTTUUU 1
-		goto See
+		0CHR M 3 A_Pain
+		0CHR NOPQRSTU 3
+		Goto See
 	Pain.MightyBoot:
-		TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 		0CHR M 3 A_FaceTarget
 		TNT1 A 0 A_Recoil(14)
 		0CHR Q 16 A_Pain
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		7CHR A 0 A_Noblocking
-		7CHR A 0 A_Scream
-		7CHR ABCDEFGHIJKLM 3
-		TNT1 A 0 A_playsound("redneck/thud")
-		7CHR M 0 A_SpawnItemEx("PartiDaisyMaeCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-		TNT1 A -1
-		stop
+		TNT1 A 0 A_NoBlocking
+		7CHR A 3 A_Scream
+		7CHR BCDEFGHIJKLM 3
+		TNT1 A 0 A_PlaySound("redneck/thud")
+		TNT1 A -1 A_SpawnItemEx("PartiDaisyMaeCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+		Stop
 	Pain.ShrinkerDMG:
 		0CHR M 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1560,92 +1326,29 @@ Actor PartiDaisyMae : RedDaisyMae
 		"####" "#" 0 A_SpawnItemEx("PartiDaisyMae_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
-		stop
+		Stop
 	Death.ExpanderDMG:
 	XDeath.ExpanderDMG:
 		2CHR A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoop
 	Death.ExpanderDMGCoop:
 	XDeath.ExpanderDMGCoop:
 		2CHR A 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-		TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
+		Goto Super::ExpanderLoopCoop
 	}
 }
 
-Actor PartiDaisyMaeCorpse : SamsaraCorpseActorSmall
+Actor PartiDaisyMaeCorpse : RedDaisyMaeCorpse
 {
-	Health 20
-	Height 8
-	Radius 16
-	Mass 5000
-	BloodType "LeonardBlood_RR"
-	Bloodcolor "ba 2c 10"
-	+ISMONSTER
-	-COUNTKILL
-	-SHOOTABLE
-	+VULNERABLE
-	-SOLID
-	+NOTARGET
-	-FRIENDLY
-	+NOBLOODDECALS
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_JumpIfMasterCloser(8,2)
-			7CHR M 4 A_Warp(AAPTR_Master,0,0,0,0,WARPF_INTERPOLATE)
-			Goto Spawn
 			7CHR M 4
 			Loop
 	}
@@ -1781,7 +1484,7 @@ actor PartiDaisyMae_Shrink : PartiDaisyMae
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1791,7 +1494,7 @@ actor PartiDaisyMae_Shrink : PartiDaisyMae
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1801,7 +1504,7 @@ actor PartiDaisyMae_Shrink : PartiDaisyMae
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1847,28 +1550,28 @@ actor PartiDaisyMae_ShrinkEffect : PartiDaisyMae
 
 Actor CheerBaton
 {
-	scale 0.3
-	height 6
-	radius 3
-	speed 15
-	damage (5)
-	+MISSILE
+	Scale 0.3
+	Height 6
+	Radius 3
+	Speed 15
+	Damage (5)
+	PROJECTILE
+	+BRIGHT
 	+STRIFEDAMAGE
 	+SPECIALFIREDAMAGE
-	PROJECTILE
 	DamageType "Fire"
-	states
+	States
 	{
 	Spawn:
 		TNT1 A 0
 		TNT1 A 0 A_Jump(128,"SpawnLoop")
-		TNT1 A 0 A_ChangeFlag(SPECIALFIREDAMAGE,0)
+		TNT1 A 0 A_ChangeFlag("SPECIALFIREDAMAGE",0)
 	SpawnLoop:
-		CHBT ABCD 3 Bright
-		loop
+		CHBT ABCD 3
+		Loop
 	Death:
 		TNT1 A 5
-		stop
+		Stop
 	}
 }
 
@@ -1879,21 +1582,20 @@ ACTOR DaisyHead_RR
 	Height 5
 	Speed 10
 	+MISSILE
-	-NOBLOCKMAP
-	-SOLID
 	+CLIENTSIDEONLY
+	-SOLID
+	-NOGRAVITY
+	-NOBLOCKMAP
 	States
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Gravity
 		TNT1 A 0 ThrustThingZ(0,random(10,40),0,1)
 	SpawnLoop:
-		CHBT EEFFGGHHII 2
+		CHBT EFGHI 4
 		Loop
 	Death:
-	Crash:
-		TNT1 A 5 A_FadeOut
+		TNT1 A 5
 		Stop
 	}
 }
@@ -1904,10 +1606,9 @@ ACTOR DaisyLeg_RR : DaisyHead_RR
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Gravity
 		TNT1 A 0 ThrustThingZ(0,random(10,40),0,1)
 	SpawnLoop:
-		CHBT OOPPQQRRSS 2
+		CHBT OPQRS 4
 		Loop
 	}
 }
@@ -1918,10 +1619,9 @@ ACTOR DaisyChest_RR : DaisyHead_RR
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Gravity
 		TNT1 A 0 ThrustThingZ(0,random(10,40),0,1)
 	SpawnLoop:
-		CHBT JJKKLLMMNN 2
+		CHBT JKLMN 4
 		Loop
 	}
 }
@@ -1932,10 +1632,9 @@ ACTOR DaisyArm_RR : DaisyHead_RR
 	{
 	Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Gravity
 		TNT1 A 0 ThrustThingZ(0,random(10,40),0,1)
 	SpawnLoop:
-		CHBT TTUUVVWWXX 2
+		CHBT TUVWX 4
 		Loop
 	}
 }

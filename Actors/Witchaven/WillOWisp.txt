@@ -1,4 +1,5 @@
-Actor WTWillOWisp : WitchavenEnemyBaseRangedSkeleton {
+Actor WTWillOWisp : WitchavenEnemyBaseRangedSkeleton
+{
 	Radius 20
 	Height 20
 	Health 5
@@ -18,7 +19,8 @@ Actor WTWillOWisp : WitchavenEnemyBaseRangedSkeleton {
 	FloatSpeed 8	
 	Tag "Will 'o' Wisp"
 	Obituary "%o made a wish."
-	States {
+	States
+	{
 		Spawn:
 			WH_3 A 0
 			WH_3 A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -28,71 +30,62 @@ Actor WTWillOWisp : WitchavenEnemyBaseRangedSkeleton {
 			WH_3 AABBCCDDEEFFEEDDCCBB 2 A_Look
 			Loop
 		See:	
-			WH_3 A 2 A_Chase("Melee","Missile")
+			WH_3 A 2 A_Chase
 			WH_3 A 2 A_Chase("Melee","")
-			WH_3 B 2 A_Chase("Melee","Missile")
+			WH_3 B 2 A_Chase
 			WH_3 B 2 A_Chase("Melee","")
-			WH_3 C 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 C 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 D 2 A_Chase("Melee","Missile")
+			WH_3 CC 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 D 2 A_Chase
 			WH_3 D 2 A_Chase("Melee","")
-			WH_3 E 2 A_Chase("Melee","Missile")
+			WH_3 E 2 A_Chase
 			WH_3 E 2 A_Chase("Melee","")
-			WH_3 F 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 F 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 E 2 A_Chase("Melee","Missile")
+			WH_3 FF 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 E 2 A_Chase
 			WH_3 E 2 A_Chase("Melee","")
-			WH_3 D 2 A_Chase("Melee","Missile")
+			WH_3 D 2 A_Chase
 			WH_3 D 2 A_Chase("Melee","")
-			WH_3 C 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 C 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 B 2 A_Chase("Melee","Missile")
+			WH_3 CC 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 B 2 A_Chase
 			WH_3 B 2 A_Chase("Melee","")
 			Loop
 		See3:	
 			TNT1 A 0 A_Jump(128,"See")		
-			WH_3 K 2 A_Chase("Melee","Missile")
+			WH_3 K 2 A_Chase
 			WH_3 K 2 A_Chase("Melee","")
-			WH_3 J 2 A_Chase("Melee","Missile")
+			WH_3 J 2 A_Chase
 			WH_3 J 2 A_Chase("Melee","")
-			WH_3 I 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 I 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 H 2 A_Chase("Melee","Missile")
+			WH_3 II 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 H 2 A_Chase
 			WH_3 H 2 A_Chase("Melee","")
-			WH_3 G 2 A_Chase("Melee","Missile")
+			WH_3 G 2 A_Chase
 			WH_3 G 2 A_Chase("Melee","")
-			WH_3 H 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 H 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 I 2 A_Chase("Melee","Missile")
+			WH_3 HH 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 I 2 A_Chase
 			WH_3 I 2 A_Chase("Melee","")
-			WH_3 J 2 A_Chase("Melee","Missile")
+			WH_3 J 2 A_Chase
 			WH_3 J 2 A_Chase("Melee","")
-			WH_3 K 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 K 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 L 2 A_Chase("Melee","Missile")
+			WH_3 KK 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 L 2 A_Chase
 			WH_3 L 2 A_Chase("Melee","")
 			Goto See3+1
 		See2:	
 			TNT1 A 0 A_Jump(128,"See")
-			WH_3 Q 2 A_Chase("Melee","Missile")
+			WH_3 Q 2 A_Chase
 			WH_3 Q 2 A_Chase("Melee","")
-			WH_3 P 2 A_Chase("Melee","Missile")
+			WH_3 P 2 A_Chase
 			WH_3 P 2 A_Chase("Melee","")
-			WH_3 O 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 O 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 N 2 A_Chase("Melee","Missile")
+			WH_3 OO 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 N 2 A_Chase
 			WH_3 N 2 A_Chase("Melee","")
-			WH_3 M 2 A_Chase("Melee","Missile")
+			WH_3 M 2 A_Chase
 			WH_3 M 2 A_Chase("Melee","")
-			WH_3 N 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 N 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 O 2 A_Chase("Melee","Missile")
+			WH_3 NN 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 O 2 A_Chase
 			WH_3 O 2 A_Chase("Melee","")
-			WH_3 P 2 A_Chase("Melee","Missile")
+			WH_3 P 2 A_Chase
 			WH_3 P 2 A_Chase("Melee","")
-			WH_3 Q 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 Q 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
-			WH_3 R 2 A_Chase("Melee","Missile")
+			WH_3 QQ 2 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+			WH_3 R 2 A_Chase
 			WH_3 R 2 A_Chase("Melee","")
 			Goto See2+1			
 		Missile:
@@ -118,11 +111,8 @@ Actor WTWillOWisp : WitchavenEnemyBaseRangedSkeleton {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoGravity
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_Scream
-			WH_3 SSS 1 
-			WH_3 TTT 1  
-			WH_3 UUU 1
-			WH_3 VVV 1
+			WH_3 S 3 A_Scream
+			WH_3 TUV 3
 			TNT1 A -1
 			Stop
 	}

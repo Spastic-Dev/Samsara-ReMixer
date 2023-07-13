@@ -13,7 +13,8 @@ Actor WTMuckDemoness : WitchavenEnemyBaseRangedBeast
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
 	DamageFactor "PoisonBolt", 0.0
-	States {
+	States
+	{
 		Spawn:
 			WH_M A 0
 			WH_M A 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -24,22 +25,17 @@ Actor WTMuckDemoness : WitchavenEnemyBaseRangedBeast
 			Loop
 		See:
 			WH_M A 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			WH_M A 3 A_Chase
-			WH_M B 3 A_Chase
+			WH_M AB 3 A_Chase
 			WH_M B 3 A_Chase("","",CHF_NOPLAYACTIVE)
-			WH_M A 3 A_Chase
-			WH_M A 3 A_Chase
+			WH_M AA 3 A_Chase
 			WH_M B 3 A_Chase("","",CHF_NOPLAYACTIVE)
 			WH_M B 3 A_Chase
 			Goto See+1
 		Missile:
 			WH_M CCDDEEFF 2 A_FaceTarget
-			TNT1 A  0 A_PlaySound("greywitch/toss")
-			WH_M GG 2 A_FaceTarget
-			WH_M HH 2 A_FaceTarget
-			WH_M II 2 A_FaceTarget
-			WH_M JJ 2 A_FaceTarget
-			WH_M K  1 A_CustomMissile("MuckDemonessSnot",20,5)
+			TNT1 A 0 A_PlaySound("greywitch/toss")
+			WH_M GGHHIIJJ 2 A_FaceTarget
+			WH_M K 1 A_CustomMissile("MuckDemonessSnot",20,5)
 			WH_M KGGFFEEDDCC 2
 			Goto See
 		Death:
@@ -55,29 +51,29 @@ Actor WTMuckDemoness : WitchavenEnemyBaseRangedBeast
 			WH_M S 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			WH_M T 4 A_NoBlocking
-			WH_M U 4
-			WH_M V 4
-			WH_M W 4
+			WH_M UVW 4
 			TNT1 A -1
 			Stop
 	}
 }
 
-Actor MuckDemonessSnot {
-	Projectile
+Actor MuckDemonessSnot
+{
 	Speed 20
 	Radius 7
 	Height 6
+	PROJECTILE
 	DamageType Poison
-	+MISSILE
+	+BRIGHT
 	Scale 0.70
 	Damage (random(5,15))
-	States {
+	States
+	{
 		Spawn:
-			WH_M XXYY 2 bright
+			WH_M XY 4
 			Loop
 		Death:
-			TNT1 A 5 A_FadeOut
+			TNT1 A 1
 			Stop
 	}
 }

@@ -1,5 +1,5 @@
-/*======================================================================================================================
- 													Design Specs
+/*=================================================== Design Specs =====================================================
+
 o MAX_GAME_TYPES
 	- This corresponds to the game set, like Doom or Chex
 o MAX_ALTS
@@ -89,23 +89,31 @@ o MONSTER_SLOT
 o MAXPERSLOT
 	- This variable is the slot for a decision on the monster from the slot, like spawning a zombieman variant
 
-													- Strings -
+- Strings -
 	o Monster name:
 		- Name of the the monster
 	o Token0-4:
-		- These are inventory items that can be given to a monster for each difficulty, to alter their behavior
+		- These are inventory items that can be given to a monster for each difficulty, to alter their behavior. If set
+		  to an empty string or left alone, no token is given
 
-													- Stats -
+- Stats -
 	o Speed0-4:
 		- These tokens work as a multiplier for monster speed. As such, you should never use numbers with no decimal
-		  point. Please use 2.0 instead of 2. If left alone, it will have no affect.
+		  point. Please use 2.0 instead of 2. If left alone, it will have no effect.
 	o Health0-4:
-		- A health multiplier. Same as speed, these are multipliers. If left alone, it will have no affect.
+		- A health multiplier. Same as speed, these are multipliers. If left alone, it will have no effect.
 	o Weight0-4:
 		- This is a spawn chance, which functions similarly to RandomSpawner. You can use whatever numbers you want,
 		  to define the chance of a monster spawning. The higher the weight compared to other monsters, the more likely
 		  it is to spawn, and vice versa. If left alone, will be treated as 1. If set to a negative value, however,
 		  that means the monster will not spawn at all on that difficulty.
+
+* Each difficulty corresponds to the following numbers for Token, Speed, Health, and Weight
+	0: Baby      ("I'm too young to die")
+	1: Easy      ("Hey, not too rough")
+	2: Normal    ("Hurt me plenty")
+	3: Hard      ("Ultra-Violence")
+	4: Nightmare ("Nightmare!")
 
 ======================================================================================================================*/
 

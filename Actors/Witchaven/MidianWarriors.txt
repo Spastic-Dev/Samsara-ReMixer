@@ -1,5 +1,6 @@
 /*--		Normal ones			--*/
-Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
+Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee
+{
 	Health 130
 	Scale 0.4
 	Mass 1000
@@ -16,7 +17,8 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 	Obituary "%o wasnt strong enough to face a Midian Warrior."
 	HitObituary "%o wasnt strong enough to face a Midian Warrior."
 	DropItem "Witchaven_HalberdMonsterDrop",140,1
-	States {
+	States
+	{
 		Spawn:
 			W_HR H 0
 			W_HR H 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -44,30 +46,26 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			W_HR AABBCCDD 2 A_FaceTarget
-			W_HR EE 2 A_FaceTarget
-			W_HR H 0 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HR FFGG 2
+			W_HR AABBCCDDEE 2 A_FaceTarget
+			W_HR F 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
+			W_HR G 4
 			Goto See
 		Pain:
-			W_HR L 4 A_Pain
-			W_HR L 4
+			W_HR L 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HR L 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HR L 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HR L 4
+			W_HR L 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HR M 4 A_Scream
 			W_HR X 4 A_NoBlocking
-			W_HR Y 4
-			W_HR Z 4
+			W_HR YZ 4
 			W_HS ABCD 4
 			W_HS D -1
 			Stop
@@ -79,14 +77,12 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5
-			stop
+			Stop
 		Death.Nuke:
 			W_HS Q 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			W_HS R 4 A_NoBlocking
-			W_HS S 4
-			W_HS T 4
-			W_HS U 4
+			W_HS STU 4
 			TNT1 A -1
 			Stop
 		Pain.ShrinkerDMG:
@@ -123,7 +119,7 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 			"####" "#" 0 A_SpawnItemEx("WTRedMidianWarriorHalberd_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HR H 0
@@ -138,7 +134,7 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -168,7 +164,7 @@ Actor WTRedMidianWarriorHalberd : WitchavenEnemyBaseMelee {
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -299,7 +295,7 @@ actor WTRedMidianWarriorHalberd_Shrink : WTRedMidianWarriorHalberd
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -309,7 +305,7 @@ actor WTRedMidianWarriorHalberd_Shrink : WTRedMidianWarriorHalberd
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -319,7 +315,7 @@ actor WTRedMidianWarriorHalberd_Shrink : WTRedMidianWarriorHalberd
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -379,20 +375,20 @@ Actor WTMWarriorHalberd
 	{
 	Spawn:
 		TNT1 A 0
-		W_HX A 0 A_PlaySoundEx("wtwarriors/att1","body",0,0)
+		TNT1 A 0 A_PlaySound("wtwarriors/att1",CHAN_BODY)
 	SpawnLoop:
 		W_HX J 4 bright
-		loop
+		Loop
 	Death:
-		W_HX J 1 A_PlaySoundEx("ggen/metal_s","body",0,0)
+		W_HX J 1 A_PlaySound("ggen/metal_s",CHAN_BODY)
 		W_HX JJJJJJJJ 36
-		stop
+		Stop
 	Crash:
-		TNT1 A 1 A_PlaySoundEx("ggen/metal_s","body",0,0)
+		TNT1 A 1 A_PlaySound("ggen/metal_s",CHAN_BODY)
 		Stop
 	XDeath:
-		TNT1 A 1 A_PlaySoundEx("ggen/metal_l","body",0,0)
-		stop
+		TNT1 A 1 A_PlaySound("ggen/metal_l",CHAN_BODY)
+		Stop
 	}
 }
 
@@ -400,12 +396,14 @@ Actor WTMWarriorHalberd_2 : WTMWarriorHalberd {	Damage (random(4,12)/Random(2,1)
 Actor WTMWarriorHalberd_3 : WTMWarriorHalberd {	Damage (random(17,26)/Random(2,1)) }
 Actor WTMWarriorHalberd_4 : WTMWarriorHalberd {	Damage (random(23,31)/Random(2,1)) }
 
-Actor WTRedMidianWarriorSword : WTRedMidianWarriorHalberd {
+Actor WTRedMidianWarriorSword : WTRedMidianWarriorHalberd
+{
 	Tag "Red Midian Warrior"
 	MeleeRange 80
 	Health 120
 	DropItem ""
-	States {
+	States
+	{
 		Spawn:
 			W_HR R 0
 			W_HR R 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -415,46 +413,35 @@ Actor WTRedMidianWarriorSword : WTRedMidianWarriorHalberd {
 			W_HR R 5 A_Look
 			Loop
 		See:
-			W_HR RRSSTTUU 3 A_Chase("Melee","")
+			W_HR RRSSTTUU 3 A_Chase
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			W_HR NN 2 A_FaceTarget
-			W_HR OO 2 A_FaceTarget
-			W_HR H 0 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
-			W_HR PPQQ 2
+			W_HR NNOO 2 A_FaceTarget
+			W_HR P 4 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
+			W_HR Q 4
 			Goto See
+		Missile:
+			Stop
 		Pain:
-			W_HR V 4 A_Pain
-			W_HR V 4
+			W_HR V 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HR V 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HR V 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HR V 4
+			W_HR V 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HR W 4 A_Scream
 			W_HR X 4 A_NoBlocking
-			W_HR Y 4
-			W_HR Z 4
+			W_HR YZ 4
 			W_HS ABCD 4
 			W_HS D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HR V 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -489,67 +476,21 @@ Actor WTRedMidianWarriorSword : WTRedMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTRedMidianWarriorSword_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HR R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HR R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -665,7 +606,7 @@ actor WTRedMidianWarriorSword_Shrink : WTRedMidianWarriorSword
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -675,7 +616,7 @@ actor WTRedMidianWarriorSword_Shrink : WTRedMidianWarriorSword
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -685,7 +626,7 @@ actor WTRedMidianWarriorSword_Shrink : WTRedMidianWarriorSword
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -729,10 +670,12 @@ actor WTRedMidianWarriorSword_ShrinkEffect : WTRedMidianWarriorSword
 	}
 }
 
-Actor WTRedMidianWarriorSpell : WTRedMidianWarriorHalberd {
+Actor WTRedMidianWarriorSpell : WTRedMidianWarriorHalberd
+{
 	Tag "Red Midian Warrior"
 	Health 140
-	States {
+	States
+	{
 		Spawn:
 			W_HS E 0
 			W_HS E 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -760,40 +703,27 @@ Actor WTRedMidianWarriorSpell : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HR FFGG 2 A_FaceTarget
 			W_HR AABBCCDD 2 A_FaceTarget
-			W_HR E 2 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HR E 2
+			W_HR E 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
 			Goto See
 		Pain:
-			W_HS O 4 A_Pain
-			W_HS O 4
+			W_HS O 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HS O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HS O 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HS O 4
+			W_HS O 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HS P 4 A_Scream
 			W_HR X 4 A_NoBlocking
-			W_HR Y 4
-			W_HR Z 4
+			W_HR YZ 4
 			W_HS ABCD 4
 			W_HS D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HS O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -828,67 +758,21 @@ Actor WTRedMidianWarriorSpell : WTRedMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTRedMidianWarriorSpell_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HS E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HS E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1004,7 +888,7 @@ actor WTRedMidianWarriorSpell_Shrink : WTRedMidianWarriorSpell
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1014,7 +898,7 @@ actor WTRedMidianWarriorSpell_Shrink : WTRedMidianWarriorSpell
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1024,7 +908,7 @@ actor WTRedMidianWarriorSpell_Shrink : WTRedMidianWarriorSpell
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1071,13 +955,15 @@ actor WTRedMidianWarriorSpell_ShrinkEffect : WTRedMidianWarriorSpell
 Actor WTFireMaceBall_Enemy3 : WTFireMaceBall_Enemy { Obituary "%o wasnt strong enough to face a Midian Warrior." }
 
 /*--		Weakest ones		--*/
-Actor WTBrownMidianWarriorHalberd : WTRedMidianWarriorHalberd {
+Actor WTBrownMidianWarriorHalberd : WTRedMidianWarriorHalberd
+{
 	Tag "Brown Midian Warrior"
 	Health 65
 	Mass 300
 	Speed 5
 	DropItem "Witchaven_HalberdMonsterDrop",140,1
-	States {
+	States
+	{
 		Spawn:
 			W_HQ H 0
 			W_HQ H 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -1104,40 +990,28 @@ Actor WTBrownMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HQ AABBCCDD 2 A_FaceTarget
 			W_HQ EE 2 A_FaceTarget
-			W_HQ H 0 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HQ FFGG 2
+			W_HQ F 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
+			W_HQ G 4
 			Goto See
 		Pain:
-			W_HQ L 4 A_Pain
-			W_HQ L 4
+			W_HQ L 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HQ L 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HQ L 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HQ L 4
+			W_HQ L 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HQ M 4 A_Scream
 			W_HQ X 4 A_NoBlocking
-			W_HQ Y 4
-			W_HQ Z 4
+			W_HQ YZ 4
 			W_HD ABCD 4
 			W_HD D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HQ L 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1172,67 +1046,21 @@ Actor WTBrownMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTBrownMidianWarriorHalberd_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HQ H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HQ H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1348,7 +1176,7 @@ actor WTBrownMidianWarriorHalberd_Shrink : WTBrownMidianWarriorHalberd
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1358,7 +1186,7 @@ actor WTBrownMidianWarriorHalberd_Shrink : WTBrownMidianWarriorHalberd
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1368,7 +1196,7 @@ actor WTBrownMidianWarriorHalberd_Shrink : WTBrownMidianWarriorHalberd
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1412,12 +1240,14 @@ actor WTBrownMidianWarriorHalberd_ShrinkEffect : WTBrownMidianWarriorHalberd
 	}
 }
 
-Actor WTBrownMidianWarriorSword : WTBrownMidianWarriorHalberd {
+Actor WTBrownMidianWarriorSword : WTBrownMidianWarriorHalberd
+{
 	Tag "Brown Midian Warrior"
 	MeleeRange 80
 	Health 60
 	DropItem ""
-	States {
+	States
+	{
 		Spawn:
 			W_HQ R 0
 			W_HQ R 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -1427,46 +1257,36 @@ Actor WTBrownMidianWarriorSword : WTBrownMidianWarriorHalberd {
 			W_HQ R 5 A_Look
 			Loop
 		See:
-			W_HQ RRSSTTUU 3 A_Chase("Melee","")
+			W_HQ RRSSTTUU 3 A_Chase
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HQ NN 2 A_FaceTarget
 			W_HQ OO 2 A_FaceTarget
-			W_HQ H 0 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
-			W_HQ PPQQ 2
+			W_HQ P 4 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
+			W_HQ Q 4
 			Goto See
+		Missile:
+			Stop
 		Pain:
-			W_HQ V 4 A_Pain
-			W_HQ V 4
+			W_HQ V 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HQ V 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HQ V 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HQ V 4
+			W_HQ V 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HQ W 4 A_Scream
 			W_HQ X 4 A_NoBlocking
-			W_HQ Y 4
-			W_HQ Z 4
+			W_HQ YZ 4
 			W_HD ABCD 4
 			W_HD D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HQ V 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1501,67 +1321,21 @@ Actor WTBrownMidianWarriorSword : WTBrownMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTBrownMidianWarriorSword_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HQ R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HQ R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1677,7 +1451,7 @@ actor WTBrownMidianWarriorSword_Shrink : WTBrownMidianWarriorSword
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1687,7 +1461,7 @@ actor WTBrownMidianWarriorSword_Shrink : WTBrownMidianWarriorSword
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1697,7 +1471,7 @@ actor WTBrownMidianWarriorSword_Shrink : WTBrownMidianWarriorSword
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1741,11 +1515,13 @@ actor WTBrownMidianWarriorSword_ShrinkEffect : WTBrownMidianWarriorSword
 	}
 }
 
-Actor WTBrownMidianWarriorSpell : WTBrownMidianWarriorHalberd {
+Actor WTBrownMidianWarriorSpell : WTBrownMidianWarriorHalberd
+{
 	Tag "Brown Midian Warrior"
 	Health 70
 	DropItem "Witchaven_HalberdMonsterDrop",140,1
-	States {
+	States
+	{
 		Spawn:
 			W_HD E 0
 			W_HD E 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -1773,40 +1549,27 @@ Actor WTBrownMidianWarriorSpell : WTBrownMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HQ FFGG 2 A_FaceTarget
 			W_HQ AABBCCDD 2 A_FaceTarget
-			W_HQ E 2 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HQ E 2
+			W_HQ E 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
 			Goto See
 		Pain:
-			W_HD O 4 A_Pain
-			W_HD O 4
+			W_HD O 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HD O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HD O 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HD O 4
+			W_HD O 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HD P 4 A_Scream
 			W_HQ X 4 A_NoBlocking
-			W_HQ Y 4
-			W_HQ Z 4
+			W_HQ YZ 4
 			W_HD ABCD 4
 			W_HD D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HD O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1841,67 +1604,21 @@ Actor WTBrownMidianWarriorSpell : WTBrownMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTBrownMidianWarriorSpell_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HD E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HD E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -2017,7 +1734,7 @@ actor WTBrownMidianWarriorSpell_Shrink : WTBrownMidianWarriorSpell
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -2027,7 +1744,7 @@ actor WTBrownMidianWarriorSpell_Shrink : WTBrownMidianWarriorSpell
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -2037,7 +1754,7 @@ actor WTBrownMidianWarriorSpell_Shrink : WTBrownMidianWarriorSpell
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -2082,13 +1799,15 @@ actor WTBrownMidianWarriorSpell_ShrinkEffect : WTBrownMidianWarriorSpell
 }
 
 /*--		Strong  ones		--*/
-Actor WTBlueMidianWarriorHalberd : WTRedMidianWarriorHalberd {
+Actor WTBlueMidianWarriorHalberd : WTRedMidianWarriorHalberd
+{
 	Tag "Blue Midian Warrior"
 	Health 195
 	Mass 1000
 	Speed 10
 	DropItem "Witchaven_HalberdMonsterDrop",180,1
-	States {
+	States
+	{
 		Spawn:
 			W_HK H 0
 			W_HK H 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -2115,40 +1834,28 @@ Actor WTBlueMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HK AABBCCDD 2 A_FaceTarget
 			W_HK EE 2 A_FaceTarget
-			W_HK H 0 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HK FFGG 2
+			W_HK F 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
+			W_HK G 4
 			Goto See
 		Pain:
-			W_HK L 4 A_Pain
-			W_HK L 4
+			W_HK L 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HK L 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HK L 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HK L 4
+			W_HK L 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HK M 4 A_Scream
 			W_HK X 4 A_NoBlocking
-			W_HK Y 4
-			W_HK Z 4
+			W_HK YZ 4
 			W_HL ABCD 4
 			W_HL D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HK L 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2183,67 +1890,21 @@ Actor WTBlueMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTBlueMidianWarriorHalberd_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HK H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HK H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -2359,7 +2020,7 @@ actor WTBlueMidianWarriorHalberd_Shrink : WTBlueMidianWarriorHalberd
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -2369,7 +2030,7 @@ actor WTBlueMidianWarriorHalberd_Shrink : WTBlueMidianWarriorHalberd
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -2379,7 +2040,7 @@ actor WTBlueMidianWarriorHalberd_Shrink : WTBlueMidianWarriorHalberd
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -2423,12 +2084,14 @@ actor WTBlueMidianWarriorHalberd_ShrinkEffect : WTBlueMidianWarriorHalberd
 	}
 }
 
-Actor WTBlueMidianWarriorSword : WTBlueMidianWarriorHalberd {
+Actor WTBlueMidianWarriorSword : WTBlueMidianWarriorHalberd
+{
 	Tag "Blue Midian Warrior"
 	MeleeRange 80
 	Health 180
 	DropItem ""
-	States {
+	States
+	{
 		Spawn:
 			W_HK R 0
 			W_HK R 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -2438,46 +2101,36 @@ Actor WTBlueMidianWarriorSword : WTBlueMidianWarriorHalberd {
 			W_HK R 5 A_Look
 			Loop
 		See:
-			W_HK RRSSTTUU 3 A_Chase("Melee","")
+			W_HK RRSSTTUU 3 A_Chase
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HK NN 2 A_FaceTarget
 			W_HK OO 2 A_FaceTarget
-			W_HK H 0 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
-			W_HK PPQQ 2
+			W_HK P 4 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
+			W_HK Q 4
 			Goto See
+		Missile:
+			Stop
 		Pain:
-			W_HK V 4 A_Pain
-			W_HK V 4
+			W_HK V 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HK V 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HK V 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HK V 4
+			W_HK V 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HK W 4 A_Scream
 			W_HK X 4 A_NoBlocking
-			W_HK Y 4
-			W_HK Z 4
+			W_HK YZ 4
 			W_HL ABCD 4
 			W_HL D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HK V 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2512,67 +2165,21 @@ Actor WTBlueMidianWarriorSword : WTBlueMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTBlueMidianWarriorSword_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HK R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HK R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -2688,7 +2295,7 @@ actor WTBlueMidianWarriorSword_Shrink : WTBlueMidianWarriorSword
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -2698,7 +2305,7 @@ actor WTBlueMidianWarriorSword_Shrink : WTBlueMidianWarriorSword
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -2708,7 +2315,7 @@ actor WTBlueMidianWarriorSword_Shrink : WTBlueMidianWarriorSword
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -2752,11 +2359,13 @@ actor WTBlueMidianWarriorSword_ShrinkEffect : WTBlueMidianWarriorSword
 	}
 }
 
-Actor WTBlueMidianWarriorSpell : WTBlueMidianWarriorHalberd {
+Actor WTBlueMidianWarriorSpell : WTBlueMidianWarriorHalberd
+{
 	Tag "Blue Midian Warrior"
 	Health 210
 	DropItem "Witchaven_HalberdMonsterDrop",180,1
-	States {
+	States
+	{
 		Spawn:
 			W_HL E 0
 			W_HL E 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -2784,40 +2393,27 @@ Actor WTBlueMidianWarriorSpell : WTBlueMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HK FFGG 2 A_FaceTarget
 			W_HK AABBCCDD 2 A_FaceTarget
-			W_HK E 2 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HK E 2
+			W_HK E 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
 			Goto See
 		Pain:
-			W_HL O 4 A_Pain
-			W_HL O 4
+			W_HL O 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HL O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HL O 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HL O 4
+			W_HL O 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HL P 4 A_Scream
 			W_HK X 4 A_NoBlocking
-			W_HK Y 4
-			W_HK Z 4
+			W_HK YZ 4
 			W_HL ABCD 4
 			W_HL D -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HL O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -2852,67 +2448,21 @@ Actor WTBlueMidianWarriorSpell : WTBlueMidianWarriorHalberd {
 			"####" "#" 0 A_SpawnItemEx("WTBlueMidianWarriorSpell_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HL E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HL E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -3028,7 +2578,7 @@ actor WTBlueMidianWarriorSpell_Shrink : WTBlueMidianWarriorSpell
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -3038,7 +2588,7 @@ actor WTBlueMidianWarriorSpell_Shrink : WTBlueMidianWarriorSpell
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -3048,7 +2598,7 @@ actor WTBlueMidianWarriorSpell_Shrink : WTBlueMidianWarriorSpell
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -3093,7 +2643,8 @@ actor WTBlueMidianWarriorSpell_ShrinkEffect : WTBlueMidianWarriorSpell
 }
 
 /*--		Strongest ones		--*/
-Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
+Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd
+{
 	Tag "Purple Midian Warrior"
 	Health 260
 	+BOSSDEATH
@@ -3101,7 +2652,8 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 	Mass 1500
 	Speed 13
 	DropItem "Witchaven_HalberdMonsterDrop",220,1
-	States {
+	States
+	{
 		Spawn:
 			W_HG H 0
 			W_HG H 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -3128,28 +2680,25 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HG AABBCCDD 2 A_FaceTarget
 			W_HG EE 2 A_FaceTarget
-			W_HG H 0 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HG FFGG 2
+			W_HG F 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
+			W_HG G 4
 			Goto See
 		Pain:
-			W_HG L 4 A_Pain
-			W_HG L 4
+			W_HG L 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HG L 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HG L 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HG L 4
+			W_HG L 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HG M 4 A_Scream
 			W_HG X 4 A_NoBlocking
-			W_HG Y 4
-			W_HG Z 4
+			W_HG YZ 4
 			W_HH ABCD 4
 			W_HH D -1 A_KillMaster
 			Stop
@@ -3162,14 +2711,12 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_KillMaster
 			TNT1 A 5
-			stop
+			Stop
 		Death.Nuke:
 			W_HS Q 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Scream
 			W_HS R 4 A_NoBlocking
-			W_HS S 4
-			W_HS T 4
-			W_HS U 4
+			W_HS STU 4
 			TNT1 A -1 A_KillMaster
 			Stop
 		Pain.ShrinkerDMG:
@@ -3213,30 +2760,20 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			Goto ShrunkLoop
 		ShrunkLoop:
 			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
+			Loop
 		ShrunkDie:
-			TNT1 A 0
 			TNT1 A 1 A_Die("Shrink")
-			stop
+			Stop
 		Death.Shrink:
-			TNT1 A 0
 			TNT1 A 1 A_KillMaster
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HG H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Goto Super::ExpanderLoop
 		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -3259,15 +2796,7 @@ Actor WTPurpleMidianWarriorHalberd : WTRedMidianWarriorHalberd {
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Goto Super::ExpanderLoopCoop
 		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -3399,7 +2928,7 @@ actor WTPurpleMidianWarriorHalberd_Shrink : WTPurpleMidianWarriorHalberd
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -3409,7 +2938,7 @@ actor WTPurpleMidianWarriorHalberd_Shrink : WTPurpleMidianWarriorHalberd
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -3420,7 +2949,7 @@ actor WTPurpleMidianWarriorHalberd_Shrink : WTPurpleMidianWarriorHalberd
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -3464,13 +2993,15 @@ actor WTPurpleMidianWarriorHalberd_ShrinkEffect : WTPurpleMidianWarriorHalberd
 	}
 }
 
-Actor WTPurpleMidianWarriorSword : WTPurpleMidianWarriorHalberd {
+Actor WTPurpleMidianWarriorSword : WTPurpleMidianWarriorHalberd
+{
 	Tag "Purple Midian Warrior"
 	-BOSSDEATH
 	Health 240
 	MeleeRange 80
 	DropItem ""
-	States {
+	States
+	{
 		Spawn:
 			W_HG R 0
 			W_HG R 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -3480,55 +3011,35 @@ Actor WTPurpleMidianWarriorSword : WTPurpleMidianWarriorHalberd {
 			W_HG R 5 A_Look
 			Loop
 		See:
-			W_HG RRSSTTUU 3 A_Chase("Melee","")
+			W_HG RRSSTTUU 3 A_Chase
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HG NN 2 A_FaceTarget
 			W_HG OO 2 A_FaceTarget
-			W_HG H 0 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
-			W_HG PPQQ 2
+			W_HG P 4 A_CustomMeleeAttack(Random(20,25),"ggen/metal_l","ggen/swing4")
+			W_HG Q 4
 			Goto See
+		Missile:
+			Stop
 		Pain:
-			W_HG V 4 A_Pain
-			W_HG V 4
+			W_HG V 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HG V 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HG V 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HG V 4
+			W_HG V 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HG W 4 A_Scream
 			W_HG X 4 A_NoBlocking
-			W_HG Y 4
-			W_HG Z 4
+			W_HG YZ 4
 			W_HH ABCD 4
-			W_HH D -1 //A_KillMaster
-			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_KillMaster
-			TNT1 A 5
-			stop
-		Death.Nuke:
-			W_HS Q 4 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Scream
-			W_HS R 4 A_NoBlocking
-			W_HS S 4
-			W_HS T 4
-			W_HS U 4
-			TNT1 A -1 A_KillMaster
+			W_HH D -1 A_KillMaster
 			Stop
 		Pain.ShrinkerDMG:
 			W_HG V 0
@@ -3568,80 +3079,21 @@ Actor WTPurpleMidianWarriorSword : WTPurpleMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 			TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
 			TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
-			Goto ShrunkLoop
-		ShrunkLoop:
-			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
-		ShrunkDie:
-			TNT1 A 0
-			TNT1 A 1 A_Die("Shrink")
-			stop
-		Death.Shrink:
-			TNT1 A 0
-			TNT1 A 1 A_KillMaster
-			stop
+			Goto Super::ShrunkLoop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HG R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HG R 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -3757,7 +3209,7 @@ actor WTPurpleMidianWarriorSword_Shrink : WTPurpleMidianWarriorSword
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -3767,7 +3219,7 @@ actor WTPurpleMidianWarriorSword_Shrink : WTPurpleMidianWarriorSword
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -3778,7 +3230,7 @@ actor WTPurpleMidianWarriorSword_Shrink : WTPurpleMidianWarriorSword
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -3822,11 +3274,13 @@ actor WTPurpleMidianWarriorSword_ShrinkEffect : WTPurpleMidianWarriorSword
 	}
 }
 
-Actor WTPurpleMidianWarriorSpell : WTPurpleMidianWarriorHalberd {
+Actor WTPurpleMidianWarriorSpell : WTPurpleMidianWarriorHalberd
+{
 	Tag "Purple Midian Warrior"
 	Health 280
 	DropItem "Witchaven_HalberdMonsterDrop",220,1
-	States {
+	States
+	{
 		Spawn:
 			W_HH E 0
 			W_HH E 1 A_JumpIfInventory("AlreadySpawned",1,"SpawnStandard")
@@ -3854,41 +3308,27 @@ Actor WTPurpleMidianWarriorSpell : WTPurpleMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			W_HG FFGG 2 A_FaceTarget
 			W_HG AABBCCDD 2 A_FaceTarget
-			W_HG E 2 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
-			W_HG E 2
+			W_HG E 4 A_CustomMeleeAttack(Random(25,40),"ggen/metal_l","ggen/swing4")
 			Goto See
 		Pain:
-			W_HH O 4 A_Pain
-			W_HH O 4
+			W_HH O 8 A_Pain
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			W_HH O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			W_HH O 16 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			W_HH O 4
+			W_HH O 4 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			W_HH P 4 A_Scream
 			W_HG X 4 A_NoBlocking
-			W_HG Y 4
-			W_HG Z 4
+			W_HG YZ 4
 			W_HH ABCD 4
 			W_HH D -1 A_KillMaster
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_KillMaster
-			TNT1 A 5
-			stop
 		Pain.ShrinkerDMG:
 			W_HH O 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -3927,80 +3367,21 @@ Actor WTPurpleMidianWarriorSpell : WTPurpleMidianWarriorHalberd {
 			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 			TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
 			TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
-			Goto ShrunkLoop
-		ShrunkLoop:
-			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
-		ShrunkDie:
-			TNT1 A 0
-			TNT1 A 1 A_Die("Shrink")
-			stop
-		Death.Shrink:
-			TNT1 A 0
-			TNT1 A 1 A_KillMaster
-			stop
+			Goto Super::ShrunkLoop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			W_HH E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			W_HH E 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_KillMaster
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -4116,7 +3497,7 @@ actor WTPurpleMidianWarriorSpell_Shrink : WTPurpleMidianWarriorSpell
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -4126,7 +3507,7 @@ actor WTPurpleMidianWarriorSpell_Shrink : WTPurpleMidianWarriorSpell
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -4137,7 +3518,7 @@ actor WTPurpleMidianWarriorSpell_Shrink : WTPurpleMidianWarriorSpell
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_GiveInventory("MasterDeadToken", 1, AAPTR_Master)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
