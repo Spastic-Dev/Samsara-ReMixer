@@ -534,13 +534,20 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SetActivator(newSpawnerTid,AAPTR_Default);
 	Thing_ChangeTid(newSpawnerTid,oldSpawnerTid);
 
-	SetActorProperty(newMonTid,APROP_Ambush,GetUserVariable(0,"user_ambush"));
+	bool ambush = GetUserVariable(0,"user_ambush");
+
+	SetActorProperty(newMonTid,APROP_Ambush,ambush);
 	SetThingSpecial(newMonTid,GetUserVariable(0,"user_special"),GetUserArray(0,"user_args",0),GetUserArray(0,"user_args",1),GetUserArray(0,"user_args",2),GetUserArray(0,"user_args",3));
 
-	if(!GetActorProperty(newMonTid,APROP_Ambush) && alert)
+	if(GetUserVariable(0,"user_dormant"))
+	{
+		Thing_Deactivate(newMonTid);
+	}
+	else if(!ambush && alert)
 	{
 		ACS_NamedExecuteWithResult("ReMixerAwakenMonster",newMonTid);
 	}
+
 	if(speed != 0)
 	{
 		SetActorProperty(newMonTid,APROP_Speed,FixedMul(GetActorProperty(newMonTid,APROP_Speed),speed));
