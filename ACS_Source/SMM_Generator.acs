@@ -1,5 +1,6 @@
 #define MAXMONSTERS_DOOM 25
 #define MAXMONSTERS_CHEX 13
+#define MAXMONSTERS_CHEXORIGINAL 5
 #define MAXMONSTERS_HERETIC 15
 #define MAXMONSTERS_HEXEN 17
 #define MAXMONSTERS_HACX 15
@@ -12,6 +13,9 @@ str SpawnersDoom[MAXMONSTERS_DOOM] = { "ZombiemanSpawner", "ShotGunGuySpawner", 
 
 int generatorCountersChex[MAXMONSTERS_CHEX];
 str SpawnersChex[MAXMONSTERS_CHEX] = { "FlemoidusCommonusSpawner", "FlemoidusBipedicusSpawner", "ArmoredFlemoidusBipedicusSpawner", "FlemoidusCycloptisCommonusSpawner", "LarvaSpawner", "FlemMineSpawner", "FlemoidusStridicusSpawner", "SuperCycloptisSpawner", "QuadrumpusSpawner", "FlemoidusMaximusSpawner", "FlembraneSpawner", "FlembominationSpawner", "SnotfolusSpawner" };
+
+int generatorCountersChexOriginal[MAXMONSTERS_CHEXORIGINAL];
+str SpawnersChexOriginal[MAXMONSTERS_CHEXORIGINAL] = { "FlemoidusCommonusSpawner_CQ1", "FlemoidusBipedicusSpawner_CQ1", "ArmoredFlemoidusBipedicusSpawner_CQ1", "FlemoidusCycloptisCommonusSpawner_CQ1", "FlembraneSpawner_CQ1" };
 
 int generatorCountersHeretic[MAXMONSTERS_HERETIC];
 str SpawnersHeretic[MAXMONSTERS_HERETIC] = { "HereticImpReplacer", "MummyReplacer", "HereticImpLeaderReplacer", "MummyGhostReplacer", "MummyLeaderReplacer", "MummyLeaderGhostReplacer", "KnightReplacer", "ClinkReplacer", "WizardReplacer", "KnightGhostReplacer", "BeastReplacer", "SnakeReplacer", "IronlichReplacer", "MinotaurReplacer", "Sorcerer1Replacer" };
@@ -111,27 +115,60 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			break;
 
 		case 2:
-			for(counters = 0; counters < MAXMONSTERS_CHEX; counters++)
+			// Check if we're playing Chex Quest 3 or Chex Quest 1
+			int CQ1CheckTid = UniqueTid();
+			
+			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid))
 			{
-				generatorCountersChex[counters] = ThingCountName(SpawnersChex[counters],0);
-			}
-
-			for(selector = 0; selector < MAXMONSTERS_CHEX; selector++)
-			{
-				if(generatorCountersChex[selector] > 0)
+				// We're playing Chex Quest 3
+				for(counters = 0; counters < MAXMONSTERS_CHEX; counters++)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					generatorCountersChex[counters] = ThingCountName(SpawnersChex[counters],0);
 				}
-				totalTypes += generatorCountersChex[selector];
-				generationAmount += generatorCountersChex[selector]*(selector+1);
-			}
 
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
-			break;
+				for(selector = 0; selector < MAXMONSTERS_CHEX; selector++)
+				{
+					if(generatorCountersChex[selector] > 0)
+					{
+						if(selector < minSelector)
+							minSelector = selector;
+						if(selector > maxSelector)
+							maxSelector = selector;
+					}
+					totalTypes += generatorCountersChex[selector];
+					generationAmount += generatorCountersChex[selector]*(selector+1);
+				}
+
+				selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
+				selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
+				break;
+			}
+			else
+			{
+				// We're playing Chex Quest 1
+				Thing_Remove(CQ1CheckTid);
+				for(counters = 0; counters < MAXMONSTERS_CHEXORIGINAL; counters++)
+				{
+					generatorCountersChexOriginal[counters] = ThingCountName(SpawnersChexOriginal[counters],0);
+				}
+
+				for(selector = 0; selector < MAXMONSTERS_CHEXORIGINAL; selector++)
+				{
+					if(generatorCountersChexOriginal[selector] > 0)
+					{
+						if(selector < minSelector)
+							minSelector = selector;
+						if(selector > maxSelector)
+							maxSelector = selector;
+					}
+					totalTypes += generatorCountersChexOriginal[selector];
+					generationAmount += generatorCountersChexOriginal[selector]*(selector+1);
+				}
+
+				selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
+				selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
+				break;
+			}
 
 		case 4:
 			for(counters = 0; counters < MAXMONSTERS_HERETIC; counters++)
@@ -342,19 +379,44 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 2:
-			pickMonster = 11;
-			while((pickMonster == 11 || pickMonster == 12) && selectionAttempts < maxSelectionAttempts)
+			// Check if we're playing Chex Quest 3 or Chex Quest 1
+			int CQ1CheckTid2 = UniqueTid();
+			
+			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid2))
 			{
-				rnd = random(minSelector,maxSelector);
-				mix = FixedMul(random(0.0,1.0),influence);
-				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
-				selectionAttempts++;
-			}
-			if(selectionAttempts >= maxSelectionAttempts)
-				terminate;
+				// We're playing Chex Quest 3
+				pickMonster = 11;
+				while((pickMonster == 11 || pickMonster == 12) && selectionAttempts < maxSelectionAttempts)
+				{
+					rnd = random(minSelector,maxSelector);
+					mix = FixedMul(random(0.0,1.0),influence);
+					pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
+					selectionAttempts++;
+				}
+				if(selectionAttempts >= maxSelectionAttempts)
+					terminate;
 
-			SpawnForced(StrParam(s:SpawnersChex[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
-			break;
+				SpawnForced(StrParam(s:SpawnersChex[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
+				break;
+			}
+			else
+			{
+				// We're playing Chex Quest 1
+				Thing_Remove(CQ1CheckTid2);
+				pickMonster = 3;
+				while((pickMonster == 3 || pickMonster == 4) && selectionAttempts < maxSelectionAttempts)
+				{
+					rnd = random(minSelector,maxSelector);
+					mix = FixedMul(random(0.0,1.0),influence);
+					pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
+					selectionAttempts++;
+				}
+				if(selectionAttempts >= maxSelectionAttempts)
+					terminate;
+
+				SpawnForced(StrParam(s:SpawnersChex[pickMonster],s:"Generator_CQ1"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
+				break;
+			}
 
 		case 4:
 			pickMonster = 13;
@@ -471,7 +533,21 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 
 		case 2:
 			monsterSlot -= MAXMONSTERS_DOOM;
-			typeCount = generatorCountersChex[monsterSlot];
+			
+			// Check if we're playing Chex Quest 3 or Chex Quest 1
+			int CQ1CheckTid3 = UniqueTid();
+			
+			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid3))
+			{
+				// We're playing Chex Quest 3
+				typeCount = generatorCountersChex[monsterSlot];
+			}
+			else
+			{
+				// We're playing Chex Quest 1
+				Thing_Remove(CQ1CheckTid3);
+				typeCount = generatorCountersChexOriginal[monsterSlot];
+			}
 			break;
 
 		case 4:
