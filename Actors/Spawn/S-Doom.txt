@@ -5,9 +5,6 @@ ACTOR ZombiemanSpawner : ReMixerBaseSpawner replaces Zombieman
 	SpawnID 4
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2)
 			Goto Super::SeeWait
@@ -23,9 +20,6 @@ ACTOR ShotgunGuySpawner : ReMixerBaseSpawner replaces ShotgunGuy
 	SpawnID 1
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,1)
 			Goto Super::SeeWait
@@ -41,9 +35,6 @@ ACTOR DoomImpSpawner : ReMixerBaseSpawner replaces DoomImp
 	SpawnID 5
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,2)
 			Goto Super::SeeWait
@@ -59,9 +50,6 @@ ACTOR ChaingunGuySpawner : ReMixerBaseSpawner replaces ChaingunGuy
 	SpawnID 2
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,3)
 			Goto Super::SeeWait
@@ -93,9 +81,6 @@ ACTOR DemonSpawner : ReMixerBaseSpawner replaces Demon
 	SpawnID 8
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,5)
 			Goto Super::SeeWait
@@ -128,9 +113,6 @@ ACTOR SpectreSpawner : ReMixerBaseSpawner replaces Spectre
 	SpawnID 9
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,7)
 			Goto Super::SeeWait
@@ -163,9 +145,6 @@ ACTOR LostSoulSpawner : ReMixerBaseSpawner replaces LostSoul
 	+NOGRAVITY
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,9)
 			Goto Super::SeeWait
@@ -182,9 +161,6 @@ ACTOR CacodemonSpawner : ReMixerBaseSpawner replaces Cacodemon
 	+NOGRAVITY
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,10)
 			Goto Super::SeeWait
@@ -200,9 +176,6 @@ ACTOR RevenantSpawner : ReMixerBaseSpawner replaces Revenant
 	SpawnID 20
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,11)
 			Goto Super::SeeWait
@@ -235,9 +208,6 @@ ACTOR PainElementalSpawner : ReMixerBaseSpawner replaces PainElemental
 	+NOGRAVITY
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,13)
 			Goto Super::SeeWait
@@ -253,9 +223,6 @@ ACTOR HellKnightSpawner : ReMixerBaseSpawner replaces HellKnight
 	SpawnID 113
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,14)
 			Goto Super::SeeWait
@@ -272,20 +239,11 @@ ACTOR ArachnotronSpawner : ReMixerBaseSpawner replaces Arachnotron
 	+BOSSDEATH
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,15)
 			Goto Super::SeeWait
 		Continue:
-		BossWait:
-			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
-			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-			Goto Super::SeeWait
+			Goto Super::BossWait
 		Death:
 			TNT1 A 6 A_BossDeath
 			Stop
@@ -302,20 +260,11 @@ ACTOR FatsoSpawner : ReMixerBaseSpawner replaces Fatso
 	+BOSSDEATH
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,16)
 			Goto Super::SeeWait
 		Continue:
-		BossWait:
-			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
-			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-			Goto Super::SeeWait
+			Goto Super::BossWait
 		Death:
 			TNT1 A 6 A_BossDeath
 			Stop
@@ -348,20 +297,11 @@ ACTOR ArchvileSpawner : ReMixerBaseSpawner replaces Archvile
 	+BOSSDEATH
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,18)
 			Goto Super::SeeWait
 		Continue:
-		BossWait:
-			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
-			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-			Goto Super::SeeWait
+			Goto Super::BossWait
 		Death:
 			TNT1 A 6 A_BossDeath
 			Stop
@@ -378,20 +318,11 @@ ACTOR BaronOfHellSpawner : ReMixerBaseSpawner replaces BaronOfHell
 	+BOSSDEATH
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,19)
 			Goto Super::SeeWait
 		Continue:
-		BossWait:
-			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
-			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-			Goto Super::SeeWait
+			Goto Super::BossWait
 		Death:
 			TNT1 A 6 A_BossDeath
 			Stop
@@ -445,13 +376,7 @@ ACTOR SpiderMastermindSpawner : ReMixerBaseSpawner replaces SpiderMastermind
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,22)
 			Goto Super::SeeWait
 		Continue:
-		BossWait:
-			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
-			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-			Goto Super::SeeWait
+			Goto Super::BossWait
 		Death:
 			TNT1 A 6 A_BossDeath
 			Stop
@@ -472,13 +397,7 @@ ACTOR CyberDemonSpawner : ReMixerBaseSpawner replaces CyberDemon
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,23)
 			Goto Super::SeeWait
 		Continue:
-		BossWait:
-			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
-			TNT1 A 0 A_ChangeFlag("COUNTKILL",0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
-			TNT1 A 0 A_ChangeFlag("VULNERABLE",1)
-			Goto Super::SeeWait
+			Goto Super::BossWait
 		Death:
 			TNT1 A 6 A_BossDeath
 			Stop
@@ -495,9 +414,6 @@ ACTOR WolfensteinSSSpawner : ReMixerBaseSpawner replaces WolfensteinSS
 	+BOSSDEATH
 	States
 	{
-		Initialize:
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",13) == 0, "See")
-			Goto Super::LookWait
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,24)
 			Goto Super::SeeWait
