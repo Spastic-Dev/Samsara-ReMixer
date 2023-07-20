@@ -19,6 +19,7 @@ Actor MMRandomizer_Diabolist : SamsaraMonsterDemonicLargeTotalGib
 	var int user_scalex;
 	var int user_scaley;
 	Tag "Diabloist"
+	Species "SamsaraArchvile"
 	States
 	{
 		Spawn:
@@ -107,7 +108,7 @@ Actor MMRandomizer_Diabolist : SamsaraMonsterDemonicLargeTotalGib
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD76 Q 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD76 Q 16 A_Pain
@@ -549,7 +550,7 @@ ACTOR MMRandomizer_DFlare
 	States
 	{
 		Spawn:
-			VE31 IJ 3 Bright A_SpawnItemEx("MMRandomizer_MFlareFX", 0, 0, 0, 0, 0, 0, 0, 128)
+			VE31 IJ 3 Bright A_SpawnItemEx("MMRandomizer_MFlareFX", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
 			Loop
 		Death:
 			VE31 KLMNO 3 Bright
@@ -585,7 +586,7 @@ Actor MMRandomizer_DTracer
 		Spawn:
 			TNT1 A 1 Bright A_SeekerMissile(10, 15)
 			TNT1 A 0 Bright A_Countdown
-			TNT1 A 0 Bright A_SpawnItemEx("MMRandomizer_DTracerPuff", 0, 0, 0, 0, 0, 0, 0, 128)
+			TNT1 A 0 Bright A_SpawnItemEx("MMRandomizer_DTracerPuff", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
 			Loop
 		Death:
 			VE32 K 4 Bright

@@ -39,6 +39,7 @@ Actor MMRandomizer_ArchonOfHell : SamsaraMonsterDemonicHuge
 	var int user_scalex;
 	var int user_scaley;
 	Tag "Archon Of Hell"
+	Species "SamsaraCyberdemon"
 	States
 	{
 		Spawn:
@@ -122,7 +123,7 @@ Actor MMRandomizer_ArchonOfHell : SamsaraMonsterDemonicHuge
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD79 Q 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD79 Q 16 A_Pain
@@ -666,12 +667,12 @@ Actor MMRandomizer_ArchonComet
 	States
 	{
 		Spawn:
-			VE37 AAAABBBBCCCC 1 Bright A_SpawnItemEx("MMRandomizer_ArchonCometTrail",0,0,0,0,0,0,0,128)
+			VE37 AAAABBBBCCCC 1 Bright A_SpawnItemEx("MMRandomizer_ArchonCometTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			Loop
 		Death:
 			VE37 J 0 Bright A_SetTranslucent (0.67,1)
 			VE37 J 3 Bright
-			VE37 K 3 Bright A_Explode(128,128,0)
+			VE37 K 3 Bright A_Explode(128,SXF_CLIENTSIDE,0)
 			VE37 LMN 3 Bright
 			Stop
 	}

@@ -80,7 +80,7 @@ Actor MMRandomizer_BruiserDemon : BaronOfHell3
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD56 N 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD56 N 16 A_Pain
@@ -413,7 +413,7 @@ Actor MMRandomizer_BruiserBall
 	States
 	{
 		Spawn: 
-			VE13 AABB 2 Bright A_SpawnItemEx("MMRandomizer_BruiserBallTrail", 0, 0, 0, 0, 0, 0, 0, 128)
+			VE13 AABB 2 Bright A_SpawnItemEx("MMRandomizer_BruiserBallTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
 			Loop
 		Death:
 			VE13 KLMNOPQRSTUVWX 3 Bright

@@ -48,7 +48,7 @@ actor MMRandomizer_Vulgar : DoomImp3
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD41 H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD41 H 16 A_Pain
@@ -409,7 +409,7 @@ ACTOR MMRandomizer_VulgarShot
 	States
 	{
 		Spawn:
-			VE07 AAABBB 1 Bright A_SpawnItemEx("MMRandomizer_BarbTrail",0,0,0,0,0,0,0,128,0)
+			VE07 AAABBB 1 Bright A_SpawnItemEx("MMRandomizer_BarbTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			loop
 		Death:
 			VE07 CDEF 4 Bright

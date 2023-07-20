@@ -25,6 +25,7 @@ Actor MMRandomizer_CyberKnight : SamsaraMonsterMechanicalLargeTotalGib
 	var int user_scalex;
 	var int user_scaley;
 	Tag "Cyber Knight"
+	Species "SamsaraHellNoble"
 	States 
 	{ 
 		Spawn:
@@ -69,7 +70,7 @@ Actor MMRandomizer_CyberKnight : SamsaraMonsterMechanicalLargeTotalGib
 			Goto See 
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD58 J 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD58 J 16 A_Pain
@@ -424,7 +425,7 @@ Actor MMRandomizer_BruiserMissile
 	{
 		Spawn: 
 			VE18 A 1 Bright
-			VE18 A 1 Bright A_SpawnItemEx("MMRandomizer_BruiserTrail",0,0,0,0,0,0,0,128)
+			VE18 A 1 Bright A_SpawnItemEx("MMRandomizer_BruiserTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			Loop
 		Death:
 			VE18 D 0 Bright A_SetTranslucent(0.67,1)

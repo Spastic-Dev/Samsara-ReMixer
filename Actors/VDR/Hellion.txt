@@ -16,6 +16,7 @@ Actor MMRandomizer_Hellion : SamsaraMonsterHumanoidMedium
 	var int user_scalex;
 	var int user_scaley;
 	Tag "Hellion"
+	Species "SamsaraDoomImp"
 	States
 	{
 		Spawn:
@@ -43,7 +44,7 @@ Actor MMRandomizer_Hellion : SamsaraMonsterHumanoidMedium
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD44 M 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD44 M 16 A_Pain
@@ -425,7 +426,7 @@ Actor MMRandomizer_HellionBall : CacodemonBall_Samsara
 	states
 	{
 		Spawn:
-			VE09 AB 3 Bright A_SpawnItemEx("MMRandomizer_HellionPuff",0,0,0,0,0,0,0,128)
+			VE09 AB 3 Bright A_SpawnItemEx("MMRandomizer_HellionPuff",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			Loop
 		Death:
 			VE09 JKLMN 3 Bright
