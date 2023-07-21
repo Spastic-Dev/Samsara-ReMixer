@@ -1,3 +1,9 @@
+/*
+	Template for ReMixer monster spawner. It defines behavior that all spawners share, including handling the
+	AMBUSH and DORMANT flags. Both flags are stored inside a user variable referenced in the spawn script.
+	The DORMANT flag is handled through inheriting from SwitchableDecoration. Actors with the DORMANT flag
+	start in the "Inactive" state. Everything else starts in the "Spawn"/"Active" state.
+*/
 ACTOR ReMixerBaseSpawner : SwitchableDecoration
 {
 	Health 0X7FFFFFFF
