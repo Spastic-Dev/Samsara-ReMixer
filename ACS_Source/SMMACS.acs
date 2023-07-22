@@ -79,12 +79,12 @@ Script "ReMixerInit" OPEN //667
 	totalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
 
 	alreadyshowedbs = 1;
-
+	
 	// We should check for iwads and TCs that can be loaded with Reincarnation, but not with ReMixer
 	int incompatibilityReMixerTid = UniqueTid();
-
-	// Check if running Strife
-	if (SpawnForced("SamsaraIWADChecker_Strife",0,0,0,incompatibilityReMixerTid,0))
+	
+    // Check if Strife have been loaded
+	if (GetCvar("samsara_currentgame") == 16)
 	{
 		SetFont("CMPSDOOM");
 		HudMessage(s:"ReMixer is incompatible with Strife: Quest for the Sigil.\n
@@ -92,8 +92,8 @@ Script "ReMixerInit" OPEN //667
 		working while retaining the role-playing elements for every character.";
 		HUDMSG_TYPEON | HUDMSG_LOG, 0, CR_WHITE, 1.5, 0.8, 5.0,
 		0.05, 2.0);
-	}
-
+    }
+	
 	Thing_Remove(incompatibilityReMixerTid);
 	Delay(1);
 	addonsProcessed = 1;
