@@ -40,8 +40,8 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 		Missile:
 			PAN2 D 5 A_FaceTarget
 			PAN2 E 5 A_FaceTarget
-			PAN2 F 4 BRIGHT A_FaceTarget
-			PAN2 F 1 BRIGHT A_PainAttack("LostSoul3PE")
+			PAN2 F 5 BRIGHT A_FaceTarget
+			TNT1 A 0 A_PainAttack("LostSoul3PE")
 			Goto See
 		Pain:
 			PAN2 G 6
@@ -53,15 +53,14 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			PAN2 E 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			PAN2 E 16 A_Pain
-			goto See
+			Goto See
 		Pain.DoomDamageTypeStunner:
 			PAN2 E 2 A_ChangeFlag("NOPAIN",true)
 			PAN2 E 300 A_Pain
 			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-			goto See
+			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			PAN2 H 8 BRIGHT
+			PAN2 H 8 BRIGHT ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			PAN2 I 8 BRIGHT A_Scream
 			PAN2 JK 8 BRIGHT
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
@@ -91,7 +90,7 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 		SpawnTheLostSoulPK:
 			TNT1 A 0 A_PainDie("LostSoul3PE")
 			TNT1 A 350	// Needed for souls to appear when gibbed
-			wait
+			Wait
 		Pain.ShrinkerDMG:
 			PAN2 G 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -126,67 +125,21 @@ ACTOR PainElemental3 : SamsaraMonsterReincPainElemental
 			"####" "#" 0 A_SpawnItemEx("PainElemental2_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			PAN2 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			PAN2 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -290,7 +243,7 @@ actor PainElemental2_Shrink : PainElemental3
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -300,7 +253,7 @@ actor PainElemental2_Shrink : PainElemental3
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -310,7 +263,7 @@ actor PainElemental2_Shrink : PainElemental3
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
