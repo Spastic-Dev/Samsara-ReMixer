@@ -604,15 +604,15 @@ Actor NarakaMorph_EntityWeapon : InstantSwitchWeapon
 			Goto Ready
 		LightningWall:
 			TNT1 A 4
-			TNT1 A 0 A_GiveInventory("Sigil3AttackCounter", 20)
+			TNT1 A 0 A_GiveInventory("SamsaraStrifeSigilMode3AngleIncrement", 20)
 			TNT1 A 0 A_SetAngle(angle-90)
 		LightningWallLoop:
 			TNT1 A 0 A_SetAngle(angle+9)
 			TNT1 A 0 A_FireCustomMissile("StrifeSpectralLightningBall1", 0, 0)
 			Goto ContinueLightningWall
 		ContinueLightningWall:
-			TNT1 A 0 A_TakeInventory("Sigil3AttackCounter", 1)
-			TNT1 A 0 A_JumpIfInventory("Sigil3AttackCounter", 1, "LightningWallLoop")
+			TNT1 A 0 A_TakeInventory("SamsaraStrifeSigilMode3AngleIncrement", 1)
+			TNT1 A 0 A_JumpIfInventory("SamsaraStrifeSigilMode3AngleIncrement", 1, "LightningWallLoop")
 			TNT1 A 0 A_SetAngle(angle-90)
 			TNT1 A 24
 			Goto Ready
