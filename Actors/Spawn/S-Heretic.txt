@@ -215,33 +215,32 @@ ACTOR Sorcerer1Replacer : ReMixerBaseSpawner replaces Sorcerer1
 		Continue:
 			Goto Super::BossWait
 		Death:
-			TNT1 A 1
-			TNT1 A 1 A_SpawnItemEx("Sorcerer2Replacer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
+			TNT1 A 2 A_SpawnItemEx("Sorcerer2Replacer",0,0,0,0,0,0,0,SXF_TRANSFERAMBUSHFLAG|SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS,0,tid)
 			Stop
 	}
 }
 
-ACTOR Sorcerer2Replacer replaces Sorcerer2
+ACTOR Sorcerer2Replacer : ReMixerBaseSpawner replaces Sorcerer2
 {
 	Game Heretic
-	Health 0X7FFFFFFF
 	Height 0
 	Radius 0
 	SpawnID 143
-	MONSTER
-	-COUNTKILL
-	-SOLID
-	+NOCLIP
-	+NOTDMATCH
 	+BOSSDEATH
+	-COUNTKILL
+	-INVULNERABLE
+	+NOINTERACTION
+	-SOLID
 	States
 	{
 		Spawn:
-			TNT1 AAAA 1
+		Active:
+		Inactive:
 			TNT1 A 1 A_Die
+			Loop
 		Death:
-			TNT1 A 1
-			TNT1 A 1 A_BossDeath
+			TNT1 A 0 A_BossDeath
+			TNT1 A 1 Thing_Destroy(0,0,0)
 			Stop
 	}
 }
