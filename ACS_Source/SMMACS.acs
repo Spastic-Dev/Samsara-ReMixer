@@ -79,11 +79,11 @@ Script "ReMixerInit" OPEN //667
 	totalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
 
 	alreadyshowedbs = 1;
-	
+
 	// We should check for iwads and TCs that can be loaded with Reincarnation, but not with ReMixer
 	int incompatibilityReMixerTid = UniqueTid();
-	
-    // Check if Strife have been loaded
+
+	// Check if Strife have been loaded
 	if (GetCvar("samsara_currentgame") == 16)
 	{
 		SetFont("CMPSDOOM");
@@ -92,8 +92,8 @@ Script "ReMixerInit" OPEN //667
 		working while retaining the role-playing elements for every character.";
 		HUDMSG_TYPEON | HUDMSG_LOG, 0, CR_WHITE, 1.5, 0.8, 5.0,
 		0.05, 2.0);
-    }
-	
+	}
+
 	Thing_Remove(incompatibilityReMixerTid);
 	Delay(1);
 	addonsProcessed = 1;
@@ -484,9 +484,16 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	Thing_ChangeTid(newSpawnerTid,oldSpawnerTid);
 
 	bool ambush = GetUserVariable(0,"user_ambush");
+	int userArgs[5] = {
+		GetUserArray(0,"user_args",0),
+		GetUserArray(0,"user_args",1),
+		GetUserArray(0,"user_args",2),
+		GetUserArray(0,"user_args",3),
+		GetUserArray(0,"user_args",4)
+	};
 
 	SetActorProperty(newMonTid,APROP_Ambush,ambush);
-	SetThingSpecial(newMonTid,GetUserVariable(0,"user_special"),GetUserArray(0,"user_args",0),GetUserArray(0,"user_args",1),GetUserArray(0,"user_args",2),GetUserArray(0,"user_args",3));
+	SetThingSpecial(newMonTid,GetUserVariable(0,"user_special"),userArgs[0],userArgs[1],userArgs[2],userArgs[3],userArgs[4]);
 
 	if(GetUserVariable(0,"user_dormant"))
 	{
