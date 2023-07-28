@@ -106,7 +106,7 @@ ACTOR AssaultGeneral : AssaultTrooper
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			ASGE I 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			ASGE I 16 A_Pain
@@ -119,7 +119,7 @@ ACTOR AssaultGeneral : AssaultTrooper
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 5
-			stop
+			Stop
 		Death.DukeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"DukeGibStart")
 		Death.DukeDamage:
@@ -127,26 +127,26 @@ ACTOR AssaultGeneral : AssaultTrooper
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeAssaultKill",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		Death.DukeIce:
 			"####" "#" 0 A_PlaySound("duke/enemyfreeze")
 			"####" "#" 0 A_GiveInventory("FreezethrowerWeakness")
 			"####" "#" 0 A_Jump(218,"Ice")
 			"####" "#" 0 A_GiveToTarget("DukeAssaultKill",1)
 			"####" "#" -1 A_Jump(256,"Ice")
-			wait
+			Wait
 		Death:
 			TNT1 A 0 A_Jump(30, "FakeDeath")
 		Continue:
@@ -156,14 +156,13 @@ ACTOR AssaultGeneral : AssaultTrooper
 			ASGE J 5 A_NoBlocking
 			ASGE K 6
 			ASGE L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,SXF_NOCHECKPOSITION,160)
-			ASTR M 0 A_SpawnItemEx("AssaultGeneralCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-			TNT1 A -1
-			stop
+			TNT1 A -1 A_SpawnItemEx("AssaultGeneralCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			Stop
 		PermDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASGE M 5 A_NoBlocking
 			ASGE M -1
-			stop
+			Stop
 		FakeDeath:
 			ASGE N 1 A_Fall
 			ASGE N 1 A_SpawnItemEx("AssaultGeneralChoking",0, 0, 0, 0, 0, 0, 0,  SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
@@ -206,7 +205,7 @@ ACTOR AssaultGeneral : AssaultTrooper
 			"####" "#" 0 A_SpawnItemEx("AssaultGeneral_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			ASGE A 0
@@ -279,9 +278,8 @@ Actor AssaultGeneralChoking : AssaultGeneral
 			ASGE M 1 A_Die("Hemorrhage")
 		Death.Hemorrhage:
 			ASGE M 5 A_NoBlocking
-			ASTR M 0 A_SpawnItemEx("AssaultGeneralCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-			TNT1 A -1
-			stop
+			TNT1 A -1 A_SpawnItemEx("AssaultGeneralCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			Stop
 		Pain:
 		Pain.MightyBoot:
 		Pain.MarathonStun:
@@ -292,9 +290,8 @@ Actor AssaultGeneralChoking : AssaultGeneral
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASGE P 1 A_Fall
 			ASGE P 5 A_Scream
-			ASTR M 0 A_SpawnItemEx("AssaultGeneralCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
-			TNT1 A -1
-			stop
+			TNT1 A -1 A_SpawnItemEx("AssaultGeneralCorpse", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE)
+			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
@@ -303,7 +300,7 @@ Actor AssaultGeneralChoking : AssaultGeneral
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASGE O 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			TNT1 A 0 A_PlaySound("chex/zorch",CHAN_5)
 			ASGE O 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			ASGE O 3 A_SetTranslucent(0.9,0)
@@ -335,18 +332,18 @@ Actor AssaultGeneralChoking : AssaultGeneral
 			ASGE N 70 A_UnsetSolid
 			ASGE N 1 A_IceGuyDie
 			TNT1 A -1
-			stop
+			Stop
 		Death.DukeDamage:
 		Death.DukeSpectral:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-			goto Death
+			Goto Death
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-			goto Death
+			Goto Death
 		Death.DukeExplosive:
 			ASGE I 1 A_JumpIfHealthLower(-3,"DukeGibStart")
 			Goto Death
@@ -361,20 +358,20 @@ Actor AssaultGeneralChoking : AssaultGeneral
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_SpawnItemEx("SWFisted")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			goto Death
+			Goto Death
 		Death.SWKatana:
 			TNT1 A 0 A_GiveToTarget("SWLoWangBloody", 1)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_SpawnItemEx("SWKatanad")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			goto Death
+			Goto Death
 		Death.SWShuriken:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(218, "Death")
 			TNT1 A 0 A_SpawnItemEx("SWShurikend")
 			TNT1 A 0 A_GiveToTarget("LoWangDMTaunt1", 1)
-			goto Death
+			Goto Death
 	}
 }
 
@@ -394,7 +391,7 @@ ACTOR AssaultGeneralAltFake2 : AssaultGeneral
 			ASGE I 7 A_Scream
 			ASGE J 5 A_NoBlocking
 			ASGE K 6
-			ASGE L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
+			ASGE L 6 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,SXF_NOCHECKPOSITION,160)
 			ASGE M -1
 			Stop
 		Death.ZorchPistol:
@@ -405,14 +402,14 @@ ACTOR AssaultGeneralAltFake2 : AssaultGeneral
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			ASGE I 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			TNT1 A 0 A_PlaySound("chex/zorch",CHAN_5)
 			ASGE I 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			ASGE I 3 A_SetTranslucent(0.9,0)
 			ASGE I 0 A_Scream
 			ASGE I 3 A_SetTranslucent(0.8,0)
 			ASGE I 0 A_NoBlocking
-			TNT1 A 0 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,32,160)
+			TNT1 A 0 A_SpawnItemEx("ATrooperAmmoDrop",0,0,0,0,0,8,0,SXF_NOCHECKPOSITION,160)
 			ASGE I 3 A_SetTranslucent(0.7,0)
 			ASGE I 3 A_SetTranslucent(0.6,0)
 			ASGE I 3 A_SetTranslucent(0.5,0)
@@ -422,18 +419,18 @@ ACTOR AssaultGeneralAltFake2 : AssaultGeneral
 			ASGE I 3 A_SetTranslucent(0.1,0)
 			TNT1 A 1 A_SetTranslucent(1,0)
 			TNT1 A -1
-			stop
+			Stop
 		Death.DukeDamage:
 		Death.DukeSpectral:
 		Death.DukePistol:
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
-			goto Death
+			Goto Death
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
-			goto Death
+			Goto Death
 		Death.DukeExplosive:
 			ASGE I 1 A_JumpIfHealthLower(-3,"DukeGibStart")
 			Goto Death
@@ -558,7 +555,7 @@ actor AssaultGeneral_Shrink : AssaultGeneral
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -568,7 +565,7 @@ actor AssaultGeneral_Shrink : AssaultGeneral
 			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -578,7 +575,7 @@ actor AssaultGeneral_Shrink : AssaultGeneral
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish

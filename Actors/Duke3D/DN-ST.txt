@@ -88,7 +88,7 @@ ACTOR BlueProtectorDrone : ProtectorDroneDoom
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			BLDR O 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			BLDR O 16 A_Pain
@@ -100,19 +100,19 @@ ACTOR BlueProtectorDrone : ProtectorDroneDoom
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
@@ -121,9 +121,8 @@ ACTOR BlueProtectorDrone : ProtectorDroneDoom
 			BLDR R 4
 			BLDR STU 5
 			BLDR V 4
-			BLDR W 0 A_SpawnItemEx("BlueProtectorDroneCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-			TNT1 A -1
-			stop
+			TNT1 A -1 A_SpawnItemEx("BlueProtectorDroneCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			BLDR A 0

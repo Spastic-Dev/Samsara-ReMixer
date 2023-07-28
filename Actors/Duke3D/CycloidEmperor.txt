@@ -108,7 +108,7 @@ ACTOR CycloidEmperor : SamsaraMonsterMechanicalHuge
 			TNT1 A 0 A_PlaySound("cycloid/attack", CHAN_WEAPON)
 			TNT1 A 0 A_Jump(38, "Rocketatk")
 			TNT1 A 0 A_JumpIfCloser(468, "EnergyAtk")
-			goto RocketAtk
+			Goto RocketAtk
 		RocketAtk:
 			CYEM EEEEE 1 A_FaceTarget
 			CYEM F 3 Bright A_CustomMissile("CyEmperorRocket",40,0,random(-24,24),CMF_CHECKTARGETDEAD)
@@ -150,11 +150,11 @@ ACTOR CycloidEmperor : SamsaraMonsterMechanicalHuge
 			CYEM H 2 A_FaceTarget
 			CYEM H 2 Bright A_CustomMissile("OctabrainProjectileCy",80,0,random(-16,16),CMF_CHECKTARGETDEAD)
 			CYEM H 2 A_FaceTarget
-			goto See2
+			Goto See2
 		Pain:
 			CYEM I 2
 			CYEM I 2 A_Pain
-			CYEM I 0 A_JumpIfTargetInLOS("RocketAtk",0,JLOSF_DEADNOJUMP)
+			TNT1 A 0 A_JumpIfTargetInLOS("RocketAtk",0,JLOSF_DEADNOJUMP)
 			Goto See2
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -203,6 +203,6 @@ ACTOR CycloidEmperorDoom : CycloidEmperor
 		CYEM H 2 A_FaceTarget
 		CYEM H 2 Bright A_CustomMissile("OctabrainProjectile",60,0,random(-16,16),CMF_CHECKTARGETDEAD)
 		CYEM H 2 A_FaceTarget
-		goto See2
+		Goto See2
 	}
 }

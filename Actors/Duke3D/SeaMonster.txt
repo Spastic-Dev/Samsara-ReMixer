@@ -19,7 +19,7 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 	+NOBLOODDECALS
 	DeathSound "seamonster/death"
 	AttackSound "duke/rocketfire2"
-	Obituary "%o was killed by a sea monster."
+	Obituary "%o was blown to bits by a Sea Monster"
     DamageFactor "Mace", 1.1
     DamageFactor "DragonClaw", 1.5
 	PainChance "MightyBoot", 255
@@ -51,14 +51,14 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			DN62 H 5 A_Scream
-			DN62 IJKL 5
-			DN62 M 0 A_SpawnItemEx("BlueSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-			TNT1 A -1
+			DN62 I 5 A_NoBlocking
+			DN62 JKL 5
+			TNT1 A -1 A_SpawnItemEx("BlueSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_StopSound(CHAN_BODY)				
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			DN62 A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			DN62 A 16
@@ -70,19 +70,19 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		XDeath:
 			TNT1 A 0 A_StopSound(CHAN_BODY)		
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -128,7 +128,7 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_SpawnItemEx("BlueSeaMonster_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			DN62 A 0
@@ -143,7 +143,7 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
+			Loop
 		ExpanderPop:	
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -173,7 +173,7 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
+			Loop
 		ExpanderPopCoop:	
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
@@ -350,7 +350,7 @@ actor BlueSeaMonster_Shrink : BlueSeaMonster
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -360,7 +360,7 @@ actor BlueSeaMonster_Shrink : BlueSeaMonster
 			"####" "#" 0 
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -370,7 +370,7 @@ actor BlueSeaMonster_Shrink : BlueSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -438,14 +438,14 @@ Actor RedSeaMonster : BlueSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			DN63 H 5 A_Scream
-			DN63 IJKL 5
-			DN63 M 0 A_SpawnItemEx("RedSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-			TNT1 A -1
+			DN63 I 5 A_NoBlocking
+			DN63 JKL 5
+			TNT1 A -1 A_SpawnItemEx("RedSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_StopSound(CHAN_BODY)				
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			DN63 A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			DN63 A 16
@@ -457,19 +457,19 @@ Actor RedSeaMonster : BlueSeaMonster
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		XDeath:
 			TNT1 A 0 A_StopSound(CHAN_BODY)		
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -515,7 +515,7 @@ Actor RedSeaMonster : BlueSeaMonster
 			"####" "#" 0 A_SpawnItemEx("RedSeaMonster_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			DN63 A 0
@@ -667,7 +667,7 @@ actor RedSeaMonster_Shrink : RedSeaMonster
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -677,7 +677,7 @@ actor RedSeaMonster_Shrink : RedSeaMonster
 			"####" "#" 0 
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -687,7 +687,7 @@ actor RedSeaMonster_Shrink : RedSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -755,14 +755,14 @@ Actor GraySeaMonster : BlueSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			DN64 H 5 A_Scream
-			DN64 IJKL 5
-			DN64 M 0 A_SpawnItemEx("GraySeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-			TNT1 A -1
+			DN64 I 5 A_NoBlocking
+			DN64 JKL 5
+			TNT1 A -1 A_SpawnItemEx("GraySeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_StopSound(CHAN_BODY)				
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			DN64 A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			DN64 A 16
@@ -774,19 +774,19 @@ Actor GraySeaMonster : BlueSeaMonster
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		XDeath:
 			TNT1 A 0 A_StopSound(CHAN_BODY)		
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -832,7 +832,7 @@ Actor GraySeaMonster : BlueSeaMonster
 			"####" "#" 0 A_SpawnItemEx("GraySeaMonster_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			DN64 A 0
@@ -984,7 +984,7 @@ actor GraySeaMonster_Shrink : GraySeaMonster
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -994,7 +994,7 @@ actor GraySeaMonster_Shrink : GraySeaMonster
 			"####" "#" 0 
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1004,7 +1004,7 @@ actor GraySeaMonster_Shrink : GraySeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1072,14 +1072,14 @@ Actor YellowSeaMonster : BlueSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			DN65 H 5 A_Scream
-			DN65 IJKL 5
-			DN65 M 0 A_SpawnItemEx("YellowSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-			TNT1 A -1
+			DN65 I 5 A_NoBlocking
+			DN65 JKL 5
+			TNT1 A -1 A_SpawnItemEx("YellowSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_StopSound(CHAN_BODY)				
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			DN65 A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			DN65 A 16
@@ -1091,19 +1091,19 @@ Actor YellowSeaMonster : BlueSeaMonster
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		XDeath:
 			TNT1 A 0 A_StopSound(CHAN_BODY)		
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1149,7 +1149,7 @@ Actor YellowSeaMonster : BlueSeaMonster
 			"####" "#" 0 A_SpawnItemEx("YellowSeaMonster_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			DN65 A 0
@@ -1301,7 +1301,7 @@ actor YellowSeaMonster_Shrink : YellowSeaMonster
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1311,7 +1311,7 @@ actor YellowSeaMonster_Shrink : YellowSeaMonster
 			"####" "#" 0 
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1321,7 +1321,7 @@ actor YellowSeaMonster_Shrink : YellowSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1389,14 +1389,14 @@ Actor DarkBlueSeaMonster : BlueSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			DN66 H 5 A_Scream
-			DN66 IJKL 5
-			DN66 M 0 A_SpawnItemEx("DarkBlueSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-			TNT1 A -1
+			DN66 I 5 A_NoBlocking
+			DN66 JKL 5
+			TNT1 A -1 A_SpawnItemEx("DarkBlueSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_StopSound(CHAN_BODY)				
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			DN66 A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			DN66 A 16
@@ -1408,19 +1408,19 @@ Actor DarkBlueSeaMonster : BlueSeaMonster
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		XDeath:
 			TNT1 A 0 A_StopSound(CHAN_BODY)		
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1466,7 +1466,7 @@ Actor DarkBlueSeaMonster : BlueSeaMonster
 			"####" "#" 0 A_SpawnItemEx("DarkBlueSeaMonster_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			DN66 A 0
@@ -1618,7 +1618,7 @@ actor DarkBlueSeaMonster_Shrink : DarkBlueSeaMonster
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1628,7 +1628,7 @@ actor DarkBlueSeaMonster_Shrink : DarkBlueSeaMonster
 			"####" "#" 0 
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1638,7 +1638,7 @@ actor DarkBlueSeaMonster_Shrink : DarkBlueSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -1706,14 +1706,14 @@ Actor GreenSeaMonster : BlueSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			DN67 H 5 A_Scream
-			DN67 IJKL 5
-			DN67 M 0 A_SpawnItemEx("GreenSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
-			TNT1 A -1
+			DN67 I 5 A_NoBlocking
+			DN67 JKL 5
+			TNT1 A -1 A_SpawnItemEx("GreenSeaMonsterCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_StopSound(CHAN_BODY)				
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			DN67 A 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			DN67 A 16
@@ -1725,19 +1725,19 @@ Actor GreenSeaMonster : BlueSeaMonster
 			TNT1 A 0 A_Jump(218,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			TNT1 A -1 A_Jump(256,"Death")
-			wait
+			Wait
 		DukeGibStart:
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
-			wait
+			Wait
 		XDeath:
 			TNT1 A 0 A_StopSound(CHAN_BODY)		
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -1783,7 +1783,7 @@ Actor GreenSeaMonster : BlueSeaMonster
 			"####" "#" 0 A_SpawnItemEx("GreenSeaMonster_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
-			stop
+			Stop
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
 			DN67 A 0
@@ -1935,7 +1935,7 @@ actor GreenSeaMonster_Shrink : GreenSeaMonster
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
 			TNT1 A 2 Thing_Remove(0)
-			stop
+			Stop
 		Squish:
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
@@ -1945,7 +1945,7 @@ actor GreenSeaMonster_Shrink : GreenSeaMonster
 			"####" "#" 0 
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
-			loop
+			Loop
 		Death:
 		XDeath:
 		Death.Squish:
@@ -1955,7 +1955,7 @@ actor GreenSeaMonster_Shrink : GreenSeaMonster
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
 			TNT1 A 1 A_SpawnItemEx("DukeBloodPool_Duke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-			stop
+			Stop
 		DukeStomp:
 			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
 			Goto Squish
@@ -2001,11 +2001,10 @@ actor GreenSeaMonster_ShrinkEffect : GreenSeaMonster
 
 ACTOR ASeaMonsterRocketBeach : ACommanderRocket
 {
-	Obituary "%o was blown to bits by a Sea Monster"
 	States
 	{
 		Spawn:
-			RPGX W 1 bright A_SpawnItemEx("SamsaraDukeRocketPuff",0,0,0,0,0,0,0,160)
-			loop
+			RPGX W 1 bright A_SpawnItemEx("SamsaraDukeRocketPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
+			Loop
 	}
 }
