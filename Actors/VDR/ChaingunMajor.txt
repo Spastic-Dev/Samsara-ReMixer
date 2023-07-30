@@ -23,7 +23,7 @@ Actor MMRandomizer_ChaingunMajor1 : ChaingunGuy3
 			VD07 F 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD07 E 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD07 F 1 A_CPosRefire
-			Goto Missile+1
+			Goto Missile+2
 		Pain:
 			VD07 G 3
 			VD07 G 3 A_Pain
@@ -390,11 +390,12 @@ Actor MMRandomizer_ChaingunMajor2 : MMRandomizer_ChaingunMajor1
 			VD08 AABBCCDD 3 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD08 E 10 A_FaceTarget
 			VD08 F 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD08 E 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD08 F 1 A_CPosRefire
-			Goto Missile+1
+			Goto Missile+2
 		Pain:
 			VD08 G 3
 			VD08 G 3 A_Pain
@@ -753,11 +754,12 @@ Actor MMRandomizer_ChaingunMajor3 : MMRandomizer_ChaingunMajor1
 			VD09 AABBCCDD 3 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD09 E 10 A_FaceTarget
 			VD09 F 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD09 E 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD09 F 1 A_CPosRefire
-			Goto Missile+1
+			Goto Missile+2
 		Pain:
 			VD09 G 3
 			VD09 G 3 A_Pain
@@ -1117,11 +1119,12 @@ Actor MMRandomizer_ChaingunMajor4 : MMRandomizer_ChaingunMajor1
 			VD10 AABBCCDD 3 A_Chase
 			Loop
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD10 E 10 A_FaceTarget
 			VD10 F 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD10 E 4 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD10 F 1 A_CPosRefire
-			Goto Missile+1
+			Goto Missile+2
 		Pain:
 			VD10 G 3
 			VD10 G 3 A_Pain
