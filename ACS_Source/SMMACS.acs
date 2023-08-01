@@ -41,7 +41,7 @@ int gamePruneValues[MAX_GAME_TYPES][MAX_ADDON_SETS] = {
 	{99,99,99},{99},{73},{64,64,64},{84,84,84},{52,52,52},{68},{54},{63,63,63,63,63},{64,64},{36},{59},{53,53,53,53,53},{64},{77},{61},{68,68,68,68,68},{62},{78},{26,26},{36},{65},{54},{36},{40},{32},{28},{69},{67},{54},{32},{50},{60},{26}
 };
 
-str doomModes[4] = { "SetDoom", "SetDoom64", "SetDoomRandom", "SetDoom64AbsolutionOutcasrt" };
+str doomModes[4] = { "SetDoom", "SetDoom64", "SetDoomRandom", "SetDoom64AbsolutionOutcast" };
 str wolfModes[3] = { "SetWolf3D", "SetSpear", "SetTotenkopf" };
 str dukeModes[2] = { "SetDuke3D", "SetDukeLAB" };
 str hlModes[2] =   { "SetHL", "SetHLOP" };
@@ -65,8 +65,6 @@ str addons[MAX_GAME_TYPES] = {};
 
 global int 2:alreadyshowedbs;
 //global int 4:lastchosen;
-
-str skill[5] = { "Kindergarten", "Easy", "Normal", "MajorDamage", "TotalCarnage" };
 
 // ReMixer spawn generator. Want Doom 2 enemies in Ultimate Doom? This can do that!
 #include "SMM_Generator.acs"
@@ -573,13 +571,6 @@ Script "ReMixerInvasion" OPEN //670
 		Delay(1);
 		oldmode = spawnmode;
 	}
-}
-
-Script "MarathonSkillCheck" (void) //671
-{
-	int checkskill = ACS_NamedExecuteWithResult("ReMixerCVarCheck", 3);
-
-	SetActorState(0,skill[checkskill],true);
 }
 
 Script "MarathonTeleport" (void)
