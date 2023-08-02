@@ -77,6 +77,9 @@ Script "ReMixerInit" OPEN //667
 	totalMonsters = GetLevelInfo(LEVELINFO_TOTAL_MONSTERS);
 
 	alreadyshowedbs = 1;
+	Delay(1);
+	addonsProcessed = 1;
+	Delay(4);
 
 	// We should check for iwads and TCs that can be loaded with Reincarnation, but not with ReMixer
 	int incompatibilityReMixerTid = UniqueTid();
@@ -93,8 +96,6 @@ Script "ReMixerInit" OPEN //667
 	}
 
 	Thing_Remove(incompatibilityReMixerTid);
-	Delay(1);
-	addonsProcessed = 1;
 }
 
 Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
