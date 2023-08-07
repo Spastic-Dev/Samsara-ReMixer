@@ -1,90 +1,77 @@
 ACTOR MMRandomizer_ChainsawZombie : Zombieman3
-{ 
-    Health 30 
-    Radius 20 
-    Height 56 
-    Speed 16
-    MeleeDamage 1 
-    PainChance 200 
-    MONSTER 
-    +FLOORCLIP 
-    Obituary "%o was sliced by a madman zombie with a chainsaw!" 
-    SeeSound "doom/grunt/sight" 
-    MeleeSound "doomguy/sawhit" 
-    PainSound "doom/grunt/pain" 
-    DeathSound "doom/grunt/death" 
-    ActiveSound "doom/grunt/active" 
+{
+	Health 30
+	Radius 20
+	Height 56
+	Speed 16
+	MeleeDamage 1
+	PainChance 200
+	MONSTER
+	+FLOORCLIP
+	Obituary "%o was sliced by a madman zombie with a chainsaw!"
+	SeeSound "doom/grunt/sight"
+	MeleeSound "doomguy/sawhit"
+	PainSound "doom/grunt/pain"
+	DeathSound "doom/grunt/death"
+	ActiveSound "doom/grunt/active"
 	AttackSound ""
-    DropItem MMRandomizer_ChainsawDrop
-    Tag "Chaingun Zombie"
-	States 
-    { 
+	DropItem MMRandomizer_ChainsawDrop
+	Tag "Chaingun Zombie"
+	States
+	{
 		Spawn:
 			VD34 A 0
 			VD34 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			VD34 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			VD34 A 0 A_GiveInventory("AlreadySpawned",1)
 			VD34 A 0
-		Spawn2: 
-			VD34 A 4 A_Look 
-			VD34 A 4 A_PlayWeaponSound("doomguy/sawidle") 
-			VD34 A 4 A_Look 
-			VD34 B 4 A_PlayWeaponSound("doomguy/sawidle") 
-			VD34 B 4 A_Look 
-			VD34 B 4 A_PlayWeaponSound("doomguy/sawidle") 
-			Loop 
-		See: 
-			VD34 A 4 A_Chase("Melee","") 
-			VD34 A 4 A_Chase("Melee","") 
-			VD34 B 0 A_PlayWeaponSound("doomguy/sawidle") 
-			VD34 B 4 A_Chase("Melee","") 
-			VD34 B 4 A_Chase("Melee","") 
-			VD34 C 0 A_PlayWeaponSound("doomguy/sawidle") 
-			VD34 C 4 A_Chase("Melee","") 
-			VD34 C 4 A_Chase("Melee","") 
-			VD34 D 0 A_PlayWeaponSound("doomguy/sawidle") 
-			VD34 D 4 A_Chase("Melee","") 
-			VD34 D 4 A_Chase("Melee","") 
-			VD34 A 0 A_PlayWeaponSound("doomguy/sawidle") 
-			Loop 
-		Melee: 
+		Spawn2:
+			VD34 A 4 A_Look
+			VD34 A 4 A_PlayWeaponSound("doomguy/sawidle")
+			VD34 A 4 A_Look
+			VD34 B 4 A_PlayWeaponSound("doomguy/sawidle")
+			VD34 B 4 A_Look
+			VD34 B 4 A_PlayWeaponSound("doomguy/sawidle")
+			Loop
+		See:
+			VD34 AA 4 A_Chase("Melee","")
+			VD34 B 0 A_PlayWeaponSound("doomguy/sawidle")
+			VD34 BB 4 A_Chase("Melee","")
+			VD34 C 0 A_PlayWeaponSound("doomguy/sawidle")
+			VD34 CC 4 A_Chase("Melee","")
+			VD34 D 0 A_PlayWeaponSound("doomguy/sawidle")
+			VD34 DD 4 A_Chase("Melee","")
+			VD34 A 0 A_PlayWeaponSound("doomguy/sawidle")
+			Loop
+		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			VD34 E 1 A_FaceTarget 
-			VD34 F 3 A_MeleeAttack 
-			Goto See 
+			VD34 E 1 A_FaceTarget
+			VD34 F 3 A_MeleeAttack
+			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD34 G 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD34 G 16 A_Pain
-			Goto See						
-		Pain: 
-			VD34 G 5 
-			VD34 G 3 A_Pain 
-			Goto See 
+			Goto See
+		Pain:
+			VD34 G 5
+			VD34 G 3 A_Pain
+			Goto See
 		Pain.DoomDamageTypeStunner:
 			VD34 G 2 A_ChangeFlag("NOPAIN",true)
 			VD34 G 300 A_Pain
 			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
 			goto See
-		Death: 
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			VD34 H 5 
-			VD34 I 5 A_Scream 
-			VD34 J 5 A_Fall 
-			VD34 KLM 5 
-			VD34 N -1 
-			Stop 
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 5 A_NoBlocking
-			stop
+			VD34 H 5 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			VD34 I 5 A_Scream
+			VD34 J 5 A_Fall
+			VD34 KLM 5
+			VD34 N -1
+			Stop
 		Death.PainkillerStake:
 			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
 			TNT1 A 0 A_JumpIf(CallACS("Painkiller_IsItGibbed")==1,"PainkillerGib")
@@ -96,19 +83,18 @@ ACTOR MMRandomizer_ChainsawZombie : Zombieman3
 			VD34 G 2
 			Loop
 		XDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			VD34 O 5
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			VD34 O 5 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD34 P 5 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
 			VD34 Q 5 A_Fall
 			VD34 RSTUV 5
 			VD34 W -1
 			Stop
-		Raise: 
+		Raise:
 			VD34 A 0
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-			VD34 NMLKJIH 5 
-			Goto See 
+			VD34 NMLKJIH 5
+			Goto See
 		ZorchRaise:
 			"####" "#" 1 A_UnsetShootable
 			"####" "#" 1 A_SpawnItem("SpawnFire2")
@@ -167,61 +153,15 @@ ACTOR MMRandomizer_ChainsawZombie : Zombieman3
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoop
-		ExpanderLoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-			loop
-		ExpanderPop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop
+			Goto Super::ExpanderLoop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			VD34 A 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto ExpanderLoopCoop
-		ExpanderLoopCoop:
-			"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-			"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-			"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-			loop
-		ExpanderPopCoop:	
-			"####" "#" 10
-			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_Jump(96,2)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
-			Stop									
-    } 
+			Goto Super::ExpanderLoopCoop
+	}
 }
 
 actor MMRandomizer_ChainsawZombie_Shrink : MMRandomizer_ChainsawZombie
@@ -341,9 +281,9 @@ actor MMRandomizer_ChainsawZombie_Shrink : MMRandomizer_ChainsawZombie
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -371,7 +311,7 @@ actor MMRandomizer_ChainsawZombie_ShrinkEffect : MMRandomizer_ChainsawZombie
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

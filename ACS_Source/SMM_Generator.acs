@@ -35,9 +35,10 @@ str SpawnersROTWB[MAXMONSTERS_ROTWB] = { "ShotgunCat_SamsaraRemixer", "WizardCat
 int generatorCountersREKKR[MAXMONSTERS_REKKR];
 str SpawnersREKKR[MAXMONSTERS_REKKR] = { "REKKRFormerHuman_SamsaraRemixer", "REKKRGrotesque_SamsaraRemixer", "REKKRHusk_SamsaraRemixer", "REKKRImp_SamsaraRemixer", "REKKREyeball_SamsaraRemixer", "REKKRMeanHusk_SamsaraRemixer", "REKKRMeanImp_SamsaraRemixer", "REKKRSorrow_SamsaraRemixer", "REKKRRunePorter_SamsaraRemixer", "REKKRSkelespider_SamsaraRemixer", "RERRKFormerDuke_SamsaraRemixer", "REKKRSkellyBelly_SamsaraRemixer", "REKKRTreebeast_SamsaraRemixer", "REKKRFlammenwerfer_SamsaraRemixer", "REKKRFormerKing_SamsaraRemixer", "REKKRFormerKing2_SamsaraRemixer", "REKKRDeathRaven_SamsaraRemixer", "REKKRGardien_SamsaraRemixer" };
 
+bool spawnSecretMonsters = false;
+
 int totalTypes = 0;
 int generationAmount = 0;
-int DoomSecretLevel = 0;
 int minSelector = 32;
 int maxSelector = 0;
 int selectorBias = 0;
@@ -94,8 +95,7 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				generatorCountersDoom[counters] = ThingCountName(SpawnersDoom[counters],0);
 			}
 
-			if(generatorCountersDoom[3] > 0)
-				DoomSecretLevel = 1;
+			spawnSecretMonsters = generatorCountersDoom[3] > 0;
 
 			for(selector = 0; selector < MAXMONSTERS_DOOM; selector++)
 			{
@@ -109,15 +109,12 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				totalTypes += generatorCountersDoom[selector];
 				generationAmount += generatorCountersDoom[selector]*(selector+1);
 			}
-
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 
 		case 2:
 			// Check if we're playing Chex Quest 3 or Chex Quest 1
 			int CQ1CheckTid = UniqueTid();
-			
+
 			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid))
 			{
 				// We're playing Chex Quest 3
@@ -138,9 +135,6 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					totalTypes += generatorCountersChex[selector];
 					generationAmount += generatorCountersChex[selector]*(selector+1);
 				}
-
-				selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-				selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 				break;
 			}
 			else
@@ -164,9 +158,6 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 					totalTypes += generatorCountersChexOriginal[selector];
 					generationAmount += generatorCountersChexOriginal[selector]*(selector+1);
 				}
-
-				selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-				selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 				break;
 			}
 
@@ -188,9 +179,6 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				totalTypes += generatorCountersHeretic[selector];
 				generationAmount += generatorCountersHeretic[selector]*(selector+1);
 			}
-
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 
 		case 8:
@@ -211,9 +199,6 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				totalTypes += generatorCountersHexen[selector];
 				generationAmount += generatorCountersHexen[selector]*(selector+1);
 			}
-
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 
 		case 32:
@@ -234,9 +219,6 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				totalTypes += generatorCountersHacx[selector];
 				generationAmount += generatorCountersHacx[selector]*(selector+1);
 			}
-
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 
 		case 64:
@@ -257,9 +239,6 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				totalTypes += generatorCountersHarmony[selector];
 				generationAmount += generatorCountersHarmony[selector]*(selector+1);
 			}
-
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 
 		case 128:
@@ -280,9 +259,6 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				totalTypes += generatorCountersROTWB[selector];
 				generationAmount += generatorCountersROTWB[selector]*(selector+1);
 			}
-
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 
 		case 256:
@@ -303,11 +279,11 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 				totalTypes += generatorCountersREKKR[selector];
 				generationAmount += generatorCountersREKKR[selector]*(selector+1);
 			}
-
-			selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
-			selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 			break;
 	}
+
+	selectorBias = FixedDiv(generationAmount*1.0,totalTypes*1.0) - 1.0;
+	selectorBias = FixedMul(selectorBias,1.0+((GameSkill()-3) * 0.25));
 }
 
 script "CellDoneScanningReMixer" (void)
@@ -370,7 +346,7 @@ Script "SMMGeneratorSelector" (void)
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
-			if(!DoomSecretLevel && pickMonster == 3)
+			if(!spawnSecretMonsters && pickMonster == 3)
 			{
 				pickMonster = 2;
 			}
@@ -381,7 +357,7 @@ Script "SMMGeneratorSelector" (void)
 		case 2:
 			// Check if we're playing Chex Quest 3 or Chex Quest 1
 			int CQ1CheckTid2 = UniqueTid();
-			
+
 			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid2))
 			{
 				// We're playing Chex Quest 3
@@ -533,10 +509,10 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 
 		case 2:
 			monsterSlot -= MAXMONSTERS_DOOM;
-			
+
 			// Check if we're playing Chex Quest 3 or Chex Quest 1
 			int CQ1CheckTid3 = UniqueTid();
-			
+
 			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid3))
 			{
 				// We're playing Chex Quest 3

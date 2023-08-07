@@ -30,16 +30,14 @@ actor MMRandomizer_ChaingunArachnotron : Arachnotron3
 			Loop
 		See:
 			VD59 A 20
-			VD59 A 3 A_PlaySound("doom/baby/walk", CHAN_BODY)
-			VD59 ABBCC 3 A_Chase
-			VD59 D 3 A_PlaySound("doom/baby/walk", CHAN_BODY)
-			VD59 DEEFF 3 A_Chase
+			TNT1 A 0 A_PlaySound("doom/baby/walk", CHAN_BODY)
+			VD59 AABBCC 3 A_Chase
+			TNT1 A 0 A_PlaySound("doom/baby/walk", CHAN_BODY)
+			VD59 DDEEFF 3 A_Chase
 			Goto See+1
 		Missile:
 			VD59 A 20 bright A_FaceTarget
-			VD59 G 4 bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
-			VD59 G 0 bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
-			VD59 H 4 bright
+			VD59 GH 4 bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
 			VD59 H 1 bright A_SpidRefire
 			Goto Missile+1
 		Pain:
@@ -52,14 +50,14 @@ actor MMRandomizer_ChaingunArachnotron : Arachnotron3
 			VD59 I 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD59 I 16 A_Pain
-			Goto See+1 		
+			Goto See+1
 		Pain.DoomDamageTypeStunner:
 			VD59 I 2 A_ChangeFlag("NOPAIN",true)
 			VD59 I 300 A_Pain
 			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-			goto See+1			
+			goto See+1
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD59 J 20 A_Scream
 			VD59 K 7 A_NoBlocking
@@ -126,80 +124,21 @@ actor MMRandomizer_ChaingunArachnotron : Arachnotron3
 			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
 			TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
 			TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
-			Goto ShrunkLoop
-		ShrunkLoop:
-			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
-			loop
-		ShrunkDie:
-			TNT1 A 0
-			TNT1 A 1 A_Die("Shrink")
-			stop
-		Death.Shrink:
-			TNT1 A 0
-			TNT1 A 1 A_KillMaster
-			stop		
-	Death.ExpanderDMG:
-	XDeath.ExpanderDMG:
-		VD59 A 0
-		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoop
-	ExpanderLoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
-		loop
-	ExpanderPop:	
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop
-	Death.ExpanderDMGCoop:
-	XDeath.ExpanderDMGCoop:
-		VD59 A 0
-		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto ExpanderLoopCoop
-	ExpanderLoopCoop:
-		"####" "#" 1 A_SetScale(1.1*(user_scalex/65536.0)+((0.01*(user_scalex/65536.0))*CallACS("Samsara_Expander",1))+((0.01*(user_scalex/65536.0))*(CallACS("Samsara_Expander",1)-CallACS("Samsara_Expander",2)))*(CallACS("Samsara_Expander",3)*2),1.1*(user_scaley/65536.0)+((0.01*(user_scaley/65536.0))*CallACS("Samsara_Expander",2)))
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthX", 1)
-		"####" "#" 0 A_JumpIf(ceilingz - (z + height + CallACS("Samsara_Expander",1) + 32) <= 0, 2)
-		"####" "#" 0 A_GiveInventory("ExpanderGrowthY", 1)
-		"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
-		"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
-		loop
-	ExpanderPopCoop:	
-		"####" "#" 10
-		TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
-		TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
-		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		TNT1 A 0 A_Jump(96,2)
-		TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-		TNT1 A 0 A_SetScale (1.0, 1.0)
-	    TNT1 A 0 A_UnsetSolid
-		TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
-		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-        TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-		TNT1 A 1
-		Stop			
+			Goto Super::ShrunkLoop
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+			VD59 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto Super::ExpanderLoop
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
+			VD59 A 0
+			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_PlaySound("duke/expand")
+			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -320,9 +259,9 @@ actor MMRandomizer_ChaingunArachnotron_Shrink : MMRandomizer_ChaingunArachnotron
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -351,7 +290,7 @@ actor MMRandomizer_ChaingunArachnotron_ShrinkEffect : MMRandomizer_ChaingunArach
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

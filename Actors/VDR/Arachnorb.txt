@@ -41,15 +41,15 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicMediumTotalGib
 			VD66 A 2 A_Chase
 			Loop
 		Melee:
-			VD66 AB 5
+			VD66 AB 5 A_FaceTarget
 			VD66 C 6 A_MeleeAttack
 			Goto See
 		Missile:
 			VD66 B 12 Bright A_FaceTarget
 			VD66 C 2 Bright A_MissileAttack
 			VD66 B 2 Bright
-			VD66 D 0 A_Jump(32,"See")
-			VD66 D 0 A_SpidRefire
+			TNT1 A 0 A_Jump(32,"See")
+			TNT1 A 0 A_SpidRefire
 			Goto Missile+1
 		Pain:
 			VD66 I 2
@@ -61,11 +61,10 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicMediumTotalGib
 			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
 			goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD66 D 0 A_ChangeFlag("FLOATBOB",0)
-			VD66 D 0 A_Scream
-			VD66 D 6 A_Fall
+			VD66 D 6 A_ScreamAndUnblock
 			VD66 D 1
 			Wait
 		Crash:
@@ -83,9 +82,8 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicMediumTotalGib
 			VD66 I 2
 			Loop
 		Raise:
-			VD66 A 0
 			VD66 HGFEDA 8
-			VD66 A 0 A_ChangeFlag("FLOATBOB",1)
+			TNT1 A 0 A_ChangeFlag("FLOATBOB",1)
 			Goto See
 		ZorchRaise:
 			"####" "#" 1 A_UnsetShootable
@@ -155,7 +153,7 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicMediumTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -185,7 +183,7 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicMediumTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -199,7 +197,7 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicMediumTotalGib
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
-			Stop						
+			Stop
 	}
 }
 
@@ -320,9 +318,9 @@ actor MMRandomizer_Arachnorb_Shrink : MMRandomizer_Arachnorb
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -350,7 +348,7 @@ actor MMRandomizer_Arachnorb_ShrinkEffect : MMRandomizer_Arachnorb
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
