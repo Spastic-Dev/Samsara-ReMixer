@@ -351,6 +351,7 @@ actor RevenantTracerDumbfire_Samsara : RevenantTracer
 {
 	-SEEKERMISSILE
 	+THRUGHOST
+	+BRIGHT
 	SeeSound "doom/skeleton/attack"
 	DeathSound "doom/skeleton/tracex"
 	RenderStyle Normal
@@ -359,18 +360,19 @@ actor RevenantTracerDumbfire_Samsara : RevenantTracer
 	States
 	{
 	Spawn:
-		DMP2 AB 2 bright
+		DMP2 AB 2
 		Loop
 	Death:
-		DMP2 C 8 Bright
-		DMP2 D 6 Bright
-		DMP2 E 4 Bright
+		DMP2 C 8
+		DMP2 D 6
+		DMP2 E 4
 		Stop
 	}
 }
 
 actor RevenantTracerHoming_Samsara : RevenantTracer
 {
+	+BRIGHT
 	SeeSound "doom/skeleton/attack"
 	DeathSound "doom/skeleton/tracex"
 	RenderStyle Normal
@@ -379,15 +381,15 @@ actor RevenantTracerHoming_Samsara : RevenantTracer
 	States
 	{
 	Spawn:
-		DMP2 A 0 bright A_SpawnItemEx("RevenantTracerSmoke_Samsara",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
-		DMP2 A 2 bright A_SeekerMissile(0, 8, SMF_LOOK|SMF_PRECISE, 256)
-		DMP2 B 0 bright A_SpawnItemEx("RevenantTracerSmoke_Samsara",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
-		DMP2 B 2 bright A_SeekerMissile(0, 8, SMF_LOOK|SMF_PRECISE, 256)
+		DMP2 A 0 A_SpawnItemEx("RevenantTracerSmoke_Samsara",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+		DMP2 A 2 A_SeekerMissile(0, 8, SMF_LOOK|SMF_PRECISE, 256)
+		DMP2 B 0 A_SpawnItemEx("RevenantTracerSmoke_Samsara",0,0,0,0,0,1,0,SXF_CLIENTSIDE)
+		DMP2 B 2 A_SeekerMissile(0, 8, SMF_LOOK|SMF_PRECISE, 256)
 		Loop
 	Death:
-		DMP2 C 8 Bright
-		DMP2 D 6 Bright
-		DMP2 E 4 Bright
+		DMP2 C 8
+		DMP2 D 6
+		DMP2 E 4
 		Stop
 	}
 }

@@ -1,27 +1,27 @@
 ACTOR MMRandomizer_Nightmare : SamsaraMonsterSkeletonMedium
 {
-    Health 100
-    Radius 20
-    Height 56
-    Speed 15
-    PainChance 144
-    Monster
-    +FLOORCLIP
-    +STEALTH
+	Health 100
+	Radius 20
+	Height 56
+	Speed 15
+	PainChance 144
+	Monster
+	+FLOORCLIP
+	+STEALTH
 	-COUNTKILL
-    RenderStyle Add
-    Alpha 0.4
-    SeeSound "VDR/nightmare/sight"
-    PainSound "VDR/nightmare/pain"
-    DeathSound "VDR/nightmare/death"
-    ActiveSound "VDR/nightmare/active"
-    MeleeSound "VDR/nightmare/melee"
-    HitObituary "%o was tormented by a nightmare."
-    MeleeDamage 4
+	RenderStyle Add
+	Alpha 0.4
+	SeeSound "VDR/nightmare/sight"
+	PainSound "VDR/nightmare/pain"
+	DeathSound "VDR/nightmare/death"
+	ActiveSound "VDR/nightmare/active"
+	MeleeSound "VDR/nightmare/melee"
+	HitObituary "%o was tormented by a nightmare."
+	MeleeDamage 4
 	Tag "Nightmare"
 	Species "SamsaraDemon"
-    States
-    {
+	States
+	{
 		Spawn:
 			VD50 A 0
 			VD50 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
@@ -32,15 +32,13 @@ ACTOR MMRandomizer_Nightmare : SamsaraMonsterSkeletonMedium
 			VD50 AB 10 A_Look
 			Loop
 		See:
-			VD50 A 0 A_UnSetShootable
+			TNT1 A 0 A_UnSetShootable
 			VD50 AABBCCDD 3 A_Chase
-			VD50 D 0 A_Jump(32,1)
-			Loop
-			VD50 D 0 A_SpawnItemEx("MMRandomizer_NightmareWisp",0,0,0,0,0,0,0,SXF_CLIENTSIDE) 
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_NightmareWisp",0,0,0,0,0,0,0,SXF_CLIENTSIDE,224)
 			Loop
 		Melee:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			VD50 E 0 A_SetShootable
+			TNT1 A 0 A_SetShootable
 			VD50 EF 9 A_FaceTarget
 			VD50 G 9 A_MeleeAttack
 			Goto See
@@ -54,31 +52,29 @@ ACTOR MMRandomizer_Nightmare : SamsaraMonsterSkeletonMedium
 			VD50 H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD50 H 16 A_Pain
-			Goto See	
+			Goto See
 		Pain.DoomDamageTypeStunner:
 			VD50 H 2 A_ChangeFlag("NOPAIN",true)
 			VD50 H 300 A_Pain
 			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-			goto See			
+			goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			VD50 I 3 A_ScreamAndUnblock
-			VD50 JKLMNO 3 
+			VD50 JKLMNO 3
 			Stop
-    }
+	}
 }
 
 ACTOR MMRandomizer_NightmareWisp
 {
 	Radius 4
 	Height 8
-	Speed 0
-	Damage 0
 	RenderStyle Add
 	Alpha 0.4
-	Projectile
-	+NOCLIP
+	+NOINTERACTION
+	+CLIENTSIDEONLY
 	States
 	{
 		Spawn:

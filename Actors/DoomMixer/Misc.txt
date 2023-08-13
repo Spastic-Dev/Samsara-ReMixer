@@ -351,10 +351,10 @@ ACTOR AbaddonBall3 : CacodemonBall_Samsara
 	States
 	{
 	Spawn:
-		VD9T AB 4 BRIGHT
+		VD9T AB 4
 		Loop
 	Death:
-		VD9T CDE 6 BRIGHT
+		VD9T CDE 6
 		Stop
 	}
 }
@@ -1449,10 +1449,10 @@ ACTOR CacolanternBall3 : CacodemonBall_Samsara
 	States
 	{
 	Spawn:
-		VD4W AB 4 BRIGHT
+		VD4W AB 4
 		Loop
 	Death:
-		VD4W CDE 6 BRIGHT
+		VD4W CDE 6
 		Stop
 	}
 }
@@ -1846,10 +1846,10 @@ actor DarkImp2Ball : DoomImpBall_Samsara
 	States
 	{
 	Spawn:
-		VD22 QR 4 bright
+		VD22 QR 4
 		Loop
 	Death:
-		VD22 STU 6 bright
+		VD22 STU 6
 		Stop
 	}
 }
@@ -1994,11 +1994,9 @@ ACTOR Hectebus2 : Hectebus
 		TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
 		Loop
 	ShrunkDie:
-		TNT1 A 0
 		TNT1 A 1 A_Die("Shrink")
 		Stop
 	Death.Shrink:
-		TNT1 A 0
 		TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 		Stop
 	Death.ExpanderDMG:
@@ -2277,12 +2275,12 @@ actor HectShot2 : FatShot_Samsara
 	States
 	{
 	Spawn:
-		VE19 AB 4 BRIGHT
+		VE19 AB 4
 		Loop
 	Death:
-		VE19 C 8 BRIGHT
-		VE19 D 6 BRIGHT
-		VE19 E 4 BRIGHT
+		VE19 C 8
+		VE19 D 6
+		VE19 E 4
 		Stop
 	}
 }

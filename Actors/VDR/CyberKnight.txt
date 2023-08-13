@@ -411,35 +411,35 @@ Actor MMRandomizer_BruiserMissile
 	RenderStyle Normal
 	SeeSound "VDR/brufir"
 	DeathSound "weapons/hellex"
-	DontHurtShooter
 	+THRUGHOST
 	+FIREDAMAGE
+	+BRIGHT
 	Decal Scorch
 	States
 	{
 		Spawn:
-			VE18 A 2 Bright A_SpawnItemEx("MMRandomizer_BruiserTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			VE18 A 2 A_SpawnItemEx("MMRandomizer_BruiserTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			Loop
 		Death:
-			VE18 D 6 Bright A_SetTranslucent(0.67,1)
-			VE18 E 6 Bright A_Explode(64,64,0)
-			VE18 F 6 Bright
+			VE18 D 6 A_SetTranslucent(0.67,1)
+			VE18 E 6 A_Explode(64,64,0)
+			VE18 F 6
 			Stop
 	}
 }
 
 Actor MMRandomizer_BruiserTrail
 {
-	Radius 3
-	Height 3
 	RenderStyle Translucent
 	Alpha 0.67
-	Projectile
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+BRIGHT
 	States
 	{
 		Spawn:
 			TNT1 A 3
-			PFF2 ABCD 4 BRIGHT
+			PFF2 ABCD 4
 			Stop
 	}
 }

@@ -1,28 +1,28 @@
 Actor MMRandomizer_Watcher : SamsaraMonsterDemonicSmallTotalGib
-{ 
+{
 	Health 100
-	Radius 24 
-	Height 40 
-	Mass 50 
-	Speed 10 
+	Radius 24
+	Height 40
+	Mass 50
+	Speed 10
 	PainChance 160
 	MeleeRange 40
 	MeleeDamage 4
 	Monster
-	SeeSound "vdr/watsit" 
-	PainSound "vdr/watpai" 
-	DeathSound "vdr/watdth" 
-	ActiveSound "vdr/watact" 
+	SeeSound "vdr/watsit"
+	PainSound "vdr/watpai"
+	DeathSound "vdr/watdth"
+	ActiveSound "vdr/watact"
 	AttackSound "vdr/melee"
-	+NOGRAVITY 
+	+NOGRAVITY
 	+FLOAT
 	var int user_scalex;
-	var int user_scaley;	
+	var int user_scaley;
 	Tag "Watcher"
 	Species "SamsaraWatcher"
 	DamageFactor "LostSoul64Explosion", 0
-	States 
-	{ 
+	States
+	{
 		Spawn:
 			VD70 A 0
 			VD70 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
@@ -32,46 +32,44 @@ Actor MMRandomizer_Watcher : SamsaraMonsterDemonicSmallTotalGib
 			VD70 A 0
 		Spawn2:
 			TNT1 A 0 A_GiveInventory("IsAFlyingActor")
-		Spawn3: 
-			VD70 A 10 A_Look 
-			Loop 
-		See: 
+		Spawn3:
+			VD70 A 10 A_Look
+			Loop
+		See:
 			VD70 A 3 A_Chase
-			Loop 
-		Missile: 
+			Loop
+		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			VD70 E 5 A_FaceTarget 
-			VD70 F 5 A_FaceTarget 
-			VD70 G 5 BRIGHT A_CustomMissile("MMRandomizer_WatcherShot",12,0,0) 
+			VD70 EF 5 A_FaceTarget
+			VD70 G 5 BRIGHT A_CustomMissile("MMRandomizer_WatcherShot",12,0,0)
 			Goto See
 		Melee:
-			VD70 BCD 5 A_FaceTarget 
+			VD70 BCD 5 A_FaceTarget
 			VD70 A 5 A_MeleeAttack
 			Goto See
-		Pain: 
-			VD70 H 3 
-			VD70 H 3 A_Pain 
-			Goto See 
+		Pain:
+			VD70 H 3
+			VD70 H 3 A_Pain
+			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD70 H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD70 H 16 A_Pain
-			Goto See	
+			Goto See
 		Pain.DoomDamageTypeStunner:
 			VD70 H 2 A_ChangeFlag("NOPAIN",true)
 			VD70 H 300 A_Pain
 			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-			goto See			
-		Death: 
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
+			goto See
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			VD70 I 8 A_scream
-			VD70 JKLM 6 
-			VD70 N 6 A_noblocking
-			VD70 N 0 A_SetFloorClip
-			VD70 O -1 
+			VD70 I 8 A_Scream
+			VD70 JKLM 6
+			VD70 N 6 A_NoBlocking
+			VD70 O -1 A_SetFloorClip
 			Stop
 		Death.PainkillerStake:
 			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
@@ -83,11 +81,11 @@ Actor MMRandomizer_Watcher : SamsaraMonsterDemonicSmallTotalGib
 		StakeDeath:
 			VD70 H 2
 			Loop
-		Raise: 
+		Raise:
 			VD70 A 0
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-			VD70 ONMLKJI 8 
-			Goto See 
+			VD70 ONMLKJI 8
+			Goto See
 		ZorchRaise:
 			"####" "#" 1 A_UnsetShootable
 			"####" "#" 1 A_SpawnItem("SpawnFire2")
@@ -155,7 +153,7 @@ Actor MMRandomizer_Watcher : SamsaraMonsterDemonicSmallTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -185,7 +183,7 @@ Actor MMRandomizer_Watcher : SamsaraMonsterDemonicSmallTotalGib
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -199,8 +197,8 @@ Actor MMRandomizer_Watcher : SamsaraMonsterDemonicSmallTotalGib
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
-			Stop									
-	} 
+			Stop
+	}
 }
 
 actor MMRandomizer_Watcher_Shrink : MMRandomizer_Watcher
@@ -320,9 +318,9 @@ actor MMRandomizer_Watcher_Shrink : MMRandomizer_Watcher
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -350,7 +348,7 @@ actor MMRandomizer_Watcher_ShrinkEffect : MMRandomizer_Watcher
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -391,15 +389,16 @@ Actor MMRandomizer_WatcherShot
 	Projectile
 	+THRUGHOST
 	+FORCEXYBILLBOARD
+	+BRIGHT
 	SeeSound "vdr/watatk"
 	DeathSound "vdr/wathit"
 	States
 	{
 		Spawn:
-			VE26 AB 4 Bright
+			VE26 AB 4
 			Loop
 		Death:
-			VE26 CDE 4 Bright
+			VE26 CDE 4
 			Stop
 	}
 }

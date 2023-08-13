@@ -435,80 +435,77 @@ actor MMRandomizer_Diabolist_ShrinkEffect : MMRandomizer_Diabolist
 
 Actor MMRandomizer_DFire
 {
-	Radius 0
-	Height 1
-	Speed 0
-	RenderStyle Add
-	DamageType Fire
-	Alpha 1.00
+	+NOBLOCKMAP
 	+NOGRAVITY
-	+SEEKERMISSILE
-	+NOTARGET
 	+NODAMAGETHRUST
+	+BRIGHT
+	RenderStyle Add
+	Alpha 1
+	DamageType Fire
 	States
 	{
 		Spawn:
-			VE31 A 2 Bright A_PlaySound("doom/vile/firestrt", CHAN_BODY)
+			VE31 A 2 A_PlaySound("doom/vile/firestrt", CHAN_BODY)
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 B 2 Bright A_Fire
+			VE31 B 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 A 2 Bright A_Fire
+			VE31 A 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 B 2 Bright A_Fire
+			VE31 B 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
 			TNT1 A 0 A_PlaySound("doom/vile/firecrkl", CHAN_BODY)
-			VE31 C 2 Bright A_Fire
+			VE31 C 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 B 2 Bright A_Fire
+			VE31 B 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 C 2 Bright A_Fire
+			VE31 C 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 B 2 Bright A_Fire
+			VE31 B 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 C 2 Bright A_Fire
+			VE31 C 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 D 2 Bright A_Fire
+			VE31 D 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 C 2 Bright A_Fire
+			VE31 C 2 A_Fire
 			TNT1 A 0 A_Explode(4, 32)
-			VE31 D 2 Bright A_Fire
+			VE31 D 2 A_Fire
 			TNT1 A 0 A_Explode(3, 32)
-			VE31 C 2 Bright A_Fire
+			VE31 C 2 A_Fire
 			TNT1 A 0 A_Explode(3, 32)
-			VE31 D 2 Bright A_Fire
+			VE31 D 2 A_Fire
 			TNT1 A 0 A_Explode(3, 32)
-			VE31 E 2 Bright A_Fire
+			VE31 E 2 A_Fire
 			TNT1 A 0 A_Explode(3, 32)
-			VE31 D 2 Bright A_Fire
+			VE31 D 2 A_Fire
 			TNT1 A 0 A_Explode(3, 32)
-			VE31 E 2 Bright A_Fire
+			VE31 E 2 A_Fire
 			TNT1 A 0 A_Explode(3, 32)
-			VE31 D 2 Bright A_Fire
+			VE31 D 2 A_Fire
 			TNT1 A 0 A_Explode(3, 32)
 			TNT1 A 0 A_PlaySound("doom/vile/firecrkl", CHAN_BODY)
-			VE31 E 2 Bright A_Fire
+			VE31 E 2 A_Fire
 			TNT1 A 0 A_Explode(2, 32)
-			VE31 F 2 Bright A_Fire
+			VE31 F 2 A_Fire
 			TNT1 A 0 A_Explode(2, 32)
-			VE31 E 2 Bright A_Fire
+			VE31 E 2 A_Fire
 			TNT1 A 0 A_Explode(2, 32)
-			VE31 F 2 Bright A_Fire
+			VE31 F 2 A_Fire
 			TNT1 A 0 A_Explode(2, 32)
-			VE31 E 2 Bright A_Fire
+			VE31 E 2 A_Fire
 			TNT1 A 0 A_Explode(1, 32)
-			VE31 F 2 Bright A_Fire
+			VE31 F 2 A_Fire
 			TNT1 A 0 A_Explode(1, 32)
-			VE31 G 2 Bright A_Fire
+			VE31 G 2 A_Fire
 			TNT1 A 0 A_Explode(1, 32)
-			VE31 H 2 Bright A_Fire
+			VE31 H 2 A_Fire
 			TNT1 A 0 A_Explode(1, 32)
-			VE31 G 2 Bright A_Fire
+			VE31 G 2 A_Fire
 			TNT1 A 0 A_Explode(1, 32)
-			VE31 H 2 Bright A_Fire
+			VE31 H 2 A_Fire
 			TNT1 A 0 A_Explode(1, 32)
-			VE31 G 2 Bright A_Fire
+			VE31 G 2 A_Fire
 			TNT1 A 0 A_Explode(1, 32)
-			VE31 H 2 Bright A_Fire
+			VE31 H 2 A_Fire
 			Stop
 	}
 }
@@ -525,15 +522,16 @@ ACTOR MMRandomizer_DFlare
 	Alpha 0.85
 	Projectile
 	+THRUGHOST
+	+BRIGHT
 	SeeSound "vdr/diabolus/firmfi"
 	DeathSound "vdr/diabolus/firex4"
 	States
 	{
 		Spawn:
-			VE31 IJ 3 Bright A_SpawnItemEx("MMRandomizer_MFlareFX", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			VE31 IJ 3 A_SpawnItemEx("MMRandomizer_MFlareFX", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
 			Loop
 		Death:
-			VE31 KLMNO 3 Bright
+			VE31 KLMNO 3
 			Stop
 	}
 }
@@ -557,6 +555,7 @@ Actor MMRandomizer_DTracer
 	+SEEKERMISSILE
 	+FLOORHUGGER
 	+THRUGHOST
+	+BRIGHT
 	-NOGRAVITY
 	Seesound "vdr/diabolus/diasht"
 	DeathSound "vdr/diabolus/firex3"
@@ -565,28 +564,27 @@ Actor MMRandomizer_DTracer
 		Spawn:
 			TNT1 A 1 A_SeekerMissile(10, 15)
 			TNT1 A 0 A_Countdown
-			TNT1 A 0 A_SpawnItemEx("MMRandomizer_DTracerPuff", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_DTracerPuff")
 			Loop
 		Death:
-			VE32 K 4 Bright
-			VE32 L 4 Bright A_Explode(64, 64)
-			VE32 MNO 3 Bright
+			VE32 K 4
+			VE32 L 4 A_Explode(64, 64)
+			VE32 MNO 3
 			Stop
 	}
 }
 
 Actor MMRandomizer_MFlareFX
 {
-	Radius 0
-	Height 1
-	Speed 0
-	Projectile
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+BRIGHT
 	RenderStyle Add
 	Alpha 0.67
 	States
 	{
 		Spawn:
-			VE32 PQRSTU 4 Bright
+			VE32 PQRSTU 4
 			Stop
 	}
 }
@@ -602,10 +600,11 @@ Actor MMRandomizer_DTracerPuff
 	Projectile
 	+FLOORHUGGER
 	-NOGRAVITY
+	+BRIGHT
 	States
 	{
 		Spawn:
-			VE32 ABCDEFGHIJ 3 Bright A_Explode(4, 8)
+			VE32 ABCDEFGHIJ 3 A_Explode(4, 8)
 			stop
 	}
 }

@@ -1,81 +1,75 @@
 ACTOR MMRandomizer_MechDemon : DoomDemon3
-{ 
-    Health 250
-    Speed 12 
-    Height 56
-    Radius 30
-    Mass 400
-    PainChance 180
-    Meleedamage 5 
-    ReactionTime 8 
-    Monster
-    +FLOORCLIP
+{
+	Health 250
+	Speed 12
+	PainChance 180
+	MeleeDamage 5
+	ReactionTime 8
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "ElectricBolt", 2.0
-	DamageFactor "PoisonBolt", 0.5		
-    SeeSound "VDR/mechdemon/sight"
-    PainSound "VDR/mechdemon/pain"
-    DeathSound "VDR/mechdemon/death"
-    ActiveSound "VDR/mechdemon/active"
-    //MeleeSound "VDR/mechdemon/melee"
-    HitObituary "%o was chewed up and spat out by a Mech-demon." 
+	DamageFactor "PoisonBolt", 0.5
+	SeeSound "VDR/mechdemon/sight"
+	PainSound "VDR/mechdemon/pain"
+	DeathSound "VDR/mechdemon/death"
+	ActiveSound "VDR/mechdemon/active"
+	//MeleeSound "VDR/mechdemon/melee"
+	HitObituary "%o was chewed up and spat out by a Mech-demon."
 	Tag "Mech Demon"
-    States 
-    { 
+	States
+	{
 		Spawn:
 			VD47 A 0
 			VD47 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			VD47 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			VD47 A 0 A_GiveInventory("AlreadySpawned",1)
 			VD47 A 0
-		Spawn2: 
-		   VD45 AB 10 A_Look
-		   Loop 
-		See: 
-		   VD45 A 0 A_PlaySound("VDR/mechdemon/walk")
-		   VD45 AABB 2 A_Chase
-		   VD45 C 0 A_PlaySound("VDR/mechdemon/walk")
-		   VD45 CCDD 2 A_Chase
-		   Loop 
-		Melee: 
-		   VD45 E 0 A_PlaySound("VDR/mechdemon/melee")
-		   VD45 EF 8 A_FaceTarget
-		   VD45 G 8 A_MeleeAttack
-		   Goto See 
-		Pain: 
-		   VD45 H 2
-		   VD45 H 2 A_Pain
-		   Goto See
+		Spawn2:
+			VD45 AB 10 A_Look
+			Loop
+		See:
+			TNT1 A 0 A_PlaySound("VDR/mechdemon/walk")
+			VD45 AABB 2 A_Chase
+			TNT1 A 0 A_PlaySound("VDR/mechdemon/walk")
+			VD45 CCDD 2 A_Chase
+			Loop
+		Melee:
+			TNT1 A 0 A_PlaySound("VDR/mechdemon/melee")
+			VD45 EF 8 A_FaceTarget
+			VD45 G 8 A_MeleeAttack
+			Goto See
+		Pain:
+			VD45 H 2
+			VD45 H 2 A_Pain
+			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
 			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			VD45 H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			VD45 H 16 A_Pain
-			Goto See	
+			Goto See
 		Pain.DoomDamageTypeStunner:
 			VD45 H 2 A_ChangeFlag("NOPAIN",true)
 			VD45 H 300 A_Pain
 			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
-			goto See			
-		Death: 
-		   TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-		   TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		   VD45 I 8 
-		   VD45 I 0 A_FaceTarget
-		   VD45 J 0 A_SpawnItemEx("MMRandomizer_MechDemonArm", 10, 0, 32, 0, 8, 0, 0, SXF_CLIENTSIDE)
-		   VD45 J 8 A_Scream
-		   VD45 K 4 
-		   VD45 L 4 A_NoBlocking
-		   VD45 M 4 
-		   VD45 N -1 
-		   Stop 
-		Raise: 
-		   VD45 A 0
-		   "####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-		   VD45 NMLKJI 5 
-		   Goto See 
+			goto See
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			VD45 I 8 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_SpawnItemEx("MMRandomizer_MechDemonArm", 10, 0, 32, 0, 8, 0, 0, SXF_CLIENTSIDE)
+			VD45 J 8 A_Scream
+			VD45 K 4
+			VD45 L 4 A_NoBlocking
+			VD45 M 4
+			VD45 N -1
+			Stop
+		Raise:
+			VD45 A 0
+			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+			VD45 NMLKJI 5
+			Goto See
 		ZorchRaise:
 			"####" "#" 1 A_UnsetShootable
 			"####" "#" 1 A_SpawnItem("SpawnFire2")
@@ -92,7 +86,7 @@ ACTOR MMRandomizer_MechDemon : DoomDemon3
 			"####" "#" 3 A_SetTranslucent(0.9,0)
 			"####" "#" 3 A_SetTranslucent(1,0)
 			"####" "#" 1 A_SetShootable
-			Goto See	
+			Goto See
 		Pain.ShrinkerDMG:
 			VD45 H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -143,7 +137,7 @@ ACTOR MMRandomizer_MechDemon : DoomDemon3
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -174,7 +168,7 @@ ACTOR MMRandomizer_MechDemon : DoomDemon3
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
@@ -189,8 +183,8 @@ ACTOR MMRandomizer_MechDemon : DoomDemon3
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A 1
-			Stop		   
-		} 
+			Stop
+		}
 }
 
 actor MMRandomizer_MechDemon_Shrink : MMRandomizer_MechDemon
@@ -310,9 +304,9 @@ actor MMRandomizer_MechDemon_Shrink : MMRandomizer_MechDemon
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -340,7 +334,7 @@ actor MMRandomizer_MechDemon_ShrinkEffect : MMRandomizer_MechDemon
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -376,8 +370,8 @@ ACTOR MMRandomizer_MechDemonArm
 	Speed 8
 	+DOOMBOUNCE
 	+DROPOFF
-	+Missile
-    States
+	+MISSILE
+	States
 	{
 		Spawn:
 			VD45 OPQRSTUV 2
@@ -387,4 +381,3 @@ ACTOR MMRandomizer_MechDemonArm
 			Loop
 	}
 }
-

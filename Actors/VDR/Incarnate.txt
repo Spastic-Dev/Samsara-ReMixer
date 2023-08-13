@@ -1,15 +1,10 @@
 ACTOR MMRandomizer_Incarnate : Revenant3
 {
 	Health 500
-	Radius 20
-	Height 56
-	Mass 500
 	Speed 12
 	MeleeDamage 7
 	PainChance 64
 	GibHealth 100
-	Monster
-	+FLOORCLIP
 	+SHORTMISSILERANGE
 	+DONTHARMCLASS
 	Obituary "%o was killed by an Incarnate's glare."
@@ -365,11 +360,12 @@ ACTOR MMRandomizer_DIPuff
 	+NOGRAVITY
 	+RANDOMIZE
 	+PUFFONACTORS
+	+BRIGHT
 	Renderstyle Add
 	States
 	{
 		Spawn:
-			VE30 ABCDE 3 Bright
+			VE30 ABCDE 3
 			Stop
 	}
 }

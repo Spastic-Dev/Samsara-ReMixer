@@ -657,19 +657,19 @@ Actor MMRandomizer_ArchonComet
 	Scale 1.0
 	Projectile
 	+THRUGHOST
+	+BRIGHT
 	SeeSound "vdr/firbfi"
 	DeathSound "vdr/hellex"
-	DontHurtShooter
 	DamageType Fire
 	States
 	{
 		Spawn:
-			VE37 AAAABBBBCCCC 1 Bright A_SpawnItemEx("MMRandomizer_ArchonCometTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			VE37 AAAABBBBCCCC 1 A_SpawnItemEx("MMRandomizer_ArchonCometTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			Loop
 		Death:
-			VE37 J 3 Bright A_SetTranslucent (0.67,1)
-			VE37 K 3 Bright A_Explode(128,SXF_CLIENTSIDE,0)
-			VE37 LMN 3 Bright
+			VE37 J 3 A_SetTranslucent (0.67,1)
+			VE37 K 3 A_Explode(128,128,0)
+			VE37 LMN 3
 			Stop
 	}
 }
@@ -680,30 +680,29 @@ Actor MMRandomizer_ArchonSoul
 	Height 1
 	Speed 3
 	Projectile
+	+BRIGHT
 	RenderStyle Add
 	Alpha 0.80
 	States
 	{
 		Spawn:
-			VE37 OPQR 6 Bright
+			VE37 OPQR 6
 			Stop
 	}
 }
 
 Actor MMRandomizer_ArchonCometTrail
 {
-	Radius 3
-	Height 3
 	Scale 0.75
-	Speed 0
-	Projectile
 	RenderStyle Add
 	Alpha 0.67
+	+BRIGHT
+	+NOINTERACTION
 	States
 	{
 		Spawn:
 			TNT1 A 3
-			VE37 DEFGHI 3 Bright
+			VE37 DEFGHI 3
 			Stop
 	}
 }

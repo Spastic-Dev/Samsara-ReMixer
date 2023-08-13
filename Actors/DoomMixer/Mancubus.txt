@@ -337,6 +337,7 @@ ACTOR FatShot_Samsara : FatShot
 {
 	+THRUGHOST
 	+FIREDAMAGE
+	+BRIGHT
 	RenderStyle Normal
 	SeeSound "doom/fatso/attack"
 	DeathSound "doom/fatso/shotx"
@@ -344,12 +345,12 @@ ACTOR FatShot_Samsara : FatShot
 	States
 	{
 	Spawn:
-		DMP2 FG 4 Bright
+		DMP2 FG 4
 		Loop
 	Death:
-		MIS2 B 8 Bright
-		MIS2 C 6 Bright
-		MIS2 D 4 Bright
+		MIS2 B 8
+		MIS2 C 6
+		MIS2 D 4
 		Stop
 	}
 }

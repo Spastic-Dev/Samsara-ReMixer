@@ -1,12 +1,7 @@
 actor MMRandomizer_Phantasm : LostSoul3
 {
 	Health 50
-	Radius 16
-	Height 56
-	Mass 50
 	Speed 10
-	Damage 3
-	PainChance 256
 	+FLOAT
 	+NOGRAVITY
 	+DONTFALL
@@ -17,16 +12,15 @@ actor MMRandomizer_Phantasm : LostSoul3
 	Obituary "%o was smoked by a Phantasm."
 	Tag "Phantasm"
 	Species "SamsaraPhantasm"
-	DamageFactor "LostSoul64Explosion", 0
 	States
 	{
 		Spawn:
 			VD64 A 0 bright
 			VD64 A 1 bright A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			VD64 A 1 bright ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
-			VD64 A 0 A_GiveInventory("AlreadySpawned",1)
-			VD64 A 0 A_GiveInventory("IsAFlyingActor")
-			VD64 A 0
+			VD64 A 0 bright A_GiveInventory("AlreadySpawned",1)
+			VD64 A 0 bright A_GiveInventory("IsAFlyingActor")
+			VD64 A 0 bright
 		Spawn2:
 			TNT1 A 0 A_GiveInventory("IsAFlyingActor")
 		Spawn3:
@@ -86,6 +80,7 @@ Actor MMRandomizer_PhantasmPuff
 {
 	+NOBLOCKMAP
 	+NOGRAVITY
+	+CLIENTSIDEONLY
 	+ALLOWPARTICLES
 	+RANDOMIZE
 	RenderStyle Translucent
