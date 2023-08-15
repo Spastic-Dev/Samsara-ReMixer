@@ -39,6 +39,7 @@ ACTOR ClericBoss3 : SamsaraMonsterRemixClericBoss
 	PainSound "BossClericPain"
 	DeathSound "ClericBossDeath"
 	ActiveSound "BossClericActive"
+    Obituary "$OB_CBOSS"
 	-BOSSDEATH
 	-BOSS
 	+DONTRIP
@@ -62,14 +63,14 @@ ACTOR ClericBoss3 : SamsaraMonsterRemixClericBoss
 	See2:
 		CLBS ABCD 4 A_FastChase
 		Loop	
+	Melee:
 	Missile:
 		CLBS EF 8 A_FaceTarget
-		TNT1 A 0 A_PlaySound("HolySymbolFire")
+		TNT1 A 0 A_PlaySound("HolySymbolFire",CHAN_WEAPON)
 		TNT1 A 0 A_CustomMissile("HolySpiritTraductus_Mix")
 		TNT1 A 0 A_CustomMissile("HolySpiritTraductus2_Mix")
 		TNT1 A 0 A_CustomMissile("HolySpiritTraductus3_Mix")
-		TNT1 A 0 A_CustomMissile("HolySpiritTraductus4_Mix")
-		CLBS G 10
+		CLBS G 10 A_CustomMissile("HolySpiritTraductus4_Mix")
 		goto See2
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -159,16 +160,6 @@ ACTOR ClericBoss3 : SamsaraMonsterRemixClericBoss
 		CBRN V 4 Bright
 		TNT1 A -1 A_KillMaster
 		Stop	
-	Melee:
-	Missile:
-		CLBS EF 8 A_FaceTarget
-		TNT1 A 0 A_PlaySound("HolySymbolFire")
-		TNT1 A 0 A_CustomMissile("HolySpiritTraductus_Mix")
-		TNT1 A 0 A_CustomMissile("HolySpiritTraductus2_Mix")
-		TNT1 A 0 A_CustomMissile("HolySpiritTraductus3_Mix")
-		TNT1 A 0 A_CustomMissile("HolySpiritTraductus4_Mix")
-		CLBS G 10
-		goto See2		
 	Pain.ShrinkerDMG:
 		CLBS H 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -436,153 +427,187 @@ actor Traductus_ShrinkEffect : ClericBoss3
 	}
 }
 
-
 actor HolySpiritTraductus_Mix : HolySpiritDM
 {
     Speed 10
     Damage (0)
-	DamageType ""
+    DamageType "WraithvergeEnemy"
     States
     {
-	Spawn:
-      SPIR PPPP 3 bright A_SpawnItemEx("HolyMissilePuff")
-	  TNT1 A 0 A_Explode(random(2,6), 2, 0)
-	Spawn2:
-	  TNT1 A 0 A_SetTranslucent(0.5,0)
-      SPIR A 1 A_SetAngle(-67.5)
-	  TNT1 A 0 ThrustThing(angle*256/360, 6, 0, 0)
-    Spawn3:
-	  TNT1 A 0 A_Jump(20,"Scream")
-    Idle:
-      TNT1 A 0 A_JumpIfInventory("WraithvergeGhostCount",26,"Death")
-      TNT1 A 0 A_GiveInventory("WraithvergeGhostCount",1)
-      TNT1 A 0 A_CStaffMissileSlither
-      SPIR A 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-      TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-      TNT1 A 0 A_CStaffMissileSlither
-      SPIR A 2 A_MStaffTrack//A_CHolySeek
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-      TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-      TNT1 A 0 A_CStaffMissileSlither
-      SPIR B 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-      TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-      TNT1 A 0 A_CStaffMissileSlither
-      SPIR B 2 A_MStaffTrack//A_CHolyCheckScream
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-      TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-      goto Spawn3
+      Spawn:
+        SPIR PPPP 3 Bright A_SpawnItemEx("HolyMissilePuff")
+        TNT1 A 0 A_Explode(random(2,6),2,0)
+        goto SpawnSpiritInit
+
+      SpawnSpiritLoop1:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop2
+
+      SpawnSpiritLoop2:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop3
+
+      SpawnSpiritLoop3:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop4
+
+      SpawnSpiritLoop4:
+        TNT1 A 0 A_Jump(20,1)
+        goto SpawnSpiritLoop4Start
+        TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE)
+        goto SpawnSpiritLoop4Start
+
+      SpawnSpiritLoop4Start:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolyCheckScream
+        TNT1 A 0 A_JumpIfInventory("SamsaraHexenWraithvergeGhostTimer",0,"TimeOut")
+        TNT1 A 0 A_GiveInventory("SamsaraHexenWraithvergeGhostTimer")
+        goto SpawnSpiritLoop1
     }
 }
 
 actor HolySpiritTraductus2_Mix : HolySpiritDM2
 {
-	Speed 10
-	Damage (0)
-	DamageType ""
-	States
-	{
-	Spawn:
-      TNT1 A 12 //Bright A_SpawnItemEx("HolyMissilePuff")
-    Spawn2:
-	  TNT1 A 0 A_SetTranslucent(0.5,0)
-      SPIR A 1 A_SetAngle(67.5)
-	  TNT1 A 0 ThrustThing(angle*256/360, 6, 0, 0)
-	  goto Spawn3
-	Idle:
-	  TNT1 A 0 A_JumpIfInventory("WraithvergeGhostCount",26,"Death")
-	  TNT1 A 0 A_GiveInventory("WraithvergeGhostCount",1)
-	  TNT1 A 0 A_CStaffMissileSlither
-      SPIR A 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-	  SPIR A 2 A_MStaffTrack//A_CHolySeek
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-	  SPIR B 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-      SPIR B 2 A_MStaffTrack//A_CHolyCheckScream
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-      goto Spawn3
-	}
+    Speed 10
+    Damage (0)
+    DamageType "WraithvergeEnemy"
+    States
+    {
+      SpawnSpiritLoop1:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop2
+
+      SpawnSpiritLoop2:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop3
+
+      SpawnSpiritLoop3:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop4
+
+      SpawnSpiritLoop4:
+        TNT1 A 0 A_Jump(20,1)
+        goto SpawnSpiritLoop4Start
+        TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE)
+        goto SpawnSpiritLoop4Start
+
+      SpawnSpiritLoop4Start:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolyCheckScream
+        TNT1 A 0 A_JumpIfInventory("SamsaraHexenWraithvergeGhostTimer",0,"TimeOut")
+        TNT1 A 0 A_GiveInventory("SamsaraHexenWraithvergeGhostTimer")
+        goto SpawnSpiritLoop1
+    }
 }
 
 actor HolySpiritTraductus3_Mix : HolySpiritDM3
 {
-	Speed 10
-	Damage (0)
-	DamageType ""
-	States
-	{
-	Spawn:
-      TNT1 A 12 //Bright A_SpawnItemEx("HolyMissilePuff")
-    Spawn2:
-	  TNT1 A 0 A_SetTranslucent(0.5,0)
-      SPIR A 1 A_SetAngle(-135)
-	  TNT1 A 0 ThrustThing(angle*256/360, 6, 0, 0)
-	  goto Spawn3
-	Idle:
-	  TNT1 A 0 A_JumpIfInventory("WraithvergeGhostCount",26,"Death")
-	  TNT1 A 0 A_GiveInventory("WraithvergeGhostCount",1)
-	  TNT1 A 0 A_CStaffMissileSlither
-      SPIR A 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-	  SPIR A 2 A_MStaffTrack//A_CHolySeek
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-	  SPIR B 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-      SPIR B 2 A_MStaffTrack//A_CHolyCheckScream
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-      goto Spawn3
-	}
+    Speed 10
+    Damage (0)
+    DamageType "WraithvergeEnemy"
+    States
+    {
+      SpawnSpiritLoop1:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop2
+
+      SpawnSpiritLoop2:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop3
+
+      SpawnSpiritLoop3:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop4
+
+      SpawnSpiritLoop4:
+        TNT1 A 0 A_Jump(20,1)
+        goto SpawnSpiritLoop4Start
+        TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE)
+        goto SpawnSpiritLoop4Start
+
+      SpawnSpiritLoop4Start:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolyCheckScream
+        TNT1 A 0 A_JumpIfInventory("SamsaraHexenWraithvergeGhostTimer",0,"TimeOut")
+        TNT1 A 0 A_GiveInventory("SamsaraHexenWraithvergeGhostTimer")
+        goto SpawnSpiritLoop1
+    }
 }
 
 actor HolySpiritTraductus4_Mix : HolySpiritDM4
 {
-	Speed 10
-	Damage (0)
-	DamageType ""
-	States
-	{
-	Spawn:
-      TNT1 A 12 //Bright A_SpawnItemEx("HolyMissilePuff")
-    Spawn2:
-	  TNT1 A 0 A_SetTranslucent(0.5,0)
-      SPIR A 1 A_SetAngle(135)
-	  TNT1 A 0 ThrustThing(angle*256/360, 6, 0, 0)
-	  goto Spawn3
-	Idle:
-	  TNT1 A 0 A_JumpIfInventory("WraithvergeGhostCount",26,"Death")
-	  TNT1 A 0 A_GiveInventory("WraithvergeGhostCount",1)
-	  TNT1 A 0 A_CStaffMissileSlither
-      SPIR A 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-	  SPIR A 2 A_MStaffTrack//A_CHolySeek
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-	  SPIR B 2 A_MStaffTrack//A_CHolySeek
-      TNT1 A 0 A_Explode(random(1,1), 2, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-	  TNT1 A 0 A_CStaffMissileSlither
-      SPIR B 2 A_MStaffTrack//A_CHolyCheckScream
-      //TNT1 A 0 A_Explode(random(1,1), 4, 0)
-	  TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,128) //ThrustThing(angle*256/360, 4, 0, 0)
-      goto Spawn3
-	}
+    Speed 10
+    Damage (0)
+    DamageType "WraithvergeEnemy"
+    States
+    {
+      SpawnSpiritLoop1:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop2
+
+      SpawnSpiritLoop2:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR A 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop3
+
+      SpawnSpiritLoop3:
+        //TNT1 A 0 A_Explode(1,4,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolySeek
+        goto SpawnSpiritLoop4
+
+      SpawnSpiritLoop4:
+        TNT1 A 0 A_Jump(20,1)
+        goto SpawnSpiritLoop4Start
+        TNT1 A 0 A_PlaySound("SpiritActive",CHAN_VOICE)
+        goto SpawnSpiritLoop4Start
+
+      SpawnSpiritLoop4Start:
+        TNT1 A 0 A_Explode(1,2,0)
+        TNT1 A 0 A_SpawnItemEx("HolyMissilePuff2",0,0,-6,0,0,0,0,SXF_CLIENTSIDE) //ThrustThing(angle*256/360,4,0,0)
+        TNT1 A 0 A_Weave(random(0,4),random(0,4),2,1)
+        SPIR B 2 Bright A_SeekerMissile(2,10,SMF_LOOK) //A_CHolyCheckScream
+        TNT1 A 0 A_JumpIfInventory("SamsaraHexenWraithvergeGhostTimer",0,"TimeOut")
+        TNT1 A 0 A_GiveInventory("SamsaraHexenWraithvergeGhostTimer")
+        goto SpawnSpiritLoop1
+    }
 }
