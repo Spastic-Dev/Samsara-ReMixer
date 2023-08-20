@@ -101,8 +101,16 @@ Script "Hiero_InflictCurse" (void)
 }
 
 // Death Incarnate ressurection script, moved into ACS to allow the timer to run on infinite duration states.
-script "DeathIncarnateRaise" (void)
+script "DeathIncarnateRaise" (int maxRaises, int chanceRaise)
 {
+	if(GetUserVariable(0, "user_self_raise_count") >= maxRaises || random(1,100) > chanceRaise)
+	{
+		SetUserVariable(0, "user_self_raise_count", 0);
+		terminate;
+	}
+
+	SetActorState(0, "SetNonRespawnable", true);
+
 	int waitTimeMultiplier = 5;
 	int multiplierChance = random(0,127);
 
@@ -111,7 +119,7 @@ script "DeathIncarnateRaise" (void)
 	else if(multiplierChance >= 9) { waitTimeMultiplier = 2; }
 	else if(multiplierChance >= 6) { waitTimeMultiplier = 1; }
 
-	for (int waitTime = 5 * waitTimeMultiplier * INCARNATE_WAIT_TIME; waitTime > 0; waitTime -= INCARNATE_WAIT_TIME)
+	for(int waitTime = 5 * waitTimeMultiplier * INCARNATE_WAIT_TIME; waitTime > 0; waitTime -= INCARNATE_WAIT_TIME)
 	{
 		if(!(ClassifyActor(0) & ACTOR_DEAD))
 		{
@@ -121,10 +129,17 @@ script "DeathIncarnateRaise" (void)
 		Delay(INCARNATE_WAIT_TIME);
 	}
 
+	int selfRaiseCount = GetUserVariable(0, "user_self_raise_count");
+
 	Thing_Raise(0);
 
-	if(ClassifyActor(0) == ACTOR_DEAD)
+	if(ClassifyActor(0) & ACTOR_DEAD)
 	{
+		SetUserVariable(0, "user_self_raise_count", 0);
 		SetActorState(0, "SetRespawnable", true);
+	}
+	else
+	{
+		SetUserVariable(0, "user_self_raise_count", selfRaiseCount + 1);
 	}
 }

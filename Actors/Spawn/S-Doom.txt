@@ -1,6 +1,7 @@
 ACTOR ZombiemanSpawner : ReMixerBaseSpawner replaces Zombieman
 {
 	Height 56
+	Mass 100
 	Radius 20
 	SpawnID 4
 	States
@@ -16,6 +17,7 @@ ACTOR ZombiemanSpawnerGenerator : ZombiemanSpawner {}
 ACTOR ShotgunGuySpawner : ReMixerBaseSpawner replaces ShotgunGuy
 {
 	Height 56
+	Mass 100
 	Radius 20
 	SpawnID 1
 	States
@@ -31,6 +33,7 @@ ACTOR ShotgunGuySpawnerGenerator : ShotgunGuySpawner {}
 ACTOR DoomImpSpawner : ReMixerBaseSpawner replaces DoomImp
 {
 	Height 56
+	Mass 100
 	Radius 20
 	SpawnID 5
 	States
@@ -46,6 +49,7 @@ ACTOR DoomImpSpawnerGenerator : DoomImpSpawner {}
 ACTOR ChaingunGuySpawner : ReMixerBaseSpawner replaces ChaingunGuy
 {
 	Height 56
+	Mass 100
 	Radius 20
 	SpawnID 2
 	States
@@ -60,8 +64,6 @@ ACTOR ChaingunGuySpawnerGenerator : ChaingunGuySpawner {}
 
 ACTOR SuperShotgunGuySpawner : ShotgunGuySpawner replaces SuperShotgunGuy
 {
-	Height 56
-	Radius 20
 	States
 	{
 		Initialize:
@@ -77,6 +79,7 @@ ACTOR SuperShotgunGuySpawnerGenerator : SuperShotgunGuySpawner {}
 ACTOR DemonSpawner : ReMixerBaseSpawner replaces Demon
 {
 	Height 56
+	Mass 400
 	Radius 30
 	SpawnID 8
 	States
@@ -91,8 +94,6 @@ ACTOR DemonSpawnerGenerator : DemonSpawner {}
 
 ACTOR DarkImpSpawner : DoomImpSpawner replaces DarkImp
 {
-	Height 56
-	Radius 20
 	-COUNTKILL
 	States
 	{
@@ -108,8 +109,6 @@ ACTOR DarkImpSpawnerGenerator : DarkImpSpawner {}
 
 ACTOR SpectreSpawner : ReMixerBaseSpawner replaces Spectre
 {
-	Height 56
-	Radius 30
 	SpawnID 9
 	States
 	{
@@ -123,8 +122,6 @@ ACTOR SpectreSpawnerGenerator : SpectreSpawner {}
 
 ACTOR BloodDemonSpawner : DemonSpawner replaces BloodDemon
 {
-	Height 56
-	Radius 30
 	States
 	{
 		Initialize:
@@ -140,6 +137,7 @@ ACTOR BloodDemonSpawnerGenerator : BloodDemonSpawner {}
 ACTOR LostSoulSpawner : ReMixerBaseSpawner replaces LostSoul
 {
 	Height 56
+	Mass 50
 	Radius 16
 	SpawnID 110
 	+NOGRAVITY
@@ -156,6 +154,7 @@ ACTOR LostSoulSpawnerGenerator : LostSoulSpawner {}
 ACTOR CacodemonSpawner : ReMixerBaseSpawner replaces Cacodemon
 {
 	Height 56
+	Mass 400
 	Radius 31
 	SpawnID 19
 	+NOGRAVITY
@@ -172,6 +171,7 @@ ACTOR CacodemonSpawnerGenerator : CacodemonSpawner {}
 ACTOR RevenantSpawner : ReMixerBaseSpawner replaces Revenant
 {
 	Height 56
+	Mass 500
 	Radius 20
 	SpawnID 20
 	States
@@ -186,8 +186,6 @@ ACTOR RevenantSpawnerGenerator : RevenantSpawner {}
 
 ACTOR CacolanternSpawner : CacodemonSpawner replaces Cacolantern
 {
-	Height 56
-	Radius 31
 	States
 	{
 		Initialize:
@@ -203,6 +201,7 @@ ACTOR CacolanternSpawnerGenerator : CacolanternSpawner {}
 ACTOR PainElementalSpawner : ReMixerBaseSpawner replaces PainElemental
 {
 	Height 56
+	Mass 400
 	Radius 31
 	SpawnID 115
 	+NOGRAVITY
@@ -219,6 +218,7 @@ ACTOR PainElementalSpawnerGenerator : PainElementalSpawner {}
 ACTOR HellKnightSpawner : ReMixerBaseSpawner replaces HellKnight
 {
 	Height 64
+	Mass 1000
 	Radius 24
 	SpawnID 113
 	States
@@ -234,6 +234,7 @@ ACTOR HellKnightSpawnerGenerator : HellKnightSpawner { -BOSSDEATH }
 ACTOR ArachnotronSpawner : ReMixerBaseSpawner replaces Arachnotron
 {
 	Height 64
+	Mass 600
 	Radius 64
 	SpawnID 6
 	+BOSSDEATH
@@ -255,6 +256,7 @@ ACTOR ArachnotronSpawnerGenerator : ArachnotronSpawner { -BOSSDEATH }
 ACTOR FatsoSpawner : ReMixerBaseSpawner replaces Fatso
 {
 	Height 64
+	Mass 1000
 	Radius 48
 	SpawnID 112
 	+BOSSDEATH
@@ -275,8 +277,6 @@ ACTOR FatsoSpawnerGenerator : FatsoSpawner { -BOSSDEATH }
 
 ACTOR AbaddonSpawner : CacodemonSpawner replaces Abaddon
 {
-	Height 56
-	Radius 31
 	States
 	{
 		Initialize:
@@ -292,6 +292,7 @@ ACTOR AbaddonSpawnerGenerator : AbaddonSpawner {}
 ACTOR ArchvileSpawner : ReMixerBaseSpawner replaces Archvile
 {
 	Height 56
+	Mass 500
 	Radius 20
 	SpawnID 111
 	+BOSSDEATH
@@ -313,6 +314,7 @@ ACTOR ArchvileSpawnerGenerator : ArchvileSpawner { -BOSSDEATH }
 ACTOR BaronOfHellSpawner : ReMixerBaseSpawner replaces BaronOfHell
 {
 	Height 64
+	Mass 1000
 	Radius 24
 	SpawnID 3
 	+BOSSDEATH
@@ -333,8 +335,6 @@ ACTOR BaronOfHellSpawnerGenerator : BaronOfHellSpawner { -BOSSDEATH }
 
 ACTOR HectebusSpawner : FatsoSpawner replaces Hectebus
 {
-	Height 64
-	Radius 48
 	States
 	{
 		Initialize:
@@ -349,8 +349,6 @@ ACTOR HectebusSpawnerGenerator : HectebusSpawner {}
 
 ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor
 {
-	Height 64
-	Radius 24
 	-BOSSDEATH
 	States
 	{
@@ -367,6 +365,7 @@ ACTOR BelphegorSpawnerGenerator : BelphegorSpawner {}
 ACTOR SpiderMastermindSpawner : ReMixerBaseSpawner replaces SpiderMastermind
 {
 	Height 100
+	Mass 1000
 	Radius 100
 	SpawnID 7
 	+BOSSDEATH
@@ -388,6 +387,7 @@ ACTOR SpiderMastermindSpawnerGenerator : SpiderMastermindSpawner { -BOSSDEATH }
 ACTOR CyberDemonSpawner : ReMixerBaseSpawner replaces CyberDemon
 {
 	Height 110
+	Mass 1000
 	Radius 40
 	SpawnID 114
 	+BOSSDEATH
@@ -409,6 +409,7 @@ ACTOR CyberDemonSpawnerGenerator : CyberDemonSpawner { -BOSSDEATH }
 ACTOR WolfensteinSSSpawner : ReMixerBaseSpawner replaces WolfensteinSS
 {
 	Radius 20
+	Mass 100
 	Height 56
 	SpawnID 116
 	+BOSSDEATH
