@@ -88,11 +88,7 @@ Script "ReMixerInit" OPEN //667
 	if (GetCvar("samsara_currentgame") == 16)
 	{
 		SetFont("CMPSDOOM");
-		HudMessage(s:"ReMixer is incompatible with Strife: Quest for the Sigil.\n
-		Strife's gameplay mechanics make it very difficult to get ReMixer\n
-		working while retaining the role-playing elements for every character.";
-		HUDMSG_TYPEON | HUDMSG_LOG, 0, CR_WHITE, 1.5, 0.8, 5.0,
-		0.05, 2.0);
+		HudMessage(l:"REMIXER_INCOMPATIBILITY_1"; HUDMSG_TYPEON | HUDMSG_LOG, 0, CR_WHITE, 1.5, 0.8, 5.0, 0.05, 2.0);
 	}
 
 	Thing_Remove(incompatibilityReMixerTid);
