@@ -80,7 +80,7 @@ Actor MMRandomizer_CyberKnight : SamsaraMonsterMechanicalLargeTotalGib
 			VD58 K 6 Bright A_Scream
 			VD58 LMN 6 Bright
 			VD58 O 6 Bright A_NoBlocking
-			VD58 QR 6 Bright
+			VD58 PQR 6 Bright
 			VD58 S 6
 			VD58 T -1
 			Stop
@@ -149,11 +149,9 @@ Actor MMRandomizer_CyberKnight : SamsaraMonsterMechanicalLargeTotalGib
 			TNT1 A 2 A_JumpIfInventory("MasterDeadToken",1,"ShrunkDie")
 			loop
 		ShrunkDie:
-			TNT1 A 0
 			TNT1 A 1 A_Die("Shrink")
 			stop
 		Death.Shrink:
-			TNT1 A 0
 			TNT1 A 1 A_KillMaster
 			stop
 		Death.ExpanderDMG:
@@ -410,7 +408,7 @@ Actor MMRandomizer_BruiserMissile
 	Projectile
 	RenderStyle Normal
 	SeeSound "VDR/brufir"
-	DeathSound "weapons/hellex"
+	DeathSound "VDR/weapons/hellex"
 	+THRUGHOST
 	+FIREDAMAGE
 	+BRIGHT
@@ -421,9 +419,9 @@ Actor MMRandomizer_BruiserMissile
 			VE18 A 2 A_SpawnItemEx("MMRandomizer_BruiserTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 			Loop
 		Death:
-			VE18 D 6 A_SetTranslucent(0.67,1)
-			VE18 E 6 A_Explode(64,64,0)
-			VE18 F 6
+			VE25 C 6 A_SetTranslucent(0.67,1)
+			VE25 D 6 A_Explode(64,64,0)
+			VE25 E 6
 			Stop
 	}
 }
