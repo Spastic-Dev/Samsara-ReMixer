@@ -632,35 +632,7 @@ ACTOR OctabrainProjectileCy : OctabrainProjectile {	Speed 20 }
 
 Actor ProtozoidAttackOMG : Inventory { Inventory.Amount 1 Inventory.Maxamount 1 }
 
-ACTOR DukeBlood2 : Blood replaces DukeBlood
-{
-	+PUFFGETSOWNER
-	States
-	{
-		Spawn:
-			TNT1 AAA 0
-			TNT1 A 0 A_SpawnItemEx("Switchable_FlyingBlood",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION)
-			TNT1 A 0 A_SpawnItemEx("DukeJibs6",0,0,0,random(-350,350)/100.00,random(-350,350)/100.00,random(500,1000)/100.00,random(-180,180),SXF_TRANSFERTRANSLATION)
-			TNT1 A 0 A_FaceTarget
-			Goto Ray
-		Ray:
-			TNT1 A 0 A_Jump(184,"Ray_NoSlide")
-			TNT1 A 0 A_Jump(128,"Quit")
-			TNT1 A 0 A_Jump(160,1,2,3,4,5)
-			TNT1 AAAAA 0 A_CustomMissile("DukeBlood_Ray", 0, 0, angle + random(-2,2),CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH,pitch + random(-2,2))
-			Goto Quit
-		Ray_NoSlide:
-			TNT1 A 0 A_Jump(184,"Quit")
-			TNT1 A 0 A_Jump(160,1,2,3,4,5)
-			TNT1 AAAAA 0 A_CustomMissile("DukeBlood_Ray_NoSlide", 0, 0, angle + random(-2,2),CMF_ABSOLUTEANGLE|CMF_ABSOLUTEPITCH,pitch + random(-2,2))
-			Goto Quit
-		Quit:
-			TNT1 A 0
-			Stop
-	}
-}
-
-ACTOR DukeBloodAC : DukeBlood2
+ACTOR DukeBloodAC : DukeBlood
 {
 	States
 	{
@@ -672,7 +644,7 @@ ACTOR DukeBloodAC : DukeBlood2
 	}
 }
 
-ACTOR DukeBloodBoss : DukeBlood2
+ACTOR DukeBloodBoss : DukeBlood
 {
 	States
 	{
@@ -685,7 +657,7 @@ ACTOR DukeBloodBoss : DukeBlood2
 	}
 }
 
-ACTOR DukeBloodQueen : DukeBlood2
+ACTOR DukeBloodQueen : DukeBlood
 {
 	States
 	{
@@ -728,7 +700,7 @@ ACTOR QueenShrapnel1 : NewDukeGibs1
 	}
 }
 
-ACTOR ProDroneBlood : DukeBlood2
+ACTOR ProDroneBlood : DukeBlood
 {
 	+NOGRAVITY
 	Scale 0.65
