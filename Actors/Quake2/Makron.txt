@@ -416,38 +416,14 @@ Actor MakronBFGBall : BFG10KBall
 	ExplosionDamage 64
 	States
 	{
-	Spawn:
-		TNT1 A 1 NoDelay A_SpawnItem(BFG10KOrbitParticleSpawner)
-		TNT1 A 0 A_ChangeFlag(MISSILE,1)
-		TNT1 A 0 A_JumpIf(VelX==0&&VelY==0,"Death")
-		TNT1 A 0 A_PlaySound("Q2Weapons/BFG10KFly",1,0.66,1)
-		BFS1 ABAB 4 Bright
-		BFS1 AABB 2 Bright A_SpawnItem(MakronBFGBeamSpawner,0,0)
-		Goto Spawn+8
-	Death:
-		BFE1 A 5 Bright A_StopSound(1)
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		BFE1 B 5 Bright
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx(BFG10KExplosionParticle,0,0,0,random(-4,4),random(-4,4),random(-4,4),random(1,360))
-		TNT1 A 0 A_Explode
-		BFE1 C 5 Bright A_BFGSpray("BFGExtra",20,10)
-		TNT1 A 0 A_GiveInventory(Clip,1)
-		BFE1 DEF 5 Bright
-		Stop
+      SpawnCycle1:
+        BGS1 AABB 2 Bright A_SpawnItem(MakronBFGBeamSpawner,0,0)
+        loop
+
+      DeathExplode:
+        TNT1 A 0 A_Explode
+        TNT1 A 0 A_BFGSpray("BFG10KExtra",20,10)
+        goto DeathFinish
 	}
 }
 
@@ -457,7 +433,7 @@ ACTOR MakronBFGBeamSpawner : BFG10KBeamSpawner
 	States
 	{
 	Melee:
-		TNT1 A 1 A_CustomRailgun(Random(1,5),0,0,0,RGF_SILENT,1,0,"Q2BulletPuff",0,0,8129,0,4.5,0,"BFG10KBeamTrail",-4)
+		TNT1 A 1 A_CustomRailgun(Random(1,5),0,0,0,RGF_SILENT,1,0,"BFG10KBeamPuff",0,0,0,0,4.5,0,"BFG10KBeamTrail",-4)
 		Stop
 	}
 }
@@ -565,7 +541,7 @@ Actor Q2Jorg : Q2Makron
 		"----" A 3
 		JRG2 A 0 A_PlayWeaponSound("Q2Weapons/RailGunCharge")
 		JRG2 ABCDEFG 4 A_FaceTarget
-		JRG2 H 3 A_CustomRailgun(Random(40,80),5,"2F 67 7F","White",RGF_FULLBRIGHT,1,0,"Q2RailgunPuff",0,0,8129,35,1,1,None,3)
+		JRG2 H 3 A_CustomRailgun(Random(40,80),5,"2F 67 7F","White",RGF_FULLBRIGHT,1,0,"Q2RailgunPuff",0,0,0,35,1,1,None,3)
 		JRG2 IJKLMNOP 3 A_FaceTarget
 		Goto See
 	Pain:
