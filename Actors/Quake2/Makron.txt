@@ -422,8 +422,8 @@ Actor MakronBFGBall : BFG10KBall
         loop
 
       DeathExplode:
-        TNT1 A 0 A_Explode
-        TNT1 A 0 A_BFGSpray("BFG10KExtra",20,10)
+        BGE1 C 0 Bright A_Explode
+        BGE1 C 0 Bright A_BFGSpray("BFG10KExtra",20,10)
         goto DeathFinish
 	}
 }
