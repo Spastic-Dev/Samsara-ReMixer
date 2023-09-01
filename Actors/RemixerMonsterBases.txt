@@ -25,7 +25,6 @@ Actor SamsaraMonsterRemixDragon : Dragon
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -40,6 +39,9 @@ Actor SamsaraMonsterRemixDragon : Dragon
 			Wait
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -732,7 +734,6 @@ Actor SamsaraMonsterRemixFighterBoss : FighterBoss
 			TNT1 A 2 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.QuakeFire:
 		Death.FireExplosive:
@@ -745,6 +746,9 @@ Actor SamsaraMonsterRemixFighterBoss : FighterBoss
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -1398,7 +1402,6 @@ Actor SamsaraMonsterRemixClericBoss : ClericBoss
 			TNT1 A 2 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.QuakeFire:
 		Death.FireExplosive:
@@ -1411,6 +1414,9 @@ Actor SamsaraMonsterRemixClericBoss : ClericBoss
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -2064,7 +2070,6 @@ Actor SamsaraMonsterRemixMageBoss : MageBoss
 			TNT1 A 2 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.QuakeFire:
 		Death.FireExplosive:
@@ -2077,6 +2082,9 @@ Actor SamsaraMonsterRemixMageBoss : MageBoss
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -2680,7 +2688,6 @@ Actor SamsaraMonsterRemixProgrammer : Programmer
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -2693,6 +2700,9 @@ Actor SamsaraMonsterRemixProgrammer : Programmer
 		Death.DoomDamageTypeFire:
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
@@ -3070,7 +3080,6 @@ Actor SamsaraMonsterRemixStrifeBishop : StrifeBishop
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -3083,6 +3092,9 @@ Actor SamsaraMonsterRemixStrifeBishop : StrifeBishop
 		Death.DoomDamageTypeFire:
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
@@ -3460,7 +3472,6 @@ Actor SamsaraMonsterRemixLoremaster : Loremaster
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -3473,6 +3484,9 @@ Actor SamsaraMonsterRemixLoremaster : Loremaster
 		Death.DoomDamageTypeFire:
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
@@ -3842,7 +3856,6 @@ Actor SamsaraMonsterRemixAlienSpectre1 : AlienSpectre1
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -3855,6 +3868,9 @@ Actor SamsaraMonsterRemixAlienSpectre1 : AlienSpectre1
 		Death.DoomDamageTypeFire:
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
@@ -4764,7 +4780,6 @@ Actor SamsaraMonsterRemixSubEntity : EntitySecond
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -4777,6 +4792,9 @@ Actor SamsaraMonsterRemixSubEntity : EntitySecond
 		Death.DoomDamageTypeFire:
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottDisintegrate:
 			"####" "#" 0 A_ChangeFlag("SOLID", 0)
@@ -5379,7 +5397,6 @@ Actor SamsaraMonsterMarathonAlienSmall
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -5396,6 +5413,9 @@ Actor SamsaraMonsterMarathonAlienSmall
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -6508,7 +6528,6 @@ Actor SamsaraMonsterROTTHumanoidSmall
 			TNT1 A 2 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.QuakeFire:
 		Death.FireExplosive:
@@ -6521,6 +6540,9 @@ Actor SamsaraMonsterROTTHumanoidSmall
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -7494,7 +7516,6 @@ Actor SamsaraMonsterRemixEradPatrolEye
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -7511,6 +7532,9 @@ Actor SamsaraMonsterRemixEradPatrolEye
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -8154,7 +8178,6 @@ Actor SamsaraMonsterRemixEradRepairDroid
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -8169,6 +8192,9 @@ Actor SamsaraMonsterRemixEradRepairDroid
 			Wait
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -8836,7 +8862,6 @@ Actor SamsaraMonsterRemixEradRotoDroid
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -8853,6 +8878,9 @@ Actor SamsaraMonsterRemixEradRotoDroid
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
@@ -9815,7 +9843,6 @@ Actor SamsaraMonsterRemixCMAirCar
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -9828,6 +9855,9 @@ Actor SamsaraMonsterRemixCMAirCar
 		Death.DoomDamageTypeFire:
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottDisintegrate:
 			"####" "#" 0 A_StopSound(CHAN_BODY)
@@ -10212,7 +10242,6 @@ Actor SamsaraMonsterRemixDisrFlyingDroid
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -10225,6 +10254,9 @@ Actor SamsaraMonsterRemixDisrFlyingDroid
 		Death.DoomDamageTypeFire:
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottDisintegrate:
 			"####" "#" 0 A_StopSound(CHAN_BODY)
@@ -10614,7 +10646,6 @@ Actor SamsaraMonsterDFJerec
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -10626,6 +10657,9 @@ Actor SamsaraMonsterDFJerec
 		Death.RTCWFire:
 		Death.DoomDamageTypeFire:
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.DoomDamageTypeFireExplosive:
 			TNT1 A 0 A_Jump(128,2)
@@ -11850,7 +11884,6 @@ Actor SamsaraMonsterRemixRRBike
 		Death.TotenkopfFire:
 		Death.RottFire:
 		Death.WolfenFlamethrower:
-		Death.HexGreenFire:
 		Death.PGFire:
 		Death.MarathonFire:
 		Death.MarathonPlasmaFire:
@@ -11867,6 +11900,9 @@ Actor SamsaraMonsterRemixRRBike
 			TNT1 A 0 A_Jump(128,2)
 			TNT1 A 0 A_JumpIfHealthLower(-100,"XDeath")
 			TNT1 A -1 A_Jump(256,"Burn")
+			Wait
+		Death.HexGreenFire:
+			TNT1 A -1 ACS_NamedExecuteWithResult("HexenGreenFireDamage")
 			Wait
 		Death.RottExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath321")
