@@ -447,8 +447,8 @@ Actor Q2GladiatorBetaClass : Q2Gladiator
 			GLD1 R 8
 			GLD1 S 5 A_FaceTarget
 			GLD1 T 3
-			GLD1 U 2 A_CustomMissile("Q2PhalanxMissile",42,-8)
-			GLD1 U 2 A_CustomMissile("Q2PhalanxMissile",42,-4)
+			GLD1 U 2 A_CustomMissile("Q2PhalanxMissileGladiator",42,-8)
+			GLD1 U 2 A_CustomMissile("Q2PhalanxMissileGladiator",42,-4)
 			GLD1 VWXYZ 4
 			Goto See
 		Death:
@@ -707,22 +707,19 @@ Actor Q2GladiatorShield : BrainShield { Species "GladiatorProj" }
 }*/
 Actor Q2PhalanxMissileGladiator : Q2PhalanxMissile
 {
-	Speed 20
 	Damage (20)
-	-ROCKETTRAIL +BRIGHT +THRUSPECIES
-	DeathSound "Q2Weapons/PhalanxExplode"
-	Decal Scorch
+	+THRUSPECIES
 	Species "GladiatorProj"
 	States
 	{
 	Spawn:
-		Q2PX AAAAA 0 A_SpawnItemEx(Q2GrenadeSmoke,Random2(5),0,Random2(5),0,0,FRandom(0.1,0.5),Random(1,360),0,128)
+		Q2PX AAAAA 0 Bright A_SpawnItemEx(Q2GrenadeSmoke,Random2(5),0,Random2(5),0,0,FRandom(0.1,0.5),Random(1,360),0,128)
 		Q2PX A 0 A_SpawnItemEx(Q2RocketTrail,0,0,0,FRandom(0,0.5),0,FRandom(-0.5,0),Random(1,360),128)
-		Q2PX ABC 1 Light(ROCKET) A_PlaySound("Q2Weapons/RocketFly",CHAN_VOICE,0.66,1)
+		Q2PX ABC 1 Bright Light(ROCKET) A_PlaySound("Q2Weapons/RocketFly",CHAN_VOICE,0.66,1)
 		Loop
 	Death:
 		TNT1 A 0 A_Explode(75, 64, !XF_HURTSOURCE)
-		TNT1 A 5 A_SpawnItem(Q2Explosion)
+		TNT1 A 1 A_SpawnItem(Q2Explosion)
 		Stop
 	}
 }
