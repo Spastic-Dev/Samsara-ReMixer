@@ -4,6 +4,7 @@ ACTOR MMRandomizer_Incarnate : Revenant3
 	Speed 12
 	MeleeDamage 7
 	PainChance 64
+	MaxTargetRange 1024
 	GibHealth 100
 	+SHORTMISSILERANGE
 	+DONTHARMCLASS
@@ -45,8 +46,8 @@ ACTOR MMRandomizer_Incarnate : Revenant3
 			Goto See
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			VD75 J 5 A_FaceTarget
-			VD75 J 5 A_PlaySound("doom/imp/attack")
+			VD75 J 10 A_FaceTarget
+			TNT1 A 0 A_PlaySound("heretic/wand")
 			VD75 U 10 Bright A_CustomBulletAttack(30,0,5,3,"MMRandomizer_DIpuff",1024)
 			VD75 K 10
 			Goto See
