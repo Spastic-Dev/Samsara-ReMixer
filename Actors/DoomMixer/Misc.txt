@@ -762,7 +762,7 @@ ACTOR BloodDemon2 : BloodDemon
 		VD9U AB 10 A_Look
 		Loop
 	See:
-		VD9U AABBCCDD 2 A_Chase
+		VD9U AABBCCDD 2 Fast A_Chase
 		Loop
 	Pain:
 		VD9U H 2 Fast
@@ -782,8 +782,8 @@ ACTOR BloodDemon2 : BloodDemon
 		Goto See
 	Melee:
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		VD9U EF 8 A_FaceTarget
-		VD9U G 8 A_SargAttack
+		VD9U EF 8 Fast A_FaceTarget
+		VD9U G 8 Fast A_SargAttack
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
