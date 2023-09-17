@@ -4987,8 +4987,9 @@ Actor Goldeneye_EnemyBase
 			//"####" "#" 0 A_JumpIfInventory("RTCW_DeathGibberKeep",1,1)
 			//Goto Death
 			//"####" "#" 5
-			//Goto Death		
-			Goto Death
+			//Goto Death	
+			TNT1 A -1 A_Jump(256,"Death")
+			Wait
 		RTCWXDeath:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_RemoveChildren",1)
 			"####" "#" 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -5164,7 +5165,7 @@ Actor Goldeneye_PartBase
 	+NODROPOFF
 	+FLOORCLIP
 	+CLIENTSIDEONLY
-	+SEESDAGGERS
+	+NODECAL
 	States
 	{
 		Spawn:
