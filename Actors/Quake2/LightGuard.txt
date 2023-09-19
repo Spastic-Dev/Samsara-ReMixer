@@ -3,7 +3,7 @@ Actor Q2LightGuard : Q2SoldierBase
 {
 	Health 20 
 	Mass 101 
-	Obituary "%o was Blasted by a Light Guard" 
+	Obituary "%o was Blasted by a Light Guard"
 	DropItem "Q2BulletsPickup" 16 
 	Tag "Strogg Light Guard"
 	DamageFactor "PoisonBolt", 0.5
@@ -371,6 +371,7 @@ Actor Q2LightGuardDeath2Animation : SamsaraCorpseActorSmall
 	Radius 20
 	Mass 5000
 	BloodType "Q2Blood"
+	Obituary "%o was Blasted by a Light Guard"
 	Tag "Strogg Light Guard"
 	+SHOOTABLE
 	States
@@ -628,8 +629,8 @@ Actor Q2ShotgunGuard : Q2SoldierBase
 { 
 	Health 30 
 	Mass 102 
-	AttackSound "Q2Soldier/Shotgun" 
-	Obituary "%o was Gunned Down by a Shotgun Guard" 
+	AttackSound "Q2Soldier/Shotgun"
+	Obituary "%o was Gunned Down by a Shotgun Guard"
 	DropItem "Q2ShotguyDrop"
 	Tag "Strogg Shotgun Guard"
 	DamageFactor "PoisonBolt", 0.5
@@ -833,6 +834,8 @@ Actor Q2ShotgunGuardDeath2Animation : SamsaraCorpseActorSmall
 	Radius 20
 	Mass 5000
 	BloodType "Q2Blood"
+	AttackSound "Q2Soldier/Shotgun"
+	Obituary "%o was Gunned Down by a Shotgun Guard"
 	Tag "Strogg Light Guard"
 	+SHOOTABLE
 	States
@@ -843,11 +846,11 @@ Actor Q2ShotgunGuardDeath2Animation : SamsaraCorpseActorSmall
 			GRD2 A 4
 			GRD5 "LMNOPQRSTUVWXYZ[^]" 4
 			GRD6 ABC 4
-			GRD6 D 0 A_CustomBulletAttack(8,8,5,2,"Q2BulletPuff",1024,CBAF_AIMFACING)
+			GRD6 D 0 A_CustomBulletAttack(8,8,5,2,"SamsaraQuake2ShotgunPuff",1024,CBAF_AIMFACING)
 	//		TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,37,5,18)
 	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
 			GRD6 DEF 4
-			GRD6 G 0 A_CustomBulletAttack(8,8,5,2,"Q2BulletPuff",1024,CBAF_AIMFACING)
+			GRD6 G 0 A_CustomBulletAttack(8,8,5,2,"SamsaraQuake2ShotgunPuff",1024,CBAF_AIMFACING)
 	//		TNT1 A 0 A_SpawnItemEx(EnemyFlashSpawner,37,5,18)
 	//		TNT1 A 0 A_SpawnItem(WeaponFlash,0,32)
 			GRD6 GHIJKLMNOPQ 4
@@ -1121,8 +1124,8 @@ Actor Q2MachinegunGuard : Q2SoldierBase
 { 
 	Mass 103 
 	Health 40 
-	AttackSound "Q2Soldier/Machinegun" 
-	Obituary "%o was Machinegunned by a Machinegun Guard" 
+	AttackSound "Q2Soldier/Machinegun"
+	Obituary "%o was Machinegunned by a Machinegun Guard"
 	DropItem "Q2BulletsPickup" 128 
 	Tag "Strogg Machine Gun Guard"
 	DamageFactor "PoisonBolt", 0.5
@@ -1326,6 +1329,8 @@ Actor Q2MachineGunGuardDeath2Animation : SamsaraCorpseActorSmall
 	Radius 20
 	Mass 5000
 	BloodType "Q2Blood"
+	AttackSound "Q2Soldier/Machinegun"
+	Obituary "%o was Machinegunned by a Machinegun Guard"
 	Tag "Strogg Light Guard"
 	+SHOOTABLE
 	States
@@ -1635,7 +1640,7 @@ Actor Q2EnhancedLightGuard : Q2SoldierBase
 { 
 	Health 50 
 	Mass 104 
-	Obituary "%o was blasted by A Enhanced Light Guard" 
+	Obituary "%o was blasted by an Enhanced Light Guard"
 	DropItem "Q2CellPickup" 32
 	Tag "Enhanced Strogg Light Guard"
 	DamageFactor "PoisonBolt", 0.5
@@ -2127,7 +2132,7 @@ Actor Q2RipperGuard : Q2SoldierBase
 { 
 	Health 50 
 	Mass 105 
-	Obituary "%o was ripped by a Ripper Guard" 
+	Obituary "%o was ripped by a Ripper Guard"
 	DropItem "Q2CellPickup" 32
 	Tag "Strogg Ripper Guard"
 	DamageFactor "PoisonBolt", 0.5
@@ -2622,7 +2627,7 @@ Actor Q2HyperBlasterGuard : Q2SoldierBase
 { 
 	Health 60 
 	Mass 106 
-	Obituary "%o was blasted by A Hyper Blaster Guard" 
+	Obituary "%o was blasted by a Hyper Blaster Guard"
 	DropItem "Q2CellPickup" 32
 	Tag "Strogg Hyper Blaster Guard"
 	DamageFactor "PoisonBolt", 0.5
@@ -3138,7 +3143,7 @@ Actor Q2LaserGuard : Q2SoldierBase
 { 
 	Health 70 
 	Mass 107
-	Obituary "%o was vaporized by a Laser Guard" 
+	Obituary "%o was vaporized by a Laser Guard"
 	DropItem "Q2CellPickup" 32
 	Tag "Strogg Laser Guard"
 	DamageFactor "PoisonBolt", 0.5
