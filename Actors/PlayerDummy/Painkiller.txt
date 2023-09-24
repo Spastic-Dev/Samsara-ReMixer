@@ -42,7 +42,9 @@ actor DanielGarner2 : DanielGarner replaces DanielGarner {
 		Death:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)															
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	
+			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+			TNT1 A 0 A_PlayerScream
+			TNT1 A 0 A_NoBlocking
 			PK22 A 0 A_JumpIfInventory("Painkiller_HoldingDemon",1,"DeathDemon")
 			PK22 A 0 A_JumpIfInventory("Painkiller_HoldingBolt",1,"DeathBolt")
 			PK22 A 0 A_JumpIfInventory("Painkiller_HoldingElectro",1,"DeathElectro")

@@ -551,7 +551,7 @@ Script "ReMixerAwakenMonster" (int monTid)
 
 Script "ReMixerInvasion" OPEN //670
 {
-	if(GetPlayerAccountName(0) == 0)
+	if(isZDoom())
 		terminate;
 
 	int spawnmode, oldmode;
@@ -945,7 +945,7 @@ Script "ReMixer_PickSets_DISCONNECT" (int player) DISCONNECT { ACS_NamedExecuteW
 
 Script "RemixerInvasionChecker" (void)
 {
-	if(GetPlayerAccountName(0) == 0) { SetResultValue(0); terminate; }
+	if(isZDoom()) { SetResultValue(0); terminate; }
 	SetResultValue(GetInvasionState() != -1);
 }
 
