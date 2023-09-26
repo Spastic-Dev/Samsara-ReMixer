@@ -550,7 +550,8 @@ Actor Goldeneye_PP7EnemyDrop : CustomInventory
 		TNT1 A 0 A_GiveInventory("DMMissiles", 1)
 		TNT1 A 0 A_GiveInventory("DMissiles", 8)
 		TNT1 A 0 A_GiveInventory("SMissiles", 5)
-		TNT1 A 0 A_Jump(256,"PickupSoundNormal")
+		TNT1 A -1 A_Jump(256,"PickupSoundNormal")
+		wait
     PickupRottHasPistols:
 		TNT1 A 0 A_GiveInventory("HSMissiles", 5)
 		TNT1 A 0 A_GiveInventory("RottMissiles", 5)
