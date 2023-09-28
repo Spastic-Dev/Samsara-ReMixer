@@ -1284,6 +1284,7 @@ Actor Hexen2FireImpDeath : Hexen2CorpseActor
 	Height 56
 	Health 30
 	Mass 50
+    Tag "Dying Fire Imp"
 	States
 	{
 	Spawn:
@@ -1314,6 +1315,7 @@ Actor Hexen2FireImpCorpse : Hexen2CorpseActor
 	Height 19
 	Health 30
 	Mass 300
+    Tag "Remains of Fire Imp"
 	States
 	{
 		Spawn:
@@ -1335,6 +1337,7 @@ Actor Hexen2FireImpCorpse : Hexen2CorpseActor
 
 Actor Hexen2FireImpHead : Hexen2HeadActor
 {
+    Tag "Head of Fire Imp"
 	States
 	{
 			Spawn:
@@ -1365,10 +1368,11 @@ Actor Hexen2FireImpHead : Hexen2HeadActor
 	}
 }
 
-Actor Hexen2IceImpHead : Hexen2FireImpHead { +NOICEDEATH }
+Actor Hexen2IceImpHead : Hexen2FireImpHead { +NOICEDEATH Tag "Head of Ice Imp" }
 Actor Hexen2IceImpDeath : Hexen2FireImpDeath 
-{ 
-	+NOICEDEATH 
+{
+    Tag "Dying Ice Imp"
+	+NOICEDEATH
 	States
 	{
 		Spawn:
@@ -1395,7 +1399,8 @@ Actor Hexen2IceImpDeath : Hexen2FireImpDeath
 }
 Actor Hexen2IceImpCorpse : Hexen2FireImpCorpse 
 {
-	+NOICEDEATH 
+    Tag "Remains of Ice Imp"
+	+NOICEDEATH
 	States
 	{
 		Death:

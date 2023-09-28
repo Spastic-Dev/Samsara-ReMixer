@@ -2,6 +2,7 @@ Actor Hexen2SlamHit : Inventory { Inventory.MaxAmount 1 }
 
 Actor Hexen2WhiteYakman : Hexen2BestialBase
 {
+    Tag "White Yakman"
 	Health 375
 	Radius 21
 	Height 70
@@ -546,7 +547,8 @@ actor Hexen2WhiteYakman_ShrinkEffect : Hexen2WhiteYakman
 }
 
 Actor Hexen2BrownYakman : Hexen2WhiteYakman 
-{ 
+{
+    Tag "Brown Yakman"
 	Health 465 
 	PainThreshold 132
 	States
@@ -895,7 +897,8 @@ actor Hexen2BrownYakman_ShrinkEffect : Hexen2BrownYakman
 }
 
 Actor Hexen2BlackYakman : Hexen2WhiteYakman 
-{ 
+{
+    Tag "Black Yakman"
 	Health 600 
 	PainThreshold 102
 	States
@@ -1251,6 +1254,7 @@ Actor Hexen2WhiteYakmanDeath : Hexen2CorpseActor
 	Radius 21
 	Height 64
 	Mass 3000
+    Tag "Dying White Yakman"
 	States
 	{
 		Spawn:
@@ -1273,7 +1277,8 @@ Actor Hexen2WhiteYakmanDeath : Hexen2CorpseActor
 }
 	
 Actor Hexen2BrownYakmanDeath : Hexen2WhiteYakmanDeath 
-{ 
+{
+    Tag "Dying Brown Yakman"
 	States
 	{
 		Spawn:
@@ -1289,6 +1294,7 @@ Actor Hexen2BrownYakmanDeath : Hexen2WhiteYakmanDeath
 
 Actor Hexen2BlackYakmanDeath : Hexen2WhiteYakmanDeath 
 {
+    Tag "Dying Black Yakman"
 	States
 	{
 		Spawn:
@@ -1307,6 +1313,7 @@ Actor Hexen2WhiteYakmanCorpse : Hexen2CorpseActor
 	Radius 21
 	Height 25
 	Mass 3000
+    Tag "Remains of White Yakman"
 	States
 	{
 	Spawn:
@@ -1317,8 +1324,8 @@ Actor Hexen2WhiteYakmanCorpse : Hexen2CorpseActor
 		}
 }
 
-Actor Hexen2BrownYakmanCorpse : Hexen2WhiteYakmanCorpse { }
-Actor Hexen2BlackYakmanCorpse : Hexen2WhiteYakmanCorpse { }
+Actor Hexen2BrownYakmanCorpse : Hexen2WhiteYakmanCorpse { Tag "Remains of Brown Yakman" }
+Actor Hexen2BlackYakmanCorpse : Hexen2WhiteYakmanCorpse { Tag "Remains of Black Yakman" }
 
 Actor Hexen2YakmanBall : Hexen2IceShot
 {

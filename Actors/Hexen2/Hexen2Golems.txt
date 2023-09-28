@@ -111,6 +111,7 @@ Actor Hexen2StoneGolemLegs : Hexen2CorpseActor
 	-SHOOTABLE
 	-VULNERABLE
 	+NOBLOOD
+    Tag "Legs of Stone Golem"
 	Height 16
 	Radius 21
 	States
@@ -122,14 +123,14 @@ Actor Hexen2StoneGolemLegs : Hexen2CorpseActor
 		Loop
 	}
 }
-Actor Hexen2IronGolemLegs : Hexen2StoneGolemLegs { }
-Actor Hexen2BronzeGolemLegs : Hexen2StoneGolemLegs { }
-Actor Hexen2CrystalGolemLegs : Hexen2StoneGolemLegs { Renderstyle Translucent Alpha 0.5 +BRIGHT }
+Actor Hexen2IronGolemLegs : Hexen2StoneGolemLegs { Tag "Legs of Iron Golem" }
+Actor Hexen2BronzeGolemLegs : Hexen2StoneGolemLegs { Tag "Legs of Bronze Golem" }
+Actor Hexen2CrystalGolemLegs : Hexen2StoneGolemLegs { Renderstyle Translucent Alpha 0.5 +BRIGHT Tag "Legs of Crystal Golem" }
 
-Actor Hexen2StoneGolemArm : Hexen2StoneGolemLegs { Radius 10 }
-Actor Hexen2IronGolemArm :  Hexen2StoneGolemArm { }
-Actor Hexen2BronzeGolemArm : Hexen2StoneGolemArm { }
-Actor Hexen2CrystalGolemArm : Hexen2StoneGolemArm { Renderstyle Translucent Alpha 0.5 +BRIGHT }
+Actor Hexen2StoneGolemArm : Hexen2StoneGolemLegs { Radius 10 Tag "Arm of Stone Golem" }
+Actor Hexen2IronGolemArm :  Hexen2StoneGolemArm { Tag "Arm of Iron Golem" }
+Actor Hexen2BronzeGolemArm : Hexen2StoneGolemArm { Tag "Arm of Bronze Golem" }
+Actor Hexen2CrystalGolemArm : Hexen2StoneGolemArm { Renderstyle Translucent Alpha 0.5 +BRIGHT Tag "Arm of Crystal Golem" }
 
 Actor Hexen2StoneGolemHead : Hexen2HeadActor
 {
@@ -137,6 +138,7 @@ Actor Hexen2StoneGolemHead : Hexen2HeadActor
 	-SHOOTABLE
 	-VULNERABLE
 	+NOBLOOD
+    Tag "Head of Stone Golem"
 	States
 	{
 	Spawn:
@@ -146,9 +148,9 @@ Actor Hexen2StoneGolemHead : Hexen2HeadActor
 		Loop
 	}
 }
-Actor Hexen2IronGolemHead : Hexen2StoneGolemHead { }
-Actor Hexen2BronzeGolemHead : Hexen2StoneGolemHead { }
-Actor Hexen2CrystalGolemHead : Hexen2StoneGolemHead { Renderstyle Translucent Alpha 0.5 +BRIGHT }
+Actor Hexen2IronGolemHead : Hexen2StoneGolemHead { Tag "Head of Iron Golem" }
+Actor Hexen2BronzeGolemHead : Hexen2StoneGolemHead { Tag "Head of Bronze Golem" }
+Actor Hexen2CrystalGolemHead : Hexen2StoneGolemHead { Renderstyle Translucent Alpha 0.5 +BRIGHT Tag "Head of Crystal Golem" }
 
 Actor Hexen2StoneChunk1 : Hexen2Chunk1
 {
@@ -216,7 +218,7 @@ Actor Hexen2IronGolem : Hexen2StoneGolem
 	Tag "Iron Golem"
 	Health 450
 	HitObituary "%o was PUNKED by an Iron Golem."
-	Obituary "%o was Vaporized by an Iron Golem."
+	Obituary "%o was vaporized by an Iron Golem."
 	PainSound "Hexen2/Golem/Metal/Pain"
 	Height 70
 	MinMissileChance 2400

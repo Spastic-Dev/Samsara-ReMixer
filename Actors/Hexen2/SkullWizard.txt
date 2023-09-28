@@ -756,6 +756,7 @@ Actor Hexen2SkullWizardDeathAnimation : Hexen2CorpseActor
 	Radius 19
 	Height 52
 	Mass 400
+    Tag "Dying Skull Wizard"
 	States
 	{
 		Spawn:
@@ -780,6 +781,7 @@ Actor Hexen2SkullWizardCloak : Hexen2CorpseActor
 	Height 10
 	Mass 400
 	Species "Hexen2Wizard"
+    Tag "Remains of Skull Wizard"
 	States
 	{
 		Spawn:
@@ -824,9 +826,10 @@ Actor Hexen2SkullWizardCloak : Hexen2CorpseActor
 
 Actor Hexen2ShadowWizardDeathAnimation : Hexen2SkullWizardDeathAnimation 
 { 
-	Scale 1.2 
-	Radius 21 
-	Height 64 
+	Scale 1.2
+	Radius 21
+	Height 64
+    Tag "Dying Shadow Wizard"
 	States
 	{
 		Spawn:
@@ -836,7 +839,7 @@ Actor Hexen2ShadowWizardDeathAnimation : Hexen2SkullWizardDeathAnimation
 			Stop
 	}
 }
-Actor Hexen2ShadowWizardCloak : Hexen2SkullWizardCloak { Scale 1.2 Radius 21 Height 12 }
+Actor Hexen2ShadowWizardCloak : Hexen2SkullWizardCloak { Scale 1.2 Radius 21 Height 12 Tag "Remains of Shadow Wizard" }
 
 Actor Hexen2WizardBook : Hexen2StoneGolemHead
 {
@@ -858,6 +861,7 @@ Actor Hexen2SkullShot1
 	Health 1
 	+SHOOTABLE
 	SeeSound "Hexen2/SkullWizard/Scream"
+    Tag "Flaming Skull"
 	States
 	{
 		Spawn:

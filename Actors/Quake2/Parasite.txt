@@ -182,6 +182,7 @@ Actor Q2ParasiteDeathAnimation : SamsaraCorpseActorSmall
 	Radius 20
 	Mass 5000
 	BloodType "Q2Blood"
+    Tag "Dying Strogg Parasite"
 	+SHOOTABLE
 	States
 	{
@@ -208,6 +209,7 @@ Actor Q2ParasiteDeathCorpse : SamsaraCorpseActorSmall
 	Radius 16
 	Mass 5000
 	BloodType "Q2Blood"
+    Tag "Remains of Strogg Parasite"
 	+SHOOTABLE
 	States
 	{
@@ -454,6 +456,8 @@ ACTOR ParasiteProjectile : FastProjectile
 	+CANNOTPUSH
 	+NODAMAGETHRUST
 	+STRIFEDAMAGE
+    +NOTIMEFREEZE
+    +DONTBLAST
 	States
 	{
 		Spawn:

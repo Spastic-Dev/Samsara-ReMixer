@@ -16,7 +16,7 @@ Actor DisruptorMBrute : SamsaraMonsterAlienLargeTotalGib
 	+DONTRIP
 	BloodColor Tan
 	Tag "Mutant Brute"	
-    Obituary "%o was bombed by a Mutant Brute"
+    Obituary "%o was bombed by a Mutant Brute."
 	DropItem "DisruptorLockOnDrop"
 	Radius 20
 	Height 56	
@@ -412,7 +412,8 @@ Actor DisruptorMeteoriteShit_E : DisruptorMeteorite
 	Damage (5*Random(1,3))
 	Species "Enemies"
 	DeathSound "Disruptor/MeteorBoom"
-	DamageType ""	
+	DamageType ""
+    Tag "Lock-On Cannon Missile"
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
 	+SHOOTABLE
@@ -423,7 +424,7 @@ Actor DisruptorMeteoriteShit_E : DisruptorMeteorite
 	-COUNTKILL
 	+NOBLOOD
 	Scale 0.50
-    Obituary "%o was bombed by a Mutant Brute"
+    Obituary "%o was bombed by a Mutant Brute."
     States
     {
       Spawn:
@@ -445,4 +446,4 @@ Actor DisruptorMeteoriteShit_E : DisruptorMeteorite
 		TNT1 A 5 bright A_SpawnItemEx("DisruptorFakeBoom")
         Stop
     }
-}		
+}

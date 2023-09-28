@@ -370,6 +370,7 @@ Actor Hexen2YellowScorpionDeath : Hexen2CorpseActor
 	Radius 20
 	Height 48
 	Mass 450
+    Tag "Dying Sand Scorpion"
 	States
 	{
 		Spawn:
@@ -394,6 +395,7 @@ Actor Hexen2YellowScorpionCorpse : Hexen2CorpseActor
 	Radius 20
 	Height 48
 	Mass 450
+    Tag "Remains of Sand Scorpion"
 	States
 	{
 	Spawn:
@@ -669,7 +671,8 @@ actor Hexen2BlackScorpion_ShrinkEffect : Hexen2BlackScorpion
 }
 
 Actor Hexen2BlackScorpionDeath : Hexen2YellowScorpionDeath 
-{ 
+{
+    Tag "Dying Bog Scorpion"
 	States
 	{
 		Spawn:
@@ -681,6 +684,6 @@ Actor Hexen2BlackScorpionDeath : Hexen2YellowScorpionDeath
 	}
 }
 
-Actor Hexen2BlackScorpionCorpse : Hexen2YellowScorpionCorpse { }
+Actor Hexen2BlackScorpionCorpse : Hexen2YellowScorpionCorpse { Tag "Remains of Bog Scorpion" }
 
 Actor Hexen2Scorpion : RandomSpawner { DropItem "Hexen2YellowScorpion" DropItem "Hexen2BlackScorpion" }

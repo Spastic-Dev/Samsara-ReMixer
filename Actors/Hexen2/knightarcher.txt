@@ -428,6 +428,7 @@ Actor Hexen2KnightArcherDeathAnimation : Hexen2CorpseActor
 	Radius 16
 	Height 56
 	DropItem "Hexen2GruntDropRandom", 24
+    Tag "Dying Knight Archer (Spring)"
 	States
 	{
 	Spawn:
@@ -451,6 +452,7 @@ Actor Hexen2KnightArcherCorpse : Hexen2CorpseActor
 	Radius 16
 	Height 32
 	DropItem "Hexen2GruntDropRandom", 24
+    Tag "Remains of Knight Archer (Spring)"
 	States
 	{
 	Spawn:
@@ -589,6 +591,7 @@ Actor Hexen2ArcherBlueProjectile
 Actor Hexen2AKnightHead : Hexen2HeadActor
 {
 	DropItem "Hexen2GruntDropRandom", 24
+    Tag "Head of Knight Archer" // currently shared
 	States
 	{
 		Spawn:
@@ -968,6 +971,7 @@ Actor Hexen2ArcherLordDeathAnimation : Hexen2CorpseActor
 	Radius 16
 	Height 56
 	DropItem "Hexen2GruntDropRandom", 24
+    Tag "Dying Archer Lord"
 	States
 	{
 	Spawn:
@@ -992,6 +996,7 @@ Actor Hexen2ArcherLordCorpse : Hexen2CorpseActor
 	Radius 16
 	Height 32
 	DropItem "Hexen2GruntDropRandom", 24
+    Tag "Remains of Archer Lord"
 	States
 	{
 	Spawn:
@@ -1014,6 +1019,7 @@ Actor Hexen2ArcherLordCorpse : Hexen2CorpseActor
 Actor Hexen2ALordHead : Hexen2AKnightHead 
 { 
 	DropItem "Hexen2GruntDropRandom", 24
+    Tag "Head of Archer Lord"
 }
 
 Actor Hexen2IceArcher : Hexen2KnightArcher
@@ -1341,6 +1347,7 @@ actor Hexen2IceArcher_ShrinkEffect : Hexen2IceArcher
 
 Actor Hexen2IceArcherDeathAnimation : Hexen2KnightArcherDeathAnimation
 {
+    Tag "Dying Knight Archer (Winter)"
 	States
 	{
 	Spawn:
@@ -1351,7 +1358,7 @@ Actor Hexen2IceArcherDeathAnimation : Hexen2KnightArcherDeathAnimation
 		}
 }		
 	
-Actor Hexen2IceArcherCorpse : Hexen2KnightArcherCorpse { }	
+Actor Hexen2IceArcherCorpse : Hexen2KnightArcherCorpse { Tag "Remains of Knight Archer (Winter)" }
 
 Actor Hexen2BlueFlash : Hexen2RedFlash
 {

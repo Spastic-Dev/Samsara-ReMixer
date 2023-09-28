@@ -1700,6 +1700,7 @@ Actor Hexen2WereJaguarCorpse : Hexen2CorpseActor
 	Radius 28
 	Height 16
 	Mass 100
+    Tag "Remains of WereJaguar"
 	States
 	{
 		Spawn:
@@ -1721,6 +1722,7 @@ Actor Hexen2WereJaguarCorpse : Hexen2CorpseActor
 
 Actor Hexen2WerePantherCorpse : Hexen2WereJaguarCorpse 
 {
+    Tag "Remains of WerePanther"
 	States
 	{
 		Death:
@@ -1736,6 +1738,7 @@ Actor Hexen2WerePantherCorpse : Hexen2WereJaguarCorpse
 }
 Actor Hexen2SnowTigerCorpse : Hexen2WereJaguarCorpse 
 {
+    Tag "Remains of Snow Tiger"
 	States
 	{
 		Death:
@@ -1751,6 +1754,7 @@ Actor Hexen2SnowTigerCorpse : Hexen2WereJaguarCorpse
 }
 Actor Hexen2WereTigerCorpse : Hexen2WereJaguarCorpse 
 {
+    Tag "Remains of Siberian WereTiger"
 	States
 	{
 		Death:
@@ -1767,6 +1771,7 @@ Actor Hexen2WereTigerCorpse : Hexen2WereJaguarCorpse
 
 Actor Hexen2WereJaguarHead : Hexen2HeadActor
 {
+    Tag "Head of WereJaguar"
 	States
 	{
 		Spawn:
@@ -1795,9 +1800,9 @@ Actor Hexen2WereJaguarHead : Hexen2HeadActor
 	}
 }
 
-Actor Hexen2WerePantherHead : Hexen2WereJaguarHead {}
-Actor Hexen2SnowTigerHead : Hexen2WereJaguarHead {}
-Actor Hexen2WereTigerHead : Hexen2WereJaguarHead {}
+Actor Hexen2WerePantherHead : Hexen2WereJaguarHead { Tag "Head of WerePanther" }
+Actor Hexen2SnowTigerHead : Hexen2WereJaguarHead { Tag "Head of Snow Tiger" }
+Actor Hexen2WereTigerHead : Hexen2WereJaguarHead { Tag "Head of Siberian WereTiger" }
 
 //(2+skill)*(self.strength+1)*(self.aflag+1)
 Actor Hexen2WereJaguarSlammer : FastProjectile
