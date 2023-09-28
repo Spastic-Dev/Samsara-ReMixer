@@ -2,69 +2,123 @@
 -----------------------------Reincarnation 1.1 Mixer-----------------------------
 ----------------------------------------------------------------------------------------
 
-General:
+==Changes and Additions==
+-New monster generator; works similarly to the misc. character generator, but for monsters. Dynamically adds more monsters to existing maps based off what monsters are already present.
+-New monster pruner; need less monsters? Enabling this will dynamically remove monsters from existing maps. The system is set up to hopefully preserve enemy encounters and is weighted differently for each monster set.
+-New monster spawning system, monsters now spawn only when they are needed to save on performance. There is an option to use the old system where all enemies spawn in at once.
+-Added ReMixer support for HacX 1.2, Harmony, Rekkr: Sunken Land, and Rise of the Wool Ball.
+-New preset system for ReMixer settings, making it quicker to set up the game. The available presets are the same as Reincarnation’s.
+-The monster multiplier limit has been raised from x20 to x100.
+-ReMixer enemies no longer spawn if “sv_nomonsters” is enabled.
+-Added an option to override skill-based enemy behavior.
+-Added an option to control if Marathon enemy explosions behave normally or on a full-radius basis.
+-Added, fixed, or otherwise cleaned up dynamic lights for several sets and effects.
+-Moved some inventory tokens to user variables to improve performance.
+-Removed duplicate Doom sounds.
+-Removed duplicate lights for ammo.
+-Numerous performance and logic improvements.
 
-- Write down some changes here
+=New Options=
+-Performance Mode | When on, enemies are spawned in when needed, allowing the mod to be less performace-heavy on map start-up.
+-Skill Override | Allows you to override skill-based enemy differences.
+-Monster Generation Rate | Controls how many additional monsters are dynamically spawned into the map, set it to "Off" to disable dynamic monster spawning.
+-Monster Reducer Rate | Controls how many monsters are dynamically removed from the map, set it to "Off" to disable dynamic monster pruning.
+-Marathon: Full Radius Explosions | Controls whether or not Marathon enemies use source-accurate full radius explosions or standard Doom explosions with damage fall-off.
+-Redneck Rampage: Cuss Pack | Controls whether Redneck Rampage enemies use original lines, Cuss Pack lines, or both.
 
-General Bugfixes:
+==Set-Specific Changes==
 
-- Write down some changes here
+=Doom=
+-Revenant tracer made more precise and aggressive to better match Doom’s.
+-Fixed the Lost Soul having the wrong spawn state
+-Fixed Doom monsters not spawning with class-based mode on.
+-Fixed issues with Lost Souls when the monster multiplier is on.
 
-Doomguy (Doom):
+=Doom 64=
+-New Doom-64 style sprites for the Chaingunner, Arch-Vile, Spider Mastermind, and Wolfenstein SS.
+-New Skulltag variants of monsters.
+-Added Doom 64: Absolution and Doom 64: Outcast monsters, there is an option to disable them.
+-The Doom 64 Revenant now takes twice as long to attack to compensate for their homing missiles, and has been adjusted to better match the Revenant from Doom 64 CE.
+-Doom 64 Cacodemons now have faster projectiles when fast monsters are enabled.
+-Added burnt corpses for the Nightmare Imp.
+-Added Doom 64 crush gibs.
+-Pain Elementals no longer stay in the air when frozen
+-Changed sprite names for some monsters.
+-Fixed melee damage for Doom 64 Imps
+-Added decals to Doom 64 projectiles.
+-Fixed Doom 64 Wolfenstein SS’s missile state
+-Removed Melee state from Doom 64 Cacodemons.
 
-Chex Warrior (Chex Quest):
+=Doom Randomizer=
+-Added Skulltag enemy obituaries.
+-Added GLDefs for Skulltag monsters.
+-Added a drop for the Super Shotgun for IWADs that don’t have one.
+-Monsters now play the gibbing sounds from Doom instead of the currentIWAD.
+-Made the Nightcrawler and Stalker more aggressive.
+-The Inferno now always gibs on death.
+-Fixed Chaingunner variant 1’s fire state.
+-Fixed Wraith using the teleportfog of the current IWAD.
 
-Corvus (Heretic):
+=Chex Quest=
+-The Mega Flemoidus Maximus now spawns as an Arch-Vile replacement again.
+-The Flemoidus Gyro is now considered a robotic enemy.
+-Lord Snotfolus now has a much more satisfying death animation.
+-Fixed a name conflict for the Maximus slimeball.
 
-B.J. Blazkowicz (Wolfenstein 3D):
+=Heretic=
+-Fixed Nitrogolems not having Blood fire states.
 
-Parias (Hexen):
+=Wolfenstein 3D + Totenkopf=
+-Dogs from all sets now have less health.
+-Fixed sound definitions for dogs. This also avoids sound conflicts with GZDoom’s dogs.
+-Fake Hitlers no longer infight with other Wolf3D enemies.
 
-Duke Nukem (Duke Nukem 3D):
+=Marathon=
+-Added another secret enemy to the Marathon set.
 
-Security Officer (Marathon):
+=Rise of the Triad=
+-Human enemies can now be gibbed.
+-ROTT enemies now share species with each other.
+-Fixed typo in NME code that resulted in boss reactions not activating.
+-Fixed the MP40 drops sometimes providing infinite ammo.
 
-Ranger (Quake I):
+=Blake Stone=
+-Fixed the Star Trooper’s broken fake death state.
+-Fixed Star Trooper and Alien Protector’s fake deaths counting as kills for the player.
 
-I.P. Freeley (Rise of the Triad):
+=Blood=
+-Added a burn state for the Gill Beast.
+-Made the choking hand less annoying.
+-Nerfed Hell Hounds
 
-Blake Stone (Blake Stone):
+=Strife=
+-Fixed the ReMixer version of the Programmer dropping a Sigil item on death.
+-Changed the Cultist sounds to use the previously dummied-out sounds from v1.0b.
 
-Caleb (Blood):
+=Half-Life=
+-Replaced the Geneworm in the Half-Life monster set with the HECU Apache; the Geneworm still appears in the Opposing Force alt-set.
+-Fixed the enemy spawn mode for Half-Life working incorrectly.
+-Made the Gonome’s radius slightly smaller.
 
-Strifeguy (Strife):
+=Shadow Warrior=
+-Fixed the Wizard dropping the wrong guardian head.
 
-Eleena (Eradicator):
+=Cybermage=
+-Fixed flying police cars continuing their siren sound after death.
 
-Space Seal (Corridor 7):
+=Powerslave/Exhumed=
+-Fixed the Gekk spawning red blood with non-vanilla blood settings.
 
-LDF Commando (Rebel Moon Rising):
+=Redneck Rampage=
+-Redneck Rampage enemies now have their Cuss Pack voice lines restored from previous versions. There’s an option to have them only use original lines, Cuss Pack lines, or both.
+-AssFace now has the correct blood color.
 
-Kyle Katarn (Star Wars: Dark Forces):
+=Quake 2=
+-Enemies now become visibly damaged like in the original when their health is 50% or lower.
+-Bosses can no longer be gibbed.
 
-Mooman (In Pursuit of Greed):
-
-Jack Curtis (Disruptor):
-
-Grondoval (Witchaven):
-
-Gordan Freeman (Half-Life):
-
-Lo Wang (Shadow Warrior):
-
-CyberMage (CyberMage):
-
-Jon (PowerSlave/Exhumed):
-
-Leonard (Redneck Rampage):
-
-Bitterman (Quake II):
-
-Demoness (Hexen II):
-
-James Bond (GoldenEye 007):
-
-Petton Everhail (Catacomb 3D):
+=Catacomb 3D=
+-Secret Hovertank 3D enemies have been given more accurate sprites and sounds.
 
 
 ----------------------------------------------------------------------------------------
