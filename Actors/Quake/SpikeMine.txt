@@ -44,17 +44,12 @@ ACTOR QSpikeMine : SamsaraMonsterSkeletonSmall
 		Goto See
 	Death:
 	XDeath:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)  	
-		TNT1 A 0 A_Scream
-		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_Explode(Random(15,30)+Random(15,5),100)
-		TNT1 A 5 A_SpawnItemEx("QuakeExplosion_Mixer")
-		Stop
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 	Death.NotSuicide:
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_Explode(Random(15,30)+Random(15,5),100)
 		TNT1 A 5 A_SpawnItemEx("QuakeExplosion_Mixer")
-		Stop		
+		Stop
   }
 }

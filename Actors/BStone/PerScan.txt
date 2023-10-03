@@ -68,10 +68,11 @@ actor PerScanDrone : SamsaraMonsterRoboticSmall {
         Loop
 	  Melee:
 		BSE6 D 1 A_FaceTarget
-		BSE6 D 1 A_Die("Suicide")
+		BSE6 D 1 A_Die("NotSuicide")
 		Wait
 	  Death:  
-        TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0) 
+        TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+	  Death.NotSuicide:
         BSE6 E 6 A_NoBlocking
         BSE6 F 6 A_Scream
         BSE6 G 6 A_SpawnItem("PerScanBomb")
@@ -79,14 +80,6 @@ actor PerScanDrone : SamsaraMonsterRoboticSmall {
         BSE6 IJK 6
         BSE6 L -1
         Stop
-	  Death.Suicide:
-        BSE6 E 6 A_NoBlocking
-        BSE6 F 6 A_Scream
-        BSE6 G 6 A_SpawnItem("PerScanBomb")
-        BSE6 H 6
-        BSE6 IJK 6
-        BSE6 L -1
-        Stop		
       Pain.MightyBoot:
         TNT1 A 0 A_ChangeFlag("NOPAIN",1)
         TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)

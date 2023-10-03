@@ -20,7 +20,7 @@ Actor ChokingHand : SamsaraMonsterBeastTinyTotalGib
 	activesound "Hand/Roam"
 	painSound "Hand/Pain"
 	Scale 0.56
-	Obituary "%o was bare chocked by a hand!"
+	Obituary "%o was bare choked by a hand!"
 	BloodType "NashGore_Blood_Monolith"
 	+DROPOFF
 	+FLOORCLIP
@@ -89,7 +89,8 @@ Actor ChokingHand : SamsaraMonsterBeastTinyTotalGib
 		TNT1 A 0 A_JumpIfInTargetInventory("Doggie",1,"GoWild")
 		TNT1 A 0 A_JumpIfInTargetInventory("RedneckMotorcycle",1,"GoWild")
 		TNT1 A 0 A_JumpIfInTargetInventory("NoWeapon",1,"GoWild")
-		7H9N A 1 A_GiveToTarget("Chokeme",1)
+		TNT1 A 0 A_GiveToTarget("SamsaraMixerChokingHandDamageOnLatch",1)
+		7H9N A 1 A_GiveToTarget("ChokeMe",1)
 		7H9N A 1 A_FaceTarget
 		TNT1 A 0 Thing_Remove(0)
 		Goto Death2
@@ -135,6 +136,7 @@ Actor ChokingHand : SamsaraMonsterBeastTinyTotalGib
 
 Actor AmAlreadyChoked : Inventory {	Inventory.Amount 1 +AUTOACTIVATE +ALWAYSPICKUP }
 Actor ChokingHandSpammer : Counter { Inventory.MaxAmount 3 Inventory.InterHubAmount 0 }
+actor SamsaraMixerChokingHandDamageOnLatch : Boolean {} // makes sure damage isn't dealt right away on map change, or bad things happen
 
 Actor ChokeMe : Weapon
 {
@@ -150,19 +152,26 @@ Actor ChokeMe : Weapon
 	states
 	{
 	Ready:
-		TNT1 A 0 A_JumpIfInventory("AmAlreadyChoked",1,"ReadyLoop")
+		TNT1 A 0 A_JumpIfInventory("AmAlreadyChoked",1,"ReadyLoopCheck")
 		TNT1 A 0 A_GiveInventory("AmAlreadyChoked",1)
 		TNT1 A 0 A_Print("Spam either firing button to take it off!")
+	ReadyLoopCheck:
+        TNT1 A 0 A_JumpIfInventory("SamsaraMixerChokingHandDamageOnLatch",1,"ReadyLoopDamage")
+        goto ReadyLoop
+
+	ReadyLoopDamage:
+        TNT1 A 0 A_TakeInventory("SamsaraMixerChokingHandDamageOnLatch")
+		TNT1 A 0 DamageThing(5)
 	ReadyLoop:
-		TNT1 A 0 A_Explode(5, 1)
-		// 7H9X A 0 A_PlaySound("Hand/Choke",CHAN_WEAPON)
+		//TNT1 A 0 A_PlaySound("Hand/Choke",CHAN_WEAPON)
 		7H9X AB 3 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
 		7H9X CD 3 A_WeaponReady(WRF_NOSWITCH)
 		7H9X ED 3 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
 		7H9X CB 3 A_WeaponReady(WRF_NOSWITCH)
 		7H9X AF 3 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
 		7H9X GF 3 A_WeaponReady(WRF_NOSWITCH)
-		Loop
+		goto ReadyLoopDamage
+
 	Select:
 		// TNT1 A 0 A_SetDamageType("chokeEM")
 		TNT1 A 0 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
@@ -172,17 +181,17 @@ Actor ChokeMe : Weapon
 	Deselect:
 		TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 		TNT1 A 0 A_SpawnItemEx("Chokinghand_2",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_TakeInventory("Chokeme",1)
+		TNT1 A 0 A_TakeInventory("ChokeMe",1)
 		7H9X ABCDEFGABCDEFG 3 A_Lower
 		Stop
 	Fire:	
 	AltFire:
 		TNT1 A 0 A_JumpIfInventory("ChokingHandSpammer",0,"Throw")
 		TNT1 A 0 A_GiveInventory("ChokingHandSpammer")
-		Goto ReadyLoop+1
+		Goto ReadyLoop
 	Throw:
 		TNT1 A 0 A_TakeInventory("ChokingHandSpammer")
-		TNT1 A 1 A_FireCustomMissile("Flying_BloodHand",0)
+		TNT1 A 1 A_FireCustomMissile("Flying_BloodHand",0,false)
 		TNT1 A 1 A_TakeInventory("AmAlreadyChoked",1)
 		TNT1 A 1 A_TakeInventory("ChokeMe",1)
 		Stop
@@ -198,6 +207,7 @@ actor Flying_BloodHand
 	Scale 0.5
 	BounceCount 3
 	Species "Enemies"
+    Tag "Hell Hand"
 	+THRUSPECIES
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
@@ -224,7 +234,7 @@ actor Flying_BloodHand
 	}
 }
 
-Actor ChokingHand_2 : ChokingHand { +LOOKALLAROUND Tag "Hell Hand" }
+Actor ChokingHand_2 : ChokingHand { +LOOKALLAROUND }
 
 actor ChokingHandDisintegrate : ZombiemanDisintegrate
 {

@@ -60,12 +60,11 @@ ACTOR SentryDrone : SamsaraMonsterRoboticSmall
 			Wait
 		Melee:
 			SEDR A 1 A_FaceTarget
-			SEDR A 1 A_Die("Suicide")
+			SEDR A 1 A_Die("NotSuicide")
 			Wait
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			Goto Death.Suicide
-		Death.Suicide:
+		Death.NotSuicide:
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Scream
 			TNT1 A 5 A_SpawnItemEx("SentryDroneBomb",0,0,32)

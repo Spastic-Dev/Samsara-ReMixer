@@ -148,15 +148,6 @@ ACTOR MLooker : SamsaraMonsterAlienSmallTotalGib
 			Goto See
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			M_LO C 5 bright A_Explode(14, 108)
-			M_LO D 5 bright A_Explode(14, 108)
-			M_LO E 5 bright A_NoBlocking
-			M_LO F 5 bright
-			TNT1 A 1 A_FadeOut
-			Stop
 		Death.NotSuicide:
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(5)
@@ -166,7 +157,7 @@ ACTOR MLooker : SamsaraMonsterAlienSmallTotalGib
 			M_LO E 5 bright A_NoBlocking
 			M_LO F 5 bright
 			TNT1 A 1 A_FadeOut
-			Stop			
+			Stop
 		Pain.ShrinkerDMG:
 			M_LO C 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -581,15 +572,6 @@ ACTOR MLooker2
 			goto Death
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Recoil(5)
-			TNT1 A 0 A_Scream
-			M_LO I 5 bright A_Explode(24, 128)
-			M_LO J 5 bright A_Explode(24, 128)
-			M_LO K 5 bright A_NoBlocking
-			M_LO L 5 bright
-			TNT1 A 1 A_FadeOut
-			Stop
 		Death.NotSuicide:
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_Recoil(5)
@@ -599,7 +581,7 @@ ACTOR MLooker2
 			M_LO K 5 bright A_NoBlocking
 			M_LO L 5 bright
 			TNT1 A 1 A_FadeOut
-			Stop			
+			Stop
 		Death.ZorchPistol:
 		Death.Zorch:
 		Death.ZorchKamikaze:
