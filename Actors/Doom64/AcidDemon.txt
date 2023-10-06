@@ -4,6 +4,7 @@ ACTOR AcidDemon64 : Demon64
 	PainChance 180
 	Speed 7
 	MaxTargetRange 184
+	+MISSILEMORE
 	Tag "Acid Demon"
 	BloodColor "Green"
 	Obituary "%o was dissolved by an Acid Demon."
@@ -27,8 +28,6 @@ ACTOR AcidDemon64 : Demon64
 			64AD G 8 Fast A_SargAttack
 			Goto See
 		Missile:
-			TNT1 A 0 A_JumpIfCloser(248, 1)
-			Goto See
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("64demon/melee", CHAN_WEAPON)
 			64AD EF 8 Fast A_FaceTarget
@@ -44,6 +43,7 @@ ACTOR AcidDemon64 : Demon64
 		Pain:
 			64AD H 2
 			64AD H 2 A_Pain
+			TNT1 A 0 A_ChangeFlag("JUSTHIT",false)
 			Goto See
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
@@ -51,7 +51,21 @@ ACTOR AcidDemon64 : Demon64
 			64AD H 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			64AD H 16 A_Pain
+			TNT1 A 0 A_ChangeFlag("JUSTHIT",false)
 			Goto See
+		Pain.DoomDamageTypeStunner:
+			64AD H 2 A_ChangeFlag("NOPAIN",true)
+			64AD H 300 A_Pain
+			TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+			TNT1 A 0 A_ChangeFlag("JUSTHIT",false)
+			Goto See
+		Pain.Shock:
+		Pain.Tesla:
+			"####" "#" 0 A_ChangeFlag("JUSTHIT",false)
+			Goto Super::Pain.Tesla
+		Pain.PainkillerIce:
+			"####" "#" 0 A_ChangeFlag("JUSTHIT",false)
+			Goto Super::Pain.PainkillerIce
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			64AD I 8 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
