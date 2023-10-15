@@ -1,24 +1,3 @@
-Script "DukeEnforcerSpit" (void) CLIENTSIDE //4110
-{
-	int i;
-	int spatOnNum;
-	
-	for(i = 0; i < 17; i++)
-	{
-		spatOnNum = strparam(s:"SPATON", d:i);
-		SetHudSize(214,200,0);SetFont(spatOnNum);HudMessage(s:"A";HUDMSG_PLAIN,100+PlayerNumber(),0,107.0,100.0,1.0);
-		Delay(3);
-	}
-	
-	spatOnNum = strparam(s:"SPATON", d:i);
-	
-	SetHudSize(214,200,0);SetFont(spatOnNum);HudMessage(s:"A";HUDMSG_PLAIN,100+PlayerNumber(),0,107.0,100.0,0.3);
-	Delay(3);
-	
-	SetHudSize(214,200,0);HudMessage(s:"";HUDMSG_PLAIN,100+PlayerNumber(),0,107.0,100.0,0.1);	
-	Delay(2);	
-}
-
 Script "DukeProtozoidDamage" (void)
 {
 	int animationDelayCounter, deadPlayer, deadProtozoid;
