@@ -97,11 +97,3 @@ Script "DFJerecDeathFX" (void) // Jerec Death Effects need this script because o
 	SetActorProperty(0, APROP_RenderStyle, STYLE_STENCIL);
 	SetActorProperty(0, APROP_StencilColor, 0xFFFF00);
 }
-
-Script "DFJerecGrip" (void) // Decorate with Jerec's grip is kinda broken so I think I want to see what an ACS script can do about it -- 2529
-{
-	SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
-	Delay(20);
-	TakeInventory("AlreadyGripped", 1);
-	SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
-}
