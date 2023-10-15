@@ -32,7 +32,8 @@ actor WolfenPlayer2 : WolfenPlayer replaces WolfenPlayer {
 		Missile:
 			TNT1 A 0 A_GiveInventory("Hexen2EnemyFireDetector",1)
 			TNT1 A 0 A_JumpIfInventory("WolfenClassMode",2,"MissileTotenkopf")
-			BJBL E 6
+			BJBL F 6
+			BJBL G 6 Bright
 			TNT1 A 0 A_TakeInventory("Hexen2EnemyFireDetector",1)
 			Goto Spawn
 		MissileTotenkopf:	
@@ -42,8 +43,7 @@ actor WolfenPlayer2 : WolfenPlayer replaces WolfenPlayer {
 			Goto Spawn
 		Melee:
 			TNT1 A 0 A_JumpIfInventory("WolfenClassMode",2,"MeleeTotenkopf")
-			BJBL E 6
-			BJBL F 6 Bright	 
+			BJBL H 3 Bright	 
 			Goto Missile
 		MeleeTotenkopf:
 			TK61 H 3		
@@ -51,13 +51,13 @@ actor WolfenPlayer2 : WolfenPlayer replaces WolfenPlayer {
 		Death:
 			TNT1 A 0 A_TakeInventory("AmAlreadyChoked",1)
 			TNT1 A 0 A_TakeInventory("Chokeme",1)			
-			BJBL G 0 A_JumpIfInventory("WolfenClassMode",2,"DeathTotenkopf")
+			BJBL I 0 A_JumpIfInventory("WolfenClassMode",2,"DeathTotenkopf")
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			BJBL G 8 A_PlayerScream
-			BJBL H 8 A_NoBlocking
-			BJBL I 8
-			BJBL JKL 8
-			BJBL M -1
+			BJBL J 8 A_PlayerScream
+			BJBL K 8 A_NoBlocking
+			BJBL L 8
+			BJBL MN 8
+			BJBL O -1
 			Stop
 		DeathTotenkopf:
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
