@@ -257,102 +257,9 @@ ACTOR GravityToken : CustomInventory
 	}
 }
 
-//Modified Duke gibs
-
-ACTOR NewDukeGibs1 : DukeGibs1 replaces DukeGibs1
-{
-	States
-	{
-		Spawn:
-			DKG1 ABCD 5
-			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
-			DKG6 ABCDEF 5
-			Stop
-		Death2:
-			DKG1 E 2100
-			Loop
-	}
-}
-
-ACTOR NewDukeGibs2 : NewDukeGibs1 replaces DukeGibs2
-{
-	Health 2
-	States
-	{
-		Spawn:
-			DKG2 ABCD 5
-			Loop
-		Death2:
-			DKG2 E 2100
-			Loop
-	}
-}
-
-ACTOR NewDukeGibs3 : NewDukeGibs1 replaces DukeGibs3
-{
-	Health 4
-	States
-	{
-		Spawn:
-			DKG3 ABCD 5
-			Loop
-		Death2:
-			DKG3 E 2100
-			Loop
-	}
-}
-
-ACTOR NewDukeGibs4 : NewDukeGibs1 replaces DukeGibs4
-{
-	States
-	{
-		Spawn:
-			DKG4 ABCD 5
-			Loop
-		Death2:
-			DKG4 E 2100
-			Loop
-	}
-}
-
-ACTOR NewDukeGibs5 : NewDukeGibs1 replaces DukeGibs5
-{
-	States
-	{
-		Spawn:
-			DKG5 ABCD 5
-			Loop
-		Death2:
-			DKG5 E 2100
-			Loop
-	}
-}
-
-ACTOR NewDukeGibs6 : NewDukeGibs1 replaces DukeGibs6
-{
-	States
-	{
-		Spawn:
-			DKG6 AB 5
-			Loop
-		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
-			DKG6 ABCDEFGH 5
-			Stop
-		Death2:
-			DKG6 CDEFGH 5
-			DKG6 H 2100
-			Goto Death2+6
-	}
-}
-
 //Duke Shrapnel
 
-ACTOR DukeShrapnel1 : NewDukeGibs1
+ACTOR DukeShrapnel1 : DukeGibs1
 {
 	Health 1
 	States
@@ -361,17 +268,13 @@ ACTOR DukeShrapnel1 : NewDukeGibs1
 			DKS2 ABCD 5
 			Loop
 		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
-			TNT1 A 1
+			DKS2 B 2100 A_Gravity
+			DKS2 B 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death")
 			Stop
-		Death2:
-			DKS2 B 2100
-			Loop
 	}
 }
 
-ACTOR DukeShrapnel2 : NewDukeGibs1
+ACTOR DukeShrapnel2 : DukeGibs1
 {
 	Health 1
 	States
@@ -380,17 +283,13 @@ ACTOR DukeShrapnel2 : NewDukeGibs1
 			DKS3 ABCD 5
 			Loop
 		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
-			TNT1 A 0
+			DKS3 A 2100 A_Gravity
+			DKS3 A 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death")
 			Stop
-		Death2:
-			DKS3 A 2100
-			Loop
 	}
 }
 
-ACTOR DukeShrapnel3 : NewDukeGibs1
+ACTOR DukeShrapnel3 : DukeGibs1
 {
 	Health 1
 	States
@@ -399,12 +298,8 @@ ACTOR DukeShrapnel3 : NewDukeGibs1
 			DKS4 ABCD 5
 			Loop
 		Death:
-			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
-			TNT1 A 1
+			DKS4 D 2100 A_Gravity
+			DKS4 D 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death")
 			Stop
-		Death2:
-			DKS4 D 2100
-			Loop
 	}
 }
