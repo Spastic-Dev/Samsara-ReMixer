@@ -142,6 +142,204 @@ ACTOR MultiAmmo4Big : Ammo4Big replaces CellPack
 	}
 }
 
+ACTOR HereticMultiAmmo1Small : HereticAmmo1Small replaces BlasterAmmo
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo1Small",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HereticMultiAmmo1Big : HereticAmmo1Big replaces BlasterHefty
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo1Big",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HereticMultiAmmo2Small : HereticAmmo2Small replaces CrossbowAmmo
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo2Small",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HereticMultiAmmo2Big : HereticAmmo2Big replaces CrossbowHefty
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo2Big",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HereticMultiAmmo3Small : HereticAmmo3Small replaces PhoenixRodAmmo
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo3Small",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HereticMultiAmmo3Big : HereticAmmo3Big replaces PhoenixRodHefty
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo3Big",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HereticMultiAmmo4Small : HereticAmmo4Small replaces SkullRodAmmo
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo4Small",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HereticMultiAmmo4Big : HereticAmmo4Big replaces SkullRodHefty
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HereticAmmo4Big",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HexenMultiAmmo12Small : HexenAmmo12Small replaces Mana1
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HexenAmmo12Small",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HexenMultiAmmo34Small : HexenAmmo34Small replaces Mana2
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HexenAmmo34Small",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
+ACTOR HexenMultiHexenEverythingAmmo : HexenEverythingAmmo replaces Mana3
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 6 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,3,1)
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+		MultiplyAmmo:
+			TNT1 A 0 A_TakeInventory("MultiplyToken",1)
+			TNT1 A 1 A_SpawnItemEx("HexenEverythingAmmo",0,0,0,random(-1,1),random(-1,1),0,0,40)
+			TNT1 A 0 A_JumpIfInventory("MultiplyToken",1,"MultiplyAmmo")
+			Goto Super::Spawn
+	}
+}
+
 ACTOR ChexMultiAmmo1Small : MultiAmmo1Small replaces MiniZorchRecharge { }
 ACTOR ChexMultiAmmo1Big : MultiAmmo1Big replaces MiniZorchPack { }
 ACTOR ChexMultiAmmo2Small : MultiAmmo2Small replaces LargeZorchRecharge { }
@@ -149,4 +347,4 @@ ACTOR ChexMultiAmmo2Big : MultiAmmo2Big replaces LargeZorchPack { }
 ACTOR ChexMultiAmmo3Small : MultiAmmo3Small replaces PropulsorZorch { }
 ACTOR ChexMultiAmmo3Big : MultiAmmo3Big replaces PropulsorZorchPack { }
 ACTOR ChexMultiAmmo4Small : MultiAmmo4Small replaces PhasingZorch { }
-ACTOR ChexMultiAmmo4Big : MultiAmmo4Big replaces Zorchpack { }
+ACTOR ChexMultiAmmo4Big : MultiAmmo4Big replaces PhasingZorchPack { }
