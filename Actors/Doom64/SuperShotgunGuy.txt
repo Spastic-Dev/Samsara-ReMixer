@@ -7,7 +7,7 @@ ACTOR SuperShotgunGuy64 : SamsaraMonsterHumanoidMedium
 	Mass 100
 	PainChance 170
 	Monster
-	Scale 0.75
+	Scale 0.65
 	+FLOORCLIP
 	Tag "Super Shotgun Guy"
 	Species "SamsaraSuperShotgunGuy64"
@@ -68,8 +68,8 @@ ACTOR SuperShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			64GP H 5 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			64GP I 5 A_Scream
 			64GP J 5 A_NoBlocking
-			64GP KL 5
-			64GP M -1
+			64GP K 5
+			64GP L -1
 			Stop
 		Death.CalebFire:
 		Death.LifeLeech:
@@ -90,17 +90,17 @@ ACTOR SuperShotgunGuy64 : SamsaraMonsterHumanoidMedium
 			64GP G 2
 			Loop
 		XDeath:
-			64GP N 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			64GP N 5 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
-			64GP O 5 A_PlaySound("friendlyimp64/gibbed", CHAN_VOICE)
-			64GP P 5 A_NoBlocking
-			64GP QRSTU 5
-			64GP V -1
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			64GP M 5 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+			64GP N 5 A_PlaySound("friendlyimp64/gibbed", CHAN_VOICE)
+			64GP O 5 A_NoBlocking
+			64GP PQRST 5
+			64GP U -1
 			Stop
 		Raise:
 			64GP A 0
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-			64GP MLKJIH 5
+			64GP LKJIH 5
 			Goto See
 		ZorchRaise:
 			"####" "#" 1 A_UnsetShootable
