@@ -522,24 +522,15 @@ actor DukeArmor : SamsaraArmorPickup
         DARP A 0
         goto SpawnGameModeCheck
 
-      SpawnActual0:
-      SpawnActual1:
-      SpawnActual2:
-      SpawnActual3:
-      SpawnActual4:
-      SpawnActual5:
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
         DARP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
 
-      PickupActual0:
-      PickupActual1:
-      PickupActual2:
-      PickupActual3:
-      PickupActual4:
-      PickupActual5:
+      Pickup:
         TNT1 A 0 A_JumpIf(CallACS("SamsaraArmorCapCheck", -58), "PickupFail")
-      PickupActualSuccess:
-        TNT1 A 0 ACS_NamedExecuteAlways("ReMixerPickupMessages", 0, 27)
+      PickupSuccess:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 6, 0, 0)
         TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
         TNT1 A 0 A_SetBlend("D7BA45",0.3,4)
         TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_ITEM)

@@ -716,22 +716,90 @@ actor BloodBurningCorpse_Zimba : BloodBurningCorpse_SilentColor
 	}
 }
 
-Actor BloodHeartPower : Health
+actor BloodHeartPower : SamsaraHealthPickup
 {
-	height 20
-	radius 16
-	Scale 0.60
-	Inventory.Amount 5
-	Inventory.PickupMessage "Picked up Life Essence. (5 Health)"
-	Inventory.PickupSound "Blood/HeartPU"
-	+FLOORCLIP
-	+FANCYPICKUPSOUND
-	+DROPPED
-	+DONTGIB
-	States
-	{
-	Spawn:
-		CLVR OPQR 5
-		Loop
-	}
+    RenderStyle "Normal"
+    Scale 0.6
+    +DONTGIB
+    +DROPPED
+    -FLOATBOB
+    +FLOORCLIP
+    States
+    {
+      Spawn:
+        CLVR O 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualLoop:
+        CLVR OPQR 5
+        loop
+
+      Pickup:
+        TNT1 A 0 A_Jump(256,"PickupDefault") // for inheriting actors
+        goto PickupDefault
+
+      PickupDefault:
+        TNT1 A 0 A_JumpIfHealthLower(CallACS("SamsaraPlayerHealer", -1), "PickupDisplay")
+        fail
+
+      PickupDisplay:
+        TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupDisplayMarathon")
+        TNT1 A 0 A_Jump(256,"PickupDisplayDefault") // for inheriting actors
+        goto PickupDisplayDefault
+
+      PickupDisplayDefault:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 5, 0, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("D7BA45",0.3,4)
+        TNT1 A 0 A_PlaySound("Blood/HeartPU",CHAN_ITEM)
+        goto PickupSuccess
+
+      PickupDisplayMarathon:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 5, 0, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("F0F8FF",0.3,4) // Light Alice Blue
+        TNT1 A 0 A_PlaySound("Blood/HeartPU",CHAN_ITEM)
+        goto PickupSuccess
+
+      PickupSuccess:
+        TNT1 A 0 A_JumpIfInventory("DeusExClass",1,"PickupSuccessDeusEx")
+        TNT1 A 0 A_Jump(256,"PickupSuccessDefault") // for inheriting actors
+        goto PickupSuccessDefault
+
+      PickupSuccessDefault:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraPlayerHealer", 5)
+        stop
+
+      PickupSuccessDeusEx:
+        TNT1 A 0 A_JumpIfInventory("DeusEx_MedicineSkill",0,"PickupSuccessDeusExMaster")
+        TNT1 A 0 A_JumpIfInventory("DeusEx_MedicineSkill",3,"PickupSuccessDeusExAdvanced")
+        TNT1 A 0 A_JumpIfInventory("DeusEx_MedicineSkill",2,"PickupSuccessDeusExProficient")
+        TNT1 A 0 A_JumpIfInventory("DeusEx_MedicineSkill",1,"PickupSuccessDeusExTrained")
+      PickupSuccessDeusExUntrained:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraPlayerHealer", 5)
+        goto PickupSuccessDeusExFinish
+
+      PickupSuccessDeusExTrained:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraPlayerHealer", 6)
+        goto PickupSuccessDeusExFinish
+
+      PickupSuccessDeusExProficient:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraPlayerHealer", 7)
+        goto PickupSuccessDeusExFinish
+
+      PickupSuccessDeusExAdvanced:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraPlayerHealer", 8)
+        goto PickupSuccessDeusExFinish
+
+      PickupSuccessDeusExMaster:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraPlayerHealer", 10)
+        goto PickupSuccessDeusExFinish
+
+      PickupSuccessDeusExFinish:
+        TNT1 A 0 ACS_NamedExecuteWithResult("DeusEx_Decorate", 25, 5)
+        stop
+    }
 }
