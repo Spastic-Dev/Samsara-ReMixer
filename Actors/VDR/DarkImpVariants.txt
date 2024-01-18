@@ -50,13 +50,6 @@ actor MMRandomizer_STDarkImp : DoomImp3
 			VD18 L 6 A_Fall
 			VD18 M -1
 			Stop
-		Death.PainkillerStake:
-			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
-			TNT1 A 0 A_JumpIf(CallACS("Painkiller_IsItGibbed")==1,"PainkillerGib")
-			TNT1 A 0 A_GiveInventory("Painkiller_RunStake",1)
-			TNT1 A 0 A_Scream
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_FaceTarget
 		StakeDeath:
 			VD18 H 2
 			Loop
@@ -74,23 +67,6 @@ actor MMRandomizer_STDarkImp : DoomImp3
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			VD18 ML 8
 			VD18 KJI 6
-			Goto See
-		ZorchRaise:
-			"####" "#" 1 A_UnsetShootable
-			"####" "#" 1 A_SpawnItem("SpawnFire2")
-			"####" "#" 0 A_PlaySound("archvile/resummon")
-			"####" "#" 1 A_TakeInventory("EnemyZorched",1)
-			"####" "#" 0 A_SetTranslucent(0.1,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 3 A_SetTranslucent(1,0)
-			"####" "#" 1 A_SetShootable
 			Goto See
 		Pain.ShrinkerDMG:
 			VD18 H 0
@@ -127,20 +103,6 @@ actor MMRandomizer_STDarkImp : DoomImp3
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			VD18 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			VD18 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -401,21 +363,6 @@ actor MMRandomizer_DarkDevil : MMRandomizer_STDarkImp
 			VD19 Q 5
 			VD19 R -1
 			stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 5 A_NoBlocking
-			stop
-		Death.PainkillerStake:
-			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
-			TNT1 A 0 A_JumpIf(CallACS("Painkiller_IsItGibbed")==1,"PainkillerGib")
-			TNT1 A 0 A_GiveInventory("Painkiller_RunStake",1)
-			TNT1 A 0 A_Scream
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_FaceTarget
 		StakeDeath:
 			VD19 H 2
 			Loop
@@ -434,23 +381,6 @@ actor MMRandomizer_DarkDevil : MMRandomizer_STDarkImp
 			VD19 ML 8
 			VD19 KJI 6
 			goto See
-		ZorchRaise:
-			"####" "#" 1 A_UnsetShootable
-			"####" "#" 1 A_SpawnItem("SpawnFire2")
-			"####" "#" 0 A_PlaySound("archvile/resummon")
-			"####" "#" 1 A_TakeInventory("EnemyZorched",1)
-			"####" "#" 0 A_SetTranslucent(0.1,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 3 A_SetTranslucent(1,0)
-			"####" "#" 1 A_SetShootable
-			Goto See
 		Pain.ShrinkerDMG:
 			VD19 H 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -486,20 +416,6 @@ actor MMRandomizer_DarkDevil : MMRandomizer_STDarkImp
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			VD19 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			VD19 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -747,21 +663,6 @@ actor MMRandomizer_NamiDarkImp : MMRandomizer_STDarkImp
 			VD20 L 6 A_Fall
 			VD20 M -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 5 A_NoBlocking
-			stop
-		Death.PainkillerStake:
-			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
-			TNT1 A 0 A_JumpIf(CallACS("Painkiller_IsItGibbed")==1,"PainkillerGib")
-			TNT1 A 0 A_GiveInventory("Painkiller_RunStake",1)
-			TNT1 A 0 A_Scream
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_FaceTarget
 		StakeDeath:
 			TRO2 H 2
 			Loop
@@ -779,23 +680,6 @@ actor MMRandomizer_NamiDarkImp : MMRandomizer_STDarkImp
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			VD20 ML 8
 			VD20 KJI 6
-			Goto See
-		ZorchRaise:
-			"####" "#" 1 A_UnsetShootable
-			"####" "#" 1 A_SpawnItem("SpawnFire2")
-			"####" "#" 0 A_PlaySound("archvile/resummon")
-			"####" "#" 1 A_TakeInventory("EnemyZorched",1)
-			"####" "#" 0 A_SetTranslucent(0.1,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 3 A_SetTranslucent(1,0)
-			"####" "#" 1 A_SetShootable
 			Goto See
 		Pain.ShrinkerDMG:
 			VD20 H 0
@@ -832,20 +716,6 @@ actor MMRandomizer_NamiDarkImp : MMRandomizer_STDarkImp
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			VD20 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			VD20 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1114,14 +984,8 @@ actor MMRandomizer_NetherDarkImp : MMRandomizer_STDarkImp
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic_Green", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 5 A_NoBlocking
+			TNT1 A -1
 			stop
-		Death.PainkillerStake:
-			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
-			TNT1 A 0 A_JumpIf(CallACS("Painkiller_IsItGibbed")==1,"PainkillerGib")
-			TNT1 A 0 A_GiveInventory("Painkiller_RunStake",1)
-			TNT1 A 0 A_Scream
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_FaceTarget
 		StakeDeath:
 			VD21 H 2
 			Loop
@@ -1139,23 +1003,6 @@ actor MMRandomizer_NetherDarkImp : MMRandomizer_STDarkImp
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			VD21 PO 8
 			VD21 NML 6
-			Goto See
-		ZorchRaise:
-			"####" "#" 1 A_UnsetShootable
-			"####" "#" 1 A_SpawnItem("SpawnFire2")
-			"####" "#" 0 A_PlaySound("archvile/resummon")
-			"####" "#" 1 A_TakeInventory("EnemyZorched",1)
-			"####" "#" 0 A_SetTranslucent(0.1,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 3 A_SetTranslucent(1,0)
-			"####" "#" 1 A_SetShootable
 			Goto See
 		Pain.ShrinkerDMG:
 			VD21 H 0
@@ -1192,20 +1039,6 @@ actor MMRandomizer_NetherDarkImp : MMRandomizer_STDarkImp
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			VD21 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			VD21 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1563,21 +1396,6 @@ actor MMRandomizer_VoidDarkImp : MMRandomizer_STDarkImp
 			VD22 O 5 A_Fall
 			VD22 P -1
 			Stop
-		Death.CalebFire:
-		Death.LifeLeech:
-			TNT1 A 0 A_Jump(218, 2)
-			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
-			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 5 A_NoBlocking
-			stop
-		Death.PainkillerStake:
-			TNT1 A 0 ACS_NamedExecuteAlways("Painkiller_MonsterKill")
-			TNT1 A 0 A_JumpIf(CallACS("Painkiller_IsItGibbed")==1,"PainkillerGib")
-			TNT1 A 0 A_GiveInventory("Painkiller_RunStake",1)
-			TNT1 A 0 A_Scream
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_FaceTarget
 		StakeDeath:
 			VD22 H 2
 			Loop
@@ -1595,23 +1413,6 @@ actor MMRandomizer_VoidDarkImp : MMRandomizer_STDarkImp
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			VD22 PO 8
 			VD22 NML 6
-			Goto See
-		ZorchRaise:
-			"####" "#" 1 A_UnsetShootable
-			"####" "#" 1 A_SpawnItem("SpawnFire2")
-			"####" "#" 0 A_PlaySound("archvile/resummon")
-			"####" "#" 1 A_TakeInventory("EnemyZorched",1)
-			"####" "#" 0 A_SetTranslucent(0.1,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 3 A_SetTranslucent(1,0)
-			"####" "#" 1 A_SetShootable
 			Goto See
 		Pain.ShrinkerDMG:
 			VD22 H 0
@@ -1648,20 +1449,6 @@ actor MMRandomizer_VoidDarkImp : MMRandomizer_STDarkImp
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			VD22 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			VD22 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
