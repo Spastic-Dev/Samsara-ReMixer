@@ -15,8 +15,6 @@ ACTOR Fatso3 : Fatso2
 		FAT2 A 0 A_GiveInventory("IsFatButBiped")
 		FAT2 A 0
 	Spawn2:
-		TNT1 A 0 A_GiveInventory("IsFatButBiped")
-	Spawn3:
 		FAT2 AB 15 A_Look
 		Loop
 	See:
@@ -62,23 +60,6 @@ ACTOR Fatso3 : Fatso2
 		"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 		FAT2 RQPONMLK 5
 		Goto See
-	ZorchRaise:
-		"####" "#" 1 A_UnsetShootable
-		"####" "#" 1 A_SpawnItem("SpawnFire2")
-		"####" "#" 0 A_PlaySound("archvile/resummon")
-		"####" "#" 1 A_TakeInventory("EnemyZorched",1)
-		"####" "#" 0 A_SetTranslucent(0.1,0)
-		"####" "#" 3 A_SetTranslucent(0.2,0)
-		"####" "#" 3 A_SetTranslucent(0.3,0)
-		"####" "#" 3 A_SetTranslucent(0.4,0)
-		"####" "#" 3 A_SetTranslucent(0.5,0)
-		"####" "#" 3 A_SetTranslucent(0.6,0)
-		"####" "#" 3 A_SetTranslucent(0.7,0)
-		"####" "#" 3 A_SetTranslucent(0.8,0)
-		"####" "#" 3 A_SetTranslucent(0.9,0)
-		"####" "#" 3 A_SetTranslucent(1,0)
-		"####" "#" 1 A_SetShootable
-		Goto See
 	Pain.ShrinkerDMG:
 		FAT2 J 0
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -117,20 +98,6 @@ ACTOR Fatso3 : Fatso2
 		TNT1 A 0 A_ChangeFlag("VULNERABLE", 1)
 		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
 		Goto Super::ShrunkLoop
-	Death.ExpanderDMG:
-	XDeath.ExpanderDMG:
-		FAT2 A 0
-		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto Super::ExpanderLoop
-	Death.ExpanderDMGCoop:
-	XDeath.ExpanderDMGCoop:
-		FAT2 A 0
-		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-		"####" "#" 0 A_PlaySound("duke/expand")
-		Goto Super::ExpanderLoopCoop
 	}
 }
 
