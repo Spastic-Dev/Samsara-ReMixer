@@ -11,6 +11,12 @@ ACTOR MMRandomizer_Annihilator : CyberDemon3
 	States
 	{
 		Spawn:
+			VD80 A 0
+			VD80 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			VD80 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			VD80 A 0 A_GiveInventory("AlreadySpawned",1)
+			VD80 A 0
+		Spawn2:
 			VD80 AB 10 A_Look
 			Loop
 		See:
