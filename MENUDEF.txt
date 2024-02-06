@@ -45,6 +45,7 @@
 			StaticText ""
 			StaticText "Monster Spawning Options"
 			Option "Skill Override" , "mm_skilloverride", "DifficultyMode"
+			//Option "Monster Health Override", "mm_healthoverride", "HealthMode"
 			Option "Spawn Mode", "mm_spawnmode", "SpawnMode"
 			Slider "Random Sets Per Map", "mm_randomcycle", 1, 26, 1
 			Option "Enemy Drop Mode", "mm_dropmode", "DropMode"
@@ -53,9 +54,7 @@
 			Option "Monster Reducer Rate", "mm_reducemonsters", "ReducerOptions"
 			StaticText ""
 			StaticText "Monster Specific Options"
-			//Option "Chex Quest: Improved Chex Quest", "mm_newchex", "OnOff"
 			Option "Wolfenstein 3D: Killable Spectres", "mm_specpermdeath", "OnOff"
-			//Option "Wolfenstein 3D: No Bats", "mm_nobats", "OnOff"
 			Option "Wolfenstein 3D: Quick Boss Death", "mm_wolffastdeath", "OnOff"
 			Option "Wolfenstein 3D: Quick Fake Hitler Fire", "mm_fakehitlerfire", "OnOff"
 			Option "Marathon: Full Radius Explosions", "mm_fullradiusdmg", "OnOff"
@@ -161,6 +160,21 @@
 			3, "Hurt Me Plenty"
 			4, "Ultra-Violence"
 			5, "Nightmare!"
+	}
+
+	OptionValue HealthMode
+	{
+			-2, "Player-Based (2x Health)"
+			-1, "Player-Based (+50% Health)"
+			10, "-90% Health"
+			25, "-75% Health"
+			50, "-50% Health"
+			75, "-25% Health"
+			100, "Default"
+			125, "+25% Health"
+			150, "+50% Health"
+			200, "2x Health"
+			400, "4x Health"
 	}
 	
 	OptionValue ReMixerPresetOptions
