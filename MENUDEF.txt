@@ -44,14 +44,17 @@
 			Option "Performance Mode", "mm_performancemode", "OnOff"
 			StaticText ""
 			StaticText "Monster Spawning Options"
-			Option "Skill Override" , "mm_skilloverride", "DifficultyMode"
-			//Option "Monster Health Override", "mm_healthoverride", "HealthMode"
 			Option "Spawn Mode", "mm_spawnmode", "SpawnMode"
 			Slider "Random Sets Per Map", "mm_randomcycle", 1, 26, 1
 			Option "Enemy Drop Mode", "mm_dropmode", "DropMode"
 			Slider "Monster Multiplier", "mm_multiply",  1, 100, 1
 			Option "Monster Generation Rate", "mm_generate", "GenerationOptions"
 			Option "Monster Reducer Rate", "mm_reducemonsters", "ReducerOptions"
+			StaticText ""
+			StaticText "Monster Override Options"
+			Option "Skill Override" , "mm_skilloverride", "DifficultyMode"
+			Option "Monster Health Override", "mm_healthoverride", "HealthMode"
+			Option "Monster Speed Override", "mm_speedoverride", "SpeedMode"
 			StaticText ""
 			StaticText "Monster Specific Options"
 			Option "Wolfenstein 3D: Killable Spectres", "mm_specpermdeath", "OnOff"
@@ -164,8 +167,10 @@
 
 	OptionValue HealthMode
 	{
-			-2, "Player-Based (2x Health)"
-			-1, "Player-Based (+50% Health)"
+			-4, "Player-Based (2x Health)"
+			-3, "Player-Based (+75% Health)"
+			-2, "Player-Based (+50% Health)"
+			-1, "Player-Based (+25% Health)"
 			10, "-90% Health"
 			25, "-75% Health"
 			50, "-50% Health"
@@ -173,8 +178,29 @@
 			100, "Default"
 			125, "+25% Health"
 			150, "+50% Health"
+			175, "+75% Health"
 			200, "2x Health"
 			400, "4x Health"
+			800, "8x Health"
+	}
+
+	OptionValue SpeedMode
+	{
+			-4, "Player-Based (2x Speed)"
+			-3, "Player-Based (+75% Speed)"
+			-2, "Player-Based (+50% Speed)"
+			-1, "Player-Based (+25% Speed)"
+			10, "-90% Speed"
+			25, "-75% Speed"
+			50, "-50% Speed"
+			75, "-25% Speed"
+			100, "Default"
+			125, "+25% Speed"
+			150, "+50% Speed"
+			175, "+75% Speed"
+			200, "2x Speed"
+			400, "4x Speed"
+			800, "8x Speed"
 	}
 	
 	OptionValue ReMixerPresetOptions
