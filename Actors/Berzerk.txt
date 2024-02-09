@@ -358,3 +358,113 @@ ACTOR BerzerkLaserGreen : BerzerkLaserRed
 			Stop
 	}
 }
+
+actor SamsaraPowerfulHoe : SamsaraMonsterDemonicBoss
+{
+	Health 5000
+	Radius 20
+	Height 56
+	Mass 1000
+	Speed 12
+	PainChance 25
+	Monster
+	MeleeThreshold 196
+	+MISSILEMORE
+	+FLOORCLIP
+	+BOSS
+	+NORADIUSDMG
+	+DONTMORPH
+	+BOSSDEATH
+	+DONTRIP
+	SeeSound "doom/skeleton/sight"
+	PainSound "doom/skeleton/pain"
+	DeathSound "doom/skeleton/death"
+	ActiveSound "doom/skeleton/active"
+	MeleeSound "doom/skeleton/melee"
+	HitObituary "%o had their peen rejected by a powerful hoe."
+	Obituary "%o was dude-hunted by a powerful hoe."
+	Tag "Powerful Hoe"
+	Species "SamsaraRevenant"
+	States
+	{
+	Spawn:
+		98PH AB 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
+		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+		TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
+		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
+		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
+		TNT1 A 0 A_GiveInventory("HLBossSee",1)
+		TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+	See2:
+		98PH AABBCCDDEEFF 2 A_Chase
+		Loop
+	Melee:
+		98PH G 1 A_FaceTarget
+		98PH G 9 A_SkelWhoosh
+		98PH H 9 A_FaceTarget
+		98PH I 9 A_CustomMeleeAttack((150), "doom/skeleton/melee")
+		Goto See
+	Missile:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+		98PH J 7 Bright A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_Jump(128,"RapidAtk")
+		TNT1 A 0 A_CustomMissile("RevenantTracerHoming",56,12,-45)
+		TNT1 A 0 A_CustomMissile("RevenantTracerHoming",56,12,-15)
+		TNT1 A 0 A_CustomMissile("RevenantTracerHoming",56,12,15)
+		98PH K 10 A_CustomMissile("RevenantTracerHoming",56,12,45)
+		Goto MissileEnd
+	RapidAtk:
+		98PH K 6 A_CustomMissile("RevenantTracerHoming",56,12)
+		98PH J 6 Bright A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		98PH K 6 A_CustomMissile("RevenantTracerHoming",56,12)
+		98PH J 6 Bright A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		98PH K 6 A_CustomMissile("RevenantTracerHoming",56,12)
+		98PH J 6 Bright A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		98PH K 6 A_CustomMissile("RevenantTracerHoming",56,12)
+		98PH J 6 Bright A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		98PH K 10 A_CustomMissile("RevenantTracerHoming",56,12)
+		Goto MissileEnd
+	MissileEnd:
+		98PH K 10 A_FaceTarget
+		Goto See
+	Pain:
+		98PH L 5
+		98PH L 5 A_Pain
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		98PH L 7 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffectForBosses",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		98PH M 7
+		98PH N 7 A_Scream
+		98PH O 7 A_NoBlocking
+		98PH P 7
+		98PH Q -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+		Stop
+	}
+}
+
+/*
+Insanity Survival Powerful Hoe credits:
+- Decorate by Kaapeli47.
+- Sprites by Spectator, color remapped by Kaapeli47 according to the colors of
+  Powerful Hoe in Real Guns Advanced 2.
+*/
