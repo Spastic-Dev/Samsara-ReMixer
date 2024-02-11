@@ -1,6 +1,6 @@
 Actor MMRandomizer_Fiend : Revenant3
 {
-	BloodColor "91 00 8e"
+	BloodColor "9b 00 a3"
 	HitObituary "%o was punched by a Fiend."
 	Obituary "%o was caught in a Fiend's crosshairs."
 	Tag "Fiend"
@@ -20,11 +20,13 @@ Actor MMRandomizer_Fiend : Revenant3
 			Loop
 		Melee:
 			VD73 G 1 A_FaceTarget
-			VD73 G 6 A_SkelWhoosh
+			TNT1 A 0 A_FaceTarget
+			VD73 G 6 A_PlaySound("doom/skeleton/swing", CHAN_BODY)
 			VD73 H 6 A_FaceTarget
-			VD73 I 6 A_SkelFist
+			VD73 I 6 A_CustomMeleeAttack(random(1,10)*6, "doom/skeleton/melee")
 			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD73 J 1 bright A_FaceTarget
 			VD73 J 9 bright A_FaceTarget
 			VD73 K 10 A_CustomMissile("MMRandomizer_FiendBeamShot", 60, 0, random(-4,4),0)
