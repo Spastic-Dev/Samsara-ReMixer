@@ -1,13 +1,11 @@
 ACTOR MMRandomizer_Incarnate : Revenant3
 {
-	Health 500
+	Health 400
 	Speed 12
 	MeleeDamage 7
 	PainChance 64
-	MaxTargetRange 1024
 	GibHealth 100
 	+SHORTMISSILERANGE
-	+DONTHARMCLASS
 	Obituary "%o was killed by an Incarnate's glare."
 	HitObituary "%o was beaten to death by an Incarnate."
 	SeeSound "vdr/incarnate/sight"
@@ -47,8 +45,16 @@ ACTOR MMRandomizer_Incarnate : Revenant3
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD75 J 10 A_FaceTarget
-			TNT1 A 0 A_PlaySound("heretic/wand")
-			VD75 U 10 Bright A_CustomBulletAttack(30,0,5,3,"MMRandomizer_DIpuff",1024)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Jump(128,3)
+			VD75 U 4 bright A_CustomMissile("MMRandomizer_IncarnateBall", 64, 0, random(1, 4))
+			VD75 U 4 bright A_CustomMissile("MMRandomizer_IncarnateBall", 64, 0, random(-4, -1))
+			Goto MissileEnd
+			VD75 U 4 bright A_CustomMissile("MMRandomizer_IncarnateBall", 64, 0, random(-4, -1))
+			VD75 U 4 bright A_CustomMissile("MMRandomizer_IncarnateBall", 64, 0, random(1, 4))
+			Goto MissileEnd
+		MissileEnd:
+			VD75 U 4 bright A_CustomMissile("MMRandomizer_IncarnateBall", 64)
 			VD75 K 10
 			Goto See
 		Pain:
@@ -90,11 +96,11 @@ ACTOR MMRandomizer_Incarnate : Revenant3
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			VD64 P 10 Bright A_PlaySound("vdr/incarnate/explode")
-			VD64 QR 5 Bright
-			VD64 S 5 Bright A_NoBlocking
-			VD64 T 5 Bright A_SpawnItemEx("MMRandomizer_Nightshade",0,0,0,0,0,0,0,SXF_SETMASTER)
-			VD64 UVWXY 5 Bright
+			VD64 P 10 bright A_PlaySound("vdr/incarnate/explode")
+			VD64 QR 5 bright
+			VD64 S 5 bright A_NoBlocking
+			VD64 T 5 bright A_SpawnItemEx("MMRandomizer_Nightshade",0,0,0,0,0,0,0,SXF_SETMASTER)
+			VD64 UVWXY 5 bright
 			VD64 Z -1
 			Stop
 		Raise:
@@ -338,19 +344,4 @@ actor MMRandomizer_Incarnate_ShrinkEffect : MMRandomizer_Incarnate
 	}
 }
 
-//new visible puff
-ACTOR MMRandomizer_DIPuff
-{
-	+NOBLOCKMAP
-	+NOGRAVITY
-	+RANDOMIZE
-	+PUFFONACTORS
-	+BRIGHT
-	Renderstyle Add
-	States
-	{
-		Spawn:
-			VE30 ABCDE 3
-			Stop
-	}
-}
+Actor MMRandomizer_IncarnateBall : MMRandomizer_ShadowBall { Speed 16 }
