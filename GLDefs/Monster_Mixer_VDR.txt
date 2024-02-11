@@ -2388,6 +2388,58 @@ object MMRandomizer_OrbitComet2
 	frame VE27 { light MMRandomizer_AfritBall1 }
 }
 
+pointlight MMRandomizer_FiendBeam
+{
+	color 0.1 0.1 1.0
+	size 28
+}
+
+flickerlight MMRandomizer_FiendBeam_X1
+{
+	color 0.2 0.2 1.0
+	size 32
+	secondarysize 36
+	chance 0.4
+}
+
+flickerlight MMRandomizer_FiendBeam_X2
+{
+	color 0.2 0.2 0.8
+	size 40
+	secondarysize 44
+	chance 0.4
+}
+
+flickerlight MMRandomizer_FiendBeam_X3
+{
+	color 0.1 0.1 0.5
+	size 32
+	secondarysize 36
+	chance 0.4
+}
+
+flickerlight MMRandomizer_FiendBeam_X4
+{
+	color 0.0 0.0 0.2
+	size 6
+	secondarysize 10
+	chance 0.4
+}
+
+object MMRandomizer_FiendBeamShot
+{
+	frame TNT1A { light MMRandomizer_FiendBeam }
+}
+
+object MMRandomizer_FiendBeamPow
+{
+    frame DPLEA { light MMRandomizer_FiendBeam_X1 }
+    frame DPLEB { light MMRandomizer_FiendBeam_X2 }
+    frame DPLEC { light MMRandomizer_FiendBeam_X2 }
+    frame DPLED { light MMRandomizer_FiendBeam_X3 }
+    frame DPLEE { light MMRandomizer_FiendBeam_X4 }
+}
+
 flickerlight2 MMRandomizer_GhoulFire
 {
 	color 0.3 1.0 0.4
