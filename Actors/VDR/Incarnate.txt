@@ -343,4 +343,18 @@ actor MMRandomizer_Incarnate_ShrinkEffect : MMRandomizer_Incarnate
 	}
 }
 
-Actor MMRandomizer_IncarnateBall : MMRandomizer_ShadowBall { Speed 22 }
+Actor MMRandomizer_IncarnateBall : MMRandomizer_ShadowBall
+{
+	Speed 18
+	States
+	{
+		Spawn:
+			VE03 A 3 A_SpawnItemEx("MMRandomizer_ShadowTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			VE03 A 1 A_SpawnItemEx("MMRandomizer_ShadowTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			VE03 B 2
+			VE03 B 2 A_SpawnItemEx("MMRandomizer_ShadowTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			VE03 C 1
+			VE03 C 3 A_SpawnItemEx("MMRandomizer_ShadowTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
+			Loop
+	}
+}
