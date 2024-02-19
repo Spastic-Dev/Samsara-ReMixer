@@ -515,7 +515,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		GiveActorInventory(newMonTid, token,1);
 	}
 
-	if(GetCVar("mm_healthoverride") != 0 || 100)
+	if(GetCVar("mm_healthoverride") != 100)
 	{
 		if (healthMod <= -4)
 		{
@@ -535,11 +535,18 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		}
 		else
 		{
-			SetActorProperty(newMonTid,APROP_Health,(GetActorProperty(newMonTid,APROP_Health) * healthMod/100));
+			if ((GetActorProperty(newMonTid,APROP_Health) * healthMod/100) <= 0)
+			{
+				SetActorProperty(newMonTid,APROP_Health,1);
+			}
+			else
+			{
+				SetActorProperty(newMonTid,APROP_Health,(GetActorProperty(newMonTid,APROP_Health) * healthMod/100));
+			}
 		}
 	}
 
-	if(GetCVar("mm_speedoverride") != 0 || 100)
+	if(GetCVar("mm_speedoverride") != 100)
 	{
 		if (speedMod <= -4)
 		{
@@ -559,7 +566,14 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		}
 		else
 		{
-			SetActorProperty(newMonTid,APROP_Speed,(GetActorProperty(newMonTid,APROP_Speed) * speedMod/100));
+			if ((GetActorProperty(newMonTid,APROP_Speed) * speedMod/100) <= 0)
+			{
+				SetActorProperty(newMonTid,APROP_Speed,1);
+			}
+			else
+			{
+				SetActorProperty(newMonTid,APROP_Speed,(GetActorProperty(newMonTid,APROP_Speed) * speedMod/100));
+			}
 		}
 	}
 
