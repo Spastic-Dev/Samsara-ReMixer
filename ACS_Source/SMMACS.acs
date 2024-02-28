@@ -80,18 +80,6 @@ Script "ReMixerInit" OPEN //667
 	Delay(1);
 	addonsProcessed = 1;
 	Delay(4);
-
-	// We should check for iwads and TCs that can be loaded with Reincarnation, but not with ReMixer
-	int incompatibilityReMixerTid = UniqueTid();
-
-	// Check if Strife have been loaded
-	if (GetCvar("samsara_currentgame") == 16)
-	{
-		SetFont("CMPSDOOM");
-		HudMessage(l:"REMIXER_INCOMPATIBILITY_1"; HUDMSG_TYPEON | HUDMSG_LOG, 0, CR_WHITE, 1.5, 0.8, 5.0, 0.05, 2.0);
-	}
-
-	Thing_Remove(incompatibilityReMixerTid);
 }
 
 Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
