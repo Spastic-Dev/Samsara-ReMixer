@@ -83,9 +83,10 @@ ACTOR MMRandomizer_SuperShotgunGuy : SamsaraMonsterHumanoid
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Stop
 			TNT1 A 5 A_NoBlocking
-			TNT1 A -1
-			stop
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+			Stop
 		Pain.ShrinkerDMG:
 			GPOS G 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)

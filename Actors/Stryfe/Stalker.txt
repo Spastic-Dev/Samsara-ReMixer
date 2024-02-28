@@ -1,4 +1,4 @@
-Actor StrifeStalker : SamsaraMonsterRoboticSmall
+Actor StrifeStalker : SamsaraMonsterRobotic
 {
 	Tag "Stalker"
 	Species "StrifeEnemies"	
@@ -17,8 +17,6 @@ Actor StrifeStalker : SamsaraMonsterRoboticSmall
 	+DROPOFF
 	+NOBLOOD
 	+FLOORCLIP
-	+NOTDMATCH
-	+NOICEDEATH
 	+NOINFIGHTING
 	MaxDropOffHeight 32
 	MinMissileChance 150
@@ -70,7 +68,17 @@ Actor StrifeStalker : SamsaraMonsterRoboticSmall
 			STLK L 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			STLK L 16 A_Pain
-			Goto See		
+			Goto See
+
+		// SamsaraMonsterHumanoid states
+		Disintegrate:
+		XDeath.PunchDagger:
+		XDeath.ElectricBolt:
+		XDeath.PoisonBolt:
+		XDeath.StrifeExplosive:
+		XDeath.StrifeSigil:
+			TNT1 A -1 A_Jump(256,"Death")
+			Wait			
 	}
 }
 

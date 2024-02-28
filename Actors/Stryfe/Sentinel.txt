@@ -3,8 +3,6 @@ Actor StrifeSentinel : Sentinel2
 	Species "StrifeEnemies"
 	Monster
 	-NOBLOCKMONST
-	+NOTDMATCH
-	+NOICEDEATH
 	+NOINFIGHTING
 	MinMissileChance 150
 	DamageFactor "MarathonFusion", 2.0
@@ -34,6 +32,7 @@ Actor StrifeSentinel : Sentinel2
 		SEWR D 5 A_Pain
 		Goto Missile+3
 	Death:
+	Disintegrate:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		SEWR D 7 A_Fall
 		SEWR E 8 Bright A_TossGib

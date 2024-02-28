@@ -54,8 +54,6 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 	PainChance "WTMelee", 96
 	PainChance "WTMeleeIce", 96 
 	PainChance "PainkillerIce", 0
-    +NOTDMATCH
-    +NOICEDEATH
 	States
 	{
 		Spawn:
@@ -130,6 +128,11 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 			RBB3 E 5
 			RBB3 E -1 A_KillMaster
 			Stop
+
+		// SamsaraMonsterRemixInquisitor states
+		Disintegrate:
+			TNT1 A -1 A_Jump(256,"Death")
+			Wait
 	}
 }
 

@@ -1,4 +1,4 @@
-ACTOR Recycler : SamsaraMonsterRoboticMedium
+ACTOR Recycler : SamsaraMonsterRobotic
 {
     Tag "Recycler"
 	MONSTER
@@ -101,12 +101,16 @@ ACTOR Recycler : SamsaraMonsterRoboticMedium
 		RECD E 5
 		RECD F -1
 		Stop
-	XDeath.PunchDagger:
-	XDeath.ElectricBolt:
-	XDeath.StrifeExplosive:
-	XDeath.StrifeSigil:
-		TNT1 A -1 A_Jump(256,"Death")
-		wait
+
+		// SamsaraMonsterRobotic states
+		Disintegrate:
+		XDeath.PunchDagger:
+		XDeath.ElectricBolt:
+		XDeath.PoisonBolt:
+		XDeath.StrifeExplosive:
+		XDeath.StrifeSigil:
+			TNT1 A -1 A_Jump(256,"Death")
+			Wait
 	}
 }
 

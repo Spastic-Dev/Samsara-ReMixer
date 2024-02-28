@@ -8,9 +8,8 @@ actor NewAlienSpectre1 : SamsaraMonsterRemixAlienSpectre1
 	Alpha 0.80
 	+DONTRIP
 	+BOSSDEATH
-	+NOTDMATCH
 	-SOLID
-	+BOSS
+	+DONTMORPH
 	-SPECTRAL
 	-NOBLOCKMONST
 	+NOINFIGHTING
@@ -95,6 +94,11 @@ actor NewAlienSpectre1 : SamsaraMonsterRemixAlienSpectre1
 		AL1P OPQ 5 bright
 		AL1P R 5 bright A_KillMaster
 		stop
+
+		// SamsaraMonsterRemixAlienSpectre1 states
+		Disintegrate:
+			TNT1 A -1 A_Jump(256,"Death")
+			Wait
 	}
 }
 
@@ -272,5 +276,10 @@ actor NewAlienSpectre5 : SamsaraMonsterRemixAlienSpectre2
 		AL1P OPQ 5 bright
 		AL1P R 5 bright A_KillMaster
 		stop
+
+		// SamsaraMonsterRemixAlienSpectre2 states
+		Disintegrate:
+			TNT1 A -1 A_Jump(256,"Death")
+			Wait
 	}
 }
