@@ -95,6 +95,7 @@ ACTOR Recycler : SamsaraMonsterRobotic
 		RECP A 16 A_Pain
 		Goto See
 	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		RECD A 4 A_Fall
 		RECD A 1 A_Scream
 		RECD BCD 5 A_Explode(2,96,XF_NOTMISSILE)
