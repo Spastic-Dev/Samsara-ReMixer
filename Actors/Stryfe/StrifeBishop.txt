@@ -1,7 +1,7 @@
 Actor NewStrifeBishop : SamsaraMonsterRemixStrifeBishop
 {
 	Tag "Bishop"
-	Species "StrifeEnemies"	
+	Species "StrifeEnemies"
 	Health 500
 	ProjectilePassHeight 64
 	-BOSS
@@ -25,7 +25,7 @@ Actor NewStrifeBishop : SamsaraMonsterRemixStrifeBishop
 		Missile:
 			MLDR E 3 A_FaceTarget
 			MLDR F 2 Bright A_CustomMissile("NewBishopMissile", 56, 0, 0, CMF_AIMOFFSET)
-			Goto See		
+			Goto See
 		Pain:
 			MLDR D 1 A_Pain
 			Goto See
@@ -45,14 +45,14 @@ Actor NewStrifeBishop : SamsaraMonsterRemixStrifeBishop
 			MLDR S 4 Bright A_TossGib
 			MLDR T 4 Bright
 			MLDR U 4 Bright A_TossGib
-			MLDR V 4 Bright 
+			MLDR V 4 Bright
 			MLDR V 1
 			MLDR V 10
 			MLDR V -1 A_KillMaster
 			Stop
 		Pain.MightyBoot:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit", CHAN_BODY)
 			MLDR D 2 A_FaceTarget
 			TNT1 A 0 A_Recoil(14)
 			MLDR D 16 A_Pain
@@ -67,7 +67,7 @@ Actor NewStrifeBishop : SamsaraMonsterRemixStrifeBishop
 		XDeath.StrifeSigil:
 			TNT1 A -1 A_Jump(256,"Death")
 			Wait
-	}		
+	}
 }
 
 actor NewStrifeBishop_Shrink : NewStrifeBishop
@@ -187,9 +187,9 @@ actor NewStrifeBishop_Shrink : NewStrifeBishop
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -218,7 +218,7 @@ actor NewStrifeBishop_ShrinkEffect : NewStrifeBishop
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States
@@ -247,29 +247,18 @@ actor NewStrifeBishop_ShrinkEffect : NewStrifeBishop
 	}
 }
 
-Actor NewBishopMissile
+Actor NewBishopMissile : BishopMissile
 {
 	Speed 16
-	Radius 10
-	Height 14
-	Damage 10
-	Projectile
-	+SEEKERMISSILE
-	+STRIFEDAMAGE
-	MaxStepHeight 4
-	SeeSound "bishop/misl"
-	DeathSound ""
 	States
 	{
 	Spawn:
 		BS_M A 4 Bright A_RocketInFlight
-		TNT1 B 0 Bright A_SeekerMissile(2, 4)
-		BS_M B 3 Bright 
-		TNT1 B 0 Bright A_SeekerMissile(2, 4)
+		BS_M B 3 Bright A_SeekerMissile(2, 4)
+		TNT1 A 0 A_SeekerMissile(2, 4)
 		Loop
 	Death:
 		SMIS A 0 Bright A_SetTranslucent(1,1)
-		SMIS A 0 Bright A_PlaySound("bishop/mislx",CHAN_VOICE)
 		SMIS A 5 Bright A_Explode(20,64,1,1)
 		SMIS B 5 Bright
 		SMIS C 4 Bright

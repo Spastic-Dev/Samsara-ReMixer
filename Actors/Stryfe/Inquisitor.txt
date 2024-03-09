@@ -1,25 +1,25 @@
 Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 {
 	Health 3750
-	Tag "Inquisitor"	
+	Tag "Inquisitor"
 	+BOSSDEATH
 	+DONTRIP
 	+NOINFIGHTING
 	Species "StrifeEnemies"
 	DamageFactor "Normal", 0.7
 	DamageFactor "WMCNade", 0.7
-    DamageFactor "Mace", 1.2
+	DamageFactor "Mace", 1.2
 	DamageFactor "BJSpear", 0.2
 	Damagefactor "Falling", 0
 	DamageFactor "DCannonProj", 0.8
 	DamageFactor "Shock", 0.3
 	DamageFactor "LifeLeech", 0.1
 	DamageFactor "CalebFire", 0.76
- 	DamageFactor "Vodoo", 0.1	
+ 	DamageFactor "Vodoo", 0.1
 	DamageFactor "DisruptorWall", 0.3
-	DamageFactor "EradNova", 0.2	
-    DamageFactor "EradGreenFire", 0.1	
-    DamageFactor "EradCoopGreenFire", 0.1	
+	DamageFactor "EradNova", 0.2
+	DamageFactor "EradGreenFire", 0.1
+	DamageFactor "EradCoopGreenFire", 0.1
 	DamageFactor "RottFire", 0.3
 	DamageFactor "HLLaser", 0.5
 	DamageFactor "WTRangedFire", 0.3
@@ -31,28 +31,27 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 	DamageFactor "SWFlame2", 0.1
 	DamageFactor "SWFlame2Coop", 0.1
 	DamageFactor "SWFlame3", 0.7
-    DamageFactor "RMR-BigPlasma", 0.5		
+	DamageFactor "RMR-BigPlasma", 0.5
 	DamageFactor "CMDMGSHIT", 0.7
-	DamageFactor "Disintegrate", 0.7		
-	DamageFactor "C7Disintegrate", 0.5	
+	DamageFactor "Disintegrate", 0.7
+	DamageFactor "C7Disintegrate", 0.5
 	PainChance "ShrinkerDMG", 0
-	
-    DamageFactor "CorvusCrossbow", 1.15
-    DamageFactor "DragonClaw", 1.5
+	DamageFactor "CorvusCrossbow", 1.15
+	DamageFactor "DragonClaw", 1.5
 	DamageFactor "ElectricBolt", 2.0
 	DamageFactor "PoisonBolt", 0
 	DamageFactor "MarathonFusion", 2.0
 	DamageFactor "Tesla", 2.0
 	DamageFactor "CorvusHellstaffTomed", 0.2
 	PainChance "MightyBoot", 0
-	PainChance "PhosFireCoop", 0 	
+	PainChance "PhosFireCoop", 0
 	PainChance "EradCoopGreenFire", 0
 	PainChance "EradGreenFire", 0
 	PainChance "StrifeExplosive", 0
-	PainChance "PSFire", 5	
+	PainChance "PSFire", 5
 	PainChance "CalebFire", 0
 	PainChance "WTMelee", 96
-	PainChance "WTMeleeIce", 96 
+	PainChance "WTMeleeIce", 96
 	PainChance "PainkillerIce", 0
 	States
 	{
@@ -64,16 +63,16 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 		Spawn2:
 			ROB3 A 10 A_Look
 			Loop
-	    See:
+		See:
 			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
+			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
 			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
 			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
+			TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
 			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
 			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
 			TNT1 A 0 A_GiveInventory("HLBossSee",1)
@@ -81,7 +80,7 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
+			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
 			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
 		See2:
 			ROB3 B 3 A_InquisitorWalk
@@ -103,8 +102,7 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 			Goto See2
 		Jump:
 			ROB3 H 8 Bright A_InquisitorJump
-			ROB3 I 4 Bright A_InquisitorCheckLand
-			ROB3 H 4 Bright A_InquisitorCheckLand
+			ROB3 IH 4 Bright A_InquisitorCheckLand
 			Goto Jump+1
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -128,7 +126,6 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 			RBB3 E 5
 			RBB3 E -1 A_KillMaster
 			Stop
-
 		// SamsaraMonsterRemixInquisitor states
 		Disintegrate:
 			TNT1 A -1 A_Jump(256,"Death")
@@ -136,38 +133,14 @@ Actor StrifeInquisitor : SamsaraMonsterRemixInquisitor
 	}
 }
 
-ACTOR InquisitorShot2 replaces InquisitorShot
+ACTOR InquisitorShot2 : InquisitorShot replaces InquisitorShot
 {
-  ReactionTime 15
-  Speed 25
-  Radius 13
-  Height 13
-  Mass 15
-  Projectile
-  -ACTIVATEIMPACT
-  -ACTIVATEPCROSS
-  -NOGRAVITY
-  +STRIFEDAMAGE
-  MaxStepHeight 4
-  SeeSound "inquisitor/attack"
-  DeathSound "inquisitor/atkexplode"
-  States
-  {
-  Spawn:
-    UBAM AB 3 A_Countdown
-    Loop
-  Death:
-	TNT1 A 0 A_NoGravity
-    BNG2 A 0 Bright A_SetTranslucent(1, 1)
-    BNG2 A 4 Bright A_Explode(136, Random(104, 208), 1, 1)
-    BNG2 B 4 Bright
-    BNG2 C 4 Bright
-    BNG2 D 4 Bright
-    BNG2 E 4 Bright
-    BNG2 F 4 Bright
-    BNG2 G 4 Bright
-    BNG2 H 4 Bright
-    BNG2 I 4 Bright
-    Stop
-  }
+	States
+	{
+	Death:
+		TNT1 A 0 A_NoGravity
+		TNT1 A 0 A_SetTranslucent(1, 1)
+		BNG2 A 4 Bright A_Explode(136, Random(104, 208), 1, 1)
+		Goto Super::Death+2
+	}
 }

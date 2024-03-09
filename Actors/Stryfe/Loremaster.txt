@@ -40,8 +40,7 @@ Actor StrifeLoremaster : SamsaraMonsterRemixLoremaster
 			PRST E 4 A_SentinelBob
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			PDED A 6
+			PDED A 6 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			PDED B 6 A_Scream
 			PDED C 6
 			PDED D 6 A_Fall
@@ -243,4 +242,4 @@ actor StrifeLoremaster_ShrinkEffect : StrifeLoremaster
 	}
 }
 
-Actor NewLoreShot : LoreShot {Damage 5}
+Actor NewLoreShot : LoreShot { Damage 5 }
