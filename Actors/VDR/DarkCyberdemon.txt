@@ -1,0 +1,198 @@
+Actor MMRandomizer_DarkCyberdemon : CyberDemon3
+{
+	Health 4500
+	PainChance 15
+	BloodColor "00 aa 00"
+	SeeSound "vdr/darkcyberdemon/sight"
+	PainSound "vdr/darkcyberdemon/pain"
+	DeathSound "vdr/darkcyberdemon/death"
+	ActiveSound "vdr/darkcyberdemon/active"
+	Obituary "%o was pulverized by a dark cyberdemon."
+	Tag "Dark Cyberdemon"
+	States
+	{
+	Spawn:
+		VD83 A 0
+		VD83 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		VD83 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		VD83 A 0 A_GiveInventory("AlreadySpawned",1)
+		VD83 A 0
+	Spawn2:
+		VD83 AB 10 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
+		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
+		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
+		TNT1 A 0 A_GiveInventory("CalebBossSee",1)
+		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
+		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
+		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
+		TNT1 A 0 A_GiveInventory("HLBossSee",1)
+		TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
+		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+	See2:
+		VD83 AABB 3 A_Chase
+		TNT1 A 0 A_PlaySound("vdr/darkcyberdemon/step", CHAN_7)
+		VD83 CCDD 3 A_Chase
+		TNT1 A 0 A_PlaySound("vdr/darkcyberdemon/step", CHAN_7)
+		Loop
+	Missile:
+		VD83 E 6 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_Jump(128, "HomingRocket")
+		Goto RocketStream
+	RocketStream:
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		TNT1 A 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+		Goto See2
+		TNT1 A 0 A_Jump(96, "HomingRocketFollowUp")
+		Goto See2
+	HomingRocket:
+		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 E 12 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 E 12 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		TNT1 A 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+		Goto See2
+		TNT1 A 0 A_Jump(96, "RocketStreamFollowUp")
+		Goto See2
+	RocketStreamFollowUp:
+		VD83 E 9 A_FaceTarget
+		VD83 E 6 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		VD83 E 7 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 7 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonRocket",47,-27)
+		Goto See2
+	HomingRocketFollowUp:
+		VD83 E 9 A_FaceTarget
+		VD83 E 6 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 E 12 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 E 12 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		Goto See2
+	Pain:
+		VD83 G 10 A_Pain
+		Goto See2
+	Death:
+		VD83 H 10 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		VD83 I 10 A_Scream
+		VD83 J 10 Bright A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffectForBosses",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		VD83 KL 10 Bright
+		VD83 M 10 Bright A_NoBlocking
+		VD83 NO 10 Bright
+		VD83 P 30
+		VD83 P -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+		Stop
+	}
+}
+
+Actor MMRandomizer_DarkCyberdemonRocket : Rocket_Samsara
+{
+	Radius 11
+	Height 8
+	Speed 25
+	Damage 15
+	-DEHEXPLOSION
+	-ROCKETTRAIL
+	SeeSound "vdr/darkcyberdemon/rockfire1"
+	DeathSound "vdr/darkcyberdemon/rockexp"
+	States
+	{
+	Spawn:
+		VE40 A 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
+		Loop
+	Death:
+		TNT1 A 0 A_SetTranslucent(0.75,1)
+		VE40 C 8 Bright A_Explode(80,96,0)
+		VE40 DE 5 Bright
+		Stop
+	}
+}
+
+Actor MMRandomizer_DarkCyberdemonHomingRocket : MMRandomizer_DarkCyberdemonRocket
+{
+	Radius 8
+	Height 11
+	+SEEKERMISSILE
+	+THRUGHOST
+	SeeSound "vdr/darkcyberdemon/rockfire2"
+	States
+	{
+	Spawn:
+		VE40 B 0 Bright
+		VE40 B 2 Bright A_SeekerMissile(14,24,SMF_PRECISE)
+		VE40 B 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
+		TNT1 A 0 A_SeekerMissile(14,24,SMF_PRECISE)
+		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
+		TNT1 A 0 A_SeekerMissile(14,24,SMF_PRECISE)
+		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
+		TNT1 A 0 A_SeekerMissile(14,24,SMF_PRECISE)
+		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
+		Goto Homing
+	Homing:
+		TNT1 A 0 A_SeekerMissile(8,20,SMF_PRECISE)
+		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
+		TNT1 A 0 A_JumpIfTargetInLOS("Homing",140,JLOSF_PROJECTILE|JLOSF_NOSIGHT)
+		Goto NoHoming
+	NoHoming:
+		VE40 B 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
+		Loop
+	}
+}
+
+Actor MMRandomizer_DarkCyberdemonRocketTrail : MMRandomizer_BruiserTrail
+{
+	States
+	{
+	Spawn:
+		TNT1 A 2
+		VD64 LMNO 3
+		Stop
+	}
+}

@@ -56,6 +56,8 @@ ACTOR MMRandomizer_Annihilator : CyberDemon3
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("MMRandomizer_AnnihilatorRocket",40,27,0)
 			VD80 F 12 Bright A_CustomMissile("MMRandomizer_AnnihilatorRocket",40,-27,0)
+			TNT1 A 0 A_JumpIfTargetInLOS(1,0,JLOSF_NOSIGHT|JLOSF_DEADNOJUMP)
+			Goto See2
 			TNT1 A 0 A_Jump(128,"HomingMissile")
 			Goto See2
 		HomingMissile:
@@ -83,7 +85,7 @@ ACTOR MMRandomizer_Annihilator : CyberDemon3
 			VD80 M 10 Bright A_NoBlocking
 			VD80 NO 10 Bright
 			VD80 P 30
-			VD80 P -1 A_KillMaster
+			VD80 P -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 	}
 }
@@ -103,7 +105,7 @@ Actor MMRandomizer_AnnihilatorHomingRocket : MMRandomizer_AnnihilatorRocket
 {
 	Radius 8
 	Height 11
-	Speed 28
+	Speed 30
 	Damage 10
 	SeeSound "doomguy/stronghold/hrlfir"
 	DeathSound "doomguy/stronghold/hrlexp"
