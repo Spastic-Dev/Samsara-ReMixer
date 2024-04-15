@@ -43,24 +43,24 @@ ACTOR MMRandomizer_ChaingunGuyVariant1 : Chaingunguy3
 			VD06 I 5 A_Scream
 			VD06 J 5 A_NoBlocking
 			VD06 KL 5
-			CPS2 M 5
-			CPS2 N -1
+			D2CS M 5
+			D2CS N -1
 			Stop
 		StakeDeath:
 			VD06 G 2
 			Loop
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			CPS2 O 5 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			CPS2 P 5 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
-			CPS2 Q 5 A_NoBlocking
-			CPS2 RS 5
-			CPS2 T -1
+			D2CS O 5 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			D2CS P 5 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
+			D2CS Q 5 A_NoBlocking
+			D2CS RS 5
+			D2CS T -1
 			Stop
 		Raise:
 			VD06 A 0
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-			CPS2 NM 5
+			D2CS NM 5
 			VD06 LKJIH 5
 			Goto See
 		Pain.ShrinkerDMG:
