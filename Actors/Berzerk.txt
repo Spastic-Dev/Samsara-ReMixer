@@ -21,10 +21,10 @@ ACTOR EvilOtto
 	States
 	{
 		Spawn:
-			EOTG ABCDEFGHI 1 A_Look
+			EOTG ABCDEDFCG 1 A_Look
 			Loop
 		See:
-			EOTG ABCDEFGHI 1 A_Chase
+			EOTG ABCDEDFCG 1 A_Chase
 			TNT1 A 0 A_CustomMeleeAttack(10000)
 			Loop
 		Death:
@@ -43,10 +43,10 @@ ACTOR EvilOttoWeak : EvilOtto
 	States
 	{
 		Spawn:
-			EOTR ABCDEFGHI 1 A_Look
+			EOTR ABCDEDFCG 1 A_Look
 			Loop
 		See:
-			EOTR ABCDEFGHI 1 A_Chase
+			EOTR ABCDEDFCG 1 A_Chase
 			TNT1 A 0 A_CustomMeleeAttack(10000)
 			Loop
 		Death:
@@ -65,10 +65,10 @@ ACTOR EvilOttoWeaker : EvilOtto
 	States
 	{
 		Spawn:
-			EOTY ABCDEFGHI 1 A_Look
+			EOTY ABCDEDFCG 1 A_Look
 			Loop
 		See:
-			EOTY ABCDEFGHI 1 A_Chase
+			EOTY ABCDEDFCG 1 A_Chase
 			TNT1 A 0 A_CustomMeleeAttack(10000)
 			Loop
 		Death:
@@ -105,7 +105,7 @@ ACTOR BerzerkRobotYellow
 			BZRK ABCDEF 5 A_Look
 			Loop
 		See:
-			BZRK GHIJ 8 A_Chase
+			BZRK GHGI 8 A_Chase
 			Loop
 		Death.DukeDamage:
 		Death.DukeExplosive:
@@ -115,7 +115,7 @@ ACTOR BerzerkRobotYellow
 			TNT1 A 0 A_GiveToTarget("DukeKillTaunt",1)
 			goto Death
 		Death.MightyBoot:
-			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
 			TNT1 A 0 A_Jump(64,"Death")
 			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
 			goto Death
@@ -124,10 +124,10 @@ ACTOR BerzerkRobotYellow
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			BZRK K 5 A_Scream
+			BZRK J 5 A_Scream
 			TNT1 A 0 A_Explode(10000, 40)
-			BZRK L 5 A_NoBlocking
-			BZRK M 5
+			BZRK K 5 A_NoBlocking
+			BZRK L 5
 			TNT1 A -1 A_KillMaster
 			Stop
 		Death.ZorchPistol:
@@ -135,7 +135,7 @@ ACTOR BerzerkRobotYellow
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			BZRK A 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			TNT1 A 0 A_PlaySound("chex/zorch",CHAN_5)
 			BZRK A 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			BZRK A 3 A_SetTranslucent(0.9,0)
@@ -164,7 +164,7 @@ ACTOR BerzerkRobotRed : BerzerkRobotYellow
 			BZKR ABCDEF 5 A_Look
 			Loop
 		See:
-			BZKR GHIJ 7 A_Chase
+			BZKR GHGI 7 A_Chase
 			Loop
 		Missile:
 			BZKR G 2 A_FaceTarget
@@ -175,17 +175,17 @@ ACTOR BerzerkRobotRed : BerzerkRobotYellow
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			BZKR K 5 A_Scream
+			BZKR J 5 A_Scream
 			TNT1 A 0 A_Explode(10000, 40)
-			BZKR L 5 A_NoBlocking
-			BZKR M 5
+			BZKR K 5 A_NoBlocking
+			BZKR L 5
 			TNT1 A -1 A_KillMaster
 			Stop
 		Death.Zorch:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			BZKR A 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			TNT1 A 0 A_PlaySound("chex/zorch",CHAN_5)
 			BZKR A 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			BZKR A 3 A_SetTranslucent(0.9,0)
@@ -214,7 +214,7 @@ ACTOR BerzerkRobotBlue : BerzerkRobotYellow
 			BZKB ABCDEF 5 A_Look
 			Loop
 		See:
-			BZKB GHIJ 6 A_Chase
+			BZKB GHGI 6 A_Chase
 			Loop
 		Missile:
 			BZKB G 2 A_FaceTarget
@@ -227,17 +227,17 @@ ACTOR BerzerkRobotBlue : BerzerkRobotYellow
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			BZKB K 5 A_Scream
+			BZKB J 5 A_Scream
 			TNT1 A 0 A_Explode(10000, 40)
-			BZKB L 5 A_NoBlocking
-			BZKB M 5
+			BZKB K 5 A_NoBlocking
+			BZKB L 5
 			TNT1 A -1 A_KillMaster
 			Stop
 		Death.Zorch:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			BZKB A 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			TNT1 A 0 A_PlaySound("chex/zorch",CHAN_5)
 			BZKB A 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			BZKB A 3 A_SetTranslucent(0.9,0)
@@ -266,7 +266,7 @@ ACTOR BerzerkRobotGreen : BerzerkRobotYellow
 			BZKG ABCDEF 5 A_Look
 			Loop
 		See:
-			BZKG GHIJ 5 A_Chase
+			BZKG GHGI 5 A_Chase
 			Loop
 		Missile:
 			BZKG G 2 A_FaceTarget
@@ -281,17 +281,17 @@ ACTOR BerzerkRobotGreen : BerzerkRobotYellow
 		Death:
 		XDeath:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
-			BZKG K 5 A_Scream
+			BZKG J 5 A_Scream
 			TNT1 A 0 A_Explode(10000, 40)
-			BZKG L 5 A_NoBlocking
-			BZKG M 5
+			BZKG K 5 A_NoBlocking
+			BZKG L 5
 			TNT1 A -1 A_KillMaster
 			Stop
 		Death.Zorch:
 			TNT1 A 0 A_GiveToTarget("KillCount",1)
 			BZKG A 0 A_Stop
 			TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-			TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
+			TNT1 A 0 A_PlaySound("chex/zorch",CHAN_5)
 			BZKG A 3 A_SpawnItem("ZorchEffectSmall")
 			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			BZKG A 3 A_SetTranslucent(0.9,0)
