@@ -947,10 +947,12 @@ actor MMRandomizer_NetherDarkImp : MMRandomizer_STDarkImp
 			Goto NetherLightning
 		NetherLightning:
 			VD21 EF 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD21 G 6 A_CustomMissile("MMRandomizer_NetherLightning", 32, 0, 0)
 			Goto See
 		InfernoBall:
 			VD21 IJ 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD21 K 6 A_CustomMissile("MMRandomizer_InfernoBall", 32, 0, 0)
 			Goto See
 		Pain:
@@ -1357,19 +1359,23 @@ actor MMRandomizer_VoidDarkImp : MMRandomizer_STDarkImp
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD22 E 0 A_Jump(64,"MissileStrong")
 			VD22 EF 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD22 G 6 A_CustomMissile("MMRandomizer_DarkNormal",32)
 			Goto MissileContinue
 		MissileStrong:
 			VD22 IJ 8 Bright A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD22 K 6 Bright A_CustomMissile("MMRandomizer_DarkStrong",32)
 			Goto MissileContinue
 		MissileContinue:
 			VD22 E 0 A_Jump(64,"MissileStrongContinue")
 			VD22 EF 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD22 G 6 A_CustomMissile("MMRandomizer_DarkNormal",32)
 			Goto See
 		MissileStrongContinue:
 			VD22 IJ 8 Bright A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD22 K 6 Bright A_CustomMissile("MMRandomizer_DarkStrong",32)
 			Goto See
 		Pain.MightyBoot:

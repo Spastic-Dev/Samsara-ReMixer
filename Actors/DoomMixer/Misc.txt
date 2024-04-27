@@ -1442,26 +1442,26 @@ ACTOR Hectebus2 : Hectebus
 	Missile:
 		//These Next 2 states replace A_FatRaise and A_HectRaise
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		VD61 G 0 A_PlaySound("doom/fatso/raiseguns")
+		TNT1 A 0 A_PlaySound("doom/fatso/raiseguns")
 		VD61 G 20 A_FaceTarget
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,0,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,5.625,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,11.25,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,16.875,1)
-		VD61 H 10 BRIGHT
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,5.625,1)
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,11.25,1)
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,16.875,1)
+		VD61 H 10 BRIGHT A_CustomMissile("HectShot2",28,0,0,1)
 		VD61 IG 5 A_FaceTarget
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,0,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,-5.625,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,-11.25,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,-16.875,1)
-		VD61 H 10 BRIGHT
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,-5.625,1)
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,-11.25,1)
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,-16.875,1)
+		VD61 H 10 BRIGHT A_CustomMissile("HectShot2",28,0,0,1)
 		VD61 IG 5 A_FaceTarget
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,-11.25,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,-5.625,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,0,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,5.625,1)
-		VD61 H 0 A_CustomMissile("HectShot2",28,0,11.25,1)
-		VD61 H 10 BRIGHT
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,-11.25,1)
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,-5.625,1)
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,5.625,1)
+		TNT1 A 0 A_CustomMissile("HectShot2",28,0,11.25,1)
+		VD61 H 10 BRIGHT A_CustomMissile("HectShot2",28,0,0,1)
 		VD61 IG 5 A_FaceTarget
 		Goto See
 	Death:

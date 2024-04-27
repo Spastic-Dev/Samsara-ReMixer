@@ -42,12 +42,15 @@ ACTOR MMRandomizer_Shadow : SamsaraMonsterHumanoid
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD36 EEEEEEEEEEEEEEE 2 A_FaceTarget
+			Goto MissileLoop
+		MissileLoop:
 			VD36 F 5 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD36 G 5 BRIGHT A_MissileAttack
 			VD36 F 5 A_FaceTarget
 			VD36 EEEEEEEEEE 2 A_FaceTarget
 			VD36 E 1 A_SpidRefire
-			Goto Missile+15
+			Loop
 		Pain:
 			VD36 H 4
 			VD36 H 4 A_Pain

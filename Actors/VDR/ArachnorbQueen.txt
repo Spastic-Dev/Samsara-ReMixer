@@ -73,10 +73,12 @@ actor MMRandomizer_ArachnorbQueen : SamsaraMonsterDemonicBoss
 		BFG:
 			TNT1 A 0 A_PlaySound("vdr/queen/fire")
 			VD81 BCD 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD81 E 10 Bright A_CustomMissile("MMRandomizer_QueenBFG",50,-10,0)
 			Goto See
 		RapidFire:
 			VD81 BCD 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD81 E 5 Bright A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-4,4))
 			TNT1 A 0 A_FaceTarget
 			VD81 E 5 Bright A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-4,4))
@@ -103,6 +105,7 @@ actor MMRandomizer_ArachnorbQueen : SamsaraMonsterDemonicBoss
 			Goto See
 		SpreadFire:
 			VD81 BCD 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
 			TNT1 A 0 A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
 			TNT1 A 0 A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
@@ -110,6 +113,7 @@ actor MMRandomizer_ArachnorbQueen : SamsaraMonsterDemonicBoss
 			TNT1 A 0 A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
 			VD81 E 5 Bright A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-4,4))
 			VD81 BCD 8 A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
 			TNT1 A 0 A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))
 			TNT1 A 0 A_CustomMissile("MMRandomizer_QueenPlasmaBlast", 40, 0, random(-7,7), CMF_AIMOFFSET|CMF_OFFSETPITCH, random(-3,3))

@@ -44,11 +44,12 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicTotalGib
 			Goto See
 		Missile:
 			VD66 B 12 Bright A_FaceTarget
+			TNT1 A 0 A_FaceTarget
 			VD66 C 2 Bright A_MissileAttack
 			VD66 B 2 Bright
 			TNT1 A 0 A_Jump(32,"See")
 			TNT1 A 0 A_SpidRefire
-			Goto Missile+1
+			Goto Missile+2
 		Pain:
 			VD66 I 2
 			VD66 I 2 A_Pain
