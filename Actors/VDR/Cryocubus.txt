@@ -1,11 +1,7 @@
 ACTOR MMRandomizer_Cryocubus : Fatso3
 {
 	Health 900
-	MaxTargetRange 268
 	+NORADIUSDMG
-	+ALWAYSFAST
-	+MISSILEMORE
-	+MISSILEEVENMORE
 	DamageFactor "Ice", 0.5
 	DamageFactor "DukeIce", 0.5
 	DamageFactor "WTMeleeIce", 0.5
@@ -50,26 +46,45 @@ ACTOR MMRandomizer_Cryocubus : Fatso3
 			VD62 AB 15 A_Look
 			Loop
 		See:
-			TNT1 A 0 A_ChangeFlag("JUSTHIT",false)
 			VD62 AABBCCDDEEFF 4 A_Chase
-			Goto See+1
+			Goto See
 		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			TNT1 A 0 A_PlaySound("doom/fatso/raiseguns", CHAN_BODY)
 			VD62 G 20 A_FaceTarget
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusStream",24,-24,0,CMF_AIMOFFSET)
-			VD62 H 2 A_CustomMissile("MMRandomizer_CryocubusStream",24,24,0,CMF_AIMOFFSET)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusStream",24,-24,0,CMF_AIMOFFSET)
-			VD62 H 2 A_CustomMissile("MMRandomizer_CryocubusStream",24,24,0,CMF_AIMOFFSET)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusStream",24,-24,0,CMF_AIMOFFSET)
-			VD62 H 2 A_CustomMissile("MMRandomizer_CryocubusStream",24,24,0,CMF_AIMOFFSET)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusStream",24,-24,0,CMF_AIMOFFSET)
-			VD62 H 2 A_CustomMissile("MMRandomizer_CryocubusStream",24,24,0,CMF_AIMOFFSET)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusStream",24,-24,0,CMF_AIMOFFSET)
-			VD62 H 2 A_CustomMissile("MMRandomizer_CryocubusStream",24,24,0,CMF_AIMOFFSET)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusStream",24,-24,0,CMF_AIMOFFSET)
-			VD62 H 4 A_CustomMissile("MMRandomizer_CryocubusStream",24,24,0,CMF_AIMOFFSET)
-			Goto See+1
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,0)
+			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-6)
+			VD62 I 3 A_FaceTarget
+			VD62 G 3
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,3)
+			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-3)
+			VD62 I 3 A_FaceTarget
+			VD62 G 3
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,6)
+			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,0)
+			VD62 I 3 A_FaceTarget
+			VD62 G 3
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,3)
+			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-3)
+			VD62 I 3 A_FaceTarget
+			VD62 G 3
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Jump(128, 3)
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,6)
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,0)
+			Goto MissileEnd
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,0)
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-6)
+			Goto MissileEnd
+		MissileEnd:
+			VD62 H 5 BRIGHT
+			VD62 I 3 A_FaceTarget
+			VD62 G 3
+			Goto See
 		Pain:
 			VD62 J 3
 			VD62 J 3 A_Pain
@@ -98,7 +113,7 @@ ACTOR MMRandomizer_Cryocubus : Fatso3
 			VD62 A 0
 			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
 			VD62 RQPONMLK 5
-			Goto See+1
+			Goto See
 		Pain.ShrinkerDMG:
 			VD62 J 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -350,29 +365,45 @@ actor MMRandomizer_Cryocubus_ShrinkEffect : MMRandomizer_Cryocubus
 	}
 }
 
-ACTOR MMRandomizer_CryocubusStream
+ACTOR MMRandomizer_CryocubusFreezeBlast
 {
 	Radius 10
-	Height 10
-	Damage 20
-	Speed 25
-	Alpha 0.5
-	Projectile
-	RenderStyle Translucent
-	+THRUACTORS
-	+FORCEXYBILLBOARD
-	+STRIFEDAMAGE
-	+BLOODLESSIMPACT
+	Height 8
+	Speed 24
+	Damage 6
+	Alpha 0.75
+	PROJECTILE
+	+BRIGHT
+	RenderStyle Add
+	Alpha 0.75
 	DamageType Ice
 	SeeSound "VDR/Cryocubus/Fire"
+	DeathSound "VDR/Cryocubus/ShotX"
 	Obituary "%o was frozen by the Cryocubus."
+	Decal CryocubusFreezeBlastMelt
 	States
 	{
-		Spawn:
-			VE20 A 0
-			VE20 ABCDEFGHIJKLMNOPQ 1 A_Explode(2,30)
-			Stop
-		Death:
-			Stop
+	Spawn:
+		VE20 A 5 A_SpawnItemEx("MMRandomizer_CryocubusFreezeBlastTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		Loop
+	Death:
+		VE20 BCDE 4
+		Stop
+	}
+}
+
+ACTOR MMRandomizer_CryocubusFreezeBlastTrail
+{
+	+BRIGHT
+	+RANDOMIZE
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.75
+	States
+	{
+	Spawn:
+		VE20 FGH 6 A_FadeOut(0.2)
+		Stop
 	}
 }
