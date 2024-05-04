@@ -43,8 +43,7 @@ Actor MMRandomizer_BloodDemon : DoomDemon3
 			TNT1 A 0 A_JumpIfInventory("MMRandomizer_BloodDemonChargeCooldown", 1, 1)
 			Goto See+9
 			VD46 D 2 Fast A_Chase("Melee", "")
-			TNT1 A 0 A_JumpIfInventory("MMRandomizer_BloodDemonChargeCooldown", 1, "SeeCooldown")
-			Goto See+2
+			Goto See+1
 		Melee:
 			VD46 EF 8 Fast A_FaceTarget
 			VD46 G 8 Fast A_SargAttack

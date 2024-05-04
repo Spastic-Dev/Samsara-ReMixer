@@ -87,40 +87,46 @@ object MMRandomizer_LargeImpBall
 	frame DMP1L { light MMRandomizer_LARGEIMPBALL_X3 }
 }
 
-pointlight MMRandomizer_DarkDevilBall
+pointlight MMRandomizer_DARKDEVILBALL
 {
 	color 0.5 0.2 0.8
 	size 42
 }
 
-pointlight MMRandomizer_DarkDevilBall2
+flickerlight MMRandomizer_DARKDEVILBALL_X1
 {
 	color 0.4 0.2 0.8
-	size 52
+	size 56
+	secondarySize 64
+	chance 0.25
 }
 
-pointlight MMRandomizer_DarkDevilBall3
+flickerlight MMRandomizer_DARKDEVILBALL_X2
 {
-	color 0.2 0.2 0.8
-	size 48
+	color 0.3 0.0 0.9
+	size 72
+	secondarySize 80
+	chance 0.25
 }
 
-pointlight MMRandomizer_DarkDevilBall4
+flickerlight MMRandomizer_DARKDEVILBALL_X3
 {
 	color 0.0 0.0 0.5
-	size 30
+	size 88
+	secondarySize 96
+	chance 0.25
 }
 
 object MMRandomizer_DarkDevilBall
 {
-	frame VE00A { light MMRandomizer_DarkDevilBall }
-	frame VE00B { light MMRandomizer_DarkDevilBall }
-	frame VE00C { light MMRandomizer_DarkDevilBall2 }
-	frame VE00D { light MMRandomizer_DarkDevilBall3 }
-	frame VE00E { light MMRandomizer_DarkDevilBall4 }
+	frame VE00A { light MMRandomizer_DARKDEVILBALL }
+	frame VE00B { light MMRandomizer_DARKDEVILBALL }
+	frame VE00C { light MMRandomizer_DARKDEVILBALL_X1 }
+	frame VE00D { light MMRandomizer_DARKDEVILBALL_X2 }
+	frame VE00E { light MMRandomizer_DARKDEVILBALL_X3 }
 }
 
-flickerlight2 MMRandomizer_DarkDevilFire
+flickerlight2 MMRandomizer_DarkImpFire
 {
 	color 0.5 0.2 0.8
 	size 48
@@ -131,107 +137,71 @@ flickerlight2 MMRandomizer_DarkDevilFire
 
 object MMRandomizer_DarkDevil
 {
-	frame VD19E { light MMRandomizer_DarkDevilFire }
-	frame VD19F { light MMRandomizer_DarkDevilFire }
-	frame VD19G { light MMRandomizer_DarkDevilFire }
+	frame VD19E { light MMRandomizer_DarkImpFire }
+	frame VD19F { light MMRandomizer_DarkImpFire }
+	frame VD19G { light MMRandomizer_DarkImpFire }
 }
 
-pointlight MMRandomizer_DarkBallFast1
+pointlight MMRandomizer_DARKIMPBALL
 {
 	color 0.5 0.2 0.8
 	size 48
 }
 
-pointlight MMRandomizer_DarkBallFast2
+flickerlight MMRandomizer_DARKIMPBALL_X1
 {
 	color 0.4 0.2 0.8
 	size 64
+	secondarySize 72
+	chance 0.25
 }
 
-pointlight MMRandomizer_DarkBallFast3
+flickerlight MMRandomizer_DARKIMPBALL_X2
 {
-	color 0.2 0.2 0.8
-	size 56
+	color 0.3 0.0 0.9
+	size 80
+	secondarySize 88
+	chance 0.25
 }
 
-pointlight MMRandomizer_DarkBallFast4
+flickerlight MMRandomizer_DARKIMPBALL_X3
 {
 	color 0.0 0.0 0.5
-	size 32
+	size 96
+	secondarySize 104
+	chance 0.25
 }
 
 object MMRandomizer_DarkFast
 {
-	frame VE00A { light MMRandomizer_DarkBallFast1 }
-	frame VE00B { light MMRandomizer_DarkBallFast1 }
-	frame VE00C { light MMRandomizer_DarkBallFast2 }
-	frame VE00D { light MMRandomizer_DarkBallFast3 }
-	frame VE00E { light MMRandomizer_DarkBallFast4 }
-}
-
-flickerlight2 MMRandomizer_STDarkImpFire
-{
-	color 0.5 0.2 0.8
-	size 48
-	secondarySize 56
-	interval 0.8
-	offset 0 28 0
+	frame VE00A { light MMRandomizer_DARKIMPBALL }
+	frame VE00B { light MMRandomizer_DARKIMPBALL }
+	frame VE00C { light MMRandomizer_DARKIMPBALL_X1 }
+	frame VE00D { light MMRandomizer_DARKIMPBALL_X2 }
+	frame VE00E { light MMRandomizer_DARKIMPBALL_X3 }
 }
 
 object MMRandomizer_STDarkImp
 {
-	frame VD18E { light MMRandomizer_STDarkImpFire }
-	frame VD18F { light MMRandomizer_STDarkImpFire }
-	frame VD18G { light MMRandomizer_STDarkImpFire }
-}
-
-pointlight MMRandomizer_DarkBallSeeker1
-{
-	color 0.5 0.2 0.8
-	size 48
-}
-
-pointlight MMRandomizer_DarkBallSeeker2
-{
-	color 0.4 0.2 0.8
-	size 64
-}
-
-pointlight MMRandomizer_DarkBallSeeker3
-{
-	color 0.2 0.2 0.8
-	size 56
-}
-
-pointlight MMRandomizer_DarkBallSeeker4
-{
-	color 0.0 0.0 0.5
-	size 32
+	frame VD18E { light MMRandomizer_DarkImpFire }
+	frame VD18F { light MMRandomizer_DarkImpFire }
+	frame VD18G { light MMRandomizer_DarkImpFire }
 }
 
 object MMRandomizer_DarkSeeker
 {
-	frame VE00A { light MMRandomizer_DarkBallSeeker1 }
-	frame VE00B { light MMRandomizer_DarkBallSeeker1 }
-	frame VE00C { light MMRandomizer_DarkBallSeeker2 }
-	frame VE00D { light MMRandomizer_DarkBallSeeker3 }
-	frame VE00E { light MMRandomizer_DarkBallSeeker4 }
-}
-
-flickerlight2 MMRandomizer_NamiDarkImpFire
-{
-	color 0.5 0.2 0.8
-	size 48
-	secondarySize 56
-	interval 0.8
-	offset 0 28 0
+	frame VE00A { light MMRandomizer_DARKIMPBALL }
+	frame VE00B { light MMRandomizer_DARKIMPBALL }
+	frame VE00C { light MMRandomizer_DARKIMPBALL_X1 }
+	frame VE00D { light MMRandomizer_DARKIMPBALL_X2 }
+	frame VE00E { light MMRandomizer_DARKIMPBALL_X3 }
 }
 
 object MMRandomizer_NamiDarkImp
 {
-	frame VD20E { light MMRandomizer_NamiDarkImpFire }
-	frame VD20F { light MMRandomizer_NamiDarkImpFire }
-	frame VD20G { light MMRandomizer_NamiDarkImpFire }
+	frame VD20E { light MMRandomizer_DarkImpFire }
+	frame VD20F { light MMRandomizer_DarkImpFire }
+	frame VD20G { light MMRandomizer_DarkImpFire }
 }
 
 pointlight MMRandomizer_InfernoBall
@@ -332,82 +302,55 @@ object MMRandomizer_NetherLightning
 	frame VE00Q { light MMRandomizer_NetherLightning_X5 }
 }
 
-pointlight MMRandomizer_VoidBallNormal
-{
-	color 0.5 0.2 0.8
-	size 48
-}
-
-pointlight MMRandomizer_VoidBallNormal2
-{
-	color 0.4 0.2 0.8
-	size 64
-}
-
-pointlight MMRandomizer_VoidBallNormal3
-{
-	color 0.2 0.2 0.8
-	size 56
-}
-
-pointlight MMRandomizer_VoidBallNormal4
-{
-	color 0.0 0.0 0.5
-	size 32
-}
-
 object MMRandomizer_DarkNormal
 {
-	frame VE00A { light MMRandomizer_VoidBallNormal }
-	frame VE00B { light MMRandomizer_VoidBallNormal }
-	frame VE00C { light MMRandomizer_VoidBallNormal2 }
-	frame VE00D { light MMRandomizer_VoidBallNormal3 }
-	frame VE00E { light MMRandomizer_VoidBallNormal4 }
+	frame VE00A { light MMRandomizer_DARKIMPBALL }
+	frame VE00B { light MMRandomizer_DARKIMPBALL }
+	frame VE00C { light MMRandomizer_DARKIMPBALL_X1 }
+	frame VE00D { light MMRandomizer_DARKIMPBALL_X2 }
+	frame VE00E { light MMRandomizer_DARKIMPBALL_X3 }
 }
 
-pointlight MMRandomizer_VoidBallStrong
+pointlight MMRandomizer_VOIDBALLSTRONG
 {
 	color 0.8 0.2 0.8
 	size 48
 }
 
-pointlight MMRandomizer_VoidBallStrong2
+flickerlight MMRandomizer_VOIDBALLSTRONG_X1
 {
 	color 0.6 0.1 0.6
 	size 64
+	secondarySize 72
+	chance 0.25
 }
 
-pointlight MMRandomizer_VoidBallStrong3
+flickerlight MMRandomizer_VOIDBALLSTRONG_X2
 {
 	color 0.5 0.0 0.2
-	size 56
+	size 80
+	secondarySize 88
+	chance 0.25
 }
 
-pointlight MMRandomizer_VoidBallStrong4
+flickerlight MMRandomizer_VOIDBALLSTRONG_X3
 {
 	color 0.3 0.0 0.0
-	size 32
+	size 96
+	secondarySize 104
+	chance 0.25
 }
 
 object MMRandomizer_DarkStrong
 {
-	frame VE01O { light MMRandomizer_VoidBallStrong }
-	frame VE01P { light MMRandomizer_VoidBallStrong }
-	frame VE01Q { light MMRandomizer_VoidBallStrong2 }
-	frame VE01R { light MMRandomizer_VoidBallStrong3 }
-	frame VE01S { light MMRandomizer_VoidBallStrong4 }
+	frame VE01O { light MMRandomizer_VOIDBALLSTRONG }
+	frame VE01P { light MMRandomizer_VOIDBALLSTRONG }
+	frame VE01Q { light MMRandomizer_VOIDBALLSTRONG_X1 }
+	frame VE01R { light MMRandomizer_VOIDBALLSTRONG_X2 }
+	frame VE01S { light MMRandomizer_VOIDBALLSTRONG_X3 }
 }
 
-flickerlight2 MMRandomizer_VoidDarkImpFire1
-{
-	color 0.5 0.2 0.8
-	size 48
-	secondarySize 56
-	interval 0.8
-	offset 0 28 0
-}
-
-flickerlight2 MMRandomizer_VoidDarkImpFire2
+flickerlight2 MMRandomizer_VoidDarkImpFireStrong
 {
 	color 0.8 0.2 0.8
 	size 56
@@ -418,12 +361,12 @@ flickerlight2 MMRandomizer_VoidDarkImpFire2
 
 object MMRandomizer_VoidDarkImp
 {
-	frame VD22E { light MMRandomizer_VoidDarkImpFire1 }
-	frame VD22F { light MMRandomizer_VoidDarkImpFire1 }
-	frame VD22G { light MMRandomizer_VoidDarkImpFire1 }
-	frame VD22I { light MMRandomizer_VoidDarkImpFire2 }
-	frame VD22J { light MMRandomizer_VoidDarkImpFire2 }
-	frame VD22K { light MMRandomizer_VoidDarkImpFire2 }
+	frame VD22E { light MMRandomizer_DarkImpFire }
+	frame VD22F { light MMRandomizer_DarkImpFire }
+	frame VD22G { light MMRandomizer_DarkImpFire }
+	frame VD22I { light MMRandomizer_VoidDarkImpFireStrong }
+	frame VD22J { light MMRandomizer_VoidDarkImpFireStrong }
+	frame VD22K { light MMRandomizer_VoidDarkImpFireStrong }
 }
 
 pointlight MMRandomizer_ShadowBall
@@ -3361,36 +3304,6 @@ object MMRandomizer_AnnihilatorHomingRocket
 	frame VE25E { light ROCKET_X3 }
 }
 
-object CacolanternBall3
-{
-	frame VD4WA { light CACOLANTERNBALL }
-	frame VD4WB { light CACOLANTERNBALL }
-
-	frame VD4WC { light CACOLANTERNBALL_X1 }
-	frame VD4WD { light CACOLANTERNBALL_X2 }
-	frame VD4WE { light CACOLANTERNBALL_X3 }
-}
-
-object AbaddonBall3
-{
-	frame VD9TA { light ABADBALL }
-	frame VD9TB { light ABADBALL }
-
-	frame VD9TC { light ABADBALL_X1 }
-	frame VD9TD { light ABADBALL_X2 }
-	frame VD9TE { light ABADBALL_X3 }
-}
-
-object DarkImp2Ball
-{
-	frame VD22Q { light DIBALL }
-	frame VD22R { light DIBALL }
-
-	frame VD22S { light DIBALL_X1 }
-	frame VD22T { light DIBALL_X2 }
-	frame VD22U { light DIBALL_X3 }
-}
-
 pointlight MMRandomizer_CRYOCUBUS_FREEZE_BLAST
 {
 	color 0.5 0.5 1.0
@@ -3430,16 +3343,6 @@ object MMRandomizer_CryocubusFreezeBlast
 	frame VE20E { light MMRandomizer_CRYOCUBUS_FREEZE_BLAST_X4 }
 }
 
-object HectShot2
-{
-	frame VE19A { light HECTSHOT }
-	frame VE19B { light HECTSHOT }
-
-	frame VE19C { light HECTSHOT_X1 }
-	frame VE19D { light HECTSHOT_X2 }
-	frame VE19E { light HECTSHOT_X3 }
-}
-
 object MMRandomizer_HectShot
 {
 	frame VE19A { light HECTSHOT }
@@ -3448,16 +3351,6 @@ object MMRandomizer_HectShot
 	frame VE19C { light HECTSHOT_X1 }
 	frame VE19D { light HECTSHOT_X2 }
 	frame VE19E { light HECTSHOT_X3 }
-}
-
-object BelphegorBall3
-{
-	frame DMP1R { light BARONBALL }
-	frame DMP1S { light BARONBALL }
-
-	frame DMP1T { light BARONBALL_X1 }
-	frame DMP1U { light BARONBALL_X2 }
-	frame DMP1V { light BARONBALL_X3 }
 }
 
 object MMRandomizer_BelphegorBall
@@ -3557,10 +3450,4 @@ object MMRandomizer_DoubleChaingunGuy
 {
 	frame VD33E { light ZOMBIEATK }
 	frame VD33F { light ZOMBIEATK }
-}
-
-// Super Shotgun Guy
-object SuperShotgunGuy2
-{
-	frame GPOSF { light ZOMBIEATK }
 }
