@@ -86,7 +86,7 @@ Script "DetermineValidSpawnReMixer" Open
 Script "SMMGenerator_DetermineGameChoice" (void)
 {
 	int game = GetCVar("samsara_currentgame");
-	int selector, counters, diff;
+	int selector, counters, diff, currentCounterForSelector;
 	switch(game)
 	{
 		case 1:
@@ -99,15 +99,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 			for(selector = 0; selector < MAXMONSTERS_DOOM; selector++)
 			{
-				if(generatorCountersDoom[selector] > 0)
+				currentCounterForSelector = generatorCountersDoom[selector];
+
+				if(currentCounterForSelector > 0)
 				{
 					if(selector < minSelector)
 						minSelector = selector;
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersDoom[selector];
-				generationAmount += generatorCountersDoom[selector]*(selector+1);
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
 			}
 			break;
 
@@ -125,15 +127,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 				for(selector = 0; selector < MAXMONSTERS_CHEX; selector++)
 				{
-					if(generatorCountersChex[selector] > 0)
+					currentCounterForSelector = generatorCountersChex[selector];
+
+					if(currentCounterForSelector > 0)
 					{
 						if(selector < minSelector)
 							minSelector = selector;
 						if(selector > maxSelector)
 							maxSelector = selector;
 					}
-					totalTypes += generatorCountersChex[selector];
-					generationAmount += generatorCountersChex[selector]*(selector+1);
+					totalTypes += currentCounterForSelector;
+					generationAmount += currentCounterForSelector*(selector+1);
 				}
 				break;
 			}
@@ -148,15 +152,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 				for(selector = 0; selector < MAXMONSTERS_CHEXORIGINAL; selector++)
 				{
-					if(generatorCountersChexOriginal[selector] > 0)
+					currentCounterForSelector = generatorCountersChexOriginal[selector];
+
+					if(currentCounterForSelector > 0)
 					{
 						if(selector < minSelector)
 							minSelector = selector;
 						if(selector > maxSelector)
 							maxSelector = selector;
 					}
-					totalTypes += generatorCountersChexOriginal[selector];
-					generationAmount += generatorCountersChexOriginal[selector]*(selector+1);
+					totalTypes += currentCounterForSelector;
+					generationAmount += currentCounterForSelector*(selector+1);
 				}
 				break;
 			}
@@ -169,15 +175,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 			for(selector = 0; selector < MAXMONSTERS_HERETIC; selector++)
 			{
-				if(generatorCountersHeretic[selector] > 0)
+				currentCounterForSelector = generatorCountersHeretic[selector];
+
+				if(currentCounterForSelector > 0)
 				{
 					if(selector < minSelector)
 						minSelector = selector;
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHeretic[selector];
-				generationAmount += generatorCountersHeretic[selector]*(selector+1);
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
 			}
 			break;
 
@@ -189,15 +197,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 			for(selector = 0; selector < MAXMONSTERS_HEXEN; selector++)
 			{
-				if(generatorCountersHexen[selector] > 0)
+				currentCounterForSelector = generatorCountersHexen[selector];
+
+				if(currentCounterForSelector > 0)
 				{
 					if(selector < minSelector)
 						minSelector = selector;
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHexen[selector];
-				generationAmount += generatorCountersHexen[selector]*(selector+1);
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
 			}
 			break;
 
@@ -209,15 +219,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 			for(selector = 0; selector < MAXMONSTERS_HACX; selector++)
 			{
-				if(generatorCountersHacx[selector] > 0)
+				currentCounterForSelector = generatorCountersHacx[selector];
+
+				if(currentCounterForSelector > 0)
 				{
 					if(selector < minSelector)
 						minSelector = selector;
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHacx[selector];
-				generationAmount += generatorCountersHacx[selector]*(selector+1);
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
 			}
 			break;
 
@@ -229,15 +241,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 			for(selector = 0; selector < MAXMONSTERS_HARMONY; selector++)
 			{
-				if(generatorCountersHarmony[selector] > 0)
+				currentCounterForSelector = generatorCountersHarmony[selector];
+
+				if(currentCounterForSelector > 0)
 				{
 					if(selector < minSelector)
 						minSelector = selector;
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersHarmony[selector];
-				generationAmount += generatorCountersHarmony[selector]*(selector+1);
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
 			}
 			break;
 
@@ -249,15 +263,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 			for(selector = 0; selector < MAXMONSTERS_ROTWB; selector++)
 			{
-				if(generatorCountersROTWB[selector] > 0)
+				currentCounterForSelector = generatorCountersROTWB[selector];
+
+				if(currentCounterForSelector > 0)
 				{
 					if(selector < minSelector)
 						minSelector = selector;
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersROTWB[selector];
-				generationAmount += generatorCountersROTWB[selector]*(selector+1);
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
 			}
 			break;
 
@@ -269,15 +285,17 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 			for(selector = 0; selector < MAXMONSTERS_REKKR; selector++)
 			{
-				if(generatorCountersREKKR[selector] > 0)
+				currentCounterForSelector = generatorCountersREKKR[selector];
+
+				if(currentCounterForSelector > 0)
 				{
 					if(selector < minSelector)
 						minSelector = selector;
 					if(selector > maxSelector)
 						maxSelector = selector;
 				}
-				totalTypes += generatorCountersREKKR[selector];
-				generationAmount += generatorCountersREKKR[selector]*(selector+1);
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
 			}
 			break;
 	}
