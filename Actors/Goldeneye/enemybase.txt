@@ -8560,266 +8560,244 @@ Actor Goldeneye_EnemyBaseRocketL : Goldeneye_EnemyBase { mass 1022 }
 Actor Goldeneye_EnemyBaseSCombo : Goldeneye_EnemyBase { mass 1023 }
 Actor Goldeneye_EnemyBaseXCombo : Goldeneye_EnemyBase { mass 1024 }
 
-Actor Goldeneye_KF7TracerEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-}
+actor Goldeneye_KF7TracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
 
-Actor Goldeneye_ShotgunTracerEnemy : Goldeneye_BulletTracer
+actor Goldeneye_ShotgunTracerEnemy : Goldeneye_BulletTracer
 {
-	Damage(CallACS("Goldeneye_TracerDamage"))
-	Speed 128
-	States
-	{
-		Spawn:
-			TNT1 A 0
-			TNT1 A 1 Bright
-			loop
-	}
-}	
-
-Actor Goldeneye_KF7TracerFake : Goldeneye_BulletTracer
-{
-	Damage(0)
-	+THRUACTORS
-}
-
-Actor Goldeneye_SniperTracerEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-}
-
-Actor Goldeneye_SniperTracerEnemy2 : Goldeneye_BulletTracer
-{
-	Damage(15)
-}
-
-Actor Goldeneye_D5KTracerEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-}
-
-Actor Goldeneye_AR33TracerEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-}
-
-Actor Goldeneye_KlobbTracerEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-}
-
-Actor Goldeneye_RCP90TracerEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-}
-
-Actor Goldeneye_CougarTracerEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-	+THRUACTORS
-	States
-	{
-		Spawn:
-			GE00 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 8, !XF_HURTSOURCE, false, 8)
-			GE00 A 1 Bright
-			loop
-		}	
-}
-
-Actor Goldeneye_LaserRayEnemy : Goldeneye_BulletTracer
-{
-	Damage(CallACS("Goldeneye_TracerDamage"))
-	+THRUACTORS
-	RenderStyle Translucent
+    Speed 128
+    Damage (CallACS("Goldeneye_TracerDamage"))
     States
     {
-        Spawn:
-			GE00 A 0
-			TNT1 A 1
-			GE00 A 0 A_ChangeVelocity(velx*2,vely*2,velz*2,CVF_REPLACE)
-		SpawnLoop:
-			GE00 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 8, !XF_HURTSOURCE, false, 8)
-            GE00 A 1 Bright
-            loop
-        Death:
-            TNT1 A 0 A_Playsound("Goldeneye/Zap", CHAN_5)
-            TNT1 AAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-360, 360), SXF_NOCHECKPOSITION)
-            TNT1 A 0 A_SpawnItemEx("Goldeneye_BulletImpact", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-            TNT1 A 0
-            Stop
-			}
-}	
-
-Actor Goldeneye_LaserRayFake : Goldeneye_LaserRayEnemy
-{
-	Damage(0)
-	-RIPPER
-	+THRUACTORS
-}	
-
-Actor Goldeneye_EnemyRocket
-{
-	Damage(0)
-	Projectile
-	Height 8
-	Radius 6
-	Speed 20
-	-NOGRAVITY
-	+FORCERADIUSDMG
-	+EXTREMEDEATH
-	Gravity 0.5
-	Scale 0.75
-	DeathSound "Goldeneye/Explosion"
-	States
-	{
-		Spawn:
-			GE00 A 0
-			GE00 A 0 A_SpawnItemEx("Goldeneye_RocketSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			GE00 A 0 A_JumpIfInventory("BondRocketLifeTime", 0, 2)
-			GE00 A 0 A_JumpIfInventory("BondRocketLifeTime", 10, "AdjustPitch")
-			GE00 A 0 A_GiveInventory("BondRocketLifeTime", 1)
-			GE00 A 1 Bright
-			loop
-		AdjustPitch:
-			GE00 A 0 ThrustThingZ(0, 24, 0, 1)
-			GE00 A 0 A_SetGravity(0.01)
-			GE00 A 0 A_TakeInventory("BondRocketLifeTime", 11)
-			Goto SpawnLoop
-		SpawnLoop:
-			GE00 A 0 A_SpawnItemEx("Goldeneye_RocketSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			GE00 A 1 Bright
-			loop
-		Death:
-			TNT1 A 0 A_StopSound(CHAN_5)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAA 0 A_SpawnItemEx ("Goldeneye_ExplosionSmoke", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", 0, 0, -24, 0, 0, 0, 0, 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			stop
-	}
+      Spawn:
+        TNT1 A -1
+        stop
+    }
 }
 
-Actor Goldeneye_GrenadeLauncherProjectileEnemy
+actor Goldeneye_KF7TracerFake : Goldeneye_BulletTracer
 {
-	Damage(0)
-	Projectile
-	Height 8
-	Radius 4
-	Speed 30
-	-NOGRAVITY
-	+BOUNCEONWALLS
-	+FORCERADIUSDMG
-	+EXTREMEDEATH
-	Gravity 0.5
-	Scale 0.75
-	DeathSound "Goldeneye/Explosion"
-	States
-	{
-		Spawn:
-			GE00 A 0
-			GE00 A 0 A_ChangeVelocity(0,0,2,CVF_RELATIVE)
-			GE00 A 0 A_SetPitch(random(0,360))		
-		SpawnLoop:
-			GE00 A 0 A_SpawnItemEx("Goldeneye_RocketSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-			GE00 A 0 A_CheckFloor("Death")
-			GE00 A 1 Bright
-			loop	
-		Death:
-			TNT1 A 0 A_StopSound(CHAN_5)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAA 0 A_SpawnItemEx ("Goldeneye_ExplosionSmoke", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", 0, 0, -24, 0, 0, 0, 0, 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"), 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			stop
-			}
-}			
+    Damage (0)
+    +THRUACTORS
+}
 
-Actor Goldeneye_GrenadeLauncherProjectileEnemyX : Goldeneye_GrenadeLauncherProjectileEnemy
+actor Goldeneye_SniperTracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+
+actor Goldeneye_SniperTracerEnemy2 : Goldeneye_BulletTracer { Damage (15) }
+
+actor Goldeneye_D5KTracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+
+actor Goldeneye_AR33TracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+
+actor Goldeneye_KlobbTracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+
+actor Goldeneye_RCP90TracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+
+actor Goldeneye_CougarTracerEnemy : Goldeneye_BulletTracer
 {
-	States
-	{
-	Death:
-			TNT1 A 0 A_StopSound(CHAN_5)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAA 0 A_SpawnItemEx ("Goldeneye_ExplosionSmoke", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", 0, 0, -24, 0, 0, 0, 0, 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(10, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			stop
-	}
-}			
+    Damage (CallACS("Goldeneye_TracerDamage"))
+    +THRUACTORS
+    States
+    {
+      Spawn:
+        GE00 A 1 Bright A_Explode(CallACS("Goldeneye_TracerDamage"),8,0,false,8)
+        loop
+    }
+}
+
+actor Goldeneye_LaserRayEnemy : Goldeneye_BulletTracer
+{
+    Damage (CallACS("Goldeneye_TracerDamage"))
+    RenderStyle "Translucent"
+    +THRUACTORS
+    States
+    {
+      Spawn:
+        TNT1 A 1
+        GE00 A 0 A_ChangeVelocity(velx*2,vely*2,velz*2,CVF_REPLACE)
+        GE00 A 1 Bright A_Explode(CallACS("Goldeneye_TracerDamage"),8,0,false,8)
+        wait
+
+      Death:
+        TNT1 A 0 A_PlaySound("Goldeneye/Zap")
+        TNT1 AAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-1,1),frandom(-1,1),frandom(-1,1),frandom(-1,1),frandom(-1,1),frandom(-1,1),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 A 1 A_SpawnItemEx("Goldeneye_BulletImpact",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        stop
+    }
+}
+
+actor Goldeneye_LaserRayFake : Goldeneye_LaserRayEnemy
+{
+    Damage (0)
+    -RIPPER
+    +THRUACTORS
+}
+
+actor Goldeneye_EnemyRocket
+{
+    Projectile
+    Radius 6
+    Height 8
+    Speed 20
+    Damage (0)
+    Gravity 0.5
+    Scale 0.75
+    DeathSound "Goldeneye/Explosion"
+    +EXTREMEDEATH
+    +FORCERADIUSDMG
+    -NOGRAVITY
+    //+THRUGHOST
+    States
+    {
+      Spawn:
+        GE00 A 0
+        GE00 A 0 A_JumpIfInventory("BondRocketLifeTime",0,3)
+        GE00 A 0 A_JumpIfInventory("BondRocketLifeTime",10,"AdjustPitch")
+        GE00 A 0 A_GiveInventory("BondRocketLifeTime")
+        GE00 A 1 Bright A_SpawnItemEx("Goldeneye_RocketSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        loop
+
+      AdjustPitch:
+        GE00 A 0 ThrustThingZ(0,24,0,1)
+        GE00 A 0 A_SetGravity(0.01)
+        GE00 A 1 Bright A_SpawnItemEx("Goldeneye_RocketSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        wait
+
+      Death:
+      DeathDebris:
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+      DeathSmoke:
+        TNT1 AAAA 0 A_SpawnItemEx("Goldeneye_ExplosionSmoke",frandom(-1,1),frandom(-1,1),frandom(-1,1),0,0,0,0,SXF_NOCHECKPOSITION)
+      DeathExplode:
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",0,0,-24) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        stop
+    }
+}
+
+actor Goldeneye_GrenadeLauncherProjectileEnemy
+{
+    Projectile
+    Radius 4
+    Height 8
+    Speed 30
+    Damage (0)
+    Gravity 0.5
+    Scale 0.75
+    DeathSound "Goldeneye/Explosion"
+    +BOUNCEONWALLS
+    +EXTREMEDEATH
+    +FORCERADIUSDMG
+    -NOGRAVITY
+    States
+    {
+      Spawn:
+        GE00 A 0
+        GE00 A 0 A_ChangeVelocity(0,0,2,CVF_RELATIVE)
+        GE00 A 0 A_SetPitch(random(0,360))
+      SpawnLoop:
+        GE00 A 0 A_SpawnItemEx("Goldeneye_RocketSmoke",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+        GE00 A 1 Bright A_CheckFloor("Death")
+        loop
+
+      Death:
+      DeathDebris:
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+      DeathSmoke:
+        TNT1 AAAA 0 A_SpawnItemEx("Goldeneye_ExplosionSmoke",frandom(-1,1),frandom(-1,1),frandom(-1,1),0,0,0,0,SXF_NOCHECKPOSITION)
+      DeathExplode:
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",0,0,-24) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(CallACS("Goldeneye_TracerDamage"),80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        stop
+    }
+}
+
+actor Goldeneye_GrenadeLauncherProjectileEnemyX : Goldeneye_GrenadeLauncherProjectileEnemy
+{
+    States
+    {
+      Death:
+      DeathDebris:
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+      DeathSmoke:
+        TNT1 AAAA 0 A_SpawnItemEx("Goldeneye_ExplosionSmoke",frandom(-1,1),frandom(-1,1),frandom(-1,1),0,0,0,0,SXF_NOCHECKPOSITION)
+      DeathExplode:
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",0,0,-24) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(10,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        stop
+    }
+}
 
 Actor Goldeneye_KF7EnemyDrop : SamsaraSlotTwoDrop
 {
@@ -9173,68 +9151,71 @@ Actor Goldeneye_EnemySpawner_Drop : RandomSpawner { +ISMONSTER -COUNTKILL }
 
 actor Goldeneye_JetPackSmoke : Goldeneye_ExplosionSmoke
 {
-	Scale 0.33
-	Alpha 1.0
-	States
-	{
-		Spawn:
-			GE04 A 0
-			GE04 "#########" 2 A_Fadeout(0.1)
-			stop
-	}
+    Alpha 1
+    Scale 0.33
+    States
+    {
+      Spawn:
+        GE04 A 0
+        GE04 "#########" 2 A_FadeOut(0.1)
+        stop
+    }
 }
 
-Actor Goldeneye_EnemyGrenade
+actor Goldeneye_EnemyGrenade
 {
-	Damage(0)
-	Projectile
-	Height 8
-	Radius 4
-	Speed 8
-	-NOGRAVITY
-	+FORCERADIUSDMG
-	+EXTREMEDEATH
-	Gravity 0.5
-	Scale 0.75
-	DeathSound "Goldeneye/Explosion"
-	States
-	{
-		Spawn:
-			GE00 A 0
-			GE00 A 0 A_ChangeVelocity(0,0,8,CVF_RELATIVE)
-			GE00 A 0 A_SetPitch(random(0,360))
-		SpawnLoop:
-			GE00 A 1 A_SetPitch(pitch+15)
-			loop
-		Death:
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-6, 7), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-5, 5), frandom(-5, 5), frandom(-1, 4), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris", frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(-3, 3), frandom(-3, 3), frandom(1, 6), frandom(-360, 360), SXF_NOCHECKPOSITION)
-			TNT1 AAAA 0 A_SpawnItemEx ("Goldeneye_ExplosionSmoke", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", 0, 0, -24, 0, 0, 0, 0, 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 3 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)	
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			TNT1 A 5 A_SpawnItemEx ("Goldeneye_ExplosionParticle", frandom(-24, 24), frandom(-24, 24), frandom(-12, 26), 0, 0, 0, frandom(-360, 360), 0, 0) TNT1 A 0 A_Explode(5, 80, XF_HURTSOURCE, 1, 80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_NOTARGET|RGF_MONSTERS) TNT1 A 0 A_RadiusThrust(40,80,!RTF_AFFECTSOURCE,80)
-			stop
-	}
+    Projectile
+    Radius 4
+    Height 8
+    Speed 8
+    Damage (0)
+    Gravity 0.5
+    Scale 0.75
+    DeathSound "Goldeneye/Explosion"
+    +EXTREMEDEATH
+    +FORCERADIUSDMG
+    -NOGRAVITY
+    States
+    {
+      Spawn:
+        GE00 A 0
+        GE00 A 0 A_ChangeVelocity(0,0,8,CVF_RELATIVE)
+        GE00 A 0 A_SetPitch(random(0,360))
+        GE00 A 1 A_SetPitch(pitch+15)
+        wait
+
+      Death:
+      DeathDebris:
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-6,7),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-5,5),frandom(-5,5),frandom(-1,4),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Goldeneye_Debris",frandom(-8,8),frandom(-8,8),frandom(-8,8),frandom(-3,3),frandom(-3,3),frandom(1,6),frandom(-360,360),SXF_NOCHECKPOSITION)
+      DeathSmoke:
+        TNT1 AAAA 0 A_SpawnItemEx("Goldeneye_ExplosionSmoke",frandom(-1,1),frandom(-1,1),frandom(-1,1),0,0,0,0,SXF_NOCHECKPOSITION)
+      DeathExplode:
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",0,0,-24) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 3 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        TNT1 A 0 A_SpawnItemEx("Goldeneye_ExplosionParticle",frandom(-24,24),frandom(-24,24),frandom(-12,26),0,0,0,frandom(-360,360)) TNT1 A 0 A_Explode(5,80,XF_HURTSOURCE,true,80) TNT1 A 0 A_RadiusGive("Goldeneye_ExplosionZThrust",80,RGF_PLAYERS|RGF_MONSTERS|RGF_NOTARGET) TNT1 A 5 A_RadiusThrust(40,80,0,80)
+        stop
+    }
 }
