@@ -74,32 +74,38 @@ ACTOR BlakeEnemyBulletD5 : BlakeEnemyBulletD1 { Damage (Random (1, 4)) }
 ACTOR BlakeEnemyBulletD6 : BlakeEnemyBulletD1 { Damage (Random (1, 2)) }
 ACTOR BlakeEnemyBulletD7 : BlakeEnemyBulletD1 { Damage (1) }
 
-Actor BlakeSFPDrop : SamsaraSlotTwoDrop
+actor BlakeSFPDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		BWP2 A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        BWP2 A -1
+        stop
+    }
 }
 
-Actor BlakeRAWDrop1 : SamsaraSlotFourDrop
+actor BlakeRAWDrop1 : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		BWP3 A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        BWP3 A -1
+        stop
+    }
 }
 
-Actor BlakeRAWDrop2 : SamsaraSlotFourDrop
+actor BlakeRAWDrop2 : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		BWP4 A -1
-		Stop
-		}
-}		
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        BWP4 A -1
+        stop
+    }
+}

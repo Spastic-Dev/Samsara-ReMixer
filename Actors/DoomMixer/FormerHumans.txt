@@ -1,33 +1,39 @@
 // Doom former humans: zombieman, shotgunguy, chaingunguy
 
-actor ShotgunDrop2: SamsaraSlotTwoDrop
+actor ShotgunDrop2 : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		WSHT A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WSHT A -1
+        stop
+    }
 }
 
-actor SuperShotgunPickup2: SamsaraSlotThreeDrop
+actor SuperShotgunPickup2 : SamsaraSlotThreeDrop
 {
-	States
-	{
-	Spawn:
-		WSSG A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WSSG A -1
+        stop
+    }
 }
 
 actor ChingunDrop2: SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		WCGN A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WCGN A -1
+        stop
+    }
 }
 
 ACTOR ZombieMan3 : Zombieman2

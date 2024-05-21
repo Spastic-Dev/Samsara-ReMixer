@@ -310,38 +310,101 @@ Actor Hexen2HeadActor : SamsaraCorpseActor
 	+SLIDESONWALLS
 }	
 
-Actor Hexen2BlueMana : HexenAmmo12Small
+actor Hexen2BlueMana : Ammo12Small
 {
-	Inventory.PickupSound "Hexen2/ItemPickup"
-	States
-	{
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
       Spawn:
-        HX00 A 20 Light("Blue") BRIGHT
-        loop
-		}
+        HX00 A 0 Bright Light("Blue")
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        HX00 A -1 Bright Light("Blue") A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupDisplayDefault:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 3, 13, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("D7BA45",0.3,4)
+        TNT1 A 0 A_PlaySound("Hexen2/ItemPickup",CHAN_ITEM|CHAN_MAYBE_LOCAL)
+        goto PickupSuccess
+
+      PickupDisplayMarathon:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 3, 13, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("Green",0.3,3)
+        TNT1 A 0 A_PlaySound("Hexen2/ItemPickup",CHAN_ITEM|CHAN_MAYBE_LOCAL)
+        goto PickupSuccess
+    }
 }
 
-Actor Hexen2GreenMana : HexenAmmo34Small
+actor Hexen2GreenMana : Ammo34Small
 {
-	Inventory.PickupSound "Hexen2/ItemPickup"
-	States
-	{
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
       Spawn:
-        HX00 A 20 Light("Green") BRIGHT
-        loop
-		}
+        HX00 A 0 Bright Light("Green")
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        HX00 A -1 Bright Light("Green") A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupDisplayDefault:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 3, 14, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("D7BA45",0.3,4)
+        TNT1 A 0 A_PlaySound("Hexen2/ItemPickup",CHAN_ITEM|CHAN_MAYBE_LOCAL)
+        goto PickupSuccess
+
+      PickupDisplayMarathon:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 3, 14, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("Green",0.3,3)
+        TNT1 A 0 A_PlaySound("Hexen2/ItemPickup",CHAN_ITEM|CHAN_MAYBE_LOCAL)
+        goto PickupSuccess
+    }
 }
 
-Actor Hexen2CombinedMana : HexenEverythingAmmo	
+actor Hexen2CombinedMana : EverythingAmmo	
 {
-	Inventory.PickupSound "Hexen2/ItemPickup"
-	Scale 1.0
-	States
-	{
+    Scale 1
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
       Spawn:
-        HX00 A 20 Light("Red") BRIGHT
-        loop
-		}
+        HX00 A 0 Bright Light("Red")
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        HX00 A -1 Bright Light("Red") A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupDisplayDefault:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 3, 15, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("D7BA45",0.3,4)
+        TNT1 A 0 A_PlaySound("Hexen2/ItemPickup",CHAN_ITEM|CHAN_MAYBE_LOCAL)
+        goto PickupSuccess
+
+      PickupDisplayMarathon:
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 3, 15, 0)
+        TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
+        TNT1 A 0 A_SetBlend("Green",0.3,3)
+        TNT1 A 0 A_PlaySound("Hexen2/ItemPickup",CHAN_ITEM|CHAN_MAYBE_LOCAL)
+        goto PickupSuccess
+    }
 }	
 
 actor Hexen2CrystalVial : HealPack1
@@ -388,34 +451,40 @@ actor Hexen2CrystalVial : HealPack1
     }
 }
 
-Actor Hexen2TomeDrop : SamsaraUniquePickup1
+actor Hexen2TomeDrop : SamsaraUniquePickup1
 {
-	States
-	{
-	Spawn:
-		HX00 A -1 
-		Loop
-	}
-}	
-
-Actor Hexen2AcidRuneDrop : SamsaraSlotTwoDrop
-{
-	States
-	{
-	Spawn:
-		HX99 A -1 
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        HX00 A -1
+        stop
+    }
 }
 
-Actor Hexen2BoneShardDrop : SamsaraSlotFourDrop
+actor Hexen2AcidRuneDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		HX99 A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        HX99 A -1
+        stop
+    }
+}
+
+actor Hexen2BoneShardDrop : SamsaraSlotFourDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        HX99 A -1
+        stop
+    }
 }
 
 Actor Hexen2GruntDropRandom : RandomSpawner

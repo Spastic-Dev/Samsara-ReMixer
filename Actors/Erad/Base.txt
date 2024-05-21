@@ -115,22 +115,26 @@ Actor EradExplosionMedium_Z : EradPlasmaExplosion1 { Scale 0.40 }
 Actor EradPlasmaExplosion3_2 : EradPlasmaExplosion3 { Scale 0.70 }
 Actor EradPlasmaExplosion3_1 : EradPlasmaExplosion3 { Scale 0.60 }
 
-Actor EradSlotTwoDrop : SamsaraSlotTwoDrop
+actor EradSlotTwoDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		SSPU A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SSPU A -1
+        stop
+    }
 }
 
-Actor EradSlotFourDrop : SamsaraSlotFourDrop
+actor EradSlotFourDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		DZ8P A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        DZ8P A -1
+        stop
+    }
 }

@@ -25,24 +25,28 @@ Actor Catacomb3D_EnemyBase // base for the enemies. Enemy behavior is very stand
 	var int user_scaley;	
 }	
 
-Actor Catacomb3D_XDrop : SamsaraSlotTwoDrop
+actor Catacomb3D_XDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		CT01 ABC 8 
-		Loop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CT01 ABC 8 Bright
+        loop
+    }
 }
 
-Actor Catacomb3D_ZDrop : SamsaraSlotFourDrop
+actor Catacomb3D_ZDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		CT01 EFG 8
-		Loop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CT01 EFG 8 Bright
+        loop
+    }
 }
 
 Actor Catacomb3D_Orc : SamsaraMonsterBeastSmallTotalGib

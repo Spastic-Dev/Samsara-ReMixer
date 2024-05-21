@@ -189,15 +189,17 @@ Actor IPOGHuntress : SamsaraMonsterHumanoidMediumTotalGib
 	}
 }
 
-Actor IPOGChaingunDrop : SamsaraSlotFourDrop
+actor IPOGChaingunDrop : SamsaraSlotFourDrop
 {
-	States
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
-		Spawn:
-			GW40 Z -1
-			stop
-	}
-}	
+      Spawn:
+        GW40 Z -1
+        stop
+    }
+}
 
 Actor IPOGHuntressDrop {
 	Height 5

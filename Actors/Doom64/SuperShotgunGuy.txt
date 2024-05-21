@@ -136,16 +136,17 @@ ACTOR SuperShotgunGuy64 : SamsaraMonsterHumanoid
 	}
 }
 
-Actor SuperShotgun64 : SamsaraSlotThreeDrop
+actor SuperShotgun64 : SamsaraSlotThreeDrop
 {
-	+DROPPED
-	Scale 0.65
-	States
-	{
-	Spawn:
-		64DB Z -1
-		Stop
-	}
+    Scale 0.65
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        64DB Z -1
+        stop
+    }
 }
 
 actor SuperShotgunGuy64_Shrink : SuperShotgunGuy64

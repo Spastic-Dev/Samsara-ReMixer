@@ -2199,24 +2199,28 @@ actor StrifeAcolyte8_ShrinkEffect : StrifeAcolyte8
 
 Actor IsGibbed : Boolean { }
 
-Actor StrifeXBowDrop : SamsaraSlotTwoDrop
+actor StrifeXBowDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		SXBW A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SXBW A -1
+        stop
+    }
 }
 
-Actor StrifeAssaultGunDrop : SamsaraSlotFourDrop
+actor StrifeAssaultGunDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		SGRF A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SGRF A -1
+        stop
+    }
 }
 
 Actor StrifeAcolyte3Drop

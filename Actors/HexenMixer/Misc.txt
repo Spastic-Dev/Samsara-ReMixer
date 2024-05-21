@@ -962,24 +962,28 @@ ACTOR Heresiarch3Doom : Heresiarch3 { -TELESTOMP Tag "Heresiarch" }
 ACTOR Wraith3Doom : Wraith3 { -TELESTOMP Tag "Reiver" }
 ACTOR WraithBuried3Doom : WraithBuried3 { -TELESTOMP Tag "Buried Reaver" }
 
-Actor HexenFrostDrop : SamsaraSlotTwoDrop
+actor HexenFrostDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		WFRS ABC 8
-		Loop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WFRS ABC 8 Bright
+        loop
+    }
 }
 
-Actor HexenStaffDrop : SamsaraSlotFourDrop
+actor HexenStaffDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		WCSS A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WCSS A -1
+        stop
+    }
 }
 
 Actor HexenEttinDrop {

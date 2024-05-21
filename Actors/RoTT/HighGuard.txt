@@ -257,9 +257,12 @@ Actor HighGuardDrop {
 	}
 }
 
-ACTOR RoTTMP40Drop : SamsaraSlotFourDrop {
-	+DROPPED
-	States {
+actor RoTTMP40Drop : SamsaraSlotFourDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
       Spawn:
         PM40 A -1
         stop

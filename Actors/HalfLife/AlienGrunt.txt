@@ -537,9 +537,11 @@ actor AlienGrunt_ShrinkEffect : AlienGrunt
 	}
 }
 
-ACTOR HornetGunDrop : SamsaraSlotOneDrop {
-	+DROPPED
-	States
+actor HornetGunDrop : SamsaraSlotOneDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
         HL00 A -1

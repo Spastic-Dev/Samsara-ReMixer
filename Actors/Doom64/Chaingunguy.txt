@@ -137,16 +137,17 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoid
 	}
 }
 
-Actor Chaingun64 : SamsaraSlotFourDrop
+actor Chaingun64 : SamsaraSlotFourDrop
 {
-	+DROPPED
-	Scale 0.65
-	States
-	{
-		Spawn:
-			64CG Z -1
-			Stop
-	}
+    Scale 0.65
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        64CG Z -1
+        stop
+    }
 }
 
 actor ChainGunGuy64_Shrink : ChaingunGuy64

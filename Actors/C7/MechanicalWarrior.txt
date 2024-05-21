@@ -494,12 +494,14 @@ actor C7MWarrior_ShrinkEffect : C7MWarrior
 	}
 }
 
-Actor C7MWarriorDrop : SamsaraSlotFourDrop
+actor C7MWarriorDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		7DU2 A -1
-		Stop
-		}
-}		
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        7DU2 A -1
+        stop
+    }
+}

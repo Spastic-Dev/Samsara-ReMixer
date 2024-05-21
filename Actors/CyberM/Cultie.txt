@@ -468,12 +468,14 @@ actor CultistGroundM
     }
 }
 
-Actor CMDarklightDrop : SamsaraUniquePickup1
+actor CMDarklightDrop : SamsaraUniquePickup1
 {
-	States
-	{
-	Spawn:
-		CMUQ A -1
-		Stop
-		}
-}		
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CMUQ A -1
+        stop
+    }
+}

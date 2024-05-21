@@ -81,22 +81,26 @@ ACTOR Clink3Doom : Clink3
 }
 //Heretic compati- oh wait.
 
-Actor HereticMaceDrop : SamsaraSlotTwoDrop
+actor HereticMaceDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		WMCE A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WMCE A -1
+        stop
+    }
 }
 
-Actor HereticClawDrop : SamsaraSlotFourDrop
+actor HereticClawDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		WBLS A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WBLS A -1
+        stop
+    }
 }

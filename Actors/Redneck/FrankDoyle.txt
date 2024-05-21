@@ -265,15 +265,16 @@ Actor FrankDoyleDrop
 	}
 }
 
-Actor RRAKDrop : SamsaraSlotFourDrop
+actor RRAKDrop : SamsaraSlotFourDrop
 {
-	+DROPPED
-	States
-	{
-	Spawn:
-		R_SR J -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        R_SR J -1
+        stop
+    }
 }
 
 Actor BlueFrankDoyleCorpse_Normal : SamsaraCorpseActor

@@ -428,12 +428,14 @@ actor TymokMissile : EniramMissile
     }
 }
 
-Actor TymokDrop : SamsaraSlotFiveDrop
+actor TymokDrop : SamsaraSlotFiveDrop
 {
-	States
-	{
-	Spawn:
-		7RL2 A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        7RL2 A -1
+        stop
+    }
 }

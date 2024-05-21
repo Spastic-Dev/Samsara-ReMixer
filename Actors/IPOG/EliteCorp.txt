@@ -181,15 +181,17 @@ Actor IPOGEliteCorp : SamsaraMonsterHumanoidMediumTotalGib
 	}
 }
 
-Actor IPOGShotgunDrop : SamsaraSlotTwoDrop
+actor IPOGShotgunDrop : SamsaraSlotTwoDrop
 {
-	States
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
-		Spawn:
-			GW30 Z -1
-			stop
-	}
-}	
+      Spawn:
+        GW30 Z -1
+        stop
+    }
+}
 
 Actor IPOGEliteDrop {
 	Height 5

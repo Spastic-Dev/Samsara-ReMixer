@@ -323,9 +323,12 @@ Actor TriadEnforcerDrop {
 	}
 }
 
-ACTOR RoTTM60Drop : SamsaraSlotFourSkulltagDrop {
-	+DROPPED
-	States {
+actor RoTTM60Drop : SamsaraSlotFourSkulltagDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
       Spawn:
         PM60 A -1
         stop

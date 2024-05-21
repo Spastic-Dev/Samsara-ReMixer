@@ -1619,24 +1619,26 @@ Actor BillyRayJeeterDrop
 	}
 }
 
-Actor RRScatterGunDrop : SamsaraSlotThreeDrop
+actor RRScatterGunDrop : SamsaraSlotThreeDrop
 {
-	+DROPPED
-	States
-	{
-	Spawn:
-		RR_S A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        RR_S A -1
+        stop
+    }
 }
 
-Actor RRScatterGunDrop2 : SamsaraSlotTwoDrop //looks like a scatter gun, but it's actually a slot two!
+actor RRScatterGunDrop2 : SamsaraSlotTwoDrop //looks like a scatter gun, but it's actually a slot two!
 {
-	+DROPPED
-	States
-	{
-	Spawn:
-		RR_S A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        RR_S A -1
+        stop
+    }
 }

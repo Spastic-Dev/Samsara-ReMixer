@@ -614,10 +614,11 @@ Actor HeavyGuard : LightningGuard {
 	}
 }
 
-ACTOR HeavyGuardHeatSeeker : SamsaraSlotThreeDrop
+actor HeavyGuardHeatSeeker : SamsaraSlotThreeDrop
 {
-	+DROPPED
-	States
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
         PHSE A -1
@@ -625,14 +626,15 @@ ACTOR HeavyGuardHeatSeeker : SamsaraSlotThreeDrop
     }
 }
 
-ACTOR HeavyGuardBazooka : SamsaraSlotOneDrop
+actor HeavyGuardBazooka : SamsaraSlotOneDrop
 {
-	+DROPPED
-	States
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
         PBAZ A -1
-        stop   
+        stop
     }
 }
 

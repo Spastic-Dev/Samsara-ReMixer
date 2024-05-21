@@ -235,37 +235,50 @@ ACTOR blaster_laser2_REM
 }
 
 
-Actor StormTrooper_MonsterDrop : SamsaraSlotTwoDrop {
-	States
+actor StormTrooper_MonsterDrop : SamsaraSlotTwoDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
-		IRIF A -1
-		Stop
+        IRIF A -1
+        stop
     }
 }
 
-Actor ImperialCommander_MonsterDrop : SamsaraSlotFourDrop {
-	States
+actor ImperialCommander_MonsterDrop : SamsaraSlotFourDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
-		IREP A -1
-		Stop
+        IREP A -1
+        stop
     }
 }
 
-Actor DarkForces_GranDrop : SamsaraSlotOneDrop {
-	States
+actor DarkForces_GranDrop : SamsaraSlotOneDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
-		IDET A -1
-        Stop
+        IDET A -1
+        stop
     }
 }
 
-Actor Trandoshan_ConcussionDrop : SamsaraSlotSixDrop {
-	States {
-		Spawn:
-			ICON A -1
-			Stop
-	}
+actor Trandoshan_ConcussionDrop : SamsaraSlotSixDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        ICON A -1
+        stop
+    }
 }

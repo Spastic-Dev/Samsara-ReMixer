@@ -93,80 +93,98 @@ Actor DisruptorAlien {
 
 Actor DisruptorEnemyBullet_Z1 : DisruptorBullet3 { DamageType "" Damage(Random(6,10)) Scale 0.50 }
 
-Actor DisruptorClip : Clip2
+actor DisruptorClip : Clip2
 {
-	Scale 0.50
-	States
-	{
-	Spawn:
-		DSRC A -1
-		Stop
-		}
-}		
+    Scale 0.5
+    States
+    {
+      Spawn:
+        DSRC A 0
+        goto SpawnGameModeCheck
 
-Actor Disruptor18MMDrop : SamsaraSlotTwoDrop
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        DSRC A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+    }
+}
+
+actor Disruptor18MMDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		SQ72 Q -1
-		Stop
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SQ72 Q -1
+        stop
+
       Pickup:
-		TNT1 A 0 A_JumpIfInventory("DisruptorClass", 1, "PickupDisrup")
-        TNT1 A 0 A_JumpIf((ACS_NamedExecuteWithResult("SamsaraGiveWeapon", 2, 1) & 1) == 1, "PickupSuccess")
-        goto PickupFailure		
-	 PickupDisrup:
-        TNT1 A 0 A_JumpIf((ACS_NamedExecuteWithResult("SamsaraGiveWeapon", 1, 1) & 1) == 1, "PickupSuccess")
-        goto PickupFailure		 
-		}
+        TNT1 A 0 A_JumpIfInventory("DisruptorClass",1,"PickupDisruptor")
+        goto Super::Pickup
+
+      PickupDisruptor:
+        TNT1 A 0 A_JumpIf((CallACS("SamsaraGiveWeapon", 1, 1) & 1) == 1, "PickupSuccess")
+        goto PickupFailure
+    }
 }
 
-Actor DisruptorPhaseRifleDrop : SamsaraSlotTwoDrop
+actor DisruptorPhaseRifleDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		SQ72 R -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SQ72 R -1
+        stop
+    }
 }
 
-Actor DisruptorBlasterDrop : SamsaraSlotThreeDrop
+actor DisruptorBlasterDrop : SamsaraSlotThreeDrop
 {
-	States
-	{
-	Spawn:
-		SQ72 V -1
-		Stop
-		}
-}		
-
-Actor DisruptorRepeaterDrop : SamsaraSlotFourDrop
-{
-	States
-	{
-	Spawn:
-		SQ72 U -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SQ72 V -1
+        stop
+    }
 }
 
-Actor DisruptorLockOnDrop : SamsaraSlotFiveDrop
+actor DisruptorRepeaterDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		SQ72 S -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SQ72 U -1
+        stop
+    }
 }
 
-Actor DisruptorCycloneDrop : SamsaraSlotSixDrop
+actor DisruptorLockOnDrop : SamsaraSlotFiveDrop
 {
-	States
-	{
-	Spawn:
-		SQ72 T -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SQ72 S -1
+        stop
+    }
+}
+
+actor DisruptorCycloneDrop : SamsaraSlotSixDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SQ72 T -1
+        stop
+    }
 }

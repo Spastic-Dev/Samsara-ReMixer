@@ -98,13 +98,15 @@ Actor CMRocket2 : CMRocket
 	}
 }
 
-Actor CMLegionSlot5 : SamsaraSlotFiveDrop
+actor CMLegionSlot5 : SamsaraSlotFiveDrop
 {
-//	Scale 0.30
-	States
-	{
-	Spawn:
-		CMRL F -1
-		Stop
-		}
-}		
+    //Scale 0.3
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CMRL F -1
+        stop
+    }
+}

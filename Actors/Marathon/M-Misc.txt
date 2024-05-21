@@ -1436,55 +1436,91 @@ ACTOR NewDukeGibs6_Colgate : DukeGibs6
 	}
 }
 
-ACTOR M2EnforcerDrop : SamsaraSlotSixDrop
+actor M2EnforcerDrop : SamsaraSlotSixDrop
 {
-	+DROPPED
-	+NOCLIP
-	Scale 0.45
-	States
+    Gravity 0.25
+    Scale 0.45
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
-		Spawn:
-			ENP2 A -1
-			stop
-		Pickup:
-			TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"SOPickup")
-			TNT1 A 0 A_GiveInventory("Cell",20)
-			TNT1 A 0 A_JumpIf((ACS_NamedExecuteWithResult("SamsaraGiveWeapon", 6, 1) & 1) == 1, "PickupSuccess")
-			goto PickupFailure
-		SOPickup:
-			TNT1 A 0 A_JumpIfInventory("UnknownAmmo",0,"PickupFailure")
-			TNT1 A 0 A_GiveInventory("UnknownAmmo", 50)
-			TNT1 A 0 A_GiveInventory("Alien Weapon")
-			TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
-			TNT1 A 0 A_SetBlend("Green",0.4,8)
-			TNT1 A 0 A_PlaySound("marathon/itemget",5)
-			stop
+      Spawn:
+        ENP2 A -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupMarathon")
+        goto Super::Pickup
+
+      PickupMarathon:
+        TNT1 A 0 A_JumpIfInventory("Alien Weapon",1,1)
+        goto PickupSuccessMarathon
+        TNT1 A 0 A_JumpIfInventory("UnknownAmmo",0,"PickupFailure")
+        goto PickupSuccessMarathon
+
+      PickupSuccess:
+        TNT1 A 0 A_JumpIfInventory("RottClass",1,"PickupSuccessContinue")
+        TNT1 A 0 A_JumpIfInventory("CatacombClass",1,"PickupSuccessContinue")
+        goto PickupSuccessAmmo4Check
+
+      PickupSuccessAmmo4Check:
+      PickupSuccessAmmo4:
+        TNT1 A 0 A_GiveInventory("Cell",20)
+        goto PickupSuccessContinue
+
+      PickupSuccessContinue:
+        TNT1 A 0
+        goto Super::PickupSuccess
+
+      PickupSuccessMarathon:
+        TNT1 A 0 A_GiveInventory("Alien Weapon")
+        TNT1 A 0 A_GiveInventory("UnknownAmmo",50)
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraClientUniquePickup", 0, 0)
+        stop
     }
 }
 
-ACTOR M1EnforcerDrop : SamsaraSlotFourDrop
+actor M1EnforcerDrop : SamsaraSlotFourDrop
 {
-	+DROPPED
-	+NOCLIP
-	Scale 0.5
-	States
+    Gravity 0.25
+    Scale 0.5
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
-		Spawn:
-			ENP1 A -1
-			stop
-		Pickup:
-			TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"SOPickup")
-			TNT1 A 0 A_GiveInventory("Clip",20)
-			TNT1 A 0 A_JumpIf((ACS_NamedExecuteWithResult("SamsaraGiveWeapon", 4, 1) & 1) == 1, "PickupSuccess")
-			goto PickupFailure
-		SOPickup:
-			TNT1 A 0 A_JumpIfInventory("UnknownAmmo2",0,"PickupFailure")
-			TNT1 A 0 A_GiveInventory("UnknownAmmo2", 50)
-			TNT1 A 0 A_GiveInventory(" Alien Weapon ")
-			TNT1 A 0 A_JumpIfInventory("PickupFlashesAreDisabled",1,2)
-			TNT1 A 0 A_SetBlend("Green",0.4,8)
-			TNT1 A 0 A_PlaySound("marathon/itemget",5)
-			stop
+      Spawn:
+        ENP1 A -1
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupMarathon")
+        goto Super::Pickup
+
+      PickupMarathon:
+        TNT1 A 0 A_JumpIfInventory(" Alien Weapon ",1,1)
+        goto PickupSuccessMarathon
+        TNT1 A 0 A_JumpIfInventory("UnknownAmmo2",0,"PickupFailure")
+        goto PickupSuccessMarathon
+
+      PickupSuccess:
+        TNT1 A 0 A_JumpIfInventory("RottClass",1,"PickupSuccessContinue")
+        TNT1 A 0 A_JumpIfInventory("CatacombClass",1,"PickupSuccessContinue")
+        goto PickupSuccessAmmo1Check
+
+      PickupSuccessAmmo1Check:
+      PickupSuccessAmmo1:
+        TNT1 A 0 A_GiveInventory("Clip",20)
+        goto PickupSuccessContinue
+
+      PickupSuccessContinue:
+        TNT1 A 0
+        goto Super::PickupSuccess
+
+      PickupSuccessMarathon:
+        TNT1 A 0 A_GiveInventory(" Alien Weapon ")
+        TNT1 A 0 A_GiveInventory("UnknownAmmo2",50)
+        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraClientUniquePickup", 0, 1)
+        stop
     }
 }
 
@@ -1534,24 +1570,28 @@ Actor MarathonFighterDrop {
 	}
 }
 
-Actor MarathonSGDrop : SamsaraSlotTwoDrop
+actor MarathonSGDrop : SamsaraSlotTwoDrop
 {
-	Gravity 0.25
-	States
-	{
-	Spawn:
-		SHTY A -1
-		Stop
-		}
+    Gravity 0.25
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SHTY A -1
+        stop
+    }
 }
 
-Actor MarathonARDrop : SamsaraSlotFourDrop
+actor MarathonARDrop : SamsaraSlotFourDrop
 {
-	Gravity 0.25
-	States
-	{
-	Spawn:
-		RIFL A -1
-		Stop
-		}
+    Gravity 0.25
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        RIFL A -1
+        stop
+    }
 }

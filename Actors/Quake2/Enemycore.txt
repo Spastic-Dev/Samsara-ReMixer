@@ -1219,24 +1219,28 @@ Actor Q2BossBase : SamsaraMonsterMechanicalHuge
 	}
 }
 
-Actor Q2SGDrop : SamsaraSlotTwoDrop
+actor Q2SGDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		Q2WP A -1 
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        Q2WP A -1
+        stop
+    }
 }
 
-Actor Q2ChaingunDrop : SamsaraSlotFourDrop
+actor Q2ChaingunDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		Q2WP A -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        Q2WP A -1
+        stop
+    }
 }
 
 Actor Q2ShotguyDrop {

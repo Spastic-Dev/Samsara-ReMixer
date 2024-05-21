@@ -338,11 +338,14 @@ Actor RoTT_BossExplosionSpawnerRising : RoTT_BossExplosionSpawner {
 	}
 }
 
-ACTOR RoTTPistolDrop : SamsaraSlotTwoDrop {
-	+DROPPED
-	States {
+actor RoTTPistolDrop : SamsaraSlotTwoDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
       Spawn:
         PPST A -1
         stop
-	}
-}	
+    }
+}

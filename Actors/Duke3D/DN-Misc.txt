@@ -462,52 +462,56 @@ ACTOR DukeJibs12 : DukeJibs1 //Assault Trooper leg
 	}
 }
 
-Actor PigDrop : SamsaraSlotTwoDrop
+actor PigDrop : SamsaraSlotTwoDrop
 {
-	+DROPPED
-	Scale 0.65
-	States
-	{
-	Spawn:
-		DSGP A -1
-		Stop
-	}
+    Scale 0.65
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        DSGP A -1
+        stop
+    }
 }
 
-Actor BeachPigDrop : SamsaraSlotTwoDrop
+actor BeachPigDrop : SamsaraSlotTwoDrop
 {
-	+DROPPED
-	Scale 0.65
-	States
-	{
-	Spawn:
-		SHTP B -1
-		Stop
-	}
+    Scale 0.65
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        SHTP B -1
+        stop
+    }
 }
 
-ACTOR AEnforcerDrop : SamsaraSlotFourDrop
+actor AEnforcerDrop : SamsaraSlotFourDrop
 {
-	Scale 0.65
-	+DROPPED
-	States
-	{
-	Spawn:
-		DCCP A -1
-		Stop
-	}
+    Scale 0.65
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        DCCP A -1
+        stop
+    }
 }
 
-ACTOR BeachEnforcerDrop : SamsaraSlotFourDrop
+actor BeachEnforcerDrop : SamsaraSlotFourDrop
 {
-	Scale 0.65
-	+DROPPED
-	States
-	{
-	Spawn:
-		CHGP B -1
-		Stop
-	}
+    Scale 0.65
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CHGP B -1
+        stop
+    }
 }
 
 actor DukeArmor : SamsaraArmorPickup
