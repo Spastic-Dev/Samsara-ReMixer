@@ -414,36 +414,60 @@ ACTOR CMHandGrenade
 	}
 }
 
-Actor CMGangXDrop : Ammo2Small
+actor CMGangXDrop : Ammo2Small
 {
-	Scale 0.30
-	States
-	{
-	Spawn:
-		C_GX P -1
-		Stop
-		}
-}	
+    Scale 0.3
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        C_GX P 0
+        goto SpawnGameModeCheck
 
-Actor CMGangXDrop2 : Ammo3Big
-{
-	Scale 0.30
-	States
-	{
-	Spawn:
-		C_GX Q -1
-		Stop
-		}
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        C_GX P -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
 }
 
-Actor CMGangXSlotTwo : SamsaraSlotTwoDrop
+actor CMGangXDrop2 : Ammo3Big
 {
-	States
-	{
-	Spawn:
-		CMFG J -1
-		Stop
-		}
-}		
+    Scale 0.3
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        C_GX Q 0
+        goto SpawnGameModeCheck
 
-Actor CMFusionBall0 : CMFusionBall { Speed 17 Scale 0.85 Damage (Random(Random(2,13),Random(7,18))*Random(2,1)) }	
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        C_GX Q -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
+}
+
+actor CMGangXSlotTwo : SamsaraSlotTwoDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CMFG J -1
+        stop
+    }
+}
+
+Actor CMFusionBall0 : CMFusionBall { Speed 17 Scale 0.85 Damage (Random(Random(2,13),Random(7,18))*Random(2,1)) }

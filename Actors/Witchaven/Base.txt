@@ -257,82 +257,101 @@ Actor WitchavenEnemyBaseRangedSkeleton : SamsaraMonsterSkeletonMedium
 }
 
 //Dream on
-Actor Witchaven_PikeAxeMonsterDrop : SamsaraSlotTwoDrop
+actor Witchaven_PikeAxeMonsterDrop : SamsaraSlotTwoDrop
 {
-	Scale 0.23
-	States
-	{
-	Spawn:
-		PWHH ABCD 5
-		Loop
-	}
+    Scale 0.23
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        PWHH ABCD 5
+        loop
+    }
 }
 
-Actor Witchaven_BattleAxeMonsterDrop : SamsaraSlotThreeDrop
+actor Witchaven_BattleAxeMonsterDrop : SamsaraSlotThreeDrop
 {
-	Scale 1.0
-	States
-	{
-	Spawn:
-		PWHB A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        PWHB A -1
+        stop
+    }
 }
 
-Actor Witchaven_ShortSwordMonsterDrop : SamsaraSlotOneDrop
+actor Witchaven_ShortSwordMonsterDrop : SamsaraSlotOneDrop
 {
-	Scale 1.0
-	States
-	{
-	Spawn:
-		PWHH A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        PWHH A -1
+        stop
+    }
 }
 
-Actor Witchaven_HalberdMonsterDrop : SamsaraSlotFourDrop
+actor Witchaven_HalberdMonsterDrop : SamsaraSlotFourDrop
 {
-	Scale 1.0
-	States
-	{
-	Spawn:
-		PWHD A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        PWHD A -1
+        stop
+    }
 }
 
-Actor Witchaven_GreatSwordMonsterDrop : SamsaraSlotSixDrop
+actor Witchaven_GreatSwordMonsterDrop : SamsaraSlotSixDrop
 {
-	Scale 1.0
-	States
-	{
-	Spawn:
-		PWHG A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        PWHG A -1
+        stop
+    }
 }
 
-Actor Witchaven_MorningStarMonsterDrop : SamsaraSlotFiveDrop
+actor Witchaven_MorningStarMonsterDrop : SamsaraSlotFiveDrop
 {
-	Scale 1.0
-	States
-	{
-	Spawn:
-		PWHC A -1
-		Stop
-	}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        PWHC A -1
+        stop
+    }
 }
 
 Actor Witchaven_QuiverArrowDrop : Ammo1Small
 {
-	Scale 0.25
-	+DROPPED
-	States
-	{
-	Spawn:
-		WH77 MMNNOOPPQQRRSSTT 2
-		Loop
-	}
+    Scale 0.25
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WH77 M 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualLoop:
+        WH77 MNOPQRST 4
+        loop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
 }
 
 actor WHAdamantineRing : SamsaraArmorPickup

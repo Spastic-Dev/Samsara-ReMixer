@@ -22,15 +22,22 @@ Doom:
 -Vanilla Doom Randomizer-
 
 * Fixed the variants of Doom's bullet-based enemies, rapid fire troopers, chaingun majors, double chaingun guys, super shotgun guys, and chaingun arachnotrons being able to hit ghosts when they shouldn't. Railgunners and spider-demolishers are unaffected.
-* Fixed the Chaingun Guy variant using the wrong sprites for some of its states.
+* Fixed the chaingun guy variant using the wrong sprites for some of its states.
 ! The damage of the blood demon charge attack has been adjusted (from 3-24 in multiples of 3 to 4-24 in multiples of 4).
 ! The damage of the mech blood demon charge attack has been adjusted (from 4-32 in multiples of 4 to 5-30 in multiples of 5).
 + Blood demons and mech blood demons will no longer go into their pain states when taking damage mid-charge.
 ! Blood demons and mech blood demons no longer damage monsters that share their species with their charge attack.
++ The inferno is slightly more aggressive.
+* The inferno and ghoul no longer harm their own species.
 - The melee revenant has been removed.
 + Taking the place of the melee revenant is the fiend from Doom RPG! Instead of firing missiles like a normal revenant, it is capable of firing fast-moving beams.
 - The incarnate's health has been reduced (from 500 to 400).
 ! The incarnate's hitscan glare has been replaced with a burst of three shadow projectiles. The projectiles have a speed of 18 compared to the shadow's 12.
+! The spawn chances of the hectebus and cryocubus have been set to 25%.
+! The hectebus now uses its sprites and offsets from skulltag_content.
++ The cryocubus' health has been increased (from 900 to 1200).
+- The cryocubus is no longer immune to splash damage.
+! The cryocubus has traded its close range stream attack for five volleys of ice projectiles.
 ! The archon of Hell has been moved to a baron of Hell replacement, and it is no longer considered a boss.
 - The archon of Hell's health has been reduced (from 2500 to 1500).
 - The archon of Hell's comet attack now deals 16-128 direct damage in multiples of 16 (reduced from 20-160 in multiples of 20).
@@ -40,14 +47,6 @@ Doom:
 - The cyber annihilator is less aggressive and can cause infighting.
 + The cyber annihilator has a chance to fire homing rockets which are faster (30 vs. the standard rocket's 20), but less damaging (10-80 direct damage in multiples of 10, 64 splash damage, and 96 splash radius vs. the standard rocket's 20-160 direct damage in multiples of 20, 128 splash damage, and 128 splash radius).
 + The dark cyberdemon has been added as a cyberdemon replacement!
-- The cryocubus no longer uses stream attack at close range
-- The cryocubus is no longer immune to radius damage
-+ The cryocubus now fires 5 volleys of ice projectile
-+ The cryocubus' health has been increased (from 900 to 1200)
-! Spawn chance of cryocubus and hectebus set to 25%
-+ The inferno is slightly more aggressive
-* The ghoul and inferno no longer harm their own species
-! Use hectebus sprites and offsets from skulltag_content
 
 -Doom 64-
 
@@ -59,6 +58,13 @@ Doom:
 
 * Fixed rockets not having the correct damage type.
 
+Wolfenstein 3D:
+
+-Castle Totenkopf SDL-
+
+* Fixed an incorrect ammo check for the ROTT characters when picking up a dropped Walther P38 pistol.
+! Picking up a dropped Walther P38 pistol will play a weapon pickup sound for characters that can use dual pistols again, but only if they don't have dual pistols yet (Totenkopf B.J. is exempt from this rule for thematic purposes).
+
 Hexen I:
 
 + Increased the weapon drop chance for ettins if Doom-style weapon drops are enabled.
@@ -68,7 +74,6 @@ Duke Nukem 3D:
 -All-
 
 - Removed some redundant gib actors.
-! Converted many WAV sounds to FLAC
 
 Marathon:
 
@@ -76,6 +81,7 @@ Marathon:
 
 Quake I:
 
+* Fixed the ammo drops using the wrong pickup sounds.
 - The Dragon fires its lightning bolts less frequently, and the distance at which the bolts will shock the target has been reduced from 300 to 64.
 
 Rise of the Triad:
@@ -110,6 +116,10 @@ PowerSlave/Exhumed:
 
 * Fixed the soul health not taking the disabled health cap and JC Denton's Medicine skill into account.
 
+Redneck Rampage:
+
+* Updated the code on ammo drops so they function properly.
+
 Quake II:
 
 * Fixed some projectiles and effects no longer being bright.
@@ -117,6 +127,11 @@ Quake II:
 Hexen II:
 
 * Fixed the crystal vial drop using the wrong pickup sound.
+
+GoldenEye 007:
+
+! Picking up a dropped PP7 will play a weapon pickup sound for characters that can use dual pistols again, but only if they don't have dual pistols yet (James Bond is exempt from this rule for thematic purposes).
+! Picking up a dropped PP7 now plays the ammo combo pickup sound.
 
 -Games-
 
@@ -137,7 +152,8 @@ PSX Final Doom CE:
 
 -Other-
 
-* Fixed the monster multiplier not affecting the Heretic, Hexen, or Chex ammo pickups.
+! Converted many WAV sounds to FLAC.
+* Fixed the monster multiplier not affecting the Heretic, Hexen, or Chex Quest ammo pickups.
 - Removed some unused Bloody Hell actors that were leftovers from older versions of Samsara.
 
 

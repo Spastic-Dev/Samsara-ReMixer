@@ -4217,64 +4217,106 @@ ACTOR RandomZealotDrop : RandomSpawner
 //	dropitem "BloodHeartPower" 78,5
 }
 
-Actor FanaticAmmoDrop : Ammo1Small {
-	Scale 0.50
-	States
-	{
-	  Spawn:
-		CLVR N -1
-		Stop
-	}
+actor FanaticAmmoDrop : Ammo1Small
+{
+    Scale 0.5
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CLVR N 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        CLVR N -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
 }
 
-Actor CultistAmmoDrop : Ammo2Small {
-	Scale 0.50
-	States
-	{
-	  Spawn:
-		CLVR M -1
-		Stop
-	}
+actor CultistAmmoDrop : Ammo2Small
+{
+    Scale 0.5
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CLVR M 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        CLVR M -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
 }
 
-Actor CultistDrop : SamsaraSlotThreeDrop {
-	+DROPPED
-	States
-	{
-	  Spawn:
-		BSOP A -1
-		Stop
-	}
+actor CultistDrop : SamsaraSlotThreeDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        BSOP A -1
+        stop
+    }
 }
 
-Actor FanaticDrop : SamsaraSlotFourDrop {
-	+DROPPED
-	States
-	{
-	  Spawn:
-		TOMP A -1
-		Stop
-	}
+actor FanaticDrop : SamsaraSlotFourDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        TOMP A -1
+        stop
+    }
 }
 
-Actor BloodAcolyteDrop : SamsaraSlotOneDrop {
-	+DROPPED
-	States
-	{
-	  Spawn:
-		CLVR S -1
-		Stop
-	}
+actor BloodAcolyteDrop : SamsaraSlotOneDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CLVR S -1
+        stop
+    }
 }
 
-Actor BloodZealotAmmoDrop : Ammo4Small {
-	Scale 0.30
-	States
-	{
-	  Spawn:
-		CLVR T -1
-		Stop
-	}
+actor BloodZealotAmmoDrop : Ammo4Small
+{
+    Scale 0.3
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CLVR T 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        CLVR T -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
 }
 
 Actor CultistTaunt_Enemy : Inventory { Inventory.Amount 1 Inventory.MaxAmount 1 }

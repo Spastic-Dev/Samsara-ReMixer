@@ -426,13 +426,24 @@ actor OBCTerrorist_ShrinkEffect : OBCTerrorist
 	}
 }		
 
-Actor OBCMP5Drop : Ammo1Small
+actor OBCMP5Drop : Ammo1Small
 {
-	Scale 1.175
-	States
-	{
-		Spawn:
-			OBC1 O -1
-			Stop
-		}
-}	
+    Scale 1.175
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        OBC1 O 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        OBC1 O -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
+}

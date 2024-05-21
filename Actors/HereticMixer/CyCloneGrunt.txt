@@ -147,15 +147,26 @@ Actor CyCloneGrunt : SamsaraMonsterHumanoidTotalGib
 	}
 }
 
-Actor CyCloneClip : Ammo1Small
+actor CyCloneClip : Ammo1Small
 {
-	States
-	{
-		Spawn:
-			CYC1 W -1
-			Stop
-	}
-}	
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        CYC1 W 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        CYC1 W -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
+}
 
 actor CyCloneGrunt_Shrink : CyCloneGrunt
 {

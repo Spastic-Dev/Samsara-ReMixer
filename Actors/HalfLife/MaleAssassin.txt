@@ -869,15 +869,17 @@ Actor Ass_M40_DummyReload : Inventory { Inventory.Amount 1 Inventory.MaxAmount 5
 
 Actor HL_HECU_M40A1Drop : RandomSpawner
 {
-	DropItem "HL_M40A1clip", 255, 10
+	DropItem "HL_M40A1Clip", 255, 10
 	DropItem "HL_M40A1", 255, 2
 	DropItem "HL_GrenadeWeapon", 255, 2
 	DropItem "HL_GrenadeWeapon2", 255, 2
 }
 
-ACTOR HL_M40A1 : SamsaraUniquePickup2 {
-	+DROPPED
-	States
+actor HL_M40A1 : SamsaraUniquePickup2
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
         HL00 A -1
@@ -885,15 +887,25 @@ ACTOR HL_M40A1 : SamsaraUniquePickup2 {
     }
 }
 
-ACTOR HL_M40A1Clip : Ammo2Big
+actor HL_M40A1Clip : Ammo2Big
 {
-	Scale 0.75
-	+DROPPED
-	States
+    Scale 0.75
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
-        HL00 A -1
+        HL00 A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        HL00 A 0 A_ChangeFlag("THRUACTORS",false)
+        HL00 A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
     }
 }
 

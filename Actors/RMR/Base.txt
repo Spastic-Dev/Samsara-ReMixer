@@ -273,59 +273,92 @@ Actor RMR-EnemyWhitePlasma
     }
 }
 
-ACTOR RMRAmmoDropClip : Ammo1Small
+actor RMRAmmoDropClip : Ammo1Small
 {
-	Scale 0.35
-	+DROPPED
-	States
+    Scale 0.35
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
-        MR87 B -1
+        MR87 B 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        MR87 B -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
     }
 }
-	
 
-ACTOR RMRAmmoDropCell : Ammo4Small
+actor RMRAmmoDropCell : Ammo4Small
 {
-	Scale 0.45
-	+DROPPED
-	States
+    Scale 0.45
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
-        MR87 C -1
-        stop
-	}
-}	
+        MR87 C 0
+        goto SpawnGameModeCheck
 
-ACTOR RMRAmmoDropRocket : Ammo3Small
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        MR87 C -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
+}
+
+actor RMRAmmoDropRocket : Ammo3Small
 {
-	Scale 0.40
-	+DROPPED
-	States
+    Scale 0.4
+    +DONTGIB
+    +DROPPED
+    +NEVERRESPAWN
+    States
     {
       Spawn:
-        MR87 D -1
+        MR87 D 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        MR87 D -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
-	}
+
+      PickupSuccessPainkiller:
+        goto PickupSuccessPainkillerReplenish
+    }
 }
 
-Actor RMRACRDrop : SamsaraSlotTwoDrop
+actor RMRACRDrop : SamsaraSlotTwoDrop
 {
-	States
-	{
-	Spawn:
-		RM3Z E -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        RM3Z E -1
+        Stop
+    }
 }
 
-Actor RMRCyclopseDrop : SamsaraSlotFourDrop
+actor RMRCyclopseDrop : SamsaraSlotFourDrop
 {
-	States
-	{
-	Spawn:
-		RM7T E -1
-		Stop
-		}
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        RM7T E -1
+        Stop
+    }
 }
