@@ -362,7 +362,7 @@ actor Hexen2CrystalVial : HealPack1
 
       PickupDisplay:
         TNT1 A 0 A_JumpIfInventory("DeusExClass",1,"PickupDisplayDeusEx")
-        goto Super::PickupDisplay // no changes; all other classes still checked
+        goto Super::PickupDisplay // all other classes still checked
 
       PickupDisplayDefault:
         TNT1 A 0 ACS_NamedExecuteAlways("SamsaraPickupMessages", 0, 0, 4, 0)
