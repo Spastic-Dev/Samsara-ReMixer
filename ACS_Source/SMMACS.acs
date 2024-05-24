@@ -30,11 +30,12 @@ str gameSetsStr[MAX_GAME_TYPES] = {
 	"SetExhumed", "SetRR", "SetQuake2", "SetHexen2", "SetGoldeneye", "SetCatacomb", "SetPainkiller", "SetUnreal", "SetRTCW", "SetQuake3", "SetDescent", "SetDeusEx"
 };
 
-str gameClassesSTR[MAX_GAME_TYPES] = {
-	"DoomguyPlayer2", "ChexWarrior2", "CorvusPlayer2", "WolfenPlayer2", "HexenPlayer2", "DukePlayer2", "MarathonPlayer2", "QuakePlayer2", "IPFreeley2", "BlakeStone2",
-	"Caleb2", "StrifeGuyPlayer2", "Eleena2", "Corridor7Player2", "RebelMoonCommando2", "KatarnPlayer2", "POGreedPlayer2", "DisruptorPlayer2", "GrondovalPlayer2",
-	"HalfLifePlayer2", "LoWangPlayer2", "CMPlayer2", "PSPlayer2", "Leonard2", "Bitterman2", "Demoness2", "JamesBond2", "PettonEverhail2", "DanielGarner2", "UnrealPlayer2", "RTCW_Blazkowicz2",
-	"Q3Sarge2", "DescentPyroGX2", "JCDenton2"
+str monsterReplacementsStr[MONSTER_SLOT] = {
+	"mm_replace_zombieman", "mm_replace_shotgunguy", "mm_replace_imp", "mm_replace_chaingunguy", "mm_replace_supershotgunguy",
+	"mm_replace_demon", "mm_replace_darkimp", "mm_replace_spectre", "mm_replace_blooddemon", "mm_replace_lostsoul",
+	"mm_replace_cacodemon", "mm_replace_revenant", "mm_replace_cacolantern", "mm_replace_painelemental", "mm_replace_hellknight",
+	"mm_replace_arachnotron", "mm_replace_fatso", "mm_replace_abaddon", "mm_replace_archvile", "mm_replace_baronofhell",
+	"mm_replace_hectebus", "mm_replace_belphegor", "mm_replace_spidermastermind", "mm_replace_cyberdemon", "mm_replace_wolfensteinss"
 };
 
 int gamePruneValues[MAX_GAME_TYPES][MAX_ADDON_SETS] = {
@@ -309,6 +310,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					terminate;
 				}
 			}
+			
+			if (monsterSlot <= 24 && (GetCVar(monsterReplacementsStr[monsterSlot]) != monsterSlot) && (GetCVar(monsterReplacementsStr[monsterSlot]) != -1))
+			{
+				monsterSlot = GetCVar(monsterReplacementsStr[monsterSlot]);
+			}
+
 			ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
 			SetActorState(0,"Continue",1);
 			break;
