@@ -310,11 +310,6 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					terminate;
 				}
 			}
-			
-			if (monsterSlot <= 24 && (GetCVar(monsterReplacementsStr[monsterSlot]) != monsterSlot) && (GetCVar(monsterReplacementsStr[monsterSlot]) != -1))
-			{
-				monsterSlot = GetCVar(monsterReplacementsStr[monsterSlot]);
-			}
 
 			ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
 			SetActorState(0,"Continue",1);
@@ -345,6 +340,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int oldSpawnerTid = ActivatorTid();
 	int newSpawnerTid = UniqueTid();
 	int newMonTid = UniqueTid();
+	int oldSlot = -1;
 	int pick, maxPick;
 	int totalChance, currentChance;
 	int useSkill = GetCVar("mm_skilloverride");
@@ -356,6 +352,12 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int speedMod = GetCVar("mm_speedoverride");
 
 	Thing_ChangeTid(0,newSpawnerTid);
+
+	if (monSlot <= 24 && (GetCVar(monsterReplacementsStr[monSlot]) != monSlot) && (GetCVar(monsterReplacementsStr[monSlot]) != -1))
+	{
+		oldSlot = monSlot;
+		monSlot = GetCVar(monsterReplacementsStr[monSlot]);
+	}
 
 	if(monGame >= MAX_GAME_TYPES)
 	{
@@ -541,6 +543,15 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 			int modifiedSpeed = min(1, GetActorProperty(newMonTid,APROP_Speed) * speedMod/100);
 
 			SetActorProperty(newMonTid,APROP_Speed,modifiedSpeed);
+		}
+	}
+
+	if (oldSlot != -1 && (GetCVar(monsterReplacementsStr[oldSlot]) != oldSlot && (GetCVar(monsterReplacementsStr[oldSlot]) != -1)))
+	{
+		// Check for Doom monsters without A_BossDeath calls
+		if(monSlot == 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|17|20|21|24)
+		{
+			GiveActorInventory(newMonTid, "Samsara_KillMaster", 1);
 		}
 	}
 
