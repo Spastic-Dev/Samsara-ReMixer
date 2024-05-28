@@ -4,7 +4,6 @@ actor MMRandomizer_STDarkImp : DoomImp3
 	Speed 9
 	Obituary "%o was burned by a dark imp."
 	HitObituary "%o was slashed by a dark imp."
-	MissileType MMRandomizer_DarkFast
 	Tag "Dark Imp"
 	States
 	{
@@ -285,7 +284,7 @@ actor MMRandomizer_STDarkImp_ShrinkEffect : MMRandomizer_STDarkImp
 actor MMRandomizer_DarkFast : DoomImpBall_Samsara
 {
 	Speed 18
-	FastSpeed 18
+	FastSpeed 20
 	States
 	{
 		Spawn:
@@ -303,8 +302,14 @@ actor MMRandomizer_DarkDevil : MMRandomizer_STDarkImp
 	Mass 120
 	Speed 12
 	PainChance 110
-	+DONTHURTSPECIES
 	+MISSILEMORE
+	SeeSound "64imp/sight"
+	PainSound "64grunt/pain"
+	DeathSound "64imp/death"
+	ActiveSound "64imp/active"
+	Obituary "%o was scorched by a Dark Devil."
+	HitObituary "%o was shredded by a Dark Devil."
+	Tag "Dark Devil"
 	states
 	{
 		Spawn:
@@ -617,8 +622,6 @@ actor MMRandomizer_NamiDarkImp : MMRandomizer_STDarkImp
 	Health 105
 	Speed 8
 	PainChance 200
-	MissileType MMRandomizer_DarkSeeker
-	MeleeDamage 3
 	States
 	{
 		Spawn:
@@ -898,6 +901,7 @@ actor MMRandomizer_NamiDarkImp_ShrinkEffect : MMRandomizer_NamiDarkImp
 actor MMRandomizer_DarkSeeker : DoomImpBall_Samsara
 {
 	Speed 9
+	FastSpeed 18
 	+SEEKERMISSILE
 	States
 	{
@@ -920,9 +924,6 @@ actor MMRandomizer_NetherDarkImp : MMRandomizer_STDarkImp
 	Mass 500
 	Scale 1.1
 	BloodColor Green
-	MeleeDamage 6
-	MissileType "MMRandomizer_InfernoBall"
-	MissileHeight 32
 	States
 	{
 		Spawn:
@@ -1335,8 +1336,6 @@ actor MMRandomizer_VoidDarkImp : MMRandomizer_STDarkImp
 	Height 56
 	Speed 7
 	PainChance 200
-	MissileType MMRandomizer_DarkNormal
-	MeleeDamage 3
 	States
 	{
 		Spawn:
@@ -1637,6 +1636,7 @@ actor MMRandomizer_VoidDarkImp_ShrinkEffect : MMRandomizer_VoidDarkImp
 actor MMRandomizer_DarkNormal : DoomImpBall_Samsara
 {
 	Speed 9
+	FastSpeed 18
 	States
 	{
 		Spawn:
