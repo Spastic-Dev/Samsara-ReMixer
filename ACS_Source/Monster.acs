@@ -534,6 +534,48 @@ Script "MonsterFaceTargetPitch" (int zoff)
 	SetResultValue(-pitch/182);
 }
 
+// Generic resurrection script, moved into ACS to allow the timer to run on infinite duration states
+Script "ReMixer_SelfRevive" (int totalWaitTime, int chanceRevive, int maxRevives)
+{
+	int reviveCount = CheckInventory("SelfReviveCounter");
+
+	if (maxRevives > 0 && reviveCount >= maxRevives || Random(0,255) >= chanceRevive)
+	{
+		TakeInventory("SelfReviveCounter", reviveCount);
+		terminate;
+	}
+
+	GiveInventory("NeverRespawnToken", 1);
+
+	while (totalWaitTime > 0)
+	{
+		if (ClassifyActor(0) & ACTOR_ALIVE)
+		{
+			terminate;
+		}
+
+		int delayTime = min(totalWaitTime, 35);
+
+		Delay(delayTime);
+		totalWaitTime -= delayTime;
+	}
+
+	reviveCount = CheckInventory("SelfReviveCounter");
+
+	Thing_Raise(0);
+
+	GiveInventory("AllowRespawnToken", 1);
+
+	if (ClassifyActor(0) & ACTOR_ALIVE)
+	{
+		GiveInventory("SelfReviveCounter", 1);
+	}
+	else // If the resurrection failed, then clear revive tokens in case the actor respawns or resurrects through other means
+	{
+		TakeInventory("SelfReviveCounter", reviveCount);
+	}
+}
+
 Script "Samsara_SetSpeed" (int input)
 {
 	SetActorProperty(0, APROP_Speed, input*1.0);

@@ -3,7 +3,6 @@
 #define HIERO_CURSE_GIVER   0
 #define HIERO_CURSE_POWER   1
 #define HIERO_CURSE_MESSAGE 2
-#define INCARNATE_WAIT_TIME 23
 
 str hiero_curses[HIERO_CURSENUM][3] =
 {
@@ -100,46 +99,14 @@ Script "Hiero_InflictCurse" (void)
 	}
 }
 
-// Death Incarnate ressurection script, moved into ACS to allow the timer to run on infinite duration states.
-script "DeathIncarnateRaise" (int maxRaises, int chanceRaise)
+Script "Incarnate_ReviveTimeMultiplier" (void)
 {
-	if(GetUserVariable(0, "user_self_raise_count") >= maxRaises || random(1,100) > chanceRaise)
-	{
-		SetUserVariable(0, "user_self_raise_count", 0);
-		terminate;
-	}
-
-	SetActorState(0, "SetNonRespawnable", true);
-
 	int waitTimeMultiplier = 5;
-	int multiplierChance = random(0,127);
+	int multiplierChance = Random(0,127);
 
-	if(multiplierChance >= 31) { waitTimeMultiplier = 4; }
-	else if(multiplierChance >= 15) { waitTimeMultiplier = 3; }
-	else if(multiplierChance >= 9) { waitTimeMultiplier = 2; }
-	else if(multiplierChance >= 6) { waitTimeMultiplier = 1; }
+	if (multiplierChance >= 111) { waitTimeMultiplier = 4; }
+	else if (multiplierChance >= 105) { waitTimeMultiplier = 3; }
+	else if (multiplierChance >= 102) { waitTimeMultiplier = 2; }
 
-	for(int waitTime = 5 * waitTimeMultiplier * INCARNATE_WAIT_TIME; waitTime > 0; waitTime -= INCARNATE_WAIT_TIME)
-	{
-		if(!(ClassifyActor(0) & ACTOR_DEAD))
-		{
-			terminate;
-		}
-
-		Delay(INCARNATE_WAIT_TIME);
-	}
-
-	int selfRaiseCount = GetUserVariable(0, "user_self_raise_count");
-
-	Thing_Raise(0);
-
-	if(ClassifyActor(0) & ACTOR_DEAD)
-	{
-		SetUserVariable(0, "user_self_raise_count", 0);
-		SetActorState(0, "SetRespawnable", true);
-	}
-	else
-	{
-		SetUserVariable(0, "user_self_raise_count", selfRaiseCount + 1);
-	}
+	SetResultValue(waitTimeMultiplier);
 }

@@ -54,7 +54,7 @@ Actor IsValidCellBroadcastReMixer : Trigger
 	{
 		Pickup:
 			TNT1 A 0 A_JumpIfInventory("isCellCheckerTokenReMixer",1,1)
-			fail
+			Fail
 			TNT1 A 0 ACS_NamedExecuteWithResult("CellDoneScanningReMixer")
 			TNT1 A 0 Thing_Remove(0)
 			Stop
@@ -94,7 +94,7 @@ Actor IsValidSpawnBroadcastReMixer : Trigger
 	{
 		Pickup:
 			TNT1 A 0 A_JumpIfInventory("isSpawnCheckerTokenReMixer",1,1)
-			fail
+			Fail
 			TNT1 A 0 A_CheckRange(256,"Generate")
 			Stop
 		Generate:
@@ -104,13 +104,13 @@ Actor IsValidSpawnBroadcastReMixer : Trigger
 			Stop
 		Failure:
 			TNT1 A 0
-			fail
+			Fail
 	}
 }
 
-Actor isCellCheckerTokenReMixer : Inventory { Inventory.MaxAmount 1 }
-Actor isSpawnCheckerTokenReMixer : Inventory { Inventory.MaxAmount 1 }
-Actor ValidSpawnTokenReMixer : Inventory { Inventory.MaxAmount 1 }
+Actor isCellCheckerTokenReMixer : Boolean { }
+Actor isSpawnCheckerTokenReMixer : Boolean { }
+Actor ValidSpawnTokenReMixer : Boolean { }
 
 /*ACTOR PinataDrop : RandomSpawner
 {
@@ -180,79 +180,64 @@ ACTOR DefaultPinataPop2
 	}
 }*/
 
-ACTOR InvisibleToken : CustomInventory
+ACTOR SelfReviveCounter : Counter { }
+
+ACTOR InvisibleToken : Trigger
 {
-	-COUNTITEM
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.PickupMessage ""
-	Inventory.PickupSound ""
 	States
 	{
-		Spawn:
-			TNT1 A 0 
-			TNT1 A 1
-			Stop
 		Pickup:
-			TNT1 A 0 
-			TNT1 A 1 A_ChangeFlag("STEALTH",1)
+			TNT1 A 0 A_ChangeFlag("STEALTH",true)
 			Stop
 	}
 }
 
-ACTOR RemoveChildrenToken : CustomInventory
+ACTOR RemoveChildrenToken : Trigger
 {
-	-COUNTITEM
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.PickupMessage ""
-	Inventory.PickupSound ""
 	States
 	{
-		Spawn:
-			TNT1 A 0 
-			TNT1 A 1
-			Stop
 		Pickup:
-			TNT1 A 0 
-			TNT1 A 0 A_RemoveChildren(True)
-			TNT1 A 1
+			TNT1 A 0 A_RemoveChildren(true)
 			Stop
 	}
 }
 
-ACTOR ThruSpeciesToken : CustomInventory
+ACTOR ThruSpeciesToken : Trigger
 {
-	-COUNTITEM
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.PickupMessage ""
-	Inventory.PickupSound ""
 	States
 	{
-		Spawn:
-			TNT1 A 0 
-			TNT1 A 1
-			Stop
 		Pickup:
-			TNT1 A 0 
-			TNT1 A 1 A_ChangeFlag("THRUSPECIES",1)
+			TNT1 A 0 A_ChangeFlag("THRUSPECIES",true)
 			Stop
 	}
 }
 
-ACTOR GravityToken : CustomInventory
+ACTOR GravityToken : Trigger
 {
-	-COUNTITEM
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.PickupMessage ""
-	Inventory.PickupSound ""
 	States
 	{
-		Spawn:
-			TNT1 A 0 
-			TNT1 A 1
-			Stop
 		Pickup:
-			TNT1 A 0 
-			TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
+			TNT1 A 0 A_ChangeFlag("NOGRAVITY",false)
+			Stop
+	}
+}
+
+ACTOR AllowRespawnToken : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_ChangeFlag("NEVERRESPAWN",false)
+			Stop
+	}
+}
+
+ACTOR NeverRespawnToken : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_ChangeFlag("NEVERRESPAWN",true)
 			Stop
 	}
 }
