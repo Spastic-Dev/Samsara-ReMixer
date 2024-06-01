@@ -62,11 +62,12 @@ actor MMRandomizer_Arachnorb : SamsaraMonsterDemonicTotalGib
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			VD66 D 0 A_ChangeFlag("FLOATBOB",0)
+			TNT1 A 0 A_ChangeFlag("FLOATBOB",0)
 			VD66 D 6 A_ScreamAndUnblock
 			VD66 D 1
 			Wait
 		Crash:
+			TNT1 A 0 A_ChangeFlag("FLOATBOB",0)
 			VD66 EFG 6
 			VD66 H -1
 			Stop
