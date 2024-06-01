@@ -21,7 +21,7 @@ int generatorCountersHeretic[MAXMONSTERS_HERETIC];
 str SpawnersHeretic[MAXMONSTERS_HERETIC] = { "HereticImpReplacer", "MummyReplacer", "HereticImpLeaderReplacer", "MummyGhostReplacer", "MummyLeaderReplacer", "MummyLeaderGhostReplacer", "KnightReplacer", "ClinkReplacer", "WizardReplacer", "KnightGhostReplacer", "BeastReplacer", "SnakeReplacer", "IronlichReplacer", "MinotaurReplacer", "Sorcerer1Replacer" };
 
 int generatorCountersHexen[MAXMONSTERS_HEXEN];
-str SpawnersHexen[MAXMONSTERS_HEXEN] = { "EttinReplacer", "FireDemonReplacer", "CentaurReplacer", "Demon1Replacer", "Demon2Replacer", "SerpentReplacer", "SerpentLeaderReplacer", "BishopReplacer", "IceGuyReplacer", "WraithReplacer", "CentaurLeaderReplacer", "FighterBossReplacer", "MageBossReplacer", "ClericBossReplacer", "Dragon2", "HeresiarchReplacer", "KoraxReplacer" };
+str SpawnersHexen[MAXMONSTERS_HEXEN] = { "EttinReplacer", "FireDemonReplacer", "CentaurReplacer", "Demon1Replacer", "Demon2Replacer", "SerpentReplacer", "SerpentLeaderReplacer", "BishopReplacer", "IceGuyReplacer", "WraithReplacer", "CentaurLeaderReplacer", "FighterBossReplacer", "MageBossReplacer", "ClericBossReplacer", "HeresiarchReplacer", "KoraxReplacer" };
 
 int generatorCountersHacx[MAXMONSTERS_HACX];
 str SpawnersHacx[MAXMONSTERS_HACX] = { "HacxThug_SamsaraRemixer", "HacxAndroid_SamsaraRemixer", "HacxPhage_SamsaraRemixer", "HacxBuzzer_SamsaraRemixer", "HacxStealth_SamsaraRemixer", "HacxICE_SamsaraRemixer", "HacxMonstruct_SamsaraRemixer", "HacxDMan_SamsaraRemixer", "HacxMajong7_SamsaraRemixer", "HacxTerminatrix_SamsaraRemixer", "HacxMechaManiac_SamsaraRemixer", "HacxThornThing_SamsaraRemixer", "HacxMummy_SamsaraRemixer", "HacxSkeleton_SamsaraRemixer", "HacxRoamingMine_SamsaraRemixer" };
@@ -428,8 +428,8 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 8:
-			pickMonster = 14;
-			while((pickMonster == 14 || pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts)
+			pickMonster = 15;
+			while((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts)
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);

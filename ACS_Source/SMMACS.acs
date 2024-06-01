@@ -4,7 +4,7 @@
 
 #define MAX_GAME_TYPES 34
 #define MAX_ALTS 5
-#define MONSTER_SLOT 73
+#define MONSTER_SLOT 72
 #define MAXPERSLOT 20
 #define MAX_ITEMS 15
 #define MAX_STRING_ITEMS 6
@@ -35,7 +35,17 @@ str monsterReplacementsStr[MONSTER_SLOT] = {
 	"mm_replace_demon", "mm_replace_darkimp", "mm_replace_spectre", "mm_replace_blooddemon", "mm_replace_lostsoul",
 	"mm_replace_cacodemon", "mm_replace_revenant", "mm_replace_cacolantern", "mm_replace_painelemental", "mm_replace_hellknight",
 	"mm_replace_arachnotron", "mm_replace_fatso", "mm_replace_abaddon", "mm_replace_archvile", "mm_replace_baronofhell",
-	"mm_replace_hectebus", "mm_replace_belphegor", "mm_replace_spidermastermind", "mm_replace_cyberdemon", "mm_replace_wolfensteinss"
+	"mm_replace_hectebus", "mm_replace_belphegor", "mm_replace_spidermastermind", "mm_replace_cyberdemon", "mm_replace_wolfensteinss",
+	"mm_replace_flemoiduscommonus", "mm_replace_flemoidusbipedicus", "mm_replace_armoredflemoidusbipedicus", "mm_replace_flemoidusstridicus", "mm_replace_larva",
+	"mm_replace_flemmine", "mm_replace_flemoiduscycloptiscommonus", "mm_replace_supercycloptis", "mm_replace_quadrumpus", "mm_replace_flemoidusmaximus",
+	"mm_replace_flembrane", "mm_replace_flembomination", "mm_replace_snotfolus", "mm_replace_gargoyle", "mm_replace_firegargoyle",
+	"mm_replace_golem", "mm_replace_golemghost", "mm_replace_nitrogolem", "mm_replace_nitrogolemghost", "mm_replace_discipleofdsparil",
+	"mm_replace_undeadwarrior", "mm_replace_undeadwarriorghost", "mm_replace_sabreclaw", "mm_replace_ophidian", "mm_replace_weredragon",
+	"mm_replace_ironlich", "mm_replace_maulotaur", "mm_replace_dsparil", "mm_replace_chicken", "mm_replace_ettin",
+	"mm_replace_afrit", "mm_replace_darkbishop", "mm_replace_centaur", "mm_replace_slaughtaur", "mm_replace_greenchaosserpent",
+	"mm_replace_stalker", "mm_replace_stalkerboss", "mm_replace_wendigo", "mm_replace_reiver", "mm_replace_reiverburied",
+	"mm_replace_brownchaosserpent", "mm_replace_traductus", "mm_replace_zedek", "mm_replace_menelkir", "mm_replace_heresiarch",
+	"mm_replace_korax", "mm_replace_pig"
 };
 
 int gamePruneValues[MAX_GAME_TYPES][MAX_ADDON_SETS] = {
@@ -353,7 +363,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	Thing_ChangeTid(0,newSpawnerTid);
 
-	if (monSlot <= 24 && (GetCVar(monsterReplacementsStr[monSlot]) != monSlot) && (GetCVar(monsterReplacementsStr[monSlot]) != -1))
+	if ((GetCVar(monsterReplacementsStr[monSlot]) != monSlot) && (GetCVar(monsterReplacementsStr[monSlot]) != -1))
 	{
 		oldSlot = monSlot;
 		monSlot = GetCVar(monsterReplacementsStr[monSlot]);
@@ -548,7 +558,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	if (oldSlot != -1 && (GetCVar(monsterReplacementsStr[oldSlot]) != oldSlot && (GetCVar(monsterReplacementsStr[oldSlot]) != -1)))
 	{
-		// Check for Doom monsters without A_BossDeath calls
+		// Check for monsters without A_BossDeath calls
 		if(monSlot == 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|17|20|21|24)
 		{
 			GiveActorInventory(newMonTid, "Samsara_KillMaster", 1);
