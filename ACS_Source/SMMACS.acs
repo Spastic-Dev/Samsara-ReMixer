@@ -556,10 +556,10 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		}
 	}
 
-	if (oldSlot != -1 && (GetCVar(monsterReplacementsStr[oldSlot]) != oldSlot && (GetCVar(monsterReplacementsStr[oldSlot]) != -1)))
+	if (oldSlot != -1 && ((GetCVar(monsterReplacementsStr[oldSlot]) != oldSlot) && (GetCVar(monsterReplacementsStr[oldSlot]) != -1)))
 	{
-		// Check for monsters without A_BossDeath calls
-		if(monSlot == 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|17|20|21|24)
+		// Check for monsters with A_BossDeath calls, non-bosses should instantly call for A_KillMaster
+		if(monSlot != 15 && monSlot != 16 && monSlot != 19 && monSlot != 22 && monSlot != 23 && monSlot != 50 && monSlot != 51 && monSlot != 52 && monSlot != 66 && monSlot != 67 && monSlot != 68 && monSlot != 69 && monSlot != 70)
 		{
 			GiveActorInventory(newMonTid, "Samsara_KillMaster", 1);
 		}
