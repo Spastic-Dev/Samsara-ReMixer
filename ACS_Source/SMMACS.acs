@@ -1023,38 +1023,38 @@ Script "RemixerInvasionChecker" (void)
 #DEFINE maxPinataUncommonQuality 18
 #DEFINE maxPinataRareQuality 22
 #DEFINE maxPinataEpicQuality 18
-#DEFINE maxPinataLegendaryQuality 10
+#DEFINE maxPinataLegendaryQuality 11
 
 #DEFINE maxPinataCommonExtrasQuality 13
-#DEFINE maxPinataUncommonExtrasQuality 24
-#DEFINE maxPinataRareExtrasQuality 25
-#DEFINE maxPinataEpicExtrasQuality 21
-#DEFINE maxPinataLegendaryExtrasQuality 12
+#DEFINE maxPinataUncommonExtrasQuality 26
+#DEFINE maxPinataRareExtrasQuality 34
+#DEFINE maxPinataEpicExtrasQuality 33
+#DEFINE maxPinataLegendaryExtrasQuality 13
 
 str PinataDoomCommonQuality[maxPinataCommonQuality] = { "Ammo1Small", "Ammo2Small", "HealPack0", "ArmorScrap", "HealPack1", "Ammo1Big", "Ammo2Big", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop" };
 str PinataDoomUncommonQuality[maxPinataUncommonQuality] = { "Ammo1Small", "Ammo2Small", "Ammo3Small", "Ammo4Small", "HealPack1", "Ammo1Big", "Ammo2Big", "HealPack2", "PartialInvisibility", "Visor", "SamsaraAllmap", "SamsaraSlotOneDrop", "SamsaraSlotTwoDrop", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "ArmorPack1", "AmmoBackpack", "SamsaraUniquePickup" };
 str PinataDoomRareQuality[maxPinataRareQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "HealPack2", "Ammo3Small", "Ammo4Small", "AmmoBackpack", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "PartialInvisibility", "Visor", "SamsaraAllmap", "SuperHealth", "ArmorPack3", "SamsaraUniquePickup", "SamsaraSlotFourSkulltagDrop", "SamsaraSlotFiveSkulltagDrop", "SamsaraSlotSixSkulltagDrop", "MegaPack" };
 str PinataDoomEpicQuality[maxPinataEpicQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "AmmoBackpack", "HealPack2", "PartialInvisibility", "Visor", "SamsaraAllmap", "ArmorPack3", "SamsaraSlotSixDrop", "SamsaraSlotSixSkulltagDrop", "SamsaraUniquePickup", "SuperHealth", "SamsaraSlotSevenDrop", "SamsaraSlotSevenSkulltagDrop", "MegaPack" };
-str PinataDoomLegendaryQuality[maxPinataLegendaryQuality] = { "AmmoBackpack", "ArmorPack3", "MegaPack", "SamsaraUniquePickup", "SamsaraSlotSevenDrop", "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "SamsaraSlotSevenSkulltagDrop" };
+str PinataDoomLegendaryQuality[maxPinataLegendaryQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "SuperHealth", "ArmorPack3", "AmmoBackpack", "SamsaraUniquePickup", "SamsaraSlotSevenDrop", "SamsaraSlotSevenSkulltagDrop", "MegaPack" };
 
-str PinataDoomCommonExQuality[maxPinataCommonExtrasQuality] = { "Ammo1Small", "Ammo2Small", "HealPack0", "ArmorScrap", "MaxArmorScrap", "MaxHealPack0", "HealPack1", "Ammo1Big", "Ammo2Big", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop", "HealPack0Dump" };
-str PinataDoomUncommonExQuality[maxPinataUncommonExtrasQuality] = { "Ammo1Small", "Ammo2Small", "Ammo3Small", "Ammo4Small", "HealPack1", "MaxArmorScrap", "MaxHealPack0", "Ammo1Big", "Ammo2Big", "HealPack2", "PartialInvisibility", "Visor", "SamsaraAllmap", "SamsaraSlotOneDrop", "SamsaraSlotTwoDrop", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "ArmorPack1", "AmmoBackpack", "SamsaraUniquePickup", "ArmorPack2", "HereticStuffDump", "ArmorPackBonusLight", "ArmorPackBonusHeavy" };
-str PinataDoomRareExQuality[maxPinataRareExtrasQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "HealPack2", "Ammo3Small", "Ammo4Small", "AmmoBackpack", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "PartialInvisibility", "Visor", "SamsaraAllMap", "SuperHealth", "ArmorPack3", "SamsaraUniquePickup", "ArmorPack2", "SamsaraSlotFourSkulltagDrop", "SamsaraSlotFiveSkulltagDrop", "SamsaraSlotSixSkulltagDrop", "MegaPack", "ArmorPack4", "ArmorPackBonusHeavy" };
-str PinataDoomEpicExQuality[maxPinataEpicExtrasQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "AmmoBackpack", "HealPack2", "PartialInvisibility", "Visor", "SamsaraAllmap", "ArmorPack3", "SamsaraSlotSixDrop", "SamsaraSlotSixSkulltagDrop", "SamsaraUniquePickup", "SuperHealth", "SamsaraSlotSevenDrop", "SamsaraSlotSevenSkulltagDrop", "MegaPack", "ArmorPack4", "ArmorPack5", "ArmorPackBonusHeavy" };
-str PinataDoomLegendaryExQuality[maxPinataLegendaryExtrasQuality] = { "AmmoBackpack", "ArmorPack3", "MegaPack", "SamsaraUniquePickup", "SamsaraSlotSevenDrop", "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "SamsaraSlotSevenSkulltagDrop", "ArmorPack4", "ArmorPack5" };
+str PinataDoomCommonExQuality[maxPinataCommonExtrasQuality] = { "Ammo1Small", "Ammo2Small", "HealPack0", "ArmorScrap", "HealPack0Dump", "HealPack1", "ArmorScrapDump", "Ammo1Medium", "Ammo2Medium", "Ammo1Big", "Ammo2Big", "SamsaraSlotTwoDrop", "SamsaraSlotFourDrop" };
+str PinataDoomUncommonExQuality[maxPinataUncommonExtrasQuality] = { "Ammo1Small", "Ammo2Small", "Ammo3Small", "Ammo4Small", "AmmoComboSmall", "HealPack0Dump", "HealPack1", "Ammo1Medium", "Ammo2Medium", "Ammo3Medium", "Ammo4Medium", "Ammo1Big", "Ammo2Big", "HealPack2", "PartialInvisibility", "Visor", "SamsaraAllmap", "BioSuit", "SamsaraSlotOneDrop", "SamsaraSlotTwoDrop", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "ArmorPack1", "ArmorPackBonusLight", "AmmoBackpack", "SamsaraUniquePickup" };
+str PinataDoomRareExQuality[maxPinataRareExtrasQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "AmmoComboBig", "HealPack2", "MaxHealPack0", "PartialInvisibility", "Visor", "SamsaraAllmap", "BioSuit", "SamsaraLesserTome", "SamsaraTeleportPickup", "SamsaraFlightPickup", "SamsaraSpeedBootsPickup", "SamsaraTeleportOtherPickup", "SamsaraSlotThreeDrop", "SamsaraSlotFourDrop", "SamsaraSlotFiveDrop", "SamsaraSlotSixDrop", "SuperHealth", "ArmorPack2", "ArmorPack3", "ArmorPackBonusHeavy", "SamsaraUniquePickup", "SamsaraSlotFourSkulltagDrop", "SamsaraSlotFiveSkulltagDrop", "SamsaraSlotSixSkulltagDrop", "AmmoBackpack", "MegaPack" };
+str PinataDoomEpicExQuality[maxPinataEpicExtrasQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "AmmoComboBig", "HealPack2", "MaxHealPack0", "PartialInvisibility", "Visor", "SamsaraAllmap", "BioSuit", "SamsaraLesserTome", "SamsaraTeleportPickup", "SamsaraFlightPickup", "SamsaraSpeedBootsPickup", "SamsaraTeleportOtherPickup", "SamsaraSlotSixDrop", "SamsaraSlotSixSkulltagDrop", "SamsaraUniquePickup", "SamsaraSpeedBooster", "SamsaraDefenseBooster", "SamsaraDamageBooster", "SamsaraFullInvisibility", "SamsaraTimeFreeze", "SuperHealth", "ArmorPack3", "ArmorPackBonusHeavy", "ArmorPack4", "SamsaraSlotSevenDrop", "SamsaraSlotSevenSkulltagDrop", "AmmoBackpack", "MegaPack", "RandomPowerup",};
+str PinataDoomLegendaryExQuality[maxPinataLegendaryExtrasQuality] = { "Ammo1Big", "Ammo2Big", "Ammo3Big", "Ammo4Big", "AmmoComboBig", "SuperHealth", "ArmorPack4", "ArmorPack5", "AmmoBackpack", "SamsaraUniquePickup", "SamsaraSlotSevenDrop", "SamsaraSlotSevenSkulltagDrop", "MegaPack" };
 
 //f me
 int PinataDoomCommonQualityInt[maxPinataCommonQuality] = { 50, 50, 50, 50, 25, 10, 10, 5, 5 };
 int PinataDoomUncommonQualityInt[maxPinataUncommonQuality] = { 50, 50, 50, 50, 50, 25, 25, 25, 25, 25, 25, 10, 10, 10, 10, 5, 5, 5 };
 int PinataDoomRareQualityInt[maxPinataRareQuality] = { 50, 50, 30, 30, 30, 30, 30, 25, 15, 15, 15, 15, 10, 10, 10, 5, 5, 5, 5, 5, 5, 2 };
 int PinataDoomEpicQualityInt[maxPinataEpicQuality] = { 50, 50, 50, 50, 50, 50, 30, 30, 30, 30, 30, 25, 25, 15, 10, 5, 5, 5 };
-int PinataDoomLegendaryQualityInt[maxPinataLegendaryQuality] = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
+int PinataDoomLegendaryQualityInt[maxPinataLegendaryQuality] = { 80, 80, 80, 80, 50, 50, 50, 25, 25, 25, 10 };
 
-int PinataDoomCommonExQualityInt[maxPinataCommonExtrasQuality] = { 50, 50, 50, 50, 25, 25, 25, 10, 10, 5, 5, 10 };
-int PinataDoomUncommonExQualityInt[maxPinataUncommonExtrasQuality] = { 50, 50, 50, 50, 50, 25, 25, 25, 25, 25, 25, 25, 25, 10, 10, 10, 10, 5, 5, 5, 2, 10, 10, 5 };
-int PinataDoomRareExQualityInt[maxPinataRareExtrasQuality] = { 50, 50, 30, 30, 30, 30, 30, 25, 15, 15, 15, 15, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 2, 2, 10 };
-int PinataDoomEpicExQualityInt[maxPinataEpicExtrasQuality] = { 50, 50, 50, 50, 50, 50, 30, 30, 30, 30, 30, 25, 25, 15, 10, 5, 5, 5, 5, 2, 10 };
-int PinataDoomLegendaryExQualityInt[maxPinataLegendaryExtrasQuality] = { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 25, 10 };
+int PinataDoomCommonExQualityInt[maxPinataCommonExtrasQuality] = { 50, 50, 50, 50, 25, 25, 25, 15, 15, 10, 10, 5, 5 };
+int PinataDoomUncommonExQualityInt[maxPinataUncommonExtrasQuality] = { 50, 50, 50, 50, 50, 50, 50, 40, 40, 40, 40, 25, 25, 25, 25, 25, 25, 25, 10, 10, 10, 10, 5, 5, 5, 5 };
+int PinataDoomRareExQualityInt[maxPinataRareExtrasQuality] = { 50, 50, 50, 50, 50, 30, 30, 30, 25, 25, 25, 25, 25, 25, 25, 25, 25, 15, 15, 15, 15, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2 };
+int PinataDoomEpicExQualityInt[maxPinataEpicExtrasQuality] = { 75, 75, 75, 75, 50, 30, 30, 30, 25, 25, 25, 25, 25, 25, 25, 25, 25, 15, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2 };
+int PinataDoomLegendaryExQualityInt[maxPinataLegendaryExtrasQuality] = { 80, 80, 80, 80, 80, 50, 50, 50, 25, 25, 25, 10 };
 
 Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly)
 {
