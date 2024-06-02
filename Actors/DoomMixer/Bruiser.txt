@@ -26,7 +26,7 @@ ACTOR HellKnight3 : HellKnight2
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	Melee:
 		BOS4 EF 8 A_FaceTarget
-		BOS4 G 8 A_CustomComboAttack("BaronBall_Samsara", 32, 10 * random(1, 8), "doom/baron/melee")//A_CustomMissile("BaronBall3")
+		BOS4 G 8 A_CustomComboAttack("BaronBall2_Samsara", 32, 10 * random(1, 8), "doom/baron/melee")//A_CustomMissile("BaronBall2")
 		Goto See
 	Pain:
 		BOS4 H 2
@@ -568,3 +568,5 @@ ACTOR BaronBall_Samsara : BaronBall
 		Stop
 	}
 }
+
+actor BaronBall2_Samsara : BaronBall_Samsara { +THRUGHOST }

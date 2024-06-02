@@ -17,14 +17,18 @@ Doom:
 -Original-
 
 * Fixed the chaingun guy no longer having lights when attacking.
-* Fixed zombiemen, shotgun guys, chaingun guys, Nazis, and super shotgun guys being able to hit ghosts when they shouldn't. Spider masterminds are unaffected.
-* Fixed shrunken imp using attack frame instead of pain frame
+* Fixed zombiemen, shotgun guys, chaingun guys, super shotgun guys, Hell knights, and Nazis being able to hit ghosts when they shouldn't. Spider masterminds are unaffected.
+* Fixed shrunken imp using attack frame instead of pain frame.
 
 -Vanilla Doom Randomizer-
 
-* Fixed the variants of Doom's bullet-based enemies, rapid fire troopers, chaingun majors, double chaingun guys, super shotgun guys, and chaingun arachnotrons being able to hit ghosts when they shouldn't. Railgunners and spider-demolishers are unaffected.
+* Fixed the variants of Doom's bullet-based enemies, rapid fire troopers, super shotgun guys, double chaingun guys, chaingun majors, and chaingun arachnotrons being able to hit ghosts when they shouldn't. Railgunners and spider-demolishers are unaffected.
++ The devil has been added as an imp replacement!
++ The ST, Nami, and Void dark imp fireballs move faster with "Fast Monsters" enabled.
+! The dark devil now uses Doom 64 imp sounds.
 * Fixed roach projectile trails going through walls.
 ! The roach no longer stands still unless they can see their target.
+! The roach's self-resurrection is now handled through ACS.
 ! Removed map arg behavior changes from the roach and wraith.
 * Fixed the chaingun guy variant using the wrong sprites for some of its states.
 ! The damage of the blood demon charge attack has been adjusted (from 3-24 in multiples of 3 to 4-24 in multiples of 4).
@@ -32,17 +36,20 @@ Doom:
 + Blood demons and mech blood demons will no longer go into their pain states when taking damage mid-charge.
 ! Blood demons and mech blood demons no longer damage monsters that share their species with their charge attack.
 * Added missing dynamic lights for the wraith teleport fog.
+* The arachnorb's corpse no longer bobs when gibbed.
 + The inferno is slightly more aggressive.
-* The afrit, archon of hell, bruiserdemon, cyber baron, cybruiser, diabolist, ghoul, heirophant, and inferno no longer harm their own species.
+* The inferno, ghoul, afrit, cybruiser, diabolist, heirophant, cyber baron, bruiser demon, and archon of Hell no longer harm their own species.
 - The melee revenant has been removed.
 + Taking the place of the melee revenant is the fiend from Doom RPG! Instead of firing missiles like a normal revenant, it is capable of firing fast-moving beams.
 - The incarnate's health has been reduced (from 500 to 400).
 ! The incarnate's hitscan glare has been replaced with a burst of three shadow projectiles. The projectiles have a speed of 18 compared to the shadow's 12.
+! The incarnate's resurrection script has been replaced with a generic script.
 ! The spawn chances of the hectebus and cryocubus have been set to 25%.
 ! The hectebus now uses its sprites and offsets from skulltag_content.
 + The cryocubus' health has been increased (from 900 to 1000).
 - The cryocubus is no longer immune to splash damage.
 ! The cryocubus has traded its close range stream attack for five volleys of ice projectiles.
++ The diabolist no longer causes infighting.
 - The bruiser demon is less aggressive.
 - The bruiser demon's floor fire attack is now limited to 1404 map units.
 ! The bruiser demon sprite is no longer scaled.
@@ -53,21 +60,15 @@ Doom:
 - The archon of Hell's comet attack now deals 72 splash damage (reduced from 128).
 ! The archon of Hell's comet attack now leaves a decal.
 + The archon of Hell can now be resurrected. A new sprite has been added to the end of its death state to accommodate this.
-- The cyber annihilator is less aggressive and can cause infighting.
+- The demolisher can now cause infighting.
+! The demolisher now uses the same radius and height as the spider mastermind.
+- The cyber annihilator is less aggressive and can now cause infighting.
 + The cyber annihilator has a chance to fire homing rockets which are faster (30 vs. the standard rocket's 20), but less damaging (10-80 direct damage in multiples of 10, 64 splash damage, and 96 splash radius vs. the standard rocket's 20-160 direct damage in multiples of 20, 128 splash damage, and 128 splash radius).
 + The dark cyberdemon has been added as a cyberdemon replacement!
-- The demolisher can cause infighting
-! The demolisher now uses the same radius and height as the spider mastermind
-+ The diabolist no longer causes infighting
-+ The devil has been added as an imp spawn
-+ The nami, void, and ST dark imp fireballs move faster with "Fast Monsters" enabled
-! Use Doom 64 imp sounds for dark devil
-! Handle roach self-resurrect through ACS
-* Fix arachnorb corpse bobbing when gibbed
 
 -Doom 64-
 
-* Fixed zombiemen, shotgun guys, chaingun guys, Nazis, and super shotgun guys being able to hit ghosts when they shouldn't. Spider masterminds are unaffected.
+* Fixed zombiemen, shotgun guys, imps, chaingun guys, super shotgun guys, dark imps, cacodemons, cacolanterns, Hell knights, mancubi, abaddons, and Nazis being able to hit ghosts when they shouldn't. Revenants (due to their projectiles always seeking) and spider masterminds are unaffected.
 ! Changed the super shotgun guy sprites to those made by Craneo.
 * Fixed nightcrawler grenades not having the correct damage type.
 
@@ -172,7 +173,6 @@ PSX Final Doom CE:
 -Other-
 
 ! Converted many WAV sounds to FLAC.
-! Replaced incarnate resurrection script with generic script
 * Fixed the monster multiplier not affecting the Heretic, Hexen, or Chex Quest ammo pickups.
 - Removed some unused Bloody Hell actors that were leftovers from older versions of Samsara.
 
