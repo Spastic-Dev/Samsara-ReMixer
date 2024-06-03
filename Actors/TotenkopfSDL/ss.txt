@@ -82,9 +82,10 @@ Actor TotenkopfSS : TotenkopfGuard
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_NoPain", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
+			TNT1 A 0 A_Stop
+			TNT1 A 5 A_NoBlocking
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+			Stop
 		Pain.ShrinkerDMG:
 			"####" F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -371,9 +372,10 @@ Actor TotenkopfSSRifleman : TotenkopfSS
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_NoPain", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
+			TNT1 A 0 A_Stop
+			TNT1 A 5 A_NoBlocking
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+			Stop
 		Pain.ShrinkerDMG:
 			"####" F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -668,9 +670,10 @@ Actor TotenkopfSSInfantry : TotenkopfGuard
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_NoPain", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
+			TNT1 A 0 A_Stop
+			TNT1 A 5 A_NoBlocking
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+			Stop
 		Pain.ShrinkerDMG:
 			"####" F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -965,9 +968,10 @@ Actor TotenkopfSSOfficer : TotenkopfOfficer
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_NoPain", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
+			TNT1 A 0 A_Stop
+			TNT1 A 5 A_NoBlocking
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+			Stop
 		Pain.ShrinkerDMG:
 			"####" F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -1194,7 +1198,7 @@ actor TotenkopfSSOfficer_ShrinkEffect : TotenkopfSSOfficer
 	}
 }
 
-Actor TotenkopfSSOfficer2 : SamsaraMonsterHumanoidMediumTotalGib
+Actor TotenkopfSSOfficer2 : SamsaraMonsterHumanoidTotalGib
 {
 	Health 50
 	Speed 6
@@ -1217,8 +1221,6 @@ Actor TotenkopfSSOfficer2 : SamsaraMonsterHumanoidMediumTotalGib
 	+NOINFIGHTING
 	+THRUGHOST
 	+FLOORCLIP
-	var int user_scalex;
-	var int user_scaley;
 	Tag "SS Officer"
 	Obituary "%o was shot by an SS Officer."
 	States
@@ -1280,9 +1282,10 @@ Actor TotenkopfSSOfficer2 : SamsaraMonsterHumanoidMediumTotalGib
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_NoPain", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_NoBlocking
-			TNT1 A 5
-			stop
+			TNT1 A 0 A_Stop
+			TNT1 A 5 A_NoBlocking
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+			Stop
 		Pain.ShrinkerDMG:
 			"####" F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
