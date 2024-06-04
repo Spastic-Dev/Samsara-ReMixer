@@ -1,4 +1,4 @@
-Actor BlueSeaMonster : SamsaraMonsterAlienMedium
+Actor BlueSeaMonster : SamsaraMonsterAlien
 {
 	Health 50
 	Radius 18
@@ -27,8 +27,6 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 	BloodType "DukeBlood"
 	BloodColor "ff 40 00"
 	Tag "Sea Monster"	
-	var int user_scalex;
-	var int user_scaley;
 	States
 	{
 		Spawn:
@@ -129,11 +127,15 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			Stop
+
+		// SamsaraMonsterAlien states
 		Death.ExpanderDMG:
 		XDeath.ExpanderDMG:
-			DN62 A 0
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scalexoriginal", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaleyoriginal", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoop
 		ExpanderLoop:
@@ -144,26 +146,32 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPop")
 			Loop
-		ExpanderPop:	
+		ExpanderPop:
 			"####" "#" 10
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Basic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
 			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_TakeInventory("ExpanderGrowthY", 40)
+			TNT1 A 0 A_TakeInventory("ExpanderGrowthX", 40)
+			TNT1 A 0 A_TakeInventory("ExpanderDoubleX", 40)
+			TNT1 A 0 A_SetScale((user_scalexoriginal)/65536.0, (user_scaleyoriginal)/65536.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
-			DN62 A 0
+			"####" "#" 0 A_ChangeFlag("DONTGIB",1)
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scalexoriginal", scalex*65536.0)
+			"####" "#" 0 A_SetUserVar("user_scaleyoriginal", scaley*65536.0)
 			"####" "#" 0 A_PlaySound("duke/expand")
 			Goto ExpanderLoopCoop
 		ExpanderLoopCoop:
@@ -174,20 +182,24 @@ Actor BlueSeaMonster : SamsaraMonsterAlienMedium
 			"####" "#" 0 A_GiveInventory("ExpanderDoubleX", 1)
 			"####" "#" 0 A_JumpIfInventory("ExpanderGrowthX", 40, "ExpanderPopCoop")
 			Loop
-		ExpanderPopCoop:	
+		ExpanderPopCoop:
 			"####" "#" 10
+			TNT1 A 0 A_GiveInventory("EnemyZorched",1)
 			TNT1 A 0 A_SpawnItemEx("ExpanderExplosion_Coop",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0)
 			TNT1 A 1 ACS_NamedExecuteWithResult("SamsaraDecorate",36,2)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_Jump(96,2)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt", 1)
-			TNT1 A 0 A_SetScale (1.0, 1.0)
+			TNT1 A 0 A_TakeInventory("ExpanderGrowthY", 40)
+			TNT1 A 0 A_TakeInventory("ExpanderGrowthX", 40)
+			TNT1 A 0 A_TakeInventory("ExpanderDoubleX", 40)
+			TNT1 A 0 A_SetScale((user_scalexoriginal)/65536.0, (user_scaleyoriginal)/65536.0)
 			TNT1 A 0 A_UnsetSolid
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
-			TNT1 A 1
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
 			Stop
 	}
 }
@@ -516,20 +528,6 @@ Actor RedSeaMonster : BlueSeaMonster
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			Stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			DN63 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			DN63 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -833,20 +831,6 @@ Actor GraySeaMonster : BlueSeaMonster
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			Stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			DN64 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			DN64 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1150,20 +1134,6 @@ Actor YellowSeaMonster : BlueSeaMonster
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			Stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			DN65 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			DN65 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1467,20 +1437,6 @@ Actor DarkBlueSeaMonster : BlueSeaMonster
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			Stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			DN66 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			DN66 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 
@@ -1784,20 +1740,6 @@ Actor GreenSeaMonster : BlueSeaMonster
 			TNT1 A 2
 			TNT1 A 0 Thing_Remove(0)
 			Stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			DN67 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			DN67 A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 

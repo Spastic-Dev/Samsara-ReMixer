@@ -123,20 +123,6 @@ ACTOR BlueProtectorDrone : ProtectorDroneDoom
 			BLDR V 4
 			TNT1 A -1 A_SpawnItemEx("BlueProtectorDroneCorpse", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 			Stop
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			BLDR A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoop
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			BLDR A 0
-			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
-			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
-			"####" "#" 0 A_PlaySound("duke/expand")
-			Goto Super::ExpanderLoopCoop
 	}
 }
 

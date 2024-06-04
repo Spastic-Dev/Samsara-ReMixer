@@ -1,4 +1,4 @@
-ACTOR MiniBattlelord : SamsaraMonsterMechanicalLargeTotalGib
+ACTOR MiniBattlelord : SamsaraMonsterCyberneticTotalGib
 {
 	Health 1000
 	Height 64
@@ -36,8 +36,6 @@ ACTOR MiniBattlelord : SamsaraMonsterMechanicalLargeTotalGib
 	BloodColor "ff 40 00"
 	Tag "Mini Battlelord"
 	Decal DukeBulletchip
-	var int user_scalex;
-	var int user_scaley;
 	States
 	{
 		Spawn:
@@ -186,6 +184,10 @@ ACTOR MiniBattlelord : SamsaraMonsterMechanicalLargeTotalGib
 			BTLO I 3
 			BTLO I 3 A_Pain
 			Goto See
+		Death.ExpanderDMG:
+		XDeath.ExpanderDMG:
+		Death.ExpanderDMGCoop:
+		XDeath.ExpanderDMGCoop:
 		Death.DukeExplosive:
 		Death.DukeDamage:
 		Death.DukePistol:
