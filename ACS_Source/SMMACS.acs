@@ -1269,13 +1269,17 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_performancemode", true);
 
 		// Monster Spawning Options
-		SetCVar("mm_skilloverride", 1);
 		SetCVar("mm_spawnmode", 0);
 		SetCVar("mm_randomcycle", 1);
 		SetCVar("mm_dropmode", 0);
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 99);
+
+		// Monster Override Options
+		SetCVar("mm_skilloverride", 1);
+		SetCVar("mm_healthoverride", 100);
+		SetCVar("mm_speedoverride", 100);
 
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", false);
@@ -1329,6 +1333,80 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_quake3", 1);
 		SetCVar("mm_descent", 1);
 		SetCVar("mm_deusex", 1);
+
+		// ReMixer Monster Replacements
+		SetCVar("mm_replace_zombieman", -1);
+		SetCVar("mm_replace_shotgunguy", -1);
+		SetCVar("mm_replace_imp", -1);
+		SetCVar("mm_replace_chaingunguy", -1);
+		SetCVar("mm_replace_supershotgunguy", -1);
+		SetCVar("mm_replace_demon", -1);
+		SetCVar("mm_replace_darkimp", -1);
+		SetCVar("mm_replace_spectre", -1);
+		SetCVar("mm_replace_blooddemon", -1);
+		SetCVar("mm_replace_lostsoul", -1);
+		SetCVar("mm_replace_cacodemon", -1);
+		SetCVar("mm_replace_revenant", -1);
+		SetCVar("mm_replace_cacolantern", -1);
+		SetCVar("mm_replace_painelemental", -1);
+		SetCVar("mm_replace_hellknight", -1);
+		SetCVar("mm_replace_arachnotron", -1);
+		SetCVar("mm_replace_fatso", -1);
+		SetCVar("mm_replace_abaddon", -1);
+		SetCVar("mm_replace_archvile", -1);
+		SetCVar("mm_replace_baronofhell", -1);
+		SetCVar("mm_replace_hectebus", -1);
+		SetCVar("mm_replace_belphegor", -1);
+		SetCVar("mm_replace_spidermastermind", -1);
+		SetCVar("mm_replace_cyberdemon", -1);
+		SetCVar("mm_replace_wolfensteinss", -1);
+		SetCVar("mm_replace_flemoiduscommonus", -1);
+		SetCVar("mm_replace_flemoidusbipedicus", -1);
+		SetCVar("mm_replace_armoredflemoidusbipedicus", -1);
+		SetCVar("mm_replace_flemoidusstridicus", -1);
+		SetCVar("mm_replace_larva", -1);
+		SetCVar("mm_replace_flemmine", -1);
+		SetCVar("mm_replace_flemoiduscycloptiscommonus", -1);
+		SetCVar("mm_replace_supercycloptis", -1);
+		SetCVar("mm_replace_quadrumpus", -1);
+		SetCVar("mm_replace_flemoidusmaximus", -1);
+		SetCVar("mm_replace_flembrane", -1);
+		SetCVar("mm_replace_flembomination", -1);
+		SetCVar("mm_replace_snotfolus", -1);
+		SetCVar("mm_replace_gargoyle", -1);
+		SetCVar("mm_replace_firegargoyle", -1);
+		SetCVar("mm_replace_golem", -1);
+		SetCVar("mm_replace_golemghost", -1);
+		SetCVar("mm_replace_nitrogolem", -1);
+		SetCVar("mm_replace_nitrogolemghost", -1);
+		SetCVar("mm_replace_discipleofdsparil", -1);
+		SetCVar("mm_replace_undeadwarrior", -1);
+		SetCVar("mm_replace_undeadwarriorghost", -1);
+		SetCVar("mm_replace_sabreclaw", -1);
+		SetCVar("mm_replace_ophidian", -1);
+		SetCVar("mm_replace_weredragon", -1);
+		SetCVar("mm_replace_ironlich", -1);
+		SetCVar("mm_replace_maulotaur", -1);
+		SetCVar("mm_replace_dsparil", -1);
+		SetCVar("mm_replace_chicken", -1);
+		SetCVar("mm_replace_ettin", -1);
+		SetCVar("mm_replace_afrit", -1);
+		SetCVar("mm_replace_darkbishop", -1);
+		SetCVar("mm_replace_centaur", -1);
+		SetCVar("mm_replace_slaughtaur", -1);
+		SetCVar("mm_replace_greenchaosserpent", -1);
+		SetCVar("mm_replace_stalker", -1);
+		SetCVar("mm_replace_stalkerboss", -1);
+		SetCVar("mm_replace_wendigo", -1);
+		SetCVar("mm_replace_reiver", -1);
+		SetCVar("mm_replace_reiverburied", -1);
+		SetCVar("mm_replace_brownchaosserpent", -1);
+		SetCVar("mm_replace_traductus", -1);
+		SetCVar("mm_replace_zedek", -1);
+		SetCVar("mm_replace_menelkir", -1);
+		SetCVar("mm_replace_heresiarch", -1);
+		SetCVar("mm_replace_korax", -1);
+		SetCVar("mm_replace_pig", -1);
 		break;
 
 		case 1: // Samsara
@@ -1340,13 +1418,17 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_performancemode", true);
 
 		// Monster Spawning Options
-		SetCVar("mm_skilloverride", 0);
 		SetCVar("mm_spawnmode", 0);
 		SetCVar("mm_randomcycle", 1);
 		SetCVar("mm_dropmode", 0);
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 99);
+
+		// Monster Override Options
+		SetCVar("mm_skilloverride", 0);
+		SetCVar("mm_healthoverride", 100);
+		SetCVar("mm_speedoverride", 100);
 
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", true);
@@ -1400,6 +1482,80 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_quake3", 1);
 		SetCVar("mm_descent", 1);
 		SetCVar("mm_deusex", 1);
+
+		// ReMixer Monster Replacements
+		SetCVar("mm_replace_zombieman", -1);
+		SetCVar("mm_replace_shotgunguy", -1);
+		SetCVar("mm_replace_imp", -1);
+		SetCVar("mm_replace_chaingunguy", -1);
+		SetCVar("mm_replace_supershotgunguy", -1);
+		SetCVar("mm_replace_demon", -1);
+		SetCVar("mm_replace_darkimp", -1);
+		SetCVar("mm_replace_spectre", -1);
+		SetCVar("mm_replace_blooddemon", -1);
+		SetCVar("mm_replace_lostsoul", -1);
+		SetCVar("mm_replace_cacodemon", -1);
+		SetCVar("mm_replace_revenant", -1);
+		SetCVar("mm_replace_cacolantern", -1);
+		SetCVar("mm_replace_painelemental", -1);
+		SetCVar("mm_replace_hellknight", -1);
+		SetCVar("mm_replace_arachnotron", -1);
+		SetCVar("mm_replace_fatso", -1);
+		SetCVar("mm_replace_abaddon", -1);
+		SetCVar("mm_replace_archvile", -1);
+		SetCVar("mm_replace_baronofhell", -1);
+		SetCVar("mm_replace_hectebus", -1);
+		SetCVar("mm_replace_belphegor", -1);
+		SetCVar("mm_replace_spidermastermind", -1);
+		SetCVar("mm_replace_cyberdemon", -1);
+		SetCVar("mm_replace_wolfensteinss", -1);
+		SetCVar("mm_replace_flemoiduscommonus", -1);
+		SetCVar("mm_replace_flemoidusbipedicus", -1);
+		SetCVar("mm_replace_armoredflemoidusbipedicus", -1);
+		SetCVar("mm_replace_flemoidusstridicus", -1);
+		SetCVar("mm_replace_larva", -1);
+		SetCVar("mm_replace_flemmine", -1);
+		SetCVar("mm_replace_flemoiduscycloptiscommonus", -1);
+		SetCVar("mm_replace_supercycloptis", -1);
+		SetCVar("mm_replace_quadrumpus", -1);
+		SetCVar("mm_replace_flemoidusmaximus", -1);
+		SetCVar("mm_replace_flembrane", -1);
+		SetCVar("mm_replace_flembomination", -1);
+		SetCVar("mm_replace_snotfolus", -1);
+		SetCVar("mm_replace_gargoyle", -1);
+		SetCVar("mm_replace_firegargoyle", -1);
+		SetCVar("mm_replace_golem", -1);
+		SetCVar("mm_replace_golemghost", -1);
+		SetCVar("mm_replace_nitrogolem", -1);
+		SetCVar("mm_replace_nitrogolemghost", -1);
+		SetCVar("mm_replace_discipleofdsparil", -1);
+		SetCVar("mm_replace_undeadwarrior", -1);
+		SetCVar("mm_replace_undeadwarriorghost", -1);
+		SetCVar("mm_replace_sabreclaw", -1);
+		SetCVar("mm_replace_ophidian", -1);
+		SetCVar("mm_replace_weredragon", -1);
+		SetCVar("mm_replace_ironlich", -1);
+		SetCVar("mm_replace_maulotaur", -1);
+		SetCVar("mm_replace_dsparil", -1);
+		SetCVar("mm_replace_chicken", -1);
+		SetCVar("mm_replace_ettin", -1);
+		SetCVar("mm_replace_afrit", -1);
+		SetCVar("mm_replace_darkbishop", -1);
+		SetCVar("mm_replace_centaur", -1);
+		SetCVar("mm_replace_slaughtaur", -1);
+		SetCVar("mm_replace_greenchaosserpent", -1);
+		SetCVar("mm_replace_stalker", -1);
+		SetCVar("mm_replace_stalkerboss", -1);
+		SetCVar("mm_replace_wendigo", -1);
+		SetCVar("mm_replace_reiver", -1);
+		SetCVar("mm_replace_reiverburied", -1);
+		SetCVar("mm_replace_brownchaosserpent", -1);
+		SetCVar("mm_replace_traductus", -1);
+		SetCVar("mm_replace_zedek", -1);
+		SetCVar("mm_replace_menelkir", -1);
+		SetCVar("mm_replace_heresiarch", -1);
+		SetCVar("mm_replace_korax", -1);
+		SetCVar("mm_replace_pig", -1);
 		break;
 
 		case 2: // Samsara Reincarnation
@@ -1411,13 +1567,17 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_performancemode", true);
 
 		// Monster Spawning Options
-		SetCVar("mm_skilloverride", 0);
 		SetCVar("mm_spawnmode", 0);
 		SetCVar("mm_randomcycle", 1);
 		SetCVar("mm_dropmode", 1);
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 0);
+
+		// Monster Override Options
+		SetCVar("mm_skilloverride", 0);
+		SetCVar("mm_healthoverride", 100);
+		SetCVar("mm_speedoverride", 100);
 
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", true);
@@ -1471,6 +1631,80 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_quake3", 1);
 		SetCVar("mm_descent", 1);
 		SetCVar("mm_deusex", 1);
+
+		// ReMixer Monster Replacements
+		SetCVar("mm_replace_zombieman", -1);
+		SetCVar("mm_replace_shotgunguy", -1);
+		SetCVar("mm_replace_imp", -1);
+		SetCVar("mm_replace_chaingunguy", -1);
+		SetCVar("mm_replace_supershotgunguy", -1);
+		SetCVar("mm_replace_demon", -1);
+		SetCVar("mm_replace_darkimp", -1);
+		SetCVar("mm_replace_spectre", -1);
+		SetCVar("mm_replace_blooddemon", -1);
+		SetCVar("mm_replace_lostsoul", -1);
+		SetCVar("mm_replace_cacodemon", -1);
+		SetCVar("mm_replace_revenant", -1);
+		SetCVar("mm_replace_cacolantern", -1);
+		SetCVar("mm_replace_painelemental", -1);
+		SetCVar("mm_replace_hellknight", -1);
+		SetCVar("mm_replace_arachnotron", -1);
+		SetCVar("mm_replace_fatso", -1);
+		SetCVar("mm_replace_abaddon", -1);
+		SetCVar("mm_replace_archvile", -1);
+		SetCVar("mm_replace_baronofhell", -1);
+		SetCVar("mm_replace_hectebus", -1);
+		SetCVar("mm_replace_belphegor", -1);
+		SetCVar("mm_replace_spidermastermind", -1);
+		SetCVar("mm_replace_cyberdemon", -1);
+		SetCVar("mm_replace_wolfensteinss", -1);
+		SetCVar("mm_replace_flemoiduscommonus", -1);
+		SetCVar("mm_replace_flemoidusbipedicus", -1);
+		SetCVar("mm_replace_armoredflemoidusbipedicus", -1);
+		SetCVar("mm_replace_flemoidusstridicus", -1);
+		SetCVar("mm_replace_larva", -1);
+		SetCVar("mm_replace_flemmine", -1);
+		SetCVar("mm_replace_flemoiduscycloptiscommonus", -1);
+		SetCVar("mm_replace_supercycloptis", -1);
+		SetCVar("mm_replace_quadrumpus", -1);
+		SetCVar("mm_replace_flemoidusmaximus", -1);
+		SetCVar("mm_replace_flembrane", -1);
+		SetCVar("mm_replace_flembomination", -1);
+		SetCVar("mm_replace_snotfolus", -1);
+		SetCVar("mm_replace_gargoyle", -1);
+		SetCVar("mm_replace_firegargoyle", -1);
+		SetCVar("mm_replace_golem", -1);
+		SetCVar("mm_replace_golemghost", -1);
+		SetCVar("mm_replace_nitrogolem", -1);
+		SetCVar("mm_replace_nitrogolemghost", -1);
+		SetCVar("mm_replace_discipleofdsparil", -1);
+		SetCVar("mm_replace_undeadwarrior", -1);
+		SetCVar("mm_replace_undeadwarriorghost", -1);
+		SetCVar("mm_replace_sabreclaw", -1);
+		SetCVar("mm_replace_ophidian", -1);
+		SetCVar("mm_replace_weredragon", -1);
+		SetCVar("mm_replace_ironlich", -1);
+		SetCVar("mm_replace_maulotaur", -1);
+		SetCVar("mm_replace_dsparil", -1);
+		SetCVar("mm_replace_chicken", -1);
+		SetCVar("mm_replace_ettin", -1);
+		SetCVar("mm_replace_afrit", -1);
+		SetCVar("mm_replace_darkbishop", -1);
+		SetCVar("mm_replace_centaur", -1);
+		SetCVar("mm_replace_slaughtaur", -1);
+		SetCVar("mm_replace_greenchaosserpent", -1);
+		SetCVar("mm_replace_stalker", -1);
+		SetCVar("mm_replace_stalkerboss", -1);
+		SetCVar("mm_replace_wendigo", -1);
+		SetCVar("mm_replace_reiver", -1);
+		SetCVar("mm_replace_reiverburied", -1);
+		SetCVar("mm_replace_brownchaosserpent", -1);
+		SetCVar("mm_replace_traductus", -1);
+		SetCVar("mm_replace_zedek", -1);
+		SetCVar("mm_replace_menelkir", -1);
+		SetCVar("mm_replace_heresiarch", -1);
+		SetCVar("mm_replace_korax", -1);
+		SetCVar("mm_replace_pig", -1);
 		break;
 
 		// Secret presets
@@ -1483,13 +1717,17 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_performancemode", false);
 
 		// Monster Spawning Options
-		SetCVar("mm_skilloverride", 1);
 		SetCVar("mm_spawnmode", 2);
 		SetCVar("mm_randomcycle", 1);
 		SetCVar("mm_dropmode", 1);
 		SetCVar("mm_multiply", 1);
 		SetCVar("mm_generate", 0);
 		SetCVar("mm_reducemonsters", 99);
+
+		// Monster Override Options
+		SetCVar("mm_skilloverride", 1);
+		SetCVar("mm_healthoverride", 100);
+		SetCVar("mm_speedoverride", 100);
 
 		// Monster Specific Options
 		SetCVar("mm_specpermdeath", true);
@@ -1543,77 +1781,80 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_quake3", 0);
 		SetCVar("mm_descent", 0);
 		SetCVar("mm_deusex", 0);
-		break;
 
-		case 101: // Meleemario's Settings
-
-		// General Options
-		SetCVar("mm_invisiblemode", false);
-		SetCVar("mm_pinataparty", true);
-		SetCVar("mm_pinatapartyextras", true);
-		SetCVar("mm_performancemode", true);
-
-		// Monster Spawning Options
-		SetCVar("mm_skilloverride", 0);
-		SetCVar("mm_spawnmode", 0);
-		SetCVar("mm_randomcycle", 1);
-		SetCVar("mm_dropmode", 1);
-		SetCVar("mm_multiply", 1);
-		SetCVar("mm_generate", 15);
-		SetCVar("mm_reducemonsters", 0);
-
-		// Monster Specific Options
-		SetCVar("mm_specpermdeath", true);
-		SetCVar("mm_wolffastdeath", false);
-		SetCVar("mm_fakehitlerfire", true);
-		SetCVar("mm_fullradiusdmg", true);
-		SetCVar("mm_redneckcusspack", 2);
-
-		// Enemy Modes
-		SetCVar("mm_doommode", 1);
-		SetCVar("mm_wolfmode", 0);
-		SetCVar("mm_dukemode", 0);
-		SetCVar("mm_halflifemode", 0);
-
-		// Enemy Spawns
-		SetCVar("mm_doomspawns", 1);
-		SetCVar("mm_doom64spawns", 1);
-
-		// ReMixer Spawn Options
-		SetCVar("mm_doom", 1);
-		SetCVar("mm_chex", 1);
-		SetCVar("mm_heretic", 1);
-		SetCVar("mm_hexen1", 1);
-		SetCVar("mm_wolf3d", 1);
-		SetCVar("mm_duke3d", 1);
-		SetCVar("mm_marathon", 1);
-		SetCVar("mm_quake1", 1);
-		SetCVar("mm_rott", 1);
-		SetCVar("mm_bstone", 1);
-		SetCVar("mm_blood", 1);
-		SetCVar("mm_strife", 1);
-		SetCVar("mm_erad", 1);
-		SetCVar("mm_c7", 1);
-		SetCVar("mm_rmr", 1);
-		SetCVar("mm_darkf", 1);
-		SetCVar("mm_ipog", 1);
-		SetCVar("mm_disrup", 1);
-		SetCVar("mm_witch", 1);
-		SetCVar("mm_halflife", 1);
-		SetCVar("mm_sw", 1);
-		SetCVar("mm_cm", 1);
-		SetCVar("mm_ps", 1);
-		SetCVar("mm_rr", 1);
-		SetCVar("mm_quake2", 1);
-		SetCVar("mm_hexen2", 1);
-		SetCVar("mm_goldeneye", 1);
-		SetCVar("mm_catacomb", 1);
-		SetCVar("mm_painkiller", 1);
-		SetCVar("mm_unreal", 1);
-		SetCVar("mm_rtcw", 1);
-		SetCVar("mm_quake3", 1);
-		SetCVar("mm_descent", 1);
-		SetCVar("mm_deusex", 1);
+		// ReMixer Monster Replacements
+		SetCVar("mm_replace_zombieman", -1);
+		SetCVar("mm_replace_shotgunguy", -1);
+		SetCVar("mm_replace_imp", -1);
+		SetCVar("mm_replace_chaingunguy", -1);
+		SetCVar("mm_replace_supershotgunguy", -1);
+		SetCVar("mm_replace_demon", -1);
+		SetCVar("mm_replace_darkimp", -1);
+		SetCVar("mm_replace_spectre", -1);
+		SetCVar("mm_replace_blooddemon", -1);
+		SetCVar("mm_replace_lostsoul", -1);
+		SetCVar("mm_replace_cacodemon", -1);
+		SetCVar("mm_replace_revenant", -1);
+		SetCVar("mm_replace_cacolantern", -1);
+		SetCVar("mm_replace_painelemental", -1);
+		SetCVar("mm_replace_hellknight", -1);
+		SetCVar("mm_replace_arachnotron", -1);
+		SetCVar("mm_replace_fatso", -1);
+		SetCVar("mm_replace_abaddon", -1);
+		SetCVar("mm_replace_archvile", -1);
+		SetCVar("mm_replace_baronofhell", -1);
+		SetCVar("mm_replace_hectebus", -1);
+		SetCVar("mm_replace_belphegor", -1);
+		SetCVar("mm_replace_spidermastermind", -1);
+		SetCVar("mm_replace_cyberdemon", -1);
+		SetCVar("mm_replace_wolfensteinss", -1);
+		SetCVar("mm_replace_flemoiduscommonus", -1);
+		SetCVar("mm_replace_flemoidusbipedicus", -1);
+		SetCVar("mm_replace_armoredflemoidusbipedicus", -1);
+		SetCVar("mm_replace_flemoidusstridicus", -1);
+		SetCVar("mm_replace_larva", -1);
+		SetCVar("mm_replace_flemmine", -1);
+		SetCVar("mm_replace_flemoiduscycloptiscommonus", -1);
+		SetCVar("mm_replace_supercycloptis", -1);
+		SetCVar("mm_replace_quadrumpus", -1);
+		SetCVar("mm_replace_flemoidusmaximus", -1);
+		SetCVar("mm_replace_flembrane", -1);
+		SetCVar("mm_replace_flembomination", -1);
+		SetCVar("mm_replace_snotfolus", -1);
+		SetCVar("mm_replace_gargoyle", -1);
+		SetCVar("mm_replace_firegargoyle", -1);
+		SetCVar("mm_replace_golem", -1);
+		SetCVar("mm_replace_golemghost", -1);
+		SetCVar("mm_replace_nitrogolem", -1);
+		SetCVar("mm_replace_nitrogolemghost", -1);
+		SetCVar("mm_replace_discipleofdsparil", -1);
+		SetCVar("mm_replace_undeadwarrior", -1);
+		SetCVar("mm_replace_undeadwarriorghost", -1);
+		SetCVar("mm_replace_sabreclaw", -1);
+		SetCVar("mm_replace_ophidian", -1);
+		SetCVar("mm_replace_weredragon", -1);
+		SetCVar("mm_replace_ironlich", -1);
+		SetCVar("mm_replace_maulotaur", -1);
+		SetCVar("mm_replace_dsparil", -1);
+		SetCVar("mm_replace_chicken", -1);
+		SetCVar("mm_replace_ettin", -1);
+		SetCVar("mm_replace_afrit", -1);
+		SetCVar("mm_replace_darkbishop", -1);
+		SetCVar("mm_replace_centaur", -1);
+		SetCVar("mm_replace_slaughtaur", -1);
+		SetCVar("mm_replace_greenchaosserpent", -1);
+		SetCVar("mm_replace_stalker", -1);
+		SetCVar("mm_replace_stalkerboss", -1);
+		SetCVar("mm_replace_wendigo", -1);
+		SetCVar("mm_replace_reiver", -1);
+		SetCVar("mm_replace_reiverburied", -1);
+		SetCVar("mm_replace_brownchaosserpent", -1);
+		SetCVar("mm_replace_traductus", -1);
+		SetCVar("mm_replace_zedek", -1);
+		SetCVar("mm_replace_menelkir", -1);
+		SetCVar("mm_replace_heresiarch", -1);
+		SetCVar("mm_replace_korax", -1);
+		SetCVar("mm_replace_pig", -1);
 		break;
 	}
 }
