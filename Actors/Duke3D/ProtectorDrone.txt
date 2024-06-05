@@ -113,7 +113,12 @@ ACTOR ProtectorDrone : SamsaraMonsterAlien
 			PRDR I 0 A_FaceTarget
 			PRDR I 21 A_PlayWeaponSound("prodrone/spit")
 			PRDR I 0 A_FaceTarget
-   			PRDR J 10 bright A_CustomMissile("AlienShrinkerAttack",32,0,0)
+   			PRDR I 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",6) == 0, "MissileAlt")
+			PRDR J 10 bright A_CustomMissile("AlienShrinkerAttack",32,0,0)
+			PRDR J 4
+			Goto See
+		MissileAlt:
+   			PRDR J 10 bright A_CustomMissile("AlienShrinkerAttackAlt",32,0,0)
 			PRDR J 4
 			Goto See
 		Pain:
@@ -299,6 +304,7 @@ Actor ProtectorDroneCorpse
 }
 
 actor AlienShrinkerAttack : ShrinkMissile { Speed 16 }
+actor AlienShrinkerAttackAlt : AlienShrinkerAttack { Damage (40) DamageType "Normal" }
 
 ACTOR NewProtectorDrone
 {
