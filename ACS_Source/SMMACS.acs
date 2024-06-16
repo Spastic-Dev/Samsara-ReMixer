@@ -1,6 +1,7 @@
 #library "SMMACS"
 #include "zcommon.acs"
 #include "commonFuncs.acs"
+#include "remixerFuncs.acs"
 
 #define MAX_GAME_TYPES 34
 #define MAX_ALTS 5
@@ -104,7 +105,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 
 	// Check for Lexicon compatibility
 	int isLexiconEnabled = 0;
-	int LexiconTid = UniqueTid();
+	int LexiconTid = UniqueTID();
 
 	if(SpawnForced("IKPuff",0,0,0,LexiconTid))
 	{
@@ -141,8 +142,8 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 
 			if(GetCVar("mm_multiply") > 1 && !CheckInventory("MultiplyOverflowToken"))
 			{
-				int activator = ActivatorTid();
-				int newtid = UniqueTid();
+				int activator = ActivatorTID();
+				int newtid = UniqueTID();
 				for(int g = 1; g < GetCVar("mm_multiply"); g++)
 				{
 					SpawnForced(GetActorClass(activator),GetActorX(activator),GetActorY(activator),GetActorZ(activator),newtid,0);
@@ -153,7 +154,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					SetActorProperty(activator,APROP_Species,GetActorClass(activator));
 					GiveActorInventory(activator, "ThruSpeciesToken", 1);
 					ThrustThing(random(0,256), 2, 0, newtid);
-					Thing_ChangeTid(newtid, activator);
+					Thing_ChangeTID(newtid, activator);
 				}
 				break;
 			}
@@ -347,9 +348,9 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 {
 	if (GetCVar("sv_nomonsters")) { terminate; }
 
-	int oldSpawnerTid = ActivatorTid();
-	int newSpawnerTid = UniqueTid();
-	int newMonTid = UniqueTid();
+	int oldSpawnerTid = ActivatorTID();
+	int newSpawnerTid = UniqueTID();
+	int newMonTid = UniqueTID();
 	int oldSlot = -1;
 	int pick, maxPick;
 	int totalChance, currentChance;
@@ -361,7 +362,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int damageMod = GetCVar("mm_damageoverride");
 	int speedMod = GetCVar("mm_speedoverride");
 
-	Thing_ChangeTid(0,newSpawnerTid);
+	Thing_ChangeTID(0,newSpawnerTid);
 
 	if ((GetCVar(monsterReplacementsStr[monSlot]) != monSlot) && (GetCVar(monsterReplacementsStr[monSlot]) != -1))
 	{
@@ -386,7 +387,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 			else if(monsterSpawnChance > 0)
 				totalChance += monsterSpawnChance;
 
-			if(strlen(monsterSelectStr[monGame][monAlt][monSlot][a+1][0])==0)
+			if(StrLen(monsterSelectStr[monGame][monAlt][monSlot][a+1][0])==0)
 			{
 				maxPick = a;
 				break;
@@ -407,7 +408,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 			else if(monsterSpawnChance > 0)
 				totalChance += monsterSpawnChance;
 
-			if(strlen(addonSets[(addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+a*1)])==0)
+			if(StrLen(addonSets[(addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+a*1)])==0)
 			{
 				maxPick = a;
 				break;
@@ -488,7 +489,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SetPointerExt(AAPTR_Tracer,0,newMonTid);
 
 	SetActivator(newSpawnerTid,AAPTR_Default);
-	Thing_ChangeTid(newSpawnerTid,oldSpawnerTid);
+	Thing_ChangeTID(newSpawnerTid,oldSpawnerTid);
 
 	bool ambush = GetUserVariable(0,"user_ambush");
 	int userArgs[5] = {
@@ -519,7 +520,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	{
 		SetActorProperty(newMonTid,APROP_Health,FixedMul(GetActorProperty(newMonTid,APROP_Health),health));
 	}
-	if (strlen(token) != 0)
+	if (StrLen(token) != 0)
 	{
 		GiveActorInventory(newMonTid, token,1);
 	}
@@ -565,7 +566,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		}
 	}
 
-	Thing_ChangeTid(newMonTid,oldSpawnerTid);
+	Thing_ChangeTID(newMonTid,oldSpawnerTid);
 }
 
 Script "ReMixerAwakenMonster" (int monTid)
@@ -584,22 +585,7 @@ Script "ReMixerAwakenMonster" (int monTid)
 		terminate;
 	}
 
-	SetActorState(0, "See", true);
-
-	if (CheckActorProperty(0, APROP_SeeSound, ""))
-	{
-		terminate;
-	}
-
-	bool isFullVol = CheckFlag(0, "BOSS");
-	if (!isFullVol && GetCVar("samsara_runninginzdoom"))
-	{
-		isFullVol = CheckFlag(0, "FULLVOLSEE");
-	}
-
-	int attenuation = isFullVol ? ATTN_NONE : ATTN_NORM;
-
-	PlayActorSound(0, SOUND_See, CHAN_VOICE, 1.0, false, attenuation);
+	wakeActivator();
 }
 
 Script "ReMixerInvasion" OPEN //670
@@ -1062,7 +1048,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 		terminate;
 
 	int spawneditems, randomchance, randomitem;
-	int newtid = UniqueTid();
+	int newtid = UniqueTID();
 	int maxitems = ((height*4)*(radius*radius))/4096;
 	if(GetActorProperty(0,APROP_MASS) == 2 && GetCVar("samsara_merrychristmas"))
 	{
@@ -1071,7 +1057,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 			SpawnForced("SamsaraXmasCoal",GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 			ThrustThing(random(0,256),2,0,newtid);
 			ThrustThingZ(newtid,random(17,35),0,1);
-			Thing_ChangeTid(newtid,0);
+			Thing_ChangeTID(newtid,0);
 			spawneditems++;
 		}
 	}
@@ -1088,7 +1074,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomCommonExQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1104,7 +1090,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomCommonQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1123,7 +1109,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomUncommonExQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1139,7 +1125,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomUncommonQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1158,7 +1144,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomRareExQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1174,7 +1160,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomRareQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1193,7 +1179,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomUncommonExQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1209,7 +1195,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomEpicQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1229,7 +1215,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomLegendaryExQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}
@@ -1246,7 +1232,7 @@ Script "Samsara_PinataHandler" (int health, int radius, int height, int friendly
 					SpawnForced(PinataDoomLegendaryQuality[randomitem],GetActorX(0),GetActorY(0),GetActorZ(0),newtid,0);
 					ThrustThing(random(0,256),2,0,newtid);
 					ThrustThingZ(newtid,random(17,35),0,1);
-					Thing_ChangeTid(newtid,0);
+					Thing_ChangeTID(newtid,0);
 					spawneditems++;
 				}
 			}

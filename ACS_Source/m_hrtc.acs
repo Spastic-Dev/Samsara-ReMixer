@@ -1,0 +1,43 @@
+Script "Heretic_SpawnDisciple" (void)
+{
+	int discipleTid = UniqueTID();
+
+	while (ClassifyActor(0) & ACTOR_MISSILE)
+	{
+		int x = GetActorX(0);
+		int y = GetActorY(0);
+		int z = GetActorZ(0);
+
+		if (Spawn("Wizard3", x, y, z, discipleTid))
+		{
+			int missileTid = UniqueTID();
+			Thing_ChangeTID(0, missileTid);
+
+			SetActorAngle(discipleTid, GetActorAngle(missileTid));
+
+			SpawnForced("HereticTeleportFog", x, y, z, 0);
+			ThingSound(missileTid, "Heretic/TeleportC", 127);
+
+			SetActivator(missileTid, AAPTR_Target);
+			SetPointerExt(AAPTR_Master, 0, discipleTid);
+
+			SetActivator(0, AAPTR_Target);
+			int alert = SetPointerExt(AAPTR_Target, 0, discipleTid);
+
+			Thing_Stop(missileTid);
+			SetActorState(missileTid, "Explode", true);
+
+			if (alert)
+			{
+				SetActivator(discipleTid);
+				wakeActivator();
+			}
+
+			Thing_ChangeTID(missileTid, 0);
+			Thing_ChangeTID(discipleTid, 0);
+			terminate;
+		}
+
+		Delay(10);
+	}
+}

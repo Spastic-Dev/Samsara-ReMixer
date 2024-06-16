@@ -1,0 +1,28 @@
+function bool wakeActivator(void)
+{
+	int classification = ClassifyActor(0);
+
+	if (classification & ACTOR_MONSTER && classification & ACTOR_ALIVE)
+	{
+		bool wasWoken = SetActorState(0, "See", true);
+
+		if (CheckActorProperty(0, APROP_SeeSound, ""))
+		{
+			return wasWoken;
+		}
+
+		bool isFullVol = CheckFlag(0, "BOSS");
+		if (!isFullVol && GetCVar("samsara_runninginzdoom"))
+		{
+			isFullVol = CheckFlag(0, "FULLVOLSEE");
+		}
+
+		int attenuation = isFullVol ? ATTN_NONE : ATTN_NORM;
+
+		PlayActorSound(0, SOUND_See, CHAN_VOICE, 1.0, false, attenuation);
+
+		return wasWoken;
+	}
+
+	return 0;
+}
