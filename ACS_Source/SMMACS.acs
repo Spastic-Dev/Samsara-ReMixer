@@ -580,11 +580,6 @@ Script "ReMixerAwakenMonster" (int monTid)
 		seeAttempts--;
 	}
 
-	if (ClassifyActor(0) <= 1)
-	{
-		terminate;
-	}
-
 	wakeActivator();
 }
 
@@ -714,10 +709,8 @@ Script "ReMixer_PickSets" (void)
 					{
 						if(PlayerClass(p) == b)
 						{
-							if(b >= 32)
-							bitindex2 = 1<<b-32;
-							else
-								bitindex = 1<<b;
+							if(b >= 32) { bitindex2 = 1<<b-32; }
+							else { bitindex = 1<<b; }
 
 							if(!(activesets & bitindex))
 							{
@@ -774,12 +767,9 @@ Script "ReMixer_PickSets" (void)
 
 				if(GetCVar(gameTypeMap))
 				{
-					if(usingAddons)
-						bitindexa = 1<<(b-MAX_GAME_TYPES);
-					else if(b >= 32)
-						bitindex2 = 1<<b-32;
-					else
-						bitindex = 1<<b;
+					if(usingAddons) { bitindexa = 1<<(b-MAX_GAME_TYPES); }
+					else if(b >= 32) { bitindex2 = 1<<b-32; }
+					else { bitindex = 1<<b; }
 
 					if(usingAddons)
 					{
@@ -844,12 +834,9 @@ Script "ReMixer_PickSets" (void)
 				usingAddons = b >= MAX_GAME_TYPES;
 				if(usingAddons ? addonCVARs[b-MAX_GAME_TYPES] : GetCVar(gameTypesStr[b]))
 				{
-					if(usingAddons)
-						bitindexa = 1<<(b-MAX_GAME_TYPES);
-					else if(b >= 32)
-						bitindex2 = 1<<b-32;
-					else
-						bitindex = 1<<b;
+					if(usingAddons) { bitindexa = 1<<(b-MAX_GAME_TYPES); }
+					else if(b >= 32) { bitindex2 = 1<<b-32; }
+					else { bitindex = 1<<b; }
 
 					if(usingAddons)
 					{
@@ -942,7 +929,18 @@ Script "ReMixer_PickSets" (void)
 					randombita = randombita<<randnum-MAX_GAME_TYPES;
 				}
 
-				if(usingAddons ? !GetCVar(addonCVARs[randnum-MAX_GAME_TYPES]) : !GetCVar(gameTypesStr[randnum])||((randomtotal & randombit) && (randomtotal2 & randombit2) && (randomtotala & randombita))) { if(erroramount > 256){ selectloop = randnum; break; } else{erroramount++;} }
+				if(usingAddons ? !GetCVar(addonCVARs[randnum-MAX_GAME_TYPES]) : !GetCVar(gameTypesStr[randnum])||((randomtotal & randombit) && (randomtotal2 & randombit2) && (randomtotala & randombita)))
+				{
+					if(erroramount > 256)
+					{
+						selectloop = randnum;
+						break;
+					}
+					else
+					{
+						erroramount++;
+					}
+				}
 				else
 				{
 					pickFromSets[maxSetsEnabled] = randnum;

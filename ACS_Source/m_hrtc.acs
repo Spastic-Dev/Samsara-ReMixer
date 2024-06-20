@@ -6,7 +6,7 @@ Script "Heretic_SpawnDisciple" (void)
 	{
 		int x = GetActorX(0);
 		int y = GetActorY(0);
-		int z = GetActorZ(0);
+		int z = GetActorZ(0) - 34.0;
 
 		if (Spawn("Wizard3", x, y, z, discipleTid))
 		{
@@ -15,7 +15,7 @@ Script "Heretic_SpawnDisciple" (void)
 
 			SetActorAngle(discipleTid, GetActorAngle(missileTid));
 
-			SpawnForced("HereticTeleportFog", x, y, z, 0);
+			SpawnForced("HereticTeleportFog", x, y, z + 34.0, 0);
 			ThingSound(missileTid, "Heretic/TeleportC", 127);
 
 			SetActivator(missileTid, AAPTR_Target);
