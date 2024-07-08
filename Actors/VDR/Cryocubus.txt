@@ -52,6 +52,16 @@ ACTOR MMRandomizer_Cryocubus : Fatso3
 			TNT1 A 0 A_PlaySound("doom/fatso/raiseguns", CHAN_BODY)
 			VD62 G 20 A_FaceTarget
 			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,8)
+			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,0)
+			VD62 I 3 A_FaceTarget
+			VD62 G 3
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,4)
+			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-4)
+			VD62 I 3 A_FaceTarget
+			VD62 G 3
+			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,0)
 			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-8)
 			VD62 I 3 A_FaceTarget
@@ -64,23 +74,6 @@ ACTOR MMRandomizer_Cryocubus : Fatso3
 			TNT1 A 0 A_FaceTarget
 			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,8)
 			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,0)
-			VD62 I 3 A_FaceTarget
-			VD62 G 3
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,4)
-			VD62 H 5 BRIGHT A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-4)
-			VD62 I 3 A_FaceTarget
-			VD62 G 3
-			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_Jump(128, 3)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,8)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,0)
-			Goto MissileEnd
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,-24,0)
-			TNT1 A 0 A_CustomMissile("MMRandomizer_CryocubusFreezeBlast",28,24,-8)
-			Goto MissileEnd
-		MissileEnd:
-			VD62 H 5 BRIGHT
 			VD62 I 3 A_FaceTarget
 			VD62 G 3
 			Goto See
@@ -369,7 +362,7 @@ ACTOR MMRandomizer_CryocubusFreezeBlast
 	Radius 10
 	Height 8
 	Speed 24
-	Damage 6
+	Damage 5
 	Alpha 0.75
 	PROJECTILE
 	+BRIGHT
