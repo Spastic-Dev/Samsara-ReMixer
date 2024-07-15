@@ -129,7 +129,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			multitoken = useSkill < 5 ? useSkill : GameSkill();
 			GiveInventory("DifficultyToken", multitoken);
 
-			if(GetCVar("mm_invisiblemode") == 1)
+			if(random(1,100) <= (GetCvar("mm_invisiblemode")))
 			{
 				GiveInventory("InvisibleToken",1);
 				SetActorProperty(0,APROP_Alpha,0);
@@ -645,10 +645,6 @@ Script "ReMixerCVarCheck" (int pick) //680
 
 		case 7:
 			response = GetCVar("mm_quakezombiedeaths");
-			break;
-
-		case 8:
-			response = GetCVar("mm_invisiblemode");
 			break;
 
 		case 9:
@@ -1247,7 +1243,7 @@ script "ReMixerPresetSelection" (void)
 		case 0: // Vanilla
 
 		// General Options
-		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_invisiblemode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", false);
 		SetCVar("mm_performancemode", true);
@@ -1398,7 +1394,7 @@ script "ReMixerPresetSelection" (void)
 		case 1: // Samsara
 
 		// General Options
-		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_invisiblemode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", false);
 		SetCVar("mm_performancemode", true);
@@ -1549,7 +1545,7 @@ script "ReMixerPresetSelection" (void)
 		case 2: // Samsara Reincarnation
 
 		// General Options
-		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_invisiblemode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", false);
 		SetCVar("mm_performancemode", true);
@@ -1701,7 +1697,7 @@ script "ReMixerPresetSelection" (void)
 		case 100: // cubebert's Settings
 
 		// General Options
-		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_invisiblemode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", true);
 		SetCVar("mm_performancemode", false);
@@ -1852,7 +1848,7 @@ script "ReMixerPresetSelection" (void)
 		case 101: // tehvappy50's Settings
 
 		// General Options
-		SetCVar("mm_invisiblemode", false);
+		SetCVar("mm_invisiblemode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", true);
 		SetCVar("mm_performancemode", false);
