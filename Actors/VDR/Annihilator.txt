@@ -115,9 +115,15 @@ Actor MMRandomizer_AnnihilatorHomingRocket : MMRandomizer_AnnihilatorRocket
 	{
 	Spawn:
 		VE30 A 0 Bright
-		VE30 AAAA 4 Bright A_SeekerMissile(16,24,SMF_PRECISE)
+		VE30 AA 4 Bright A_SeekerMissile(16,24,SMF_PRECISE)
+		TNT1 A 0 A_PlaySound("vdr/annihilator/hrbeep", CHAN_BODY, 0.6)
+		VE30 AA 4 Bright A_SeekerMissile(16,24,SMF_PRECISE)
 		Goto Homing
 	Homing:
+		TNT1 A 0 A_PlaySound("vdr/annihilator/hrbeep", CHAN_BODY, 0.6)
+		VE30 A 4 Bright A_SeekerMissile(6,16,SMF_PRECISE)
+		TNT1 A 0 A_JumpIfTargetInLOS(1,150,JLOSF_PROJECTILE|JLOSF_NOSIGHT)
+		Goto NoHoming
 		VE30 A 4 Bright A_SeekerMissile(6,16,SMF_PRECISE)
 		TNT1 A 0 A_JumpIfTargetInLOS("Homing",150,JLOSF_PROJECTILE|JLOSF_NOSIGHT)
 		Goto NoHoming
