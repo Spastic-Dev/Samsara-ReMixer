@@ -8560,7 +8560,7 @@ Actor Goldeneye_EnemyBaseRocketL : Goldeneye_EnemyBase { mass 1022 }
 Actor Goldeneye_EnemyBaseSCombo : Goldeneye_EnemyBase { mass 1023 }
 Actor Goldeneye_EnemyBaseXCombo : Goldeneye_EnemyBase { mass 1024 }
 
-actor Goldeneye_KF7TracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+actor Goldeneye_KF7TracerEnemy : Goldeneye_BulletTracer { Speed 64 Damage (CallACS("Goldeneye_TracerDamage")) }
 
 actor Goldeneye_ShotgunTracerEnemy : Goldeneye_BulletTracer
 {
@@ -8576,24 +8576,26 @@ actor Goldeneye_ShotgunTracerEnemy : Goldeneye_BulletTracer
 
 actor Goldeneye_KF7TracerFake : Goldeneye_BulletTracer
 {
+    Speed 64
     Damage (0)
     +THRUACTORS
 }
 
-actor Goldeneye_SniperTracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+actor Goldeneye_SniperTracerEnemy : Goldeneye_BulletTracer { Speed 64 Damage (CallACS("Goldeneye_TracerDamage")) }
 
-actor Goldeneye_SniperTracerEnemy2 : Goldeneye_BulletTracer { Damage (15) }
+actor Goldeneye_SniperTracerEnemy2 : Goldeneye_BulletTracer { Speed 64 Damage (15) }
 
-actor Goldeneye_D5KTracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+actor Goldeneye_D5KTracerEnemy : Goldeneye_BulletTracer { Speed 64 Damage (CallACS("Goldeneye_TracerDamage")) }
 
-actor Goldeneye_AR33TracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+actor Goldeneye_AR33TracerEnemy : Goldeneye_BulletTracer { Speed 64 Damage (CallACS("Goldeneye_TracerDamage")) }
 
-actor Goldeneye_KlobbTracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+actor Goldeneye_KlobbTracerEnemy : Goldeneye_BulletTracer { Speed 64 Damage (CallACS("Goldeneye_TracerDamage")) }
 
-actor Goldeneye_RCP90TracerEnemy : Goldeneye_BulletTracer { Damage (CallACS("Goldeneye_TracerDamage")) }
+actor Goldeneye_RCP90TracerEnemy : Goldeneye_BulletTracer { Speed 64 Damage (CallACS("Goldeneye_TracerDamage")) }
 
 actor Goldeneye_CougarTracerEnemy : Goldeneye_BulletTracer
 {
+    Speed 64
     Damage (CallACS("Goldeneye_TracerDamage"))
     +THRUACTORS
     States
@@ -8606,6 +8608,7 @@ actor Goldeneye_CougarTracerEnemy : Goldeneye_BulletTracer
 
 actor Goldeneye_LaserRayEnemy : Goldeneye_BulletTracer
 {
+    Speed 64
     Damage (CallACS("Goldeneye_TracerDamage"))
     RenderStyle "Translucent"
     +THRUACTORS
@@ -8627,6 +8630,7 @@ actor Goldeneye_LaserRayEnemy : Goldeneye_BulletTracer
 
 actor Goldeneye_LaserRayFake : Goldeneye_LaserRayEnemy
 {
+    Speed 64
     Damage (0)
     -RIPPER
     +THRUACTORS
