@@ -17,7 +17,7 @@ const int TomSnake_ID = 9000;
 90 mass = FlameWall
 */
 
-Actor RoTTHumanoid : SamsaraMonsterROTTHumanoidSmall {
+Actor RoTTHumanoid : SamsaraMonsterHumanoid {
 	Radius 16
 	Height 48
 	Speed 6
@@ -43,11 +43,9 @@ Actor RoTTHumanoid : SamsaraMonsterROTTHumanoidSmall {
 	PainChance "MarathonStun", 255
 	BloodType "RottFreeleyBlood"	
 	Decal BulletChip
-	var int user_scalex;
-	var int user_scaley;
 }
 
-Actor RoTTHumanoidLarge : SamsaraMonsterROTTHumanoidLarge {
+Actor RoTTHumanoidLarge : SamsaraMonsterHumanoid {
 	Radius 16
 	Height 48
 	Speed 6
@@ -73,11 +71,9 @@ Actor RoTTHumanoidLarge : SamsaraMonsterROTTHumanoidLarge {
 	PainChance "MarathonStun", 255
 	BloodType "RottFreeleyBlood"	
 	Decal BulletChip
-	var int user_scalex;
-	var int user_scaley;
 }
 
-Actor RoTTBoss : SamsaraMonsterDemonicHuge {
+Actor RoTTBoss : SamsaraMonsterDemonicBoss {
 	Radius 16
 	Height 48
 	Speed 6
@@ -103,8 +99,6 @@ Actor RoTTBoss : SamsaraMonsterDemonicHuge {
 	PainChance "MarathonStun", 255
 	BloodType "RottFreeleyBlood"	
 	Decal BulletChip
-	var int user_scalex;
-	var int user_scaley;
 }
 
 Actor SawPlayer : Inventory {

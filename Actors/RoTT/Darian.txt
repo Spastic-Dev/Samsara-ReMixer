@@ -94,22 +94,10 @@ ACTOR GeneralDarian : RoTTHumanoidLarge {
 			TNT1 A 0 A_Recoil(14)
 			DARP C 16 A_Pain
 			Goto See
-		Pain.MarathonStun:
-			TNT1 A 0 A_Stop
-			TNT1 A 0 A_GiveInventory("NothingSpeed")
-			TNT1 A 0 A_PlaySoundEx("marathon/tech50/stun","body",0,0)
-			TNT1 A 0 A_Jump(128, "PainMara2")
-			DARP A 5 A_FaceTarget
-			TNT1 A 0 A_Gravity
-			DARP A 30 A_Pain
-			DARP A 70
-			Goto See
-		PainMara2:
-			DARP B 5 A_FaceTarget
-			TNT1 A 0 A_Gravity
-			DARP B 30 A_Pain
-			DARP B 70
-			Goto See
+	   Death.RottFire:
+	   Death.RottExplosive:
+       XDeath.RottExplosive:
+       XDeathForROTT:
 	   Death:
 	   XDeath:
 			DARI H 5 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
@@ -128,31 +116,10 @@ ACTOR GeneralDarian : RoTTHumanoidLarge {
 			TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
 			TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_Stop
 			TNT1 A 5 A_NoBlocking
-			stop
-	   Raise:
-		    DARI A 0
-			"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-			DARI QPONMLK 2
-		    Goto See
-	   ZorchRaise:
-			"####" "#" 1 A_UnsetShootable
-			"####" "#" 1 A_SpawnItem("SpawnFire2")
-			"####" "#" 0 A_PlaySound("archvile/resummon")
-			"####" "#" 1 A_TakeInventory("EnemyZorched",1)
-			"####" "#" 0 A_SetTranslucent(0.1,0)
-			"####" "#" 3 A_SetTranslucent(0.2,0)
-			"####" "#" 3 A_SetTranslucent(0.3,0)
-			"####" "#" 3 A_SetTranslucent(0.4,0)
-			"####" "#" 3 A_SetTranslucent(0.5,0)
-			"####" "#" 3 A_SetTranslucent(0.6,0)
-			"####" "#" 3 A_SetTranslucent(0.7,0)
-			"####" "#" 3 A_SetTranslucent(0.8,0)
-			"####" "#" 3 A_SetTranslucent(0.9,0)
-			"####" "#" 3 A_SetTranslucent(1,0)
-			"####" "#" 1 A_SetShootable
-			TNT1 A 0 A_KillMaster
-			Goto See	
+			TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+			Stop
    }
 }
 
