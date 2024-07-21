@@ -1,4 +1,4 @@
-Actor HLKingpin : SamsaraMonsterHLAlienHuge
+Actor HLKingpin : SamsaraMonsterAlienBoss
 {
 	Species "HLEnemies"
 	Mass 200
@@ -227,7 +227,38 @@ Actor HLKingpin : SamsaraMonsterHLAlienHuge
 			TNT1 A 0 A_SpawnItemEx("HLAlienGibSpawner",-16,-16,64,0,0,0,0,0)
 			TNT1 A 0 A_SpawnItemEx("HLAlienGibSpawner",16,-16,64,0,0,0,0,0)
 			TNT1 A 5 A_SpawnItemEx("HLAlienGibSpawner",16,16,64,0,0,0,0,0)
-			stop	
+			stop
+
+		// SamsaraMonsterAlienBoss states
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" A 0 A_RemoveChildren(TRUE)
+			Goto Super::Death.Zorch
+		Death.DukePlasma:
+			"####" A 0 A_RemoveChildren(TRUE)
+			Goto Super::Death.DukePlasma
+		Death.RottDisintegrate:
+			"####" A 0 A_RemoveChildren(TRUE)
+			Goto Super::Death.RottDisintegrate
+		Death.Disintegrate:
+			"####" A 0 A_RemoveChildren(TRUE)
+			Goto Super::Death.Disintegrate
+		Death.Nuke:
+			"####" A 0 A_RemoveChildren(TRUE)
+			Goto Super::Death.Nuke
+		Death.DukeIce:
+			"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.DoomDamageTypeIce:
+		Death.Ice:
+			"####" A 0 A_RemoveChildren(TRUE)
+			Goto Super::Death.Ice	
 	}
 }
 
