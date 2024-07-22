@@ -2946,3 +2946,15 @@ Actor Goldeneye_Broadcast_Shrink : Goldeneye_SideBySide
 			stop
 	}
 }
+
+Actor Goldeneye_Broadcast_DukePlasma : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIf(CallACS("GoldeneyePartBroadcast2",123),1)
+			TNT1 A 0
+			stop
+	}
+}	

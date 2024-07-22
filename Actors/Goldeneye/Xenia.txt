@@ -25,5 +25,12 @@ Actor Goldeneye_Xenia : Goldeneye_EnemyBase
 		Death.ExpanderDMGCoop:
 		XDeath.ExpanderDMGCoop:
 			Goto Death
+
+		// SamsaraMonsterHumanoidFemaleTotalGib states
+		Death.GETank:
+			TNT1 A 0 A_PlaySound("Goldeneye/Tank/Squish",CHAN_6)
+			TNT1 A 0 A_PlaySound("Goldeneye/DeathF",CHAN_5)
+			TNT1 A -1 A_Jump(256,"Death")
+			Wait
 	}
 }	
