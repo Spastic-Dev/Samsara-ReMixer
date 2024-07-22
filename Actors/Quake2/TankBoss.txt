@@ -228,6 +228,37 @@ Actor Q2SuperTank : Q2TankBoss
 			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx(Q2Gib,Random2(Radius),0,Random(0,80),2,0,Random(0,10),Random(1,360))
 			TNT1 A 5 A_PlaySound("Bitterman/Xdeath",6,1.0,0,ATTN_NORM)
 			Stop
+
+		// SamsaraMonsterCyberneticBoss states
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" 0 A_TakeInventory(Clip)//Shields down
+			Goto Super::Death.Zorch
+		Death.DukePlasma:
+			"####" "#" 0 A_TakeInventory(Clip)//Shields down
+			Goto Super::Death.DukePlasma
+		Death.RottDisintegrate:
+			"####" "#" 0 A_TakeInventory(Clip)//Shields down
+			Goto Super::Death.RottDisintegrate
+		Death.Disintegrate:
+			"####" "#" 0 A_TakeInventory(Clip)//Shields down
+			Goto Super::Disintegrate
+		Death.Nuke:
+			"####" "#" 0 A_TakeInventory(Clip)//Shields down
+			Goto Super::Death.Nuke
+		Death.DukeIce:
+			"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.DoomDamageTypeIce:
+		Death.Ice:
+			"####" "#" 0 A_TakeInventory(Clip)//Shields down
+			Goto Super::Death.Ice
 	}
 }
 
