@@ -1,4 +1,4 @@
-ACTOR IPOGSentrySphere : SamsaraMonsterRoboticLarge
+ACTOR IPOGSentrySphere : SamsaraMonsterRobotic
 {
 	Health 350
 	Radius 31
@@ -98,7 +98,7 @@ ACTOR IPOGSentryShot
 	}
 }
 
-ACTOR IPOGSentrySphere0
+ACTOR IPOGSentrySphere0 : SamsaraMonsterRobotic
 {
 	Health 150
 	Radius 16
@@ -146,41 +146,6 @@ ACTOR IPOGSentrySphere0
 		TNT1 A 3 A_NoBlocking
 		TNT1 A -1
 		Stop
-	Disintegrate:
-        TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-        TNT1 A 0 A_GiveInventory("EnemyZorched",1)
-        TNT1 A 0 A_NoBlocking
-        TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-        TNT1 A 0 A_SpawnItemEx("IPOGSentrySphereSmallDisintegrate",0,0,5,0,0,0,0,32)
-        TNT1 A 0 A_Scream
-        TNT1 A -1
-        stop
-	Death.ZorchPistol:
-	Death.Zorch:
-	Death.ZorchKamikaze:
-	Death.PhasingZorch:
-	Death.ZorchSpectral:
-		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		IPOC A 0 A_Stop
-		IPOC A 0 A_NoGravity		
-		TNT1 A 0 A_ChangeFlag("DONTGIB",1)
-		TNT1 A 0 A_PlaySoundEx("chex/zorch","soundslot5",0,0)
-		IPOC A 3 A_SpawnItem("ZorchEffectSmall")
-		IPOC A 0 A_GiveInventory("EnemyZorched",1)
-		IPOC A 3 A_SetTranslucent(0.9,0)
-		IPOC A 0 A_Scream
-		IPOC A 3 A_SetTranslucent(0.8,0)
-		IPOC A 0 A_NoBlocking
-		IPOC A 3 A_SetTranslucent(0.7,0)
-		IPOC A 3 A_SetTranslucent(0.6,0)
-		IPOC A 3 A_SetTranslucent(0.5,0)
-		IPOC A 3 A_SetTranslucent(0.4,0)
-		IPOC A 3 A_SetTranslucent(0.3,0)
-		IPOC A 3 A_SetTranslucent(0.2,0)
-		IPOC A 3 A_SetTranslucent(0.1,0)
-		TNT1 A 1 A_SetTranslucent(1,0)
-		TNT1 A -1
-		stop		
 	}
 }
 

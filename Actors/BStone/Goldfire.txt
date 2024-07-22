@@ -1,7 +1,4 @@
-// Normally, Goldfire would use a monster base, but because of
-// how his death state functions, he won't be able to use a base
-// without extensive modifying.
-Actor GoldFire {
+Actor GoldFire : SamsaraMonsterHumanoidBoss {
 	Health 150
 	SeeSound "goldfire/sight"
 	DeathSound "goldfire/death"
@@ -38,8 +35,6 @@ Actor GoldFire {
     PainChance "MightyBoot", 255
 	PainChance "MarathonStun", 255
 //	Dropitem "BlakeClip"
-	var int user_scalex;
-	var int user_scaley;
 	States {
 		Spawn:
 			BSE5 A 0
@@ -262,7 +257,6 @@ Actor GoldFire {
 			Goto SeeLoop
 		Death:
 		XDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			BSE5 G 12 A_Scream
 			BSE5 HGH 12
 			BS31 OPQRSTUV 5
@@ -270,5 +264,36 @@ Actor GoldFire {
 			TNT1 A 0 A_SpawnItemEx("GoldFireBoss",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 			TNT1 A -1
 			Stop
+
+		// SamsaraMonsterHumanoidBoss states
+		Death.ZorchPistol:
+		Death.Zorch:
+		Death.ZorchKamikaze:
+		Death.PhasingZorch:
+		Death.ZorchSpectral:
+			"####" "#" -1 A_Jump(256,"Death")
+			Wait
+		Death.DukePlasma:
+			"####" "#" -1 A_Jump(256,"Death")
+			Wait
+		Death.RottDisintegrate:
+			"####" "#" -1 A_Jump(256,"Death")
+			Wait
+		Death.Disintegrate:
+			"####" "#" -1 A_Jump(256,"Death")
+			Wait
+		Death.Nuke:
+			"####" "#" -1 A_Jump(256,"Death")
+			Wait
+		Death.DukeIce:
+			"####" "#" 0 A_GiveToTarget("DukeBossKillTaunt",1)
+		Ice:
+		Death.HexenIce:
+		Death.WTMeleeIce:
+		Death.WTRangedIce:
+		Death.DoomDamageTypeIce:
+		Death.Ice:
+			"####" "#" -1 A_Jump(256,"Death")
+			Wait
 	}
 }
