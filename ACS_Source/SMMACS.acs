@@ -135,6 +135,20 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 				SetActorProperty(0,APROP_Alpha,0);
 			}
 
+			if(random(1,100) <= (GetCvar("mm_flightmode")))
+			{
+				GiveInventory("FlightToken",1);
+			}
+
+			if(GetCVar("mm_infightingmode") == -1)
+			{
+				GiveInventory("NoInfightingToken", 1);
+			}
+			else if(GetCVar("mm_infightingmode") == 1)
+			{
+				GiveInventory("ForceInfightingToken", 1);
+			}
+
 			if(GetCVar("mm_dropmode") == 1)
 			{
 				GiveInventory("WeaponDropToken", 1);
@@ -1244,6 +1258,7 @@ script "ReMixerPresetSelection" (void)
 
 		// General Options
 		SetCVar("mm_invisiblemode", 0);
+		SetCVar("mm_infightingmode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", false);
 		SetCVar("mm_performancemode", true);
@@ -1395,6 +1410,7 @@ script "ReMixerPresetSelection" (void)
 
 		// General Options
 		SetCVar("mm_invisiblemode", 0);
+		SetCVar("mm_infightingmode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", false);
 		SetCVar("mm_performancemode", true);
@@ -1698,6 +1714,7 @@ script "ReMixerPresetSelection" (void)
 
 		// General Options
 		SetCVar("mm_invisiblemode", 0);
+		SetCVar("mm_infightingmode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", true);
 		SetCVar("mm_performancemode", false);
@@ -1849,6 +1866,7 @@ script "ReMixerPresetSelection" (void)
 
 		// General Options
 		SetCVar("mm_invisiblemode", 0);
+		SetCVar("mm_infightingmode", 0);
 		SetCVar("mm_pinataparty", false);
 		SetCVar("mm_pinatapartyextras", true);
 		SetCVar("mm_performancemode", false);
