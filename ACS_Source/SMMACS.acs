@@ -541,33 +541,71 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	if (healthMod != 100)
 	{
-		if (healthMod < 0)
-		{
-			int healthMultiplierPerPlayer = min(1.0, abs(healthMod) * 0.25);
+		int baseMonsterHealth = GetActorProperty(newMonTid,APROP_Health);
 
-			SetActorProperty(newMonTid,APROP_Health,FixedMul(GetActorProperty(newMonTid,APROP_Health), 1.0 + (healthMultiplierPerPlayer * (PlayerCount() - 1))));
+		if (healthMod <= -4)
+		{
+			SetActorProperty(newMonTid,APROP_Health,FixedMul(baseMonsterHealth, 1.0 + (1.0 * (PlayerCount() - 1))));
+		}
+		else if (healthMod == -3)
+		{
+			SetActorProperty(newMonTid,APROP_Health,FixedMul(baseMonsterHealth, 1.0 + (0.75 * (PlayerCount() - 1))));
+		}
+		else if (healthMod == -2)
+		{
+			SetActorProperty(newMonTid,APROP_Health,FixedMul(baseMonsterHealth, 1.0 + (0.5 * (PlayerCount() - 1))));
+		}
+		else if (healthMod == -1)
+		{
+			SetActorProperty(newMonTid,APROP_Health,FixedMul(baseMonsterHealth, 1.0 + (0.25 * (PlayerCount() - 1))));
 		}
 		else
 		{
-			int modifiedHealth = min(1, GetActorProperty(newMonTid,APROP_Health) * healthMod/100);
+			int modifiedHealth = baseMonsterHealth * healthMod/100;
 
-			SetActorProperty(newMonTid,APROP_Health,modifiedHealth);
+			if (modifiedHealth <= 0)
+			{
+				SetActorProperty(newMonTid,APROP_Health,1);
+			}
+			else
+			{
+				SetActorProperty(newMonTid,APROP_Health,modifiedHealth);
+			}
 		}
 	}
 
 	if (speedMod != 100)
 	{
-		if (speedMod < 0)
-		{
-			int speedMultiplierPerPlayer = min(1.0, abs(speedMod) * 0.25);
+		int baseMonsterSpeed = GetActorProperty(newMonTid,APROP_Speed);
 
-			SetActorProperty(newMonTid,APROP_Speed,FixedMul(GetActorProperty(newMonTid,APROP_Speed), 1.0 + (speedMultiplierPerPlayer * (PlayerCount() - 1))));
+		if (speedMod <= -4)
+		{
+			SetActorProperty(newMonTid,APROP_Speed,FixedMul(baseMonsterSpeed, 1.0 + (1.0 * (PlayerCount() - 1))));
+		}
+		else if (speedMod == -3)
+		{
+			SetActorProperty(newMonTid,APROP_Speed,FixedMul(baseMonsterSpeed, 1.0 + (0.75 * (PlayerCount() - 1))));
+		}
+		else if (speedMod == -2)
+		{
+			SetActorProperty(newMonTid,APROP_Speed,FixedMul(baseMonsterSpeed, 1.0 + (0.5 * (PlayerCount() - 1))));
+		}
+		else if (speedMod == -1)
+		{
+			SetActorProperty(newMonTid,APROP_Speed,FixedMul(baseMonsterSpeed, 1.0 + (0.25 * (PlayerCount() - 1))));
 		}
 		else
 		{
-			int modifiedSpeed = min(1, GetActorProperty(newMonTid,APROP_Speed) * speedMod/100);
+			int modifiedSpeed = baseMonsterSpeed * speedMod/100;
 
-			SetActorProperty(newMonTid,APROP_Speed,modifiedSpeed);
+			if (modifiedSpeed <= 0)
+			{
+				SetActorProperty(newMonTid,APROP_Speed,1);
+			}
+			else
+			{
+				SetActorProperty(newMonTid,APROP_Speed,modifiedSpeed);
+			}
 		}
 	}
 
