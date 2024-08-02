@@ -128,6 +128,11 @@ Script "LightningGuardSteal" (int action) // Lightning Guard steal script. Trust
 	{
 	Case 1: // check to steal
 		SetActivator(0,AAPTR_TARGET);
+		if(GetCVar("samsara_moddedgame"))
+		{
+			SetResultValue(0);
+			break;
+		}
 		for(int i = 0; i < CLASSCOUNT; i++)
 		{
 			if(CheckInventory(gameClassesSTR[i]) > 0)

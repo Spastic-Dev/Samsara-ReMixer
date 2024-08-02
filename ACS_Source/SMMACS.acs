@@ -692,7 +692,7 @@ Script "ReMixerCVarCheck" (int pick) //680
 			break;
 
 		case 6:
-			response = GetCVar("mm_protectorattacks");
+			response = GetCVar("mm_protectorattacks") || GetCVar("samsara_moddedgame");
 			break;
 
 		case 7:
@@ -763,12 +763,14 @@ Script "ReMixer_PickSets" (void)
 							if(!(activesets & bitindex))
 							{
 								activesets += bitindex;
+								if (GetCVar("samsara_moddedgame")) { b = 0; }
 								pickFromSets[maxSetsEnabled] = b;
 								maxSetsEnabled++;
 							}
 							else if(!(activeSets2 & bitindex2) && b >= 32)
 							{
 								activeSets2 += bitindex2;
+								if (GetCVar("samsara_moddedgame")) { b = 0; }
 								pickFromSets[maxSetsEnabled] = b;
 								maxSetsEnabled++;
 							}
