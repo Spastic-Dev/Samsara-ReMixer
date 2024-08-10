@@ -8593,6 +8593,7 @@ actor Goldeneye_LaserEnemyDrop : SamsaraSlotSevenDrop
     {
       Spawn:
         GE00 Z 0
+		GE00 Z 0 A_JumpIf(CallACS("SamsaraDecorate",24,0,0) == 1, "Super::NoUlt")
         GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
         GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
         GE00 Z 0 A_SetAngle(random(0,360))
@@ -8620,6 +8621,7 @@ actor Goldeneye_SniperEnemyDrop : SamsaraUniquePickup1
     {
       Spawn:
         GE00 Z 0
+        GE00 Z 0 A_JumpIf(CallACS("SamsaraDecorate",27,0,0) == 1, "Super::Nope")
         GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
         GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
         GE00 Z 0 A_SetAngle(random(0,360))
@@ -8647,6 +8649,7 @@ actor Goldeneye_D5KEnemyDrop : SamsaraUniquePickup2
     {
       Spawn:
         GE00 Z 0
+        GE00 Z 0 A_JumpIf(CallACS("SamsaraDecorate",27,0,0) == 1, "Super::Nope")
         GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
         GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
         GE00 Z 0 A_SetAngle(random(0,360))
