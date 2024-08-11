@@ -76,13 +76,16 @@ Actor MMRandomizer_DarkCyberdemon : CyberDemon3
 		TNT1 A 0 A_FaceTarget
 		Goto HomingRocket
 	HomingRocket:
-		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
-		VD83 E 12 A_FaceTarget
+		VD83 F 9 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 E 10 A_FaceTarget
 		TNT1 A 0 A_FaceTarget
-		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
-		VD83 E 12 A_FaceTarget
+		VD83 F 9 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 E 10 A_FaceTarget
 		TNT1 A 0 A_FaceTarget
-		VD83 F 12 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 F 9 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
+		VD83 E 10 A_FaceTarget
+		TNT1 A 0 A_FaceTarget
+		VD83 F 9 Bright A_CustomMissile("MMRandomizer_DarkCyberdemonHomingRocket",47,-27)
 		Goto See2
 	Pain:
 		VD83 G 10 A_Pain
@@ -104,8 +107,8 @@ Actor MMRandomizer_DarkCyberdemonRocket : Rocket_Samsara
 {
 	Radius 11
 	Height 8
-	Speed 26
-	Damage 15
+	Speed 23
+	Damage 10
 	-DEHEXPLOSION
 	-ROCKETTRAIL
 	SeeSound "vdr/darkcyberdemon/rockfire1"
@@ -117,7 +120,7 @@ Actor MMRandomizer_DarkCyberdemonRocket : Rocket_Samsara
 		Loop
 	Death:
 		TNT1 A 0 A_SetTranslucent(0.75,1)
-		VE40 C 8 Bright A_Explode(72,96,0)
+		VE40 C 8 Bright A_Explode(56,96,0)
 		VE40 DE 5 Bright
 		Stop
 	}
@@ -127,7 +130,6 @@ Actor MMRandomizer_DarkCyberdemonHomingRocket : MMRandomizer_DarkCyberdemonRocke
 {
 	Radius 8
 	Height 11
-	Speed 24
 	+SEEKERMISSILE
 	+THRUGHOST
 	SeeSound "vdr/darkcyberdemon/rockfire2"
@@ -135,23 +137,23 @@ Actor MMRandomizer_DarkCyberdemonHomingRocket : MMRandomizer_DarkCyberdemonRocke
 	{
 	Spawn:
 		VE40 B 0 Bright
-		VE40 B 2 Bright A_SeekerMissile(16,24,SMF_PRECISE)
+		VE40 B 2 Bright A_SeekerMissile(15,21,SMF_PRECISE)
 		VE40 B 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
-		TNT1 A 0 A_SeekerMissile(16,24,SMF_PRECISE)
+		TNT1 A 0 A_SeekerMissile(15,21,SMF_PRECISE)
 		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
-		TNT1 A 0 A_PlaySound("vdr/annihilator/hrbeep", CHAN_BODY, 0.9)
-		TNT1 A 0 A_SeekerMissile(16,24,SMF_PRECISE)
+		TNT1 A 0 A_PlaySound("vdr/annihilator/hrbeep", CHAN_BODY, 0.7)
+		TNT1 A 0 A_SeekerMissile(15,21,SMF_PRECISE)
 		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
-		TNT1 A 0 A_SeekerMissile(16,24,SMF_PRECISE)
+		TNT1 A 0 A_SeekerMissile(15,21,SMF_PRECISE)
 		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
 		Goto Homing
 	Homing:
-		TNT1 A 0 A_PlaySound("vdr/annihilator/hrbeep", CHAN_BODY, 0.9)
-		TNT1 A 0 A_SeekerMissile(6,16,SMF_PRECISE)
+		TNT1 A 0 A_PlaySound("vdr/annihilator/hrbeep", CHAN_BODY, 0.7)
+		TNT1 A 0 A_SeekerMissile(6,15,SMF_PRECISE)
 		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
 		TNT1 A 0 A_JumpIfTargetInLOS(1,150,JLOSF_PROJECTILE|JLOSF_NOSIGHT)
 		Goto NoHoming
-		TNT1 A 0 A_SeekerMissile(6,16,SMF_PRECISE)
+		TNT1 A 0 A_SeekerMissile(6,15,SMF_PRECISE)
 		VE40 BB 2 Bright A_SpawnItemEx("MMRandomizer_DarkCyberdemonRocketTrail",0,0,9,0,0,0,0,SXF_CLIENTSIDE)
 		TNT1 A 0 A_JumpIfTargetInLOS("Homing",150,JLOSF_PROJECTILE|JLOSF_NOSIGHT)
 		Goto NoHoming
