@@ -4,7 +4,6 @@
 #define MAXMONSTERS_HERETIC 15
 #define MAXMONSTERS_HEXEN 17
 #define MAXMONSTERS_STRIFE 17
-#define MAXMONSTERS_STRIFEACTUAL 7
 #define MAXMONSTERS_HACX 15
 #define MAXMONSTERS_HARMONY 9
 #define MAXMONSTERS_ROTWB 19
@@ -27,7 +26,7 @@ str SpawnersHexen[MAXMONSTERS_HEXEN] = { "EttinReplacer", "FireDemonReplacer", "
 
 int generatorCountersStrife[MAXMONSTERS_STRIFE];
 str SpawnersStrife[MAXMONSTERS_STRIFE] = { "Acolyte2", "AcolyteTan2", "AcolyteRed2", "AcolyteGold2", "AcolyteGray2", "AcolyteDGreen2", "AcolyteLGreen2", "AcolyteRust2", "AcolyteShadow2", "AcolyteToBe2", "AcolyteBlue2", "Sentinel2", "Stalker2", "Reaver2", "Templar2", "Crusader2", "Inquisitor2" };
-str SpawnersStrifeActual[MAXMONSTERS_STRIFEACTUAL] = { "StrifeAcolyteReplacerGenerator", "StrifeStalkerReplacerGenerator", "StrifeSentinelReplacerGenerator", "StrifeReaverReplacerGenerator", "StrifeTemplarReplacerGenerator", "StrifeCrusaderReplacerGenerator", "StrifeInquisitorReplacerGenerator" };
+str SpawnersStrifeActual[MAXMONSTERS_STRIFE] = { "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeAcolyteReplacerGenerator", "StrifeStalkerReplacerGenerator", "StrifeSentinelReplacerGenerator", "StrifeReaverReplacerGenerator", "StrifeTemplarReplacerGenerator", "StrifeCrusaderReplacerGenerator", "StrifeInquisitorReplacerGenerator" };
 
 int generatorCountersHacx[MAXMONSTERS_HACX];
 str SpawnersHacx[MAXMONSTERS_HACX] = { "HacxThug_SamsaraRemixer", "HacxAndroid_SamsaraRemixer", "HacxPhage_SamsaraRemixer", "HacxBuzzer_SamsaraRemixer", "HacxStealth_SamsaraRemixer", "HacxICE_SamsaraRemixer", "HacxMonstruct_SamsaraRemixer", "HacxDMan_SamsaraRemixer", "HacxMajong7_SamsaraRemixer", "HacxTerminatrix_SamsaraRemixer", "HacxMechaManiac_SamsaraRemixer", "HacxThornThing_SamsaraRemixer", "HacxMummy_SamsaraRemixer", "HacxSkeleton_SamsaraRemixer", "HacxRoamingMine_SamsaraRemixer" };
@@ -204,6 +203,28 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			for(selector = 0; selector < MAXMONSTERS_HEXEN; selector++)
 			{
 				currentCounterForSelector = generatorCountersHexen[selector];
+
+				if(currentCounterForSelector > 0)
+				{
+					if(selector < minSelector)
+						minSelector = selector;
+					if(selector > maxSelector)
+						maxSelector = selector;
+				}
+				totalTypes += currentCounterForSelector;
+				generationAmount += currentCounterForSelector*(selector+1);
+			}
+			break;
+
+		case 16:
+			for(counters = 0; counters < MAXMONSTERS_STRIFE; counters++)
+			{
+				generatorCountersStrife[counters] = ThingCountName(SpawnersStrife[counters],0);
+			}
+
+			for(selector = 0; selector < MAXMONSTERS_STRIFE; selector++)
+			{
+				currentCounterForSelector = generatorCountersStrife[selector];
 
 				if(currentCounterForSelector > 0)
 				{
@@ -446,6 +467,21 @@ Script "SMMGeneratorSelector" (void)
 				terminate;
 
 			SpawnForced(StrParam(s:SpawnersHexen[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
+			break;
+
+		case 16:
+			pickMonster = 16;
+			while((pickMonster == 16 || pickMonster == 17) && selectionAttempts < maxSelectionAttempts)
+			{
+				rnd = random(minSelector,maxSelector);
+				mix = FixedMul(random(0.0,1.0),influence);
+				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
+				selectionAttempts++;
+			}
+			if(selectionAttempts >= maxSelectionAttempts)
+				terminate;
+
+			SpawnForced(StrParam(s:SpawnersStrife[pickMonster]),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
 
 		case 32:
