@@ -1,0 +1,103 @@
+ACTOR StrifeAcolyteReplacerGenerator : ReMixerBaseSpawner
+{
+	Game Strife
+	Height 64
+	Mass 400
+	Radius 24
+	States
+	{
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,1)
+			Goto Super::SeeWait
+	}
+}
+
+ACTOR StrifeStalkerReplacerGenerator : ReMixerBaseSpawner
+{
+	Game Strife
+	Height 25
+	Radius 31
+	States
+	{
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,5)
+			Goto Super::SeeWait
+	}
+}
+
+ACTOR StrifeSentinelReplacerGenerator : ReMixerBaseSpawner
+{
+	Game Strife
+	Height 53
+	Mass 300
+	Radius 23
+	States
+	{
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,9)
+			Goto Super::SeeWait
+	}
+}
+
+ACTOR StrifeReaverReplacerGenerator : ReMixerBaseSpawner
+{
+	Game Strife
+	Height 60
+	Mass 500
+	Radius 20
+	States
+	{
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,11)
+			Goto Super::SeeWait
+	}
+}
+
+ACTOR StrifeTemplarReplacerGenerator : ReMixerBaseSpawner
+{
+	Game Strife
+	Height 60
+	Mass 500
+	Radius 20
+	States
+	{
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,14)
+			Goto Super::SeeWait
+	}
+}
+
+ACTOR StrifeCrusaderReplacerGenerator : ReMixerBaseSpawner
+{
+	Game Strife
+	Height 56
+	Mass 400
+	Radius 40
+	-BOSSDEATH
+	States
+	{
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,16)
+			Goto Super::SeeWait
+	}
+}
+
+ACTOR StrifeInquisitorReplacerGenerator : ReMixerBaseSpawner
+{
+	Game Strife
+	Height 110
+	Mass 0X7FFFFFFF
+	Radius 40
+	-BOSSDEATH
+	States
+	{
+		See:
+			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,23)
+			Goto Super::SeeWait
+		Continue:
+			Goto Super::BossWait
+		Death:
+			TNT1 A 6 A_BossDeath
+			Stop
+	}
+}
