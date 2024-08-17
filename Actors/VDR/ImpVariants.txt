@@ -910,23 +910,31 @@ actor MMRandomizer_Devil : DoomImp3
 		Goto See
 	Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		VD84 I 8 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		VD84 I 8 A_Jump(130,"Death2")
 		VD84 J 8 A_Scream
 		VD84 K 6
 		VD84 L 6 A_NoBlocking
 		VD84 M -1
+		Stop
+	Death2:
+		VD84 N 5
+		VD84 O 5 A_Scream
+		VD84 P 5 A_NoBlocking
+		VD84 Q 5
+		VD84 R -1
 		Stop
 	StakeDeath:
 		VD84 H 2
 		Loop
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		VD84 N 5 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		VD84 O 5 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
-		VD84 P 5
-		VD84 Q 5 A_NoBlocking
-		VD84 RST 5
-		VD84 U -1
+		VD84 S 5 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		VD84 T 5 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
+		VD84 U 5
+		VD84 V 5 A_NoBlocking
+		VD84 WXY 5
+		VD84 Z -1
 		Stop
 	Raise:
 		VD84 A 0
@@ -969,10 +977,6 @@ actor MMRandomizer_Devil : DoomImp3
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
 		Stop
-	Raise:
-		VD84 ML 8
-		VD84 KJI 6
-		Goto See
 	}
 }
 
