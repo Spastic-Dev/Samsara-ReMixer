@@ -1,22 +1,9 @@
-ACTOR StrifeAcolyteReplacerGenerator : ReMixerBaseSpawner
-{
-	Game Strife
-	Height 64
-	Mass 400
-	Radius 24
-	States
-	{
-		See:
-			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,1)
-			Goto Super::SeeWait
-	}
-}
-
-ACTOR StrifeStalkerReplacerGenerator : ReMixerBaseSpawner
+ACTOR StrifeStalkerReplacer : ReMixerBaseSpawner replaces Stalker2
 {
 	Game Strife
 	Height 25
 	Radius 31
+	ConversationID 92,-1,-1
 	States
 	{
 		See:
@@ -25,12 +12,13 @@ ACTOR StrifeStalkerReplacerGenerator : ReMixerBaseSpawner
 	}
 }
 
-ACTOR StrifeSentinelReplacerGenerator : ReMixerBaseSpawner
+ACTOR StrifeSentinelReplacer : ReMixerBaseSpawner replaces Sentinel2
 {
 	Game Strife
 	Height 53
 	Mass 300
 	Radius 23
+	ConversationID 91,-1,-1
 	States
 	{
 		See:
@@ -39,12 +27,13 @@ ACTOR StrifeSentinelReplacerGenerator : ReMixerBaseSpawner
 	}
 }
 
-ACTOR StrifeReaverReplacerGenerator : ReMixerBaseSpawner
+ACTOR StrifeReaverReplacer : ReMixerBaseSpawner replaces Reaver2
 {
 	Game Strife
 	Height 60
 	Mass 500
 	Radius 20
+	ConversationID 52, -1, -1
 	States
 	{
 		See:
@@ -53,12 +42,13 @@ ACTOR StrifeReaverReplacerGenerator : ReMixerBaseSpawner
 	}
 }
 
-ACTOR StrifeTemplarReplacerGenerator : ReMixerBaseSpawner
+ACTOR StrifeTemplarReplacer : ReMixerBaseSpawner replaces Templar2
 {
 	Game Strife
 	Height 60
 	Mass 500
 	Radius 20
+	ConversationID 62, 61, 62
 	States
 	{
 		See:
@@ -67,27 +57,34 @@ ACTOR StrifeTemplarReplacerGenerator : ReMixerBaseSpawner
 	}
 }
 
-ACTOR StrifeCrusaderReplacerGenerator : ReMixerBaseSpawner
+ACTOR StrifeCrusaderReplacer : ReMixerBaseSpawner replaces Crusader2
 {
 	Game Strife
 	Height 56
 	Mass 400
 	Radius 40
-	-BOSSDEATH
+	ConversationID 63,-1,-1
+	+BOSSDEATH
 	States
 	{
 		See:
 			TNT1 A 0 ACS_NamedExecuteWithResult("ReMixerSpawnScript",2,0,16)
 			Goto Super::SeeWait
+		Continue:
+			Goto Super::BossWait
+		Death:
+			TNT1 A 6 ACS_NamedExecuteWithResult("StrifeCrusaderDeathScript")
+			Stop
 	}
 }
 
-ACTOR StrifeInquisitorReplacerGenerator : ReMixerBaseSpawner
+ACTOR StrifeInquisitorReplacer : ReMixerBaseSpawner replaces Inquisitor2
 {
 	Game Strife
 	Height 110
 	Mass 0X7FFFFFFF
 	Radius 40
+	ConversationID 93,-1,-1
 	-BOSSDEATH
 	States
 	{
@@ -97,7 +94,16 @@ ACTOR StrifeInquisitorReplacerGenerator : ReMixerBaseSpawner
 		Continue:
 			Goto Super::BossWait
 		Death:
-			TNT1 A 6 A_BossDeath
+			TNT1 A 6
 			Stop
 	}
 }
+
+Actor StrifeStalkerReplacerGenerator : StrifeStalkerReplacer {}
+Actor StrifeSentinelReplacerGenerator : StrifeSentinelReplacer {}
+Actor StrifeReaverReplacerGenerator : StrifeReaverReplacer {}
+Actor StrifeTemplarReplacerGenerator : StrifeTemplarReplacer {}
+Actor StrifeCrusaderReplacerGenerator : StrifeCrusaderReplacer { -BOSSDEATH }
+Actor StrifeInquisitorReplacerGenerator : StrifeInquisitorReplacer {}
+
+// rip strife maps that use dialogue for the robots
