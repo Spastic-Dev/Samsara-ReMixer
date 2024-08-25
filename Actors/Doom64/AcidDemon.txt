@@ -147,7 +147,7 @@ ACTOR AcidDemon64 : Demon64
 			Goto Super::PainkillerGib
 		Death.DeusExExploded:
 			TNT1 A 0 ACS_NamedExecuteAlways("DeusEx_KillScript", 0, 0, 3)
-			Goto DeusXDeath
+		Death.DeusExDroneExploded:
 		DeusXDeath:
 			"####" AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("AcidDemonDeathAttack64", 0, 0, 34, random(-4,4), random(-4,4), random(62,120)/10.0, random(0,359))
 			Goto Super::DeusXDeath
