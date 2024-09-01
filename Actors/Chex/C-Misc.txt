@@ -14,12 +14,33 @@ actor BipedicusBallV3_ReMixer : BipedicusBallV3_Samsara
     }
 }
 
-ACTOR YellowBipedicusBall2 : BipedicusBallV3_ReMixer { Translation "112:127=[243,254,80]:[21,22,0]" }
+ACTOR YellowBipedicusBall2 : BipedicusBallV3_ReMixer 
+{
+    States
+    {
+      Spawn:
+        BAC4 AB 4
+        Loop
+
+      Death:
+        BAC4 CDE 6
+        Stop
+    }
+}
 
 ACTOR DarkBipedicusBall : BipedicusBallV3_ReMixer
 {
-	Translation "112:127=[150,150,150]:[50,50,50]"
 	Speed 20
+    States
+    {
+      Spawn:
+        BAC3 AB 4
+        Loop
+
+      Death:
+        BAC3 CDE 6
+        Stop
+    }
 }
 
 ACTOR MaximusBall_ReMixer
@@ -220,15 +241,83 @@ ACTOR SuperCyclopsBody2 : SuperCyclopsBody replaces SuperCyclopsBody
 
 ACTOR YellowCycloptisBall : CycloptisBall_ReMixer
 {
-	Translation "112:127=[243,254,80]:[21,22,0]"
 	Speed 20
+    States
+    {
+      Spawn:
+        BAC4 FG 4
+        Loop
+
+      Death:
+        BAC4 HIJ 6
+        Stop
+    }
 }
 
 ACTOR DarkCycloptisBall : CycloptisBall_ReMixer
 {
-	Translation "112:127=[150,150,150]:[50,50,50]"
 	Speed 20
 	Damage 10
+    States
+    {
+      Spawn:
+        BAC3 FG 4
+        Loop
+
+      Death:
+        BAC3 HIJ 6
+        Stop
+    }
+}
+
+actor YellowFlemoidGib : FlemoidGib
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		FLBL EEFFGGHH 2 A_SpawnItemEx("YellowFlemoidGibTrail",0,0,0,0,0,0,0,SXF_TRANSFERTRANSLATION|SXF_CLIENTSIDE)
+		Loop
+
+	Crash:
+		TNT1 A 1
+		Stop
+	}
+}
+
+actor YellowFlemoidGibTrail : FlemoidGibTrail
+{
+	States
+	{
+	Spawn:
+		FTRL EFGH 4
+		Stop
+	}
+}
+
+actor DarkFlemoidGib : FlemoidGib
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		FLBL IIJJKKLL 2 A_SpawnItemEx("DarkFlemoidGibTrail",0,0,0,0,0,0,0,SXF_TRANSFERTRANSLATION|SXF_CLIENTSIDE)
+		Loop
+
+	Crash:
+		TNT1 A 1
+		Stop
+	}
+}
+
+actor DarkFlemoidGibTrail : FlemoidGibTrail
+{
+	States
+	{
+	Spawn:
+		FTRL IJKL 4
+		Stop
+	}
 }
 
 actor ChexLZDrop : SamsaraSlotTwoDrop
