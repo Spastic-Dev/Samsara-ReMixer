@@ -888,8 +888,8 @@ actor MMRandomizer_Devil : DoomImp3
 		VD84 EF 6 A_FaceTarget
 		VD84 G 4 A_CustomComboAttack("DoomImpBall_Samsara",32,3*random(1,8),"doom/imp/melee")
 		VD84 B 2
-		VD84 VW 6 A_FaceTarget
-		VD84 X 4 A_CustomComboAttack("DoomImpBall_Samsara",32,3*random(1,8),"doom/imp/melee") 
+		VD84 "[\" 6 A_FaceTarget
+		VD84 "]" 4 A_CustomComboAttack("DoomImpBall_Samsara",32,3*random(1,8),"doom/imp/melee") 
 		VD84 B 2
 		Goto See
 	Pain.MightyBoot:
@@ -932,9 +932,8 @@ actor MMRandomizer_Devil : DoomImp3
 		VD84 S 5 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		VD84 T 5 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
 		VD84 U 5
-		VD85 V 5 A_NoBlocking
-		VD85 WX 5
-		VD84 Y 5
+		VD84 V 5 A_NoBlocking
+		VD84 WXY 5
 		VD84 Z -1
 		Stop
 	Raise:
