@@ -104,16 +104,6 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 	int altSetSelect;
 	int activator = ActivatorTID();
 
-	// Check for Lexicon compatibility
-	int isLexiconEnabled = 0;
-	int LexiconTid = UniqueTID();
-
-	if(SpawnForced("IKPuff",0,0,0,LexiconTid))
-	{
-		Thing_Remove(LexiconTid);
-		isLexiconEnabled = 1;
-	}
-
 	map = GetLevelInfo(LEVELINFO_LEVELNUM);
 
 	Switch(spawncode)
@@ -399,11 +389,6 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			if(GetCVar("mm_reducemonsters") < 99)
 			{
 				until(processedCounts) { Delay(1); }
-
-				if(isLexiconEnabled == 1)
-				{
-					Delay(1);
-				}
 
 				if(ACS_NamedExecuteWithResult("SMMReducer",gamePruneValues[pickFromSets[setselect]][altSetSelect],CheckFlag(0,"BOSSDEATH"),monsterSlot))
 				{
