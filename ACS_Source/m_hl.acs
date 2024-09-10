@@ -205,6 +205,8 @@ script "Samsara_HLShockRoachPickup" (void)
         {
             if (a == 19 && !CheckInventory(ClassWeapons[a][3])) { ACS_NamedExecuteAlways("HL2685", 0, 11); }
 
+            if (CheckInventory("SamsaraHeroMusicHalfLifeActive") && !CheckInventory("HalfLifeMusicPlayingToken")) { GiveInventory("HLMusicWeapon", 1); }
+
             if (!StrCmp(ClassWeapons[a][3], "notapplicable")) // special cases
             {
                 if (a == 16) { itemtogive = "IPOGGrenadeItem"; }
