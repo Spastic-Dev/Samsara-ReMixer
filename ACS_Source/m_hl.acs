@@ -173,24 +173,45 @@ Script "KingPinShield" (int duration)
 	SetActorState(0, "LowerShield", true);
 }
 
-Script "Samsara_HLShockRoachPickupCondition" (void)
+script "Samsara_HLShockRoachPickupCondition" (void)
 {
-	int currentx = GetActorX(0);
-	int currenty = GetActorY(0);
-	int currentz = GetActorZ(0);
-	SetActivatorToTarget(0);
-	int targetx = GetActorX(0);
-	int targety = GetActorY(0);
-	int targetz = GetActorZ(0);
-	int distancex = abs(currentx - targetx)>>16;
-	int distancey = abs(currenty - targety)>>16;
-	int distancez = abs(currentz - targetz)>>16;
-	int distance = magnitudeTwo(distancex, distancey);	
-	
-	if(CheckInventory("IsSamsaraClass") && !CheckInventory("GotWeapon1") && distance < 32 && distancez <= 56)
-		SetResultValue(1);
-	else
-		SetResultValue(0);
+    int currentx = GetActorX(0);
+    int currenty = GetActorY(0);
+    int currentz = GetActorZ(0);
+
+    SetActivator(0, AAPTR_TARGET);
+
+    int targetx = GetActorX(0);
+    int targety = GetActorY(0);
+    int targetz = GetActorZ(0);
+
+    int distancex = abs(currentx - targetx) >> 16;
+    int distancey = abs(currenty - targety) >> 16;
+    int distancez = abs(currentz - targetz) >> 16;
+    int distance = magnitudeTwo(distancex, distancey);
+
+    int result = 0;
+
+    if (distance < 32 && distancez <= 56)
+    {
+        if (CheckInventory("IsSamsaraClass"))
+        {
+            if (CheckInventory("WolfenClass"))
+            {
+                if (!CheckInventory("Totenkopf_IHaveMauser")) { result = 1; }
+                else if (!CheckInventory("Totenkopf_IHaveDualMausers")) { result = 1; }
+            } else if (CheckInventory("BondClass")) {
+                if (!CheckInventory("Goldeneye_ThrowingKnives")) { result = 1; }
+                else if (!CheckInventory("Goldeneye_ThrowingKnivesDualToken")) { result = 1; }
+            } else if (CheckInventory("CatacombClass")) {
+                if (!CheckInventory("Catacomb_WavesQuickSpell")) { result = 1; }
+            } else {
+                if (!CheckInventory("GotWeapon0")) { result = 1; }
+            }
+        }
+    }
+
+    SetResultValue(result);
 }
 
 script "Samsara_HLShockRoachPickup" (void)
