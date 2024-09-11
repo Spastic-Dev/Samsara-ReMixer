@@ -462,7 +462,7 @@ actor SWGuardianHeadDrop : SamsaraSlotSevenDrop
     {
       Spawn:
         TNT1 A 0
-		TNT1 A 0 A_JumpIf(CallACS("SamsaraDecorate",24,0,0) == 1, "Super::NoUlt")
+		TNT1 A 0 ACS_NamedExecuteWithResult("Samsara_SwitchableObject", 7, 1)
 		WW70 Z -1
         stop
     }
