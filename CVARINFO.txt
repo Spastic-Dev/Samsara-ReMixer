@@ -1,29 +1,69 @@
-//Main monster set toggles
+// Preset Options
+server int mm_presetvalue = 2;
+
+// General Options
+server int mm_invisiblemode = 0;
+server int mm_flightmode = 0;
+server int mm_infightingmode = 0;
+server bool mm_performancemode = true;
+
+// Monster Spawning Options
+server int mm_spawnmode = 0;
+server int mm_randomcycle = 1;
+server int mm_dropmode = 1;
+server int mm_multiply = 1;
+server int mm_generate = 0;
+server int mm_reducemonsters = 0;
+
+// Monster Override Options
+server int mm_skilloverride = 0;
+server int mm_healthoverride = 100;
+server int mm_speedoverride = 100;
+
+// Monster Specific Options
+server bool mm_specpermdeath = true;
+server bool mm_wolffastdeath = false;
+server bool mm_fakehitlerfire = true;
+server bool mm_protectorattacks = true;
+server bool mm_fullradiusdmg = true;
+server bool mm_quakezombiedeaths = false;
+server int mm_redneckcusspack = 0;
+
+// Enemy Modes
+server int mm_doommode = 0;
+server int mm_wolfmode = 0;
+server int mm_dukemode = 0;
+server int mm_halflifemode = 0;
+
+// Enemy Spawns
+server int mm_doomspawns = 1;
+server int mm_doom64spawns = 1;
+
+// ReMixer Spawn Options
 server bool mm_doom = true;
-server bool mm_heretic = true;
-server bool mm_hexen1 = true;
 server bool mm_chex = true;
+server bool mm_heretic = true;
 server bool mm_wolf3d = true;
+server bool mm_hexen1 = true;
 server bool mm_duke3d = true;
 server bool mm_marathon = true;
-server bool mm_bstone = true;
-server bool mm_rott = true;
-server bool mm_rr = true;
-server bool mm_erad = true;
-server bool mm_strife = true;
-server bool mm_darkf = true;
-server bool mm_cm = true;
-server bool mm_c7 = true;
-server bool mm_sw = true;
-server bool mm_blood = true;
-server bool mm_rmr = true;
-server bool mm_ps = true;
-server bool mm_ipog = true;
-server bool mm_witch = true;
-server bool mm_disrup = true;
 server bool mm_quake1 = true;
-server bool mm_doom64 = true;
+server bool mm_rott = true;
+server bool mm_bstone = true;
+server bool mm_blood = true;
+server bool mm_strife = true;
+server bool mm_erad = true;
+server bool mm_c7 = true;
+server bool mm_rmr = true;
+server bool mm_darkf = true;
+server bool mm_ipog = true;
+server bool mm_disrup = true;
+server bool mm_witch = true;
 server bool mm_halflife = true;
+server bool mm_sw = true;
+server bool mm_cm = true;
+server bool mm_ps = true;
+server bool mm_rr = true;
 server bool mm_quake2 = true;
 server bool mm_hexen2 = true;
 server bool mm_goldeneye = true;
@@ -35,24 +75,7 @@ server bool mm_quake3 = true;
 server bool mm_descent = true;
 server bool mm_deusex = true;
 
-//Mode toggles
-server int mm_doommode = 0;
-server int mm_wolfmode = 0;
-server int mm_dukemode = 0;
-server int mm_halflifemode = 0;
-server bool mm_fakehitlerfire = true;
-server bool mm_wolffastdeath = false;
-server int mm_spawnmode = 0;
-server int mm_dropmode = 1;
-server int mm_skilloverride = 0;
-server int mm_healthoverride = 100;
-server int mm_speedoverride = 100;
-
-//Spawns
-server int mm_doomspawns = 1;
-server int mm_doom64spawns = 1;
-
-//Monster replacements
+// ReMixer Monster Replacements
 server int mm_replace_zombieman = -1;
 server int mm_replace_shotgunguy = -1;
 server int mm_replace_imp = -1;
@@ -126,27 +149,15 @@ server int mm_replace_heresiarch = -1;
 server int mm_replace_korax = -1;
 server int mm_replace_pig = -1;
 
-//Misc
-server int mm_reducemonsters = 0;
-server int mm_generate = 0;
-server int mm_multiply = 1;
-server bool mm_protectorattacks = true;
-server bool mm_quakezombiedeaths = false;
-server bool mm_fullradiusdmg = true;
-server bool mm_init = true;
-server int mm_invisiblemode = 0;
-server int mm_flightmode = 0;
-server int mm_infightingmode = 0;
-//server bool mm_nobats = true;
-server bool mm_specpermdeath = true;
+// Currently unsorted
 server bool mm_maratele = true;
-server int mm_redneckcusspack = 0;
+
+// Currently unused
+//server bool mm_init = true;
+//server bool mm_resetmixer = false;
+//server noarchive bool mm_cachemodels = false;
+//server bool mm_nobats = true;
 //server bool mm_advancedspawning = false;
-server bool mm_resetmixer = false;
-server bool mm_performancemode = true;
-server bool mm_narakamode = false;
-server int mm_randomcycle = 1;
-server noarchive bool mm_cachemodels = false;
-server int mm_presetvalue = 2;
+//server bool mm_narakamode = false;
 //server bool mm_dropdefault = false;
 //server bool mm_assholemode = false;
