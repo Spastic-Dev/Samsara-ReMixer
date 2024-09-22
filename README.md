@@ -2,7 +2,7 @@
 ### An addon for Samsara Reincarnation
 Samsara ReMixer is an addon for Samsara Reincarnation, a gameplay mod for GZDoom and Zandronum. In order to use ReMixer, you will need to load it with Samsara Reincarnation; it will not work with the original version of Samsara or any other forks of the mod.
 
-Samsara ReMixer adds in the enemies from the games represented by its parent mod, allowing for a whole new experience in singleplayer and PVE multiplayer. In addition, there are new settings that modify the monsters and their behaviors, and the player can choose how the monsters are spawned, or even if they should spawn or not. ReMixer is compatible with anything that can be played with Samsara Reincarnation, with different IWADs having specialized support if needed.
+Samsara ReMixer adds in the enemies from the games represented by its parent mod, allowing for a whole new experience in single player and PVE multiplayer. In addition, there are new settings that modify the monsters and their behaviors, and the player can choose how the monsters are spawned, or even if they should spawn or not. ReMixer is compatible with anything that can be played with Samsara Reincarnation, with different IWADs having specialized support if needed.
 
 ## Features
 - Monsters from nearly every character's game
