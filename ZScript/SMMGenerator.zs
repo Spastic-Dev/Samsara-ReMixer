@@ -45,6 +45,9 @@ Class DetermineValidSpawnReMixerZS : Actor
 		Radius 32;
 		+CORPSE
 		+SOLID
+        +CANNOTPUSH
+        +NOTELEPORT
+        +NOTELESTOMP
 	}
 	States
 	{
