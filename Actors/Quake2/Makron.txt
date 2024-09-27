@@ -24,7 +24,7 @@ Actor Q2Makron : Q2BossBase
 	Radius 40
 	Height 110
 	DeathHeight 110
-	Obituary "%o was killed by jorg."
+	Obituary "%o was killed by the Makron's Jorg."
 	DropItem "Q2BulletsPickup" 128
 	DropItem "Q2BulletsPickup" 128
 	DropItem "Q2CellPickup" 128
@@ -173,24 +173,7 @@ Actor Q2Makron : Q2BossBase
 		JRG0 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\[]" 6 A_Look
 		Goto Idle+3	
 	See:
-		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
-		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
-		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-		TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
-		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
-		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
-		TNT1 A 0 A_GiveInventory("HLBossSee",1)
-		TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
-		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+		TNT1 A 0 A_GiveInventory("SamsaraBossSightTaunt")
 	See2:
 		JRG1 A 0 A_ChangeFlag(NOPAIN,0)
 		TNT1 A 0 A_TakeInventory(Clip)
@@ -465,7 +448,7 @@ Actor Q2Jorg : Q2Makron
 	-NOPAIN
 	PainChance 20
 	PainChance "BittermanDamage", 50
-	Obituary "%o was killed by the makron."
+	Obituary "%o was killed by the Makron."
 	DropItem "Q2SlugPickup" 128 
 	Species "cyberdemon"
 	Tag "The Makron"
@@ -494,24 +477,7 @@ Actor Q2Jorg : Q2Makron
 		JRG4 A 0 A_PlaySound("Jorg/Laugh",CHAN_VOICE)
 		Goto Spawn+1
 	See:
-		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
-		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
-		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-		TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
-		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
-		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
-		TNT1 A 0 A_GiveInventory("HLBossSee",1)
-		TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
-		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+		TNT1 A 0 A_GiveInventory("SamsaraBossSightTaunt")
 	See2:
 		JRG6 J 0 A_ChangeFlag(NOPAIN,0)
 		TNT1 A 0 A_PlaySound("Jorg/Step",CHAN_BODY)

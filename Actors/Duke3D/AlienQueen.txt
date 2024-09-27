@@ -193,24 +193,7 @@ ACTOR AlienQueen : SamsaraMonsterAlienBoss
 			QUEE A 10 A_Look
 			Loop
 		See:
-			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
-			TNT1 A 0 A_GiveInventory("DukeAlienQTaunt",1)
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)
-			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
-			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
-			TNT1 A 0 A_GiveInventory("HLBossSee",1)
-			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+			TNT1 A 0 A_GiveInventory("SamsaraBossSightTauntAlienQueen")
 		See2:
 			QUEE AAAA 2 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 			QUEE BB 2 A_Chase
@@ -293,4 +276,14 @@ ACTOR AlienQueenDoom : AlienQueen
 			QUEE J 40 A_SpawnItemEx("NewProtectorDroneDoom",0,-128,0)
 			Goto See2
 	}
+}
+
+actor SamsaraBossSightTauntAlienQueen : SamsaraBossSightTaunt
+{
+    States
+    {
+      PickupTauntDuke:
+        TNT1 A 0 A_GiveInventory("DukeAlienQTaunt",1,AAPTR_TARGET)
+        stop
+    }
 }

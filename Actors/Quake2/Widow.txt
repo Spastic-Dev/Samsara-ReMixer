@@ -24,7 +24,7 @@ Actor Q2Widow : Q2BossBase
 	Height 110
 	MeleeRange 128
 	Tag "Strogg Black Widow"
-	Obituary "%o was killed by the Black Widow"
+	Obituary "%o was killed by the Black Widow."
 	var int user_targetangle;
 	var int user_luck;
 	States
@@ -42,24 +42,7 @@ Actor Q2Widow : Q2BossBase
 		WID0 ABCDEFGHIJK 5 A_Look
 		Loop
 	See:
-		TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-		TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-		TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-		TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
-		TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
-		TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-		TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-		TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
-		TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
-		TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
-		TNT1 A 0 A_GiveInventory("HLBossSee",1)
-		TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-		TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
-		TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+		TNT1 A 0 A_GiveInventory("SamsaraBossSightTaunt")
 	See2:
 		WID0 L 0 A_JumpIfInventory("Q2WidowWalkCounter", 1, 1)
 		goto WalkReadyToFire // Prevent Spamming attacks
@@ -391,7 +374,7 @@ Actor Q2Widow2 : Q2SoldierBase {
 	Height 110
 	Tag "Strogg Black Widow"
 	Scale 0.7
-	Obituary "%o was killed by the Black Widow"
+	Obituary "%o was killed by the Black Widow."
 	var int user_luck;
 	States {
 		Spawn:
@@ -404,24 +387,7 @@ Actor Q2Widow2 : Q2SoldierBase {
 			WID1 ABCDEFGHIJKLMNOPQR 5 A_Look
 			Loop
 		See:
-			TNT1 A 0 A_JumpIfInventory("DukeBossSee",1,"See2")
-			TNT1 A 0 A_JumpIfInventory("CalebBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("EleenaBossSee",1,"See2")		
-			TNT1 A 0 A_JumpIfInventory("LoWangBossSee",1,"See2")	
-			TNT1 A 0 A_JumpIfInventory("LeonardBossSee",1,"See2")						
-			TNT1 A 0 A_JumpIfInventory("HLBossSee",1,"See2")
-			TNT1 A 0 A_GiveInventory("DukeBossSee",1)
-			TNT1 A 0 A_GiveInventory("CalebBossSee",1)		
-			TNT1 A 0 A_GiveInventory("EleenaBossSee",1)	
-			TNT1 A 0 A_GiveInventory("LoWangBossSee",1)
-			TNT1 A 0 A_GiveInventory("LeonardBossSee",1)
-			TNT1 A 0 A_GiveInventory("HLBossSee",1)
-			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")		
-			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+			TNT1 A 0 A_GiveInventory("SamsaraBossSightTaunt")
 		See2:
 			WID0 AB 4 A_Chase
 			WID0 C 4 A_Chase
