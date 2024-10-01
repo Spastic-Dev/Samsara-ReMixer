@@ -371,7 +371,12 @@ actor TymokDrop : SamsaraSlotFiveDrop
     States
     {
       Spawn:
-        7RL2 A -1
+        7RL2 A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        7RL2 A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

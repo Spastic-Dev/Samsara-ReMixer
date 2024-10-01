@@ -3006,7 +3006,12 @@ actor " Alien Bra Gun Drop " : SamsaraSlotSixDrop
     States
     {
       Spawn:
-        R_T9 D -1
+        R_T9 D 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        R_T9 D -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

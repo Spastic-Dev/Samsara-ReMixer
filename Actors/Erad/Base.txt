@@ -122,7 +122,12 @@ actor EradSlotTwoDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        SSPU A -1
+        SSPU A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        SSPU A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -134,7 +139,12 @@ actor EradSlotFourDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        DZ8P A -1
+        DZ8P A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        DZ8P A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

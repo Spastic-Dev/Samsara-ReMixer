@@ -240,7 +240,12 @@ actor StormTrooper_MonsterDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        IRIF A -1
+        IRIF A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        IRIF A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -252,7 +257,12 @@ actor ImperialCommander_MonsterDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        IREP A -1
+        IREP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        IREP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -264,7 +274,12 @@ actor DarkForces_GranDrop : SamsaraSlotOneDrop
     States
     {
       Spawn:
-        IDET A -1
+        IDET A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        IDET A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -276,7 +291,12 @@ actor Trandoshan_ConcussionDrop : SamsaraSlotSixDrop
     States
     {
       Spawn:
-        ICON A -1
+        ICON A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        ICON A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

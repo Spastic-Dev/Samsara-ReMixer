@@ -1203,7 +1203,12 @@ actor Q2SGDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        Q2WP A -1
+        Q2WP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        Q2WP A 0 A_ChangeFlag("THRUACTORS",false)
+        Q2WP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -1215,7 +1220,12 @@ actor Q2ChaingunDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        Q2WP A -1
+        Q2WP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        Q2WP A 0 A_ChangeFlag("THRUACTORS",false)
+        Q2WP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

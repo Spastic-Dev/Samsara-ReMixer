@@ -144,7 +144,12 @@ actor SuperShotgun64 : SamsaraSlotThreeDrop
     States
     {
       Spawn:
-        64DB Z -1
+        64DB Z 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        64DB Z -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

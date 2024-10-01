@@ -470,7 +470,12 @@ actor PigDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        DSGP A -1
+        DSGP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        DSGP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -483,7 +488,12 @@ actor BeachPigDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        SHTP B -1
+        SHTP B 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        SHTP B -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -496,7 +506,12 @@ actor AEnforcerDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        DCCP A -1
+        DCCP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        DCCP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -509,7 +524,12 @@ actor BeachEnforcerDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        CHGP B -1
+        CHGP B 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        CHGP B -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

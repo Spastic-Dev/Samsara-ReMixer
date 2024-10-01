@@ -1439,12 +1439,17 @@ actor M2EnforcerDrop : SamsaraSlotSixDrop
     States
     {
       Spawn:
-        ENP2 A -1
+        ENP2 A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        ENP2 A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
 
       Pickup:
         TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupMarathon")
-        goto Super::Pickup
+        goto Super::Pickup // all other classes still checked
 
       PickupMarathon:
         TNT1 A 0 A_JumpIfInventory("Alien Weapon",1,1)
@@ -1470,7 +1475,7 @@ actor M2EnforcerDrop : SamsaraSlotSixDrop
         TNT1 A 0 A_GiveInventory("Alien Weapon")
         TNT1 A 0 A_GiveInventory("UnknownAmmo",50)
         TNT1 A 0 ACS_NamedExecuteAlways("SamsaraClientUniquePickup", 0, 0)
-        stop
+        goto Super::PickupSuccess
     }
 }
 
@@ -1483,12 +1488,17 @@ actor M1EnforcerDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        ENP1 A -1
+        ENP1 A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        ENP1 A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
 
       Pickup:
         TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupMarathon")
-        goto Super::Pickup
+        goto Super::Pickup // all other classes still checked
 
       PickupMarathon:
         TNT1 A 0 A_JumpIfInventory(" Alien Weapon ",1,1)
@@ -1514,7 +1524,7 @@ actor M1EnforcerDrop : SamsaraSlotFourDrop
         TNT1 A 0 A_GiveInventory(" Alien Weapon ")
         TNT1 A 0 A_GiveInventory("UnknownAmmo2",50)
         TNT1 A 0 ACS_NamedExecuteAlways("SamsaraClientUniquePickup", 0, 1)
-        stop
+        goto Super::PickupSuccess
     }
 }
 
@@ -1572,7 +1582,12 @@ actor MarathonSGDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        SHTY A -1
+        SHTY A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        SHTY A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -1585,7 +1600,12 @@ actor MarathonARDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        RIFL A -1
+        RIFL A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        RIFL A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

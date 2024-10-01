@@ -145,7 +145,12 @@ actor Chaingun64 : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        64CG Z -1
+        64CG Z 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        64CG Z -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

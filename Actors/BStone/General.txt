@@ -81,7 +81,12 @@ actor BlakeSFPDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        BWP2 A -1
+        BWP2 A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        BWP2 A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -93,7 +98,12 @@ actor BlakeRAWDrop1 : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        BWP3 A -1
+        BWP3 A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        BWP3 A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -105,7 +115,12 @@ actor BlakeRAWDrop2 : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        BWP4 A -1
+        BWP4 A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        BWP4 A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

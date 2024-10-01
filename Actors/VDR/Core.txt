@@ -26,7 +26,12 @@ actor MMRandomizer_ChainsawDrop : SamsaraSlotOneDrop
     States
     {
       Spawn:
-        WSAW A -1
+        WSAW A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WSAW A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

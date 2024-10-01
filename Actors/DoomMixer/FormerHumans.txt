@@ -7,7 +7,12 @@ actor ShotgunDrop2 : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        WSHT A -1
+        WSHT A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WSHT A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -19,7 +24,12 @@ actor SuperShotgunPickup2 : SamsaraSlotThreeDrop
     States
     {
       Spawn:
-        WSSG A -1
+        WSSG A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WSSG A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -31,7 +41,12 @@ actor ChingunDrop2: SamsaraSlotFourDrop
     States
     {
       Spawn:
-        WCGN A -1
+        WCGN A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WCGN A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

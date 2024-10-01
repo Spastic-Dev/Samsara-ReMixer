@@ -327,7 +327,12 @@ actor ChexLZDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        SHOC A -1
+        SHOC A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        SHOC A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -339,7 +344,12 @@ actor ChexRFZDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        MGUC A -1
+        MGUC A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        MGUC A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

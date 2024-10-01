@@ -32,6 +32,13 @@ actor Catacomb3D_XDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
+        CT01 A 0 Bright
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualAnim:
         CT01 ABC 8 Bright
         loop
     }
@@ -44,6 +51,13 @@ actor Catacomb3D_ZDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
+        CT01 E 0 Bright
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualAnim:
         CT01 EFG 8 Bright
         loop
     }

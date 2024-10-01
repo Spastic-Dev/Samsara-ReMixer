@@ -3884,7 +3884,12 @@ actor CultistDrop : SamsaraSlotThreeDrop
     States
     {
       Spawn:
-        BSOP A -1
+        BSOP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        BSOP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -3896,7 +3901,12 @@ actor FanaticDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        TOMP A -1
+        TOMP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        TOMP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -3908,7 +3918,12 @@ actor BloodAcolyteDrop : SamsaraSlotOneDrop
     States
     {
       Spawn:
-        CLVR S -1
+        CLVR S 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        CLVR S -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

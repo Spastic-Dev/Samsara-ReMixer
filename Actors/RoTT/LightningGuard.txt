@@ -532,7 +532,12 @@ actor HeavyGuardHeatSeeker : SamsaraSlotThreeDrop
     States
     {
       Spawn:
-        PHSE A -1
+        PHSE A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        PHSE A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -544,7 +549,12 @@ actor HeavyGuardBazooka : SamsaraSlotOneDrop
     States
     {
       Spawn:
-        PBAZ A -1
+        PBAZ A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        PBAZ A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

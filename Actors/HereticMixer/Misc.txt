@@ -88,7 +88,12 @@ actor HereticMaceDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        WMCE A -1
+        WMCE A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WMCE A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -100,7 +105,12 @@ actor HereticClawDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        WBLS A -1
+        WBLS A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WBLS A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

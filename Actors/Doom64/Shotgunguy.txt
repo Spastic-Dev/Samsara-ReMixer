@@ -144,7 +144,12 @@ actor Shotgun64 : SamsaraSlotTwoDrop
     States
     {
       Spawn:
-        64SG Z -1
+        64SG Z 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        64SG Z -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

@@ -969,6 +969,13 @@ actor HexenFrostDrop : SamsaraSlotTwoDrop
     States
     {
       Spawn:
+        WFRS A 0 Bright
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualAnim:
         WFRS ABC 8 Bright
         loop
     }
@@ -981,7 +988,12 @@ actor HexenStaffDrop : SamsaraSlotFourDrop
     States
     {
       Spawn:
-        WCSS A -1
+        WCSS A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WCSS A -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }

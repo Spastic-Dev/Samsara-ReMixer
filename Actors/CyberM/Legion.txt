@@ -106,7 +106,12 @@ actor CMLegionSlot5 : SamsaraSlotFiveDrop
     States
     {
       Spawn:
-        CMRL F -1
+        CMRL F 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        CMRL F -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
