@@ -475,9 +475,11 @@ Actor AssaultTrooperChoking : AssaultTrooper
 			ASTR I 1 A_JumpIfHealthLower(-3,"DukeGibStart")
 			Goto Death
 		Death.Explosive:
+		Death.DoomDamageTypeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
 			Goto Death
 		Death.FireExplosive:
+		Death.DoomDamageTypeFireExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
 			Goto Death
 	}
@@ -517,9 +519,11 @@ ACTOR AssaultTrooperAltFake2 : AssaultTrooper
 			ASTR I 1 A_JumpIfHealthLower(-3,"DukeGibStart")
 			Goto Death
 		Death.Explosive:
+		Death.DoomDamageTypeExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
 			Goto Death
 		Death.FireExplosive:
+		Death.DoomDamageTypeFireExplosive:
 			TNT1 A 0 A_JumpIfHealthLower(-3,"XDeath")
 			Goto Death
 	}
