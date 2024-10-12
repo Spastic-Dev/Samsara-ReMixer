@@ -7,7 +7,7 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoid
 	Speed 8
 	PainChance 170
 	Monster
-	Scale 0.7
+	Scale 0.65
 	+FLOORCLIP
 	Tag "Chaingunner"
 	Species "SamsaraChaingunGuy64"
@@ -64,8 +64,8 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoid
 		64CP H 5 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 		64CP I 5 A_Scream
 		64CP J 5 A_NoBlocking
-		64CP KLM 5
-		64CP N -1
+		64CP KL 5
+		64CP M -1
 		Stop
 	Death.CalebFire:
 	Death.LifeLeech:
@@ -82,16 +82,16 @@ ACTOR ChaingunGuy64 : SamsaraMonsterHumanoid
 		Loop
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		64CP O 5 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
-		64CP P 5 A_PlaySound("friendlyimp64/gibbed", CHAN_VOICE)
-		64CP Q 5 A_NoBlocking
-		64CP RS 5
-		64CP T -1
+		64CP N 5 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
+		64CP O 5 A_PlaySound("friendlyimp64/gibbed", CHAN_VOICE)
+		64CP P 5 A_NoBlocking
+		64PO QRST 5
+		64PO U -1
 		Stop
 	Raise:
 		64CP A 0
 		"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
-		64CP NMLKJIH 5
+		64CP MLKJIH 5
 		Goto See
 	Pain.Vertigo:
 		TNT1 A 0 ThrustThingZ(0, 55, 0, 0)
