@@ -71,12 +71,18 @@ ACTOR SpiderMastermind64 : SamsaraMonsterCyberneticBoss
 		Loop
 	Missile:
 		64SM G 20 bright A_FaceTarget
-		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
-		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
-		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
-		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
-		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
 		64SM H 4 bright A_CustomMissile("SpiderMastermind64Laser", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		TNT1 A 0 A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		64SM G 4 bright A_CustomMissile("SpiderMastermind64Laser", 32, 0, frandom(-22.5, 22.5))
 		64SM G 1 bright A_SpidRefire
 		Goto Missile+1
 	Pain:
@@ -254,15 +260,13 @@ ACTOR SpiderMastermind64 : SamsaraMonsterCyberneticBoss
 
 Actor SpiderMastermind64Laser : Doom64UnmakerAbsolutionLaser
 {
-	Speed 90
-	Damage (random(1,8)*3)
-	Obituary "$OB_SPIDER"
+    Speed 90
+    Damage 3
+    DamageType "Normal"
+    Obituary "$OB_SPIDER"
 }
 
-Actor SpiderMastermind64Laser2 : SpiderMastermind64Laser
-{
-	SeeSound ""
-}
+Actor SpiderMastermind64Laser2 : SpiderMastermind64Laser { SeeSound "" }
 
 Actor SpiderMastermind64Disintegrate : ZombiemanDisintegrate
 {
