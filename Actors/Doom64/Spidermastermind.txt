@@ -18,7 +18,7 @@ ACTOR SpiderMastermind64 : SamsaraMonsterCyberneticBoss
 	Tag "Spider Mastermind"
 	Species "SpiderMastermind64"
 	SeeSound "64spider/sight"
-	AttackSound "doom64guy/chngun"
+	AttackSound "doom64guy/unmaker"
 	PainSound "64demon/pain"
 	DeathSound "64spider/death"
 	ActiveSound "64demon/active"
@@ -71,7 +71,12 @@ ACTOR SpiderMastermind64 : SamsaraMonsterCyberneticBoss
 		Loop
 	Missile:
 		64SM G 20 bright A_FaceTarget
-		64SM H 4 bright A_CustomBulletAttack(22.5, 0, 3, random(1,5)*3, "Doom64BulletPuff", 0, CBAF_NORANDOM)
+		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		64SM H 0 bright A_CustomMissile("SpiderMastermind64Laser2", 32, 0, frandom(-22.5, 22.5))
+		64SM H 4 bright A_CustomMissile("SpiderMastermind64Laser", 32, 0, frandom(-22.5, 22.5))
 		64SM G 1 bright A_SpidRefire
 		Goto Missile+1
 	Pain:
@@ -245,6 +250,18 @@ ACTOR SpiderMastermind64 : SamsaraMonsterCyberneticBoss
 			TNT1 A -1
 			Stop
 	}
+}
+
+Actor SpiderMastermind64Laser : Doom64UnmakerAbsolutionLaser
+{
+	Speed 90
+	Damage (random(1,8)*3)
+	Obituary "$OB_SPIDER"
+}
+
+Actor SpiderMastermind64Laser2 : SpiderMastermind64Laser
+{
+	SeeSound ""
 }
 
 Actor SpiderMastermind64Disintegrate : ZombiemanDisintegrate
