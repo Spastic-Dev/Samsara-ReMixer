@@ -435,6 +435,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int skillMod = ((GameSkill() * !useSkill) + ((useSkill > 0) * (useSkill - 1))) * 3;
 	int healthMod = GetCVar("mm_healthoverride");
 	int speedMod = GetCVar("mm_speedoverride");
+	bool generatedMonster = false;
 
 	Thing_ChangeTID(0,newSpawnerTid);
 
@@ -550,7 +551,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SetActorAngle(newMonTid, GetActorAngle(0));
 
 	if(StrRight(GetActorClass(0),9)=="Generator")
-		ACS_NamedExecuteWithResult("SamsaraZScript", 1, 0);
+		generatedMonster = true;
 
 	if (!(monSlot == 6|7|8|9|14|15|16|30|31|37|38|48|51|52|66|67|68|69|70|71))
 	{
@@ -678,6 +679,14 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		if(monSlot != 15 && monSlot != 16 && monSlot != 19 && monSlot != 22 && monSlot != 23 && monSlot != 50 && monSlot != 51 && monSlot != 52 && monSlot != 66 && monSlot != 67 && monSlot != 68 && monSlot != 69 && monSlot != 70)
 		{
 			GiveActorInventory(newMonTid, "Samsara_KillMaster", 1);
+		}
+	}
+
+	if (generatedMonster == true) 
+	{
+		if(GetCvar("samsara_zscriptready") >= 1)
+		{
+			GiveActorInventory(newMonTid, "SamsaraCountKillDisabler", 1);
 		}
 	}
 
