@@ -549,6 +549,9 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SpawnForced(monster,GetActorX(0),GetActorY(0),GetActorZ(0),newMonTid);
 	SetActorAngle(newMonTid, GetActorAngle(0));
 
+	if(StrRight(GetActorClass(0),9)=="Generator")
+		ACS_NamedExecuteWithResult("SamsaraZScript", 1, 0);
+
 	if (!(monSlot == 6|7|8|9|14|15|16|30|31|37|38|48|51|52|66|67|68|69|70|71))
 	{
 		SetActivator(newSpawnerTid,AAPTR_Master);
