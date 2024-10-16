@@ -684,6 +684,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
     if (generatedMonster)
     {
+        GiveActorInventory(newMonTid, "GeneratedMonsterToken", 1);
         if (GetCVar("samsara_zscriptready") >= 1) { GiveActorInventory(newMonTid, "SamsaraCountKillDisablerZS", 1); }
         else { GiveActorInventory(newMonTid, "SamsaraCountKillDisabler", 1); }
     }
