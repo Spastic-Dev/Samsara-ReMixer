@@ -682,13 +682,11 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		}
 	}
 
-	if (generatedMonster == true) 
-	{
-		if(GetCvar("samsara_zscriptready") >= 1)
-		{
-			GiveActorInventory(newMonTid, "SamsaraCountKillDisabler", 1);
-		}
-	}
+    if (generatedMonster)
+    {
+        if (GetCVar("samsara_zscriptready") >= 1) { GiveActorInventory(newMonTid, "SamsaraCountKillDisablerZS", 1); }
+        else { GiveActorInventory(newMonTid, "SamsaraCountKillDisabler", 1); }
+    }
 
 	Thing_ChangeTID(newMonTid,oldSpawnerTid);
 }
