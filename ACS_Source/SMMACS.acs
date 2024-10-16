@@ -414,7 +414,14 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			{
 				GiveInventory("WeaponDropToken", 1);
 			}
+			break;
 
+		case 5:
+			if(CheckInventory("GeneratedMonsterToken") == 1)
+			{
+				if (GetCVar("samsara_zscriptready") >= 1) { GiveInventory("SamsaraCountKillDisablerZS", 1); }
+				else { GiveInventory("SamsaraCountKillDisabler", 1); }
+			}
 			break;
 	}
 }
