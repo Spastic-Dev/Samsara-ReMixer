@@ -1,0 +1,13 @@
+script "ZealotTeslaEffect" (void) clientside
+{
+	int effectTid = UniqueTID();
+	int missileTid = spawnMissileEffect("TeslaProjectileBall0", effectTid);
+
+	while (ClassifyActor(missileTid) & ACTOR_MISSILE)
+	{
+		Warp(missileTid,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_COPYINTERPOLATION);
+		Delay(1);
+	}
+
+	Thing_Remove(effectTid);
+}
