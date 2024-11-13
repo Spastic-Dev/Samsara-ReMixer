@@ -528,10 +528,6 @@ Actor Q2Daedalus : Q2Icarus
 		HVR3 A 0 A_SpawnItemEx("Q2DaedalusDeath", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
 		TNT1 A 0
 		stop
-	XDeath:
-		TNT1 A 0 A_PlaySound("Q2Weapons/RocketExplosion")
-		TNT1 A 0 A_SpawnItem(Q2Explosion,0,32)
-		Goto Super::XDeath
 	Raise:
 //		"----" A 0 A_GiveInventory(ResurrectedToken,1)
 		"----" A 25 A_StopSound(CHAN_BODY)
