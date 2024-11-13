@@ -370,7 +370,7 @@ Actor Q2GladiatorBetaClass : Q2Gladiator
 		Spawn2:
 			GLD0 A 0 A_SpawnItem(Q2GladiatorShieldSpawner)
 			GLD0 ABCDEFG 6 A_Look
-			Goto Spawn+1
+			Goto Spawn2+1
 		See:
 			GLD0 H 0 A_ChangeFlag(NOPAIN,0)
 			TNT1 A 0 A_SpawnItem(Q2GladiatorShieldSpawner)
@@ -394,7 +394,6 @@ Actor Q2GladiatorBetaClass : Q2Gladiator
 		Death:
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_NoBlocking
-			TNT1 A 0 A_TakeInventory(Clip)//Shields down
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)					
 			TNT1 A 0 A_KillMaster
@@ -403,7 +402,6 @@ Actor Q2GladiatorBetaClass : Q2Gladiator
 			TNT1 A -1
 			stop
 		XDeath:
-			TNT1 A 0 A_TakeInventory(Clip)//Shields down
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
 			TNT1 A 0 A_Fall
@@ -417,7 +415,7 @@ Actor Q2GladiatorBetaClass : Q2Gladiator
 			Goto See
 		Pain.ShrinkerDMG:
 			GLD2 A 0
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
+			"####" "#" 0 A_TakeInventory("SamsaraMixerQuake2ShieldActive") //Shields down
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
@@ -465,48 +463,6 @@ Actor Q2GladiatorBetaClass : Q2Gladiator
 			TNT1 A 0
 			TNT1 A 1 A_KillMaster
 			stop
-
-		// SamsaraMonsterCybernetic states
-		Death.ZorchPistol:
-		Death.Zorch:
-		Death.ZorchKamikaze:
-		Death.PhasingZorch:
-		Death.ZorchSpectral:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.Zorch
-		Death.ExpanderDMG:
-		XDeath.ExpanderDMG:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.ExpanderDMG
-		Death.ExpanderDMGCoop:
-		XDeath.ExpanderDMGCoop:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.ExpanderDMGCoop
-		Death.DukePlasma:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.DukePlasma
-		Death.RottDisintegrate:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.RottDisintegrate
-		Death.Disintegrate:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Disintegrate
-		Death.Nuke:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.Nuke
-		Death.DukeIce:
-			"####" "#" 0 A_Jump(218,"Ice")
-			"####" "#" 0 A_GiveToTarget("DukeKillTaunt",1)
-		Ice:
-		Death.HexenIce:
-		Death.WTMeleeIce:
-		Death.WTRangedIce:
-		Death.Ice:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.Ice
-		Death.DoomDamageTypeIce:
-			"####" "#" 0 A_TakeInventory(Clip)//Shields down
-			Goto Super::Death.DoomDamageTypeIce
 	}
 }
 
@@ -593,22 +549,16 @@ actor Q2GladiatorBetaClass_Shrink : Q2Gladiator_Shrink
 
 actor Q2GladiatorBetaClass_ShrinkEffect : Q2Gladiator_ShrinkEffect {}
 
-Actor Q2GladiatorShieldSpawner : BrainShieldSpawner
+actor Q2GladiatorShieldSpawner : BrainShieldSpawner
 {
-	States
-	{
-	Spawn:
-		TNT1 A 0 NoDelay A_JumpIfInTargetInventory(Clip,1,"Null")
-		TNT1 A 0 A_GiveToTarget(Clip,1)
-		TNT1 A 0 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_NOCHECKPOSITION,1)
-		Stop
-		TNT1 A 6 A_SpawnItemEx(Q2GladiatorShield,32,0,0)
-		TNT1 A 0 A_JumpIfInTargetInventory(Clip,1,1)
-		Stop
-		TNT1 A 0
-		Goto Spawn+2
-	}
+    States
+    {
+      SpawnShield:
+        TNT1 A 6 A_SpawnItemEx("Q2GladiatorShield",32)
+        goto SpawnLoopCheck
+    }
 }
+
 Actor Q2GladiatorShield : BrainShield { Species "GladiatorProj" }
 
 /*Actor Q2GladiatorShield 

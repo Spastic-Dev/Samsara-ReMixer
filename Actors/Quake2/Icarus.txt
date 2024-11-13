@@ -27,7 +27,7 @@ Actor Q2Icarus : Q2HeavyBase
 	Spawn2:
 		HVR0 A 0 A_PlaySound("Hover/Fly",CHAN_BODY,0.5,1)
 		HVR0 "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^]" 6 A_Look
-		Goto Spawn+1
+		Goto Spawn2+1
 	See:
 		HVR1 A 0 A_ChangeFlag(NOPAIN,0)
 		HVR1 "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^]" 3 A_Chase
@@ -481,9 +481,9 @@ Actor Q2Daedalus : Q2Icarus
 		HVR0 A 0 A_GiveInventory("AlreadySpawned",1)
 	Spawn2:
 		HVR0 A 0 A_PlaySound("Daedalus/Fly",CHAN_BODY,0.5,1)
-		TNT1 A 0 A_SpawnItem(DaedalusShieldSpawner)
+		HVR0 A 0 A_SpawnItem(DaedalusShieldSpawner)
 		HVR0 "ABCDEFGHIJKLMNOPQRSTUVWXYZ[^]" 6 A_Look
-		Goto Spawn+2
+		Goto Spawn2+2
 	See:
 		HVR1 A 0 A_ChangeFlag(NOPAIN,0)
 		TNT1 A 0 A_SpawnItem(DaedalusShieldSpawner)
@@ -523,7 +523,6 @@ Actor Q2Daedalus : Q2Icarus
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)						
-		TNT1 A 0 A_TakeInventory(Clip)//Shields down
 		TNT1 A 0 A_ChangeFlag(FLOATBOB,0)
 		TNT1 A 0 A_StopSound(CHAN_BODY)
 		HVR3 A 0 A_SpawnItemEx("Q2DaedalusDeath", 0, 0, 0, velx, vely, velz, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERSCALE|SXF_ABSOLUTEVELOCITY)
@@ -531,7 +530,6 @@ Actor Q2Daedalus : Q2Icarus
 		stop
 	XDeath:
 		TNT1 A 0 A_PlaySound("Q2Weapons/RocketExplosion")
-		TNT1 A 0 A_TakeInventory(Clip)//Shields down
 		TNT1 A 0 A_SpawnItem(Q2Explosion,0,32)
 		Goto Super::XDeath
 	Raise:
@@ -544,7 +542,7 @@ Actor Q2Daedalus : Q2Icarus
 		Goto Death+1	
 	Pain.ShrinkerDMG:
 		HVR2 A 0
-		"####" "#" 0 A_TakeInventory(Clip)//Shields down
+		"####" "#" 0 A_TakeInventory("SamsaraMixerQuake2ShieldActive") //Shields down
 		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
@@ -578,16 +576,6 @@ Actor Q2Daedalus : Q2Icarus
 		TNT1 A 2
 		TNT1 A 0 Thing_Remove(0)
 		stop
-
-	// SamsaraMonsterCybernetic states
-	Death.ExpanderDMG:
-	XDeath.ExpanderDMG:
-		"####" "#" 0 A_TakeInventory(Clip)//Shields down
-		Goto Super::Death.ExpanderDMG
-	Death.ExpanderDMGCoop:
-	XDeath.ExpanderDMGCoop:
-		"####" "#" 0 A_TakeInventory(Clip)//Shields down
-		Goto Super::Death.ExpanderDMGCoop
 	}
 }
 
@@ -931,22 +919,16 @@ actor Q2Daedalus_ShrinkEffect : Q2Daedalus
 	}
 }
 
-Actor DaedalusShieldSpawner : BrainShieldSpawner
+actor DaedalusShieldSpawner : BrainShieldSpawner
 {
-	States
-	{
-	Spawn:
-		TNT1 A 0 NoDelay A_JumpIfInTargetInventory(Clip,1,"Null")
-		TNT1 A 0 A_GiveToTarget(Clip,1)
-		TNT1 A 0 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_NOCHECKPOSITION,1)
-		Stop
-		TNT1 A 6 A_SpawnItemEx(DaedalusShield,32,0,0)
-		TNT1 A 0 A_JumpIfInTargetInventory(Clip,1,1)
-		Stop
-		TNT1 A 0
-		Goto Spawn+2
-	}
+    States
+    {
+      SpawnShield:
+        TNT1 A 6 A_SpawnItemEx("DaedalusShield",32)
+        goto SpawnLoopCheck
+    }
 }
+
 Actor DaedalusShield : BrainShield { Species "DaedalusProj" }
 Actor DaedalusProjectile : FastProjectile
 { 

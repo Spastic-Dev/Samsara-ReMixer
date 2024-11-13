@@ -1122,6 +1122,13 @@ Script "RemixerInvasionChecker" (void)
 Script "HeresiarchScriptTokens" (void) { SetResultValue(CheckInventory("HeresiarchScriptTokens")); }
 Script "StrifeCrusaderDeathScript" (void) { if(ThingCountName("StrifeCrusaderReplacer", 0) == 0) Floor_LowerToLowest(667, 8); }
 
+script "ReMixerTargetHealthChecker" (void)
+{
+    SetActivator(0, AAPTR_TARGET);
+
+    SetResultValue(GetActorProperty(0, APROP_Health));
+}
+
 script "ReMixerPresetSelection" (void)
 {
 	switch(GetCVar("mm_presetvalue"))
