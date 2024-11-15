@@ -116,18 +116,15 @@ actor RepairDroidMissile : EradMissile
   Speed 15
   Damage 3
   DamageType ""
-  DeathSound ""
   Scale 0.65
   States
   {
   Spawn:
-    ERAM A 10 bright A_SpawnItemEx("EradSmokeTrail",0,0,0,0)
+    ERAM A 10 Bright Light("FUCKCATROCKET__") A_SpawnItemEx("EradSmokeTrail")
     Loop
   Death:
     TNT1 A 0 A_Explode(random(5,10),100)
-    TNT1 A 0 A_SpawnITemEx("EradPlasmaExplosion1",0,0,0,0)
-    TNT1 A 5 A_PlaySound("EradMissile/Boom")
-    Stop
+    goto DeathFinish
   }
 }
 
@@ -244,12 +241,10 @@ actor RepairDroidMissile_2 : RepairDroidMissile
   States
   {
   Spawn:
-    ERAM A 10 bright A_SpawnItemEx("EradSmokeTrail",0,0,0,0)
+    ERAM A 10 Bright Light("FUCKCATROCKET__") A_SpawnItemEx("EradSmokeTrail",0,0,0,0)
     Loop
   Death:
     TNT1 A 0 A_Explode(random(15,20),120)
-    TNT1 A 0 A_SpawnITemEx("EradPlasmaExplosion1",0,0,0,0)
-    TNT1 A 5 A_PlaySound("EradMissile/Boom")
-    Stop
+    goto DeathFinish
   }
 }

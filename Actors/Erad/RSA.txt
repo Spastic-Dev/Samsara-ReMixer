@@ -376,9 +376,7 @@ actor RSARocket : RepairDroidMissile
     Loop
   Death:
     TNT1 A 0 A_Explode(random(20,30)/Random(1,2),130)
-    TNT1 A 0 A_SpawnITemEx("EradPlasmaExplosion1",0,0,0,0)
-    TNT1 A 5 A_PlaySound("EradMissile/Boom")
-    Stop
+    goto DeathFinish
   }
 }
 
@@ -389,9 +387,7 @@ Actor RSARocket_2 : RSARocket
   {
   Death:
     TNT1 A 0 A_Explode(random(10,40)/Random(1,2),130)
-    TNT1 A 0 A_SpawnITemEx("EradPlasmaExplosion1",0,0,0,0)
-    TNT1 A 5 A_PlaySound("EradMissile/Boom")
-    Stop
+    goto DeathFinish
   }
 }
 
