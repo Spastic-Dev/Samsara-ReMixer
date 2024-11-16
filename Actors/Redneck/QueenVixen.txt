@@ -18,17 +18,19 @@ Actor QueenVixen : SamsaraMonsterHumanoidBoss
 	Species "RedneckEnemies"
 	Tag "Queen Vixen"
 	+BOSS
+	+BOSSDEATH
 	+DONTMORPH
 	+DONTRIP
-	+BOSSDEATH
 	+FLOORCLIP
-	+MISSILEMORE
-	+NODAMAGE
-	+NOPAIN
+    +INVULNERABLE
 	+MISSILEEVENMORE
-	+STRIFEDAMAGE
-	+NOINFIGHTING
+	+MISSILEMORE
 	+NOBLOODDECALS
+	+NODAMAGE
+	+NOINFIGHTING
+	+NOPAIN
+    +NOTIMEFREEZE
+	+STRIFEDAMAGE
 	PainChance 25
 	DropItem " Alien Bra Gun Drop ",128,1
 	BloodType "LeonardBlood_RR"
@@ -71,162 +73,154 @@ Actor QueenVixen : SamsaraMonsterHumanoidBoss
 	PainChance "ShrinkerDMG", 0
 	States
 	{
-	Spawn:
+	  Spawn:
 		VIX7 E 0
-		VIX7 E 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-		VIX7 E 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
-		VIX7 E 0 A_GiveInventory("AlreadySpawned",1)
-	Spawn2:
-		//TNT1 A 0 A_Jump(256,"STOPFROMTALKING") no u
-		TNT1 A 0 A_SetTranslucent(0,0)
-		TNT1 A 80
-		TNT1 A 0 ACS_NamedExecuteAlways("SamsaraBossMonologue",0,23)
-		VIX7 A 0 A_SetTranslucent(0.1,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.2,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.3,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.4,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.5,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.6,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.7,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.8,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 A 0 A_SetTranslucent(0.9,0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0)
-		VIX7 EEEEEEEEEEEEEE 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0)
-		VIX7 E 140 A_SetTranslucent(1,0)
-		VIX7 E 100
-		TNT1 A 0 A_SetShootable
-		TNT1 A 0 A_SetSolid
-		TNT1 A 0 A_ChangeFlag(NODAMAGE,0)
-		TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-		VIX7 E 5 A_Look
-		Wait
-	Idle:
-		TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
-		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-		TNT1 A 0 A_TakeInventory("QueenVixenJumpKick",1)
-		TNT1 A 0 A_SetTranslucent(1,0)
-		TNT1 A 0 A_SetShootable
-		Goto IdleLoop
-	IdleLoop:
-		TNT1 A 0 A_JumpIfInventory("VixenTaunt",1,2)
-		VIX7 E 4 A_Look
-		Loop
-		VIX7 IJKL 3 A_Look
-		TNT1 A 0 A_PlaySound("Vixen/Laugh")
-		VIX7 MNO 3 A_Look
-		VIX7 IJKLMNO 3 A_Look
-		TNT1 A 0 A_TakeInventory("VixenTaunt",1)
-		VIX7 IJKLMNO 3 A_Look
-		VIX7 IJKLMNO 3 A_Look
-		Loop
+		TNT1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		TNT1 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		TNT1 A 0 A_GiveInventory("AlreadySpawned",1)
+      Spawn2:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossMonologue", 23)
+        goto Idle
+
+      SpawnMonologue:
+        VIX7 E 80 A_SetTranslucent(0)
+        TNT1 A 0 A_SetTranslucent(0.1)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.2)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.3)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.4)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.5)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.6)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.7)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.8)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(0.9)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        VIX7 EEEEEEEEEEEEEE 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        TNT1 A 0 A_SetTranslucent(1)
+        TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        VIX7 EEE 140 // for extra dialogue
+        VIX7 E 100
+        goto Idle
+
+      Idle:
+        TNT1 A 0 A_GiveInventory("SamsaraBossMonologueFlagsDisabler")
+        TNT1 A 0 A_TakeInventory("QueenVixenJumpKick")
+        TNT1 A 0 A_SetShootable
+      IdleLoop:
+        TNT1 A 0 A_JumpIfInventory("VixenTaunt",1,2)
+        VIX7 E 4 A_Look
+        loop
+        VIX7 IJKL 3 A_Look
+        TNT1 A 0 A_PlaySound("Vixen/Laugh")
+        VIX7 MNO 3 A_Look
+        VIX7 IJKLMNO 3 A_Look
+        TNT1 A 0 A_TakeInventory("VixenTaunt")
+        VIX7 IJKLMNO 3 A_Look
+        VIX7 IJKLMNO 3 A_Look
+        loop
+
 	See:
+		TNT1 A 0 A_GiveInventory("SamsaraBossMonologueFlagsDisabler")
 		TNT1 A 0 A_GiveInventory("SamsaraBossSightTaunt")
 	OhFuckMe:
 		TNT1 A 0 A_GiveInventory("VixenTaunt",1)

@@ -8,13 +8,15 @@ Actor Shub-Niggurath : SamsaraMonsterDemonicBoss {
     Species "QuakeEnemies"	
 	+BOSS
 	+BOSSDEATH
-	+NOPAIN
+	+DONTGIB
+	+FLOORCLIP
+    +INVULNERABLE
+	+MISSILEEVENMORE
+	+MISSILEMORE
 	+NODAMAGE
 	+NOINFIGHTING
-	+FLOORCLIP
-	+MISSILEMORE
-	+MISSILEEVENMORE
-	+DONTGIB
+	+NOPAIN // always on
+    +NOTIMEFREEZE
 	SeeSound "Shub-N/See"
 	ActiveSound "Shub-N/Act"
 	DeathSound "Shub-N/Die"
@@ -54,143 +56,143 @@ Actor Shub-Niggurath : SamsaraMonsterDemonicBoss {
 	PainChance "ShrinkerDMG", 0
 	BloodType "Quake_NewParticles"
 	States {
-		Spawn:
-			SHBN A 0
-			SHBN A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
-			SHBN A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
-			SHBN A 0 A_GiveInventory("AlreadySpawned",1)
-	    Spawn2:
-			TNT1 A 0 A_SetTranslucent(0,0)
-			TNT1 A 80
-			TNT1 A 0 ACS_NamedExecuteAlways("SamsaraBossMonologue",0,10)
-			SHBN A 0 A_SetTranslucent(0.1,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.2,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.3,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.4,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.5,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.6,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.7,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.8,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			SHBN A 0 A_SetTranslucent(0.9,0)
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, random(1,4), 0, 129, 0)  
-			//TNT1 A 0 A_PlaySoundEx("dsparilserpent/active","SoundSlot5",0,2)
-			SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
-			SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx ("StarSparkle", random(-32, 32), random(-32,32), random(0, 8), 0, 0, 4, 0, 129, 0) 
-			SHBN A 140 A_SetTranslucent(1,0)
-			//TNT1 A 0 A_PlaySoundEx("dsparil/active","SoundSlot5",0,2)
-			SHBN A 100
-			TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
-			//TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-			SHBN A 1 A_Look
-			wait
-		Idle:
-			TNT1 A 0 A_SetTranslucent(1,0)
-			TNT1 A 0 A_ChangeFlag("NODAMAGE",0)
-			SHBN ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 A_Look
-			SHB2 ABCDEFGHIJKLMNOPQRST 4 A_Look
-			Loop		
+	  Spawn:
+		SHBN A 0
+		TNT1 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		TNT1 A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		TNT1 A 0 A_GiveInventory("AlreadySpawned",1)
+      Spawn2:
+        TNT1 A 0 ACS_NamedExecuteWithResult("SamsaraBossMonologue", 10)
+        goto Idle
+
+      SpawnMonologue:
+        SHBN A 80 A_SetTranslucent(0)
+        SHBN A 0 A_SetTranslucent(0.1)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.2)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.3)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.4)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.5)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.6)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.7)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.8)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(0.9)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 1 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,random(1,4),0,SXF_CLIENTSIDE)
+        SHBN A 0 A_SetTranslucent(1)
+        SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        SHBN AAAAAAAAAAAAAA 0 A_SpawnItemEx("StarSparkle",random(-32,32),random(-32,32),random(0,8),0,0,4,0,SXF_CLIENTSIDE)
+        SHBN A 100 // no message, but keep the delay in at the very least
+        goto Idle
+
+      Idle:
+        SHBN A 0 A_GiveInventory("SamsaraBossMonologueFlagsDisablerShubNiggurath")
+      IdleLoop:
+        SHBN ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 A_Look
+        SHB2 ABCDEFGHIJKLMNOPQRST 4 A_Look
+        loop
+
 		See:
+			TNT1 A 0 A_GiveInventory("SamsaraBossMonologueFlagsDisablerShubNiggurath")
 			TNT1 A 0 A_GiveInventory("SamsaraBossSightTaunt")
 	    See2:		
 			SHBN ABCDEFGHIJKLMNOPQRSTUVWXYZ 4 A_Chase
@@ -280,3 +282,17 @@ Actor Shambler__2 : Shambler { +THRUSPECIES Tag "Shambler" }
 Actor QScrag__2 : QScrag { +THRUSPECIES Tag "Scrag" }
 Actor QZombie__2 : QZombie { +THRUSPECIES Tag "Zombie" }
 Actor QFiend__2 : QFiend { +THRUSPECIES Tag "Fiend" }
+
+actor SamsaraBossMonologueFlagsDisablerShubNiggurath : Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_JumpIfInventory("SamsaraBossMonologueFlagsDisabled",1,"PickupStop")
+        TNT1 A 0 A_ChangeFlag("INVULNERABLE",false)
+        TNT1 A 0 A_ChangeFlag("NODAMAGE",false)
+        TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE",false)
+        TNT1 A 0 A_GiveInventory("SamsaraBossMonologueFlagsDisabled")
+        stop
+    }
+}

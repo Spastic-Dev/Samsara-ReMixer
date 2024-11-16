@@ -20,14 +20,8 @@ Actor Hexen2Famine : Hexen2BossBase
 			HX03 A 2 A_Look
 			Loop
 		See:
-			TNT1 A 0 A_JumpIfInventory("SawPlayer", 1, "Chase")
-			TNT1 A 0 A_GiveInventory("SawPlayer", 1)		
-			TNT1 A 0 A_GiveToTarget("EleenaBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LoWangBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("LeonardBossSightTaunt")					
-			TNT1 A 0 A_GiveToTarget("DukeBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("CalebBossSightTaunt")
-			TNT1 A 0 A_GiveToTarget("HLBossSightMusicQueue")
+			TNT1 A 0 A_JumpIfInventory("SamsaraBossSighted",1,"Chase")
+			TNT1 A 0 A_GiveInventory("SamsaraBossSightTaunt")
 			Goto Chase+7
 	/*	See2:	
 			HX00 ABCDEFGH 2
