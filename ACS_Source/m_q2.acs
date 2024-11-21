@@ -97,7 +97,9 @@ str Q2ItemsArray[Q2MaxEnemies] =
 
 Script "Quake2_Enemy" (void)
 {
-	if(!GetCvar("samsara_zscriptready"))
+    bool GZDoom = GetCVar("samsara_zscriptready") == 2;
+
+	if(!GZDoom)
 		terminate;
 	while(ClassifyActor(0) & ACTOR_Alive)
 	{
