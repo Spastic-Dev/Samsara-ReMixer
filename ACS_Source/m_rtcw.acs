@@ -367,7 +367,7 @@ Str RTCWPartsCacheArray[12][RTCWMaxParts] =
 
 Script "RTCWPartsCacher" (void)
 {
-	if(GetCvar("samsara_zscriptready"))
+	if(GetCvar("samsara_zscriptready") >= 1)
 	{
 		int newTid = UniqueTid();
 		for(int i = 0; i < RTCWMaxParts; i++)
