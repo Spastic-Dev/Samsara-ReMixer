@@ -32,6 +32,9 @@
 Use Goldeneye_GrenadeThrower Token for enemies who throw grenades
 */
 
+Actor Goldeneye_BodyPart : Counter {}
+Actor Goldeneye_HeadPart : Counter {}
+
 Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 {
 	Radius 14
@@ -66,71 +69,70 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 	States
 	{
 		Spawn:
-			TNT1 AA 0 A_UnsetShootable
-			TNT1 A 2
+			GE00 AA 0 A_UnsetShootable
+			GE00 A 0 ACS_NamedExecuteWithResult("GoldeneyeUpdateAppearance")
+			GE00 A 2
 		Spawn2:
-			//TNT1 A 0 A_JumpIf(mass == 1000, "AnimationTest")
-			TNT1 A 0 A_SetShootable
-			TNT1 A 0 A_JumpIf(mass <= 205||mass == 207||mass == 208||mass == 210||mass == 212||mass == 214||mass == 216||mass == 219||mass == 220||mass == 222||mass >=224, "SpawnDual")
-			TNT1 A 0 A_Jump(36, "Walking")
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_Spawn2",1)
-			TNT1 A 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 G 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 H 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 I 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 J 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 J 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 I 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 H 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 G 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
-			TNT1 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 
-			TNT1 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") TNT1 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 A 0 ACS_NamedExecuteWithResult("GoldeneyePartBroadcast",1)
+			GE00 A 0 A_SetShootable
+			GE00 A 0 //A_JumpIf(mass <= 205||mass == 207||mass == 208||mass == 210||mass == 212||mass == 214||mass == 216||mass == 219||mass == 220||mass == 222||mass >=224, "SpawnDual")
+			GE00 A 0 A_Jump(36, "Walking")
+			GE00 A 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 B 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 C 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 D 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 E 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 F 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 G 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 G 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 H 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 H 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 I 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 I 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 J 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 J 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 I 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 I 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 H 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 H 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 G 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 G 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 F 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 E 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 D 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
+			GE00 C 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 
+			GE00 B 6 //A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0
 			Loop
 		Walking:
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_Walking",1)
-			TNT1 A 6 A_Wander TNT1 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 B 6 A_Wander TNT1 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 C 6 A_Wander TNT1 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 D 6 A_Wander TNT1 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 E 6 A_Wander TNT1 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 F 6 A_Wander TNT1 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 G 6 A_Wander TNT1 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 H 6 A_Wander TNT1 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 I 6 A_Wander  TNT1 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
-			TNT1 J 6 A_Wander TNT1 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 A 0 ACS_NamedExecuteWithResult("GoldeneyePartBroadcast2",119)
+			GE06 A 6 A_Wander //GE06 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 B 6 A_Wander //GE06 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 C 6 A_Wander //GE06 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 D 6 A_Wander //GE06 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 E 6 A_Wander //GE06 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 F 6 A_Wander //GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 G 6 A_Wander //GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 H 6 A_Wander //GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 I 6 A_Wander //GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
+			GE06 J 6 A_Wander //GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-1)
 			Loop			
 		SpawnDual:
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_SpawnDual",1)
-			TNT1 A 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 B 0
-			TNT1 B 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 C 0
-			TNT1 C 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 D 0
-			TNT1 D 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 E 0
-			TNT1 E 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 F 0
-			TNT1 F 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 G 0
-			TNT1 G 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 H 0
-			TNT1 H 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 I 0
-			TNT1 J 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 K 0
-			TNT1 K 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 L 0
-			TNT1 L 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 M 0
-			TNT1 M 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 L 0
-			TNT1 L 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 K 0
-			TNT1 K 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 J 0
-			TNT1 J 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 I 0
-			TNT1 I 6  A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 H 0
-			TNT1 H 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 G 0
-			TNT1 G 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 F 0
-			TNT1 F 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 E 0
-			TNT1 E 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 D 0
-			TNT1 D 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 C 0
-			TNT1 C 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 B 0
-			TNT1 B 6 A_LookEx(0, 0, 0, 0, 180, "See")	TNT1 A 0
+			GE84 A 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 B 0
+			GE84 B 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 C 0
+			GE84 C 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 D 0
+			GE84 D 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 E 0
+			GE84 E 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 F 0
+			GE84 F 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 G 0
+			GE84 G 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 H 0
+			GE84 H 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 I 0
+			GE84 J 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 K 0
+			GE84 K 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 L 0
+			GE84 L 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 M 0
+			GE84 M 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 L 0
+			GE84 L 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 K 0
+			GE84 K 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 J 0
+			GE84 J 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 I 0
+			GE84 I 6  A_LookEx(0, 0, 0, 0, 180, "See")	GE84 H 0
+			GE84 H 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 G 0
+			GE84 G 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 F 0
+			GE84 F 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 E 0
+			GE84 E 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 D 0
+			GE84 D 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 C 0
+			GE84 C 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 B 0
+			GE84 B 6 A_LookEx(0, 0, 0, 0, 180, "See")	GE84 A 0
 			Loop
 		IdleAdjustCrotch:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_IdleAdjustCrotch",1)
