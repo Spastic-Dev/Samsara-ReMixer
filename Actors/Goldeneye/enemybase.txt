@@ -70,10 +70,10 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 	{
 		Spawn:
 			GE00 AA 0 A_UnsetShootable
-			GE00 A 0 ACS_NamedExecuteWithResult("GoldeneyeUpdateAppearance")
 			GE00 A 2
 		Spawn2:
 			GE00 A 0 ACS_NamedExecuteWithResult("GoldeneyePartBroadcast",1)
+			GE00 A 0 ACS_NamedExecuteWithResult("GoldeneyeUpdateAppearance") //This has to be called once
 			GE00 A 0 A_SetShootable
 			GE00 A 0 //A_JumpIf(mass <= 205||mass == 207||mass == 208||mass == 210||mass == 212||mass == 214||mass == 216||mass == 219||mass == 220||mass == 222||mass >=224, "SpawnDual")
 			GE00 A 0 A_Jump(36, "Walking")
