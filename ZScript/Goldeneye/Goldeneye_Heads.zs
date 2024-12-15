@@ -6,6 +6,11 @@ Class Goldeneye_Head_Alan : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","alan.iqm");
+				
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -19,6 +24,11 @@ Class Goldeneye_Head_B : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","b.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -32,6 +42,11 @@ Class Goldeneye_Head_Chris : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","chris.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",5,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -45,6 +60,10 @@ Class Goldeneye_Head_Dave : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","dave.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -58,6 +77,10 @@ Class Goldeneye_Head_Des : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","des.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -71,6 +94,11 @@ Class Goldeneye_Head_Duncan : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","duncan.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -84,6 +112,11 @@ Class Goldeneye_Head_Dwayne : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","dwayne.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",2,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -97,6 +130,10 @@ Class Goldeneye_Head_Graeme : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","graeme.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -110,6 +147,10 @@ Class Goldeneye_Head_Grant : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","grant.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -123,6 +164,10 @@ Class Goldeneye_Head_Jim : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","jim.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -136,6 +181,10 @@ Class Goldeneye_Head_Joe : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","joe.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -162,6 +211,10 @@ Class Goldeneye_Head_Joel : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","joel.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -175,6 +228,11 @@ Class Goldeneye_Head_Karl : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","Karl.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",5,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -188,6 +246,11 @@ Class Goldeneye_Head_Ken : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","ken.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -201,6 +264,11 @@ Class Goldeneye_Head_Lee : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","lee.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -240,6 +308,11 @@ Class Goldeneye_Head_Mark : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","mark.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -253,6 +326,11 @@ Class Goldeneye_Head_Martin : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","martin.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",5,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -266,6 +344,10 @@ Class Goldeneye_Head_Neil : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","neil.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -279,6 +361,10 @@ Class Goldeneye_Head_Pete : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","pete.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -292,6 +378,10 @@ Class Goldeneye_Head_Robin : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","robin.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -318,6 +408,11 @@ Class Goldeneye_Head_Scott : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","scott.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+					A_ChangeModel("",2,"","",4,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -331,6 +426,10 @@ Class Goldeneye_Head_Shaun : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","shaun.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -344,6 +443,10 @@ Class Goldeneye_Head_Stevee : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","stevee.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}
@@ -357,6 +460,10 @@ Class Goldeneye_Head_Steveh : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",2,"Models/Goldeneye/Heads","Steveh.iqm");
+				if(!CheckInventory("Goldeneye_GlassesPart",1))
+				{
+					A_ChangeModel("",2,"","",3,"Models/Goldeneye","noskin.png",CMDL_USESURFACESKIN);
+				}
 			}
 			Stop;
 	}

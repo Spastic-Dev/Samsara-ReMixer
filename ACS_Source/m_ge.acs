@@ -94,17 +94,8 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 		elitechance = ec; 
 		int eliterand = random(0,100);
 		if(elitechance > eliterand)
-			glasses = "_Shades";
-		else if(elitechance != -1)
-			glasses = "_NoShades";
-		else
-			glasses = "";			
+			GiveInventory("Goldeneye_GlassesPart",1);		
 		int randomhead = random(0,24);
-		if(HeadTypes[randomhead] == "Joe2")
-			glasses = "";
-		//SpawnForced(StrParam(s:"Goldeneye_",s:HeadTypes[randomhead],s:glasses),0,0,0,headtid);
-		//SetActivator(headtid,AAPTR_DEFAULT);
-		//SetPointer(AAPTR_MASTER,newtid);	
 		
 		GiveInventory("Goldeneye_HeadPart",randomhead+1);
 	}
@@ -910,25 +901,25 @@ Script "GoldeneyePartBroadcast" (int state)
 			GiveInventory("Goldeneye_Animation_Spawn2",1);
 			break;
 		case 2:
-			SetActorState(0,"SeeTwoHand",true);
+			GiveInventory("Goldeneye_Animation_SeeTwoHand",1);
 			break;
 		case 3:
-			SetActorState(0,"SpawnDual",true);
+			GiveInventory("Goldeneye_Animation_SpawnDual",1);
 			break;
 		case 4:
-			SetActorState(0,"IdleAdjustCrotch",true);
+			GiveInventory("Goldeneye_Animation_IdleAdjustCrotch",1);
 			break;
 		case 5:
-			SetActorState(0,"IdleScratchButt",true);
+			GiveInventory("Goldeneye_Animation_IdleScratchButt",1);
 			break;
 		case 6:
-			SetActorState(0,"IdleScratchLeg",true);
+			GiveInventory("Goldeneye_Animation_IdleScratchLeg",1);
 			break;
 		case 7:
-			SetActorState(0,"IdleYawning",true);
+			GiveInventory("Goldeneye_Animation_IdleYawning",1);
 			break;
 		case 8:
-			SetActorState(0,"IdleSwatFlies",true);
+			GiveInventory("Goldeneye_Animation_IdleSwatFlies",1);
 			break;
 		case 9:
 			SetActorState(0,"SeeSingleDual",true);
