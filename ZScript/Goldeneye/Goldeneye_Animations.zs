@@ -67,6 +67,7 @@ Class Goldeneye_Animation_IdleScratchLeg : CustomInventory
 			Stop;
 	}
 }
+
 Class Goldeneye_Animation_IdleYawning : CustomInventory
 {
 	States
@@ -76,12 +77,33 @@ Class Goldeneye_Animation_IdleYawning : CustomInventory
 			Stop;
 	}
 }
+
 Class Goldeneye_Animation_IdleSwatFlies : CustomInventory
 {
 	States
 	{
 		Pickup:	
 			TNT1 A 0 SetAnimation('idleswatflies_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_SeeSingleDual : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('runwithgun_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_SprintSingleDual : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('sprintgun_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
 			Stop;
 	}
 }
