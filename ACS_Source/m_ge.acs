@@ -110,16 +110,13 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	switch(type)
 	{
 		case 1:	
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[6]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);		
 			randnum = random(0,100);
 			if(randnum >= 50) 
-				hattype = 6;
-			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
-			SetActivator(hattid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			
+				GiveInventory("Goldeneye_HatPart",7);
+		
+			GiveInventory("Goldeneye_BodyPart",7);
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			/*
 			guntype = 5;
 			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
 			SetActivator(guntid,AAPTR_DEFAULT);
@@ -133,7 +130,7 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			Thing_ChangeTID(headtid,0);
 			Thing_ChangeTID(hattid,0);
 			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
+			Thing_ChangeTID(newtid,activator);*/
 			break;
 		case 2:	
 			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[5]),0,0,0,bodytid);
@@ -414,6 +411,10 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SetActivator(guntid,AAPTR_DEFAULT);
 			SetPointer(AAPTR_MASTER,newtid);
 			SetActivator(0,AAPTR_Master);*/
+			
+			randnum = random(0,100);
+			if(randnum >= 50) 
+				GiveInventory("Goldeneye_HatPart",2);
 			
 			GiveInventory("Goldeneye_BodyPart",1);
 			
@@ -891,6 +892,7 @@ Script "GoldeneyeUpdateAppearance" (void)
 {
 	GiveInventory(strparam(s:"Goldeneye_Body_",s:GuardTypes[CheckInventory("Goldeneye_BodyPart")-1]),1);
 	GiveInventory(strparam(s:"Goldeneye_Head_",s:HeadTypes[CheckInventory("Goldeneye_HeadPart")-1]),1);
+	GiveInventory(strparam(s:"Goldeneye_Hat_",s:HatTypes[CheckInventory("Goldeneye_HatPart")-1]),1);
 }
 
 Script "GoldeneyePartBroadcast" (int state)

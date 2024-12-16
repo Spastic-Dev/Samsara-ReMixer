@@ -6,9 +6,10 @@ Actor Goldeneye_GreatGuard2 : Goldeneye_EnemyBase
 	{
 		Spawn:
 			GE00 AA 0 A_UnsetShootable
-			GE00 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyPartsPicker",0,1)
+			GE00 A 0 A_ChangeFlag("DECOUPLEDANIMATIONS",true)
+			GE00 A 0 ACS_NamedExecuteWithResult("GoldeneyeEnemyPartsPicker",1)
 			TNT1 A 2
-			TNT1 A 0 ACS_NamedExecuteWithResult("GoldeneyeEnemyLoop")
+			//TNT1 A 0 ACS_NamedExecuteWithResult("GoldeneyeEnemyLoop")
 			TNT1 A 0 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
 			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
 			TNT1 A 0 A_GiveInventory("AlreadySpawned",1)
