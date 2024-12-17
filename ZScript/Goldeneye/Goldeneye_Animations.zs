@@ -43,7 +43,7 @@ Class Goldeneye_Animation_IdleAdjustCrotch : CustomInventory
 	States
 	{
 		Pickup:	
-			TNT1 A 0 SetAnimation('idleadjustcrotch_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
+			TNT1 A 0 SetAnimation('idleadjustcrotch_mainsequence', flags: SAF_NOOVERRIDE);
 			Stop;
 	}
 }
@@ -53,7 +53,7 @@ Class Goldeneye_Animation_IdleScratchButt : CustomInventory
 	States
 	{
 		Pickup:	
-			TNT1 A 0 SetAnimation('idlescratchbutt_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
+			TNT1 A 0 SetAnimation('idlescratchbutt_mainsequence', flags: SAF_NOOVERRIDE);
 			Stop;
 	}
 }
@@ -63,7 +63,7 @@ Class Goldeneye_Animation_IdleScratchLeg : CustomInventory
 	States
 	{
 		Pickup:	
-			TNT1 A 0 SetAnimation('idlescratchleg_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
+			TNT1 A 0 SetAnimation('idlescratchleg_mainsequence', flags: SAF_NOOVERRIDE);
 			Stop;
 	}
 }
@@ -73,7 +73,7 @@ Class Goldeneye_Animation_IdleYawning : CustomInventory
 	States
 	{
 		Pickup:	
-			TNT1 A 0 SetAnimation('idleyawning_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
+			TNT1 A 0 SetAnimation('idleyawning_mainsequence', flags: SAF_NOOVERRIDE);
 			Stop;
 	}
 }
@@ -83,7 +83,7 @@ Class Goldeneye_Animation_IdleSwatFlies : CustomInventory
 	States
 	{
 		Pickup:	
-			TNT1 A 0 SetAnimation('idleswatflies_mainsequence', flags: SAF_LOOP|SAF_NOOVERRIDE);
+			TNT1 A 0 SetAnimation('idleswatflies_mainsequence', flags: SAF_NOOVERRIDE);
 			Stop;
 	}
 }

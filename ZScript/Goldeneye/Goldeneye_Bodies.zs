@@ -24,7 +24,7 @@ Class Goldeneye_Body_GreatGuard2 : CustomInventory
 	}
 }
 
-/*
+
 Class Goldeneye_Body_BlueCamGuard : CustomInventory
 {
 	States
@@ -271,4 +271,3 @@ Class Goldeneye_Body_Xenia : CustomInventory
 			Stop;
 	}
 }
-*/
