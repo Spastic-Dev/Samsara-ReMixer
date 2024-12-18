@@ -107,3 +107,33 @@ Class Goldeneye_Animation_SprintSingleDual : CustomInventory
 			Stop;
 	}
 }
+
+Class Goldeneye_Animation_FireStepForward : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('firestepforward_mainsequence');
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_FireStepForwardLoop : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('firestepforward_mainsequence', startFrame: 22);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_FireStepForwardEnd : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('firestepforward_mainsequence', framerate: 25, startFrame: 47);
+			Stop;
+	}
+}

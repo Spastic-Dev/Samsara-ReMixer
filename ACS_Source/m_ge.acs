@@ -859,6 +859,13 @@ Script "GoldeneyeUpdateAppearance" (void)
 	GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
 }
 
+Script "GoldeneyeDrawEnemyFlash" (void)
+{
+	GiveInventory(strparam(s:"Goldeneye_Flash_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+	Delay(2);
+	GiveInventory("Goldeneye_Flash_Clear", 1);
+}
+
 Script "GoldeneyePartBroadcast" (int state)
 {
 	switch(state)
@@ -891,19 +898,19 @@ Script "GoldeneyePartBroadcast" (int state)
 			GiveInventory("Goldeneye_Animation_SeeSingleDual",1);
 			break;
 		case 10:
-			SetActorState(0,"Pain.Neck",true);
+			GiveInventory("Goldeneye_Animation_Walking",1);
 			break;
 		case 11:
-			SetActorState(0,"Pain.LeftShoulder",true);
+			GiveInventory("Goldeneye_Animation_SprintSingleDual",1);
 			break;
 		case 12:
-			SetActorState(0,"Pain.RightShoulder",true);
+			GiveInventory("Goldeneye_Animation_FireStepForward",1);
 			break;
 		case 13:
-			SetActorState(0,"Pain.LeftArm",true);
+			GiveInventory("Goldeneye_Animation_FireStepForwardLoop",1);
 			break;
 		case 14:
-			SetActorState(0,"Pain.RightArm",true);
+			GiveInventory("Goldeneye_Animation_FireStepForwardEnd",1);
 			break;
 		case 15:
 			SetActorState(0,"Pain.LeftHand",true);
@@ -1182,7 +1189,7 @@ Script "GoldeneyePartBroadcast" (int state)
 			SetActorState(0,"FireSniperCrouch",true);
 			break;		
 		case 107:
-			GiveInventory("Goldeneye_Animation_SprintSingleDual",1);
+			
 			break;		
 		case 108:
 			SetActorState(0,"FireSniperJumpToRight",true);
@@ -1249,382 +1256,6 @@ Script "GoldeneyePartBroadcast" (int state)
 			break;			
 	}
 }
-
-Script "GoldeneyePartBroadcast2" (int State) // yeah, it needed a sequel
-{
-	switch(state)
-	{
-		case 1:
-			SetActorState(0,"FireKlobbDualWalk",true);
-			break;	
-		case 2:
-			SetActorState(0,"FireDD44DualWalk",true);
-			break;	
-		case 3:
-			SetActorState(0,"FireDD44DualWalkEnd",true);
-			break;	
-		case 4:
-			SetActorState(0,"FireZMGDualWalk",true);
-			break;	
-		case 5:
-			SetActorState(0,"FireD5KDualWalk",true);
-			break;	
-		case 6:
-			SetActorState(0,"FirePhantomDualWalk",true);
-			break;	
-		case 7:
-			SetActorState(0,"FireRCP90AimBow",true);
-			break;		
-		case 8:
-			SetActorState(0,"FireRCP90AimHip",true);
-			break;	
-		case 9:
-			SetActorState(0,"FireRCP90AimToFire",true);
-			break;	
-		case 10:
-			SetActorState(0,"FireRCP90Crouch",true);
-			break;	
-		case 11:
-			SetActorState(0,"FireRCP90JumpToRight",true);
-			break;	
-		case 12:
-			SetActorState(0,"FireRCP90JumpToLeft",true);
-			break;	
-		case 13:
-			SetActorState(0,"FireRCP90RollRight",true);
-			break;	
-		case 14:
-			SetActorState(0,"FireRCP90RollLeft",true);
-			break;	
-		case 15:
-			SetActorState(0,"FireRCP90Run",true);
-			break;		
-		case 16:
-			SetActorState(0,"ThrowHat",true);
-			break;		
-		case 17:
-			SetActorState(0,"FireAR33StepForward",true);
-			break;
-		case 18:
-			SetActorState(0,"FireAR33Kneel",true);
-			break;		
-		case 19:
-			SetActorState(0,"FireAR33DualStand",true);
-			break;	
-		case 20:
-			SetActorState(0,"FireAR33DualKneel",true);
-			break;
-		case 21:
-			SetActorState(0,"FireAR33DualCrossKneel",true);
-			break;		
-		case 22:
-			SetActorState(0,"FireAR33DualWalk",true);
-			break;	
-		case 23:
-			SetActorState(0,"FireLaserStepForward",true);
-			break;	
-		case 24:
-			SetActorState(0,"FireLaserStepForwardEnd",true);
-			break;		
-		case 25:
-			SetActorState(0,"FireLaserDualStand",true);
-			break;		
-		case 26:
-			SetActorState(0,"FireLaserDualKneel",true);
-			break;	
-		case 27:
-			SetActorState(0,"FireLaserDualCrossKneel",true);
-			break;
-		case 28:
-			SetActorState(0,"FireLaserDualWalk",true);
-			break;	
-		case 29:
-			SetActorState(0,"SamediDeathFaceGround",true);
-			break;	
-		case 30:
-			SetActorState(0,"SpawnSamedi",true);
-			break;	
-		case 31:
-			SetActorState(0,"FireRocketLauncherStepForward",true);
-			break;	
-		case 32:
-			SetActorState(0,"FireRocketLauncherKneel",true);
-			break;	
-		case 33:
-			SetActorState(0,"FireSniperAimBowEnd",true);
-			break;		
-		case 34:
-			SetActorState(0,"FireSniperAimHipEnd",true);
-			break;	
-		case 35:
-			SetActorState(0,"FireSniperAimToFireEnd",true);
-			break;	
-		case 36:
-			SetActorState(0,"FireSniperCrouchEnd",true);
-			break;	
-		case 37:
-			SetActorState(0,"FireSniperJumpToLeftEnd",true);
-			break;			
-		case 38:
-			SetActorState(0,"FireSniperRollLeftEnd",true);
-			break;			
-		case 39:
-			SetActorState(0,"FireSniperRollRightEnd",true);
-			break;
-		case 40:
-			SetActorState(0,"FireSniperRunEnd",true);
-			break;
-		case 41:
-			SetActorState(0,"FireAutoShotgunAimBow",true);
-			break;	
-		case 42:
-			SetActorState(0,"FireAutoShotgunAimHip",true);
-			break;		
-		case 43:
-			SetActorState(0,"FireAutoShotgunAimToFire",true);
-			break;	
-		case 44:
-			SetActorState(0,"FireAutoShotgunCrouch",true);
-			break;	
-		case 45:
-			SetActorState(0,"FireAutoShotgunJumpToLeft",true);
-			break;	
-		case 46:
-			SetActorState(0,"FireAutoShotgunJumpToRight",true);
-			break;		
-		case 47:
-			SetActorState(0,"FireAutoShotgunRollLeft",true);
-			break;	
-		case 48:
-			SetActorState(0,"FireAutoShotgunRollRight",true);
-			break;		
-		case 49:
-			SetActorState(0,"FireAutoShotgunRun",true);
-			break;	
-		case 50:
-			SetActorState(0,"FireAutoShotgunAimBowEnd",true);
-			break;	
-		case 51:
-			SetActorState(0,"FireAutoShotgunAimHipEnd",true);
-			break;	
-		case 52:
-			SetActorState(0,"FireAutoShotgunAimToFireEnd",true);
-			break;	
-		case 53:
-			SetActorState(0,"FireAutoShotgunCrouchEnd",true);
-			break;
-		case 54:
-			SetActorState(0,"FireAutoShotgunJumpToLeftEnd",true);
-			break;	
-		case 55:
-			SetActorState(0,"FireAutoShotgunRollLeftEnd",true);
-			break;	
-		case 56:
-			SetActorState(0,"FireAutoShotgunRollRightEnd",true);
-			break;	
-		case 57:
-			SetActorState(0,"FireAutoShotgunRunEnd",true);
-			break;
-		case 58:
-			SetActorState(0,"FireRCP90StepForward",true);
-			break;	
-		case 59:
-			SetActorState(0,"FireRCP90Kneel",true);
-			break;	
-		case 60:
-			SetActorState(0,"FireRCP90DualStand",true);
-			break;	
-		case 61:
-			SetActorState(0,"FireRCP90DualKneel",true);
-			break;	
-		case 62:
-			SetActorState(0,"FireRCP90DualCrossKneel",true);
-			break;
-		case 63:
-			SetActorState(0,"FireRCP90DualWalk",true);
-			break;	
-		case 64:
-			SetActorState(0,"FireRocketLauncherStepForwardEnd",true);
-			break;	
-		case 65:
-			SetActorState(0,"FireRocketLauncherKneelEnd",true);
-			break;	
-		case 66:
-			SetActorState(0,"IgnitionTwoHand",true);
-			break;	
-		case 67:
-			SetActorState(0,"IgnitionDual",true);
-			break;	
-		case 68:
-			SetActorState(0,"FireCougarStepForward",true);
-			break;	
-		case 69:
-			SetActorState(0,"FireCougarKneel",true);
-			break;		
-		case 70:
-			SetActorState(0,"FireCougarStepForwardEnd",true);
-			break;	
-		case 71:
-			SetActorState(0,"FireCougarKneelEnd",true);
-			break;		
-		case 72:
-			SetActorState(0,"FireCougarDualStand",true);
-			break;		
-		case 73:
-			SetActorState(0,"FireCougarDualStandEnd",true);
-			break;		
-		case 74:
-			SetActorState(0,"FireCougarDualKneel",true);
-			break;		
-		case 75:
-			SetActorState(0,"FireCougarDualKneelEnd",true);
-			break;	
-		case 76:
-			SetActorState(0,"FireCougarDualCrossKneel",true);
-			break;	
-		case 77:
-			SetActorState(0,"FireCougarDualCrossKneelEnd",true);
-			break;	
-		case 78:
-			SetActorState(0,"FireCougarDualWalk",true);
-			break;			
-		case 79:
-			SetActorState(0,"FireCougarDualWalkEnd",true);
-			break;	
-		case 80:
-			SetActorState(0,"FireGrenadeLauncherAimHip",true);
-			break;	
-		case 81:
-			SetActorState(0,"FireGrenadeLauncherAimHipEnd",true);
-			break;
-		case 82:
-			SetActorState(0,"FireGrenadeLauncherAimBow",true);
-			break;	
-		case 83:
-			SetActorState(0,"FireGrenadeLauncherAimBowEnd",true);
-			break;
-		case 84:
-			SetActorState(0,"FireGrenadeLauncherAimToFire",true);
-			break;	
-		case 85:
-			SetActorState(0,"FireGrenadeLauncherAimToFireEnd",true);
-			break;		
-		case 86:
-			SetActorState(0,"FireGrenadeLauncherCrouch",true);
-			break;	
-		case 87:
-			SetActorState(0,"FireGrenadeLauncherCrouchEnd",true);
-			break;	
-		case 88:
-			SetActorState(0,"FireGrenadeLauncherJumpToLeft",true);
-			break;	
-		case 89:
-			SetActorState(0,"FireGrenadeLauncherJumpToLeftEnd",true);
-			break;		
-		case 90:
-			SetActorState(0,"FireGrenadeLauncherJumpToRight",true);
-			break;		
-		case 91:
-			SetActorState(0,"FireGrenadeLauncherRollLeft",true);
-			break;	
-		case 92:
-			SetActorState(0,"FireGrenadeLauncherRollLeftEnd",true);
-			break;		
-		case 93:
-			SetActorState(0,"FireGrenadeLauncherRollRight",true);
-			break;		
-		case 94:
-			SetActorState(0,"FireGrenadeLauncherRollRightEnd",true);
-			break;	
-		case 95:
-			SetActorState(0,"FireGrenadeLauncherRun",true);
-			break;		
-		case 96:
-			SetActorState(0,"FireGrenadeLauncherRunEnd",true);
-			break;
-		case 97:
-			SetActorState(0,"FireXeniaComboStand",true);
-			break;			
-		case 98:
-			SetActorState(0,"FireXeniaComboKneel",true);
-			break;			
-		case 99:
-			SetActorState(0,"FireXeniaComboCrossKneel",true);
-			break;		
-		case 100:
-			SetActorState(0,"FireXeniaComboWalk",true);
-			break;		
-		case 101:
-			SetActorState(0,"FireSniperStepForward",true);
-			break;	
-		case 102:
-			SetActorState(0,"FireSniperKneel",true);
-			break;		
-		case 103:
-			SetActorState(0,"FireSiberianComboStand",true);
-			break;		
-		case 104:
-			SetActorState(0,"FireSiberianComboKneel",true);
-			break;	
-		case 105:
-			SetActorState(0,"FireSiberianComboCrossKneel",true);
-			break;	
-		case 106:
-			SetActorState(0,"FireSiberianComboWalk",true);
-			break;				
-		case 107:
-			SetActorState(0,"SprintSingleDual",true);
-			break;		
-		case 108:
-			SetActorState(0,"FireKlobbDualRun",true);
-			break;	
-		case 109:
-			SetActorState(0,"FireZMGDualRun",true);
-			break;
-		case 110:
-			SetActorState(0,"FireD5KDualRun",true);
-			break;		
-		case 111:
-			SetActorState(0,"FireAR33DualRun",true);
-			break;				
-		case 112:
-			SetActorState(0,"FirePhantomDualRun",true);
-			break;			
-		case 113:
-			SetActorState(0,"FireRCP90DualRun",true);
-			break;	
-		case 114:
-			SetActorState(0,"FireXeniaComboRun",true);
-			break;		
-		case 115:
-			SetActorState(0,"FireSiberianComboRun",true);
-			break;		
-		case 116:
-			SetActorState(0,"FireDD44DualRun",true);
-			break;		
-		case 117:
-			SetActorState(0,"FireCougarDualRun",true);
-			break;		
-		case 118:
-			SetActorState(0,"FireLaserDualRun",true);
-			break;		
-		case 119:
-			GiveInventory("Goldeneye_Animation_Walking",1);
-			break;
-		case 120:
-			SetActorState(0,"Monologue",true);
-			break;
-		case 121:
-			SetActorState(0,"ExpanderDeath",true);
-			break;
-		case 122:
-			SetActorState(0,"Shrink",true);
-			break;
-		case 123:
-			SetActorState(0,"Death.DukePlasma",true);
-			break;
-	}
-}	
 
 Script "Goldeneye_TranslationIce" (void)
 {
