@@ -218,18 +218,21 @@ script "Samsara_HLShockRoachPickup" (void)
 {
     SetActivator(0, AAPTR_TARGET);
 
-    str itemtogive = "Placeholder";
-
     for (int a = 0; a < CLASSCOUNT; a++)
     {
         if (CheckInventory(gameClassesSTR[a]))
         {
-            if (a == 19 && !CheckInventory(ClassWeapons[a][3])) { ACS_NamedExecuteAlways("HL2685", 0, 11); }
+            if (a == 19)
+            {
+                if (!CheckInventory(ClassWeapons[a][3]) && !CheckInventory("Shock Roach")) { ACS_NamedExecuteAlways("HL2685", 0, 12); }
+            }
 
             if (CheckInventory("SamsaraHeroMusicHalfLifeActive") && !CheckInventory("HalfLifeMusicPlayingToken")) { GiveInventory("HLMusicWeapon", 1); }
 
             if (!StrCmp(ClassWeapons[a][3], "notapplicable")) // special cases
             {
+                str itemtogive = "Placeholder";
+
                 if (a == 16) { itemtogive = "IPOGGrenadeItem"; }
                 else if (a == 18) { itemtogive = "WTShieldTrigger"; }
                 else if (a == 32) { itemtogive = "DescentSuperLaserUpgrade"; }
@@ -257,7 +260,12 @@ script "Samsara_HLShockRoachPickup" (void)
                     else if (!CheckInventory("Goldeneye_ThrowingKnivesDualToken")) { GiveInventory("Goldeneye_ThrowingKnivesDualToken", 1); }
                 }
 
-                GiveInventory(ClassWeapons[a][3], 1);
+                if (a == 19)
+                {
+                    if (!CheckInventory("SamsaraHalfLifeLoadoutSlot1") || CheckInventory("SamsaraHasAllLoadoutEquipment")) { GiveInventory(ClassWeapons[a][3], 1); }
+                    if (CheckInventory("SamsaraHalfLifeLoadoutSlot1") || CheckInventory("SamsaraHasAllLoadoutEquipment")) { GiveInventory("Shock Roach", 1); }
+                }
+                else { GiveInventory(ClassWeapons[a][3], 1); }
             }
 
             GiveInventory("GotWeapon0", 1);
