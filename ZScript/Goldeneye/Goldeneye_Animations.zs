@@ -647,3 +647,74 @@ Class Goldeneye_Animation_DeathStaggerWall : CustomInventory
 			Stop;
 	}
 }
+
+Class Goldeneye_Animation_ExplosionBack : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('explosionback_mainsequence', interpolateTics: 4);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_ExplosionBack2 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('explosionback2_mainsequence', interpolateTics: 4);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_ExplosionForward : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('explosionforward_mainsequence', interpolateTics: 4);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_ExplosionForwardRoll : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('explosionforwardroll_mainsequence', interpolateTics: 4);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_ExplosionLeft : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('explosionleft_mainsequence', interpolateTics: 4);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_ExplosionLeft2 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('explosionleft2_mainsequence', interpolateTics: 4);
+			Stop;
+	}
+}
+
+Class Goldeneye_Animation_ExplosionRight : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('explosionright_mainsequence', interpolateTics: 4);
+			Stop;
+	}
+}
+

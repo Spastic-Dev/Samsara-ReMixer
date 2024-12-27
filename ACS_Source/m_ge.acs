@@ -894,7 +894,7 @@ Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
 	int alreadyFiredL = 0;
 	int alreadyFiredR = 0;
 	Delay(initTimer);
-	while(!CheckInventory("GoldeneyeEnemyKillAttack") || !(ClassifyActor(0) & ACTOR_ALIVE))
+	while(!CheckInventory("GoldeneyeEnemyKillAttack") && (ClassifyActor(0) & ACTOR_ALIVE))
 	{
 		switch(CheckInventory("Goldeneye_GunPart"))
 		{
@@ -929,7 +929,7 @@ Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
 		{
 			//TO-DO - we need to make another method or function that will run this part when the weapon is synchronous. Something like Xenia's combo
 			Delay(delayTimerL);
-			if(CheckInventory("GoldeneyeEnemyKillAttack") || (ClassifyActor(0) & ACTOR_ALIVE)) break;
+			if(CheckInventory("GoldeneyeEnemyKillAttack") || !(ClassifyActor(0) & ACTOR_ALIVE)) break;
 			if(!fireOnceR || !alreadyFiredR) GiveInventory("GoldeneyeEnemyWeaponChooserDual",1);
 		}
 		Delay(delayTimerR);
