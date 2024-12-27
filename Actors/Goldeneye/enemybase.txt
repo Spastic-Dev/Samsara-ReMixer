@@ -255,9 +255,9 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			Goto FireSingleHanded
 		ThrowGrenade:
 			GE34 A 0 A_GiveInventory("Goldeneye_DecAnimation_ThrowGrenade")
-			GE34 A 12 A_FaceTarget
-			GE34 B 0 ACS_NamedExecuteWithResult("Goldeneye_DrawGrenade")
-			GE34 BCDEFGHIJKL 12 A_FaceTarget
+			GE34 AB 12 A_FaceTarget
+			GE34 C 0 ACS_NamedExecuteWithResult("Goldeneye_DrawGrenade")
+			GE34 CDEFGHIJKL 12 A_FaceTarget
 			GE34 M 0 ACS_NamedExecuteWithResult("Goldeneye_DrawGrenade",1)
 			GE34 M 0 A_CustomMissile("Goldeneye_EnemyGrenade",36,8,0,CMF_AIMDIRECTION)		
 			GE34 MNOPQR 12 A_FaceTarget
@@ -439,8 +439,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE33 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			Goto See			
 		FireTwoHanded:
-			//TNT1 A 0 A_Jump(256, "FireTwoHandedAimBow", "FireTwoHandedAimHip", "FireTwoHandedAimToFire", "FireTwoHandedCrouch", "FireTwoHandedJumpToLeft", "FireTwoHandedJumpToRight", "FireTwoHandedRollLeft", "FireTwoHandedRollRight", "FireTwoHandedRun")
-			TNT1 A 0 A_Jump(256, "FireTwoHandedAimBow")
+			TNT1 A 0 A_Jump(256, "FireTwoHandedAimBow", "FireTwoHandedAimHip", "FireTwoHandedAimToFire", "FireTwoHandedCrouch", "FireTwoHandedJumpToLeft", "FireTwoHandedJumpToRight", "FireTwoHandedRollLeft", "FireTwoHandedRollRight", "FireTwoHandedRun")
 			Goto FireTwoHandedAimBow
 		FireTwoHandedAimBow:
 			GE18 A 0 A_SetArg(0,40)
@@ -450,7 +449,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE18 F 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
 			GE18 FGFGFG 6 A_FaceTarget
 			GE18 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE18 FGFGHIJK 6 A_FaceTarget
+			GE18 HIJK 6 A_FaceTarget
 			Goto See
 		FireTwoHandedAimHip:
 			GE19 A 0 A_SetArg(0,32)
@@ -458,19 +457,19 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE19 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimHip")
 			GE19 ABCDE 6 A_FaceTarget
 			GE19 F 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
-			GE18 FGHIFGHIFG 6 A_FaceTarget
+			GE18 FGFGFGFG 6 A_FaceTarget
 			GE19 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			GE19 HIJKL 6 A_FaceTarget
 			Goto See
 		FireTwoHandedAimToFire:
 			GE20 A 0 A_SetArg(0,40)
-			GE20 A 0 A_SetArg(1,5)
+			GE20 A 0 A_SetArg(1,7)
 			GE20 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimToFire")
-			GE20 ABCDE 6 A_FaceTarget
+			GE20 ABCDEFG 6 A_FaceTarget
 			GE20 F 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
-			GE20 FGFGFGHIJ 6 A_FaceTarget
-			GE20 K 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE20 KLMN 6 A_FaceTarget
+			GE20 FGFGFGHI 6 A_FaceTarget
+			GE20 J 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE20 JKLMN 6 A_FaceTarget
 			Goto See
 		FireTwoHandedCrouch:
 			GE21 A 0 A_SetArg(0,28)
@@ -478,8 +477,9 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE21 A 0 A_GiveInventory("Goldeneye_DecAnimation_CrouchFire")
 			GE21 ABCDEFG 6 A_FaceTarget
 			GE21 H 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
-			GE21 HIJKLMNOP 6 A_FaceTarget
-			GE21 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE21 HIHIHI 6 A_FaceTarget
+			GE21 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE21 HJKLMNOP 6 A_FaceTarget
 			Goto See
 		FireTwoHandedJumpToLeft:
 			GE27 A 0 A_SetArg(0,40)
@@ -487,21 +487,23 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE27 A 0 A_GiveInventory("Goldeneye_DecAnimation_JumpToLeftFire")
 			GE27 ABCDEF 6 A_FaceTarget	
 			GE27 G 0 A_ChangeVelocity(0,4,0, CVF_Relative)
-			GE27 GHIJ 6 A_FaceTarget
-			GE27 K 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
-			GE27 KLMNOPQR 6 A_FaceTarget
+			GE27 GHIJKL 6 A_FaceTarget
+			GE27 M 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
+			GE27 MNO 6 A_FaceTarget
 			GE27 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE27 PQR 6 A_FaceTarget
 			Goto See
 		FireTwoHandedJumpToRight:
 			GE28 A 0 A_SetArg(0,40)
 			GE28 A 0 A_SetArg(1,5)
 			GE28 A 0 A_GiveInventory("Goldeneye_DecAnimation_JumpToRightFire")
-			GE28 ABCDEF 6 A_FaceTarget
-			GE28 G 0 A_ChangeVelocity(0,4,0, CVF_Relative)
-			GE28 GHIJ 6 A_FaceTarget
-			GE28 K 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
-			GE28 KLMNOPQRSTUVWXYZ 6 A_FaceTarget
-			GE28 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE28 ABCDEFGH 6 A_FaceTarget
+			GE28 I 0 A_ChangeVelocity(0,-4,0, CVF_Relative)
+			GE28 IJKLMNOP 6 A_FaceTarget
+			GE28 Q 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
+			GE28 QRSTUV 6 A_FaceTarget
+			GE28 W 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE28 WXYZ 6 A_FaceTarget
 			Goto See
 		FireTwoHandedRollLeft:
 			GE23 A 0 A_SetArg(0,28)
@@ -511,25 +513,27 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE23 I 0 A_ChangeVelocity(0,4,0, CVF_Relative)
 			GE23 IJKLMNOPQRS 6 A_FaceTarget
 			GE23 T 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
-			GE23 TUVWXYZ 6 A_FaceTarget
-			GE24 ABCDEF 6 A_FaceTarget
-			GE23 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE23 TUTUTUVWX 6 A_FaceTarget
+			GE23 YZ 6 A_FaceTarget
+			GE24 A 6 A_FaceTarget
+			GE24 B 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GE24 BCDEF 6 A_FaceTarget
 			Goto See
 		FireTwoHandedRollRight:
-			GE25 A 0 A_SetArg(0,28)
+			GE25 A 0 A_SetArg(0,20)
 			GE25 A 0 A_SetArg(1,5)
 			GE25 A 0 A_GiveInventory("Goldeneye_DecAnimation_RollRightFire")
-			GE25 ABCDEFGH 6 A_FaceTarget
-			GE25 I 0 A_ChangeVelocity(0,-4,0, CVF_Relative)
-			GE25 IJKLMNO 6 A_FaceTarget
+			GE25 ABCDEF 6 A_FaceTarget
+			GE25 G 0 A_ChangeVelocity(0,-4,0, CVF_Relative)
+			GE25 GHIJKLMNO 6 A_FaceTarget
 			GE25 P 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
 			GE25 PRVXZ 6 A_FaceTarget
+			GE26 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			GE26 ABC 6 A_FaceTarget
-			GE25 D 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			GE26 DF 6 A_FaceTarget
 			Goto See
 		FireTwoHandedRun:
-			GE33 A 0 A_SetArg(0,40)
+			GE33 A 0 A_SetArg(0,34)
 			GE33 A 0 A_SetArg(1,5)
 			GE33 A 0 A_GiveInventory("Goldeneye_DecAnimation_RunFire")
 			GE33 A 0 ACS_NamedExecuteWithResult("Goldeneye_EnemyAttacker")
@@ -2639,133 +2643,129 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			TNT1 A 6 A_FaceTarget "####" "#" 0 A_Recoil(-5)
 			Goto See				
 		Pain:
+			TNT1 A 0 ACS_NamedExecuteWithResult("Goldeneye_RestoreGuns")
 			TNT1 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			TNT1 A 0 A_Jump(256, "Pain.Neck","Pain.LeftShoulder","Pain.RightShoulder","Pain.LeftArm","Pain.RightArm","Pain.LeftHand","Pain.RightHand","Pain.Crotch","Pain.Butt","Pain.Butt2","Pain.LeftLeg","Pain.RightLeg")
 			Goto Pain.Neck
 		Pain.Neck:
 			GE35 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitNeck",1)
-			GE35 A 6 A_ChangeFlag(NOPAIN, true)
-			GE35 BCD 6
-			GE35 E 6 A_Pain
-			GE35 FGHI 6
-			GE35 J 6 A_ChangeFlag(NOPAIN, false)
+			GE35 A 8 A_ChangeFlag(NOPAIN, true)
+			GE35 BCD 8
+			GE35 E 8 A_Pain
+			GE35 FGHI 8
+			GE35 J 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftShoulder: //+
 			GE36 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftShoulder",1)
-			GE36 A 7 A_ChangeFlag(NOPAIN, true)
-			GE36 BC 7
-			GE36 D 7 A_Pain
-			GE36 EFGHI 7 
-			GE36 J 7 A_ChangeFlag(NOPAIN, false)
+			GE36 A 8 A_ChangeFlag(NOPAIN, true)
+			GE36 BC 8
+			GE36 D 8 A_Pain
+			GE36 EFGHI 8 
+			GE36 J 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightShoulder:
 			GE37 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightShoulder",1)
 			GE37 A 6 A_ChangeFlag(NOPAIN, true)
-			GE37 BCDEFG 6
-			GE37 H 6 A_Pain
-			GE37 IJKLMNO 6
-			GE37 P 6 A_ChangeFlag(NOPAIN, false)
+			GE37 BCDEFG 8
+			GE37 H 8 A_Pain
+			GE37 IJKLMNO 8
+			GE37 P 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftArm:
 			GE38 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftArm",1)
-			GE38 A 6 A_ChangeFlag(NOPAIN, true)
-			GE38 BCD 6
-			GE38 E 6 A_Pain
-			GE38 DCB 6
-			GE38 A 6 A_ChangeFlag(NOPAIN, false)
+			GE38 A 8 A_ChangeFlag(NOPAIN, true)
+			GE38 BCD 8
+			GE38 E 8 A_Pain
+			GE38 DCB 8
+			GE38 A 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightArm:
 			GE39 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightArm",1)
-			GE39 A 6 A_ChangeFlag(NOPAIN, true)
-			GE39 BCD 6
-			GE39 E 6 A_Pain
-			GE39 DCB 6
-			GE39 A 6 A_ChangeFlag(NOPAIN, false)
+			GE39 A 8 A_ChangeFlag(NOPAIN, true)
+			GE39 BCD 8
+			GE39 E 8 A_Pain
+			GE39 DCB 8
+			GE39 A 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftHand:
 			GE40 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftHand",1)
-			GE40 A 6 A_ChangeFlag(NOPAIN, true)
-			GE40 BC 6
-			GE40 D 6 A_Pain
-			GE40 EFG 6
-			GE40 H 6 A_ChangeFlag(NOPAIN, false)
+			GE40 A 8 A_ChangeFlag(NOPAIN, true)
+			GE40 BC 8
+			GE40 D 8 A_Pain
+			GE40 EFG 8
+			GE40 H 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightHand:
 			GE41 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightArm",1)
-			GE41 A 6 A_ChangeFlag(NOPAIN, true)
-			GE41 BCDE 6
-			GE41 F 6 A_Pain
-			GE41 GHIJ 6
-			GE41 K 6 A_ChangeFlag(NOPAIN, false)
+			GE41 A 8 A_ChangeFlag(NOPAIN, true)
+			GE41 BCDE 8
+			GE41 F 8 A_Pain
+			GE41 GHIJ 8
+			GE41 K 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.Crotch:	
 			GE42 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitCrotch",1)
-			GE42 A 6 A_ChangeFlag(NOPAIN, true)
-			GE42 BCDEFGHIJKLM 6
-			GE42 N 6 A_Pain
-			GE42 OPQRSTUVWXYZ 6
-			GE42 A 6 A_ChangeFlag(NOPAIN, false)
+			GE42 A 8 A_ChangeFlag(NOPAIN, true)
+			GE42 BCDEFGHIJKLM 8
+			GE42 N 8 A_Pain
+			GE42 OPQRSTUVWXYZ 8
+			GE42 A 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.Butt:
 			GE43 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitButt",1)
-			GE43 A 6 A_ChangeFlag(NOPAIN, true)
-			GE43 BCDEFGH 6
-			GE43 I 6 A_Pain
-			GE43 JKLMNOPQ 6
-			GE43 R 6 A_ChangeFlag(NOPAIN, false)
+			GE43 A 8 A_ChangeFlag(NOPAIN, true)
+			GE43 BCDEFGH 8
+			GE43 I 8 A_Pain
+			GE43 JKLMNOPQ 8
+			GE43 R 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.Butt2:
 			GE44 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitButt2",1)
-			GE44 A 6 A_ChangeFlag(NOPAIN, true)
-			GE44 BCDEF 6
-			GE44 G 6 A_Pain
-			GE44 HIJKLM 6
-			GE44 N 6 A_ChangeFlag(NOPAIN, false)
+			GE44 A 8 A_ChangeFlag(NOPAIN, true)
+			GE44 BCDEF 8
+			GE44 G 8 A_Pain
+			GE44 HIJKLM 8
+			GE44 N 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftLeg:
 			GE45 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftLeg",1)
-			GE45 A 6 A_ChangeFlag(NOPAIN, true)
-			GE45 BCD 6
-			GE45 E 6 A_Pain
-			GE45 FGHI 6
-			GE45 J 6 A_ChangeFlag(NOPAIN, false)
+			GE45 A 8 A_ChangeFlag(NOPAIN, true)
+			GE45 BCD 8
+			GE45 E 8 A_Pain
+			GE45 FGHI 8
+			GE45 J 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightLeg:
 			GE45 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightLeg",1)
-			GE45 A 6 A_ChangeFlag(NOPAIN, true)
-			GE45 BCDEF 6
-			GE45 G 6 A_Pain
-			GE45 HIJKLMN 6
-			GE45 N 6 A_ChangeFlag(NOPAIN, false)
+			GE45 A 8 A_ChangeFlag(NOPAIN, true)
+			GE45 BCDEF 8
+			GE45 G 8 A_Pain
+			GE45 HIJKLMN 8
+			GE45 N 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Death:
+			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 ACS_NamedExecuteAlways("GoldeneyeEnemyDrops", 0, 0)
-			TNT1 A 0 A_Jump(256, "DeathCrossFeet", "DeathFaceGround", "DeathOnKnees", "DeathOnSide", "DeathFaceUp", "DeathFaceUpFlip", "DeathHeadShot", "DeathFlyBack", "DeathJumpBack", "DeathSprawlOut", "DeathFetalLeft", "DeathFetalRight", "DeathNeck", "DeathShoulderBack", "DeathStaggerWall")
-			Goto DeathFaceGround
+			TNT1 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			TNT1 A 0 ACS_NamedExecuteWithResult("Goldeneye_RemoveGuns")
+			//TNT1 A 0 A_Jump(256, "DeathFaceGround", "DeathCrossFeet",  "DeathOnKnees", "DeathOnSide", "DeathFaceUp", "DeathFaceUpFlip", "DeathHeadShot", "DeathFlyBack", "DeathJumpBack", "DeathSprawlOut", "DeathFetalLeft", "DeathFetalRight", "DeathNeck", "DeathShoulderBack", "DeathStaggerWall")
+			TNT1 A 0 A_Jump(256, "DeathOnKnees")
 		DeathFaceGround: //+
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFaceGround",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
-			TNT1 A 7
-			TNT1 B 7 A_NoBlocking
-			TNT1 C 3 
-			TNT1 C 4 A_Scream
-			TNT1 D 7
-			TNT1 E 7
-			TNT1 F 7
-			TNT1 G 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			TNT1 G 3 
-			TNT1 H 7
-			TNT1 I 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			TNT1 J 7 
-			TNT1 K 7 
-			TNT1 L 7
-			TNT1 L 1 A_KillMaster
-			TNT1 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
+			GE47 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFaceGround",1)
+			GE47 A 10 A_NoBlocking
+			GE47 B 10 
+			GE47 C 10 A_Scream
+			GE47 D 10 
+			GE47 E 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE47 FG 10
+			GE47 HI 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE47 JK 10 
+			GE47 L 10 A_KillMaster
+			GE47 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
 			stop
 		DeathFlyBack:
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFlyBack",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
+			TNT1 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFlyBack",1)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4 
@@ -2785,7 +2785,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 		Death.GoldeneyeHead:
 		DeathHeadShot:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathHeadShot",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4
@@ -2822,7 +2821,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			Stop
 		DeathNeck:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathNeck",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4 
@@ -2862,29 +2860,20 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			TNT1 IIIIIIIIIIIIIIIIIIIIIII 2 A_FadeOut(0.05)
 			Stop
 		DeathOnKnees: //+
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathOnKnees",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
-			TNT1 A 8 
-			TNT1 B 8 A_NoBlocking
-			TNT1 C 8 A_Scream
-			TNT1 D 8
-			TNT1 E 8
-			TNT1 F 8
-			TNT1 G 8
-			TNT1 H 8
-			TNT1 I 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			TNT1 J 8
-			TNT1 K 8
-			TNT1 L 8
-			TNT1 M 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			TNT1 N 8
-			TNT1 O 8
-			TNT1 O 1 A_KillMaster
-			TNT1 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			GE53 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathOnKnees",1)
+			GE53 A 10 
+			GE53 B 10 A_NoBlocking
+			GE53 C 10 A_Scream
+			GE53 DEFGH 10
+			GE53 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE53 JKL 10
+			GE53 M 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE53 N 10
+			GE53 O 10 A_KillMaster
+			GE53 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			stop
 		DeathOnSide:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathOnSide",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4
@@ -2905,7 +2894,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			stop
 		DeathShoulderBack:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathShoulderBack",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4
@@ -2926,7 +2914,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			Stop
 		DeathSprawlOut: //+
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathSprawlOut",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 7 
 			TNT1 B 7 A_NoBlocking
 			TNT1 C 7 A_Scream
@@ -2944,35 +2931,17 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			TNT1 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
 			stop
 		DeathCrossFeet:
-			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathCrossFeet",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
-			TNT1 A 4 A_Scream
-			TNT1 B 4 A_NoBlocking
-			TNT1 C 4 
-			TNT1 D 4 
-			TNT1 E 4 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			TNT1 F 4
-			TNT1 G 4 
-			TNT1 H 4
-			TNT1 I 4
-			TNT1 J 4 
-			TNT1 K 4
-			TNT1 L 4 
-			TNT1 M 4
-			TNT1 N 4
-			TNT1 O 4
-			TNT1 P 4
-			TNT1 Q 4
-			TNT1 R 4
-			TNT1 S 4
-			TNT1 T 4
-			TNT1 U 4
-			TNT1 U 1 A_KillMaster
-			TNT1 UUUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
+			GE57 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathCrossFeet",1)
+			GE57 A 8 A_Scream
+			GE57 B 8 A_NoBlocking
+			GE57 C 8 
+			GE57 D 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GE57 EFGHIJKLMNOPQRST 8
+			GE57 U 8 A_KillMaster
+			GE57 UUUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
 			stop
 		DeathFaceUp:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFaceUp",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4 
@@ -3003,7 +2972,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			Stop
 		DeathFaceUpFlip:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFaceUpFlip",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4
@@ -3027,7 +2995,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			Stop
 		DeathFetalLeft:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFetalLeft",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4
@@ -3057,7 +3024,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			Stop
 		DeathFetalRight:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathFetalRight",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4
@@ -3087,7 +3053,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			Stop
 		DeathJumpBack:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathJumpBack",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4 
@@ -3111,7 +3076,6 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			stop
 		DeathStaggerWall:
 			TNT1 A 0 A_GiveToChildren("Goldeneye_Broadcast_DeathStaggerWall",1)
-			TNT1 A 0 A_ChangeFlag(NOPAIN, false)
 			TNT1 A 4 A_Scream
 			TNT1 B 4 A_NoBlocking
 			TNT1 C 4
@@ -3631,6 +3595,7 @@ actor GoldeneyeEnemyWeaponChooser : Trigger
 		Pickup:
 			TNT1 A 0 A_SetArg(1,abs(args[1]))
 			TNT1 A 0 ACS_NamedExecuteWithResult("GoldeneyeDrawEnemyFlash")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",23,"FireGrenade")
 			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",12,"FirePhantom")
 			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",11,"FirePhantom")
 			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",10,"FireD5K")

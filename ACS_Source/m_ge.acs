@@ -151,17 +151,17 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			break;
 		case 3:
 			//Select Body
-			GiveInventory("Goldeneye_BodyPart",10);	
+			GiveInventory("Goldeneye_BodyPart",11);	
 			GiveInventory("Goldeneye_GrenadeThrower", 1);
 			
 			//Select Hat	
 			randnum = random(0,100);
 			if(randnum >= 75) 
-				GiveInventory("Goldeneye_HatPart",11);
+				GiveInventory("Goldeneye_HatPart",12);
 			else if(randnum >= 50) 
-				{ GiveInventory("Goldeneye_HatPart",8); SetActorProperty(newtid,APROP_Health,60); }				
+				{ GiveInventory("Goldeneye_HatPart",9); SetActorProperty(newtid,APROP_Health,60); }				
 			else 
-				GiveInventory("Goldeneye_HatPart",3);
+				GiveInventory("Goldeneye_HatPart",4);
 			
 			//Select Gun
 			randnum = random(0,100);
@@ -170,12 +170,12 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 				if(randnum >= 50)
 					guntype = 3; //Klobb
 				else	
-					{ guntype = 4; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
+					{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
 			}		
 			else
 			{
 				if(randnum <= 9)
-					{ guntype = 4; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
+					{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
 				else if(randnum <= 14)
 					guntype = 22; //GrenadeLauncher								
 				else if(randnum <= 19)
@@ -845,9 +845,12 @@ Script "GoldeneyeUpdateAppearance" (void)
 Script "GoldeneyeDrawEnemyFlash" (int dual)
 {
 	//What's this? Let's provide the flash for the weapon - if it's dual wielded, go back to the previous index used before
-	GiveInventory(strparam(s:"Goldeneye_Flash_",s:dual ? "Dual" : "",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
-	Delay(2);
-	GiveInventory("Goldeneye_Flash_DualClearBoth",1);
+	if(CheckInventory("SamsaraZScriptReady") > 1)
+	{
+		GiveInventory(strparam(s:"Goldeneye_Flash_",s:dual ? "Dual" : "",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+		Delay(2);
+		GiveInventory("Goldeneye_Flash_DualClearBoth",1);
+	}
 }
 
 Script "Goldeneye_DrawGrenade" (int hide)
@@ -861,10 +864,25 @@ Script "Goldeneye_DrawGrenade" (int hide)
 	{
 		if(CheckInventory("SamsaraZScriptReady") > 1)
 		{
-			GiveInventory("Goldeneye_Gun_Grenade_Clear",1);
-			GiveInventory("GoldeneyeUpdateAppearance",1);
+			GiveInventory("Goldeneye_Gun_Clear",1);
+			Delay(30);
+			ACS_NamedExecuteWithResult("Goldeneye_RestoreGuns");
 		}
 	}
+}
+
+//Restore Guns in case something like grenade sequence is interrupted
+Script "Goldeneye_RestoreGuns" (void)
+{
+	GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+	if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+}
+
+//Used for removing gun on death
+Script "Goldeneye_RemoveGuns" (void)
+{
+	if(CheckInventory("SamsaraZScriptReady") > 1)
+		GiveInventory("Goldeneye_Gun_DualClear",1);
 }
 
 Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
