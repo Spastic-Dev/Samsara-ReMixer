@@ -975,6 +975,11 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			stop
 
 		// SamsaraMonsterHumanoidTotalGib states
+		Pain.DoomDamageTypeStunner:
+			"####" "#" 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			"####" "#" 0 A_GiveInventory("Goldeneye_DecAnimation_RestoreDecoupling")
+			"####" "#" 0 A_GiveInventory("Goldeneye_DecAnimation_Freeze")
+			Goto Super::Pain.DoomDamageTypeStunner
 		Pain.Shock:
 		Pain.Tesla:
 			TNT1 A -1 ACS_NamedExecuteWithResult("CalebTeslaSwitch")
