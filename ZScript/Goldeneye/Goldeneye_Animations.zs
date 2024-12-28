@@ -748,3 +748,12 @@ Class Goldeneye_Animation_ExplosionRight : CustomInventory
 	}
 }
 
+Class Goldeneye_Animation_SamediRaise : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 SetAnimation('samediraise_mainsequence', flags: SAF_INSTANT);
+			Stop;
+	}
+}

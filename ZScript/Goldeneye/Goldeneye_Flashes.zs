@@ -265,6 +265,20 @@ Class Goldeneye_Flash_DualRCP90 : CustomInventory
 	}
 }
 
+Class Goldeneye_Flash_AutoShotgun : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",6,"Models/Goldeneye/Guns","autoshotgun_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
 Class Goldeneye_Flash_Cougar : CustomInventory
 {
 	States
@@ -343,6 +357,34 @@ Class Goldeneye_Flash_DualSCombo : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","klobb_dual_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_XCombo : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",6,"Models/Goldeneye/Guns","rcp90_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_DualXCombo : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",7,"Models/Goldeneye/Guns","grenadelauncher_dual_flash.iqm");
 				A_ChangeFlag("BRIGHT",1);
 			}
 			Stop;

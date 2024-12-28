@@ -4,3 +4,4 @@
 #include "ZScript/Goldeneye/Goldeneye_Hats.zs"
 #include "ZScript/Goldeneye/Goldeneye_Guns.zs"
 #include "ZScript/Goldeneye/Goldeneye_Flashes.zs"
+#include "ZScript/Goldeneye/Goldeneye_Misc.zs"

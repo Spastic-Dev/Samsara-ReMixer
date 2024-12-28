@@ -76,17 +76,20 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	GiveInventory("Goldeneye_Body_HideBase",1);
 	//Spawn the parts
 	
-	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 19 && type != 20 && type != 22 && type != 23)
+	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 20 && type != 22 && type != 23)
 	{
-		elitechance = ec; 
-		int eliterand = random(0,100);
-		if(elitechance > eliterand)
-			GiveInventory("Goldeneye_GlassesPart",1);		
-		randomHead = random(0,24);
+		if(type == 19)
+			randomHead = random(25,28);	
+		else 
+		{
+			elitechance = ec; 
+			int eliterand = random(0,100);
+			if(elitechance > eliterand)
+				GiveInventory("Goldeneye_GlassesPart",1);		
+			randomHead = random(0,24);
+		}
+		GiveInventory("Goldeneye_HeadPart",randomHead+1);	
 	}
-	else if(type == 19)
-		randomHead = random(25,28);	
-	GiveInventory("Goldeneye_HeadPart",randomHead+1);	
 	switch(type)
 	{
 		case 1:	
@@ -392,19 +395,18 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			GiveInventory("Goldeneye_GunPart",1+guntype);
 			break;	
 		case 12:	
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[4]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);		
+			//Select Body
+			GiveInventory("Goldeneye_BodyPart",5);
+
+			//Select Hat
 			randnum = random(0,100);
 			if(randnum >= 66) 
-				hattype = 10;
-			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
-			SetActivator(hattid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
+				GiveInventory("Goldeneye_HatPart",10);
+				
+			//Select Gun
 			randnum = random(0,100);
-			
 			if(randnum >= 80)
-				guntype = 2; //Dual DD44
+				{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
 			else if (randnum >= 70)
 				guntype = 3; //Klobb
 			else if(randnum >= 60)
@@ -412,22 +414,11 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			else if(randnum >= 40)
 				guntype = 23; //Rocket Launcher
 			else if(randnum >= 30)
-				guntype = 22; //Grenade
+				guntype = 22; //GrenadeL
 			else
-				guntype = 5; //KF7
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
+				{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7			
 			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_HatShotToken",hattype);
-			GiveActorInventory(hattid,"Goldeneye_IsHat",1);
-			SetPointer(AAPTR_TRACER,hattid);
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(headtid,0);
-			Thing_ChangeTID(hattid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
+			GiveInventory("Goldeneye_GunPart",1+guntype);
 			break;		
 		case 13:	
 			//Set init health
@@ -465,185 +456,125 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 			SetActorProperty(0,APROP_Mass,200+(1+guntype));
 			GiveInventory("Goldeneye_GunPart",1+guntype);
 			break;	
-		case 16:	
-			SetActorProperty(newtid,APROP_Health,400);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 3);
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[20]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);		
+		case 16:
+			//Set init health
+			SetActorProperty(0,APROP_Health,400);
+			GiveInventory("Goldeneye_GuardTierToken",3);
+			
+			//Select body
+			GiveInventory("Goldeneye_BodyPart",21);	
 
-			guntype = 2; //Dual DD44
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:"DualDD44"),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
-			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
-			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
-			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
+			//Select Gun
+			{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			GiveInventory("Goldeneye_GunPart",1+guntype);
 			break;
 		case 17:	
-			SetActorProperty(newtid,APROP_Health,500);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 3);
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[20]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);		
+			//Set init health
+			SetActorProperty(0,APROP_Health,500);
+			GiveInventory("Goldeneye_GuardTierToken",3);
+			
+			//Select body
+			GiveInventory("Goldeneye_BodyPart",21);	
 
-			guntype = 7; //Dual ZMG
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:"DualDD44"),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
-			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
-			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
-			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
+			//Select Gun
+			{ guntype = 6; GiveInventory("Goldeneye_DualWield",1); } //Dual ZMG		
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			GiveInventory("Goldeneye_GunPart",1+guntype);
 			break;
 		case 18:	
-			SetActorProperty(newtid,APROP_Health,600);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 3);
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[20]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);		
+			//Set init health
+			SetActorProperty(0,APROP_Health,400);
+			GiveInventory("Goldeneye_GuardTierToken",3);
 			
-			guntype = 21; //Dual Laser
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:"DualDD44"),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
-			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
-			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
-			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
-			break;				
+			//Select body
+			GiveInventory("Goldeneye_BodyPart",21);	
+
+			//Select Gun
+			{ guntype = 20; GiveInventory("Goldeneye_DualWield",1); } //Dual Laser
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			GiveInventory("Goldeneye_GunPart",1+guntype);
+			break;	
 		case 20:
-			GiveActorInventory(newtid,"Goldeneye_GrenadeThrower",1);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 3);
-			SetActorProperty(newtid,APROP_Health,2500);
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[19]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
+			//Set init health
+			SetActorProperty(0,APROP_Health,2500);
+			GiveInventory("Goldeneye_GuardTierToken",3);
+			GiveInventory("Goldeneye_GrenadeThrower",1);
+			
+			//Select body
+			GiveInventory("Goldeneye_BodyPart",20);	
+
+			//Select Gun
 			randnum = random(0,100);
 			if(randnum >= 67)
-				guntype = 12; //AR33
+				{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33
 			else if(randnum >= 33)
-				guntype = 16; //Autoshotgun
+				{ guntype = 16; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AutoShotgun	
 			else
 				guntype = 6; //ZMG
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
-			SetActorProperty(newtid,APROP_Mass,200+(1+guntype));
-			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));
-			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
+			SetActorProperty(0,APROP_Mass,200+(1+guntype));
+			GiveInventory("Goldeneye_GunPart",1+guntype);
 			break;		
 		case 21:
-			SetActorProperty(newtid,APROP_Health,100);
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[0]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SpawnForced("Goldeneye_JetPack",0,0,0,misctid);
-			SetActivator(misctid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
+			//Set init health
+			SetActorProperty(newtid,APROP_Health,360);
+			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 1);
+			
+			//Select Body
+			GiveInventory("Goldeneye_BodyPart",1);
+			GiveInventory("Goldeneye_HasJetPack",1);
+			
+			//Select Hat
 			randnum = random(0,100);
 			if(randnum >= 50) 
-				hattype = 1;
-			SpawnForced(StrParam(s:"Goldeneye_",s:HatTypes[hattype]),0,0,0,hattid);
-			SetActivator(hattid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			
+				GiveInventory("Goldeneye_HatPart",1);
+							
+			//Select Gun
 			randnum = random(0,100);
-			if(randnum >= 80)			
-				guntype = 11; //Dual Phantom
-			else if (randnum >= 75)
+			if(randnum >= 90)		
+				{ guntype = 10; GiveInventory("Goldeneye_DualWield",1); } //Dual Phantom
+			else if (randnum >= 67)
 				guntype = 10; //Phantom
 			else if (randnum >= 50)
-				guntype = 9; //Dual D5K
+				{ guntype = 8; GiveInventory("Goldeneye_DualWield",1); } //Dual D5K
 			else
 				guntype = 8; //D5K
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
 			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_HatShotToken",hattype);
-			GiveActorInventory(hattid,"Goldeneye_IsHat",1);
-			SetPointer(AAPTR_TRACER,hattid);
-			Thing_ChangeTID(misctid,0);
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(headtid,0);
-			Thing_ChangeTID(hattid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
-			break;	
+			GiveInventory("Goldeneye_GunPart",1+guntype);
+			break;
 		case 22:
-			SetActorProperty(newtid,APROP_Health,700);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 2);
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[17]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);		
+			//Set init health
+			SetActorProperty(0,APROP_Health,700);
+			GiveActorInventory(0,"Goldeneye_GuardTierToken", 2);
 
-			guntype = 19; //Dual Cougar
-
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
+			//Select Body
+			GiveInventory("Goldeneye_BodyPart",18);
+	
+			//Select Gun
+			{ guntype = 18; GiveInventory("Goldeneye_DualWield",1); } //Dual Cougar
 			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));	
-			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
+			GiveInventory("Goldeneye_GunPart",1+guntype);
 			break;	
 		case 23:
-			SetActorProperty(newtid,APROP_Health,1200);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 3);
-			SpawnForced(StrParam(s:"Goldeneye_Body_",s:GuardTypes[18]),0,0,0,bodytid);
-			SetActivator(bodytid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);		
+			//Set init health
+			SetActorProperty(0,APROP_Health,1200);
+			GiveActorInventory(0,"Goldeneye_GuardTierToken", 2);
 
-			guntype = 25; //XCombo
-
-			SpawnForced(StrParam(s:"Goldeneye_Gun_",s:GunTypes[guntype]),0,0,0,guntid);
-			SetActivator(guntid,AAPTR_DEFAULT);
-			SetPointer(AAPTR_MASTER,newtid);
-			SetActivator(0,AAPTR_Master);
+			//Select Body
+			GiveInventory("Goldeneye_BodyPart",19);
+	
+			//Select Gun
+			{ guntype = 25; GiveInventory("Goldeneye_DualWield",1); } //XCombo
 			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			SetActorProperty(bodytid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(bodytid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));	
-			SetActorProperty(guntid,APROP_ScaleX,GetActorProperty(newtid,APROP_ScaleX));
-			SetActorProperty(guntid,APROP_ScaleY,GetActorProperty(newtid,APROP_ScaleY));			
-			Thing_ChangeTID(bodytid,0);
-			Thing_ChangeTID(guntid,0);
-			Thing_ChangeTID(newtid,activator);
-			break;			
+			GiveInventory("Goldeneye_GunPart",1+guntype);
+			break;	
 	}
 	if(type != 13) GiveInventory("Goldeneye_HatShotToken",CheckInventory("Goldeneye_HatPart"));
 }
 
 Script "GoldeneyeEnemyDrops" (void)
 {
+	if(CheckInventory("Goldeneye_BodyPart") == 21) terminate;
 	int x,y,z,guntype,randnum;
 	str mag;
 	x = GetActorVelX(0);
@@ -698,8 +629,22 @@ Script "GoldeneyeUpdateAppearance" (void)
 	GiveInventory(strparam(s:"Goldeneye_Body_",s:GuardTypes[CheckInventory("Goldeneye_BodyPart")-1]),1);
 	if(CheckInventory("Goldeneye_HeadPart")) GiveInventory(strparam(s:"Goldeneye_Head_",s:HeadTypes[CheckInventory("Goldeneye_HeadPart")-1]),1);
 	if(CheckInventory("Goldeneye_HatPart") > 0) GiveInventory(strparam(s:"Goldeneye_Hat_",s:HatTypes[CheckInventory("Goldeneye_HatPart")]),1);
-	if(CheckInventory("Goldeneye_GunPart")) GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
-	if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+	if(CheckInventory("Goldeneye_GunPart")) 
+	{
+		if(CheckInventory("Goldeneye_BodyPart") == 21)
+			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[1]),1);
+		else
+			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+			
+		if(CheckInventory("Goldeneye_DualWield")) 
+		{
+			if(CheckInventory("Goldeneye_BodyPart") == 21)
+				GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[1]),1);
+			else
+				GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+		}
+	}
+	if(CheckInventory("Goldeneye_HasJetPack")) GiveInventory("Goldeneye_Misc_JetPack",1);
 }
 
 Script "GoldeneyeDrawEnemyFlash" (int dual)
@@ -739,8 +684,16 @@ Script "Goldeneye_RestoreGuns" (void)
 {
 	if(CheckInventory("Goldeneye_BodyPart") != 16)
 	{
-		GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
-		if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+		if(CheckInventory("Goldeneye_BodyPart") == 21)
+		{
+			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[1]),1);
+			if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[1]),1); 
+		}
+		else
+		{
+			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+			if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+		}
 	}
 	else
 	{
@@ -833,6 +786,12 @@ Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
 				delayTimerR = 7;
 				synchronous = 1;
 				break;
+			case 26:
+				synchronous = 1;
+				delayTimerL = 2;
+				delayTimerR = 36;
+				//fireOnceR = 1; This is Xenia, so this should be a little more dangerous
+				break;
 		}
 		if(!synchronous)
 		{
@@ -863,7 +822,6 @@ Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
 			alreadyFiredL = 1;
 		}	
 	}
-	TakeInventory("GoldeneyeEnemyKillAttack",1);
 }
 
 Script "Goldeneye_TranslationIce" (void)

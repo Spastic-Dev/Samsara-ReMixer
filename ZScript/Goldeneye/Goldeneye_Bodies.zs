@@ -227,7 +227,7 @@ Class Goldeneye_Body_BaronSamedi : CustomInventory
 		Pickup:	
 			TNT1 A 0 
 			{
-				A_ChangeModel("",1,"Models/Goldeneye/Bodies","baronsamedi.iqm");
+				A_ChangeModel("",1,"Models/Goldeneye/Bodies","samedi.iqm");
 			}
 			Stop;
 	}

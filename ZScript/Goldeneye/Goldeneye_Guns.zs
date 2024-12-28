@@ -356,6 +356,32 @@ Class Goldeneye_Gun_DualSCombo : CustomInventory
 	}
 }
 
+Class Goldeneye_Gun_XCombo : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","rcp90.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_DualXCombo : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",5,"Models/Goldeneye/Guns","grenadelauncher_dual.iqm");
+			}
+			Stop;
+	}
+}
+
 Class Goldeneye_Gun_SilverPP7 : CustomInventory
 {
 	States
