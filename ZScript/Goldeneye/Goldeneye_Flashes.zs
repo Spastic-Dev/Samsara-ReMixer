@@ -209,7 +209,119 @@ Class Goldeneye_Flash_DualPhantom : CustomInventory
 	}
 }
 
-Class Goldeneye_Flash_GrenadeLauncher : CustomInventory
+Class Goldeneye_Flash_AR33 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",6,"Models/Goldeneye/Guns","ar33_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_DualAR33 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",7,"Models/Goldeneye/Guns","ar33_dual_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_RCP90 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",6,"Models/Goldeneye/Guns","rcp90_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_DualRCP90 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",7,"Models/Goldeneye/Guns","rcp90_dual_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_Cougar : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",6,"Models/Goldeneye/Guns","cougar_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_DualCougar : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",7,"Models/Goldeneye/Guns","cougar_dual_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_Laser : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",6,"Models/Goldeneye/Guns","laser_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_DualLaser : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",7,"Models/Goldeneye/Guns","laser_dual_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_GrenadeL : CustomInventory
 {
 	States
 	{
@@ -217,6 +329,34 @@ Class Goldeneye_Flash_GrenadeLauncher : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","grenadelauncher_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_DualSCombo : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",7,"Models/Goldeneye/Guns","klobb_dual_flash.iqm");
+				A_ChangeFlag("BRIGHT",1);
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Flash_SilverPP7 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",6,"Models/Goldeneye/Guns","pp7_flash.iqm");
 				A_ChangeFlag("BRIGHT",1);
 			}
 			Stop;

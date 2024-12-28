@@ -1,3 +1,16 @@
+Class Goldeneye_Hat_Clear : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",3,"","",0,"","",CMDL_HIDEMODEL);
+			}
+			Stop;
+	}
+}
+
 Class Goldeneye_Hat_BeretBlack : CustomInventory
 {
 	States
@@ -149,6 +162,19 @@ Class Goldeneye_Hat_SideHatLightGreen : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",3,"Models/Goldeneye/Hats","SideHatLightGreen.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Hat_OddJob : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",3,"Models/Goldeneye/Hats","oddjobhat.iqm");
 			}
 			Stop;
 	}

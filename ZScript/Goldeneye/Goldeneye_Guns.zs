@@ -159,6 +159,138 @@ Class Goldeneye_Gun_DualPhantom : CustomInventory
 	}
 }
 
+Class Goldeneye_Gun_AR33 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","ar33.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_DualAR33 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","ar33.iqm");
+				A_ChangeModel("",5,"Models/Goldeneye/Guns","ar33_dual.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_RCP90 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","rcp90.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_DualRCP90 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","rcp90.iqm");
+				A_ChangeModel("",5,"Models/Goldeneye/Guns","rcp90_dual.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_AutoShotgun : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","autoshotgun.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_Sniper : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","sniper.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_Cougar : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","cougar.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_DualCougar : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",5,"Models/Goldeneye/Guns","cougar_dual.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_Laser : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","laser.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_DualLaser : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",5,"Models/Goldeneye/Guns","laser_dual.iqm");
+			}
+			Stop;
+	}
+}
+
 Class Goldeneye_Gun_GrenadeL : CustomInventory
 {
 	States
@@ -172,7 +304,6 @@ Class Goldeneye_Gun_GrenadeL : CustomInventory
 	}
 }
 
-
 Class Goldeneye_Gun_Grenade : CustomInventory
 {
 	States
@@ -185,6 +316,72 @@ Class Goldeneye_Gun_Grenade : CustomInventory
 			Stop;
 	}
 }
+
+Class Goldeneye_Gun_RocketL : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","rocketlauncher.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_SCombo : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","sniper.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_DualSCombo : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",5,"Models/Goldeneye/Guns","klobb_dual.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_SilverPP7 : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","silverpp7.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldeneye_Gun_OddJob : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",4,"Models/Goldeneye/Guns","oddjobgun.iqm");
+			}
+			Stop;
+	}
+}
+
 
 Class Goldeneye_Gun_Clear : CustomInventory
 {

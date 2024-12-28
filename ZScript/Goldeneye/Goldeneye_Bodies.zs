@@ -1,3 +1,16 @@
+Class Goldeneye_Body_HideBase : CustomInventory
+{
+	States
+	{
+		Pickup:	
+			TNT1 A 0 
+			{
+				A_ChangeModel("",0,"","",0,"Models/Goldeneye","noskin.png");
+			}
+			Stop;
+	}
+}
+
 Class Goldeneye_Body_ArmorGuard : CustomInventory
 {
 	States

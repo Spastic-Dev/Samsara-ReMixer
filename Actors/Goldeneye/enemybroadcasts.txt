@@ -1,3 +1,81 @@
+Actor Goldeneye_DecAnimation_Freeze : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("SamsaraZScriptReady",2,1)
+			goto Cancel
+			TNT1 A 0 A_GiveInventory("Goldeneye_Animation_Freeze")
+			stop
+	}
+}
+
+Actor Goldeneye_DecAnimation_Unfreeze : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("SamsaraZScriptReady",2,1)
+			goto Cancel
+			TNT1 A 0 A_GiveInventory("Goldeneye_Animation_Unfreeze")
+			stop
+	}
+}
+
+Actor Goldeneye_DecAnimation_RemoveDecoupling : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("SamsaraZScriptReady",2,1)
+			goto Cancel
+			TNT1 A 0 A_ChangeFlag("DECOUPLEDANIMATIONS",false)
+			stop
+	}
+}
+
+Actor Goldeneye_DecAnimation_RestoreDecoupling : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("SamsaraZScriptReady",2,1)
+			goto Cancel
+			TNT1 A 0 A_ChangeFlag("DECOUPLEDANIMATIONS",true)
+			stop
+	}
+}
+
+Actor Goldeneye_DecAnimation_ClearGun : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("SamsaraZScriptReady",2,1)
+			goto Cancel
+			TNT1 A 0 A_GiveInventory("Goldeneye_Gun_Clear")
+			stop
+	}
+}
+
+Actor Goldeneye_DecAnimation_RemoveHat : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("SamsaraZScriptReady",2,1)
+			goto Cancel
+			TNT1 A 0 A_GiveInventory("Goldeneye_Hat_Clear")
+			stop
+	}
+}
+
 Actor Goldeneye_DecAnimation_Spawn2 : Goldeneye_SideBySide
 {
 	States
@@ -583,7 +661,7 @@ Actor Goldeneye_DecAnimation_HitRightShoulder : Goldeneye_SideBySide
 	}
 }
 
-Actor Goldeneye_DecAnimation_HitLegArm : Goldeneye_SideBySide
+Actor Goldeneye_DecAnimation_HitLeftArm : Goldeneye_SideBySide
 {
 	States
 	{
