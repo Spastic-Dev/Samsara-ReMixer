@@ -97,6 +97,39 @@ actor Goldeneye_AR33EnemyDrop : SamsaraSlotFourDrop
     }
 }
 
+actor Goldeneye_PhantomEnemyDrop : SamsaraSlotFourSkulltagDrop
+{
+    Gravity 0.33
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        GE00 Z 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        GE00 Z 0 A_ChangeFlag("THRUACTORS",false)
+        GE00 Z 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualAnim:
+        GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+        GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+        GE00 Z 0 A_SetAngle(random(0,360))
+        GE00 Z 0 A_SetPitch(random(0,360))
+      SpawnActualAnimLoop:
+        GE00 Z 0 A_SetPitch(pitch-15)
+        GE00 Z 0 A_SetAngle(angle-15)
+        GE00 Z 1 A_CheckFloor("SpawnActualAnimLand")
+        loop
+
+      SpawnActualAnimLand:
+        GE00 Z 0 A_PlaySound("Goldeneye/DropLand")
+        GE00 Z 0 A_Stop
+        GE00 Z -1 A_SetPitch(0)
+        stop
+    }
+}
+
 actor Goldeneye_RocketLEnemyDrop : SamsaraSlotFiveDrop
 {
     Gravity 0.33
@@ -130,7 +163,73 @@ actor Goldeneye_RocketLEnemyDrop : SamsaraSlotFiveDrop
     }
 }
 
+actor Goldeneye_GrenadeLEnemyDrop : SamsaraSlotFiveSkulltagDrop
+{
+    Gravity 0.33
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        GE00 Z 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        GE00 Z 0 A_ChangeFlag("THRUACTORS",false)
+        GE00 Z 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualAnim:
+        GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+        GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+        GE00 Z 0 A_SetAngle(random(0,360))
+        GE00 Z 0 A_SetPitch(random(0,360))
+      SpawnActualAnimLoop:
+        GE00 Z 0 A_SetPitch(pitch-15)
+        GE00 Z 0 A_SetAngle(angle-15)
+        GE00 Z 1 A_CheckFloor("SpawnActualAnimLand")
+        loop
+
+      SpawnActualAnimLand:
+        GE00 Z 0 A_PlaySound("Goldeneye/DropLand")
+        GE00 Z 0 A_Stop
+        GE00 Z -1 A_SetPitch(0)
+        stop
+    }
+}
+
 actor Goldeneye_RCP90EnemyDrop : SamsaraSlotSixDrop
+{
+    Gravity 0.33
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        GE00 Z 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        GE00 Z 0 A_ChangeFlag("THRUACTORS",false)
+        GE00 Z 0 A_ChangeFlag("NOTIMEFREEZE",false)
+      SpawnActualAnim:
+        GE00 Z 0 ThrustThing(random(0,256)/360,random(1,2),0,0)
+        GE00 Z 0 ThrustThingZ(0,random(0,2),0,0)
+        GE00 Z 0 A_SetAngle(random(0,360))
+        GE00 Z 0 A_SetPitch(random(0,360))
+      SpawnActualAnimLoop:
+        GE00 Z 0 A_SetPitch(pitch-15)
+        GE00 Z 0 A_SetAngle(angle-15)
+        GE00 Z 1 A_CheckFloor("SpawnActualAnimLand")
+        loop
+
+      SpawnActualAnimLand:
+        GE00 Z 0 A_PlaySound("Goldeneye/DropLand")
+        GE00 Z 0 A_Stop
+        GE00 Z -1 A_SetPitch(0)
+        stop
+    }
+}
+
+actor Goldeneye_CougarEnemyDrop : SamsaraSlotSixSkulltagDrop
 {
     Gravity 0.33
     +DROPPED
