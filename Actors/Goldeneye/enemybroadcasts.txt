@@ -115,6 +115,19 @@ Actor Goldeneye_DecAnimation_SeeTwoHand : Goldeneye_SideBySide
 	}
 }
 
+Actor Goldeneye_DecAnimation_SpawnDual : Goldeneye_SideBySide
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("SamsaraZScriptReady",2,1)
+			goto Cancel
+			TNT1 A 0 A_GiveInventory("Goldeneye_Animation_SpawnDual")
+			stop
+	}
+}
+
 Actor Goldeneye_DecAnimation_IdleAdjustCrotch : Goldeneye_SideBySide
 {
 	States

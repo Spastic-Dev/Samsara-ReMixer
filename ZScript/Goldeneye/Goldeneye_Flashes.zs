@@ -6,7 +6,7 @@ Class Goldeneye_Flash_Clear : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"","",0,"","",CMDL_HIDEMODEL);
-				A_ChangeFlag("BRIGHT",0);
+				bBright = false;
 			}
 			Stop;
 	}
@@ -20,7 +20,7 @@ Class Goldeneye_Flash_DualClear : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"","",0,"","",CMDL_HIDEMODEL);
-				A_ChangeFlag("BRIGHT",0);
+				bBright = false;
 			}
 			Stop;
 	}
@@ -35,7 +35,7 @@ Class Goldeneye_Flash_DualClearBoth : CustomInventory
 			{
 				A_ChangeModel("",6,"","",0,"","",CMDL_HIDEMODEL);
 				A_ChangeModel("",7,"","",0,"","",CMDL_HIDEMODEL);
-				A_ChangeFlag("BRIGHT",0);
+				bBright = false;
 			}
 			Stop;
 	}
@@ -49,7 +49,7 @@ Class Goldeneye_Flash_PP7 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","pp7_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -63,7 +63,7 @@ Class Goldeneye_Flash_DD44 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","dd44_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -77,7 +77,7 @@ Class Goldeneye_Flash_DualDD44 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","dd44_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -91,7 +91,7 @@ Class Goldeneye_Flash_Klobb : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","klobb_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -105,7 +105,7 @@ Class Goldeneye_Flash_DualKlobb : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","klobb_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -119,7 +119,7 @@ Class Goldeneye_Flash_KF7 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","kf7_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -133,7 +133,7 @@ Class Goldeneye_Flash_D5K : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","d5k_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -147,7 +147,7 @@ Class Goldeneye_Flash_DualD5K : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","d5k_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -161,7 +161,7 @@ Class Goldeneye_Flash_ZMG : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","zmg_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -175,7 +175,7 @@ Class Goldeneye_Flash_DualZMG : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","zmg_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -189,7 +189,7 @@ Class Goldeneye_Flash_Phantom : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","phantom_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -203,7 +203,7 @@ Class Goldeneye_Flash_DualPhantom : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","phantom_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -217,7 +217,7 @@ Class Goldeneye_Flash_AR33 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","ar33_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -231,7 +231,7 @@ Class Goldeneye_Flash_DualAR33 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","ar33_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -245,7 +245,7 @@ Class Goldeneye_Flash_RCP90 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","rcp90_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -259,7 +259,7 @@ Class Goldeneye_Flash_DualRCP90 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","rcp90_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -273,7 +273,7 @@ Class Goldeneye_Flash_AutoShotgun : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","autoshotgun_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -287,7 +287,7 @@ Class Goldeneye_Flash_Cougar : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","cougar_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -301,7 +301,7 @@ Class Goldeneye_Flash_DualCougar : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","cougar_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -315,7 +315,7 @@ Class Goldeneye_Flash_Laser : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","laser_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -329,7 +329,7 @@ Class Goldeneye_Flash_DualLaser : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","laser_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -343,7 +343,7 @@ Class Goldeneye_Flash_GrenadeL : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","grenadelauncher_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -357,7 +357,7 @@ Class Goldeneye_Flash_DualSCombo : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","klobb_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -371,7 +371,7 @@ Class Goldeneye_Flash_XCombo : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","rcp90_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -385,7 +385,7 @@ Class Goldeneye_Flash_DualXCombo : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",7,"Models/Goldeneye/Guns","grenadelauncher_dual_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
@@ -399,7 +399,7 @@ Class Goldeneye_Flash_SilverPP7 : CustomInventory
 			TNT1 A 0 
 			{
 				A_ChangeModel("",6,"Models/Goldeneye/Guns","pp7_flash.iqm");
-				A_ChangeFlag("BRIGHT",1);
+				bBright = true;
 			}
 			Stop;
 	}
