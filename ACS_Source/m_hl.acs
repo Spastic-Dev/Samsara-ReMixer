@@ -196,7 +196,7 @@ script "Samsara_HLShockRoachPickupCondition" (void)
     {
         if (CheckInventory("IsSamsaraClass"))
         {
-            if (CheckInventory("WolfenClass"))
+            if (CheckInventory("WolfenClass") && CheckInventory("WolfenClassMode") == 2)
             {
                 if (!CheckInventory("Totenkopf_IHaveMauser")) { result = 1; }
                 else if (!CheckInventory("Totenkopf_IHaveDualMausers")) { result = 1; }
@@ -233,30 +233,28 @@ script "Samsara_HLShockRoachPickup" (void)
             {
                 str itemtogive = "Placeholder";
 
-                if (a == 16) { itemtogive = "IPOGGrenadeToken"; }
-                else if (a == 18) { itemtogive = "WTShieldTrigger"; }
+                if (a == 18) { itemtogive = "WTShieldTrigger"; }
                 else if (a == 32) { itemtogive = "DescentSuperLaserUpgrade"; }
 
-                if (a == 16)
-                {
-                    GiveInventory(itemtogive, 1);
-                    GiveInventory("RocketAmmo", 5);
-                }
-                else { GiveInventory(itemtogive, 1); }
+                GiveInventory(itemtogive, 1);
             } else {
-                if (a == 3)
+                if (a == 3 && CheckInventory("WolfenClassMode") == 2)
                 {
                     if (!CheckInventory("Totenkopf_IHaveMauser"))
                     {
-                        GiveInventory("Samsara_ModeWeaponChange", 1);
+                        GiveInventory("Totenkopf_Mauser", 1);
                         GiveInventory("Totenkopf_IHaveMauser", 1);
                         GiveInventory("Clip", 5);
-                    } else if (!CheckInventory("Totenkopf_IHaveDualMausers")) {
-                        GiveInventory("Totenkopf_IHaveDualMausers", 1);
                         GiveInventory("Samsara_ModeWeaponChange", 1);
+                    } else if (!CheckInventory("Totenkopf_IHaveDualMausers")) {
+                        GiveInventory("Totenkopf_MauserDual", 1);
+                        GiveInventory("Totenkopf_IHaveDualMausers", 1);
                         GiveInventory("Clip", 5);
+                        GiveInventory("Samsara_ModeWeaponChange", 1);
+                    } else if (CheckInventory("Clip") < GetAmmoCapacity("Clip")) {
+                        GiveInventory("Clip", 5);
+                        GiveInventory("Samsara_ModeWeaponChange", 1);
                     }
-                    else if (CheckInventory("Clip") < GetAmmoCapacity("Clip")) { GiveInventory("Clip", 5); }
                 }
                 else if (a == 6) { GiveInventory("CanDualPistols", 1); }
                 else if (a == 26)
@@ -265,8 +263,12 @@ script "Samsara_HLShockRoachPickup" (void)
                     else if (!CheckInventory("Goldeneye_ThrowingKnivesDualToken")) { GiveInventory("Goldeneye_ThrowingKnivesDualToken", 1); }
                 }
 
-                if (a == 19)
+                if (a == 3 && CheckInventory("WolfenClassMode") <= 1) { GiveInventory(ClassWeapons[a][3], 1); }
+                else if (a == 16)
                 {
+                    GiveInventory(ClassWeapons[a][3], 1);
+                    GiveInventory("RocketAmmo", 5);
+                } else if (a == 19) {
                     if (!CheckInventory("SamsaraHalfLifeLoadoutSlot1") || CheckInventory("SamsaraHasAllLoadoutEquipment")) { GiveInventory(ClassWeapons[a][3], 1); }
                     if (CheckInventory("SamsaraHalfLifeLoadoutSlot1") || CheckInventory("SamsaraHasAllLoadoutEquipment")) { GiveInventory("Shock Roach", 1); }
                 }
