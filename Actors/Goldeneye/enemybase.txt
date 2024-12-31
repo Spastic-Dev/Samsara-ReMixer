@@ -785,6 +785,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE54 H 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE54 IJIJIJIJIJKLMN 10
 			GE54 O 10 A_KillMaster
+			GE54 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE54 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			stop
 		DeathShoulderBack:
