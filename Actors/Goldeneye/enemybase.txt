@@ -698,6 +698,8 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE45 N 11 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Death:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",4) != 1, 2)
 			TNT1 A 0 A_SpawnItemEx("GoldeneyeEnemyDeathHitBox",9,9,9,vely,velx,velz,0,SXF_ABSOLUTEVELOCITY)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_GiveInventory("Goldeneye_DecAnimation_RestoreDecoupling")
@@ -718,6 +720,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE47 HI 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE47 JK 10 
 			GE47 L 10 A_KillMaster
+			GE47 L 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE47 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
 			stop
 		DeathFlyBack:
@@ -728,6 +731,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE48 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE48 GHIJKL 8
 			GE48 M 8 A_KillMaster
+			GE48 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE48 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			stop
 		Death.GoldeneyeHead:
@@ -742,6 +746,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE49 XYZ 10
 			GE50 ABCD 10
 			GE50 E 10 A_KillMaster
+			GE50 E 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE50 EEEEEEEEEEEEEEEEEEEEEEE 2 A_FadeOut(0.05)
 			Stop
 		DeathNeck:
@@ -754,6 +759,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE51 Z 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE52 ABCDEFGHEFGHEFGHEFGHEFGH 10
 			GE52 I 10 A_KillMaster
+			GE52 I 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE52 IIIIIIIIIIIIIIIIIIIIIII 2 A_FadeOut(0.05)
 			Stop
 		DeathOnKnees: //+
@@ -767,6 +773,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE53 M 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE53 N 10
 			GE53 O 10 A_KillMaster
+			GE53 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE53 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			stop
 		DeathOnSide:
@@ -789,6 +796,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE55 M 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE55 N 10
 			GE55 O 8 A_KillMaster
+			GE55 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE55 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			Stop
 		DeathSprawlOut: //+
@@ -799,6 +807,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE56 H 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE56 IJK 7
 			GE56 L 7 A_KillMaster
+			GE56 L 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE56 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
 			stop
 		DeathCrossFeet:
@@ -809,6 +818,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE57 D 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE57 EFGHIJKLMNOPQRST 7
 			GE57 U 7 A_KillMaster
+			GE57 U 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE57 UUUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
 			stop
 		DeathFaceUp:
@@ -819,6 +829,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE58 I 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE58 JKLMNOPQRSTUVWX 6 
 			GE58 Y 6 A_KillMaster
+			GE58 Y 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE58 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
 			Stop
 		DeathFaceUpFlip:
@@ -829,6 +840,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE59 F 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE59 GHIJKLMNOPQ 7
 			GE59 R 7 A_KillMaster
+			GE59 R 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE59 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
 			Stop
 		DeathFetalLeft:
@@ -839,6 +851,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE60 J 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE60 KLMNOPQRSTUVW 6
 			GE60 X 6 A_KillMaster
+			GE60 X 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE60 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
 			Stop
 		DeathFetalRight:
@@ -849,6 +862,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE61 I 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE61 JKLMNOPQRSTUVW 6
 			GE61 X 6 A_KillMaster
+			GE61 X 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE61 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
 			Stop
 		DeathJumpBack:
@@ -859,6 +873,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE62 E 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE62 FGHIJKLMNOPQ 8
 			GE62 R 8 A_KillMaster
+			GE62 R 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE62 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
 			stop
 		DeathStaggerWall:
@@ -869,11 +884,14 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE63 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE63 JKLMNO 10
 			GE63 P 10 A_KillMaster
+			GE63 P 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE63 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
 			Stop
 		XDeath:
 		Death.Explosive:
 		Death.DoomDamageTypeExplosive:
+			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",4) != 1, 2)
 			TNT1 A 0 A_SpawnItemEx("GoldeneyeEnemyDeathHitBox",9,9,9,vely,velx,velz,0,SXF_ABSOLUTEVELOCITY)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_GiveInventory("Goldeneye_DecAnimation_RestoreDecoupling")
@@ -893,6 +911,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE64 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE64 GHIJKL 8
 			GE64 M 8 A_KillMaster
+			GE64 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE64 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionBack2:
@@ -905,6 +924,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE65 J 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE65 KL 8
 			GE65 M 8 A_KillMaster
+			GE65 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE65 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionForward:
@@ -915,6 +935,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE66 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE66 GHIJKL 8
 			GE66 M 8 A_KillMaster
+			GE66 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE66 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionForwardRoll:
@@ -925,6 +946,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE67 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE67 GHIJKLMNO 8
 			GE67 P 8 A_KillMaster
+			GE67 P 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE67 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionLeft:
@@ -935,6 +957,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE68 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE68 GHIJKLM 8 
 			GE68 N 8 A_KillMaster
+			GE68 N 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE68 NNNNNNNNNNNNNNNNNNNNNNN 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionLeft2:
@@ -945,6 +968,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE69 H 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE69 IJKLMNOP 8
 			GE69 Q 8 A_KillMaster
+			GE69 Q 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE69 QQQQQQQQQQQQQQQQQQQQQQQ 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionRight:
@@ -955,6 +979,7 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			GE70 E 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
 			GE70 FGHIJKL 8
 			GE70 M 8 A_KillMaster
+			GE70 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
 			GE70 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		Unfinished:
@@ -973,6 +998,9 @@ Actor Goldeneye_EnemyBase : SamsaraMonsterHumanoidTotalGib
 			TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop
 			TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop
 			stop
+		CorpsePersistence:
+			"####" "#" -1
+			Stop
 
 		// SamsaraMonsterHumanoidTotalGib states
 		Pain.DoomDamageTypeStunner:

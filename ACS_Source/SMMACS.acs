@@ -753,9 +753,9 @@ Script "ReMixerCVarCheck" (int pick) //680
 			response = useSkill < 5 ? useSkill : GameSkill();
 			break;
 
-		/*case 4:
-			response = GetCVar("mm_dropdefault");
-			break;*/
+		case 4:
+			response = GetCVar("mm_goldeneyecorpsehitboxes");
+			break;
 
 		case 6:
 			response = GetCVar("mm_protectorattacks") || GetCVar("samsara_moddedgame");
@@ -763,6 +763,10 @@ Script "ReMixerCVarCheck" (int pick) //680
 
 		case 7:
 			response = GetCVar("mm_quakezombiedeaths");
+			break;
+
+		case 8:
+			response = GetCVar("mm_goldeneyepersistentcorpses");
 			break;
 
 		case 9:
@@ -1162,6 +1166,8 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_fullradiusdmg", false);
 		SetCVar("mm_quakezombiedeaths", false);
 		SetCVar("mm_redneckcusspack", 0);
+		SetCVar("mm_goldeneyecorpsehitboxes", true);
+		SetCVar("mm_goldeneyepersistentcorpses", false);
 
 		// Enemy Modes
 		SetCVar("mm_doommode", 1);
@@ -1313,6 +1319,8 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_fullradiusdmg", true);
 		SetCVar("mm_quakezombiedeaths", false);
 		SetCVar("mm_redneckcusspack", 0);
+		SetCVar("mm_goldeneyecorpsehitboxes", true);
+		SetCVar("mm_goldeneyepersistentcorpses", false);
 
 		// Enemy Modes
 		SetCVar("mm_doommode", 0);
@@ -1464,6 +1472,8 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_fullradiusdmg", true);
 		SetCVar("mm_quakezombiedeaths", false);
 		SetCVar("mm_redneckcusspack", 0);
+		SetCVar("mm_goldeneyecorpsehitboxes", true);
+		SetCVar("mm_goldeneyepersistentcorpses", false);
 
 		// Enemy Modes
 		SetCVar("mm_doommode", 0);
@@ -1616,6 +1626,8 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_fullradiusdmg", true);
 		SetCVar("mm_quakezombiedeaths", true);
 		SetCVar("mm_redneckcusspack", 0);
+		SetCVar("mm_goldeneyecorpsehitboxes", false);
+		SetCVar("mm_goldeneyepersistentcorpses", true);
 
 		// Enemy Modes
 		SetCVar("mm_doommode", 1);
@@ -1767,6 +1779,8 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_fullradiusdmg", true);
 		SetCVar("mm_quakezombiedeaths", false);
 		SetCVar("mm_redneckcusspack", 0);
+		SetCVar("mm_goldeneyecorpsehitboxes", true);
+		SetCVar("mm_goldeneyepersistentcorpses", false);
 
 		// Enemy Modes
 		SetCVar("mm_doommode", 3);
