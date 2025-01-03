@@ -224,6 +224,13 @@ script "Samsara_HLShockRoachPickupCondition" (void)
 
 script "Samsara_HLShockRoachPickup" (void)
 {
+    SetActivator(0, AAPTR_TARGET);
+
+    GiveInventory("SamsaraSlotOneNoStay", 1);
+}
+
+/*script "Samsara_HLShockRoachPickup" (void)
+{
     int dualpickupmode = GetCVar("samsara_dualpickup");
     bool duallimiting = dualpickupmode <= 0;
     bool dualgiveboth = dualpickupmode == 3 || (dualpickupmode >= 4 && (!(isSinglePlayer() || isCoop()) || isInvasion()));
@@ -347,4 +354,4 @@ script "Samsara_HLShockRoachPickup" (void)
             GiveInventory("GotWeapon0", 1);
         }
     }
-}
+}*/
