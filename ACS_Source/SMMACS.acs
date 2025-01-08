@@ -384,6 +384,12 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 							break;
 					}
 					break;
+				case 26:
+					if(GetCVar("samsara_zscriptready") != 2)
+					{
+						altSetSelect = 1;
+					}
+					break;
 			}
 
 			if(GetCVar("mm_reducemonsters") < 99)
