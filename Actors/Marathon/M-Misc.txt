@@ -1449,15 +1449,14 @@ actor M2EnforcerDrop : SamsaraSlotSixDrop
 
       Pickup:
         TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupMarathon")
-        goto Super::Pickup // all other classes still checked
+        goto Super::Pickup
 
       PickupMarathon:
-        TNT1 A 0 A_JumpIfInventory("Alien Weapon",1,1)
-        goto PickupSuccessMarathon
-        TNT1 A 0 A_JumpIfInventory("UnknownAmmo",0,"PickupFailure")
-        goto PickupSuccessMarathon
+        TNT1 A 0 A_JumpIf(CallACS("SamsaraGiveUnique"), "PickupSuccess")
+        goto PickupFailure
 
       PickupSuccess:
+        TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupSuccessContinue")
         TNT1 A 0 A_JumpIfInventory("RottClass",1,"PickupSuccessContinue")
         TNT1 A 0 A_JumpIfInventory("CatacombClass",1,"PickupSuccessContinue")
         goto PickupSuccessAmmo4Check
@@ -1469,12 +1468,6 @@ actor M2EnforcerDrop : SamsaraSlotSixDrop
 
       PickupSuccessContinue:
         TNT1 A 0
-        goto Super::PickupSuccess
-
-      PickupSuccessMarathon:
-        TNT1 A 0 A_GiveInventory("Alien Weapon")
-        TNT1 A 0 A_GiveInventory("UnknownAmmo",50)
-        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraClientUniquePickup", 0, 0)
         goto Super::PickupSuccess
     }
 }
@@ -1498,15 +1491,14 @@ actor M1EnforcerDrop : SamsaraSlotFourDrop
 
       Pickup:
         TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupMarathon")
-        goto Super::Pickup // all other classes still checked
+        goto Super::Pickup
 
       PickupMarathon:
-        TNT1 A 0 A_JumpIfInventory(" Alien Weapon ",1,1)
-        goto PickupSuccessMarathon
-        TNT1 A 0 A_JumpIfInventory("UnknownAmmo2",0,"PickupFailure")
-        goto PickupSuccessMarathon
+        TNT1 A 0 A_JumpIf(CallACS("SamsaraGiveUnique", 1), "PickupSuccess")
+        goto PickupFailure
 
       PickupSuccess:
+        TNT1 A 0 A_JumpIfInventory("MarathonClass",1,"PickupSuccessContinue")
         TNT1 A 0 A_JumpIfInventory("RottClass",1,"PickupSuccessContinue")
         TNT1 A 0 A_JumpIfInventory("CatacombClass",1,"PickupSuccessContinue")
         goto PickupSuccessAmmo1Check
@@ -1518,12 +1510,6 @@ actor M1EnforcerDrop : SamsaraSlotFourDrop
 
       PickupSuccessContinue:
         TNT1 A 0
-        goto Super::PickupSuccess
-
-      PickupSuccessMarathon:
-        TNT1 A 0 A_GiveInventory(" Alien Weapon ")
-        TNT1 A 0 A_GiveInventory("UnknownAmmo2",50)
-        TNT1 A 0 ACS_NamedExecuteAlways("SamsaraClientUniquePickup", 0, 1)
         goto Super::PickupSuccess
     }
 }
