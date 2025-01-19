@@ -2,6 +2,7 @@ const int Krist_ID = 6000;
 const int NME_ID = 7000;
 const int Tom_ID = 8000;
 const int TomSnake_ID = 9000;
+const int BigJohn_ID = 10000;
 
 /* Lightning Guard Notes
 80 mass = pistol
@@ -226,6 +227,15 @@ Actor RoTT_BossDeathAnnouncer_TomSnake : RoTT_BossDeathAnnouncer_Krist {
 		Stop
 	}
 }
+
+Actor RoTT_BossDeathAnnouncer_BigJohn : RoTT_BossDeathAnnouncer_Krist {
+	States {
+		Pickup:
+			TNT1 A 0 ACS_NamedExecuteAlways("RoTTBossDeathBroadcast", 0, BigJohn_ID)
+		Stop
+	}
+}
+
 
 Actor DoAttack : Inventory {
 	inventory.maxamount 1

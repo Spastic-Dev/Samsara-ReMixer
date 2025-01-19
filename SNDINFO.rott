@@ -14,6 +14,20 @@ lowguard/death2			lg_1die2
 $random lowguard/sightM { lowguard/see1 lowguard/see2 lowguard/seez }
 $random lowguard/sightF { lowguard/see3 lowguard/see2 lowguard/seez }
 
+
+lowguardalt/boo	 			lg_2boo
+lowguardalt/death 			lg_2die
+lowguardalt/see1			lg_2see
+lowguardalt/see2			lg_2see3
+lowguardalt/seez			lg_2see2
+lowguardalt/see3			lg_2seea
+lowguardalt/pain			lg_2ouch
+lowguardalt/death2			lg_2die2
+
+$random lowguardalt/sightM { lowguardalt/see1 lowguardalt/see2 lowguardalt/seez }
+$random lowguardalt/sightF { lowguardalt/see3 lowguardalt/see2 lowguardalt/seez }
+
+
 enforcer/die    en_die
 enforcer/fire   en_fire
 enforcer/ouch	en_ouch	
@@ -26,6 +40,11 @@ overpatrol/ouch	op_ouch
 overpatrol/see	op_1see
 
 
+overpatrolalt/die 	op2_die
+overpatrolalt/ouch	op2_ouch	
+overpatrolalt/see	op2_see
+
+
 highguard/see 	hg_1see
 highguard/see2	hg_2see
 highguard/death hg_die
@@ -33,10 +52,22 @@ highguard/pain	hg_ouch
 
 $random hguardsee { highguard/see  highguard/see2 }
 
+highguardalt/see 	 hg2_see
+highguardalt/see2	 hg2_see2
+highguardalt/death	 hg2_die
+highguardalt/pain	 hg2_ouch
+
+$random hguardaltsee { highguardalt/see  highguardalt/see2 }
+
 striketeam/see 		st_1see
 striketeam/roll 	st_roll
 striketeam/death	st_die
 striketeam/pain		st_ouch
+
+
+striketeamalt/see 		gra_1see
+striketeamalt/death		gra_die
+striketeamalt/pain		gra_ouch
 
 LnGuardsee1 	BL_1SEE
 LnGuardsee2 	BL_2SEE
@@ -49,6 +80,18 @@ LnGuardSteal	BL_STEAL
 LnGuardFake		BL_OUCH2
 
 $random LnGuardsee { LnGuardsee1 LnGuardsee2 }
+
+
+LnGuardaltsee1 		WIG_1SEE
+LnGuardaltsee2 		WIG_2SEE
+LnGuardaltouch 		WIG_OUCH
+LnGuardaltdie 		WIG_DIE
+LnGuardaltplea 		WIG_PLEA
+LnGuardaltplea2 	WIG_PLEA2
+LnGuardaltplea3 	WIG_PLEA3
+LnGuardaltSteal		WIG_STEAL
+
+$random LnGuardAltsee { LnGuardAltsee1 LnGuardAltsee2 }
 
 DrainMonk/see 	MO_SEE
 DrainMonk/death MO_DIE
@@ -63,6 +106,13 @@ FireMonk/death 	FM_DIE
 FireMonk/Fire	FM_FIRE
 FireMonk/pain	FM_OUCH
 $Volume FireMonk/pain 1.0
+
+
+FireMonkAlt/see 	FM2_SEE
+$Volume FireMonkAlt/see 1.0
+FireMonkAlt/death 	FM2_DIE
+FireMonkAlt/pain	FM2_OUCH
+$Volume FireMonkAlt/pain 1.0
 
 robot/see		RO_SEE
 robot/fire		RO_FIRE
@@ -144,3 +194,32 @@ $random SnakeTom/Act { SnakeTom/Say1 SnakeTom/Say2 SnakeTom/Say3 }
 
 E_BIGEMP		E_BIGEMP
 OP_FIRE			OP_FIRE
+
+BigJohn/Taunt1    Sounds/Rott/Big_John_taunt_1.ogg
+BigJohn/Taunt2    Sounds/Rott/Big_John_taunt_2.ogg
+BigJohn/Taunt3    Sounds/Rott/Big_John_taunt_3.ogg
+BigJohn/Taunt4    Sounds/Rott/Big_John_taunt_4.ogg
+BigJohn/Taunt5    Sounds/Rott/Big_John_taunt_5.ogg
+BigJohn/Taunt6    Sounds/Rott/Big_John_taunt_6.ogg
+BigJohn/Taunt7    Sounds/Rott/Big_John_taunt_7.ogg
+BigJohn/Taunt8    Sounds/Rott/Big_John_taunt_8.ogg
+BigJohn/Taunt9    Sounds/Rott/Big_John_taunt_9.ogg
+BigJohn/Taunt10   Sounds/Rott/Big_John_taunt_10.ogg
+BigJohn/Taunt11   Sounds/Rott/Big_John_taunt_11.ogg
+BigJohn/Taunt12   Sounds/Rott/Big_John_taunt_12.ogg
+BigJohn/Taunt13   Sounds/Rott/Big_John_taunt_13.ogg
+BigJohn/Taunt14   Sounds/Rott/Big_John_taunt_14.ogg
+BigJohn/Taunt15   Sounds/Rott/Big_John_taunt_15.ogg
+BigJohn/Taunt16   Sounds/Rott/Big_John_taunt_16.ogg
+BigJohn/Taunt17   Sounds/Rott/Big_John_taunt_17.ogg
+BigJohn/Taunt18   Sounds/Rott/Big_John_taunt_18.ogg
+BigJohn/Taunt19   Sounds/Rott/Big_John_taunt_19.ogg
+BigJohn/Taunt20   Sounds/Rott/Big_John_taunt_20.ogg
+BigJohn/Taunt21   Sounds/Rott/Big_John_taunt_21.ogg
+BigJohn/Taunt22   Sounds/Rott/Big_John_taunt_22.ogg
+BigJohn/Taunt23   Sounds/Rott/Big_John_taunt_23.ogg
+BigJohn/Taunt24   Sounds/Rott/Big_John_taunt_24.ogg
+BigJohn/Taunt25   Sounds/Rott/Big_John_taunt_25.ogg
+
+$random BigJohn/Act { BigJohn/Taunt1 BigJohn/Taunt2 BigJohn/Taunt3 BigJohn/Taunt4 BigJohn/Taunt5 BigJohn/Taunt6 BigJohn/Taunt7 BigJohn/Taunt8 BigJohn/Taunt9 BigJohn/Taunt10 BigJohn/Taunt11 BigJohn/Taunt12 BigJohn/Taunt13 BigJohn/Taunt14 BigJohn/Taunt15 BigJohn/Taunt16 BigJohn/Taunt17 BigJohn/Taunt18 BigJohn/Taunt19 BigJohn/Taunt20 BigJohn/Taunt21 BigJohn/Taunt22 BigJohn/Taunt23 BigJohn/Taunt24 BigJohn/Taunt25 }
+$random BigJohn/Pain { BigJohn/Taunt7 BigJohn/Taunt21 BigJohn/Taunt22 BigJohn/Taunt23 BigJohn/Taunt24 }

@@ -57,6 +57,10 @@ Script "RoTTBossScript" (int basetid, int type) //801
 			SetActivatorToTarget(0);
 			GiveInventory("RoTT_BossDeathAnnouncer_TomSnake", 1);
 		break;
+		case BIGJOHN_BASE:
+			SetActivatorToTarget(0);
+			GiveInventory("RoTT_BossDeathAnnouncer_BigJohn", 1);
+		break;
 	}
 }
 
@@ -98,6 +102,9 @@ Script "RoTTBossDeathBroadcast" (int id, int mode) CLIENTSIDE //810
 			break;
 			case TOMSNAKE_BASE:
 				Log(s:"\cfOscuro Defeated!\c-");
+			break;
+			case BIGJOHN_BASE:
+				Log(s:"\cfBig John Defeated!\c-");
 			break;
 		}
 	}

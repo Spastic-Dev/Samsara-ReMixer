@@ -12,7 +12,7 @@ ACTOR LightningGuard : RoTTHumanoid {
    Species "ROTTEnemies"
    +MTHRUSPECIES
    +DONTHARMSPECIES
-   HitObituary "%o was raped by a Lightning Guard."
+   HitObituary "%o got whacked by a Lightning Guard."
    Obituary "%o was killed by a Lightning Guard."
    Tag "Lightning Guard"
    Speed 7
@@ -386,7 +386,7 @@ ACTOR LGuardAltDeath : LightningGuard {
        LIGW T 5 
        LIGW U 5 
        LIGW V 5
-       LIGW W 5 A_PlaySound(LnGuardplea)
+       LIGW W 5 A_PlaySound("LnGuardplea")
     Pleading:
        LIGW V 5 
        LIGW U 5 
@@ -394,7 +394,7 @@ ACTOR LGuardAltDeath : LightningGuard {
        LIGW U 5 
        LIGW V 5 
        LIGW W 5 
-       LIGW V 5 A_PlaySound(LnGuardplea3)
+       LIGW V 5 A_PlaySound("LnGuardplea3")
        LIGW U 5 
        LIGW V 5 
        LIGW W 5 
@@ -406,12 +406,12 @@ ACTOR LGuardAltDeath : LightningGuard {
        LIGW U 5 
        LIGW V 5
        LIGW W 5
-       LIGW T 5 A_PlaySound(LnGuardplea2)
+       LIGW T 5 A_PlaySound("LnGuardplea2")
        LIGW U 5
        LIGW V 5
        LIGW W 5
        RISE E 5
-       RISE F 5 A_PlaySound(LnGuardFake)
+       RISE F 5 A_PlaySound("LnGuardFake")
        RISE G 1 A_Fall
 	   Goto Faking
 	Faking:
@@ -427,6 +427,16 @@ ACTOR LGuardAltDeath : LightningGuard {
        RISE D 0 A_SpawnItemEx("LGuardAltDeath2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
        RISE D 0 A_Die("Remove")
 	   Stop
+    Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+        TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	 
+		TNT1 A 0 A_Fall
+		LIGW X 5 
+		LIGW Y 6 A_Scream
+		LIGW Z 7 
+		LIGW "[" 6
+		LIGW "}" -1
+		Stop
 	Remove:
 		TNT1 A 1
 		Stop
@@ -1295,6 +1305,650 @@ actor LightningGuard_ShrinkEffect : LightningGuard
 			LIGP A 0
 			LIGP A 0 A_SetUserVar("user_scalex", scalex*65536.0)
 			LIGP A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			Stop
+	}
+}
+
+
+
+
+ACTOR LightningGuardAlt : LightningGuard {
+   SeeSound "LnGuardaltsee"   
+   PainSound "LnGuardaltouch"
+   DeathSound "LnGuardaltdie"
+   States {
+	Spawn:
+	   WG2W A 0
+	   WG2W A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+	   WG2W A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+	   WG2W A 0 A_GiveInventory("AlreadySpawned",1)
+	Spawn2:
+	   WG2W A 10 A_Look
+       Loop
+	Idle:
+	   WG2W A 10 A_Look
+       Loop   
+	See:
+       WG2W B 3 A_Chase
+	   WG2W B 2 A_Chase
+	   WG2W C 3 A_Chase
+	   WG2W C 2 A_Chase("Melee", "CheckWeap")
+	   WG2W D 3 A_Chase
+	   WG2W D 2 A_Chase
+	   WG2W E 3 A_Chase
+	   WG2W E 2 A_Chase("Melee", "CheckWeap")
+       Loop
+	Melee:
+	   TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 1, "CheckWeap")
+	   TNT1 A 0 A_CheckFlag("ISMONSTER", 2, AAPTR_TARGET)
+	   TNT1 A 0 A_JumpIf(CallACS("LightningGuardSteal", 1) == 1, "Steal")  
+	   TNT1 A 0
+	   Goto Missile 
+	Steal:
+	   TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+	   WG2S A 1	A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1	A_FaceTarget   
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	   
+	   WG2S A 1 A_FaceTarget
+	   WG2S A 1 A_JumpIfCloser(84,1)	   
+	   Goto See	      
+	   TNT1 A 0 A_Playsound("LnGuardAltSteal")
+	   WG2S B 6 A_MeleeAttack
+	   TNT1 A 0 A_GiveInventory("StoleWeapon", CallACS("LightningGuardSteal",2))
+	   TNT1 A 0 ACS_NamedExecuteWithResult("LightningGuardDeadDrop")
+	   Goto See
+	Missile:
+	   TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+       WG2W F 8 A_FaceTarget
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 1, "CheckWeap")
+	   TNT1 A 0 A_FaceTarget
+       TNT1 A 0 A_Playsound("rott/pistolf")
+	   WG2W G 8 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
+       WG2W H 8
+	   TNT1 A 0 A_FaceTarget
+       TNT1 A 0 A_Playsound("rott/pistolf")
+	   WG2W G 8 Bright A_CustomBulletAttack(13.0,0,1,10,"RottPuff", 0, CBAF_NORANDOM)
+	   WG2W H 1 A_GiveInventory("AttackDecider", 1)
+       WG2W H 7 A_JumpIfInventory("DoAttack", 1, "Repeat")
+       Goto See
+	Missile2:
+       TNT1 A 0 A_FaceTarget
+       TNT1 A 0 A_Playsound("mp40/shoot")
+	   WG2W F 3 Bright A_CustomBulletAttack(13.0,5.0,1,10,"RottPuff", 0, CBAF_NORANDOM)
+       WG2W G 3
+	   TNT1 A 0 A_FaceTarget
+       TNT1 A 0 A_Playsound("mp40/shoot")
+	   WG2W H 3 Bright A_CustomBulletAttack(13.0,5.0,1,10,"RottPuff", 0, CBAF_NORANDOM)
+       WG2W G 1 A_GiveInventory("AttackDecider_2", 1)
+	   WG2W H 2 A_JumpIfInventory("DoAttack", 1, "Repeat")
+       Goto See
+	Repeat:
+	   TNT1 A 0 A_TakeInventory("DoAttack", 1)
+	   TNT1 A 0 A_JumpIf(1 == ACS_NamedExecuteWithResult("RoTT808", 0), "See")
+	   WG2W B 3 A_Chase("Melee", "Missile")
+	   Goto Missile
+	CheckWeap:
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 9, "FireFlameWall")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 8, "FireDrunkMissile")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 7, "FireFirebomb")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 6, "Missile2")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 5, "FireHeatSeeker")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 4, "FireBazooka")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 3, "FireSplitMissile")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 2, "FireExcalibat")
+	   TNT1 A 0 A_JumpIfInventory("StoleWeapon", 1, "FireDarkStaff")
+	   Goto Missile
+	FireBazooka:
+       TNT1 A 0 A_JumpIfCloser(36,6)
+	   TNT1 A 0 A_FaceTarget
+	   TNT1 A 0 A_Playsound("bazooka/shoot")
+	   WG2W G 8 Bright A_CustomMissile("MissileLow",44)
+	   WG2W H 8
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+	   Goto See
+       TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   goto FireBazooka+1
+	FireHeatSeeker:
+       TNT1 A 0 A_JumpIfCloser(36,6)
+	   TNT1 A 0 A_FaceTarget	   
+	   TNT1 A 0 A_Playsound("hseek/shoot")
+	   WG2W G 8 Bright A_CustomMissile("HSMissile_2")
+	   WG2W H 8
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+       Goto See
+	   TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   goto FireHeatSeeker+1
+	FireDrunkMissile:       
+       TNT1 A 0 A_JumpIfCloser(72,12)
+	   TNT1 A 0 A_Playsound("drunk/shoot")
+	   WG2W F 16 A_FaceTarget
+	   TNT1 A 0 A_FaceTarget	   
+	   WG2W G 0 Bright A_CustomMissile("DrunkMLow",44,-8)
+	   WG2W G 0 Bright A_CustomMissile("DrunkMLow",44,-8)
+	   WG2W G 0 Bright A_CustomMissile("DrunkMLow",44,-8)
+	   WG2W G 0 Bright A_CustomMissile("DrunkMLow",44,-8)
+	   WG2W G 0 Bright A_CustomMissile("DrunkMLow",44,-8)
+	   WG2W G 8 Bright
+	   WG2W H 8
+       TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+	   Goto See
+	   TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   Goto FireDrunkMissile+1
+	FireFireBomb:
+       TNT1 A 0 A_JumpIfCloser(192,7)
+	   WG2W F 16 A_FaceTarget
+	   TNT1 A 0 A_FaceTarget	   
+	   TNT1 A 0 A_Playsound("firebomb/shoot")
+	   WG2W G 8 Bright A_CustomMissile("FBombLow",44)
+	   WG2W H 8
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+       Goto See
+	   TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   goto FireFireBomb+1
+	FireFlameWall:
+       TNT1 A 0 A_JumpIfCloser(72,7)
+	   WG2W F 16 A_FaceTarget
+	   TNT1 A 0 A_FaceTarget	   
+	   TNT1 A 0 A_PlaySound("FireWall/Shoot")
+	   WG2W G 8 Bright A_CustomMissile("FwallLow",44)
+	   WG2W H 8
+       TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+       Goto See
+	   TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   goto FireFlamewall+1
+	FireExcalibat:
+       TNT1 A 0 A_JumpIfCloser(96,18)
+	   WG2W F 16 A_FaceTarget
+	   TNT1 A 0 A_FaceTarget	   
+	   TNT1 A 0 A_Playsound("excalibat/swing")
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,-35,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,-28,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,-21,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,-14,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,-7,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,0,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,7,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,14,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,21,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,28,128)
+	   WG2W G 1 Bright A_CustomMissile("BaseballLow", 36, 0,35,128)
+	   WG2W G 8 Bright
+	   WG2W H 8
+       TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+       Goto See
+	   TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   goto FireExcalibat+1 
+	FireSplitMissile:       
+	   TNT1 A 0 A_JumpIfCloser(60,9)
+	   WG2W F 16 A_FaceTarget
+	   TNT1 A 0 A_FaceTarget	   
+	   TNT1 A 0 A_Playsound("split/shoot1")
+	   WG2W G 0 Bright A_CustomMissile("SMissile1Low",44)
+	   WG2W G 0 Bright A_CustomMissile("SMissile2Low",44)
+	   WG2W G 8 Bright
+	   WG2W H 8
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+       Goto See
+	   TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   goto FireSplitMissile+1  
+	BatMelee:
+	   TNT1 A 0 A_FaceTarget	
+	   TNT1 A 0 A_Playsound("excalibat/swing")
+	   WG2S A 8 A_CustomMeleeAttack(15,"excalibat/hit")	 
+	   WG2S B 8 
+	   WG2S A 8
+	   Goto See
+	FireDarkStaff:
+	   TNT1 A 0 A_JumpIfCloser(96,9)
+	   WG2W F 2 Bright A_PlaySound("ksphere/charge",CHAN_WEAPON)
+       WG2W F 9 Bright
+       WG2W F 9 Bright
+       WG2W F 9 Bright
+       WG2W F 9 Bright
+	   WG2W F 0 A_PlaySound("ksphere/fire",CHAN_WEAPON)
+       WG2W G 1 Bright A_CustomMissile("Ksphere_RottLow",27)
+	   WG2W H 8
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", TRUE)
+       Goto See
+	   TNT1 AAA 0
+	   TNT1 A 0 A_ChangeFlag("DONTHARMSPECIES", FALSE)
+	   goto FireDarkStaff+1  
+	Pain:
+       TNT1 A 0 A_Jump(128, 4)
+       TNT1 A 0 A_JumpIfHealthLower(10,2)
+	   TNT1 A 0 A_Jump(256,2)
+	   TNT1 A 0 A_Die("Plead")
+	   TNT1 A 0
+       TNT1 A 0 A_Jump(128,"Pain2")
+       WG2W J 3
+       WG2W J 4 A_Pain
+       Goto See
+	Pain2:
+       WG2W I 3
+       WG2W I 4 A_Pain
+       Goto See
+	Pain.ZorchPistol:
+	Pain.Zorch:
+	Pain.ZorchKamikaze:
+	Pain.PhasingZorch:
+	Pain.ZorchSpectral:
+       WG2W J 0 A_Jump(128,"Pain2")
+       WG2W J 3
+       WG2W J 4 A_Pain
+       Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+		TNT1 A 0 A_Jump(128, "BootPain2")
+		WG2P A 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		WG2P A 16 A_Pain
+		Goto See
+	BootPain2:
+		WG2P B 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		WG2P B 16 A_Pain
+		Goto See
+	Death.Plead:
+	   WG2W I 1 A_Fall
+	   WG2W I 0 A_SpawnItemEx("LGuardAltAltDeath",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)
+	   TNT1 A 20
+	   stop
+	Death:
+	   WG2W A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)   
+       TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+       WG2W K 5 A_Fall
+       WG2W L 6 A_Scream
+       WG2W M 5 
+       WG2W N 4
+	   WG2W O 3
+	   WG2W P -1
+	   Stop
+	Death.CalebFire:
+	Death.LifeLeech:
+		TNT1 A 0 A_Jump(218, 2)
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_Stop
+		TNT1 A 5 A_NoBlocking
+		TNT1 A -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+		Stop
+    Death.RottFire:
+	Burn:		
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("BurningSkeleton")	
+		TNT1 A 2 A_NoBlocking
+	    Stop
+	Death.RottExplosive:
+		TNT1 A 0 A_JumpIfHealthLower(-3,"XDeathForROTT")
+		TNT1 A -1 A_Jump(256,"Death")
+		Wait
+	XDeath.RottExplosive:
+	XDeathForROTT:
+	XDeath:
+	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect") 
+		TNT1 A 0 A_SpawnItem("RottGibbedMan")
+		TNT1 A 1
+		TNT1 A 0 A_Jump(128, 2)
+		TNT1 A 0 A_GiveToTarget("LudicrousGibsItem", 1)
+		TNT1 AA 0
+		TNT1 A 2 A_NoBlocking
+	   Stop		  
+	Pain.ShrinkerDMG:
+		LIGP A 0
+		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+		"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+		"####" "#" 0 A_NoBlocking
+		"####" "#" 0 A_PlaySound("duke/shrink")
+		"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("LightningGuardAlt_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+		TNT1 A 2
+		TNT1 A 0 Thing_Remove(0)
+		stop
+   }
+}
+
+ACTOR LGuardAltAltDeath : LightningGuardAlt {
+   Health 10
+   GibHealth -73
+   SeeSound ""
+   +NOPAIN
+   -COUNTKILL
+   states
+	{
+    Spawn:
+    See:
+       WG2W Q 4
+       WG2W R 5 
+       WG2W S 5 
+       WG2W T 5 
+       WG2W U 5
+       WG2W V 5 A_PlaySound("LnGuardaltplea")
+    Pleading:
+       WG2W U 5 
+       WG2W T 5 
+       WG2W S 5 
+       WG2W T 5 
+       WG2W U 5 
+       WG2W V 5 
+       WG2W U 5 A_PlaySound("LnGuardaltplea3")
+       WG2W T 5 
+       WG2W U 5 
+       WG2W V 5 
+       WG2W S 5 
+       WG2W T 5 
+       WG2W U 5 
+       WG2W V 5 
+       WG2W U 5 
+       WG2W T 5 
+       WG2W U 5
+       WG2W V 5
+       WG2W S 5 A_PlaySound("LnGuardaltplea2")
+       WG2W T 5
+       WG2W U 5
+       WG2W V 5
+       RIS2 E 5
+       RIS2 F 5 A_PlaySound("LnGuardFake")
+       RIS2 G 1 A_Fall
+	   Goto Faking
+	Faking:
+	   RIS2 G 1 
+	   RIS2 G 0 A_JumpIfInTargetLOS("Faking",120)
+	   RIS2 G 1
+       Goto Rising
+    Rising:
+       RIS2 A 5 A_Fall
+       RIS2 B 5
+       RIS2 C 5
+       RIS2 D 5
+       RIS2 D 0 A_SpawnItemEx("LGuardAltAltDeath2",0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL,0,tid)	
+       RIS2 D 0 A_Die("Remove")
+	   Stop
+	 Death:
+	   WG2W A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)   
+       TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
+       WG2W W 5 A_Fall
+       WG2W X 6 A_Scream
+       WG2W Y 7 
+       WG2W Z 6
+	   WG2W "[" -1
+	   Stop
+	Remove:
+		TNT1 A 1
+		Stop
+    Pain:
+	   Goto Pleading
+	}
+}
+
+ACTOR LGuardAltAltDeath2 : LightningGuardAlt {
+   Tag "Lightning Guard"
+   Health 10
+   +LOOKALLAROUND
+   -COUNTKILL
+   SeeSound ""
+   states {
+	 Pain:
+		   TNT1 A 0 a_jump(128, "Pain2")
+		   WG2W J 3
+		   WG2W J 4 A_Pain
+		   Goto See
+	 Pain2:
+		   WG2W I 3
+		   WG2W I 4 A_Pain
+		   Goto See
+	 Plead:
+		Goto death
+	 Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+        TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")	 
+		TNT1 A 0 A_Fall
+        WG2W K 5
+        WG2W L 6 A_Scream
+        WG2W M 5 
+        WG2W N 4
+	    WG2W O 3
+	    WG2W P -1
+		Stop
+	}
+}
+
+actor LightningGuard_ShrinkAlt : LightningGuardAlt
+{
+	+FRIGHTENED
+	+NOTRIGGER
+	-SHOOTABLE
+	+THRUACTORS
+	+NORADIUSDMG
+	+VULNERABLE
+	+QUICKTORETALIATE
+	+COUNTKILL
+	-NOGRAVITY
+	+NODAMAGE
+	+NOPAIN
+	MaxStepHeight 0
+	MaxDropOffHeight 0
+	MeleeRange 16
+	Height 16
+	Health 1
+	Speed 1
+	PainChance "ShrinkDMG", 0
+	DamageFactor "ShrinkDMG", 0.0
+	PainChance "ExpanderDMG", 0
+	DamageFactor "ExpanderDMG", 0.0
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("ShrunkToken",1,"SpawnLoop")
+			TNT1 A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			TNT1 A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			TNT1 A 0 A_SetScale(scalex*0.2,scaley*0.2) // setting the scale in ACS does work, but the actor shows up at normal size for a split second
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_Shrinker", 0, 1)
+			LIGP A 10
+			Goto See
+		SpawnLoop:
+			WG2W A 10 A_Look
+			Loop
+		See:
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W B 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W B 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W C 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W C 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W D 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W D 2 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W E 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			WG2W E 2 A_Chase("","")
+			"####" "#" 0 A_JumpIf(CallACS("Samsara_Shrinker", 3) == 0, "Forget")
+			Loop
+		Forget:
+			"####" "#" 0 A_ClearTarget
+			Goto See
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("LightningGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
+			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
+			TNT1 A 2 Thing_Remove(0)
+			stop
+		Squish:
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2 
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0 
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
+			loop
+		Death:
+		XDeath:
+		Death.Squish:
+		XDeath.Squish:
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			stop
+		DukeStomp:
+			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
+			Goto Squish
+	}
+}
+
+actor LightningGuardAlt_ShrinkEffect : LightningGuardAlt
+{
+	-ISMONSTER
+	-COUNTKILL
+	-SHOOTABLE
+	-SOLID
+	+NOINTERACTION
+	-NOGRAVITY
+	+CLIENTSIDEONLY	
+	Renderstyle Translucent
+	Alpha 0.4
+	States
+	{
+		Spawn:
+			WG2W A 0
+			WG2W A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			WG2W A 0 A_SetUserVar("user_scaley", scaley*65536.0)
 			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
 			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
 			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
