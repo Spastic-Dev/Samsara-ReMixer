@@ -30,7 +30,7 @@ ACTOR MMRandomizer_Ghoul : Revenant3
 			Loop
 		Melee:
 			TNT1 A 0 A_FaceTarget
-			TNT1 A 0 A_PlaySound("vdr/ghoul/swing")
+			TNT1 A 0 A_PlaySound("vdr/ghoul/swing",CHAN_WEAPON)
 			VD74 GH 6 A_FaceTarget
 			VD74 I 6 A_CustomMeleeAttack(random(1,8)*6,"vdr/ghoul/melee","")
 			Goto See
