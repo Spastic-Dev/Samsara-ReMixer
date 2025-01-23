@@ -1387,6 +1387,8 @@ actor Goldeneye_RCP90MagEnemyDrop : Ammo4Big
 
       PickupSuccessStronghold:
         TNT1 A 0 A_GiveInventory("Cell",80)
+        TNT1 A 0 A_JumpIfInventory("SamsaraExtraWeaponsAreEnabled",1,1)
+        stop
         TNT1 A 0 A_GiveInventory("DoomguyStrGas",96)
         stop
 
