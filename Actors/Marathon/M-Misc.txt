@@ -947,12 +947,13 @@ ACTOR NewDukeGibs1_Pfhor : DukeGibs1 //Thanks to PresidentPeople for the pretty 
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
 			DPG6 ABCDEF 5
 			Stop
 		Death2:
 			DPG1 E 2100
-			Loop
+			DPG1 E 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
+			stop
 	}
 }
 
@@ -966,12 +967,13 @@ ACTOR NewDukeGibs2_Pfhor : DukeGibs1  // eyes
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
 			DPG6 ABCDEF 5
 			Stop
 		Death2:
 			DPG2 E 2100
-			Loop
+			DPG2 E 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
+			stop
 	}
 }
 
@@ -985,12 +987,13 @@ ACTOR NewDukeGibs3_Pfhor : DukeGibs1
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
 			DPG6 ABCDEF 5
 			Stop
 		Death2:
 			DPG3 E 2100
-			Loop
+			DPG3 E 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
+			stop
 	}
 }
 
@@ -1004,12 +1007,13 @@ ACTOR NewDukeGibs4_Pfhor : DukeGibs1
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
 			DPG6 ABCDEF 5
 			Stop
 		Death2:
 			DPG4 E 2100
-			Loop
+			DPG4 E 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
+			stop
 	}
 }
 
@@ -1023,12 +1027,13 @@ ACTOR NewDukeGibs5_Pfhor : DukeGibs1
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
 			DPG6 ABCDEF 5
 			Stop
 		Death2:
 			DPG5 E 2100
-			Loop
+			DPG5 E 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
+			stop
 	}
 }
 
@@ -1042,13 +1047,15 @@ ACTOR NewDukeGibs6_Pfhor : DukeGibs1
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
 			DPG6 ABCDEFGH 5
 			Stop
 		Death2:
 			DPG6 CDEFGH 5
+		Death2Loop:
 			DPG6 H 2100
-			Goto Death2+6
+			DPG6 H 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2Loop")
+			stop
 	}
 }
 
@@ -1061,12 +1068,13 @@ ACTOR NewDukeGibs2_M2Enforcer : NewDukeGibs2_Pfhor
 			Loop
 		Death:
 			TNT1 A 0 A_Gravity
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraDecorate",31) == 1, "Death2")
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
 			DPG6 ABCDEF 5
 			Stop
 		Death2:
 			DEG2 E 2100
-			Loop
+			DEG2 E 10 A_JumpIf(ACS_NamedExecuteWithResult("SamsaraClientDecorate", 13), "Death2")
+			stop
 	}
 }
 
