@@ -55,7 +55,7 @@ ACTOR DevilIncarnate : SamsaraMonsterDemonicBoss
 		Blast:
 			TNT1 A 0 A_FaceTarget
 			DEIN FFFFF 2 A_FaceTarget
-			DEIN E 5 Bright A_CustomMissile("AngelBlast",32,16,0,8)
+			DEIN E 5 Bright A_CustomMissile("DevilBlast",32,16,0,8)
 			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
 			TNT1 A 0 A_GiveInventory("OrbsFired",1)
 			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
@@ -66,7 +66,7 @@ ACTOR DevilIncarnate : SamsaraMonsterDemonicBoss
 		Blast2:
 			TNT1 A 0 A_FaceTarget
 			DEIN FFFFF 2 A_FaceTarget
-			DEIN E 5 Bright A_CustomMissile("AngelBlast",32,16,0,8)
+			DEIN E 5 Bright A_CustomMissile("DevilBlast",32,16,0,8)
 			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
 			TNT1 A 0 A_GiveInventory("OrbsFired",1)
 			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
@@ -77,7 +77,7 @@ ACTOR DevilIncarnate : SamsaraMonsterDemonicBoss
 		Blast3:
 			TNT1 A 0 A_FaceTarget
 			DEIN FFFFF 2 A_FaceTarget
-			DEIN E 5 Bright A_CustomMissile("AngelBlast",32,16,0,8)
+			DEIN E 5 Bright A_CustomMissile("DevilBlast",32,16,0,8)
 			TNT1 A 0 A_PlaySound("angel/fire", CHAN_WEAPON)
 			TNT1 A 0 A_GiveInventory("OrbsFired",1)
 			TNT1 A 0 A_JumpIfInventory("OrbsFired",6,"Exhaust")
@@ -100,7 +100,7 @@ ACTOR DevilIncarnate : SamsaraMonsterDemonicBoss
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath")
 			DEIN A 52 A_Scream
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			DEIN I 5 A_PlaySoundEx("hitler/melt","soundslot5",0,0)
+			DEIN I 5 A_PlaySoundEx("devilinc/melt","soundslot5",0,0)
 			DEIN J 5 
 			DEIN K 5 A_NoBlocking
 			DEIN LMNO 5

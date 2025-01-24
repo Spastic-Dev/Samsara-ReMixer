@@ -166,9 +166,8 @@ ACTOR GeneralleutnantStahlkopf : SamsaraMonsterHumanoidTotalGib
 			LE01 D 16 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath")						
-			LE01 H 60 A_Scream			
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)					
+			LE01 H 6 A_Scream			
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			LE01 I 7
 			LE01 J 8 A_NoBlocking

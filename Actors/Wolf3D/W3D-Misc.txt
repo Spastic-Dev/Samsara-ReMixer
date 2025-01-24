@@ -190,6 +190,29 @@ actor SSDrop : SamsaraSlotFourDrop
     }
 }
 
+actor SSDrop2 : SSDrop //SOD M2/3 graphic
+{
+    States
+    {
+      Spawn:
+        SSDR A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        SSDR A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+
+      Pickup:
+        TNT1 A 0 A_JumpIfInventory("WolfenClass",1,"PickupWolfenstein")
+        goto Super::Pickup
+
+      PickupWolfenstein:
+        TNT1 A 0 A_JumpIf((CallACS("SamsaraGiveWeapon", 3, 2) & 1) == 1, "PickupSuccess")
+        goto PickupFailure
+    }
+}
+
 actor WolfMGDropTrue : SamsaraSlotTwoDrop
 {
     Scale 1.1
