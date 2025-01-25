@@ -203,7 +203,7 @@ Script "MonsterSphereInitiate" (void)
 	
 	if(hoverindex > 1)
 	{
-		MorphActor(0, MonsterTiers[class][CheckInventory("SamsaraModeCounter")][hoverindex-2], "", 0x7FFFFFFF, MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
+		MorphActor(0, MonsterTiers[class][CheckInventory("SamsaraModeCounter")][hoverindex-2], "", 0x7FFFFFFF, MRF_ADDSTAMINA|MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
 		SetActorProperty(0,APROP_Health,GetActorProperty(0,APROP_SpawnHealth));
 		SetActorProperty(0,APROP_SoundClass,"");
 	}
@@ -599,7 +599,7 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 							break;
 						case 3:
 							UnMorphActor(0,1);
-							MorphActor(0, "NarakaMorph_AlienHulkRevive", "", 0x7FFFFFFF, MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
+							MorphActor(0, "NarakaMorph_AlienHulkRevive", "", 0x7FFFFFFF, MRF_ADDSTAMINA|MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
 							SetActorProperty(0,APROP_Health,GetActorProperty(0,APROP_SpawnHealth));
 							break;
 						case 4:
@@ -616,7 +616,7 @@ Script "Samsara_MorphMonsterFunctions" (int class, int tier, int action)
 							break;
 						case 5:
 							UnMorphActor(0,1);
-							MorphActor(0, "NarakaMorph_AlienHulk", "", 0x7FFFFFFF, MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
+							MorphActor(0, "NarakaMorph_AlienHulk", "", 0x7FFFFFFF, MRF_ADDSTAMINA|MRF_FULLHEALTH|MRF_UNDOBYTOMEOFPOWER|MRF_LOSEACTUALWEAPON|MRF_NEWTIDBEHAVIOUR,"ACSSpawnDummy","ACSSpawnDummy");
 							SetActorProperty(0,APROP_Health,GetActorProperty(0,APROP_SpawnHealth));
 							break;
 					}
