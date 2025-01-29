@@ -1,0 +1,565 @@
+/*=================================================== Design Specs =====================================================
+
+o MAX_GAME_TYPES
+	- This corresponds to the game set, like Doom or Chex
+o MAX_ALTS
+	- This corresponds to a game alt set, like Opposing Force
+o MONSTER_SLOT
+	- This corresponds to the monster slot, like Zombieman. Slots are in this order:
+		~ Doom ~
+			0: Zombieman
+			1: Shotgun Guy
+			2: Imp
+			3: Chaingun Guy
+			4: Super Shotgun Guy
+			5: Demon
+			6: Dark Imp
+			7: Spectre
+			8: Blood Demon
+			9: Lost Soul
+			10: Cacodemon
+			11: Revenant
+			12: Cacolantern
+			13: Pain Elemental
+			14: Hell Knight
+			15: Arachnotron
+			16: Mancubus
+			17: Abaddon
+			18: Arch-vile
+			19: Baron of Hell
+			20: Hectebus
+			21: Belphegor
+			22: Spider Mastermind
+			23: Cyberdemon
+			24: Wolfenstein SS
+
+		~ Chex Quest ~
+			25: Flemoidus Commonus
+			26: Flemoidus Bipedicus
+			27: Armored Flemoidus Bipedicus
+			28: Flemoidus Stridicus
+			29: Larva
+			30: Flem Mine
+			31: Flemoidus Cycloptis Commonus
+			32: Super Cycloptis
+			33: Quadrumpus
+			34: Flemoidus Maximus
+			35: Flembrane
+			36: Flembomination
+			37: Snotfolus
+
+		~ Heretic ~
+			38: Gargoyle
+			39: Fire Gargoyle
+			40: Golem
+			41: Golem Ghost
+			42: Nitrogolem
+			43: Nitrogolem Ghost
+			44: Disciple of D'Sparil
+			45: Undead Warrior
+			46: Undead Warrior Ghost
+			47: Sabreclaw
+			48: Ophidian
+			49: Weredragon
+			50: Iron Lich
+			51: Maulotaur
+			52: D'Sparil
+			53: Chicken
+
+		~ Hexen ~
+			54: Ettin
+			55: Afrit
+			56: Dark Bishop
+			57: Centaur
+			58: Slaughtaur
+			59: Green Chaos Serpent
+			60: Stalker
+			61: Stalker Boss
+			62: Wendigo
+			63: Reiver
+			64: Reiver (Buried)
+			65: Brown Chaos Serpent
+			66: Traductus
+			67: Zedek
+			68: Menelkir
+			69: Heresiarch
+			70: Korax
+			71: Pig
+o MAXPERSLOT
+	- This variable is the slot for a decision on the monster from the slot, like spawning a zombieman variant
+
+- Strings -
+	o Monster name:
+		- Name of the the monster
+	o Token0-4:
+		- These are inventory items that can be given to a monster for each difficulty, to alter their behavior. If set
+		  to an empty string or left alone, no token is given
+
+- Stats -
+	o Speed0-4:
+		- These tokens work as a multiplier for monster speed. As such, you should never use numbers with no decimal
+		  point. Please use 2.0 instead of 2. If left alone, it will have no effect.
+	o Health0-4:
+		- A health multiplier. Same as speed, these are multipliers. If left alone, it will have no effect.
+	o Weight0-4:
+		- This is a spawn chance, which functions similarly to RandomSpawner. You can use whatever numbers you want,
+		  to define the chance of a monster spawning. The higher the weight compared to other monsters, the more likely
+		  it is to spawn, and vice versa. If left alone, will be treated as 1. If set to a negative value, however,
+		  that means the monster will not spawn at all on that difficulty.
+
+* Each difficulty corresponds to the following numbers for Token, Speed, Health, and Weight
+	0: Baby      ("I'm too young to die")
+	1: Easy      ("Hey, not too rough")
+	2: Normal    ("Hurt me plenty")
+	3: Hard      ("Ultra-Violence")
+	4: Nightmare ("Nightmare!")
+
+======================================================================================================================*/
+
+str extrasSelectStr[1][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_STRING_ITEMS] = 
+{
+	{//Berzerk
+		{//Main
+			{//Zombieman
+				{"BerzerkRobotYellow"}
+			},
+			{//Shotgun Guy
+				{"BerzerkRobotRed"}
+			},
+			{//Imp
+				{"BerzerkRobotBlue"}
+			},
+			{//Chaingun Guy
+				{"BerzerkRobotGreen"}
+			},
+			{//Super Shotgun Guy
+				{"BerzerkRobotGreen"}
+			},
+			{//Demon
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Dark Imp
+				{"BerzerkRobotBlue"}
+			},
+			{//Spectre
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Blood Demon
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Lost Soul
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Cacodemon
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Revenant
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Cacolantern
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Pain Elemental
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Hell Knight
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Arachnotron
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Mancubus
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Abaddon
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Arch-vile
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Baron of Hell
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Hectebus
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Belphegor
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Spider Mastermind
+				{"BerzerkEvilOtto"}
+			},
+			{//Cyberdemon
+				{"BerzerkEvilOtto"}
+			},
+			{//Wolfenstein SS
+				{"BerzerkRobotRed"}
+			},
+			{//Flemoidus Commonus
+				{"BerzerkRobotYellow"}
+			},
+			{//Flemoidus Bipedicus
+				{"BerzerkRobotRed"}
+			},
+			{//Armored Flemoidus Bipedicus
+				{"BerzerkRobotBlue"}
+			},
+			{//Flemoidus Stridicus
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Larva
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Flem Mine
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Flemoidus Cycloptis Commonus
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Super Cycloptis
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Quadrumpus
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Flemoidus Maximus
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Flembrane
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Flembomination
+				{"BerzerkEvilOtto"}
+			},
+			{//Snotfolus
+				{"BerzerkEvilOtto"}
+			},
+			{//Gargoyle
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Fire Gargoyle
+				{"BerzerkRobotBlue"}
+			},
+			{//Golem
+				{"BerzerkRobotYellow"}
+			},
+			{//Golem Ghost
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Nitrogolem
+				{"BerzerkRobotRed"}
+			},
+			{//Nitrogolem Ghost
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Disciple of D'Sparil
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Undead Warrior
+				{"BerzerkRobotGreen"}
+			},
+			{//Undead Warrior Ghost
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Sabreclaw
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Ophidian
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Weredragon
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Iron Lich
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Maulotaur
+				{"BerzerkEvilOtto"}
+			},
+			{//D'Sparil
+				{"BerzerkEvilOtto"}
+			},
+			{//Chicken
+				{"BerzerkRobotRed"}
+			},
+			{//Ettin
+				{"BerzerkRobotYellow"}
+			},
+			{//Afrit
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Dark Bishop
+				{"BerzerkRobotGreen"}
+			},
+			{//Centaur
+				{"BerzerkEvilOttoWeaker"}
+			},
+			{//Slaughtaur
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Green Chaos Serpent
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Stalker
+				{"BerzerkRobotRed"}
+			},
+			{//Stalker Boss
+				{"BerzerkRobotGreen"}
+			},
+			{//Wendigo
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Reiver
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Reiver (Buried)
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Brown Chaos Serpent
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Traductus
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Zedek
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Menelkir
+				{"BerzerkEvilOttoWeak"}
+			},
+			{//Heresiarch
+				{"BerzerkEvilOtto"}
+			},
+			{//Korax
+				{"BerzerkEvilOtto"}
+			},
+			{//Pig
+				{"BerzerkRobotRed"}
+			}
+		}
+	}
+};
+
+int extrasSelectStat[1][MAX_ALTS][MONSTER_SLOT][MAXPERSLOT][MAX_ITEMS] = 
+{
+	{//Berzerk
+		{//Main
+			{//Zombieman
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Shotgun Guy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chaingun Guy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Shotgun Guy
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Imp
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spectre
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Blood Demon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Lost Soul
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacodemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Revenant
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cacolantern
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pain Elemental
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hell Knight
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arachnotron
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Mancubus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Abaddon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Arch-vile
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Baron of Hell
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Hectebus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Belphegor
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Spider Mastermind
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Cyberdemon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wolfenstein SS
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flemoidus Commonus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flemoidus Bipedicus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Armored Flemoidus Bipedicus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flemoidus Stridicus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Larva
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flem Mine
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flemoidus Cycloptis Commonus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Super Cycloptis
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Quadrumpus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flemoidus Maximus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flembrane
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Flembomination
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Snotfolus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Gargoyle
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Fire Gargoyle
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Golem
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Golem Ghost
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Nitrogolem
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Nitrogolem Ghost
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Disciple of D'Sparil
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Undead Warrior
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Undead Warrior Ghost
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Sabreclaw
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Ophidian
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Weredragon
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Iron Lich
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Maulotaur
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//D'Sparil
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Chicken
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Ettin
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Afrit
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Dark Bishop
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Centaur
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Slaughtaur
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Green Chaos Serpent
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Stalker
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Stalker Boss
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Wendigo
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Reiver
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Reiver (Buried)
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Brown Chaos Serpent
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Traductus
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Zedek
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Menelkir
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Heresiarch
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Korax
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			},
+			{//Pig
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+			}
+		}
+	}
+};

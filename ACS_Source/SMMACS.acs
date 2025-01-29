@@ -12,6 +12,7 @@
 #define MAX_ADDON_SETS 64
 
 #include "Spawns.acs"
+#include "SpawnsExtras.acs"
 
 str SMMCVARINFO = "Stuff";
 str SMMCHANGES = "Stuff";
@@ -246,8 +247,9 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 
 			if(maxSetsEnabled == 0)
 			{
-				SetActorState(0,"SetNull",true);
-				terminate;
+				ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
+				SetActorState(0,"Continue",1);
+				break;
 			}
 
 			setselect = random(1, maxSetsEnabled) - 1;
@@ -551,6 +553,14 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int health = pickAddon ? addonSetStats[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+addonPickOffset+skillMod+1] : monsterSelectStat[monGame][monAlt][monSlot][pick][skillMod+1];
 	str token = pickAddon ? addonSetStats[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+addonPickOffset+(1+(skillMod/3))] : monsterSelectStr[monGame][monAlt][monSlot][pick][1+(skillMod/3)];
 	str monster = pickAddon ? addonSets[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot] : monsterSelectStr[monGame][monAlt][monSlot][pick][0];
+
+	if((maxSetsEnabled == 0) && !pickAddon)
+	{
+		speed = extrasSelectStat[0][monAlt][monSlot][pick][skillMod];
+		health = extrasSelectStat[0][monAlt][monSlot][pick][skillMod+1];
+		token = extrasSelectStr[0][monAlt][monSlot][pick][1+(skillMod/3)];
+		monster = extrasSelectStr[0][monAlt][monSlot][pick][0];
+	}
 
 	SpawnForced(monster,GetActorX(0),GetActorY(0),GetActorZ(0),newMonTid);
 	SetActorAngle(newMonTid, GetActorAngle(0));
