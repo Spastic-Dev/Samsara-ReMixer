@@ -367,6 +367,25 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					}
 					break;
 
+				case 8:
+					int rottMode = GetCVar("mm_rottmode");
+
+					switch(rottMode)
+					{
+						default:
+							altSetSelect = rottMode-1;
+							break;
+
+						case 0:
+							altSetSelect = 0;
+							break;
+
+						case 1:
+							altSetSelect = 1;
+							break;
+					}
+					break;
+
 				case 19:
 					int halfLifeMode = GetCVar("mm_halflifemode");
 
@@ -1189,6 +1208,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_doommode", 1);
 		SetCVar("mm_wolfmode", 1);
 		SetCVar("mm_dukemode", 1);
+		SetCVar("mm_rottmode", false);
 		SetCVar("mm_halflifemode", 1);
 
 		// Enemy Spawns
@@ -1342,6 +1362,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_doommode", 0);
 		SetCVar("mm_wolfmode", 0);
 		SetCVar("mm_dukemode", 0);
+		SetCVar("mm_rottmode", false);
 		SetCVar("mm_halflifemode", 0);
 
 		// Enemy Spawns
@@ -1495,6 +1516,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_doommode", 0);
 		SetCVar("mm_wolfmode", 0);
 		SetCVar("mm_dukemode", 0);
+		SetCVar("mm_rottmode", false);
 		SetCVar("mm_halflifemode", 0);
 
 		// Enemy Spawns
@@ -1649,6 +1671,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_doommode", 1);
 		SetCVar("mm_wolfmode", 4);
 		SetCVar("mm_dukemode", 1);
+		SetCVar("mm_rottmode", false);
 		SetCVar("mm_halflifemode", 1);
 
 		// Enemy Spawns
@@ -1802,6 +1825,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_doommode", 3);
 		SetCVar("mm_wolfmode", 5);
 		SetCVar("mm_dukemode", 3);
+		SetCVar("mm_rottmode", false);
 		SetCVar("mm_halflifemode", 1);
 
 		// Enemy Spawns
