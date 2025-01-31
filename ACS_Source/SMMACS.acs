@@ -1086,7 +1086,7 @@ Script "ReMixer_PickSets" (void)
 
 				if(usingAddons ? !GetCVar(addonCVARs[randnum-MAX_GAME_TYPES]) : !GetCVar(gameTypesStr[randnum])||((randomtotal & randombit) && (randomtotal2 & randombit2) && (randomtotala & randombita)))
 				{
-					if(erroramount > 256)
+					if(erroramount > 65536)
 					{
 						selectloop = randnum;
 						break;
@@ -1137,6 +1137,8 @@ Script "ReMixer_PickSets" (void)
 					}
 				}
 			}
+			if(maxSetsEnabled == 0)
+				PrintBold(s:"Congratulations, you hit an extremely rare bug! However, due to how the random cycle functionality works, this is not something we can fix. Now, go buy yourself a lottery ticket.");
 			break;
 	}
 	//Call this manually. I prefer this to be done right away instead of after 1 tic.
