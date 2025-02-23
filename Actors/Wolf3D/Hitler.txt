@@ -513,9 +513,11 @@ ACTOR Hitler : SamsaraMonsterHumanoidBoss
 			WADO D 3
 			WADO D 3 A_Pain
 			Goto See
-		XDeath:
+		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastXDeath")
+            TNT1 A 0 A_Jump(256,"Death1","Death2")
+		Death1:
+			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath1")
 			WADO A 70 A_Scream
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			WADO H 5
@@ -525,56 +527,21 @@ ACTOR Hitler : SamsaraMonsterHumanoidBoss
 			WADO KLMN 5
 			WADO O -1 A_KillMaster
 			Stop
-		FastXDeath:
+		FastDeath1:
 			WADO A 5 A_Scream
-			Goto XDeath+3
-		Death:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath")
+			Goto Death1+2
+		Death2:
+			//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath2")
 			WADO A 5 A_PlaySound("hitler/death2",CHAN_VOICE) // 70
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			WADO Q 5
-			WADO R 5
+			WADO QR 5
 			WADO S 5 A_PlaySoundEx("bat/death","soundslot5",0,0)
 			WADO T 5 A_NoBlocking
 			WADO UVWW 5
 			WADO W -1 A_KillMaster
 			Stop
-		/*FastDeath:
+		/*FastDeath2:
 			WADO A 5 A_Scream
-			Goto Death+3*/
-		/*
-		Death:
-			TNT1 A 0 A_jump (155, "AltDeath")
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath")
-			WADO A 70 A_Scream
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			WADO H 5
-			WADO I 3
-			WADO I 2 A_PlaySoundEx("hitler/melt","soundslot5",0,0)
-			WADO J 5 A_NoBlocking
-			WADO KLMN 5
-			WADO O -1 A_KillMaster
-			Stop
-		FastDeath:
-			WADO A 5 A_Scream
-			Goto Death+4
-		AltDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "AltFastDeath")
-			WADO A 70 A_Scream
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
-			WADO Q 5
-			WADO R 5
-			WADO S 5 A_PlaySoundEx("bat/death","soundslot5",0,0)
-			WADO T 5 A_NoBlocking
-			WADO UVWW 5
-			WADO W -1 A_KillMaster
-			Stop
-		AltFastDeath:
-			WADO A 5 A_Scream
-			Goto AltDeath+3
-		*/
+			Goto Death2+2*/
 	}
 }
