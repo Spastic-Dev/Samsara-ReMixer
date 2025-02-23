@@ -525,10 +525,13 @@ ACTOR Hitler : SamsaraMonsterHumanoidBoss
 			WADO KLMN 5
 			WADO O -1 A_KillMaster
 			Stop
+		FastXDeath:
+			WADO A 5 A_Scream
+			Goto XDeath+3
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath")
-			WADO A 70 A_Scream
+			//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "FastDeath")
+			WADO A 5 A_PlaySound("hitler/death2",CHAN_VOICE) // 70
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			WADO Q 5
 			WADO R 5
@@ -537,12 +540,9 @@ ACTOR Hitler : SamsaraMonsterHumanoidBoss
 			WADO UVWW 5
 			WADO W -1 A_KillMaster
 			Stop
-		FastXDeath:
+		/*FastDeath:
 			WADO A 5 A_Scream
-			Goto XDeath+3
-		FastDeath:
-			WADO A 5 A_Scream
-			Goto Death+3
+			Goto Death+3*/
 		/*
 		Death:
 			TNT1 A 0 A_jump (155, "AltDeath")
@@ -557,6 +557,9 @@ ACTOR Hitler : SamsaraMonsterHumanoidBoss
 			WADO KLMN 5
 			WADO O -1 A_KillMaster
 			Stop
+		FastDeath:
+			WADO A 5 A_Scream
+			Goto Death+4
 		AltDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",2) == 1, "AltFastDeath")
@@ -569,9 +572,6 @@ ACTOR Hitler : SamsaraMonsterHumanoidBoss
 			WADO UVWW 5
 			WADO W -1 A_KillMaster
 			Stop
-		FastDeath:
-			WADO A 5 A_Scream
-			Goto Death+4
 		AltFastDeath:
 			WADO A 5 A_Scream
 			Goto AltDeath+3
