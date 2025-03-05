@@ -854,6 +854,7 @@ Script "ReMixer_PickSets" (void)
 	switch(GetCVar("mm_spawnmode"))
 	{
 		case 0:
+		case 1:
 			for(p = 0; p < clients; p++)
 			{
 				if(PlayerInGame(p) == true)
@@ -911,74 +912,6 @@ Script "ReMixer_PickSets" (void)
 				else
 				{
 					clients++;
-				}
-			}
-			break;
-
-		case 1:
-			for(b = 0; b < MAX_GAME_TYPES; b++)
-			{
-				str gameTypeMap = strparam(s:gameTypesStr[b], d:GetLevelInfo(LEVELINFO_LEVELNUM));;
-
-				if(GetCVar(gameTypeMap))
-				{
-					if(usingAddons) { bitindexa = 1<<(b-MAX_GAME_TYPES); }
-					else if(b >= 32) { bitindex2 = 1<<b-32; }
-					else { bitindex = 1<<b; }
-
-					if(usingAddons)
-					{
-						if(!(activesetsA & bitindexa))
-						{
-							activesetsA += bitindexa;
-							pickFromSets[maxSetsEnabled] = b;
-							maxSetsEnabled++;
-						}
-					}
-					else
-					{
-						if(!(activesets & bitindex))
-						{
-							activesets += bitindex;
-							pickFromSets[maxSetsEnabled] = b;
-							maxSetsEnabled++;
-						}
-						else if(!(activeSets2 & bitindex2))
-						{
-							activeSets2 += bitindex2;
-							pickFromSets[maxSetsEnabled] = b;
-							maxSetsEnabled++;
-						}
-					}
-					if(PlayerClass(p) == b && PlayerInGame(p))
-					{
-						switch(b)
-						{
-							case 0:
-								doomMode = 1<<GetUserCvar(p,"samsara_cl_doommode");
-								if(!(amountOfGameTypes[b] & doomMode))
-									amountOfGameTypes[b] += doomMode;
-								break;
-
-							case 3:
-								wolfMode = 1<<GetUserCvar(p,"samsara_cl_wolfmode");
-								if(!(amountOfGameTypes[b] & wolfMode))
-									amountOfGameTypes[b] += wolfMode;
-								break;
-
-							case 5:
-								dukeMode = 1<<GetUserCvar(p,"samsara_cl_dukemode");
-								if(!(amountOfGameTypes[b] & dukeMode))
-									amountOfGameTypes[b] += dukeMode;
-								break;
-
-							case 19:
-								shephardMode = 1<<GetUserCvar(p,"samsara_cl_shephardmode");
-								if(!(amountOfGameTypes[b] & shephardMode))
-									amountOfGameTypes[b] += shephardMode;
-								break;
-						}
-					}
 				}
 			}
 			break;
