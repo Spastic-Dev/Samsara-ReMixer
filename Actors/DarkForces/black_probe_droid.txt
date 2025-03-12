@@ -1,0 +1,81 @@
+ACTOR black_probe_droid : SamsaraMonsterRobotic
+{
+	Health		     750
+	Radius			 20
+	Height			 46
+	Mass			 400
+	Painchance		 75
+	Speed			 6
+	SeeSound		 "enemies/pdroid/see"
+	ActiveSound		 "enemies/pdroid/see"
+	DeathSound		 "probalm1"
+	PainSound		 "probalm2"
+	obituary 		 "%o was shot down by an armored probe droid."
+	PainChance 		 "ShrinkerDMG", 0
+	MinMissileChance 255
+	Tag 			 "Armored Probe Droid"	
+	DamageFactor "Tesla", 2.0
+	DamageFactor "MarathonFusion", 2.0	
+	DamageFactor "ElectricBolt", 2.0
+	DamageFactor "PoisonBolt", 0
+	+FLOAT
+	+NOGRAVITY
+	+NOBLOOD
+	Scale				0.8
+	MinMissileChance	85
+	MONSTER
+	Species 			"DFEnemies"
+	+FLOORCLIP
+	+NOINFIGHTING
+	+DONTRIP
+    DamageFactor 		"Mace", 1.1
+    DamageFactor 		"DragonClaw", 1.5
+    PainChance 			"MightyBoot", 255
+	PainChance 			"MarathonStun", 255
+	States
+	{
+		Spawn:
+			PR0B A 0
+			PR0B A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			PR0B A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			PR0B A 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			PR0B AABBCCDDEEFFGGHHIIJJKKLL 2 A_Look
+			PR0B KKJJIIHHGGFFEEDDCCBB 2 A_Look
+			Loop
+		See:
+			PR0B AABBCCDDEEFFGGHHIIJJKKLL 2 A_Chase
+			PR0B KKJJIIHHGGFFEEDDCCBB 2 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			PR0B L 7 A_FaceTarget
+			PR0B M 0 A_PlaySound("enemies/pdroid/fire",CHAN_AUTO,1.0,0,ATTN_NORM)
+			PR0B M 0 BRIGHT A_CustomMissile("bryar_laser2_DFB",44,random(-1,1),random(-2,2),32,random(-2,2))
+			PR0B M 0 BRIGHT A_CustomMissile("bryar_laser2_DFB",44,random(-1,1),random(-2,2),32,random(-2,2))
+			PR0B M 5 BRIGHT A_CustomMissile("bryar_laser2_DFB",44,random(-1,1),random(-2,2),32,random(-2,2))
+			Goto See
+		Pain:
+			PR0B N 3
+			PR0B N 3 A_Pain
+			Goto See
+		Pain.MightyBoot:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_PlaySoundEx("duke/kickhit","body",0,0)
+			PR0B N 2 A_FaceTarget
+			TNT1 A 0 A_Recoil(14)
+			PR0B N 16 A_Pain
+			Goto See
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
+			TNT1 A 0 A_PlaySound("probalm",CHAN_BODY,1.0,0,ATTN_NORM)
+			PR0B N 5 A_Scream
+			PR0B O 5 A_UnsetSolid
+			PR0B P 5 A_NoBlocking
+			PR0B QR 5
+			TNT1 A 0 A_PlaySound("katarn/exmort",CHAN_WEAPON,1.0,0,ATTN_NORM)
+			PR0B S 1 A_SpawnItemEx("explosion_probe",0,0,0)
+			PR0B S -1
+			Stop
+	}
+}

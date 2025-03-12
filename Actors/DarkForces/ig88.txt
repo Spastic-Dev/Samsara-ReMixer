@@ -1,0 +1,69 @@
+ACTOR DF_IG88 : SamsaraMonsterRobotic
+{
+	Health		750
+	Radius		20
+	Height		56
+	Mass		500
+	Painchance	75
+	Speed		6
+	Tag 		"IG-88"	
+	SeeSound	"enemies/phase1/see"
+	PainSound	"enemies/phase1/pain"
+	DeathSound	"enemies/phase1/death"
+	obituary 	"%o was shot by an IG-88 assassin droid."
+	Scale				0.6
+	MinMissileChance	85
+	MONSTER
+	Species 			"DFEnemies"
+	+FLOORCLIP
+	+NOINFIGHTING
+	+NOBLOOD
+	+DONTRIP
+    DamageFactor 		"Mace", 1.1
+    DamageFactor 		"DragonClaw", 1.5
+    PainChance 			"MightyBoot", 255
+	PainChance 			"MarathonStun", 255
+	States
+	{
+		Spawn:
+			IG88 M 0
+			IG88 M 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			IG88 M 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			IG88 M 0 A_GiveInventory("AlreadySpawned",1)
+		Spawn2:
+			IG88 M 5 A_Look
+			Loop
+		See:
+			IG88 AAA 2 A_Chase("", "")
+			IG88 BBB 2 A_Chase
+			IG88 CCC 2 A_Chase("", "")
+			IG88 DDD 2 A_Chase
+			Loop
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			IG88 E 6 A_FaceTarget
+			IG88 F 0 A_PlaySound("katarn/bryshot",CHAN_AUTO,1.0,0,ATTN_NORM)
+			IG88 F 0 BRIGHT A_CustomMissile("blaster_laser2_DFB",33,random(-1,1),random(-2,2),32,random(-2,2))
+			IG88 F 3 BRIGHT A_CustomMissile("blaster_laser2_DFB",33,random(-1,1),random(-2,2),32,random(-2,2))
+			IG88 E 5 A_FaceTarget
+			IG88 F 0 A_PlaySound("katarn/bryshot",CHAN_AUTO,1.0,0,ATTN_NORM)
+			IG88 F 0 BRIGHT A_CustomMissile("blaster_laser2_DFB",33,random(-1,1),random(-2,2),32,random(-2,2))
+			IG88 F 3 BRIGHT A_CustomMissile("blaster_laser2_DFB",33,random(-1,1),random(-2,2),32,random(-2,2))
+			IG88 E 5
+			Goto See
+		Pain:
+			IG88 G 3
+			IG88 G 3 A_Pain
+			Goto See
+		Death:
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			IG88 G 5 bright A_Scream
+			IG88 HI 5 bright
+			IG88 JK 5
+			IG88 L -1 A_Fall
+			Stop
+		Crush:
+			TNT1 A -1
+			Stop
+	}
+}
