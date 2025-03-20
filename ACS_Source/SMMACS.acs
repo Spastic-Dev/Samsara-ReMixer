@@ -470,6 +470,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int healthMod = GetCVar("mm_healthoverride");
 	int speedMod = GetCVar("mm_speedoverride");
 	bool generatedMonster = false;
+	bool stealthMonster = false;
 
 	Thing_ChangeTID(0,newSpawnerTid);
 
@@ -594,6 +595,9 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	if(StrRight(GetActorClass(0),9)=="Generator")
 		generatedMonster = true;
+
+	if(StrLeft(GetActorClass(0),7)=="Stealth")
+		stealthMonster = true;
 
 	if (!(monSlot == 6|7|8|9|14|15|16|30|31|37|38|48|51|52|66|67|68|69|70|71))
 	{
@@ -730,6 +734,11 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
         if (GetCVar("samsara_zscriptready") >= 1) { GiveActorInventory(newMonTid, "SamsaraCountKillDisablerZS", 1); }
         else { GiveActorInventory(newMonTid, "SamsaraCountKillDisabler", 1); }
     }
+
+	if (stealthMonster)
+	{
+		GiveActorInventory(newMonTid, "InvisibleToken", 1);
+	}
 
 	Thing_ChangeTID(newMonTid,oldSpawnerTid);
 }
