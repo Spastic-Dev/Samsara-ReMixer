@@ -238,6 +238,39 @@ actor LostMGDropTrue : WolfMGDropTrue
     }
 }
 
+actor WolfDualChaingunDropTrue : SamsaraSlotFourSkulltagDrop
+{
+    Scale 1.1
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WCHP A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WCHP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+    }
+}
+
+actor LostDualChaingunDropTrue : WolfDualChaingunDropTrue
+{
+    States
+    {
+      Spawn:
+        WCHP B 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WCHP B -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+    }
+}
+
 ACTOR WolfGoldKey : CustomInventory
 {
 	Inventory.PickupMessage "Picked up a gold key, I wonder what it goes to."
