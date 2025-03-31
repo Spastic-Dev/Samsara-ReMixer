@@ -27,6 +27,13 @@ actor MMRandomizer_PowerfulHoe : SamsaraMonsterDemonicBoss
 	States
 	{
 	Spawn:
+		98PH A 0
+		98PH A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",10) == 0, "ThotPatroled")
+		98PH A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		98PH A 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		98PH A 0 A_GiveInventory("AlreadySpawned",1)
+		98PH A 0
+	Spawn2:
 		98PH AB 10 A_Look
 		Loop
 	See:
@@ -117,6 +124,9 @@ actor MMRandomizer_PowerfulHoe : SamsaraMonsterDemonicBoss
 		98PH O 7 A_NoBlocking
 		98PH P 7
 		98PH Q -1 ACS_NamedExecuteWithResult("SamsaraBossDeathToggler")
+		Stop
+	ThotPatroled:
+		TNT1 A 1 A_SpawnItemEx("CyberDemon3",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0,tid)
 		Stop
 	}
 }
