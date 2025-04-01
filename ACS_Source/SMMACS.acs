@@ -415,14 +415,14 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					break;
 
 				case 26:
-					if(GetCVar("samsara_zscriptready") != 2)
+					if(GetCVar("samsara_zscriptready") != 1)
 					{
 						altSetSelect = 1;
 					}
 					break;
 
 				case 30:
-					if(GetCVar("samsara_zscriptready") != 2)
+					if(GetCVar("samsara_zscriptready") != 1)
 					{
 						altSetSelect = 1;
 					}
@@ -739,7 +739,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
     if (generatedMonster)
     {
         GiveActorInventory(newMonTid, "GeneratedMonsterToken", 1);
-        if (GetCVar("samsara_zscriptready") >= 1) { GiveActorInventory(newMonTid, "SamsaraCountKillDisablerZS", 1); }
+        if (GetCVar("samsara_zscriptready") == 1) { GiveActorInventory(newMonTid, "SamsaraCountKillDisablerZS", 1); }
         else { GiveActorInventory(newMonTid, "SamsaraCountKillDisabler", 1); }
     }
 
