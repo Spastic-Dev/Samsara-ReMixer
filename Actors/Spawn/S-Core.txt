@@ -86,8 +86,9 @@ ACTOR ReMixerBaseSpawner : SwitchableDecoration
 		BossWait:
 			TNT1 A 2 A_JumpIf(CallACS("RemixerInvasionChecker") == 1, "Remove")
 			TNT1 A 0 A_ChangeFlag("COUNTKILL",false)
-			TNT1 A 0 A_UnsetSolid
-			TNT1 A 0 A_UnsetShootable
+			TNT1 A 0 A_ChangeFlag("SOLID",false) // Zandronum syncs A_ChangeFlag better than A_UnSetSolid
+			TNT1 A 0 A_ChangeFlag("NONSHOOTABLE",true)
+			TNT1 A 0 A_ChangeFlag("SHOOTABLE",false)
 			TNT1 A 0 A_ChangeFlag("VULNERABLE",true)
 			TNT1 A 0 A_SetUserVar("user_spawner_state",3)
 			TNT1 A 0 A_Jump(256,"BossWaitLoop")
