@@ -54,7 +54,7 @@ Actor NarakaMorph_Acolyte : StrifeguyPlayer
 			stop
 		XDeath:
 			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
-			G_1B A 5 A_UnsetSolid
+			G_1B A 5 A_ChangeFlag("SOLID",false)
 			G_1B BC 5 A_TossGib
 			G_1B D 4 A_TossGib
 			G_1B E 4 A_PlaySound("acolyte/explode")

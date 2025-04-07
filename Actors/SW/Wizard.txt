@@ -155,7 +155,7 @@ Actor SWWizard : SamsaraMonsterHumanoid
 	TNT1 A -1 A_Jump(256,"Burn")
 	wait
   XDeathForWang:
-	TNT1 A 0 A_UnsetSolid
+	TNT1 A 0 A_ChangeFlag("SOLID",false)
 	TNT1 A 0 A_Jump(218, "XDeath")	
 	TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 	TNT1 A -1 A_Jump(256,"XDeath")
@@ -231,7 +231,7 @@ Actor SWWizardCorpse : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Jump(242,"J")	
 			TNT1 A 0 A_SpawnItemEx("SWGuardianHeadDrop", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
@@ -857,7 +857,7 @@ Actor SWWizardGray : SWWizard
 	TNT1 A -1 A_Jump(256,"Burn")
 	wait
   XDeathForWang:
-	TNT1 A 0 A_UnsetSolid
+	TNT1 A 0 A_ChangeFlag("SOLID",false)
 	TNT1 A 0 A_Jump(218, "XDeath")	
 	TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 	TNT1 A -1 A_Jump(256,"XDeath")
@@ -878,7 +878,7 @@ Actor SWWizardGray : SWWizard
 	"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 	"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
 	"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
-	"####" "#" 0 A_UnSetSolid
+	"####" "#" 0 A_ChangeFlag("SOLID",false)
 	"####" "#" 0 A_PlaySound("duke/shrink")
 	"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
 	"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
@@ -948,7 +948,7 @@ Actor SWWizardGrayCorpse : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Jump(242,"J")	
 			TNT1 A 0 A_SpawnItemEx("SWGuardianHeadDrop", 0, 0, 0, Random(-3,3), Random(-3,3), 8)
@@ -1336,7 +1336,7 @@ Actor SWWizardRed : SWWizardGray
 	TNT1 A -1 A_Jump(256,"Burn")
 	wait
   XDeathForWang:
-	TNT1 A 0 A_UnsetSolid
+	TNT1 A 0 A_ChangeFlag("SOLID",false)
 	TNT1 A 0 A_Jump(218, "XDeath")	
 	TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 	TNT1 A -1 A_Jump(256,"XDeath")
@@ -1357,7 +1357,7 @@ Actor SWWizardRed : SWWizardGray
 	"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 	"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
 	"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
-	"####" "#" 0 A_UnSetSolid
+	"####" "#" 0 A_ChangeFlag("SOLID",false)
 	"####" "#" 0 A_PlaySound("duke/shrink")
 	"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
 	"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
@@ -1427,7 +1427,7 @@ Actor SWWizardRedCorpse : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_Jump(242,"J")	
 			TNT1 A 0 A_SpawnItemEx("SWGuardianHeadDrop", 0, 0, 0, Random(-3,3), Random(-3,3), 8)

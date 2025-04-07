@@ -113,7 +113,7 @@ Actor Selkis : SamsaraMonsterAlienBoss
 		goto See
     Death:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)	
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		SELK N 8
 		SELK O 8 Bright A_PlaySound("selkis/zap")
 		SELZ F 10

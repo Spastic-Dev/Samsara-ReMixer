@@ -90,7 +90,7 @@ ACTOR BlueGroovyOldCoot : SamsaraMonsterHumanoid
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_CustomMissile("CootArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		Goto XDeathEnd
 	XDeathEnd:
@@ -195,7 +195,7 @@ Actor BlueGroovyOldCootCorpse : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_SpawnItemEx("RRGibSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 			Stop
@@ -3074,7 +3074,7 @@ ACTOR GhostGroovyOldCoot : SamsaraMonsterSkeleton
 		TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 		Goto See
 	Death:
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 7 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 		Stop
@@ -3152,7 +3152,7 @@ Actor OldSkinnyCoot : BlueGroovyOldCoot
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_CustomMissile("CootArm_2",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		Goto Super::XDeathEnd
 	Pain.ShrinkerDMG:

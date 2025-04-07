@@ -103,7 +103,7 @@ ACTOR PigCop : SamsaraMonsterAlien
 			TNT1 A -1 A_Jump(256,"Death")
 			Wait
 		DukeGibStart:
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukePigGibKill",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
@@ -127,7 +127,7 @@ ACTOR PigCop : SamsaraMonsterAlien
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_SpawnDebris("DukeJibs1")
 			TNT1 A 0 A_SpawnDebris("DukeJibs2")
@@ -187,7 +187,7 @@ ACTOR PigCop : SamsaraMonsterAlien
 			TNT1 A 0 A_TakeInventory("ExpanderGrowthX", 40)
 			TNT1 A 0 A_TakeInventory("ExpanderDoubleX", 40)
 			TNT1 A 0 A_SetScale((user_scalexoriginal)/65536.0, (user_scaleyoriginal)/65536.0)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
@@ -206,7 +206,7 @@ ACTOR PigCop : SamsaraMonsterAlien
 			TNT1 A 0 A_TakeInventory("ExpanderGrowthX", 40)
 			TNT1 A 0 A_TakeInventory("ExpanderDoubleX", 40)
 			TNT1 A 0 A_SetScale((user_scalexoriginal)/65536.0, (user_scaleyoriginal)/65536.0)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_SpawnItemEx("DukeGibPopSpawner_Duke", 0, 0, height*2, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
@@ -239,7 +239,7 @@ Actor PigCopCorpse : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_SpawnDebris("DukeJibs1")
 			TNT1 A 0 A_SpawnDebris("DukeJibs2")

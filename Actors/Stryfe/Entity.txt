@@ -106,7 +106,7 @@ Actor StrifeEntity : SamsaraMonsterRemixEntityBoss
 			TNT1 A 0 A_SpawnItemEx("StrifeSubEntity",64,0,70,2,0,0,90,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0)
 			TNT1 A 0 A_SpawnItemEx("StrifeSubEntity",0,64,70,0,0,2,0,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0)
 			MNAL Q 6 Bright A_SpawnItemEx("StrifeSubEntity",-64,0,70,2,0,0,-90,SXF_NOCHECKPOSITION|SXF_SETMASTER|SXF_TRANSFERAMBUSHFLAG|SXF_TRANSFERSPECIAL,0)
-			TNT1 A 5 A_UnsetSolid
+			TNT1 A 5 A_ChangeFlag("SOLID",false)
 			Goto Decision
 		Decision:
 			TNT1 A 10 A_JumpIfInventory("DeadSubEntity",3,"FinallyDie")
@@ -231,7 +231,7 @@ Actor EntityNest_New
 			NEST C 9
 			TNT1 A 0 A_ChangeFlag("SOLID",0)
 			NEST D 9 A_SpawnItemEx("PodStrifeEntity",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION|SXF_TRANSFERAMBUSHFLAG)
-			NEST E 500 A_UnsetSolid
+			NEST E 500 A_ChangeFlag("SOLID",false)
 		Death:
 			BOOM A 4 A_PlaySound("crusader/mislx",CHAN_BODY,1.0,0,ATTN_NORM)
 			BOOM B 3

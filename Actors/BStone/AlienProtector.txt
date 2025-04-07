@@ -1,4 +1,5 @@
-Actor AlienProtector : StarTrooper {
+Actor AlienProtector : StarTrooper
+{
 	Radius 20
 	Height 54
 	Mass 128
@@ -11,7 +12,8 @@ Actor AlienProtector : StarTrooper {
 	Obituary "%o was outmatched by an Alien Protector."
 	Tag "Alien Protector"
 	Decal BulletChip
-	States {
+	States
+	{
 		Spawn:
 			BS25 A 0
 			BS25 A 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
@@ -26,8 +28,7 @@ Actor AlienProtector : StarTrooper {
 			Loop
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN", 1)
-			BS25 L 6 A_FaceTarget
-			BS25 M 6 A_FaceTarget
+			BS25 LM 6 A_FaceTarget
 			TNT1 A 0 A_JumpIfCloser (128, "Bullet1")
 			TNT1 A 0 A_JumpIfCloser (256, "Bullet2")
 			TNT1 A 0 A_JumpIfCloser (384, "Bullet3")
@@ -127,8 +128,7 @@ Actor AlienProtector : StarTrooper {
 			BS25 N 5 bright A_CustomMissile("BlakeEnemyBulletD7",32,0,random(-10,10),8)
 			Goto See
 		Pain:
-			TNT1 A 0 A_Jump(128, "Var2")
-			BS25 F 3
+			BS25 F 3 A_Jump(128, "Var2")
 			BS25 F 3 A_Pain
 			Goto See
 		Var2:
@@ -142,13 +142,12 @@ Actor AlienProtector : StarTrooper {
 			TNT1 A 0 A_Recoil(14)
 			BS25 F 16 A_Pain
 			Goto See
-		Death:					
+		Death:
 			TNT1 A 0 A_JumpIfInventory("FakedOnce", 1, "Continue1")
 			TNT1 A 0 A_Jump(160, "FakeDeath")
 		Continue1:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")		
-			BS25 G 6
+			BS25 G 6 A_SpawnItem("UniversalBloodyHellGoreDeathEffect")
 			BS25 H 7 A_Scream
 			BS25 I 8 A_NoBlocking
 			BS25 J 6
@@ -156,19 +155,19 @@ Actor AlienProtector : StarTrooper {
 			Stop
 		FakeDeath:
 			BS25 O 7 A_PlaySound("alienprotector/fake")
-			BS25 P 6 A_UnSetSolid
+			BS25 P 6 A_ChangeFlag("SOLID",false)
 			BS25 Q 5 A_UnSetShootable
-		    TNT1 A 0 A_Jump(192,4)
-		    TNT1 A 0 A_Jump(128,4)
-		    TNT1 A 0 A_Jump(96,4)
-		    TNT1 A 0 A_Jump(64,4)
+			TNT1 A 0 A_Jump(192,4)
+			TNT1 A 0 A_Jump(128,4)
+			TNT1 A 0 A_Jump(96,4)
+			TNT1 A 0 A_Jump(64,4)
 			BS25 R 115
 			BS25 R 115
 			BS25 R 115
 			BS25 R 115
 			TNT1 A 0 A_GiveInventory("FakedOnce", 1)
 		GetUp:
-			TNT1 A 0 A_SetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",true)
 			TNT1 A 0 A_SetShootable
 			TNT1 A 0 A_StopSound(0)
 			TNT1 A 0 A_StopSound(1)
@@ -183,15 +182,14 @@ Actor AlienProtector : StarTrooper {
 			TNT1 A 0 A_SpawnItemEx("AlienProtector",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG,0,tid)
 			TNT1 A 1
 			Stop
-		Death.GoldeneyeHead:				
+		Death.GoldeneyeHead:
 		XDeath:
-			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)		
-			BS25 G 6
+			BS25 G 6 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			BS25 H 7 A_Scream
 			BS25 I 8 A_NoBlocking
 			BS25 J 6
 			BS25 K -1
-			Stop			
+			Stop
 		Pain.ShrinkerDMG:
 			BS25 F 0
 			"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
@@ -359,9 +357,9 @@ actor AlienProtector_Shrink : AlienProtector
 			"####" "#" 0 A_GiveInventory("SquishToken", 1)
 			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 2 
+			"####" "#" 2
 			"####" "#" 0 A_Jump(256,3)
-			"####" "#" 0 
+			"####" "#" 0
 			"####" "#" 2 A_Die("Squish")
 			"####" "#" 0
 			loop
@@ -389,7 +387,7 @@ actor AlienProtector_ShrinkEffect : AlienProtector
 	-SOLID
 	+NOINTERACTION
 	-NOGRAVITY
-	+CLIENTSIDEONLY	
+	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.4
 	States

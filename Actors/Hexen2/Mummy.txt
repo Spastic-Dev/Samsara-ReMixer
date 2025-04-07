@@ -290,7 +290,7 @@ Actor Hexen2Mummy : Hexen2HumanoidBase
 	XDeath:
 		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 		TNT1 A 0 A_Scream
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_NoBlocking	
 		TNT1 A 0 A_KillMaster
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
@@ -833,7 +833,7 @@ Actor Hexen2MummyLord : Hexen2Mummy
 	XDeath:
 		TNT1 A 0 A_Playsound("Hexen2/Gib", CHAN_5)
 		TNT1 A 0 A_Scream
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_NoBlocking	
 		TNT1 A 0 A_KillMaster
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)

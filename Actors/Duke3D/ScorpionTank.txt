@@ -63,7 +63,7 @@ ACTOR ScorpionTank : SamsaraMonsterRobotic
 		Death:
 			TNT1 A 0 A_RemoveChildren(TRUE)
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("duke/explosion", 6, 1.0, 0, ATTN_NONE)
 			TNT1 A 1 A_SpawnItemEx("RPGExplosion",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)

@@ -84,7 +84,7 @@ Actor IPOGMastiff : SamsaraMonsterRobotic
 		Goto See
 	Death:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		IPOD G 1 A_UnsetSolid
+		IPOD G 1 A_ChangeFlag("SOLID",false)
 		IPOD G 1 A_Scream
 		IPOD G 0 A_Explode(random(110,125),136,1)
 		IPOD G 0 A_SpawnItemEx("PGRocketPuff",0,0,0,0,0,0,4)

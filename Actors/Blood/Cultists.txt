@@ -338,7 +338,7 @@ Actor Cultist : SamsaraMonsterHumanoid
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 		YCUL P 5 A_Scream
-		TNT1 A 0 A_UnSetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_Jump(128, 2)
 		YCUL PPP 0
 		YCUL P 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -447,7 +447,7 @@ Actor BloodCultistCorpse1 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -481,7 +481,7 @@ Actor BloodCultistCorpse2 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -1072,7 +1072,7 @@ Actor Fanatic : Cultist
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 		YCUG P 5 A_Scream
-		TNT1 A 0 A_UnSetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_SpawnDebris("ZBloodBloodliver")
 		TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
 		TNT1 A 0 A_SpawnDebris("ZBloodEyeGuts")
@@ -1176,7 +1176,7 @@ Actor BloodFanaticCorpse1 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -1213,7 +1213,7 @@ Actor BloodFanaticCorpse2 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -1777,7 +1777,7 @@ Actor BloodAcolyte : Cultist
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 		YCUD P 5 A_Scream
-		TNT1 A 0 A_UnSetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_SpawnDebris("ZBloodBloodliver")
 		TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
 		TNT1 A 0 A_SpawnDebris("ZBloodEyeGuts")
@@ -1871,7 +1871,7 @@ Actor BloodAcolyteCorpse1 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -1905,7 +1905,7 @@ Actor BloodAcolyteCorpse2 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -2501,7 +2501,7 @@ Actor Zealot : Cultist
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 		YCUJ P 5 A_Scream
-		TNT1 A 0 A_UnSetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_SpawnDebris("ZBloodBloodliver")
 		TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
 		TNT1 A 0 A_SpawnDebris("ZBloodEyeGuts")
@@ -2620,7 +2620,7 @@ Actor BloodZealotCorpse1 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -2654,7 +2654,7 @@ Actor BloodZealotCorpse2 : SamsaraCorpseActor
 			Loop
 		Death:
 			TNT1 A 0 A_RemoveMaster
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR|1048576)
 			TNT1 AA 0 A_SpawnDebris("ZBloodBloodliver")
 			TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -3161,7 +3161,7 @@ Actor BloodPriest : Zealot
 		TNT1 A 0 A_Jump (228,"Style1")
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
 		YCUR P 5 A_Scream
-		TNT1 A 0 A_UnSetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_Jump(128, 2)
 		YCUR PPP 0
 		YCUR P 0 A_SpawnDebris("ZBloodOrganDebris")
@@ -4045,7 +4045,7 @@ actor BloodBurningCorpse_Fanatic : BloodBurningCorpse
 		TNT1 A 0 A_SpawnDebris("BuildFireTrail3",0)
 		FGUY U 3 Bright A_SpawnDebris("BuildFireTrail4",0)
 		TNT1 A 0 A_SpawnItem("UniversalBloodyHellGoreXDeathEffect")
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_SpawnDebris("ZBloodBloodliver")
 		TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
 		TNT1 A 0 A_SpawnDebris("ZBloodEyeGuts")
@@ -4072,7 +4072,7 @@ actor BloodBurningCorpse_Fanatic : BloodBurningCorpse
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_SpawnDebris("BuildFireTrail3",0)
 		TNT1 A 0 A_SpawnDebris("BuildFireTrail4",0)
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_SpawnDebris("ZBloodBloodliver")
 		TNT1 A 0 A_SpawnDebris("ZBloodOrganDebris")
 		TNT1 A 0 A_SpawnDebris("ZBloodEyeGuts")

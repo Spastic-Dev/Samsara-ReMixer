@@ -238,7 +238,7 @@ Actor SWHenchman : SamsaraMonsterHumanoid
 		TNT1 A -1 A_Jump(256,"Burn")
 		wait
 	XDeathForWang:
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_Jump(218, "XDeath")	
 		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
@@ -314,7 +314,7 @@ Actor SWHenchmenCorpse_Normal : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -345,7 +345,7 @@ Actor SWHenchmenCorpse_Sword : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -376,7 +376,7 @@ Actor SWHenchmenCorpse_Suicide : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -766,7 +766,7 @@ Actor SWHenchmanRed : SWHenchman
 		TNT1 A -1 A_Jump(256,"Burn")
 		wait
 	XDeathForWang:
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_Jump(218, "XDeath")	
 		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
@@ -787,7 +787,7 @@ Actor SWHenchmanRed : SWHenchman
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
 		"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
-		"####" "#" 0 A_UnSetSolid
+		"####" "#" 0 A_ChangeFlag("SOLID",false)
 		"####" "#" 0 A_PlaySound("duke/shrink")
 		"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
 		"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
@@ -857,7 +857,7 @@ Actor SWHenchmenRedCorpse_Normal : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -888,7 +888,7 @@ Actor SWHenchmenRedCorpse_Sword : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -919,7 +919,7 @@ Actor SWHenchmenRedCorpse_Suicide : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -1342,7 +1342,7 @@ Actor SWHenchmanGreen : SWHenchmanRed
 		TNT1 A -1 A_Jump(256,"Burn")
 		wait
 	XDeathForWang:
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_Jump(218, "XDeath")	
 		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
@@ -1363,7 +1363,7 @@ Actor SWHenchmanGreen : SWHenchmanRed
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
 		"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
-		"####" "#" 0 A_UnSetSolid
+		"####" "#" 0 A_ChangeFlag("SOLID",false)
 		"####" "#" 0 A_PlaySound("duke/shrink")
 		"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
 		"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
@@ -1432,7 +1432,7 @@ Actor SWHenchmenGreenCorpse_Normal : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -1463,7 +1463,7 @@ Actor SWHenchmenGreenCorpse_Sword : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -1494,7 +1494,7 @@ Actor SWHenchmenGreenCorpse_Suicide : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -1886,7 +1886,7 @@ Actor SWHenchmanPurple :SWHenchmanRed
 		TNT1 A -1 A_Jump(256,"Burn")
 		wait
 	XDeathForWang:
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_Jump(218, "XDeath")	
 		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
@@ -1907,7 +1907,7 @@ Actor SWHenchmanPurple :SWHenchmanRed
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
 		"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
-		"####" "#" 0 A_UnSetSolid
+		"####" "#" 0 A_ChangeFlag("SOLID",false)
 		"####" "#" 0 A_PlaySound("duke/shrink")
 		"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
 		"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
@@ -1977,7 +1977,7 @@ Actor SWHenchmenPurpleCorpse_Normal : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -2008,7 +2008,7 @@ Actor SWHenchmenPurpleCorpse_Sword : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -2039,7 +2039,7 @@ Actor SWHenchmenPurpleCorpse_Suicide : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -2431,7 +2431,7 @@ Actor SWHenchmanOrange :SWHenchmanRed	//Missing variant...
 		TNT1 A -1 A_Jump(256,"Burn")
 		wait
 	XDeathForWang:
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_Jump(218, "XDeath")	
 		TNT1 A 0 A_GiveToTarget("LoWangDMTaunt2",1)
 		TNT1 A -1 A_Jump(256,"XDeath")
@@ -2452,7 +2452,7 @@ Actor SWHenchmanOrange :SWHenchmanRed	//Missing variant...
 		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
 		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
 		"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
-		"####" "#" 0 A_UnSetSolid
+		"####" "#" 0 A_ChangeFlag("SOLID",false)
 		"####" "#" 0 A_PlaySound("duke/shrink")
 		"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
 		"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
@@ -2522,7 +2522,7 @@ Actor SWHenchmenOrangeCorpse_Normal : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -2553,7 +2553,7 @@ Actor SWHenchmenOrangeCorpse_Sword : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)
@@ -2584,7 +2584,7 @@ Actor SWHenchmenOrangeCorpse_Suicide : SamsaraCorpseActor
 		Death:
 			TNT1 A 0 A_RemoveMaster
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_PlaySound("sw/gib_land1",CHAN_BODY)
 			TNT1 AAAAAAA 0 A_SpawnItemEx("SWBlood",random(-12,12),random(-12,12),random(0,40),random(-5,5),random(-5,5),random(4,10),0,SXF_USEBLOODCOLOR|SXF_TRANSFERTRANSLATION)

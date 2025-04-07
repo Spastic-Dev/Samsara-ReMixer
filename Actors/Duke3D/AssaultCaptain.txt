@@ -16,7 +16,7 @@ ACTOR AssaultCaptain : AssaultTrooper
 			Loop
 		Idle:
 			ASCA A 1
-			ASCA A 0 A_SetSolid
+			ASCA A 0 A_ChangeFlag("SOLID",true)
 			ASCA A 0 A_SetShootable
 			ASCA A 1 A_SetTranslucent(1,0)
 			Goto Spawn2
@@ -128,7 +128,7 @@ ACTOR AssaultCaptain : AssaultTrooper
 			ASCA R 1 A_SetTranslucent(0.18,0)
 			ASCA R 1 A_SetTranslucent(0.12,0)
 			ASCA R 1 A_SetTranslucent(0.06,0)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_UnsetShootable
 			TNT1 A 0 A_PlaySound("assaultcapt/teleport",CHAN_5)
 			TNT1 A 0 A_SpawnItemEx("DukeTeleportFlash",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
@@ -141,7 +141,7 @@ ACTOR AssaultCaptain : AssaultTrooper
 			Loop
 		TeleEnd:
 			TNT1 A 13 A_SpawnItemEx("DukeTeleportFlash",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_CLIENTSIDE)
-			TNT1 A 0 A_SetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",true)
 			TNT1 A 0 A_SetShootable
 			ASCA E 1 A_PlaySound("assaultcapt/teleport", CHAN_5)
 			Goto StandShot
@@ -181,7 +181,7 @@ ACTOR AssaultCaptain : AssaultTrooper
 			TNT1 A -1 A_Jump(256,"Death")
 			Wait
 		DukeGibStart:
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_Jump(96,"XDeath")
 			TNT1 A 0 A_GiveToTarget("DukeGibTaunt",1)
 			TNT1 A -1 A_Jump(256,"XDeath")
@@ -219,7 +219,7 @@ ACTOR AssaultCaptain : AssaultTrooper
 		XDeath:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 			TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-			TNT1 A 0 A_UnsetSolid
+			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_NoBlocking
 			TNT1 A 0 A_SetTranslucent(1,0)
 			TNT1 A 0 A_SpawnDebris("DukeJibs2")
@@ -303,7 +303,7 @@ Actor AssaultCaptainChoking : AssaultCaptain
 			ASCA P 6
 			TNT1 A 0 A_ChangeFlag(SHOOTABLE,0)
 			TNT1 A 0 A_ChangeFlag(VULNERABLE,1)
-			ASCA M 1 A_UnsetSolid
+			ASCA M 1 A_ChangeFlag("SOLID",false)
 			TNT1 A 0 A_Jump(128,"PermDeath")
 		   Goto Faking
 		Faking:

@@ -93,7 +93,7 @@ Actor IPOGSentinal : SamsaraMonsterRoboticBoss
 		Goto See
 	Death:
 	    TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
-		IPO4 G 1 A_UnsetSolid
+		IPO4 G 1 A_ChangeFlag("SOLID",false)
 		IPO4 G 1 A_Scream
 		IPO4 G 0 A_Explode(random(110,125),136,1)
 		IPO4 G 0 A_SpawnItemEx("PGRocketPuff",0,0,0,0,0,0,4)

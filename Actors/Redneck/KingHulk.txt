@@ -148,7 +148,7 @@ Actor KingHulk : SamsaraMonsterAlienBoss
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_PlaySound("leonard/xdeath",CHAN_AUTO)
 		TNT1 A 0 A_CustomMissile("KingHulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 0 A_CustomMissile("KingHulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
@@ -235,7 +235,7 @@ Actor KingHulkRevive
 	XDeath:
 		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
 		TNT1 A 0 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
-		TNT1 A 0 A_UnsetSolid
+		TNT1 A 0 A_ChangeFlag("SOLID",false)
 		TNT1 A 0 A_PlaySound("leonard/xdeath",CHAN_AUTO)
 		TNT1 A 0 A_CustomMissile("KingHulkhead",0+Random(30,60),0+Random(35,-35),0+Random(0,370))
 		TNT1 A 0 A_CustomMissile("KingHulkArm",0+Random(30,60),0+Random(35,-35),0+Random(0,370))

@@ -70,7 +70,7 @@ ACTOR black_probe_droid : SamsaraMonsterRobotic
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)			
 			TNT1 A 0 A_PlaySound("probalm",CHAN_BODY,1.0,0,ATTN_NORM)
 			PR0B N 5 A_Scream
-			PR0B O 5 A_UnsetSolid
+			PR0B O 5 A_ChangeFlag("SOLID",false)
 			PR0B P 5 A_NoBlocking
 			PR0B QR 5
 			TNT1 A 0 A_PlaySound("katarn/exmort",CHAN_WEAPON,1.0,0,ATTN_NORM)
