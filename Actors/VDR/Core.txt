@@ -36,6 +36,23 @@ actor MMRandomizer_ChainsawDrop : SamsaraSlotOneDrop
     }
 }
 
+actor MMRandomizer_MinigunDrop : SamsaraSlotFourSkulltagDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WMNG A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WMNG A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+    }
+}
+
 actor MMRandomizer_CGunArachnoAmmoDrop : Ammo1Big
 {
     +DONTGIB
