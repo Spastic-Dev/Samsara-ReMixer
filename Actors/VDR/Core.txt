@@ -53,6 +53,23 @@ actor MMRandomizer_MinigunDrop : SamsaraSlotFourSkulltagDrop
     }
 }
 
+actor MMRandomizer_RocketLauncherDrop : SamsaraSlotFiveDrop
+{
+    +DROPPED
+    +NEVERRESPAWN
+    States
+    {
+      Spawn:
+        WDRL A 0
+        goto SpawnGameModeCheck
+
+      SpawnActual:
+        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+        WDRL A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        stop
+    }
+}
+
 actor MMRandomizer_CGunArachnoAmmoDrop : Ammo1Big
 {
     +DONTGIB
