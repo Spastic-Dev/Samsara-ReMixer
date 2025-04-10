@@ -1,7 +1,7 @@
 ACTOR MMRandomizer_ZSpecOpsShotgun : SamsaraMonsterHumanoidTotalGib
 {
 	Game Doom
-	Health 100
+	Health 70
 	Radius 20
 	Height 56
 	Mass 100
@@ -14,9 +14,9 @@ ACTOR MMRandomizer_ZSpecOpsShotgun : SamsaraMonsterHumanoidTotalGib
 	ActiveSound "vdr/ZSpecOps/Sight"
 	MONSTER
 	+FLOORCLIP
-	Obituary "%o was gunned down by a ZSpecOps."
+	Obituary "%o was shotgunned by a Z-SpecOps."
 	DropItem "ShotgunDrop2"
-	Tag "Shotgun ZSpecOps"
+	Tag "Z-SpecOps Shotgunner"
 	States
 	{
 		Spawn:
@@ -34,8 +34,8 @@ ACTOR MMRandomizer_ZSpecOpsShotgun : SamsaraMonsterHumanoidTotalGib
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD88 E 10 A_FaceTarget
-			VD88 F 8 Bright A_CustomBulletAttack(22.5, 0, 3, random(1,5) * 3, "DoomBulletPuffThruGhost_Samsara", 0, CBAF_NORANDOM)
-			VD88 E 8
+			VD88 F 10 Bright A_CustomBulletAttack(22.5, 7, 4, 4, "DoomBulletPuffThruGhost_Samsara")
+			VD88 E 10
 			Goto See
 		Pain:
 			VD88 G 3
@@ -296,7 +296,7 @@ actor MMRandomizer_ZSpecOpsShotgun_ShrinkEffect : MMRandomizer_ZSpecOpsShotgun
 ACTOR MMRandomizer_ZSpecOpsMachinegun : SamsaraMonsterHumanoidTotalGib
 {
 	Game Doom
-	Health 100
+	Health 70
 	Radius 20
 	Height 56
 	Mass 100
@@ -309,9 +309,9 @@ ACTOR MMRandomizer_ZSpecOpsMachinegun : SamsaraMonsterHumanoidTotalGib
 	ActiveSound "vdr/ZSpecOps/Sight"
 	MONSTER
 	+FLOORCLIP
-	Obituary "%o was gunned down by a ZSpecOps."
+	Obituary "%o was machine-gunned by a Z-SpecOps."
 	DropItem "Clip3", 256, 2
-	Tag "Machinegun ZSpecOps"
+	Tag "Z-SpecOps Machine Gunner"
 	States
 	{
 		Spawn:
@@ -329,11 +329,15 @@ ACTOR MMRandomizer_ZSpecOpsMachinegun : SamsaraMonsterHumanoidTotalGib
 		Missile:
 			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 			VD89 E 10 A_FaceTarget
-			VD89 F 2 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuffThruGhost_Samsara", 0, CBAF_NORANDOM)
+			VD89 F 2 Bright A_CustomBulletAttack(21.5, 6.5, 1, 4, "DoomBulletPuffThruGhost_Samsara")
 			VD89 E 2 A_FaceTarget
-			VD89 F 2 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuffThruGhost_Samsara", 0, CBAF_NORANDOM)
+			VD89 F 2 Bright A_CustomBulletAttack(21.5, 6.5, 1, 4, "DoomBulletPuffThruGhost_Samsara")
 			VD89 E 2 A_FaceTarget
-			VD89 F 2 Bright A_CustomBulletAttack(22.5, 0, 1, random(1,5) * 3, "DoomBulletPuffThruGhost_Samsara", 0, CBAF_NORANDOM)
+			VD89 F 2 Bright A_CustomBulletAttack(21.5, 6.5, 1, 4, "DoomBulletPuffThruGhost_Samsara")
+			VD89 E 2 A_FaceTarget
+			VD89 F 2 Bright A_CustomBulletAttack(21.5, 6.5, 1, 4, "DoomBulletPuffThruGhost_Samsara")
+			VD89 E 2 A_FaceTarget
+			VD89 F 2 Bright A_CustomBulletAttack(21.5, 6.5, 1, 4, "DoomBulletPuffThruGhost_Samsara")
 			VD89 E 10
 			Goto See
 		Pain:
