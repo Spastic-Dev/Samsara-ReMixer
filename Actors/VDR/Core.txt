@@ -1,92 +1,96 @@
+actor MMRandomizer_RocketAmmoDrop : Ammo3Small
+{
+	+DONTGIB
+	+DROPPED
+	+NEVERRESPAWN
+	States
+	{
+	Spawn:
+		ROCK B 0
+		Goto SpawnGameModeCheck
+
+	SpawnActual:
+		TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+		ROCK B -1 A_ChangeFlag("NOTIMEFREEZE",false)
+		Stop
+
+	PickupSuccessPainkiller:
+		Goto PickupSuccessPainkillerReplenish
+	}
+}
+
 actor MMRandomizer_CellDrop : Ammo4Small
 {
-    +DONTGIB
-    +DROPPED
-    +NEVERRESPAWN
-    States
-    {
-      Spawn:
-        CELL B 0
-        goto SpawnGameModeCheck
+	+DONTGIB
+	+DROPPED
+	+NEVERRESPAWN
+	States
+	{
+	Spawn:
+		CELL B 0
+		Goto SpawnGameModeCheck
 
-      SpawnActual:
-        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
-        CELL B -1 A_ChangeFlag("NOTIMEFREEZE",false)
-        stop
+	SpawnActual:
+		TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+		CELL B -1 A_ChangeFlag("NOTIMEFREEZE",false)
+		Stop
 
-      PickupSuccessPainkiller:
-        goto PickupSuccessPainkillerReplenish
-    }
+	PickupSuccessPainkiller:
+		Goto PickupSuccessPainkillerReplenish
+	}
 }
 
 actor MMRandomizer_ChainsawDrop : SamsaraSlotOneDrop
 {
-    +DROPPED
-    +NEVERRESPAWN
-    States
-    {
-      Spawn:
-        WSAW A 0 NoDelay ACS_NamedExecuteWithResult("Samsara_SwitchableObject", 34)
-        goto SpawnGameModeCheck
+	+DROPPED
+	+NEVERRESPAWN
+	States
+	{
+	Spawn:
+		WSAW A 0 NoDelay ACS_NamedExecuteWithResult("Samsara_SwitchableObject", 34)
+		Goto SpawnGameModeCheck
 
-      SpawnActual:
-        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
-        WSAW A -1 A_ChangeFlag("NOTIMEFREEZE",false)
-        stop
-    }
+	SpawnActual:
+		TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+		WSAW A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+		Stop
+	}
 }
 
 actor MMRandomizer_MinigunDrop : SamsaraSlotFourSkulltagDrop
 {
-    +DROPPED
-    +NEVERRESPAWN
-    States
-    {
-      Spawn:
-        WMNG A 0
-        goto SpawnGameModeCheck
+	+DROPPED
+	+NEVERRESPAWN
+	States
+	{
+	Spawn:
+		WMNG A 0
+		Goto SpawnGameModeCheck
 
-      SpawnActual:
-        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
-        WMNG A -1 A_ChangeFlag("NOTIMEFREEZE",false)
-        stop
-    }
-}
-
-actor MMRandomizer_RocketLauncherDrop : SamsaraSlotFiveDrop
-{
-    +DROPPED
-    +NEVERRESPAWN
-    States
-    {
-      Spawn:
-        WDRL A 0
-        goto SpawnGameModeCheck
-
-      SpawnActual:
-        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
-        WDRL A -1 A_ChangeFlag("NOTIMEFREEZE",false)
-        stop
-    }
+	SpawnActual:
+		TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+		WMNG A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+		Stop
+	}
 }
 
 actor MMRandomizer_CGunArachnoAmmoDrop : Ammo1Big
 {
-    +DONTGIB
-    +DROPPED
-    +NEVERRESPAWN
-    States
-    {
-      Spawn:
-        AMMO C 0
-        goto SpawnGameModeCheck
+	+DONTGIB
+	+DROPPED
+	+NEVERRESPAWN
+	States
+	{
+	Spawn:
+		AMMO C 0
+		Goto SpawnGameModeCheck
 
-      SpawnActual:
-        TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
-        AMMO C -1 A_ChangeFlag("NOTIMEFREEZE",false)
-        stop
+	SpawnActual:
+		TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
+		AMMO C -1 A_ChangeFlag("NOTIMEFREEZE",false)
+		Stop
 
-      PickupSuccessPainkiller:
-        goto PickupSuccessPainkillerReplenish
-    }
+	PickupSuccessPainkiller:
+		Goto PickupSuccessPainkillerReplenish
+	}
 }
