@@ -551,16 +551,15 @@ Script "ReMixer_SelfRevive" (int totalWaitTime, int chanceRevive, int maxRevives
 
 	while (totalWaitTime > 0)
 	{
-		if (ClassifyActor(0) & ACTOR_ALIVE)
-		{
-			terminate;
-		}
+		if ((ClassifyActor(0) & ACTOR_WORLD) || (ClassifyActor(0) & ACTOR_ALIVE)) { terminate; } // ACTOR_WORLD = invasion server crash fix
 
 		int delayTime = min(totalWaitTime, 35);
 
 		Delay(delayTime);
 		totalWaitTime -= delayTime;
 	}
+
+    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; } // ACTOR_WORLD = invasion server crash fix
 
 	reviveCount = CheckInventory("SelfReviveCounter");
 
