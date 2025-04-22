@@ -2,13 +2,11 @@ Actor MMRandomizer_CyberMastermind : SpiderMastermind3
 {
 	Obituary "%o was destroyed by a cyber mastermind."
 	Health 5000
-	Speed 12
 	PainChance 30
-	+NORADIUSDMG
 	SeeSound "doom/cyber/sight"
 	DeathSound "doom/cyber/death"
 	Tag "Cyber Mastermind"
-	Species "SamsaraDemolisher"
+	Species "SamsaraCyberMastermind"
 	States
 	{
 		Spawn:
@@ -32,11 +30,13 @@ Actor MMRandomizer_CyberMastermind : SpiderMastermind3
 			Loop
 		Missile:
 			VD91 A 20 A_FaceTarget
-			VD91 GHGH 4 BRIGHT A_CustomBulletAttack(22.5, 0, 3, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
-			VD91 H 0 A_FaceTarget
-			VD91 I 12 A_CustomMissile("Rocket_Samsara",32,0,0)
+			VD91 GH 4 BRIGHT A_CustomBulletAttack(22.5, 0, 3, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
+			VD91 H 1 BRIGHT A_FaceTarget
+			VD91 GH 4 BRIGHT A_CustomBulletAttack(22.5, 0, 3, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
+			VD91 H 1 BRIGHT A_FaceTarget
+			TNT1 A 0 A_CustomMissile("Rocket_Samsara")
 			VD91 IJ 4 BRIGHT A_CustomBulletAttack(22.5, 0, 3, random(1,5) * 3, "DoomBulletPuff_Samsara", 0, CBAF_NORANDOM)
-			VD91 J 1 A_SpidRefire
+			VD91 J 1 BRIGHT A_SpidRefire
 			Goto Missile+1
 		Pain:
 			VD91 K 3
