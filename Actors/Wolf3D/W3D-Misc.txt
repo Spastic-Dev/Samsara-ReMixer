@@ -246,12 +246,12 @@ actor WolfDualChaingunDropTrue : SamsaraSlotFourSkulltagDrop
     States
     {
       Spawn:
-        WCHP A 0
+        WCHP C 0
         goto SpawnGameModeCheck
 
       SpawnActual:
         TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
-        WCHP A -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        WCHP C -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
@@ -261,12 +261,12 @@ actor LostDualChaingunDropTrue : WolfDualChaingunDropTrue
     States
     {
       Spawn:
-        WCHP B 0
+        WCHP D 0
         goto SpawnGameModeCheck
 
       SpawnActual:
         TNT1 A 0 A_ChangeFlag("THRUACTORS",false)
-        WCHP B -1 A_ChangeFlag("NOTIMEFREEZE",false)
+        WCHP D -1 A_ChangeFlag("NOTIMEFREEZE",false)
         stop
     }
 }
