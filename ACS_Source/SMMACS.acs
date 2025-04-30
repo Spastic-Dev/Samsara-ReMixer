@@ -97,15 +97,7 @@ Script "ReMixerInit" OPEN //667
 
 Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 {
-	int map;
-	int setselect;
 	int multitoken;
-	int gameTypeMap;
-	int numGameTypes = 0;
-	int altSetSelect;
-	int activator = ActivatorTID();
-
-	map = GetLevelInfo(LEVELINFO_LEVELNUM);
 
 	Switch(spawncode)
 	{
@@ -148,22 +140,25 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 
 			if(GetCVar("mm_multiply") > 1 && !CheckInventory("MultiplyOverflowToken"))
 			{
+				int activator = ActivatorTID();
 				int newtid = UniqueTID();
+				str activatorClass = GetActorClass(0);
+
 				for(int g = 1; g < GetCVar("mm_multiply"); g++)
 				{
-					SpawnForced(GetActorClass(activator),GetActorX(activator),GetActorY(activator),GetActorZ(activator),newtid,0);
+					SpawnForced(activatorClass,GetActorX(activator),GetActorY(activator),GetActorZ(activator),newtid,0);
 					SetActorAngle(newtid,GetActorAngle(activator));
 					GiveActorInventory(newtid, "MultiplyOverflowToken", 1);
 					GiveActorInventory(newtid, "ThruSpeciesToken", 1);
-					SetActorProperty(newtid,APROP_Species,GetActorClass(activator));
-					SetActorProperty(activator,APROP_Species,GetActorClass(activator));
+					SetActorProperty(newtid,APROP_Species,activatorClass);
+					SetActorProperty(activator,APROP_Species,activatorClass);
 					GiveActorInventory(activator, "ThruSpeciesToken", 1);
 					ThrustThing(random(0,256), 2, 0, newtid);
 					Thing_ChangeTID(newtid, activator);
 				}
 				break;
 			}
-			
+
 			if(CheckInventory("MultiplyOverflowToken"))
 			{
 				int healthMod = GetCVar("mm_healthoverride");
@@ -192,15 +187,9 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					else
 					{
 						int modifiedHealth = baseMonsterHealth * healthMod/100;
+						int newMonsterHealth = modifiedHealth <= 0 ? 1 : modifiedHealth;
 
-						if (modifiedHealth <= 0)
-						{
-							SetActorProperty(0,APROP_Health,1);
-						}
-						else
-						{
-							SetActorProperty(0,APROP_Health,modifiedHealth);
-						}
+						SetActorProperty(0,APROP_Health,newMonsterHealth);
 					}
 				}
 
@@ -227,15 +216,9 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					else
 					{
 						int modifiedSpeed = baseMonsterSpeed * speedMod/100;
+						int newMonsterSpeed = modifiedSpeed <= 0 ? 1 : modifiedSpeed;
 
-						if (modifiedSpeed <= 0)
-						{
-							SetActorProperty(0,APROP_Speed,1);
-						}
-						else
-						{
-							SetActorProperty(0,APROP_Speed,modifiedSpeed);
-						}
+						SetActorProperty(0,APROP_Speed,newMonsterSpeed);
 					}
 				}
 			}
@@ -245,20 +228,23 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			until(pickClear && (SinglePlayer() || timer() > 5) && PlayerCount() > 0)
 				Delay(1);
 
+			int setSelect, altSetSelect;
 			if(maxSetsEnabled == 0)
 			{
-				ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
+				ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setSelect],altSetSelect,monsterSlot);
 				SetActorState(0,"Continue",1);
 				break;
 			}
 
-			setselect = random(1, maxSetsEnabled) - 1;
+			setSelect = random(1, maxSetsEnabled) - 1;
+			int pickedSet = pickFromSets[setSelect];
+			int amountOfGameTypesForPickedSet = amountOfGameTypes[pickedSet];
 
-			switch(pickFromSets[setselect])
+			switch(pickedSet)
 			{
 				//All other sets
 				default:
-					//SetActorState(0,gameSetsStr[pickFromSets[setselect]],true);
+					//SetActorState(0,gameSetsStr[pickedSet],true);
 					break;
 
 				case 0: // Doom
@@ -271,10 +257,10 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 							break;
 
 						case 0:
-							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							while(amountOfGameTypesForPickedSet != 0)
 							{
 								altSetSelect = random(0,maxAltSets);
-								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+								if(amountOfGameTypesForPickedSet & 1<<altSetSelect)
 									break;
 							}
 
@@ -325,10 +311,10 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 							break;
 
 						case 0: //doing this one the crude way
-							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							while(amountOfGameTypesForPickedSet != 0)
 							{
 								altSetSelect = random(0,maxAltSets);
-								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+								if(amountOfGameTypesForPickedSet & 1<<altSetSelect)
 									break;
 							}
 							break;
@@ -353,10 +339,10 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 							break;
 
 						case 0:
-							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							while(amountOfGameTypesForPickedSet != 0)
 							{
 								altSetSelect = random(0,maxAltSets);
-								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+								if(amountOfGameTypesForPickedSet & 1<<altSetSelect)
 									break;
 							}
 							break;
@@ -400,10 +386,10 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 							break;
 
 						case 0:
-							while(amountOfGameTypes[pickFromSets[setselect]] != 0)
+							while(amountOfGameTypesForPickedSet != 0)
 							{
 								altSetSelect = random(0,maxAltSets);
-								if(amountOfGameTypes[pickFromSets[setselect]] & 1<<altSetSelect)
+								if(amountOfGameTypesForPickedSet & 1<<altSetSelect)
 									break;
 							}
 							break;
@@ -433,14 +419,14 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			{
 				until(processedCounts) { Delay(1); }
 
-				if(ACS_NamedExecuteWithResult("SMMReducer",gamePruneValues[pickFromSets[setselect]][altSetSelect],CheckFlag(0,"BOSSDEATH"),monsterSlot))
+				if(ACS_NamedExecuteWithResult("SMMReducer",gamePruneValues[pickedSet][altSetSelect],CheckFlag(0,"BOSSDEATH"),monsterSlot))
 				{
 					Thing_Remove(0);
 					terminate;
 				}
 			}
 
-			ACS_NamedExecuteWithResult("ReMixer_PickActor",pickFromSets[setselect],altSetSelect,monsterSlot);
+			ACS_NamedExecuteWithResult("ReMixer_PickActor",pickedSet,altSetSelect,monsterSlot);
 			SetActorState(0,"Continue",1);
 			break;
 
@@ -472,9 +458,10 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int pick, maxPick;
 	int totalChance, currentChance;
 	int useSkill = GetCVar("mm_skilloverride");
-	int pickAddon = 0, addonOffsetGame, addonOffsetAltGame, addonOffsetMonSlot, addonPickOffset;
+	int pickAddon = 0, addonOffsetTotal, addonPickOffset;
 	int a = 0, newChance = 0, oldChance = 0, monsterSpawnChance;
 	int skillMod = ((GameSkill() * !useSkill) + ((useSkill > 0) * (useSkill - 1))) * 3;
+	int chanceSkillMod = skillMod + 2;
 	int healthMod = GetCVar("mm_healthoverride");
 	int speedMod = GetCVar("mm_speedoverride");
 	bool generatedMonster = false;
@@ -482,10 +469,11 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 
 	Thing_ChangeTID(0,newSpawnerTid);
 
-	if ((GetCVar(monsterReplacementsStr[monSlot]) != monSlot) && (GetCVar(monsterReplacementsStr[monSlot]) != -1))
+	int monReplForSlot = GetCVar(monsterReplacementsStr[monSlot]);
+	if (monReplForSlot != monSlot && monReplForSlot != -1)
 	{
 		oldSlot = monSlot;
-		monSlot = GetCVar(monsterReplacementsStr[monSlot]);
+		monSlot = monReplForSlot;
 	}
 
 	if(monGame >= MAX_GAME_TYPES)
@@ -498,7 +486,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	{
 		for(a = 0; a < MAXPERSLOT; a++)
 		{
-			monsterSpawnChance = monsterSelectStat[monGame][monAlt][monSlot][a][skillMod+2];
+			monsterSpawnChance = monsterSelectStat[monGame][monAlt][monSlot][a][chanceSkillMod];
 
 			if(monsterSpawnChance == 0)
 				totalChance += 1;
@@ -514,19 +502,21 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	}
 	else
 	{
-		addonOffsetGame = monGame * MAX_ALTS * MONSTER_SLOT * MAXPERSLOT * 6;
-		addonOffsetAltGame = monAlt * MONSTER_SLOT * MAXPERSLOT * 6;
-		addonOffsetMonSlot = monSlot * MAXPERSLOT * 6;
+		int addonOffsetGame = monGame * MAX_ALTS * MONSTER_SLOT * MAXPERSLOT * 6;
+		int addonOffsetAltGame = monAlt * MONSTER_SLOT * MAXPERSLOT * 6;
+		int addonOffsetMonSlot = monSlot * MAXPERSLOT * 6;
+		addonOffsetTotal = addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot;
+
 		for(a = 0; a < MAXPERSLOT; a++)
 		{
-			monsterSpawnChance = addonSetStats[(addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+a*1)+skillMod+2];
+			monsterSpawnChance = addonSetStats[(addonOffsetTotal+a*1)+chanceSkillMod];
 
 			if(monsterSpawnChance == 0)
 				totalChance += 1;
 			else if(monsterSpawnChance > 0)
 				totalChance += monsterSpawnChance;
 
-			if(StrLen(addonSets[(addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+a*1)])==0)
+			if(StrLen(addonSets[addonOffsetTotal+a*1])==0)
 			{
 				maxPick = a;
 				break;
@@ -541,12 +531,12 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		{
 			if(!pickAddon)
 			{
-				newChance = monsterSelectStat[monGame][monAlt][monSlot][a][skillMod+2];
+				newChance = monsterSelectStat[monGame][monAlt][monSlot][a][chanceSkillMod];
 				if(newChance == 0) newChance = 1;
 				else if(newChance < 0) continue;
 				if(a > 0)
 				{
-					oldChance = monsterSelectStat[monGame][monAlt][monSlot][a-1][skillMod+2];
+					oldChance = monsterSelectStat[monGame][monAlt][monSlot][a-1][chanceSkillMod];
 					if(choose <= (currentChance + newChance) && choose > currentChance)
 					{
 						pick = a;
@@ -562,12 +552,12 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 			}
 			else
 			{
-				newChance = addonSetStats[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+(a*6)+skillMod+2];
+				newChance = addonSetStats[addonOffsetTotal+(a*6)+chanceSkillMod];
 				if(newChance == 0) newChance = 1;
 				else if(newChance < 0) continue;
 				if(a > 0)
 				{
-					oldChance = addonSetStats[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+((a-1)*6)+skillMod+2];
+					oldChance = addonSetStats[addonOffsetTotal+((a-1)*6)+chanceSkillMod];
 					if(choose <= (currentChance + newChance) && choose > currentChance)
 					{
 						pick = a;
@@ -585,26 +575,44 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		}
 	}
 
-	int speed = pickAddon ? addonSetStats[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+addonPickOffset+skillMod] : monsterSelectStat[monGame][monAlt][monSlot][pick][skillMod];
-	int health = pickAddon ? addonSetStats[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+addonPickOffset+skillMod+1] : monsterSelectStat[monGame][monAlt][monSlot][pick][skillMod+1];
-	str token = pickAddon ? addonSetStats[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot+addonPickOffset+(1+(skillMod/3))] : monsterSelectStr[monGame][monAlt][monSlot][pick][1+(skillMod/3)];
-	str monster = pickAddon ? addonSets[addonOffsetGame+addonOffsetAltGame+addonOffsetMonSlot] : monsterSelectStr[monGame][monAlt][monSlot][pick][0];
+	int healthSkillMod = skillMod + 1;
+	int tokenSkillMod = 1 + (skillMod / 3);
+	int speed, health;
+	str token, monster;
 
-	if((maxSetsEnabled == 0) && !pickAddon)
+	if (!pickAddon)
 	{
-		speed = extrasSelectStat[0][monAlt][monSlot][pick][skillMod];
-		health = extrasSelectStat[0][monAlt][monSlot][pick][skillMod+1];
-		token = extrasSelectStr[0][monAlt][monSlot][pick][1+(skillMod/3)];
-		monster = extrasSelectStr[0][monAlt][monSlot][pick][0];
+		if (maxSetsEnabled != 0)
+		{
+			speed = monsterSelectStat[monGame][monAlt][monSlot][pick][skillMod];
+			health = monsterSelectStat[monGame][monAlt][monSlot][pick][healthSkillMod];
+			token = monsterSelectStr[monGame][monAlt][monSlot][pick][tokenSkillMod];
+			monster = monsterSelectStr[monGame][monAlt][monSlot][pick][0];
+		}
+		else
+		{
+			speed = extrasSelectStat[0][monAlt][monSlot][pick][skillMod];
+			health = extrasSelectStat[0][monAlt][monSlot][pick][healthSkillMod];
+			token = extrasSelectStr[0][monAlt][monSlot][pick][tokenSkillMod];
+			monster = extrasSelectStr[0][monAlt][monSlot][pick][0];
+		}
+	}
+	else
+	{
+		speed = addonSetStats[addonOffsetTotal+addonPickOffset+skillMod];
+		health = addonSetStats[addonOffsetTotal+addonPickOffset+healthSkillMod];
+		token = addonSetStats[addonOffsetTotal+addonPickOffset+tokenSkillMod];
+		monster = addonSets[addonOffsetTotal];
 	}
 
 	SpawnForced(monster,GetActorX(0),GetActorY(0),GetActorZ(0),newMonTid);
 	SetActorAngle(newMonTid, GetActorAngle(0));
 
-	if(StrRight(GetActorClass(0),9)=="Generator")
+	str actorClass = GetActorClass(0);
+	if(StrRight(actorClass,9)=="Generator")
 		generatedMonster = true;
 
-	if(StrLeft(GetActorClass(0),7)=="Stealth")
+	if(StrLeft(actorClass,7)=="Stealth")
 		stealthMonster = true;
 
 	if (!(monSlot == 6|7|8|9|14|15|16|30|31|37|38|48|51|52|66|67|68|69|70|71))
@@ -680,15 +688,9 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		else
 		{
 			int modifiedHealth = baseMonsterHealth * healthMod/100;
+			int newMonsterHealth = modifiedHealth <= 0 ? 1 : modifiedHealth;
 
-			if (modifiedHealth <= 0)
-			{
-				SetActorProperty(newMonTid,APROP_Health,1);
-			}
-			else
-			{
-				SetActorProperty(newMonTid,APROP_Health,modifiedHealth);
-			}
+			SetActorProperty(newMonTid,APROP_Health,newMonsterHealth);
 		}
 	}
 
@@ -715,19 +717,13 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 		else
 		{
 			int modifiedSpeed = baseMonsterSpeed * speedMod/100;
+			int newMonsterSpeed = modifiedSpeed <= 0 ? 1 : modifiedSpeed;
 
-			if (modifiedSpeed <= 0)
-			{
-				SetActorProperty(newMonTid,APROP_Speed,1);
-			}
-			else
-			{
-				SetActorProperty(newMonTid,APROP_Speed,modifiedSpeed);
-			}
+			SetActorProperty(newMonTid,APROP_Speed,newMonsterSpeed);
 		}
 	}
 
-	if (oldSlot != -1 && ((GetCVar(monsterReplacementsStr[oldSlot]) != oldSlot) && (GetCVar(monsterReplacementsStr[oldSlot]) != -1)))
+	if (oldSlot != -1 && monReplForSlot != oldSlot && monReplForSlot != -1)
 	{
 		// Check for monsters with A_BossDeath calls, non-bosses should instantly call for A_KillMaster
 		if(monSlot != 15 && monSlot != 16 && monSlot != 19 && monSlot != 22 && monSlot != 23 && monSlot != 50 && monSlot != 51 && monSlot != 52 && monSlot != 66 && monSlot != 67 && monSlot != 68 && monSlot != 69 && monSlot != 70)
@@ -773,7 +769,8 @@ Script "ReMixerInvasion" OPEN //670
 	int spawnmode, oldmode;
 	while(true)
 	{
-		if(GetInvasionState() == 1 || GetInvasionState() == 5)
+		int invasionState = GetInvasionState();
+		if(invasionState == 1 || invasionState == 5)
 		{
 			spawnmode = GetCVar("mm_spawnmode");
 			if(oldmode != spawnmode)
@@ -861,7 +858,7 @@ Script "ReMixer_PickSets" (void)
 		terminate;
 
 	int clients = PlayerCount();
-	int usingAddons, bitindex, bitindex2, bitindexa, a, b, p;
+	int usingAddons, bitindex, bitindex2, b, p;
 	int doomMode, wolfMode, dukeMode, shephardMode;
 
 	activeSets = 0;
@@ -870,7 +867,7 @@ Script "ReMixer_PickSets" (void)
 	monsterProcessing = 1;
 	pickClear = 0;
 	maxSetsEnabled = 0;
-	for(a = 0; a < MAX_GAME_TYPES; a++)
+	for(int a = 0; a < MAX_GAME_TYPES; a++)
 	{
 		pickFromSets[a] = -1;
 		amountOfGameTypes[a] = 0;
@@ -942,6 +939,7 @@ Script "ReMixer_PickSets" (void)
 			break;
 
 		case 2:
+			int bitindexa;
 			for(b = 0; b < MAX_GAME_TYPES+addonCounter; b++)
 			{
 				usingAddons = b >= MAX_GAME_TYPES;
@@ -1027,19 +1025,16 @@ Script "ReMixer_PickSets" (void)
 				{
 					if(randnum >= 32)
 					{
-						randombit2 = 1;
-						randombit2 = randombit2<<randnum-32;
+						randombit2 = 1<<randnum-32;
 					}
 					else
 					{
-						randombit = 1;
 						randombit = randombit2<<randnum;
 					}
 				}
 				else
 				{
-					randombita = 1;
-					randombita = randombita<<randnum-MAX_GAME_TYPES;
+					randombita = 1<<randnum-MAX_GAME_TYPES;
 				}
 
 				if(usingAddons ? !GetCVar(addonCVARs[randnum-MAX_GAME_TYPES]) : !GetCVar(gameTypesStr[randnum])||((randomtotal & randombit) && (randomtotal2 & randombit2) && (randomtotala & randombita)))

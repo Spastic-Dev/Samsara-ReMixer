@@ -58,20 +58,25 @@ Script "DetermineValidSpawnReMixer" Open
 	ACS_NamedExecuteWithResult("SMMGenerator_DetermineGameChoice");
 	processedCounts = 1;
 
-	for(int a = 512; a <= 0.5; a+=1024)
+	str cellCheckClass = GetCVar("samsara_zscriptready") == 1 ? "DetermineValidCellReMixerZS" : "DetermineValidCellReMixer";
+
+	for (int a = 512; a <= 0.5; a += 1024)
 	{
-		for(int b = 512; b <= 0.5; b+=1024)
+		int fixedA = a * 1.0;
+
+		for (int b = 512; b <= 0.5; b += 1024)
 		{
-			if(GetCVar("samsara_zscriptready") == 1)
-				SpawnForced("DetermineValidCellReMixerZS",a*1.0,b*1.0,0,0);
-			else
-				SpawnForced("DetermineValidCellReMixer",a*1.0,b*1.0,0,0);
-			if(b > 0)
+			int fixedB = b * 1.0;
+
+			SpawnForced(cellCheckClass, fixedA, fixedB, 0, 0);
+
+			if (b > 0)
 				b = -b - 1024;
 			else
 				b = -b;
 		}
-		if(a > 0)
+
+		if (a > 0)
 			a = -a - 1024;
 		else
 			a = -a;
@@ -81,31 +86,25 @@ Script "DetermineValidSpawnReMixer" Open
 Script "SMMGenerator_DetermineGameChoice" (void)
 {
 	int game = GetCVar("samsara_currentgame");
-	int selector, counters, diff, currentCounterForSelector;
+	int selector, currentCounterForSelector;
 	switch(game)
 	{
 		case 1:
-			for(counters = 0; counters < MAXMONSTERS_DOOM; counters++)
-			{
-				generatorCountersDoom[counters] = ThingCountName(SpawnersDoom[counters],0);
-			}
-
-			spawnSecretMonsters = generatorCountersDoom[3] > 0;
-
 			for(selector = 0; selector < MAXMONSTERS_DOOM; selector++)
 			{
-				currentCounterForSelector = generatorCountersDoom[selector];
+				currentCounterForSelector = ThingCountName(SpawnersDoom[selector],0);
+				generatorCountersDoom[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
 			}
+
+			spawnSecretMonsters = generatorCountersDoom[3] > 0;
 			break;
 
 		case 2:
@@ -115,21 +114,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid))
 			{
 				// We're playing Chex Quest 3
-				for(counters = 0; counters < MAXMONSTERS_CHEX; counters++)
-				{
-					generatorCountersChex[counters] = ThingCountName(SpawnersChex[counters],0);
-				}
-
 				for(selector = 0; selector < MAXMONSTERS_CHEX; selector++)
 				{
-					currentCounterForSelector = generatorCountersChex[selector];
+					currentCounterForSelector = ThingCountName(SpawnersChex[selector],0);
+					generatorCountersChex[selector] = currentCounterForSelector;
 
 					if(currentCounterForSelector > 0)
 					{
-						if(selector < minSelector)
-							minSelector = selector;
-						if(selector > maxSelector)
-							maxSelector = selector;
+						minSelector = min(selector, minSelector);
+						maxSelector = max(selector, maxSelector);
 					}
 					totalTypes += currentCounterForSelector;
 					generationAmount += currentCounterForSelector*(selector+1);
@@ -140,21 +133,16 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			{
 				// We're playing Chex Quest 1
 				Thing_Remove(CQ1CheckTid);
-				for(counters = 0; counters < MAXMONSTERS_CHEXORIGINAL; counters++)
-				{
-					generatorCountersChexOriginal[counters] = ThingCountName(SpawnersChexOriginal[counters],0);
-				}
 
 				for(selector = 0; selector < MAXMONSTERS_CHEXORIGINAL; selector++)
 				{
-					currentCounterForSelector = generatorCountersChexOriginal[selector];
+					currentCounterForSelector = ThingCountName(SpawnersChexOriginal[selector],0);
+					generatorCountersChexOriginal[selector] = currentCounterForSelector;
 
 					if(currentCounterForSelector > 0)
 					{
-						if(selector < minSelector)
-							minSelector = selector;
-						if(selector > maxSelector)
-							maxSelector = selector;
+						minSelector = min(selector, minSelector);
+						maxSelector = max(selector, maxSelector);
 					}
 					totalTypes += currentCounterForSelector;
 					generationAmount += currentCounterForSelector*(selector+1);
@@ -163,21 +151,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			}
 
 		case 4:
-			for(counters = 0; counters < MAXMONSTERS_HERETIC; counters++)
-			{
-				generatorCountersHeretic[counters] = ThingCountName(SpawnersHeretic[counters],0);
-			}
-
 			for(selector = 0; selector < MAXMONSTERS_HERETIC; selector++)
 			{
-				currentCounterForSelector = generatorCountersHeretic[selector];
+				currentCounterForSelector = ThingCountName(SpawnersHeretic[selector],0);
+				generatorCountersHeretic[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
@@ -185,21 +167,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			break;
 
 		case 8:
-			for(counters = 0; counters < MAXMONSTERS_HEXEN; counters++)
-			{
-				generatorCountersHexen[counters] = ThingCountName(SpawnersHexen[counters],0);
-			}
-
 			for(selector = 0; selector < MAXMONSTERS_HEXEN; selector++)
 			{
-				currentCounterForSelector = generatorCountersHexen[selector];
+				currentCounterForSelector = ThingCountName(SpawnersHexen[selector],0);
+				generatorCountersHexen[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
@@ -207,21 +183,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			break;
 
 		case 16:
-			for(counters = 0; counters < MAXMONSTERS_STRIFE; counters++)
-			{
-				generatorCountersStrife[counters] = ThingCountName(SpawnersStrife[counters],0);
-			}
-
 			for(selector = 0; selector < MAXMONSTERS_STRIFE; selector++)
 			{
-				currentCounterForSelector = generatorCountersStrife[selector];
+				currentCounterForSelector = ThingCountName(SpawnersStrife[selector],0);
+				generatorCountersStrife[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
@@ -229,21 +199,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			break;
 
 		case 32:
-			for(counters = 0; counters < MAXMONSTERS_HACX; counters++)
-			{
-				generatorCountersHacx[counters] = ThingCountName(SpawnersHacx[counters],0);
-			}
-
 			for(selector = 0; selector < MAXMONSTERS_HACX; selector++)
 			{
-				currentCounterForSelector = generatorCountersHacx[selector];
+				currentCounterForSelector = ThingCountName(SpawnersHacx[selector],0);
+				generatorCountersHacx[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
@@ -251,21 +215,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			break;
 
 		case 64:
-			for(counters = 0; counters < MAXMONSTERS_HARMONY; counters++)
-			{
-				generatorCountersHarmony[counters] = ThingCountName(SpawnersHarmony[counters],0);
-			}
-
 			for(selector = 0; selector < MAXMONSTERS_HARMONY; selector++)
 			{
-				currentCounterForSelector = generatorCountersHarmony[selector];
+				currentCounterForSelector = ThingCountName(SpawnersHarmony[selector],0);
+				generatorCountersHarmony[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
@@ -273,21 +231,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			break;
 
 		case 128:
-			for(counters = 0; counters < MAXMONSTERS_ROTWB; counters++)
-			{
-				generatorCountersROTWB[counters] = ThingCountName(SpawnersROTWB[counters],0);
-			}
-
 			for(selector = 0; selector < MAXMONSTERS_ROTWB; selector++)
 			{
-				currentCounterForSelector = generatorCountersROTWB[selector];
+				currentCounterForSelector = ThingCountName(SpawnersROTWB[selector],0);
+				generatorCountersROTWB[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
@@ -295,21 +247,15 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 			break;
 
 		case 256:
-			for(counters = 0; counters < MAXMONSTERS_REKKR; counters++)
-			{
-				generatorCountersREKKR[counters] = ThingCountName(SpawnersREKKR[counters],0);
-			}
-
 			for(selector = 0; selector < MAXMONSTERS_REKKR; selector++)
 			{
-				currentCounterForSelector = generatorCountersREKKR[selector];
+				currentCounterForSelector = ThingCountName(SpawnersREKKR[selector],0);
+				generatorCountersREKKR[selector] = currentCounterForSelector;
 
 				if(currentCounterForSelector > 0)
 				{
-					if(selector < minSelector)
-						minSelector = selector;
-					if(selector > maxSelector)
-						maxSelector = selector;
+					minSelector = min(selector, minSelector);
+					maxSelector = max(selector, maxSelector);
 				}
 				totalTypes += currentCounterForSelector;
 				generationAmount += currentCounterForSelector*(selector+1);
@@ -323,18 +269,26 @@ Script "SMMGenerator_DetermineGameChoice" (void)
 
 script "CellDoneScanningReMixer" (void)
 {
-	int newtid = UniqueTid();
-	for(int a = -512; a < 512; a+=64)
+	str spawnCheckClass = GetCVar("samsara_zscriptready") == 1 ? "DetermineValidSpawnReMixerZS" : "DetermineValidSpawnReMixer";
+	int chanceToSpawn = GetCVar("mm_generate") * GetCVar("mm_generate");
+	int maxSpawnChance = 12000 + (2000 * (4 - GameSkill()));
+
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int newTid = UniqueTID();
+
+	for (int a = -512; a < 512; a += 64)
 	{
-		for(int b = -512; b < 512; b+=64)
+		int xPos = x + (a * 1.0);
+
+		for (int b = -512; b < 512; b += 64)
 		{
-			if(random(1,12000 + (2000 * (4 - GameSkill()))) <= (GetCVar("mm_generate")*GetCVar("mm_generate")))
+			if (random(1, maxSpawnChance) <= chanceToSpawn)
 			{
-				SpawnForced("DetermineValidSpawnTestObject",GetActorX(0)+(a*1.0),GetActorY(0)+(b*1.0),0,newtid);
-				if(GetCVar("samsara_zscriptready") == 1)
-					Spawn("DetermineValidSpawnReMixerZS",GetActorX(0)+(a*1.0),GetActorY(0)+(b*1.0),GetActorFloorZ(newtid),0);
-				else
-					Spawn("DetermineValidSpawnReMixer",GetActorX(0)+(a*1.0),GetActorY(0)+(b*1.0),GetActorFloorZ(newtid),0);
+				int yPos = y + (b * 1.0);
+
+				SpawnForced("DetermineValidSpawnTestObject", xPos, yPos, 0, newtid);
+				Spawn(spawnCheckClass, xPos, yPos, GetActorFloorZ(newtid), 0);
 			}
 		}
 	}
@@ -370,21 +324,17 @@ Script "SMMGeneratorSelector" (void)
 	switch(game)
 	{
 		case 1:
-			pickMonster = 24;
-			while((pickMonster == 23 || pickMonster == 24) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 23 || pickMonster == 24) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
-			if(!spawnSecretMonsters && pickMonster == 3)
-			{
-				pickMonster = 2;
-			}
+			if(!spawnSecretMonsters && pickMonster == 3) { pickMonster = 2; }
 
 			SpawnForced(StrParam(s:SpawnersDoom[pickMonster],s:"Generator"),GetActorX(0),GetActorY(0),GetActorZ(0),newTid);
 			break;
@@ -396,14 +346,13 @@ Script "SMMGeneratorSelector" (void)
 			if(!SpawnForced("FlemoidusCommonus2_CQ1",0,0,0,CQ1CheckTid2))
 			{
 				// We're playing Chex Quest 3
-				pickMonster = 11;
-				while((pickMonster == 11 || pickMonster == 12) && selectionAttempts < maxSelectionAttempts)
+				do
 				{
 					rnd = random(minSelector,maxSelector);
 					mix = FixedMul(random(0.0,1.0),influence);
 					pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 					selectionAttempts++;
-				}
+				} while ((pickMonster == 11 || pickMonster == 12) && selectionAttempts < maxSelectionAttempts);
 				if(selectionAttempts >= maxSelectionAttempts)
 					terminate;
 
@@ -414,14 +363,13 @@ Script "SMMGeneratorSelector" (void)
 			{
 				// We're playing Chex Quest 1
 				Thing_Remove(CQ1CheckTid2);
-				pickMonster = 3;
-				while((pickMonster == 3 || pickMonster == 4) && selectionAttempts < maxSelectionAttempts)
+				do
 				{
 					rnd = random(minSelector,maxSelector);
 					mix = FixedMul(random(0.0,1.0),influence);
 					pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 					selectionAttempts++;
-				}
+				} while ((pickMonster == 3 || pickMonster == 4) && selectionAttempts < maxSelectionAttempts);
 				if(selectionAttempts >= maxSelectionAttempts)
 					terminate;
 
@@ -430,14 +378,13 @@ Script "SMMGeneratorSelector" (void)
 			}
 
 		case 4:
-			pickMonster = 13;
-			while((pickMonster == 13 || pickMonster == 14) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 13 || pickMonster == 14) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
@@ -445,14 +392,13 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 8:
-			pickMonster = 15;
-			while((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
@@ -460,14 +406,13 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 16:
-			pickMonster = 5;
-			while((pickMonster == 5 || pickMonster == 6) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 5 || pickMonster == 6) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
@@ -475,14 +420,13 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 32:
-			pickMonster = 15;
-			while((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
@@ -490,14 +434,13 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 64:
-			pickMonster = 7;
-			while((pickMonster == 7 || pickMonster == 8) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 7 || pickMonster == 8) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
@@ -505,14 +448,13 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 128:
-			pickMonster = 15;
-			while((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 15 || pickMonster == 16) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
@@ -520,14 +462,13 @@ Script "SMMGeneratorSelector" (void)
 			break;
 
 		case 256:
-			pickMonster = 14;
-			while((pickMonster == 14 || pickMonster == 15 || pickMonster == 16 || pickMonster == 17) && selectionAttempts < maxSelectionAttempts)
+			do
 			{
 				rnd = random(minSelector,maxSelector);
 				mix = FixedMul(random(0.0,1.0),influence);
 				pickMonster = roundZandronum((rnd * (1.0 - mix)) + FixedMul(selectorBias,mix));
 				selectionAttempts++;
-			}
+			} while ((pickMonster == 14 || pickMonster == 15 || pickMonster == 16 || pickMonster == 17) && selectionAttempts < maxSelectionAttempts);
 			if(selectionAttempts >= maxSelectionAttempts)
 				terminate;
 
@@ -543,7 +484,6 @@ Script "SMMGeneratorSelector" (void)
 Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 {
 	int typeCount = 0;
-	int pruneIt = 1;
 	int posX = GetActorX(0)>>16;
 	int posY = GetActorY(0)>>16;
 	int posZ = GetActorZ(0)>>16;
@@ -625,10 +565,9 @@ Script "SMMReducer" (int pruneMax, int important, int monsterSlot)
 	else if(GetCVar("mm_reduceMonsters") >= 0) pruneMax += 1.0;
 
 	if(pruneMax < 0) pruneMax = 0;
-	if(pruneMax > 99) pruneMax = 99;
+	else if(pruneMax > 99) pruneMax = 99;
 
-	if((positionValue % 100) <= pruneMax)
-		pruneIt = 0;
+	bool pruneIt = (positionValue % 100) <= pruneMax ? 0 : 1;
 
 	SetResultValue(pruneIt);
 }
