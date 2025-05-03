@@ -13,7 +13,7 @@ ACTOR ZombiemanSpawner : ReMixerBaseSpawner replaces Zombieman
 	}
 }
 
-ACTOR ZombiemanSpawnerGenerator : ZombiemanSpawner {}
+ACTOR ZombiemanSpawnerGenerator : ZombiemanSpawner { -COUNTKILL }
 
 ACTOR ShotgunGuySpawner : ReMixerBaseSpawner replaces ShotgunGuy
 {
@@ -30,7 +30,7 @@ ACTOR ShotgunGuySpawner : ReMixerBaseSpawner replaces ShotgunGuy
 	}
 }
 
-ACTOR ShotgunGuySpawnerGenerator : ShotgunGuySpawner {}
+ACTOR ShotgunGuySpawnerGenerator : ShotgunGuySpawner { -COUNTKILL }
 
 ACTOR DoomImpSpawner : ReMixerBaseSpawner replaces DoomImp
 {
@@ -47,7 +47,7 @@ ACTOR DoomImpSpawner : ReMixerBaseSpawner replaces DoomImp
 	}
 }
 
-ACTOR DoomImpSpawnerGenerator : DoomImpSpawner {}
+ACTOR DoomImpSpawnerGenerator : DoomImpSpawner { -COUNTKILL }
 
 ACTOR ChaingunGuySpawner : ReMixerBaseSpawner replaces ChaingunGuy
 {
@@ -64,7 +64,7 @@ ACTOR ChaingunGuySpawner : ReMixerBaseSpawner replaces ChaingunGuy
 	}
 }
 
-ACTOR ChaingunGuySpawnerGenerator : ChaingunGuySpawner {}
+ACTOR ChaingunGuySpawnerGenerator : ChaingunGuySpawner { -COUNTKILL }
 
 ACTOR SuperShotgunGuySpawner : ShotgunGuySpawner replaces SuperShotgunGuy
 {
@@ -78,7 +78,7 @@ ACTOR SuperShotgunGuySpawner : ShotgunGuySpawner replaces SuperShotgunGuy
 	}
 }
 
-ACTOR SuperShotgunGuySpawnerGenerator : SuperShotgunGuySpawner {}
+ACTOR SuperShotgunGuySpawnerGenerator : SuperShotgunGuySpawner { -COUNTKILL }
 
 ACTOR DemonSpawner : ReMixerBaseSpawner replaces Demon
 {
@@ -95,7 +95,7 @@ ACTOR DemonSpawner : ReMixerBaseSpawner replaces Demon
 	}
 }
 
-ACTOR DemonSpawnerGenerator : DemonSpawner {}
+ACTOR DemonSpawnerGenerator : DemonSpawner { -COUNTKILL }
 
 ACTOR DarkImpSpawner : DoomImpSpawner replaces DarkImp
 {
@@ -110,7 +110,7 @@ ACTOR DarkImpSpawner : DoomImpSpawner replaces DarkImp
 	}
 }
 
-ACTOR DarkImpSpawnerGenerator : DarkImpSpawner {}
+ACTOR DarkImpSpawnerGenerator : DarkImpSpawner { -COUNTKILL }
 
 ACTOR SpectreSpawner : ReMixerBaseSpawner replaces Spectre
 {
@@ -123,7 +123,7 @@ ACTOR SpectreSpawner : ReMixerBaseSpawner replaces Spectre
 	}
 }
 
-ACTOR SpectreSpawnerGenerator : SpectreSpawner {}
+ACTOR SpectreSpawnerGenerator : SpectreSpawner { -COUNTKILL }
 
 ACTOR BloodDemonSpawner : DemonSpawner replaces BloodDemon
 {
@@ -137,7 +137,7 @@ ACTOR BloodDemonSpawner : DemonSpawner replaces BloodDemon
 	}
 }
 
-ACTOR BloodDemonSpawnerGenerator : BloodDemonSpawner {}
+ACTOR BloodDemonSpawnerGenerator : BloodDemonSpawner { -COUNTKILL }
 
 ACTOR LostSoulSpawner : ReMixerBaseSpawner replaces LostSoul
 {
@@ -155,7 +155,7 @@ ACTOR LostSoulSpawner : ReMixerBaseSpawner replaces LostSoul
 	}
 }
 
-ACTOR LostSoulSpawnerGenerator : LostSoulSpawner {}
+ACTOR LostSoulSpawnerGenerator : LostSoulSpawner { -COUNTKILL }
 
 ACTOR CacodemonSpawner : ReMixerBaseSpawner replaces Cacodemon
 {
@@ -173,7 +173,7 @@ ACTOR CacodemonSpawner : ReMixerBaseSpawner replaces Cacodemon
 	}
 }
 
-ACTOR CacodemonSpawnerGenerator : CacodemonSpawner {}
+ACTOR CacodemonSpawnerGenerator : CacodemonSpawner { -COUNTKILL }
 
 ACTOR RevenantSpawner : ReMixerBaseSpawner replaces Revenant
 {
@@ -190,7 +190,7 @@ ACTOR RevenantSpawner : ReMixerBaseSpawner replaces Revenant
 	}
 }
 
-ACTOR RevenantSpawnerGenerator : RevenantSpawner {}
+ACTOR RevenantSpawnerGenerator : RevenantSpawner { -COUNTKILL }
 
 ACTOR CacolanternSpawner : CacodemonSpawner replaces Cacolantern
 {
@@ -204,7 +204,7 @@ ACTOR CacolanternSpawner : CacodemonSpawner replaces Cacolantern
 	}
 }
 
-ACTOR CacolanternSpawnerGenerator : CacolanternSpawner {}
+ACTOR CacolanternSpawnerGenerator : CacolanternSpawner { -COUNTKILL }
 
 ACTOR PainElementalSpawner : ReMixerBaseSpawner replaces PainElemental
 {
@@ -222,7 +222,7 @@ ACTOR PainElementalSpawner : ReMixerBaseSpawner replaces PainElemental
 	}
 }
 
-ACTOR PainElementalSpawnerGenerator : PainElementalSpawner {}
+ACTOR PainElementalSpawnerGenerator : PainElementalSpawner { -COUNTKILL }
 
 ACTOR HellKnightSpawner : ReMixerBaseSpawner replaces HellKnight
 {
@@ -239,7 +239,7 @@ ACTOR HellKnightSpawner : ReMixerBaseSpawner replaces HellKnight
 	}
 }
 
-ACTOR HellKnightSpawnerGenerator : HellKnightSpawner { -BOSSDEATH }
+ACTOR HellKnightSpawnerGenerator : HellKnightSpawner { -COUNTKILL -BOSSDEATH }
 
 ACTOR ArachnotronSpawner : ReMixerBaseSpawner replaces Arachnotron
 {
@@ -262,7 +262,7 @@ ACTOR ArachnotronSpawner : ReMixerBaseSpawner replaces Arachnotron
 	}
 }
 
-ACTOR ArachnotronSpawnerGenerator : ArachnotronSpawner { -BOSSDEATH }
+ACTOR ArachnotronSpawnerGenerator : ArachnotronSpawner { -COUNTKILL -BOSSDEATH }
 
 ACTOR FatsoSpawner : ReMixerBaseSpawner replaces Fatso
 {
@@ -285,7 +285,7 @@ ACTOR FatsoSpawner : ReMixerBaseSpawner replaces Fatso
 	}
 }
 
-ACTOR FatsoSpawnerGenerator : FatsoSpawner { -BOSSDEATH }
+ACTOR FatsoSpawnerGenerator : FatsoSpawner { -COUNTKILL -BOSSDEATH }
 
 ACTOR AbaddonSpawner : CacodemonSpawner replaces Abaddon
 {
@@ -299,7 +299,7 @@ ACTOR AbaddonSpawner : CacodemonSpawner replaces Abaddon
 	}
 }
 
-ACTOR AbaddonSpawnerGenerator : AbaddonSpawner {}
+ACTOR AbaddonSpawnerGenerator : AbaddonSpawner { -COUNTKILL }
 
 ACTOR ArchvileSpawner : ReMixerBaseSpawner replaces Archvile
 {
@@ -322,7 +322,7 @@ ACTOR ArchvileSpawner : ReMixerBaseSpawner replaces Archvile
 	}
 }
 
-ACTOR ArchvileSpawnerGenerator : ArchvileSpawner { -BOSSDEATH }
+ACTOR ArchvileSpawnerGenerator : ArchvileSpawner { -COUNTKILL -BOSSDEATH }
 
 ACTOR BaronOfHellSpawner : ReMixerBaseSpawner replaces BaronOfHell
 {
@@ -345,7 +345,7 @@ ACTOR BaronOfHellSpawner : ReMixerBaseSpawner replaces BaronOfHell
 	}
 }
 
-ACTOR BaronOfHellSpawnerGenerator : BaronOfHellSpawner { -BOSSDEATH }
+ACTOR BaronOfHellSpawnerGenerator : BaronOfHellSpawner { -COUNTKILL -BOSSDEATH }
 
 ACTOR HectebusSpawner : FatsoSpawner replaces Hectebus
 {
@@ -359,7 +359,7 @@ ACTOR HectebusSpawner : FatsoSpawner replaces Hectebus
 	}
 }
 
-ACTOR HectebusSpawnerGenerator : HectebusSpawner {}
+ACTOR HectebusSpawnerGenerator : HectebusSpawner { -COUNTKILL }
 
 ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor
 {
@@ -374,7 +374,7 @@ ACTOR BelphegorSpawner : BaronofHellSpawner replaces Belphegor
 	}
 }
 
-ACTOR BelphegorSpawnerGenerator : BelphegorSpawner {}
+ACTOR BelphegorSpawnerGenerator : BelphegorSpawner { -COUNTKILL }
 
 ACTOR SpiderMastermindSpawner : ReMixerBaseSpawner replaces SpiderMastermind
 {
@@ -397,7 +397,7 @@ ACTOR SpiderMastermindSpawner : ReMixerBaseSpawner replaces SpiderMastermind
 	}
 }
 
-ACTOR SpiderMastermindSpawnerGenerator : SpiderMastermindSpawner { -BOSSDEATH }
+ACTOR SpiderMastermindSpawnerGenerator : SpiderMastermindSpawner { -COUNTKILL -BOSSDEATH }
 
 ACTOR CyberDemonSpawner : ReMixerBaseSpawner replaces CyberDemon
 {
@@ -420,7 +420,7 @@ ACTOR CyberDemonSpawner : ReMixerBaseSpawner replaces CyberDemon
 	}
 }
 
-ACTOR CyberDemonSpawnerGenerator : CyberDemonSpawner { -BOSSDEATH }
+ACTOR CyberDemonSpawnerGenerator : CyberDemonSpawner { -COUNTKILL -BOSSDEATH }
 
 ACTOR WolfensteinSSSpawner : ReMixerBaseSpawner replaces WolfensteinSS
 {
@@ -438,7 +438,7 @@ ACTOR WolfensteinSSSpawner : ReMixerBaseSpawner replaces WolfensteinSS
 	}
 }
 
-ACTOR WolfensteinSSSpawnerGenerator : WolfensteinSSSpawner {}
+ACTOR WolfensteinSSSpawnerGenerator : WolfensteinSSSpawner { -COUNTKILL }
 
 ACTOR StealthArachnotronSpawner : ArachnotronSpawner replaces StealthArachnotron {}
 ACTOR StealthArchvileSpawner : ArchvileSpawner replaces StealthArchvile {}
