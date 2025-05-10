@@ -470,10 +470,17 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	Thing_ChangeTID(0,newSpawnerTid);
 
 	int monReplForSlot = GetCVar(monsterReplacementsStr[monSlot]);
+	int debugReplForSlot = GetCVar("mm_replace_all");
 	if (monReplForSlot != monSlot && monReplForSlot != -1)
 	{
 		oldSlot = monSlot;
 		monSlot = monReplForSlot;
+	}
+
+	if (debugReplForSlot != -1)
+	{
+		oldSlot = monSlot;
+		monSlot = debugReplForSlot;
 	}
 
 	if(monGame >= MAX_GAME_TYPES)
