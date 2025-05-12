@@ -12,7 +12,7 @@ Actor WitchavenScaryScreamer : WitchavenEnemyBaseMeleeSkeleton
 	Scale 0.50
 	Mass 1000
 	Speed 10
-	Health 80
+	Health 400
 	DropItem "WHShadowAmulet",10,1
 	SeeSound "wtscary/see"
 	ActiveSound ""
@@ -54,7 +54,7 @@ Actor WitchavenScaryScreamer : WitchavenEnemyBaseMeleeSkeleton
 		Melee:
 			TNT1 A 0 A_PlaySound("wtscary/att",CHAN_BODY)
 			WH_P DDEEFF 2 Bright A_FaceTarget
-			WH_P G 2 Bright A_CustomMeleeAttack(random(10,20)/Random(2,1),"","")
+			WH_P G 2 Bright A_CustomMeleeAttack(random(30,60)/Random(2,1),"","")
 			WH_P G 2 Bright A_FaceTarget
 		GoAway:
 			TNT1 AAAA 2 A_Chase("","")
@@ -66,6 +66,7 @@ Actor WitchavenScaryScreamer : WitchavenEnemyBaseMeleeSkeleton
 			Goto SeenPlayer
 		Death:
 			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_KillMaster
 			TNT1 A 0 A_ChangeFlag("SOLID",false)
 			WH_P G 10 Bright A_NoGravity
 			WH_P F 10 Bright A_Scream
