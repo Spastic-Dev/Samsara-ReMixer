@@ -672,7 +672,7 @@ ACTOR OctabrainProjectile
 	Scale 0.5
 	PROJECTILE
 	+FORCERADIUSDMG
-	Obituary "%o was brainshocked by an Octabrain"
+	Obituary "%o was brainshocked by an Octabrain."
 	Decal Scorch
 	States
 	{
@@ -686,7 +686,11 @@ ACTOR OctabrainProjectile
 	}
 }
 
-ACTOR OctabrainProjectileCy : OctabrainProjectile {	Speed 20 }
+ACTOR OctabrainProjectileCy : OctabrainProjectile
+{
+    Speed 20
+    Obituary "%o was brainshocked by the Cycloid Emperor."
+}
 
 Actor ProtozoidAttackOMG : Inventory { Inventory.Amount 1 Inventory.Maxamount 1 }
 
