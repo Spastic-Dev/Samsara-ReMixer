@@ -144,6 +144,7 @@ ACTOR WraithReplacer : ReMixerBaseSpawner replaces Wraith
 	Radius 20
 	SpawnID 8
 	+NOGRAVITY
+	+GHOST
 	States
 	{
 		See:
@@ -157,6 +158,7 @@ ACTOR WraithBuriedReplacer : WraithReplacer replaces WraithBuried
 	Game Hexen
 	Height 68
 	SpawnID 9
+	+GHOST
 	States
 	{
 		See:
@@ -310,7 +312,7 @@ Actor FireDemonReplacerGenerator : FireDemonReplacer { -COUNTKILL }
 Actor IceGuyReplacerGenerator : IceGuyReplacer { -COUNTKILL }
 Actor SerpentReplacerGenerator : SerpentReplacer { -COUNTKILL }
 Actor SerpentLeaderReplacerGenerator : SerpentLeaderReplacer { -COUNTKILL }
-Actor WraithReplacerGenerator : WraithReplacer { -COUNTKILL }
+Actor WraithReplacerGenerator : WraithReplacer { -COUNTKILL +GHOST }
 Actor ClericBossReplacerGenerator : ClericBossReplacer { -COUNTKILL -BOSSDEATH }
 Actor FighterBossReplacerGenerator : FighterBossReplacer { -COUNTKILL -BOSSDEATH }
 Actor MageBossReplacerGenerator : MageBossReplacer { -COUNTKILL -BOSSDEATH }

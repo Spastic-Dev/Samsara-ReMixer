@@ -49,6 +49,7 @@ ACTOR MummyGhostReplacer : MummyReplacer replaces MummyGhost
 {
 	Game Heretic
 	SpawnID 8
+	+GHOST
 	States
 	{
 		See:
@@ -73,6 +74,7 @@ ACTOR MummyLeaderGhostReplacer : MummyReplacer replaces MummyLeaderGhost
 {
 	Game Heretic
 	SpawnID 9
+	+GHOST
 	States
 	{
 		See:
@@ -116,6 +118,7 @@ ACTOR KnightGhostReplacer : KnightReplacer replaces KnightGhost
 {
 	Game Heretic
 	SpawnID 129
+	+GHOST
 	States
 	{
 		See:
@@ -274,11 +277,11 @@ ACTOR HereticImpReplacerGenerator : HereticImpReplacer { -COUNTKILL }
 ACTOR HereticImpLeaderReplacerGenerator : HereticImpLeaderReplacer { -COUNTKILL }
 ACTOR WizardReplacerGenerator : WizardReplacer { -COUNTKILL }
 ACTOR MummyReplacerGenerator : MummyReplacer { -COUNTKILL }
-ACTOR MummyGhostReplacerGenerator : MummyGhostReplacer { -COUNTKILL }
+ACTOR MummyGhostReplacerGenerator : MummyGhostReplacer { -COUNTKILL +GHOST }
 ACTOR MummyLeaderReplacerGenerator : MummyLeaderReplacer { -COUNTKILL }
-ACTOR MummyLeaderGhostReplacerGenerator : MummyLeaderGhostReplacer { -COUNTKILL }
+ACTOR MummyLeaderGhostReplacerGenerator : MummyLeaderGhostReplacer { -COUNTKILL +GHOST }
 ACTOR KnightReplacerGenerator : KnightReplacer { -COUNTKILL }
-ACTOR KnightGhostReplacerGenerator : KnightGhostReplacer { -COUNTKILL }
+ACTOR KnightGhostReplacerGenerator : KnightGhostReplacer { -COUNTKILL +GHOST }
 ACTOR IronlichReplacerGenerator : IronlichReplacer { -COUNTKILL -BOSSDEATH }
 ACTOR ClinkReplacerGenerator : ClinkReplacer { -COUNTKILL }
 ACTOR BeastReplacerGenerator : BeastReplacer { -COUNTKILL }

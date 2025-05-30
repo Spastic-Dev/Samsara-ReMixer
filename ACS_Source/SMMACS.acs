@@ -119,6 +119,13 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 				SetActorProperty(0,APROP_Alpha,0);
 			}
 
+			if(random(1,100) <= (GetCvar("mm_ghostmode")))
+			{
+				GiveInventory("GhostToken",1);
+				SetActorProperty(0,APROP_RenderStyle,STYLE_Translucent);
+				SetActorProperty(0,APROP_Alpha,0.4);
+			}
+
 			if(random(1,100) <= (GetCvar("mm_flightmode")))
 			{
 				GiveInventory("FlightToken",1);
@@ -466,6 +473,7 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	int speedMod = GetCVar("mm_speedoverride");
 	bool generatedMonster = false;
 	bool stealthMonster = false;
+	bool ghostMonster = false;
 
 	Thing_ChangeTID(0,newSpawnerTid);
 
@@ -622,6 +630,9 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	if(StrLeft(actorClass,7)=="Stealth")
 		stealthMonster = true;
 
+	if(CheckFlag(0,"GHOST"))
+		ghostMonster = true;
+
 	if (!(monSlot == 6|7|8|9|14|15|16|30|31|37|38|48|51|52|66|67|68|69|70|71))
 	{
 		SetActivator(newSpawnerTid,AAPTR_Master);
@@ -749,6 +760,13 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	if (stealthMonster)
 	{
 		GiveActorInventory(newMonTid, "InvisibleToken", 1);
+	}
+
+	if (ghostMonster)
+	{
+		GiveActorInventory(newMonTid, "GhostToken", 1);
+		SetActorProperty(newMonTid, APROP_RenderStyle, STYLE_Translucent);
+		SetActorProperty(newMonTid, APROP_Alpha, 0.4);
 	}
 
 	Thing_ChangeTID(newMonTid,oldSpawnerTid);

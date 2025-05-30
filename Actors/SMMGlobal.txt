@@ -195,6 +195,17 @@ ACTOR InvisibleToken : Trigger
 	}
 }
 
+ACTOR GhostToken : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_ChangeFlag("GHOST",true)
+			TNT1 A 0 A_ChangeFlag("SHADOW",true)
+			Stop
+	}
+}
+
 ACTOR RemoveChildrenToken : Trigger
 {
 	States
