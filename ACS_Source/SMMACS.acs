@@ -482,12 +482,16 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	if (monReplForSlot != monSlot && monReplForSlot != -1)
 	{
 		oldSlot = monSlot;
+		if (GetCVar("samsara_zscriptready") == 1) { GiveActorInventory(newSpawnerTid, "SamsaraCountKillDisablerZS", 1); }
+		else { GiveActorInventory(newSpawnerTid, "SamsaraCountKillDisabler", 1); }
 		monSlot = monReplForSlot;
 	}
 
 	if (debugReplForSlot != -1)
 	{
 		oldSlot = monSlot;
+		if (GetCVar("samsara_zscriptready") == 1) { GiveActorInventory(newSpawnerTid, "SamsaraCountKillDisablerZS", 1); }
+		else { GiveActorInventory(newSpawnerTid, "SamsaraCountKillDisabler", 1); }
 		monSlot = debugReplForSlot;
 	}
 
