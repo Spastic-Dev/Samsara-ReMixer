@@ -13,19 +13,20 @@ Script "Heretic_SpawnDisciple" (void)
 			int missileTid = UniqueTID();
 			Thing_ChangeTID(0, missileTid);
 
-			SetActorAngle(discipleTid, GetActorAngle(missileTid));
+			SetActorAngle(discipleTid, GetActorAngle(0));
 
 			SpawnForced("HereticTeleportFog", x, y, z, 0);
-			ThingSound(missileTid, "Heretic/TeleportC", 127);
+			ThingSound(0, "Heretic/TeleportC", 127);
 
-			SetActivator(missileTid, AAPTR_Target);
+			SetActivator(0, AAPTR_Target);
 			SetPointerExt(AAPTR_Master, 0, discipleTid);
 
 			SetActivator(0, AAPTR_Target);
 			int alert = SetPointerExt(AAPTR_Target, 0, discipleTid);
 
-			Thing_Stop(missileTid);
-			SetActorState(missileTid, "Explode", true);
+			SetActivator(missileTid);
+			Thing_Stop(0);
+			SetActorState(0, "Explode", true);
 
 			if (alert)
 			{
