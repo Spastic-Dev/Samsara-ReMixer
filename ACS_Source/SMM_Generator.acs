@@ -275,20 +275,20 @@ script "CellDoneScanningReMixer" (void)
 
 	int x = GetActorX(0);
 	int y = GetActorY(0);
-	int newTid = UniqueTID();
 
 	for (int a = -512; a < 512; a += 64)
 	{
-		int xPos = x + (a * 1.0);
+		int xPosFixed = x + (a * 1.0);
+		int xPosInt = xPosFixed >> 16;
 
 		for (int b = -512; b < 512; b += 64)
 		{
 			if (random(1, maxSpawnChance) <= chanceToSpawn)
 			{
-				int yPos = y + (b * 1.0);
+				int yPosFixed = y + (b * 1.0);
+				int yPosInt = yPosFixed >> 16;
 
-				SpawnForced("DetermineValidSpawnTestObject", xPos, yPos, 0, newtid);
-				Spawn(spawnCheckClass, xPos, yPos, GetActorFloorZ(newtid), 0);
+				Spawn(spawnCheckClass, xPosFixed, yPosFixed, GetSectorFloorZ(0, xPosInt, yPosInt), 0);
 			}
 		}
 	}

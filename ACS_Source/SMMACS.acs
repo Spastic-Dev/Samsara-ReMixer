@@ -131,8 +131,6 @@ function void applyModifierToMonster(int property, str modifierCVar)
 
 Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 {
-	int multitoken;
-
 	Switch(spawncode)
 	{
 		case 1:
@@ -144,8 +142,8 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 			*/
 
 			int useSkill = GetCVar("mm_skilloverride");
-			multitoken = useSkill < 5 ? useSkill : GameSkill();
-			GiveInventory("DifficultyToken", multitoken);
+			int skillToken = useSkill < 5 ? useSkill : GameSkill();
+			GiveInventory("DifficultyToken", skillToken);
 
 			if(random(1,100) <= (GetCVar("mm_invisiblemode")))
 			{
@@ -416,7 +414,7 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 		case 3:
 			if(GetCVar("mm_multiply") > 1)
 			{
-				multitoken = GetCVar("mm_multiply");
+				int multitoken = GetCVar("mm_multiply");
 				GiveInventory("MultiplyToken", multitoken);
 			}
 			break;
