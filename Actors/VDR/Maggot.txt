@@ -1,0 +1,384 @@
+ACTOR MMRandomizer_Maggot : SamsaraMonsterHumanoid
+{
+	Health 150
+	Radius 30
+	Height 56
+	Mass 200
+	Speed 12
+	Damage 0
+	PainChance 100
+	MaxTargetRange 128
+	SeeSound "VDR/Maggot/Sight"
+	DeathSound "VDR/Maggot/Die"
+	ActiveSound "VDR/Maggot/Idle"
+	PainSound "VDR/Maggot/Pain"
+	AttackSound "VDR/Maggot/Melee"
+	MONSTER
+	+FLOORCLIP
+	Obituary "%o was pounced on by a maggot."
+	HitObituary "%o was eaten by a maggot."
+	Tag "Maggot"
+	Species "SamsaraDemon"
+	States
+	{
+	Spawn:
+		VD39 E 0
+		VD39 E 1 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+		VD39 E 1 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+		VD39 E 0 A_GiveInventory("AlreadySpawned",1)
+		VD39 E 0
+	Spawn2:
+		VD39 E 5 A_Look
+		Loop
+	See:
+		TNT1 A 0 A_ChangeFlag("JUSTHIT",false)
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, "SeeCooldown")
+		VD39 AAAABBBBCCCCDDDD 2 Fast A_Chase
+		Goto See+1
+	SeeCooldown:
+		VD39 A 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+3
+		VD39 A 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+4
+		VD39 A 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+5
+		VD39 A 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+6
+		VD39 B 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+7
+		VD39 B 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+8
+		VD39 B 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+9
+		VD39 B 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+10
+		VD39 C 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+11
+		VD39 C 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+12
+		VD39 C 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+13
+		VD39 C 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+14
+		VD39 D 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+15
+		VD39 D 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+16
+		VD39 D 2 Fast A_Chase("Melee", "")
+		TNT1 A 0 A_JumpIfInventory("MMRandomizer_MaggotChargeCooldown", 1, 1)
+		Goto See+17
+		VD39 D 2 Fast A_Chase("Melee", "")
+		Goto See+1
+	Melee:
+		VD39 EF 6 Fast A_FaceTarget
+		VD39 G 6 Fast A_CustomMeleeAttack(random(2, 6) * 4, "VDR/Maggot/Melee")
+		Goto See+1
+	Missile:
+		TNT1 A 0 A_PlaySound("VDR/Maggot/Sight")
+		VD39 EE 4 A_FaceTarget
+		TNT1 A 0 A_GiveInventory("MMRandomizer_MaggotChargeCooldown", 1)
+		TNT1 A 0 A_ChangeFlag("SKULLFLY", true)
+		TNT1 A 0 A_Recoil(-11)
+		VD39 F 4 ThrustThingZ(0, 15, 0, 0)
+		VD39 G 7 A_CustomMissile("MMRandomizer_MaggotCharge",20,0,0,CMF_AIMDIRECTION)
+		VD39 E 2
+		VD39 E 3 A_ScaleVelocity(0.2)
+		TNT1 A 0 A_Stop
+		Goto See+1
+	Pain:
+		VD39 H 2 Fast
+		VD39 H 2 Fast A_Pain
+		Goto See
+	Pain.MightyBoot:
+		TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+		TNT1 A 0 A_PlaySound("duke/kickhit",CHAN_BODY)
+		VD39 H 2 A_FaceTarget
+		TNT1 A 0 A_Recoil(14)
+		VD39 H 16 A_Pain
+		Goto See
+	Pain.DoomDamageTypeStunner:
+		VD39 H 2 A_ChangeFlag("NOPAIN",true)
+		VD39 H 300 A_Pain
+		TNT1 A 0 A_ChangeFlag("NOPAIN",false)
+		Goto See
+	Death:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		VD39 I 6 A_SpawnItemEx("UniversalBloodyHellGoreDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		VD39 J 6 A_Scream
+		VD39 K 4 A_NoBlocking
+		VD39 LM 3
+		VD39 N -1
+		Stop
+	Death.CalebFire:
+	Death.LifeLeech:
+		TNT1 A 0 A_Jump(218, 2)
+		TNT1 A 0 A_GiveToTarget("CalebDMTaunt1", 1)
+		TNT1 A 0 A_SpawnItemEx("BloodBurningCorpse_Generic", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_SETMASTER)
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		TNT1 A 5 A_NoBlocking
+		TNT1 A -1
+		stop
+	XDeath:
+		TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+		VD39 O 6 A_SpawnItemEx("UniversalBloodyHellGoreXDeathEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR)
+		VD39 P 6 A_PlaySound("doom/misc/gibbed", CHAN_VOICE)
+		VD39 Q 4 A_NoBlocking
+		VD39 RST 3
+		VD39 T -1
+		Stop
+	Raise:
+		VD49 E 0
+		"####" "#" 0 A_JumpIfInventory("EnemyZorched",1,"ZorchRaise")
+		VD39 NMLKJI 4
+		Goto See+1
+	Pain.ShrinkerDMG:
+		VD39 H 0
+		"####" "#" 0 A_SetUserVar("user_scalex", scalex*65536.0)
+		"####" "#" 0 A_SetUserVar("user_scaley", scaley*65536.0)
+		"####" "#" 0 A_ChangeFlag("NOPAIN", 1)
+		"####" "#" 0 A_ChangeFlag("NODAMAGE", 1)
+		"####" "#" 0 A_ChangeFlag("SOLID",false)
+		"####" "#" 0 A_PlaySound("duke/shrink")
+		"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+		"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_ShrinkEffect",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+		"####" "#" 4 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+		"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot_Shrink", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_TRANSFERSPECIAL|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+		TNT1 A 2
+		TNT1 A 0 Thing_Remove(0)
+		Stop
+	}
+}
+
+actor MMRandomizer_Maggot_Shrink : MMRandomizer_Maggot
+{
+	+FRIGHTENED
+	+NOTRIGGER
+	-SHOOTABLE
+	+THRUACTORS
+	+NORADIUSDMG
+	+VULNERABLE
+	+QUICKTORETALIATE
+	+COUNTKILL
+	-NOGRAVITY
+	+NODAMAGE
+	+NOPAIN
+	MaxStepHeight 0
+	MaxDropOffHeight 0
+	MeleeRange 16
+	Height 8
+	Health 1
+	Speed 1
+	PainChance "ShrinkDMG", 0
+	DamageFactor "ShrinkDMG", 0.0
+	PainChance "ExpanderDMG", 0
+	DamageFactor "ExpanderDMG", 0.0
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfInventory("ShrunkToken",1,"SpawnLoop")
+			TNT1 A 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			TNT1 A 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			TNT1 A 0 A_SetScale(scalex*0.2,scaley*0.2) // setting the scale in ACS does work, but the actor shows up at normal size for a split second
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_Shrinker", 0, 1)
+			VD39 H 10
+			Goto See
+		SpawnLoop:
+			VD39 E 5 A_Look
+			Loop
+		See:
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 A 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 A 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 B 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 B 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 C 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 C 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 D 3 A_Chase("","")
+			"####" "#" 0 A_JumpIfInTargetInventory("ChexClass", 1, 5) // this is supposed to be child friendly
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeClass", 1, 3)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("Squish")
+			"####" "#" 0 A_Jump(256, 2)
+			"####" "#" 0 A_JumpIfTargetInSideMeleeRange("DukeStomp")
+			VD39 D 3 A_Chase("","")
+			"####" "#" 0 A_JumpIf(CallACS("Samsara_Shrinker", 3) == 0, "Forget")
+			Loop
+		Forget:
+			"####" "#" 0 A_ClearTarget
+			Goto See
+		Grow:
+			"####" "#" 4 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(1.0*(user_scalex/65536.0),1.0*(user_scaley/65536.0))
+			"####" "#" 0 A_SpawnItemEx("MMRandomizer_Maggot", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPECIAL|SXF_TRANSFERPOINTERS|SXF_TRANSFERAMBUSHFLAG|SXF_SETMASTER,0,tid)
+			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
+			TNT1 A 0 A_GiveToChildren("ShrunkPropertyTransfer",1)
+			TNT1 A 2 Thing_Remove(0)
+			stop
+		Squish:
+			"####" "#" 0 A_GiveInventory("SquishToken", 1)
+			"####" "#" 0 A_JumpIfInTargetInventory("DukeStomp", 1, 2)
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 2
+			"####" "#" 0 A_Jump(256,3)
+			"####" "#" 0
+			"####" "#" 2 A_Die("Squish")
+			"####" "#" 0
+			loop
+		Death:
+		XDeath:
+		Death.Squish:
+		XDeath.Squish:
+			TNT1 A 0 A_Jump(64,2)
+			TNT1 A 0 A_GiveToTarget("DukeBootTaunt",1)
+			TNT1 A 0 ACS_NamedExecuteAlways("Samsara_KillCount", 0, 0)
+			TNT1 A 0 A_PlaySound("duke/enemygib", CHAN_BODY)
+			TNT1 A 1 A_SpawnItemEx("DukeBloodPool",0,0,0,0,0,0,0,SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION)
+			stop
+		DukeStomp:
+			"####" "#" 0 A_GiveToTarget("DukeStomp", 1)
+			Goto Squish
+	}
+}
+
+actor MMRandomizer_Maggot_ShrinkEffect : MMRandomizer_Maggot
+{
+	-ISMONSTER
+	-COUNTKILL
+	-SHOOTABLE
+	-SOLID
+	+NOINTERACTION
+	-NOGRAVITY
+	+CLIENTSIDEONLY
+	Renderstyle Translucent
+	Alpha 0.4
+	States
+	{
+		Spawn:
+			VD39 H 0
+			VD39 H 0 A_SetUserVar("user_scalex", scalex*65536.0)
+			VD39 H 0 A_SetUserVar("user_scaley", scaley*65536.0)
+			"####" "#" 1 A_SetScale(0.95*(user_scalex/65536.0),0.95*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.9*(user_scalex/65536.0),0.9*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.85*(user_scalex/65536.0),0.85*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.8*(user_scalex/65536.0),0.8*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.75*(user_scalex/65536.0),0.75*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.7*(user_scalex/65536.0),0.7*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.65*(user_scalex/65536.0),0.65*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.6*(user_scalex/65536.0),0.6*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.55*(user_scalex/65536.0),0.55*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.5*(user_scalex/65536.0),0.5*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.45*(user_scalex/65536.0),0.45*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.4*(user_scalex/65536.0),0.4*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.35*(user_scalex/65536.0),0.35*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.3*(user_scalex/65536.0),0.3*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.25*(user_scalex/65536.0),0.25*(user_scaley/65536.0))
+			"####" "#" 1 A_SetScale(0.2*(user_scalex/65536.0),0.2*(user_scaley/65536.0))
+			Stop
+	}
+}
+
+
+Actor MMRandomizer_MaggotCharge : MMRandomizer_BloodDemonCharge
+{
+	Damage (random(2,7) * 7)
+	ReactionTime 9
+	States:
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 A_Warp(AAPTR_TARGET,22,0,20,0,WARPF_NOCHECKPOSITION)
+			TNT1 A 0 A_Countdown
+			TNT1 A 0 A_CheckFlag("SKULLFLY", "Spawn", AAPTR_TARGET)
+			Goto Death
+		Death:
+			TNT1 A 1 A_GiveToTarget("MMRandomizer_MaggotChargeCooldown", 1)
+			Stop
+	}
+}
+
+Actor MMRandomizer_MaggotChargeCooldown : Powerup
+{
+	Powerup.Duration 20
+}
