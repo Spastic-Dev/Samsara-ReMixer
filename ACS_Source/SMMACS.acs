@@ -599,19 +599,19 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	SetActorAngle(newMonTid, GetActorAngle(0));
 
 	Thing_ChangeTID(0,newSpawnerTid);
+	SetActivator(newMonTid);
 
 	if (!(monSlot == 6|7|8|9|14|15|16|30|31|37|38|48|51|52|66|67|68|69|70|71))
 	{
-		SetActivator(0,AAPTR_Master);
+		SetPointer(AAPTR_MASTER,newSpawnerTid,AAPTR_MASTER);
+	}
+	else
+	{
+		SetPointer(AAPTR_MASTER,newSpawnerTid);
 	}
 
-	SetPointerExt(AAPTR_Master,0,newMonTid);
-
-	SetActivator(newSpawnerTid,AAPTR_Target);
-	int alert = SetPointerExt(AAPTR_Target,0,newMonTid);
-
-	SetActivator(newSpawnerTid,AAPTR_Tracer);
-	SetPointerExt(AAPTR_Tracer,0,newMonTid);
+	int alert = SetPointer(AAPTR_TARGET,newSpawnerTid,AAPTR_TARGET);
+	SetPointer(AAPTR_TRACER,newSpawnerTid,AAPTR_TRACER);
 
 	SetActivator(newSpawnerTid);
 
