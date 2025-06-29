@@ -681,8 +681,15 @@ Script "ReMixer_PickActor" (int monGame, int monAlt, int monSlot)
 	if (ghostMonster)
 	{
 		GiveInventory("GhostToken", 1);
-		SetActorProperty(0, APROP_RenderStyle, STYLE_Translucent);
-		SetActorProperty(0, APROP_Alpha, 0.4);
+
+		int monRenderStyle = GetActorProperty(0, APROP_RenderStyle);
+		bool isOpaque = monRenderStyle == STYLE_Normal || (monRenderStyle == STYLE_Translucent && CheckActorProperty(0, APROP_Alpha, 1.0));
+
+		if (isOpaque && !CheckFlag(0, "INVISIBLE"))
+		{
+			SetActorProperty(0, APROP_RenderStyle, STYLE_Translucent);
+			SetActorProperty(0, APROP_Alpha, 0.4);
+		}
 	}
 }
 
