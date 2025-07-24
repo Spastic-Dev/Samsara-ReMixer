@@ -37,180 +37,180 @@ Actor Goldfinger_EnemyBase : Goldeneye_EnemyBase
 	States
 	{
 		Spawn:
-			GE00 AA 0 A_UnsetShootable
-			GE00 A 2
+			GF00 AA 0 A_UnsetShootable
+			GF00 A 2
 		Idle:
 		Spawn2:
-			GE00 A 0 A_GiveInventory("Goldeneye_DecAnimation_Spawn2")
-			GE00 A 0 ACS_NamedExecuteWithResult("GoldeneyeUpdateAppearance") //This has to be called once
-			GE00 A 0 A_SetShootable
-			GE00 A 0 A_JumpIfInventory("Goldeneye_DualWield",1,"SpawnDual")	
-			GE00 A 0 A_Jump(36, "Walking")
-			GE00 A 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 B 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 C 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 D 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 E 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 F 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 G 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 H 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 I 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 J 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 J 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 I 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 H 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 G 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 F 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 E 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 D 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 C 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 B 0 A_LookEx(0, 0, 0, 0, 180, "See")
-			GE00 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GE00 A 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 A 0 A_GiveInventory("Goldeneye_DecAnimation_Spawn2")
+			GF00 A 0 ACS_NamedExecuteWithResult("GoldeneyeUpdateAppearance") //This has to be called once
+			GF00 A 0 A_SetShootable
+			GF00 A 0 A_JumpIfInventory("Goldeneye_DualWield",1,"SpawnDual")	
+			GF00 A 0 A_Jump(36, "Walking")
+			GF00 A 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 B 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 C 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 D 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 E 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 F 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 G 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 H 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 I 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 J 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 J 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 I 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 I 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 H 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 H 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 G 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 G 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 F 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 F 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 E 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 E 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 D 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 D 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 C 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 C 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 B 0 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF00 B 6 A_Jump(4, "IdleAdjustCrotch", "IdleScratchButt", "IdleScratchLeg", "IdleYawning", "IdleSwatFlies") GF00 A 0 A_LookEx(0, 0, 0, 0, 180, "See")
 			Loop
 		Walking:
-			GE06 A 0 A_GiveInventory("Goldeneye_DecAnimation_Walking")
-			GE06 A 6 A_Wander GE06 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 B 6 A_Wander GE06 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 C 6 A_Wander GE06 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 D 6 A_Wander GE06 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 E 6 A_Wander GE06 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 F 6 A_Wander GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 G 6 A_Wander GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 H 6 A_Wander GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 I 6 A_Wander GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
-			GE06 J 6 A_Wander GE06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 A 0 A_GiveInventory("Goldeneye_DecAnimation_Walking")
+			GF06 A 6 A_Wander GF06 B 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 B 6 A_Wander GF06 C 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 C 6 A_Wander GF06 D 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 D 6 A_Wander GF06 E 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 E 6 A_Wander GF06 F 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 F 6 A_Wander GF06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 G 6 A_Wander GF06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 H 6 A_Wander GF06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 I 6 A_Wander GF06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
+			GF06 J 6 A_Wander GF06 A 0 A_LookEx(0, 0, 0, 0, 180, "See") "####" "#" 0 A_Recoil(-0.25)
 			Loop			
 		SpawnDual:
-			GE84 A 0 A_GiveInventory("Goldeneye_DecAnimation_SpawnDual")
-			GE84 ABCDEFGHIJKLMLJIHGFEDCB 6 A_LookEx(0, 0, 0, 0, 180, "See")
+			GF84 A 0 A_GiveInventory("Goldeneye_DecAnimation_SpawnDual")
+			GF84 ABCDEFGHIJKLMLJIHGFEDCB 6 A_LookEx(0, 0, 0, 0, 180, "See")
 			Loop
 		IdleAdjustCrotch:
-			GE01 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleAdjustCrotch")
-			GE01 A 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 B 0 A_Stop
-			GE01 B 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 C 0 A_Stop
-			GE01 C 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 D 0 A_Stop
-			GE01 D 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 E 0 A_Stop
-			GE01 E 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 F 0 A_Stop
-			GE01 F 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 G 0 A_Stop
-			GE01 G 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 H 0 A_Stop
-			GE01 H 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 I 0 A_Stop
-			GE01 I 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 J 0 A_Stop
-			GE01 J 6 A_LookEx(0, 0, 0, 0, 180, "See") GE01 A 0 A_Stop
+			GF01 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleAdjustCrotch")
+			GF01 A 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 B 0 A_Stop
+			GF01 B 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 C 0 A_Stop
+			GF01 C 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 D 0 A_Stop
+			GF01 D 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 E 0 A_Stop
+			GF01 E 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 F 0 A_Stop
+			GF01 F 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 G 0 A_Stop
+			GF01 G 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 H 0 A_Stop
+			GF01 H 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 I 0 A_Stop
+			GF01 I 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 J 0 A_Stop
+			GF01 J 6 A_LookEx(0, 0, 0, 0, 180, "See") GF01 A 0 A_Stop
 			Goto Spawn2
 		IdleScratchButt:
-			GE02 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleScratchButt")
-			GE02 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 B 0 A_Stop
-			GE02 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 C 0 A_Stop
-			GE02 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 D 0 A_Stop
-			GE02 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 E 0 A_Stop
-			GE02 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 F 0 A_Stop
-			GE02 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 G 0 A_Stop
-			GE02 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 H 0 A_Stop
-			GE02 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 I 0 A_Stop
-			GE02 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 J 0 A_Stop 
-			GE02 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 K 0 A_Stop
-			GE02 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GE02 A 0 A_Stop
+			GF02 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleScratchButt")
+			GF02 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 B 0 A_Stop
+			GF02 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 C 0 A_Stop
+			GF02 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 D 0 A_Stop
+			GF02 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 E 0 A_Stop
+			GF02 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 F 0 A_Stop
+			GF02 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 G 0 A_Stop
+			GF02 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 H 0 A_Stop
+			GF02 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 I 0 A_Stop
+			GF02 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 J 0 A_Stop 
+			GF02 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 K 0 A_Stop
+			GF02 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GF02 A 0 A_Stop
 			Goto Spawn2
 		IdleScratchLeg:
-			GE03 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleScratchLeg")
-			GE03 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 B 0 A_Stop
-			GE03 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 C 0 A_Stop
-			GE03 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 D 0 A_Stop
-			GE03 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 E 0 A_Stop
-			GE03 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 F 0 A_Stop
-			GE03 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 G 0 A_Stop
-			GE03 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 H 0 A_Stop
-			GE03 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 I 0 A_Stop
-			GE03 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 J 0 A_Stop
-			GE03 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 K 0 A_Stop
-			GE03 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 L 0 A_Stop
-			GE03 L 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 M 0 A_Stop
-			GE03 M 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 N 0 A_Stop
-			GE03 N 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 O 0 A_Stop
-			GE03 O 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 P 0 A_Stop
-			GE03 P 11 A_LookEx(0, 0, 0, 0, 180, "See") GE03 A 0 A_Stop
+			GF03 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleScratchLeg")
+			GF03 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 B 0 A_Stop
+			GF03 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 C 0 A_Stop
+			GF03 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 D 0 A_Stop
+			GF03 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 E 0 A_Stop
+			GF03 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 F 0 A_Stop
+			GF03 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 G 0 A_Stop
+			GF03 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 H 0 A_Stop
+			GF03 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 I 0 A_Stop
+			GF03 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 J 0 A_Stop
+			GF03 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 K 0 A_Stop
+			GF03 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 L 0 A_Stop
+			GF03 L 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 M 0 A_Stop
+			GF03 M 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 N 0 A_Stop
+			GF03 N 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 O 0 A_Stop
+			GF03 O 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 P 0 A_Stop
+			GF03 P 11 A_LookEx(0, 0, 0, 0, 180, "See") GF03 A 0 A_Stop
 			Goto Spawn2
 		IdleYawning:
-			GE05 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleYawning")
-			GE05 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 B 0 A_Stop
-			GE05 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 C 0 A_Stop
-			GE05 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 D 0 A_Stop
-			GE05 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 E 0 A_Stop
-			GE05 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 F 0 A_Stop
-			GE05 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 G 0 A_Stop
-			GE05 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 H 0 A_Stop
-			GE05 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 I 0 A_Stop
-			GE05 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 J 0 A_Stop 
-			GE05 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 K 0 A_Stop
-			GE05 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 L 0 A_Stop
-			GE05 L 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 M 0 A_Stop
-			GE05 M 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 N 0 A_Stop
-			GE05 N 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 O 0 A_Stop
-			GE05 O 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 P 0 A_Stop
-			GE05 P 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 Q 0 A_Stop
-			GE05 Q 11 A_LookEx(0, 0, 0, 0, 180, "See") GE05 A 0 A_Stop
+			GF05 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleYawning")
+			GF05 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 B 0 A_Stop
+			GF05 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 C 0 A_Stop
+			GF05 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 D 0 A_Stop
+			GF05 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 E 0 A_Stop
+			GF05 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 F 0 A_Stop
+			GF05 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 G 0 A_Stop
+			GF05 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 H 0 A_Stop
+			GF05 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 I 0 A_Stop
+			GF05 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 J 0 A_Stop 
+			GF05 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 K 0 A_Stop
+			GF05 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 L 0 A_Stop
+			GF05 L 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 M 0 A_Stop
+			GF05 M 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 N 0 A_Stop
+			GF05 N 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 O 0 A_Stop
+			GF05 O 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 P 0 A_Stop
+			GF05 P 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 Q 0 A_Stop
+			GF05 Q 11 A_LookEx(0, 0, 0, 0, 180, "See") GF05 A 0 A_Stop
 			Goto Spawn2
 		IdleSwatFlies:
-			GE04 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleSwatFlies")
-			GE04 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 B 0 A_Stop
-			GE04 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 C 0 A_Stop
-			GE04 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 D 0 A_Stop
-			GE04 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 E 0 A_Stop
-			GE04 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 F 0 A_Stop
-			GE04 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 G 0 A_Stop
-			GE04 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 H 0 A_Stop
-			GE04 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 I 0 A_Stop
-			GE04 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 J 0 A_Stop 
-			GE04 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 K 0 A_Stop
-			GE04 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 L 0 A_Stop
-			GE04 L 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 M 0 A_Stop
-			GE04 M 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 N 0 A_Stop
-			GE04 N 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 O 0 A_Stop
-			GE04 O 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 P 0 A_Stop
-			GE04 P 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 Q 0 A_Stop
-			GE04 Q 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 R 0 A_Stop
-			GE04 R 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 S 0 A_Stop
-			GE04 S 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 T 0 A_Stop
-			GE04 T 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 U 0 A_Stop
-			GE04 U 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 V 0 A_Stop
-			GE04 V 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 W 0 A_Stop
-			GE04 W 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 X 0 A_Stop
-			GE04 X 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 Y 0 A_Stop
-			GE04 Y 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 Z 0 A_Stop
-			GE04 Z 11 A_LookEx(0, 0, 0, 0, 180, "See") GE04 A 0 A_Stop
+			GF04 A 0 A_GiveInventory("Goldeneye_DecAnimation_IdleSwatFlies")
+			GF04 A 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 B 0 A_Stop
+			GF04 B 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 C 0 A_Stop
+			GF04 C 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 D 0 A_Stop
+			GF04 D 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 E 0 A_Stop
+			GF04 E 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 F 0 A_Stop
+			GF04 F 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 G 0 A_Stop
+			GF04 G 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 H 0 A_Stop
+			GF04 H 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 I 0 A_Stop
+			GF04 I 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 J 0 A_Stop 
+			GF04 J 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 K 0 A_Stop
+			GF04 K 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 L 0 A_Stop
+			GF04 L 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 M 0 A_Stop
+			GF04 M 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 N 0 A_Stop
+			GF04 N 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 O 0 A_Stop
+			GF04 O 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 P 0 A_Stop
+			GF04 P 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 Q 0 A_Stop
+			GF04 Q 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 R 0 A_Stop
+			GF04 R 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 S 0 A_Stop
+			GF04 S 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 T 0 A_Stop
+			GF04 T 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 U 0 A_Stop
+			GF04 U 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 V 0 A_Stop
+			GF04 V 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 W 0 A_Stop
+			GF04 W 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 X 0 A_Stop
+			GF04 X 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 Y 0 A_Stop
+			GF04 Y 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 Z 0 A_Stop
+			GF04 Z 11 A_LookEx(0, 0, 0, 0, 180, "See") GF04 A 0 A_Stop
 			Goto Spawn2
 		See:
 		SeeContinue:
-			GE33 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF33 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			TNT1 A 0 A_GiveInventory("Goldeneye_DecAnimation_Unfreeze")
 			TNT1 A 0 A_JumpIfInventory("Goldeneye_EnemyTwoHanded",1,"SeeTwoHand")
 			TNT1 A 0 A_Jump(256,"SeeSingleDual","SprintSingleDual")
 			Goto SeeSingleDual
 		SeeSingleDual:
-			GE11 A 0 A_GiveInventory("Goldeneye_DecAnimation_SeeSingleDual")
-			GE11 A 6 A_Chase("","Missile") GE11 B 0 A_Recoil(-1)
-			GE11 B 6 A_Chase("","Missile") GE11 C 0 A_Recoil(-1)
-			GE11 C 6 A_Chase("","Missile") GE11 D 0 A_Recoil(-1)
-			GE11 D 6 A_Chase("","Missile") GE11 E 0 A_Recoil(-1)
-			GE11 E 6 A_Chase("","Missile") GE11 F 0 A_Recoil(-1)
-			GE11 F 6 A_Chase("","Missile") GE11 G 0 A_Recoil(-1)
-			GE11 G 6 A_Chase("","Missile") GE11 A 0 A_Recoil(-1)
+			GF11 A 0 A_GiveInventory("Goldeneye_DecAnimation_SeeSingleDual")
+			GF11 A 6 A_Chase("","Missile") GF11 B 0 A_Recoil(-1)
+			GF11 B 6 A_Chase("","Missile") GF11 C 0 A_Recoil(-1)
+			GF11 C 6 A_Chase("","Missile") GF11 D 0 A_Recoil(-1)
+			GF11 D 6 A_Chase("","Missile") GF11 E 0 A_Recoil(-1)
+			GF11 E 6 A_Chase("","Missile") GF11 F 0 A_Recoil(-1)
+			GF11 F 6 A_Chase("","Missile") GF11 G 0 A_Recoil(-1)
+			GF11 G 6 A_Chase("","Missile") GF11 A 0 A_Recoil(-1)
 			Goto See
 		SprintSingleDual:
-			GE12 A 0 A_GiveInventory("Goldeneye_DecAnimation_SprintSingleDual")
-			GE12 A 6 A_Chase("","Missile") GE12 B 0 A_Recoil(-1)
-			GE12 B 6 A_Chase("","Missile") GE12 C 0 A_Recoil(-1)
-			GE12 C 6 A_Chase("","Missile") GE12 D 0 A_Recoil(-1)
-			GE12 D 6 A_Chase("","Missile") GE12 E 0 A_Recoil(-1)
-			GE12 E 6 A_Chase("","Missile") GE12 F 0 A_Recoil(-1)
-			GE12 F 6 A_Chase("","Missile") GE12 A 0 A_Recoil(-1)
+			GF12 A 0 A_GiveInventory("Goldeneye_DecAnimation_SprintSingleDual")
+			GF12 A 6 A_Chase("","Missile") GF12 B 0 A_Recoil(-1)
+			GF12 B 6 A_Chase("","Missile") GF12 C 0 A_Recoil(-1)
+			GF12 C 6 A_Chase("","Missile") GF12 D 0 A_Recoil(-1)
+			GF12 D 6 A_Chase("","Missile") GF12 E 0 A_Recoil(-1)
+			GF12 E 6 A_Chase("","Missile") GF12 F 0 A_Recoil(-1)
+			GF12 F 6 A_Chase("","Missile") GF12 A 0 A_Recoil(-1)
 			Goto See		
 		SeeTwoHand:
-			GE13 A 0 A_GiveInventory("Goldeneye_DecAnimation_SeeTwoHand")
-			GE13 A 6 A_Chase("","Missile") GE13 B 0 A_Recoil(-1)
-			GE13 B 6 A_Chase("","Missile") GE13 C 0 A_Recoil(-1)
-			GE13 C 6 A_Chase("","Missile") GE13 D 0 A_Recoil(-1)
-			GE13 D 6 A_Chase("","Missile") GE13 E 0 A_Recoil(-1)
-			GE13 E 6 A_Chase("","Missile") GE13 F 0 A_Recoil(-1)
-			GE13 F 6 A_Chase("","Missile") GE13 A 0 A_Recoil(-1)
+			GF13 A 0 A_GiveInventory("Goldeneye_DecAnimation_SeeTwoHand")
+			GF13 A 6 A_Chase("","Missile") GF13 B 0 A_Recoil(-1)
+			GF13 B 6 A_Chase("","Missile") GF13 C 0 A_Recoil(-1)
+			GF13 C 6 A_Chase("","Missile") GF13 D 0 A_Recoil(-1)
+			GF13 D 6 A_Chase("","Missile") GF13 E 0 A_Recoil(-1)
+			GF13 E 6 A_Chase("","Missile") GF13 F 0 A_Recoil(-1)
+			GF13 F 6 A_Chase("","Missile") GF13 A 0 A_Recoil(-1)
 			Loop
 		Missile:
 			TNT1 A 0 A_TakeInventory("GoldeneyeEnemyKillAttack")
@@ -223,340 +223,340 @@ Actor Goldfinger_EnemyBase : Goldeneye_EnemyBase
 			TNT1 A 0 A_JumpIfInventory("Goldeneye_EnemyTwoHanded",1,"FireTwoHanded")
 			Goto FireSingleHanded
 		ThrowGrenade:
-			GE34 A 0 A_GiveInventory("Goldeneye_DecAnimation_ThrowGrenade")
-			GE34 AB 12 A_FaceTarget
-			GE34 C 0 ACS_NamedExecuteWithResult("Goldeneye_DrawGrenade")
-			GE34 CDEFGHIJKL 12 A_FaceTarget
-			GE34 M 0 ACS_NamedExecuteWithResult("Goldeneye_DrawGrenade",1)
-			GE34 M 0 A_CustomMissile("Goldeneye_EnemyGrenade",36,8,0,CMF_AIMDIRECTION)		
-			GE34 MNOPQR 12 A_FaceTarget
+			GF34 A 0 A_GiveInventory("Goldeneye_DecAnimation_ThrowGrenade")
+			GF34 AB 12 A_FaceTarget
+			GF34 C 0 ACS_NamedExecuteWithResult("Goldeneye_DrawGrenade")
+			GF34 CDEFGHIJKL 12 A_FaceTarget
+			GF34 M 0 ACS_NamedExecuteWithResult("Goldeneye_DrawGrenade",1)
+			GF34 M 0 A_CustomMissile("Goldeneye_EnemyGrenade",36,8,0,CMF_AIMDIRECTION)		
+			GF34 MNOPQR 12 A_FaceTarget
 			Goto See		
 		FireSingleHanded:
 			TNT1 A 0 A_Jump(256, "FireSingleHandedStepForward","FireSingleHandedKneel")
 			Goto FireSingleHandedStepForward
 		FireSingleHandedStepForward:
-			GE15 A 0 A_SetArg(0,40)
-			GE15 A 0 A_SetArg(1,5)
-			GE15 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForward")
-			GE15 ABCDE 4 A_FaceTarget
-			GE15 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",0,4)
-			GE15 FGH 4 A_FaceTarget
-			GE15 I 0 A_Jump(128, "FireSingleHandedStepForwardEnd")		
-			GE15 IJK 4 A_FaceTarget
-			GE15 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardLoop")
-			GE15 FGH 4 A_FaceTarget
-			GE15 I 0 A_Jump(128, "FireSingleHandedStepForwardEnd")
-			GE15 IJK 4 A_FaceTarget
-			GE15 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardLoop")
-			GE15 FGH 4 A_FaceTarget
-			GE15 I 0 A_Jump(128, "FireSingleHandedStepForwardEnd")			
-			GE15 IJK 4 A_FaceTarget
-			GE15 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardLoop")
-			GE15 FGH 4 A_FaceTarget
+			GF15 A 0 A_SetArg(0,40)
+			GF15 A 0 A_SetArg(1,5)
+			GF15 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForward")
+			GF15 ABCDE 4 A_FaceTarget
+			GF15 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",0,4)
+			GF15 FGH 4 A_FaceTarget
+			GF15 I 0 A_Jump(128, "FireSingleHandedStepForwardEnd")		
+			GF15 IJK 4 A_FaceTarget
+			GF15 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardLoop")
+			GF15 FGH 4 A_FaceTarget
+			GF15 I 0 A_Jump(128, "FireSingleHandedStepForwardEnd")
+			GF15 IJK 4 A_FaceTarget
+			GF15 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardLoop")
+			GF15 FGH 4 A_FaceTarget
+			GF15 I 0 A_Jump(128, "FireSingleHandedStepForwardEnd")			
+			GF15 IJK 4 A_FaceTarget
+			GF15 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardLoop")
+			GF15 FGH 4 A_FaceTarget
 		FireSingleHandedStepForwardEnd:
-			GE15 I 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardEnd")
-			GE15 I 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE15 IJKLMNOPQRSTUVW 4
-			GE15 A 0
+			GF15 I 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardEnd")
+			GF15 I 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF15 IJKLMNOPQRSTUVW 4
+			GF15 A 0
 			Goto See
 		FireSingleHandedKneel:
-			GE16 A 0 A_SetArg(0,28)
-			GE16 A 0 A_SetArg(1,5)
-			GE16 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHanded")
-			GE16 ABCDEFGHIJKLMNOP 4 A_FaceTarget
-			GE16 Q 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",0,12)
-			GE16 QRST 4 A_FaceTarget
-			GE16 U 0 A_Jump(128, "FireSingleHandedKneelEnd")
-			GE16 UVW 4 A_FaceTarget
-			GE16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedLoop")
-			GE16 QRST 4 A_FaceTarget
-			GE16 U 0 A_Jump(128, "FireSingleHandedKneelEnd")
-			GE16 UVW 4 A_FaceTarget
-			GE16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedLoop")
-			GE16 QRST 4 A_FaceTarget
-			GE16 U 0 A_Jump(128, "FireSingleHandedKneelEnd")
-			GE16 UVW 4 A_FaceTarget
-			GE16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedLoop")
-			GE16 QRST 4 A_FaceTarget
+			GF16 A 0 A_SetArg(0,28)
+			GF16 A 0 A_SetArg(1,5)
+			GF16 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHanded")
+			GF16 ABCDEFGHIJKLMNOP 4 A_FaceTarget
+			GF16 Q 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",0,12)
+			GF16 QRST 4 A_FaceTarget
+			GF16 U 0 A_Jump(128, "FireSingleHandedKneelEnd")
+			GF16 UVW 4 A_FaceTarget
+			GF16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedLoop")
+			GF16 QRST 4 A_FaceTarget
+			GF16 U 0 A_Jump(128, "FireSingleHandedKneelEnd")
+			GF16 UVW 4 A_FaceTarget
+			GF16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedLoop")
+			GF16 QRST 4 A_FaceTarget
+			GF16 U 0 A_Jump(128, "FireSingleHandedKneelEnd")
+			GF16 UVW 4 A_FaceTarget
+			GF16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedLoop")
+			GF16 QRST 4 A_FaceTarget
 		FireSingleHandedKneelEnd:
-			GE16 U 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedEnd")
-			GE16 U 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE16 UVWXYZ 4
-			GE17 ABCDEFGHIJKLMNOPQ 3
-			GE16 A 0
+			GF16 U 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedEnd")
+			GF16 U 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF16 UVWXYZ 4
+			GF17 ABCDEFGHIJKLMNOPQ 3
+			GF16 A 0
 			Goto See
 		FireSingleHandedDual:
 			TNT1 A 0 A_Jump(256, "FireSingleHandedStepForward", "FireSingleHandedKneel", "FireSingleHandedDualStand", "FireSingleHandedDualKneel", "FireSingleHandedDualCrossKneel", "FireSingleHandedDualWalk","FireSingleHandedDualRun")
 			Goto FireSingleHandedDualStand
 		FireSingleHandedDualStand:
-			GE29 A 0 A_SetArg(0,40)
-			GE29 A 0 A_SetArg(1,5)
-			GE29 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStand")
-			GE29 ABCDE 4 A_FaceTarget
-			GE29 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
-			GE29 FGHI 4 A_FaceTarget
-			GE29 F 0 A_Jump(128, "FireSingleHandedDualStandEnd")
-			GE29 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStandLoop")
-			GE29 FGHI 4 A_FaceTarget
-			GE29 F 0 A_Jump(128, "FireSingleHandedDualStandEnd")
-			GE29 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStandLoop")
-			GE29 FGHI 4 A_FaceTarget
+			GF29 A 0 A_SetArg(0,40)
+			GF29 A 0 A_SetArg(1,5)
+			GF29 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStand")
+			GF29 ABCDE 4 A_FaceTarget
+			GF29 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
+			GF29 FGHI 4 A_FaceTarget
+			GF29 F 0 A_Jump(128, "FireSingleHandedDualStandEnd")
+			GF29 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStandLoop")
+			GF29 FGHI 4 A_FaceTarget
+			GF29 F 0 A_Jump(128, "FireSingleHandedDualStandEnd")
+			GF29 F 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStandLoop")
+			GF29 FGHI 4 A_FaceTarget
 		FireSingleHandedDualStandEnd:
-			GE29 J 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStandEnd")
-			GE29 J 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE29 JKLM 4
+			GF29 J 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsStandEnd")
+			GF29 J 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF29 JKLM 4
 			Goto See
 		FireSingleHandedDualKneel:
-			GE30 A 0 A_SetArg(0,28)
-			GE30 A 0 A_SetArg(1,5)
-			GE30 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneel")
-			GE30 ABCDEF 4 A_FaceTarget
-			GE29 G 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
-			GE30 GHI 4 A_FaceTarget
-			GE30 J 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE30 JKL 4 A_FaceTarget
-			GE30 M 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE30 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneelLoop")
-			GE30 GHI 4 A_FaceTarget
-			GE30 J 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE30 JKL 4 A_FaceTarget
-			GE30 M 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE30 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneelLoop")
-			GE30 GHI 4 A_FaceTarget
-			GE30 J 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE30 JKL 4 A_FaceTarget
-			GE30 M 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF30 A 0 A_SetArg(0,28)
+			GF30 A 0 A_SetArg(1,5)
+			GF30 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneel")
+			GF30 ABCDEF 4 A_FaceTarget
+			GF29 G 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
+			GF30 GHI 4 A_FaceTarget
+			GF30 J 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF30 JKL 4 A_FaceTarget
+			GF30 M 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF30 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneelLoop")
+			GF30 GHI 4 A_FaceTarget
+			GF30 J 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF30 JKL 4 A_FaceTarget
+			GF30 M 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF30 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneelLoop")
+			GF30 GHI 4 A_FaceTarget
+			GF30 J 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF30 JKL 4 A_FaceTarget
+			GF30 M 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
 		FireSingleHandedDualKneelEnd:
-			GE30 M 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneelEnd")
-			GE30 M 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE30 MNOPQ 4
+			GF30 M 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsKneelEnd")
+			GF30 M 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF30 MNOPQ 4
 			Goto See
 		FireSingleHandedDualCrossKneel:
-			GE31 A 0 A_SetArg(0,28)
-			GE31 A 0 A_SetArg(1,-5)
-			GE31 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneel")
-			GE31 ABCDEF 4 A_FaceTarget
-			GE31 G 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
-			GE31 GHIH 4 A_FaceTarget
-			GE31 G 0 A_Jump(64,"FireSingleHandedDualKneelEnd")
-			GE31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
-			GE31 GHIH 4 A_FaceTarget
-			GE31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
-			GE31 GHIH 4 A_FaceTarget
-			GE31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
-			GE31 GHIH 4 A_FaceTarget
-			GE31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
-			GE31 GHIH 4 A_FaceTarget
-			GE31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
-			GE31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
-			GE31 GHIH 4 A_FaceTarget
+			GF31 A 0 A_SetArg(0,28)
+			GF31 A 0 A_SetArg(1,-5)
+			GF31 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneel")
+			GF31 ABCDEF 4 A_FaceTarget
+			GF31 G 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
+			GF31 GHIH 4 A_FaceTarget
+			GF31 G 0 A_Jump(64,"FireSingleHandedDualKneelEnd")
+			GF31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
+			GF31 GHIH 4 A_FaceTarget
+			GF31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
+			GF31 GHIH 4 A_FaceTarget
+			GF31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
+			GF31 GHIH 4 A_FaceTarget
+			GF31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
+			GF31 GHIH 4 A_FaceTarget
+			GF31 G 0 A_Jump(128,"FireSingleHandedDualKneelEnd")
+			GF31 G 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelLoop")
+			GF31 GHIH 4 A_FaceTarget
 		FireSingleHandedDualCrossKneelEnd:
-			GE31 J 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelEnd")
-			GE31 J 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE31 JKLMN 6
+			GF31 J 0 A_GiveInventory("Goldeneye_DecAnimation_FireBothGunsCrossKneelEnd")
+			GF31 J 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF31 JKLMN 6
 			Goto See
 		FireSingleHandedDualWalk:
-			GE32 A 0 A_SetArg(0,40)
-			GE32 A 0 A_SetArg(1,5)
-			GE32 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireWalkBothGuns")
-			GE32 A 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
-			GE32 A 0 A_Recoil(-0.25) GE32 A 0 A_FaceTarget
-			GE32 A 6
-			GE32 B 0 A_Recoil(-0.25) GE32 B 0 A_FaceTarget
-			GE32 B 6
-			GE32 C 0 A_Recoil(-0.25) GE32 C 0 A_FaceTarget
-			GE32 C 6
-			GE32 D 0 A_Recoil(-0.25) GE32 D 0 A_FaceTarget
-			GE32 D 6
-			GE32 E 0 A_Recoil(-0.25) GE32 E 0 A_FaceTarget
-			GE32 E 6
-			GE32 F 0 A_Recoil(-0.25) GE32 F 0 A_FaceTarget
-			GE32 F 6
-			GE32 G 0 A_Recoil(-0.25) GE32 G 0 A_FaceTarget
-			GE32 G 6
-			GE32 H 0 A_Recoil(-0.25) GE32 H 0 A_FaceTarget
-			GE32 H 6
-			GE32 I 0 A_Recoil(-0.25) GE32 I 0 A_FaceTarget
-			GE32 I 6
-			GE32 J 0 A_Recoil(-0.25) GE32 J 0 A_FaceTarget
-			GE32 J 6 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF32 A 0 A_SetArg(0,40)
+			GF32 A 0 A_SetArg(1,5)
+			GF32 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireWalkBothGuns")
+			GF32 A 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
+			GF32 A 0 A_Recoil(-0.25) GF32 A 0 A_FaceTarget
+			GF32 A 6
+			GF32 B 0 A_Recoil(-0.25) GF32 B 0 A_FaceTarget
+			GF32 B 6
+			GF32 C 0 A_Recoil(-0.25) GF32 C 0 A_FaceTarget
+			GF32 C 6
+			GF32 D 0 A_Recoil(-0.25) GF32 D 0 A_FaceTarget
+			GF32 D 6
+			GF32 E 0 A_Recoil(-0.25) GF32 E 0 A_FaceTarget
+			GF32 E 6
+			GF32 F 0 A_Recoil(-0.25) GF32 F 0 A_FaceTarget
+			GF32 F 6
+			GF32 G 0 A_Recoil(-0.25) GF32 G 0 A_FaceTarget
+			GF32 G 6
+			GF32 H 0 A_Recoil(-0.25) GF32 H 0 A_FaceTarget
+			GF32 H 6
+			GF32 I 0 A_Recoil(-0.25) GF32 I 0 A_FaceTarget
+			GF32 I 6
+			GF32 J 0 A_Recoil(-0.25) GF32 J 0 A_FaceTarget
+			GF32 J 6 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			Goto See
 		FireSingleHandedDualRun:
-			GE33 A 0 A_SetArg(0,40)
-			GE33 A 0 A_SetArg(1,5)
-			GE33 A 0 A_GiveInventory("Goldeneye_DecAnimation_RunBothFire")
-			GE33 A 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
+			GF33 A 0 A_SetArg(0,40)
+			GF33 A 0 A_SetArg(1,5)
+			GF33 A 0 A_GiveInventory("Goldeneye_DecAnimation_RunBothFire")
+			GF33 A 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker",1)
 		FireSingleHandedDualRunLoop:
-			GE33 A 0 A_Recoil(-1) GE33 A 0 A_FaceTarget
-			GE33 A 6
-			GE33 B 0 A_Recoil(-1) GE33 B 0 A_FaceTarget
-			GE33 B 6
-			GE33 C 0 A_Recoil(-1) GE33 C 0 A_FaceTarget
-			GE33 C 6
-			GE33 D 0 A_Recoil(-1) GE33 D 0 A_FaceTarget
-			GE33 D 6
-			GE33 E 0 A_Recoil(-1) GE33 E 0 A_FaceTarget
-			GE33 E 6
-			GE33 F 0 A_Recoil(-1) GE33 F 0 A_FaceTarget
-			GE33 F 6
-			GE33 G 0 A_Recoil(-1) GE33 G 0 A_FaceTarget
-			GE33 G 6
-			GE33 A 0 A_Jump(128,"FireSingleHandedDualRunLoop")
-			GE33 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF33 A 0 A_Recoil(-1) GF33 A 0 A_FaceTarget
+			GF33 A 6
+			GF33 B 0 A_Recoil(-1) GF33 B 0 A_FaceTarget
+			GF33 B 6
+			GF33 C 0 A_Recoil(-1) GF33 C 0 A_FaceTarget
+			GF33 C 6
+			GF33 D 0 A_Recoil(-1) GF33 D 0 A_FaceTarget
+			GF33 D 6
+			GF33 E 0 A_Recoil(-1) GF33 E 0 A_FaceTarget
+			GF33 E 6
+			GF33 F 0 A_Recoil(-1) GF33 F 0 A_FaceTarget
+			GF33 F 6
+			GF33 G 0 A_Recoil(-1) GF33 G 0 A_FaceTarget
+			GF33 G 6
+			GF33 A 0 A_Jump(128,"FireSingleHandedDualRunLoop")
+			GF33 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			Goto See			
 		FireTwoHanded:
 			TNT1 A 0 A_Jump(256, "FireTwoHandedAimBow", "FireTwoHandedAimHip", "FireTwoHandedAimToFire", "FireTwoHandedCrouch", "FireTwoHandedJumpToLeft", "FireTwoHandedJumpToRight", "FireTwoHandedRollLeft", "FireTwoHandedRollRight", "FireTwoHandedRun")
 			Goto FireTwoHandedAimBow
 		FireTwoHandedAimBow:
-			GE18 A 0 A_SetArg(0,40)
-			GE18 A 0 A_SetArg(1,5)
-			GE18 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimBow")
-			GE18 ABCDE 6 A_FaceTarget
-			GE18 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE18 FGFGFG 6 A_FaceTarget
-			GE18 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE18 HIJK 6 A_FaceTarget
+			GF18 A 0 A_SetArg(0,40)
+			GF18 A 0 A_SetArg(1,5)
+			GF18 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimBow")
+			GF18 ABCDE 6 A_FaceTarget
+			GF18 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF18 FGFGFG 6 A_FaceTarget
+			GF18 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF18 HIJK 6 A_FaceTarget
 			Goto See
 		FireTwoHandedAimHip:
-			GE19 A 0 A_SetArg(0,32)
-			GE19 A 0 A_SetArg(1,5)
-			GE19 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimHip")
-			GE19 ABCDE 6 A_FaceTarget
-			GE19 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE18 FGFGFGFG 6 A_FaceTarget
-			GE19 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE19 HIJKL 6 A_FaceTarget
+			GF19 A 0 A_SetArg(0,32)
+			GF19 A 0 A_SetArg(1,5)
+			GF19 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimHip")
+			GF19 ABCDE 6 A_FaceTarget
+			GF19 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF18 FGFGFGFG 6 A_FaceTarget
+			GF19 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF19 HIJKL 6 A_FaceTarget
 			Goto See
 		FireTwoHandedAimToFire:
-			GE20 A 0 A_SetArg(0,40)
-			GE20 A 0 A_SetArg(1,7)
-			GE20 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimToFire")
-			GE20 ABCDEFG 6 A_FaceTarget
-			GE20 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE20 FGFGFGHI 6 A_FaceTarget
-			GE20 J 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE20 JKLMN 6 A_FaceTarget
+			GF20 A 0 A_SetArg(0,40)
+			GF20 A 0 A_SetArg(1,7)
+			GF20 A 0 A_GiveInventory("Goldeneye_DecAnimation_AimToFire")
+			GF20 ABCDEFG 6 A_FaceTarget
+			GF20 F 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF20 FGFGFGHI 6 A_FaceTarget
+			GF20 J 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF20 JKLMN 6 A_FaceTarget
 			Goto See
 		FireTwoHandedCrouch:
-			GE21 A 0 A_SetArg(0,28)
-			GE21 A 0 A_SetArg(1,5)
-			GE21 A 0 A_GiveInventory("Goldeneye_DecAnimation_CrouchFire")
-			GE21 ABCDEFG 6 A_FaceTarget
-			GE21 H 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE21 HIHIHI 6 A_FaceTarget
-			GE21 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE21 HJKLMNOP 6 A_FaceTarget
+			GF21 A 0 A_SetArg(0,28)
+			GF21 A 0 A_SetArg(1,5)
+			GF21 A 0 A_GiveInventory("Goldeneye_DecAnimation_CrouchFire")
+			GF21 ABCDEFG 6 A_FaceTarget
+			GF21 H 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF21 HIHIHI 6 A_FaceTarget
+			GF21 H 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF21 HJKLMNOP 6 A_FaceTarget
 			Goto See
 		FireTwoHandedJumpToLeft:
-			GE27 A 0 A_SetArg(0,40)
-			GE27 A 0 A_SetArg(1,5)
-			GE27 A 0 A_GiveInventory("Goldeneye_DecAnimation_JumpToLeftFire")
-			GE27 ABCDEF 6 A_FaceTarget	
-			GE27 G 0 A_ChangeVelocity(0,4,0, CVF_Relative)
-			GE27 GHIJKL 6 A_FaceTarget
-			GE27 M 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE27 MNO 6 A_FaceTarget
-			GE27 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE27 PQR 6 A_FaceTarget
+			GF27 A 0 A_SetArg(0,40)
+			GF27 A 0 A_SetArg(1,5)
+			GF27 A 0 A_GiveInventory("Goldeneye_DecAnimation_JumpToLeftFire")
+			GF27 ABCDEF 6 A_FaceTarget	
+			GF27 G 0 A_ChangeVelocity(0,4,0, CVF_Relative)
+			GF27 GHIJKL 6 A_FaceTarget
+			GF27 M 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF27 MNO 6 A_FaceTarget
+			GF27 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF27 PQR 6 A_FaceTarget
 			Goto See
 		FireTwoHandedJumpToRight:
-			GE28 A 0 A_SetArg(0,40)
-			GE28 A 0 A_SetArg(1,5)
-			GE28 A 0 A_GiveInventory("Goldeneye_DecAnimation_JumpToRightFire")
-			GE28 ABCDEFGH 6 A_FaceTarget
-			GE28 I 0 A_ChangeVelocity(0,-4,0, CVF_Relative)
-			GE28 IJKLMNOP 6 A_FaceTarget
-			GE28 Q 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE28 QRSTUV 6 A_FaceTarget
-			GE28 W 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE28 WXYZ 6 A_FaceTarget
+			GF28 A 0 A_SetArg(0,40)
+			GF28 A 0 A_SetArg(1,5)
+			GF28 A 0 A_GiveInventory("Goldeneye_DecAnimation_JumpToRightFire")
+			GF28 ABCDEFGH 6 A_FaceTarget
+			GF28 I 0 A_ChangeVelocity(0,-4,0, CVF_Relative)
+			GF28 IJKLMNOP 6 A_FaceTarget
+			GF28 Q 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF28 QRSTUV 6 A_FaceTarget
+			GF28 W 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF28 WXYZ 6 A_FaceTarget
 			Goto See
 		FireTwoHandedRollLeft:
-			GE23 A 0 A_SetArg(0,28)
-			GE23 A 0 A_SetArg(1,5)
-			GE23 A 0 A_GiveInventory("Goldeneye_DecAnimation_RollLeftFire")
-			GE23 ABCDEFGH 6 A_FaceTarget
-			GE23 I 0 A_ChangeVelocity(0,4,0, CVF_Relative)
-			GE23 IJKLMNOPQRS 6 A_FaceTarget
-			GE23 T 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE23 TUTUTUVWX 6 A_FaceTarget
-			GE23 YZ 6 A_FaceTarget
-			GE24 A 6 A_FaceTarget
-			GE24 B 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE24 BCDEF 6 A_FaceTarget
+			GF23 A 0 A_SetArg(0,28)
+			GF23 A 0 A_SetArg(1,5)
+			GF23 A 0 A_GiveInventory("Goldeneye_DecAnimation_RollLeftFire")
+			GF23 ABCDEFGH 6 A_FaceTarget
+			GF23 I 0 A_ChangeVelocity(0,4,0, CVF_Relative)
+			GF23 IJKLMNOPQRS 6 A_FaceTarget
+			GF23 T 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF23 TUTUTUVWX 6 A_FaceTarget
+			GF23 YZ 6 A_FaceTarget
+			GF24 A 6 A_FaceTarget
+			GF24 B 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF24 BCDEF 6 A_FaceTarget
 			Goto See
 		FireTwoHandedRollRight:
-			GE25 A 0 A_SetArg(0,20)
-			GE25 A 0 A_SetArg(1,5)
-			GE25 A 0 A_GiveInventory("Goldeneye_DecAnimation_RollRightFire")
-			GE25 ABCDEF 6 A_FaceTarget
-			GE25 G 0 A_ChangeVelocity(0,-4,0, CVF_Relative)
-			GE25 GHIJKLMNO 6 A_FaceTarget
-			GE25 P 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
-			GE25 PRVXZ 6 A_FaceTarget
-			GE26 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
-			GE26 ABC 6 A_FaceTarget
-			GE26 DF 6 A_FaceTarget
+			GF25 A 0 A_SetArg(0,20)
+			GF25 A 0 A_SetArg(1,5)
+			GF25 A 0 A_GiveInventory("Goldeneye_DecAnimation_RollRightFire")
+			GF25 ABCDEF 6 A_FaceTarget
+			GF25 G 0 A_ChangeVelocity(0,-4,0, CVF_Relative)
+			GF25 GHIJKLMNO 6 A_FaceTarget
+			GF25 P 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF25 PRVXZ 6 A_FaceTarget
+			GF26 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF26 ABC 6 A_FaceTarget
+			GF26 DF 6 A_FaceTarget
 			Goto See
 		FireTwoHandedRun:
-			GE33 A 0 A_SetArg(0,34)
-			GE33 A 0 A_SetArg(1,5)
-			GE33 A 0 A_GiveInventory("Goldeneye_DecAnimation_RunFire")
-			GE33 A 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
+			GF33 A 0 A_SetArg(0,34)
+			GF33 A 0 A_SetArg(1,5)
+			GF33 A 0 A_GiveInventory("Goldeneye_DecAnimation_RunFire")
+			GF33 A 0 ACS_NamedExecuteWithResult("Goldfinger_EnemyAttacker")
 		FireTwoHandedRunLoop:
-			GE33 A 0 A_Recoil(-1) GE33 A 0 A_FaceTarget
-			GE33 A 6
-			GE33 B 0 A_Recoil(-1) GE33 B 0 A_FaceTarget
-			GE33 B 6
-			GE33 C 0 A_Recoil(-1) GE33 C 0 A_FaceTarget
-			GE33 C 6
-			GE33 D 0 A_Recoil(-1) GE33 D 0 A_FaceTarget
-			GE33 D 6
-			GE33 E 0 A_Recoil(-1) GE33 E 0 A_FaceTarget
-			GE33 E 6
-			GE33 F 0 A_Recoil(-1) GE33 F 0 A_FaceTarget
-			GE33 F 6
-			GE22 A 0 A_Jump(128,"FireTwoHandedRunLoop")
-			GE22 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
+			GF33 A 0 A_Recoil(-1) GF33 A 0 A_FaceTarget
+			GF33 A 6
+			GF33 B 0 A_Recoil(-1) GF33 B 0 A_FaceTarget
+			GF33 B 6
+			GF33 C 0 A_Recoil(-1) GF33 C 0 A_FaceTarget
+			GF33 C 6
+			GF33 D 0 A_Recoil(-1) GF33 D 0 A_FaceTarget
+			GF33 D 6
+			GF33 E 0 A_Recoil(-1) GF33 E 0 A_FaceTarget
+			GF33 E 6
+			GF33 F 0 A_Recoil(-1) GF33 F 0 A_FaceTarget
+			GF33 F 6
+			GF22 A 0 A_Jump(128,"FireTwoHandedRunLoop")
+			GF22 A 0 A_GiveInventory("GoldeneyeEnemyKillAttack")
 			Goto See
 		FireOddJob:
 			TNT1 A 0 A_Jump(256, "FireOddJobStepForward","FireOddJobKneel")
 			Goto FireOddJobStepForward
 		FireOddJobStepForward:
-			GE15 A 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
-			GE15 A 0 A_SetArg(0,40)
-			GE15 A 0 A_SetArg(1,5)
-			GE15 A 0 A_GiveInventory("Goldeneye_OddJob_AttachHatGun")
-			GE15 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForward")
-			GE15 ABCDE 4 A_FaceTarget
-			GE15 F 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
-			GE15 F 0 A_CustomMissile("Goldeneye_OddJobHat",28,5,0)
-			GE15 F 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
-			GE15 FGH 4 A_FaceTarget
+			GF15 A 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
+			GF15 A 0 A_SetArg(0,40)
+			GF15 A 0 A_SetArg(1,5)
+			GF15 A 0 A_GiveInventory("Goldeneye_OddJob_AttachHatGun")
+			GF15 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForward")
+			GF15 ABCDE 4 A_FaceTarget
+			GF15 F 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
+			GF15 F 0 A_CustomMissile("Goldeneye_OddJobHat",28,5,0)
+			GF15 F 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
+			GF15 FGH 4 A_FaceTarget
 		FireOddJobStepForwardEnd:
-			GE15 I 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardEnd")
-			GE15 IJKLMNOPQRSTUVW 4
-			GE15 A 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
-			GE15 A 0 A_GiveInventory("Goldeneye_OddJob_RestoreHat")
+			GF15 I 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardEnd")
+			GF15 IJKLMNOPQRSTUVW 4
+			GF15 A 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
+			GF15 A 0 A_GiveInventory("Goldeneye_OddJob_RestoreHat")
 			Goto See
 		FireOddJobKneel:
-			GE16 A 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
-			GE16 A 0 A_SetArg(0,28)
-			GE16 A 0 A_SetArg(1,5)
-			GE16 A 0 A_GiveInventory("Goldeneye_OddJob_AttachHatGun")
-			GE16 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHanded")
-			GE16 ABCDEFGHIJKLMNOP 4 A_FaceTarget
-			GE16 Q 0 A_CustomMissile("Goldeneye_OddJobHat",20,5,0)
-			GE16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
-			GE16 QRST 4 A_FaceTarget
+			GF16 A 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
+			GF16 A 0 A_SetArg(0,28)
+			GF16 A 0 A_SetArg(1,5)
+			GF16 A 0 A_GiveInventory("Goldeneye_OddJob_AttachHatGun")
+			GF16 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHanded")
+			GF16 ABCDEFGHIJKLMNOP 4 A_FaceTarget
+			GF16 Q 0 A_CustomMissile("Goldeneye_OddJobHat",20,5,0)
+			GF16 Q 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
+			GF16 QRST 4 A_FaceTarget
 		FireOddJobKneelEnd:
-			GE16 U 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedEnd")
-			GE16 UVWXYZ 4
-			GE17 ABCDEFGHIJKLMNOPQ 3
-			GE16 A 0 A_GiveInventory("Goldeneye_OddJob_RestoreHat")
+			GF16 U 0 A_GiveInventory("Goldeneye_DecAnimation_FireKneelOneHandedEnd")
+			GF16 UVWXYZ 4
+			GF17 ABCDEFGHIJKLMNOPQ 3
+			GF16 A 0 A_GiveInventory("Goldeneye_OddJob_RestoreHat")
 			Goto See			
 		Pain:
 			TNT1 A 0 A_GiveInventory("Goldeneye_DecAnimation_RestoreDecoupling")
@@ -565,100 +565,100 @@ Actor Goldfinger_EnemyBase : Goldeneye_EnemyBase
 			TNT1 A 0 A_Jump(256, "Pain.Neck","Pain.LeftShoulder","Pain.RightShoulder","Pain.LeftArm","Pain.RightArm","Pain.LeftHand","Pain.RightHand","Pain.Crotch","Pain.Butt","Pain.Butt2","Pain.LeftLeg","Pain.RightLeg")
 			Goto Pain.Neck
 		Pain.Neck:
-			GE35 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitNeck")
-			GE35 A 13 A_ChangeFlag(NOPAIN, true)
-			GE35 BCD 14
-			GE35 E 13 A_Pain
-			GE35 FGHI 13
-			GE35 J 14 A_ChangeFlag(NOPAIN, false)
+			GF35 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitNeck")
+			GF35 A 13 A_ChangeFlag(NOPAIN, true)
+			GF35 BCD 14
+			GF35 E 13 A_Pain
+			GF35 FGHI 13
+			GF35 J 14 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftShoulder: //+
-			GE36 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftShoulder")
-			GE36 A 5 A_ChangeFlag(NOPAIN, true)
-			GE36 BC 6
-			GE36 D 6 A_Pain
-			GE36 EFGHI 5 
-			GE36 J 6 A_ChangeFlag(NOPAIN, false)
+			GF36 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftShoulder")
+			GF36 A 5 A_ChangeFlag(NOPAIN, true)
+			GF36 BC 6
+			GF36 D 6 A_Pain
+			GF36 EFGHI 5 
+			GF36 J 6 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightShoulder:
-			GE37 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightShoulder")
-			GE37 A 7 A_ChangeFlag(NOPAIN, true)
-			GE37 BCDEFG 7
-			GE37 H 7 A_Pain
-			GE37 IJKLMNO 7
-			GE37 P 7 A_ChangeFlag(NOPAIN, false)
+			GF37 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightShoulder")
+			GF37 A 7 A_ChangeFlag(NOPAIN, true)
+			GF37 BCDEFG 7
+			GF37 H 7 A_Pain
+			GF37 IJKLMNO 7
+			GF37 P 7 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftArm:
-			GE38 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftArm")
-			GE38 A 5 A_ChangeFlag(NOPAIN, true)
-			GE38 BCD 6
-			GE38 E 5 A_Pain
-			GE38 DCB 6
-			GE38 A 5 A_ChangeFlag(NOPAIN, false)
+			GF38 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftArm")
+			GF38 A 5 A_ChangeFlag(NOPAIN, true)
+			GF38 BCD 6
+			GF38 E 5 A_Pain
+			GF38 DCB 6
+			GF38 A 5 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightArm:
-			GE39 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightArm")
-			GE39 A 8 A_ChangeFlag(NOPAIN, true)
-			GE39 BCD 8
-			GE39 E 8 A_Pain
-			GE39 DCB 8
-			GE39 A 8 A_ChangeFlag(NOPAIN, false)
+			GF39 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightArm")
+			GF39 A 8 A_ChangeFlag(NOPAIN, true)
+			GF39 BCD 8
+			GF39 E 8 A_Pain
+			GF39 DCB 8
+			GF39 A 8 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftHand:
-			GE40 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftHand")
-			GE40 A 9 A_ChangeFlag(NOPAIN, true)
-			GE40 BC 9
-			GE40 D 9 A_Pain
-			GE40 EFG 9
-			GE40 H 9 A_ChangeFlag(NOPAIN, false)
+			GF40 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftHand")
+			GF40 A 9 A_ChangeFlag(NOPAIN, true)
+			GF40 BC 9
+			GF40 D 9 A_Pain
+			GF40 EFG 9
+			GF40 H 9 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightHand:
-			GE41 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightArm")
-			GE41 A 12 A_ChangeFlag(NOPAIN, true)
-			GE41 BCDE 13
-			GE41 F 13 A_Pain
-			GE41 GHIJ 13
-			GE41 K 13 A_ChangeFlag(NOPAIN, false)
+			GF41 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightArm")
+			GF41 A 12 A_ChangeFlag(NOPAIN, true)
+			GF41 BCDE 13
+			GF41 F 13 A_Pain
+			GF41 GHIJ 13
+			GF41 K 13 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.Crotch:	
-			GE42 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitCrotch")
-			GE42 A 22 A_ChangeFlag(NOPAIN, true)
-			GE42 BCDEFGHIJKLM 22
-			GE42 N 22 A_Pain
-			GE42 OPQRSTUVWXYZ 22
-			GE42 A 22 A_ChangeFlag(NOPAIN, false)
+			GF42 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitCrotch")
+			GF42 A 22 A_ChangeFlag(NOPAIN, true)
+			GF42 BCDEFGHIJKLM 22
+			GF42 N 22 A_Pain
+			GF42 OPQRSTUVWXYZ 22
+			GF42 A 22 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.Butt:
-			GE43 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitButt")
-			GE43 A 13 A_ChangeFlag(NOPAIN, true)
-			GE43 BCDEFGH 13
-			GE43 I 13 A_Pain
-			GE43 JKLMNOPQ 12
-			GE43 R 13 A_ChangeFlag(NOPAIN, false)
+			GF43 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitButt")
+			GF43 A 13 A_ChangeFlag(NOPAIN, true)
+			GF43 BCDEFGH 13
+			GF43 I 13 A_Pain
+			GF43 JKLMNOPQ 12
+			GF43 R 13 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.Butt2:
-			GE44 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitButt2")
-			GE44 A 12 A_ChangeFlag(NOPAIN, true)
-			GE44 BCDEF 12
-			GE44 G 12 A_Pain
-			GE44 HIJKLM 13
-			GE44 N 12 A_ChangeFlag(NOPAIN, false)
+			GF44 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitButt2")
+			GF44 A 12 A_ChangeFlag(NOPAIN, true)
+			GF44 BCDEF 12
+			GF44 G 12 A_Pain
+			GF44 HIJKLM 13
+			GF44 N 12 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.LeftLeg:
-			GE45 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftLeg")
-			GE45 A 11 A_ChangeFlag(NOPAIN, true)
-			GE45 BCD 11
-			GE45 E 11 A_Pain
-			GE45 FGHI 11
-			GE45 J 11 A_ChangeFlag(NOPAIN, false)
+			GF45 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitLeftLeg")
+			GF45 A 11 A_ChangeFlag(NOPAIN, true)
+			GF45 BCD 11
+			GF45 E 11 A_Pain
+			GF45 FGHI 11
+			GF45 J 11 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Pain.RightLeg:
-			GE45 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightLeg")
-			GE45 A 11 A_ChangeFlag(NOPAIN, true)
-			GE45 BCDEF 11
-			GE45 G 11 A_Pain
-			GE45 HIJKLMN 11
-			GE45 N 11 A_ChangeFlag(NOPAIN, false)
+			GF45 A 0 A_GiveInventory("Goldeneye_DecAnimation_HitRightLeg")
+			GF45 A 11 A_ChangeFlag(NOPAIN, true)
+			GF45 BCDEF 11
+			GF45 G 11 A_Pain
+			GF45 HIJKLMN 11
+			GF45 N 11 A_ChangeFlag(NOPAIN, false)
 			Goto See
 		Death:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) != 1, 2)
@@ -674,183 +674,183 @@ Actor Goldfinger_EnemyBase : Goldeneye_EnemyBase
 			TNT1 A 0 ACS_NamedExecuteWithResult("Goldeneye_RemoveGuns")
 			TNT1 A 0 A_Jump(256, "DeathFaceGround", "DeathCrossFeet",  "DeathOnKnees", "DeathOnSide", "DeathFaceUp", "DeathFaceUpFlip", "DeathHeadShot", "DeathFlyBack", "DeathJumpBack", "DeathSprawlOut", "DeathFetalLeft", "DeathFetalRight", "DeathNeck", "DeathShoulderBack", "DeathStaggerWall")
 		DeathFaceGround: //+
-			GE47 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFaceGround")
-			GE47 A 10 
-			GE47 B 10 A_Scream
-			GE47 C 10 
-			GE47 D 10
-			GE47 E 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE47 FG 10
-			GE47 HI 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE47 JK 10 
-			GE47 L 10 A_KillMaster
-			GE47 L 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE47 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
+			GF47 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFaceGround")
+			GF47 A 10 
+			GF47 B 10 A_Scream
+			GF47 C 10 
+			GF47 D 10
+			GF47 E 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF47 FG 10
+			GF47 HI 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF47 JK 10 
+			GF47 L 10 A_KillMaster
+			GF47 L 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF47 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
 			stop
 		DeathFlyBack:
-			GE48 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFlyBack")
-			GE48 A 8
-			GE48 B 8 A_Scream
-			GE48 CDE 8
-			GE48 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE48 GHIJKL 8
-			GE48 M 8 A_KillMaster
-			GE48 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE48 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			GF48 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFlyBack")
+			GF48 A 8
+			GF48 B 8 A_Scream
+			GF48 CDE 8
+			GF48 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF48 GHIJKL 8
+			GF48 M 8 A_KillMaster
+			GF48 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF48 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			stop
 		Death.GoldeneyeHead:
 		DeathHeadShot:
-			GE49 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathHeadShot")
-			GE49 A 10
-			GE49 B 10 A_Scream
-			GE49 CDEFGHIJKLMNOPQRST 10
-			GE49 U 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE49 V 10
-			GE49 W 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE49 XYZ 10
-			GE50 ABCD 10
-			GE50 E 10 A_KillMaster
-			GE50 E 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE50 EEEEEEEEEEEEEEEEEEEEEEE 2 A_FadeOut(0.05)
+			GF49 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathHeadShot")
+			GF49 A 10
+			GF49 B 10 A_Scream
+			GF49 CDEFGHIJKLMNOPQRST 10
+			GF49 U 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF49 V 10
+			GF49 W 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF49 XYZ 10
+			GF50 ABCD 10
+			GF50 E 10 A_KillMaster
+			GF50 E 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF50 EEEEEEEEEEEEEEEEEEEEEEE 2 A_FadeOut(0.05)
 			Stop
 		DeathNeck:
-			GE51 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathNeck")
-			GE51 A 10
-			GE51 B 10 A_Scream
-			GE51 CDEFGHIJ 10 
-			GE51 K 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE51 LMNOPQRSTUVWXY 10
-			GE51 Z 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE52 ABCDEFGHEFGHEFGHEFGHEFGH 10
-			GE52 I 10 A_KillMaster
-			GE52 I 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE52 IIIIIIIIIIIIIIIIIIIIIII 2 A_FadeOut(0.05)
+			GF51 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathNeck")
+			GF51 A 10
+			GF51 B 10 A_Scream
+			GF51 CDEFGHIJ 10 
+			GF51 K 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF51 LMNOPQRSTUVWXY 10
+			GF51 Z 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF52 ABCDEFGHEFGHEFGHEFGHEFGH 10
+			GF52 I 10 A_KillMaster
+			GF52 I 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF52 IIIIIIIIIIIIIIIIIIIIIII 2 A_FadeOut(0.05)
 			Stop
 		DeathOnKnees: //+
-			GE53 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathOnKnees")
-			GE53 A 10
-			GE53 B 10 
-			GE53 C 10 A_Scream
-			GE53 DEFGH 10
-			GE53 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE53 JKL 10
-			GE53 M 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE53 N 10
-			GE53 O 10 A_KillMaster
-			GE53 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE53 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			GF53 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathOnKnees")
+			GF53 A 10
+			GF53 B 10 
+			GF53 C 10 A_Scream
+			GF53 DEFGH 10
+			GF53 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF53 JKL 10
+			GF53 M 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF53 N 10
+			GF53 O 10 A_KillMaster
+			GF53 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF53 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			stop
 		DeathOnSide:
-			GE54 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathOnSide")
-			GE54 A 10 A_Scream
-			GE54 B 10
-			GE54 CDEFG 10
-			GE54 H 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE54 IJIJIJIJIJKLMN 10
-			GE54 O 10 A_KillMaster
-			GE54 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE54 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			GF54 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathOnSide")
+			GF54 A 10 A_Scream
+			GF54 B 10
+			GF54 CDEFG 10
+			GF54 H 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF54 IJIJIJIJIJKLMN 10
+			GF54 O 10 A_KillMaster
+			GF54 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF54 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			stop
 		DeathShoulderBack:
-			GE55 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathShoulderBack")
-			GE55 A 10
-			GE55 B 10 A_Scream
-			GE55 CDEFGH 10
-			GE55 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE55 JKL 10
-			GE55 M 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE55 N 10
-			GE55 O 8 A_KillMaster
-			GE55 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE55 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
+			GF55 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathShoulderBack")
+			GF55 A 10
+			GF55 B 10 A_Scream
+			GF55 CDEFGH 10
+			GF55 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF55 JKL 10
+			GF55 M 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF55 N 10
+			GF55 O 8 A_KillMaster
+			GF55 O 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF55 OOOOOOOOOOOOOOOOOOOOOOO 2 A_FadeOut(0.05)
 			Stop
 		DeathSprawlOut: //+
-			GE56 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathSprawlOut")
-			GE56 A 7
-			GE56 B 7 A_Scream
-			GE56 CDEFG 7 
-			GE56 H 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE56 IJK 7
-			GE56 L 7 A_KillMaster
-			GE56 L 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE56 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
+			GF56 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathSprawlOut")
+			GF56 A 7
+			GF56 B 7 A_Scream
+			GF56 CDEFG 7 
+			GF56 H 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF56 IJK 7
+			GF56 L 7 A_KillMaster
+			GF56 L 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF56 LLLLLLLLLLLLLLLLLLLLLLL 2 A_FadeOut(0.05)
 			stop
 		DeathCrossFeet:
-			GE57 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathCrossFeet")
-			GE57 A 7
-			GE57 B 7 A_Scream
-			GE57 C 7 
-			GE57 D 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE57 EFGHIJKLMNOPQRST 7
-			GE57 U 7 A_KillMaster
-			GE57 U 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE57 UUUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
+			GF57 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathCrossFeet")
+			GF57 A 7
+			GF57 B 7 A_Scream
+			GF57 C 7 
+			GF57 D 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF57 EFGHIJKLMNOPQRST 7
+			GF57 U 7 A_KillMaster
+			GF57 U 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF57 UUUUUUUUUUUUUUUUUUUUUUU 2 A_FadeOut(0.05)
 			stop
 		DeathFaceUp:
-			GE58 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFaceUp")
-			GE58 A 6
-			GE58 B 6 A_Scream
-			GE58 CDEFGH 6 
-			GE58 I 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE58 JKLMNOPQRSTUVWX 6 
-			GE58 Y 6 A_KillMaster
-			GE58 Y 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE58 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
+			GF58 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFaceUp")
+			GF58 A 6
+			GF58 B 6 A_Scream
+			GF58 CDEFGH 6 
+			GF58 I 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF58 JKLMNOPQRSTUVWX 6 
+			GF58 Y 6 A_KillMaster
+			GF58 Y 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF58 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
 			Stop
 		DeathFaceUpFlip:
-			GE59 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFaceUpFlip")
-			GE59 A 7
-			GE59 B 7 A_Scream
-			GE59 CDE 7
-			GE59 F 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE59 GHIJKLMNOPQ 7
-			GE59 R 7 A_KillMaster
-			GE59 R 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE59 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
+			GF59 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFaceUpFlip")
+			GF59 A 7
+			GF59 B 7 A_Scream
+			GF59 CDE 7
+			GF59 F 7 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF59 GHIJKLMNOPQ 7
+			GF59 R 7 A_KillMaster
+			GF59 R 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF59 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
 			Stop
 		DeathFetalLeft:
-			GE60 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFetalLeft")
-			GE60 A 6
-			GE60 B 6 A_Scream
-			GE60 CDEFGHI 6
-			GE60 J 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE60 KLMNOPQRSTUVW 6
-			GE60 X 6 A_KillMaster
-			GE60 X 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE60 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
+			GF60 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFetalLeft")
+			GF60 A 6
+			GF60 B 6 A_Scream
+			GF60 CDEFGHI 6
+			GF60 J 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF60 KLMNOPQRSTUVW 6
+			GF60 X 6 A_KillMaster
+			GF60 X 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF60 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
 			Stop
 		DeathFetalRight:
-			GE61 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFetalRight")
-			GE61 A 6
-			GE61 B 6 A_Scream
-			GE61 CDEFGH 6
-			GE61 I 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE61 JKLMNOPQRSTUVW 6
-			GE61 X 6 A_KillMaster
-			GE61 X 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE61 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
+			GF61 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathFetalRight")
+			GF61 A 6
+			GF61 B 6 A_Scream
+			GF61 CDEFGH 6
+			GF61 I 6 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF61 JKLMNOPQRSTUVW 6
+			GF61 X 6 A_KillMaster
+			GF61 X 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF61 YYYYYYYYYYYYYYYYYYYYYYY 2 A_FadeOut(0.05)
 			Stop
 		DeathJumpBack:
-			GE62 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathJumpBack")
-			GE62 A 8
-			GE62 B 8 A_Scream
-			GE62 CD 8 
-			GE62 E 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE62 FGHIJKLMNOPQ 8
-			GE62 R 8 A_KillMaster
-			GE62 R 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE62 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
+			GF62 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathJumpBack")
+			GF62 A 8
+			GF62 B 8 A_Scream
+			GF62 CD 8 
+			GF62 E 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF62 FGHIJKLMNOPQ 8
+			GF62 R 8 A_KillMaster
+			GF62 R 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF62 RRRRRRRRRRRRRRRRRRRRRRR 2 A_FadeOut(0.05)
 			stop
 		DeathStaggerWall:
-			GE63 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathStaggerWall")
-			GE63 A 10
-			GE63 B 10 A_Scream
-			GE63 CDEFGH 10
-			GE63 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE63 JKLMNO 10
-			GE63 P 10 A_KillMaster
-			GE63 P 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE63 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
+			GF63 A 0 A_GiveInventory("Goldeneye_DecAnimation_DeathStaggerWall")
+			GF63 A 10
+			GF63 B 10 A_Scream
+			GF63 CDEFGH 10
+			GF63 I 10 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF63 JKLMNO 10
+			GF63 P 10 A_KillMaster
+			GF63 P 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF63 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
 			Stop
 		XDeath:
 		Death.Explosive:
@@ -870,83 +870,83 @@ Actor Goldfinger_EnemyBase : Goldeneye_EnemyBase
 			TNT1 A 0 A_Jump(256,"DeathExplosionBack","DeathExplosionBack2","DeathExplosionForward","DeathExplosionForwardRoll","DeathExplosionLeft","DeathExplosionLeft2","DeathExplosionRight")
 			Goto DeathExplosionBack
 		DeathExplosionBack:
-			GE64 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionBack")
-			GE64 A 8
-			GE64 B 8 A_Scream
-			GE64 CDE 8
-			GE64 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE64 GHIJKL 8
-			GE64 M 8 A_KillMaster
-			GE64 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE64 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			GF64 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionBack")
+			GF64 A 8
+			GF64 B 8 A_Scream
+			GF64 CDE 8
+			GF64 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF64 GHIJKL 8
+			GF64 M 8 A_KillMaster
+			GF64 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF64 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionBack2:
-			GE65 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionBack2")
-			GE65 A 8
-			GE65 B 8 A_Scream
-			GE65 CDE 8
-			GE65 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE65 GHI 8
-			GE65 J 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE65 KL 8
-			GE65 M 8 A_KillMaster
-			GE65 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE65 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			GF65 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionBack2")
+			GF65 A 8
+			GF65 B 8 A_Scream
+			GF65 CDE 8
+			GF65 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF65 GHI 8
+			GF65 J 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF65 KL 8
+			GF65 M 8 A_KillMaster
+			GF65 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF65 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionForward:
-			GE66 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionForward")
-			GE66 A 8 
-			GE66 B 8 A_Scream
-			GE66 CDE 8
-			GE66 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE66 GHIJKL 8
-			GE66 M 8 A_KillMaster
-			GE66 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE66 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			GF66 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionForward")
+			GF66 A 8 
+			GF66 B 8 A_Scream
+			GF66 CDE 8
+			GF66 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF66 GHIJKL 8
+			GF66 M 8 A_KillMaster
+			GF66 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF66 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionForwardRoll:
-			GE67 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionForwardRoll")
-			GE67 A 8
-			GE67 B 8 A_Scream
-			GE67 CDE 8
-			GE67 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE67 GHIJKLMNO 8
-			GE67 P 8 A_KillMaster
-			GE67 P 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE67 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
+			GF67 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionForwardRoll")
+			GF67 A 8
+			GF67 B 8 A_Scream
+			GF67 CDE 8
+			GF67 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF67 GHIJKLMNO 8
+			GF67 P 8 A_KillMaster
+			GF67 P 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF67 PPPPPPPPPPPPPPPPPPPPPPP 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionLeft:
-			GE68 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionLeft")
-			GE68 A 8
-			GE68 B 8 A_Scream
-			GE68 CDE 8
-			GE68 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE68 GHIJKLM 8 
-			GE68 N 8 A_KillMaster
-			GE68 N 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE68 NNNNNNNNNNNNNNNNNNNNNNN 2 A_FadeOut(0.05)
+			GF68 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionLeft")
+			GF68 A 8
+			GF68 B 8 A_Scream
+			GF68 CDE 8
+			GF68 F 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF68 GHIJKLM 8 
+			GF68 N 8 A_KillMaster
+			GF68 N 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF68 NNNNNNNNNNNNNNNNNNNNNNN 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionLeft2:
-			GE69 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionLeft2")
-			GE69 A 8
-			GE69 B 8 A_Scream
-			GE69 CDEFG 8
-			GE69 H 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE69 IJKLMNOP 8
-			GE69 Q 8 A_KillMaster
-			GE69 Q 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE69 QQQQQQQQQQQQQQQQQQQQQQQ 2 A_FadeOut(0.05)
+			GF69 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionLeft2")
+			GF69 A 8
+			GF69 B 8 A_Scream
+			GF69 CDEFG 8
+			GF69 H 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF69 IJKLMNOP 8
+			GF69 Q 8 A_KillMaster
+			GF69 Q 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF69 QQQQQQQQQQQQQQQQQQQQQQQ 2 A_FadeOut(0.05)
 			Stop
 		DeathExplosionRight:
-			GE70 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionRight")
-			GE70 A 8
-			GE70 B 8 A_Scream
-			GE70 CD 8
-			GE70 E 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
-			GE70 FGHIJKL 8
-			GE70 M 8 A_KillMaster
-			GE70 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
-			GE70 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
+			GF70 A 0 A_GiveInventory("Goldeneye_DecAnimation_ExplosionRight")
+			GF70 A 8
+			GF70 B 8 A_Scream
+			GF70 CD 8
+			GF70 E 8 A_Playsound("Goldeneye/HitBody", CHAN_BODY)
+			GF70 FGHIJKL 8
+			GF70 M 8 A_KillMaster
+			GF70 M 0 A_JumpIf(ACS_NamedExecuteWithResult("ReMixerCVarCheck",8) == 1, "CorpsePersistence")
+			GF70 MMMMMMMMMMMMMMMMMMMMMMM 2 A_FadeOut(0.05)
 			Stop
 		Unfinished:
 			TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop TNT1 A 0 A_Stop
