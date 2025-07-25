@@ -382,9 +382,32 @@ Script "ReMixerSpawnScript" (int spawncode, int override, int monsterSlot) //668
 					break;
 
 				case 26:
+					int goldeneyeMode = GetCVar("mm_goldeneyemode");
+
 					if(GetCVar("samsara_zscriptready") != 1)
 					{
-						altSetSelect = 1;
+						altSetSelect = 2;
+						break;
+					}
+
+					switch(goldeneyeMode)
+					{
+						default:
+							altSetSelect = goldeneyeMode-1;
+							break;
+
+						case 0:
+							while(amountOfGameTypesForPickedSet != 0)
+							{
+								altSetSelect = random(0,maxAltSets);
+								if(amountOfGameTypesForPickedSet & 1<<altSetSelect)
+									break;
+							}
+							break;
+
+						case 3:
+							altSetSelect = random(0,1);
+							break;
 					}
 					break;
 
@@ -803,7 +826,7 @@ Script "ReMixer_PickSets" (void)
 
 	int clients = PlayerCount();
 	int usingAddons, bitindex, bitindex2, b, p;
-	int doomMode, wolfMode, dukeMode, shephardMode;
+	int doomMode, wolfMode, dukeMode, shephardMode, bondMode;
 
 	activeSets = 0;
 	activeSets2 = 0;
@@ -870,6 +893,12 @@ Script "ReMixer_PickSets" (void)
 									shephardMode = 1<<GetUserCvar(p,"samsara_cl_shephardmode");
 									if(!(amountOfGameTypes[b] & shephardMode))
 										amountOfGameTypes[b] += shephardMode;
+									break;
+
+								case 26:
+									bondMode = 1<<GetUserCvar(p,"samsara_cl_bondmode");
+									if(!(amountOfGameTypes[b] & bondMode))
+										amountOfGameTypes[b] += bondMode;
 									break;
 							}
 						}
@@ -943,6 +972,12 @@ Script "ReMixer_PickSets" (void)
 								shephardMode = 1<<GetUserCvar(p,"samsara_cl_shephardmode");
 								if(!(amountOfGameTypes[b] & shephardMode))
 									amountOfGameTypes[b] += shephardMode;
+								break;
+
+							case 26:
+								bondMode = 1<<GetUserCvar(p,"samsara_cl_bondmode");
+								if(!(amountOfGameTypes[b] & bondMode))
+									amountOfGameTypes[b] += bondMode;
 								break;
 						}
 					}
@@ -1030,6 +1065,12 @@ Script "ReMixer_PickSets" (void)
 								if(!(amountOfGameTypes[randnum] & shephardMode))
 									amountOfGameTypes[randnum] += shephardMode;
 								break;
+
+							case 26:
+								bondMode = 1<<GetUserCvar(p,"samsara_cl_bondmode");
+								if(!(amountOfGameTypes[randnum] & bondMode))
+									amountOfGameTypes[randnum] += bondMode;
+								break;
 						}
 					}
 				}
@@ -1111,6 +1152,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_dukemode", 1);
 		SetCVar("mm_rottmode", 0);
 		SetCVar("mm_halflifemode", 1);
+		SetCVar("mm_goldeneyemode", 1);
 
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 0);
@@ -1267,6 +1309,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_dukemode", 0);
 		SetCVar("mm_rottmode", 0);
 		SetCVar("mm_halflifemode", 0);
+		SetCVar("mm_goldeneyemode", 0);
 
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 0);
@@ -1423,6 +1466,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_dukemode", 0);
 		SetCVar("mm_rottmode", 2);
 		SetCVar("mm_halflifemode", 0);
+		SetCVar("mm_goldeneyemode", 0);
 
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 1);
@@ -1580,6 +1624,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_dukemode", 1);
 		SetCVar("mm_rottmode", 0);
 		SetCVar("mm_halflifemode", 1);
+		SetCVar("mm_goldeneyemode", 1);
 
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 0);
@@ -1736,6 +1781,7 @@ script "ReMixerPresetSelection" (void)
 		SetCVar("mm_dukemode", 3);
 		SetCVar("mm_rottmode", 2);
 		SetCVar("mm_halflifemode", 3);
+		SetCVar("mm_goldeneyemode", 3);
 
 		// Enemy Spawns
 		SetCVar("mm_doomspawns", 1);
