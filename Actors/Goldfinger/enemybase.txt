@@ -1,0 +1,138 @@
+Actor Goldfinger_IsGoldFinger64 : Boolean {}
+
+actor GoldfingerEnemyWeaponChooser : Trigger
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 ACS_NamedExecuteWithResult("GoldeneyeDrawEnemyFlash")
+			TNT1 A 0 A_SetArg(1,abs(args[1]))
+			TNT1 A 0 A_SetArg(3,args[0])
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_BodyPart",18,"PickupContinue")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_BodyPart",17,"JawsHeight")
+		PickupContinue:
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",28,"FireSilverPP7")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",26,"FireRCP90")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",25,"FireSniper")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",24,"FireRocket")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",23,"FireGrenade")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",22,"FireLaser")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",21,"FireLaser")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",20,"FireCougar")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",19,"FireCougar")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",18,"FireSniper")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",17,"FireAutoShotgun")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",16,"FireRCP90")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",15,"FireRCP90")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",14,"FireAR33")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",13,"FireAR33")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",12,"FirePhantom")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",11,"FirePhantom")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",10,"FireD5K")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",9,"FireD5K")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",8,"FireZMG")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",7,"FireZMG")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",6,"FireKF7")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",5,"FireKlobb")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",4,"FireKlobb")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",3,"FireDD44")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",2,"FireDD44")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",1,"FirePP7")
+			Goto Resolve
+		JawsHeight:
+			TNT1 A 0 A_SetArg(0,args[3]*1.2)
+			Goto PickupContinue
+		FirePP7:
+			TNT1 A 0 A_Playsound("Goldeneye/PP7Shot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", args[0], args[1], frandom(-1,1))	
+			Goto Resolve
+		FireDD44:
+			TNT1 A 0 A_Playsound("Goldeneye/DD44Shot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", args[0], args[1], frandom(-1,1))
+			Goto Resolve
+		FireKlobb:
+			TNT1 A 0 A_Playsound("Goldeneye/KlobbShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_KlobbTracerEnemy", args[0], args[1], frandom(-9,9))
+			Goto Resolve
+		FireKF7:
+			TNT1 A 0 A_Playsound("Goldeneye/KF7Shot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_KF7TracerEnemy", args[0], args[1], frandom(-4,4))
+			Goto Resolve
+		FireZMG:
+			TNT1 A 0 A_Playsound("Goldeneye/ZMGShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", args[0], args[1], frandom(-3,3))
+			Goto Resolve
+		FireD5K:
+			TNT1 A 0 A_Playsound("Goldeneye/D5KShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_D5KTracerEnemy", args[0], args[1], frandom(-2,2))
+			Goto Resolve
+		FirePhantom:
+			TNT1 A 0 A_Playsound("Goldeneye/PhantomShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", args[0], args[1], frandom(-5,5))
+			Goto Resolve
+		FireAR33:
+			TNT1 A 0 A_Playsound("Goldeneye/AR33Shot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_AR33TracerEnemy", args[0], args[1], frandom(-1,1))
+			Goto Resolve
+		FireRCP90:
+			TNT1 A 0 A_Playsound("Goldeneye/RCPShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_RCP90TracerEnemy", args[0], args[1], frandom(-2,2))
+			Goto Resolve
+		FireAutoShotgun:
+			TNT1 A 0 A_Playsound("Goldeneye/AutoShotgunShot", CHAN_WEAPON)
+			TNT1 AAAAA 0 A_CustomMissile("Goldeneye_AutoShotgunTracerEnemy", args[0], args[1], frandom(-11,11))
+			Goto Resolve
+		FireSniper:
+			TNT1 A 0 A_Playsound("Goldeneye/SniperShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_SniperTracerEnemy", args[0], args[1], 0)
+			Goto Resolve
+		FireCougar:
+			TNT1 A 0 A_Playsound("Goldeneye/CougarShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_CougarTracerEnemy", args[0], args[1], frandom(-1,1))
+			Goto Resolve
+		FireLaser:
+			TNT1 A 0 A_Playsound("Goldeneye/MoonRakerFire", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_LaserRayEnemy", args[0], args[1], 0)
+			Goto Resolve
+		FireGrenade:
+			TNT1 A 0 A_Playsound("Goldeneye/GLShot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_GrenadeLauncherProjectileEnemy", args[0], args[1], frandom(-4,4))
+			Goto Resolve
+		FireRocket:
+			TNT1 A 0 A_Playsound("Goldeneye/RocketLauncher", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_EnemyRocket", args[0], args[1], frandom(-4,4))
+			Goto Resolve
+		FireSilverPP7:
+			TNT1 A 0 A_Playsound("Goldeneye/SilverPP7Shot", CHAN_WEAPON)
+			TNT1 A 0 A_CustomMissile("Goldeneye_CougarTracerEnemy", args[0], args[1], 0)	
+			Goto Resolve
+		Resolve:
+			TNT1 A 0 A_SetArg(0,args[3])
+			Stop
+	}
+}
+
+Actor GoldfingerEnemyWeaponChooserDual : GoldeneyeEnemyWeaponChooser
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_SetArg(1,-args[1])
+			TNT1 A 0 A_SetArg(3,args[0])
+			TNT1 A 0 ACS_NamedExecuteWithResult("GoldeneyeDrawEnemyFlash",1)
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_BodyPart",18,"PickupContinue")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_BodyPart",17,"JawsHeight")
+		PickupContinue:
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",27,2)
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",26,"FireGrenade")
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GunPart",25,"FireKlobb")
+			TNT1 A 0 
+			Goto Super::PickupContinue
+		JawsHeight:
+			TNT1 A 0 A_SetArg(0,args[3]*1.2)
+			Goto PickupContinue
+		Resolve:
+			TNT1 A 0 A_SetArg(0,args[3])
+			Stop
+	}
+}

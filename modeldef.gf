@@ -1,0 +1,11 @@
+Model "Goldfinger_Korean"
+{
+   Path "Models/Goldeneye"
+   Animation 0 "base.iqm"
+   Model 0 "base.iqm"
+   Scale 0.03 0.03 0.03
+   RollOffset 90
+   AngleOffset 90
+   BaseFrame
+   MODELSAREATTACHMENTS
+}

@@ -4,7 +4,7 @@ str HatTypes[14] = { "", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "
 str GunTypes[28] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "DualRCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "DualLaser", "GrenadeL", "RocketL", "SCombo", "XCombo", "OddjobHat", "SilverPP7"};
 
 str GFGuardTypes[29] = { "AlpsGuard", "AuricGolf", "AuricOfficer", "AuricPool", "AuricRanch", "AuricSuit", "AuricTux", "CamoGuard", "ChinaGuard", "CrabKeyGuard", "DrNo", "GateKeeper", "GoldGuard", "Golfer", "GrayGuard", "Hazmat", "HazmatPink", "Kapungo", "KischArmy", "Korean", "Ling", "MeiLin", "MexGuard", "OddJob", "PlaneCrew", "RanchGuard", "RedGrant", "RosaKlebb", "SpectreGuard" };
-str GFHeadTypes[15] = { "Cho", "Cyberen", "DrNo", "Jack", "Kim", "Kor1", "Kor2", "Kor3", "Kyle", "MF", "Mok", "Sean", "Sogun", "Subdrag", "Trevor" };
+str GFHeadTypes[15] = { "Cho", "Kim", "Kor1", "Kor2", "Kor3", "Mok", "Cyberen", "Jack", "Kyle", "MF", "Sean", "Sogun", "Subdrag", "Trevor", "DrNo" };
 str GFHatTypes[6] = { "CapMex", "CrabKey", "HatKorean", "NavyPeak", "OddjobHat", "Spectre" };
 str GFGunTypes[24] = { "AK47", "AR7", "Bazooka", "Colt", "Garand", "GoldRevolver", "Kar98K", "Laser", "Luger", "M14", "M1Carbine", "M79", "MP40", "OddjobHat", "P38", "PPKS", "PPK", "Purdy", "Remington", "SW22", "SW36", "ThompsonDrum", "Thompson", "Uzi" };
 
@@ -66,7 +66,7 @@ Script "GoldeneyePartPositioner" (int type)
 	}
 }
 
-Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
+Script "GoldeneyeEnemyPartsPicker" (int type, int ec, int goldfinger)
 {
 	str glasses;
 	int elitechance, hattype, guntype, randnum;
@@ -84,500 +84,548 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec)
 	GiveInventory("Goldeneye_Body_HideBase",1);
 	//Spawn the parts
 	
-	if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 20 && type != 22 && type != 23)
+	if(!goldfinger)
 	{
-		if(type == 19)
-			randomHead = random(25,28);	
-		else 
+		if(type != 6 && type != 13 && type != 14 && type != 15 && type != 16 && type != 17 && type != 18 && type != 20 && type != 22 && type != 23)
 		{
-			elitechance = ec; 
-			int eliterand = random(0,100);
-			if(elitechance > eliterand)
-				GiveInventory("Goldeneye_GlassesPart",1);		
-			randomHead = random(0,24);
+			if(type == 19)
+				randomHead = random(25,28);	
+			else 
+			{
+				elitechance = ec; 
+				int eliterand = random(0,100);
+				if(elitechance > eliterand)
+					GiveInventory("Goldeneye_GlassesPart",1);		
+				randomHead = random(0,24);
+			}
+			GiveInventory("Goldeneye_HeadPart",randomHead+1);	
 		}
-		GiveInventory("Goldeneye_HeadPart",randomHead+1);	
-	}
-	switch(type)
-	{
-		case 1:	
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",7);
-			
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 50) 
-				GiveInventory("Goldeneye_HatPart",6);
+		switch(type)
+		{
+			case 1:	
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",7);
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 50) 
+					GiveInventory("Goldeneye_HatPart",6);
 
-			//Select Gun
-			guntype = 5; //KF7
-			GiveInventory("Goldeneye_EnemyTwoHanded",1);
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 2:	//DD44, Dual DD44, KF7
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",6);	
-		
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 66) 
-				GiveInventory("Goldeneye_HatPart",4);
-			else if(randnum >= 33) 
-				GiveInventory("Goldeneye_HatPart",1);
-		
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 80)
-				guntype = 1; //DD44
-			else if(randnum >= 40)
-				{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
-			else 
-				{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 3:
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",11);	
-			GiveInventory("Goldeneye_GrenadeThrower", 1);
+				//Select Gun
+				guntype = 5; //KF7
+				GiveInventory("Goldeneye_EnemyTwoHanded",1);
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 2:	//DD44, Dual DD44, KF7
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",6);	
 			
-			//Select Hat	
-			randnum = random(0,100);
-			if(randnum >= 75) 
-				GiveInventory("Goldeneye_HatPart",11);
-			else if(randnum >= 50) 
-				{ GiveInventory("Goldeneye_HatPart",8); SetActorProperty(0,APROP_Health,60); }				
-			else 
-				GiveInventory("Goldeneye_HatPart",3);
-			
-			//Select Gun
-			randnum = random(0,100);
-			if(hattype == 3)
-			{
-				if(randnum >= 50)
-					guntype = 3; //Klobb
-				else	
-					{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
-			}		
-			else
-			{
-				if(randnum <= 9)
-					{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
-				else if(randnum <= 14)
-					guntype = 22; //GrenadeLauncher								
-				else if(randnum <= 19)
-					guntype = 23; //RocketLauncher				
-				else if(randnum <= 33)
-					guntype = 3; //Klobb
-				else	
-					{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
-			}		
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 4:	
-			//Select body
-			GiveInventory("Goldeneye_BodyPart",13);	
-			GiveInventory("Goldeneye_GrenadeThrower", 1);
-			
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 50) 
-				{ GiveInventory("Goldeneye_HatPart",7); SetActorProperty(0,APROP_Health,80); }	
-
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >=40)
-				{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7
-			else if (randnum >= 20)
-				guntype = 6; //ZMG
-			else 
-				{ guntype = 6; GiveInventory("Goldeneye_DualWield",1); } //Dual ZMG		
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;		
-		case 5:	
-			
-			//Set init health
-			SetActorProperty(0,APROP_Health,100);
-			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",2);	
-
-			//Select Hat
-			randnum = random(0,100);
-			if(CheckInventory("Goldeneye_GlassesPart"))
-			{
-				SetActorProperty(0,APROP_Health,160);
-				GiveInventory("Goldeneye_GuardTierToken", 1);
-				if(randnum >= 50)
-					GiveInventory("Goldeneye_HatPart",1);
-			}
-			else
-			{
-				if(randnum >= 50)
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 66) 
 					GiveInventory("Goldeneye_HatPart",4);
-			}		
-
-			//Select Gun
-			randnum = random(0,100);
-			if(CheckInventory("Goldeneye_GlassesPart"))
-			{
-				if(randnum >= 50)
-					{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb	
-				else
-					{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44	
-			}
-			else
-			{
-				if(randnum >= 50)
-					guntype = 3; //Klobb
-				else
-					{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
-			}	
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;	
-		case 6:	
-			//Set init health
-			SetActorProperty(0,APROP_Health,180);
-			GiveInventory("Goldeneye_GuardTierToken", 1);
+				else if(randnum >= 33) 
+					GiveInventory("Goldeneye_HatPart",1);
 			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",15);	
-			
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 75) 
-				{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
-			else if(randnum >= 50) 
-				guntype = 3; //Klobb
-			else if(randnum >= 25)
-				{ guntype = 17; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //Sniper	
-			else
-				{ guntype = 24; GiveInventory("Goldeneye_DualWield",1); } //SCombo
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 7:	
-			//Set init health
-			SetActorProperty(0,APROP_Health,50);
-		
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",4);	
-			
-			//Select Hat
-			GiveInventory("Goldeneye_HatPart",10);
-			
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 66) { guntype = 0; GiveInventory("Goldeneye_GrenadeThrower", 1); } //PP7
-			else if(randnum >= 33) 
-				guntype = 1; //DD44
-			else 
-				guntype = 3; //Klobb
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 8:	
-			//Set init health
-			SetActorProperty(0,APROP_Health,180);
-			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",3);	
-			
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 50)  
-				{ GiveInventory("Goldeneye_HatPart",7); SetActorProperty(newtid,APROP_Health,200); GiveInventory("Goldeneye_HatShotToken",8);}
-				
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 66) 
-				{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33	
-			else if(randnum >= 33)
-				guntype = 8; //D5K
-			else
-				guntype = 18; //Cougar
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 9:	
-			//Set init health
-			SetActorProperty(newtid,APROP_Health,360);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 1);
-			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",1);
-			
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 50) 
-				GiveInventory("Goldeneye_HatPart",1);
-							
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 90)		
-				{ guntype = 10; GiveInventory("Goldeneye_DualWield",1); } //Dual Phantom
-			else if (randnum >= 67)
-				guntype = 10; //Phantom
-			else if (randnum >= 50)
-				{ guntype = 8; GiveInventory("Goldeneye_DualWield",1); } //Dual D5K
-			else
-				guntype = 8; //D5K
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 10:	
-			//Set init health
-			SetActorProperty(newtid,APROP_Health,160);
-			GiveInventory("Goldeneye_GuardTierToken", 2);
-			GiveInventory("Goldeneye_GrenadeThrower", 1);
-			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",14);	
-			
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 66) 
-				{ GiveInventory("Goldeneye_HatPart",1); SetActorProperty(0,APROP_Health,210); }
-			else if (randnum >= 33)	
-				{ GiveInventory("Goldeneye_HatPart",2); SetActorProperty(0,APROP_Health,260); }
-			else
-				{ GiveInventory("Goldeneye_HatPart",3); SetActorProperty(0,APROP_Health,300); }
-			if(CheckInventory("Goldeneye_GlassesPart"))
-				{ SetActorProperty(0,APROP_Health,300+(10*CheckInventory("Goldeneye_HatPart"))); }
-			
-			//Select Gun
-			randnum = random(0,100);
-				if (randnum >= 96)
-					{ guntype = 14; GiveInventory("Goldeneye_DualWield",1); } //Dual RCP90
-				else if (randnum >= 80) 
-					{ guntype = 6; GiveInventory("Goldeneye_DualWield",1); } //Dual ZMG		
-				else if	(randnum >= 72)
-					guntype = 6; //ZMG
-				else if (randnum >= 64)
-					{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33	
-				else if (randnum >= 56)
-					guntype = 8; //D5K
-				else if (randnum >= 48)
-					{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
-				else if (randnum >= 32)
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 80)
+					guntype = 1; //DD44
+				else if(randnum >= 40)
 					{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
-				else if (randnum >= 24)
-					guntype = 1; //PP7
-				else if (randnum >= 16)
-					{ guntype = 14; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //RCP90	
-				else if (randnum >= 8)
-					{ guntype = 16; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AutoShotgun	
 				else 
-					{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7			
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;	
-		case 11:
-		case 19:
-			//Set init health
-			SetActorProperty(0,APROP_Health,210);
-			GiveInventory("Goldeneye_GuardTierToken", 2);
-			GiveInventory("Goldeneye_GrenadeThrower", 1);
-			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",9);	
-			
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 50) 
-				{ GiveInventory("Goldeneye_HatPart",9); SetActorProperty(0,APROP_Health,360); }
+					{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 3:
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",11);	
+				GiveInventory("Goldeneye_GrenadeThrower", 1);
 				
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 40)
-				{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33	
-			else if(randnum >= 20)
-				guntype = 20; //Laser
-			else
-				{ guntype = 20; GiveInventory("Goldeneye_DualWield",1); } //Dual Laser
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;	
-		case 12:	
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",5);
+				//Select Hat	
+				randnum = random(0,100);
+				if(randnum >= 75) 
+					GiveInventory("Goldeneye_HatPart",11);
+				else if(randnum >= 50) 
+					{ GiveInventory("Goldeneye_HatPart",8); SetActorProperty(0,APROP_Health,60); }				
+				else 
+					GiveInventory("Goldeneye_HatPart",3);
+				
+				//Select Gun
+				randnum = random(0,100);
+				if(hattype == 3)
+				{
+					if(randnum >= 50)
+						guntype = 3; //Klobb
+					else	
+						{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
+				}		
+				else
+				{
+					if(randnum <= 9)
+						{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
+					else if(randnum <= 14)
+						guntype = 22; //GrenadeLauncher								
+					else if(randnum <= 19)
+						guntype = 23; //RocketLauncher				
+					else if(randnum <= 33)
+						guntype = 3; //Klobb
+					else	
+						{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
+				}		
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 4:	
+				//Select body
+				GiveInventory("Goldeneye_BodyPart",13);	
+				GiveInventory("Goldeneye_GrenadeThrower", 1);
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 50) 
+					{ GiveInventory("Goldeneye_HatPart",7); SetActorProperty(0,APROP_Health,80); }	
 
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 66) 
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >=40)
+					{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7
+				else if (randnum >= 20)
+					guntype = 6; //ZMG
+				else 
+					{ guntype = 6; GiveInventory("Goldeneye_DualWield",1); } //Dual ZMG		
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;		
+			case 5:	
+				
+				//Set init health
+				SetActorProperty(0,APROP_Health,100);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",2);	
+
+				//Select Hat
+				randnum = random(0,100);
+				if(CheckInventory("Goldeneye_GlassesPart"))
+				{
+					SetActorProperty(0,APROP_Health,160);
+					GiveInventory("Goldeneye_GuardTierToken", 1);
+					if(randnum >= 50)
+						GiveInventory("Goldeneye_HatPart",1);
+				}
+				else
+				{
+					if(randnum >= 50)
+						GiveInventory("Goldeneye_HatPart",4);
+				}		
+
+				//Select Gun
+				randnum = random(0,100);
+				if(CheckInventory("Goldeneye_GlassesPart"))
+				{
+					if(randnum >= 50)
+						{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb	
+					else
+						{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44	
+				}
+				else
+				{
+					if(randnum >= 50)
+						guntype = 3; //Klobb
+					else
+						{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
+				}	
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;	
+			case 6:	
+				//Set init health
+				SetActorProperty(0,APROP_Health,180);
+				GiveInventory("Goldeneye_GuardTierToken", 1);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",15);	
+				
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 75) 
+					{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7	
+				else if(randnum >= 50) 
+					guntype = 3; //Klobb
+				else if(randnum >= 25)
+					{ guntype = 17; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //Sniper	
+				else
+					{ guntype = 24; GiveInventory("Goldeneye_DualWield",1); } //SCombo
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 7:	
+				//Set init health
+				SetActorProperty(0,APROP_Health,50);
+			
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",4);	
+				
+				//Select Hat
 				GiveInventory("Goldeneye_HatPart",10);
 				
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 80)
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 66) { guntype = 0; GiveInventory("Goldeneye_GrenadeThrower", 1); } //PP7
+				else if(randnum >= 33) 
+					guntype = 1; //DD44
+				else 
+					guntype = 3; //Klobb
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 8:	
+				//Set init health
+				SetActorProperty(0,APROP_Health,180);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",3);	
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 50)  
+					{ GiveInventory("Goldeneye_HatPart",7); SetActorProperty(newtid,APROP_Health,200); GiveInventory("Goldeneye_HatShotToken",8);}
+					
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 66) 
+					{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33	
+				else if(randnum >= 33)
+					guntype = 8; //D5K
+				else
+					guntype = 18; //Cougar
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 9:	
+				//Set init health
+				SetActorProperty(newtid,APROP_Health,360);
+				GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 1);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",1);
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 50) 
+					GiveInventory("Goldeneye_HatPart",1);
+								
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 90)		
+					{ guntype = 10; GiveInventory("Goldeneye_DualWield",1); } //Dual Phantom
+				else if (randnum >= 67)
+					guntype = 10; //Phantom
+				else if (randnum >= 50)
+					{ guntype = 8; GiveInventory("Goldeneye_DualWield",1); } //Dual D5K
+				else
+					guntype = 8; //D5K
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 10:	
+				//Set init health
+				SetActorProperty(newtid,APROP_Health,160);
+				GiveInventory("Goldeneye_GuardTierToken", 2);
+				GiveInventory("Goldeneye_GrenadeThrower", 1);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",14);	
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 66) 
+					{ GiveInventory("Goldeneye_HatPart",1); SetActorProperty(0,APROP_Health,210); }
+				else if (randnum >= 33)	
+					{ GiveInventory("Goldeneye_HatPart",2); SetActorProperty(0,APROP_Health,260); }
+				else
+					{ GiveInventory("Goldeneye_HatPart",3); SetActorProperty(0,APROP_Health,300); }
+				if(CheckInventory("Goldeneye_GlassesPart"))
+					{ SetActorProperty(0,APROP_Health,300+(10*CheckInventory("Goldeneye_HatPart"))); }
+				
+				//Select Gun
+				randnum = random(0,100);
+					if (randnum >= 96)
+						{ guntype = 14; GiveInventory("Goldeneye_DualWield",1); } //Dual RCP90
+					else if (randnum >= 80) 
+						{ guntype = 6; GiveInventory("Goldeneye_DualWield",1); } //Dual ZMG		
+					else if	(randnum >= 72)
+						guntype = 6; //ZMG
+					else if (randnum >= 64)
+						{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33	
+					else if (randnum >= 56)
+						guntype = 8; //D5K
+					else if (randnum >= 48)
+						{ guntype = 3; GiveInventory("Goldeneye_DualWield",1); } //Dual Klobb
+					else if (randnum >= 32)
+						{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
+					else if (randnum >= 24)
+						guntype = 1; //PP7
+					else if (randnum >= 16)
+						{ guntype = 14; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //RCP90	
+					else if (randnum >= 8)
+						{ guntype = 16; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AutoShotgun	
+					else 
+						{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7			
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;	
+			case 11:
+			case 19:
+				//Set init health
+				SetActorProperty(0,APROP_Health,210);
+				GiveInventory("Goldeneye_GuardTierToken", 2);
+				GiveInventory("Goldeneye_GrenadeThrower", 1);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",9);	
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 50) 
+					{ GiveInventory("Goldeneye_HatPart",9); SetActorProperty(0,APROP_Health,360); }
+					
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 40)
+					{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33	
+				else if(randnum >= 20)
+					guntype = 20; //Laser
+				else
+					{ guntype = 20; GiveInventory("Goldeneye_DualWield",1); } //Dual Laser
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;	
+			case 12:	
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",5);
+
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 66) 
+					GiveInventory("Goldeneye_HatPart",10);
+					
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 80)
+					{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
+				else if (randnum >= 70)
+					guntype = 3; //Klobb
+				else if(randnum >= 60)
+					guntype = 1; //PP7
+				else if(randnum >= 40)
+					guntype = 23; //Rocket Launcher
+				else if(randnum >= 30)
+					guntype = 22; //GrenadeL
+				else
+					{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7			
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;		
+			case 13:	
+				//Set init health
+				SetActorProperty(0,APROP_Health,750);
+			
+				//Select body
+				GiveInventory("Goldeneye_BodyPart",16);	
+				
+				//Select Hat
+				GiveInventory("Goldeneye_HatPart",13);
+				break;		
+			case 14:
+				//Set init health
+				SetActorProperty(0,APROP_Health,600);
+			
+				//Select body
+				GiveInventory("Goldeneye_BodyPart",17);	
+
+				//Select Gun
+				guntype = 12; 
+				GiveInventory("Goldeneye_DualWield",1);
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;			
+			case 15:	
+				//Set init health
+				SetActorProperty(0,APROP_Health,700);
+				GiveInventory("Goldeneye_GuardTierToken", 3);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",12);	
+				
+				//Select Gun
+				guntype = 27; //Silver PP7
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;	
+			case 16:
+				//Set init health
+				SetActorProperty(0,APROP_Health,400);
+				GiveInventory("Goldeneye_GuardTierToken",3);
+				
+				//Select body
+				GiveInventory("Goldeneye_BodyPart",21);	
+
+				//Select Gun
 				{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
-			else if (randnum >= 70)
-				guntype = 3; //Klobb
-			else if(randnum >= 60)
-				guntype = 1; //PP7
-			else if(randnum >= 40)
-				guntype = 23; //Rocket Launcher
-			else if(randnum >= 30)
-				guntype = 22; //GrenadeL
-			else
-				{ guntype = 5; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //KF7			
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;		
-		case 13:	
-			//Set init health
-			SetActorProperty(0,APROP_Health,750);
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 17:	
+				//Set init health
+				SetActorProperty(0,APROP_Health,500);
+				GiveInventory("Goldeneye_GuardTierToken",3);
+				
+				//Select body
+				GiveInventory("Goldeneye_BodyPart",21);	
+
+				//Select Gun
+				{ guntype = 6; GiveInventory("Goldeneye_DualWield",1); } //Dual ZMG		
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 18:	
+				//Set init health
+				SetActorProperty(0,APROP_Health,400);
+				GiveInventory("Goldeneye_GuardTierToken",3);
+				
+				//Select body
+				GiveInventory("Goldeneye_BodyPart",21);	
+
+				//Select Gun
+				{ guntype = 20; GiveInventory("Goldeneye_DualWield",1); } //Dual Laser
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;	
+			case 20:
+				//Set init health
+				SetActorProperty(0,APROP_Health,2500);
+				GiveInventory("Goldeneye_GuardTierToken",3);
+				GiveInventory("Goldeneye_GrenadeThrower",1);
+				
+				//Select body
+				GiveInventory("Goldeneye_BodyPart",20);	
+
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 67)
+					{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33
+				else if(randnum >= 33)
+					{ guntype = 16; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AutoShotgun	
+				else
+					guntype = 6; //ZMG
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;		
+			case 21:
+				//Set init health
+				SetActorProperty(newtid,APROP_Health,100);
+				GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 1);
+				
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",1);
+				GiveInventory("Goldeneye_HasJetPack",1);
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 50) 
+					GiveInventory("Goldeneye_HatPart",1);
+								
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum >= 90)		
+					{ guntype = 10; GiveInventory("Goldeneye_DualWield",1); } //Dual Phantom
+				else if (randnum >= 67)
+					guntype = 10; //Phantom
+				else if (randnum >= 50)
+					{ guntype = 8; GiveInventory("Goldeneye_DualWield",1); } //Dual D5K
+				else
+					guntype = 8; //D5K
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+			case 22:
+				//Set init health
+				SetActorProperty(0,APROP_Health,700);
+				GiveActorInventory(0,"Goldeneye_GuardTierToken", 2);
+
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",18);
 		
-			//Select body
-			GiveInventory("Goldeneye_BodyPart",16);	
-			
-			//Select Hat
-			GiveInventory("Goldeneye_HatPart",13);
-			break;		
-		case 14:
-			//Set init health
-			SetActorProperty(0,APROP_Health,600);
+				//Select Gun
+				{ guntype = 18; GiveInventory("Goldeneye_DualWield",1); } //Dual Cougar
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;	
+			case 23:
+				//Set init health
+				SetActorProperty(0,APROP_Health,1200);
+				GiveActorInventory(0,"Goldeneye_GuardTierToken", 2);
+
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",19);
 		
-			//Select body
-			GiveInventory("Goldeneye_BodyPart",17);	
-
-			//Select Gun
-			guntype = 12; 
-			GiveInventory("Goldeneye_DualWield",1);
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;			
-		case 15:	
-			//Set init health
-			SetActorProperty(0,APROP_Health,700);
-			GiveInventory("Goldeneye_GuardTierToken", 3);
-			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",12);	
-			
-			//Select Gun
-			guntype = 27; //Silver PP7
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;	
-		case 16:
-			//Set init health
-			SetActorProperty(0,APROP_Health,400);
-			GiveInventory("Goldeneye_GuardTierToken",3);
-			
-			//Select body
-			GiveInventory("Goldeneye_BodyPart",21);	
-
-			//Select Gun
-			{ guntype = 1; GiveInventory("Goldeneye_DualWield",1); } //Dual DD44
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 17:	
-			//Set init health
-			SetActorProperty(0,APROP_Health,500);
-			GiveInventory("Goldeneye_GuardTierToken",3);
-			
-			//Select body
-			GiveInventory("Goldeneye_BodyPart",21);	
-
-			//Select Gun
-			{ guntype = 6; GiveInventory("Goldeneye_DualWield",1); } //Dual ZMG		
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 18:	
-			//Set init health
-			SetActorProperty(0,APROP_Health,400);
-			GiveInventory("Goldeneye_GuardTierToken",3);
-			
-			//Select body
-			GiveInventory("Goldeneye_BodyPart",21);	
-
-			//Select Gun
-			{ guntype = 20; GiveInventory("Goldeneye_DualWield",1); } //Dual Laser
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;	
-		case 20:
-			//Set init health
-			SetActorProperty(0,APROP_Health,2500);
-			GiveInventory("Goldeneye_GuardTierToken",3);
-			GiveInventory("Goldeneye_GrenadeThrower",1);
-			
-			//Select body
-			GiveInventory("Goldeneye_BodyPart",20);	
-
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 67)
-				{ guntype = 12; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AR33
-			else if(randnum >= 33)
-				{ guntype = 16; GiveInventory("Goldeneye_EnemyTwoHanded",1); } //AutoShotgun	
-			else
-				guntype = 6; //ZMG
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;		
-		case 21:
-			//Set init health
-			SetActorProperty(newtid,APROP_Health,100);
-			GiveActorInventory(newtid,"Goldeneye_GuardTierToken", 1);
-			
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",1);
-			GiveInventory("Goldeneye_HasJetPack",1);
-			
-			//Select Hat
-			randnum = random(0,100);
-			if(randnum >= 50) 
-				GiveInventory("Goldeneye_HatPart",1);
-							
-			//Select Gun
-			randnum = random(0,100);
-			if(randnum >= 90)		
-				{ guntype = 10; GiveInventory("Goldeneye_DualWield",1); } //Dual Phantom
-			else if (randnum >= 67)
-				guntype = 10; //Phantom
-			else if (randnum >= 50)
-				{ guntype = 8; GiveInventory("Goldeneye_DualWield",1); } //Dual D5K
-			else
-				guntype = 8; //D5K
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;
-		case 22:
-			//Set init health
-			SetActorProperty(0,APROP_Health,700);
-			GiveActorInventory(0,"Goldeneye_GuardTierToken", 2);
-
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",18);
-	
-			//Select Gun
-			{ guntype = 18; GiveInventory("Goldeneye_DualWield",1); } //Dual Cougar
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;	
-		case 23:
-			//Set init health
-			SetActorProperty(0,APROP_Health,1200);
-			GiveActorInventory(0,"Goldeneye_GuardTierToken", 2);
-
-			//Select Body
-			GiveInventory("Goldeneye_BodyPart",19);
-	
-			//Select Gun
-			{ guntype = 25; GiveInventory("Goldeneye_DualWield",1); } //XCombo
-			SetActorProperty(0,APROP_Mass,200+(1+guntype));
-			GiveInventory("Goldeneye_GunPart",1+guntype);
-			break;	
+				//Select Gun
+				{ guntype = 25; GiveInventory("Goldeneye_DualWield",1); } //XCombo
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;	
+		}
+		if(type != 13) GiveInventory("Goldeneye_HatShotToken",CheckInventory("Goldeneye_HatPart"));
 	}
-	if(type != 13) GiveInventory("Goldeneye_HatShotToken",CheckInventory("Goldeneye_HatPart"));
+	else
+	{
+		if(type == 1)
+			randomHead = random(0,5);	
+		else
+			randomHead = random(6,13);	
+			
+		GiveInventory("Goldeneye_HeadPart",randomHead+1);	
+		
+		if(type != 1)
+		{
+			elitechance = ec; 
+			eliterand = random(0,100);
+			if(elitechance > eliterand)
+				GiveInventory("Goldeneye_GlassesPart",1);	
+		}
+		
+		switch(type)
+		{
+			//Korean
+			case 1:
+				//Select Body
+				GiveInventory("Goldeneye_BodyPart",20);
+				
+				//Select Hat
+				randnum = random(0,100);
+				if(randnum >= 50) 
+					GiveInventory("Goldeneye_HatPart",2);
+
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum < 33)
+					guntype = 8;
+				else if(randnum < 80)
+				{
+					GiveInventory("Goldeneye_EnemyTwoHanded",1);
+					guntype = 12;
+				}
+				else
+					guntype = 14;
+				SetActorProperty(0,APROP_Mass,200+(1+guntype));
+				GiveInventory("Goldeneye_GunPart",1+guntype);
+				break;
+		}
+	}
 }
 
 Script "GoldeneyeEnemyDrops" (void)
@@ -634,36 +682,42 @@ Script "GoldeneyeEnemyDrops" (void)
 	
 Script "GoldeneyeUpdateAppearance" (void)
 {
-	GiveInventory(strparam(s:"Goldeneye_Body_",s:GuardTypes[CheckInventory("Goldeneye_BodyPart")-1]),1);
-	if(CheckInventory("Goldeneye_HeadPart")) GiveInventory(strparam(s:"Goldeneye_Head_",s:HeadTypes[CheckInventory("Goldeneye_HeadPart")-1]),1);
-	if(CheckInventory("Goldeneye_HatPart") > 0) GiveInventory(strparam(s:"Goldeneye_Hat_",s:HatTypes[CheckInventory("Goldeneye_HatPart")]),1);
+	int goldfinger = CheckInventory("Goldfinger_IsGoldFinger64");
+	str game = goldfinger ? "Goldfinger" : "Goldeneye";
+	GiveInventory(strparam(s:game,s:"_Body_",s:goldfinger ? GFGuardTypes[CheckInventory("Goldeneye_BodyPart")-1] : GuardTypes[CheckInventory("Goldeneye_BodyPart")-1]),1);
+	if(CheckInventory("Goldeneye_HeadPart")) GiveInventory(strparam(s:game,s:"_Head_",s:goldfinger ? GFHeadTypes[CheckInventory("Goldeneye_HeadPart")-1] : HeadTypes[CheckInventory("Goldeneye_HeadPart")-1]),1);
+	if(CheckInventory("Goldeneye_HatPart") > 0) GiveInventory(strparam(s:game,s:"_Hat_",s:goldfinger ? GFHatTypes[CheckInventory("Goldeneye_HatPart")] : HatTypes[CheckInventory("Goldeneye_HatPart")]),1);
 	if(CheckInventory("Goldeneye_GunPart")) 
 	{
-		if(CheckInventory("Goldeneye_BodyPart") == 21)
+		if(CheckInventory("Goldeneye_BodyPart") == 21 && !goldfinger)
 			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[1]),1);
 		else
-			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+			GiveInventory(strparam(s:game,s:"_Gun_",s:goldfinger ? GFGunTypes[CheckInventory("Goldeneye_GunPart")-1] : GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
 			
 		if(CheckInventory("Goldeneye_DualWield")) 
 		{
-			if(CheckInventory("Goldeneye_BodyPart") == 21)
+			if(CheckInventory("Goldeneye_BodyPart") == 21 && !goldfinger)
 				GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[1]),1);
 			else
-				GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+				GiveInventory(strparam(s:game,s:"_Gun_Dual",s:goldfinger ? GFGunTypes[CheckInventory("Goldeneye_GunPart")-1] : GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
 		}
 	}
 	if(CheckInventory("Goldeneye_HasJetPack")) GiveInventory("Goldeneye_Misc_JetPack",1);
 }
 
-Script "GoldeneyeDrawEnemyFlash" (int dual)
+Script "GoldeneyeDrawEnemyFlash" (int dual, int goldfinger)
 {
 	//If the gun is a certain type, don't flash
-	if(CheckInventory("Goldeneye_GunPart") == 18) terminate;
-	if(CheckInventory("Goldeneye_GunPart") == 24) terminate;
-	if(CheckInventory("Goldeneye_GunPart") == 25 && !dual) terminate;
+	if(!goldfinger)
+	{
+		if(CheckInventory("Goldeneye_GunPart") == 18) terminate;
+		if(CheckInventory("Goldeneye_GunPart") == 24) terminate;
+		if(CheckInventory("Goldeneye_GunPart") == 25 && !dual) terminate;
+	}
+	else {}
 	if(CheckInventory("SamsaraZScriptReady") == 1)
 	{
-		GiveInventory(strparam(s:"Goldeneye_Flash_",s:dual ? "Dual" : "",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+		GiveInventory(strparam(s:"Goldeneye_Flash_",s:dual ? "Dual" : "",s:goldfinger ? GFGunTypes[CheckInventory("Goldeneye_GunPart")-1] : GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
 		Delay(2);
 		GiveInventory("Goldeneye_Flash_DualClearBoth",1);
 	}

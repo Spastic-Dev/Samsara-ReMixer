@@ -1,4 +1,4 @@
-Class Goldfinger_Heads_Cho : CustomInventory
+Class Goldfinger_Head_Cho : CustomInventory
 {
 	States
 	{
@@ -18,7 +18,7 @@ Class Goldfinger_Heads_Cho : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Cyberen : CustomInventory
+Class Goldfinger_Head_Cyberen : CustomInventory
 {
 	States
 	{
@@ -36,7 +36,7 @@ Class Goldfinger_Heads_Cyberen : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_DrNo : CustomInventory
+Class Goldfinger_Head_DrNo : CustomInventory
 {
 	States
 	{
@@ -49,7 +49,7 @@ Class Goldfinger_Heads_DrNo : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Jack : CustomInventory
+Class Goldfinger_Head_Jack : CustomInventory
 {
 	States
 	{
@@ -67,7 +67,7 @@ Class Goldfinger_Heads_Jack : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Kim : CustomInventory
+Class Goldfinger_Head_Kim : CustomInventory
 {
 	States
 	{
@@ -87,7 +87,7 @@ Class Goldfinger_Heads_Kim : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Kor1 : CustomInventory
+Class Goldfinger_Head_Kor1 : CustomInventory
 {
 	States
 	{
@@ -107,7 +107,7 @@ Class Goldfinger_Heads_Kor1 : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Kor2 : CustomInventory
+Class Goldfinger_Head_Kor2 : CustomInventory
 {
 	States
 	{
@@ -127,7 +127,7 @@ Class Goldfinger_Heads_Kor2 : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Kor3 : CustomInventory
+Class Goldfinger_Head_Kor3 : CustomInventory
 {
 	States
 	{
@@ -147,7 +147,7 @@ Class Goldfinger_Heads_Kor3 : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Kyle : CustomInventory
+Class Goldfinger_Head_Kyle : CustomInventory
 {
 	States
 	{
@@ -165,7 +165,7 @@ Class Goldfinger_Heads_Kyle : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_MF : CustomInventory
+Class Goldfinger_Head_MF : CustomInventory
 {
 	States
 	{
@@ -183,7 +183,7 @@ Class Goldfinger_Heads_MF : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Mok : CustomInventory
+Class Goldfinger_Head_Mok : CustomInventory
 {
 	States
 	{
@@ -203,7 +203,7 @@ Class Goldfinger_Heads_Mok : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Sean : CustomInventory
+Class Goldfinger_Head_Sean : CustomInventory
 {
 	States
 	{
@@ -221,7 +221,7 @@ Class Goldfinger_Heads_Sean : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Sogun : CustomInventory
+Class Goldfinger_Head_Sogun : CustomInventory
 {
 	States
 	{
@@ -239,7 +239,7 @@ Class Goldfinger_Heads_Sogun : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Subdrag : CustomInventory
+Class Goldfinger_Head_Subdrag : CustomInventory
 {
 	States
 	{
@@ -257,7 +257,7 @@ Class Goldfinger_Heads_Subdrag : CustomInventory
 	}
 }
 
-Class Goldfinger_Heads_Trevor : CustomInventory
+Class Goldfinger_Head_Trevor : CustomInventory
 {
 	States
 	{
