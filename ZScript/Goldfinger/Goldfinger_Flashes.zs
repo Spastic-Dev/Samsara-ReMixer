@@ -484,6 +484,33 @@ Class Goldfinger_Flash_SW36 : CustomInventory
 	}
 }
 
+Class Goldfinger_Flash_DualThompsonDrum : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{ 
+				A_ChangeModel("",6,"Models/Goldfinger/Guns","thompson_flash_right.iqm");
+				A_ChangeModel("",7,"Models/Goldfinger/Guns","thompson_flash_left.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldfinger_Flash_ThompsonDrum : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{ 
+				A_ChangeModel("",6,"Models/Goldfinger/Guns","thompson_flash_right.iqm");
+			}
+			Stop;
+	}
+}
+
 Class Goldfinger_Flash_DualThompson : CustomInventory
 {
 	States

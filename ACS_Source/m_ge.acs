@@ -3,10 +3,10 @@ str HeadTypes[29] = { "Alan", "B", "Chris", "Dave", "Des", "Duncan", "Dwayne", "
 str HatTypes[14] = { "", "BeretBlack", "BeretBlue", "BeretRed", "FurHatBlack", "FurHatBlue", "FurHatBrown", "HelmetGray", "HelmetGreen", "MoonHeadGear", "PeakedCap", "SideHatDarkGreen", "SideHatLightGreen", "OddJob" };
 str GunTypes[28] = { "PP7", "DD44", "DualDD44", "Klobb", "DualKlobb", "KF7", "ZMG", "DualZMG", "D5k", "DualD5k", "Phantom", "DualPhantom", "AR33", "DualAR33", "RCP90", "DualRCP90", "AutoShotgun", "Sniper", "Cougar", "DualCougar", "Laser", "DualLaser", "GrenadeL", "RocketL", "SCombo", "XCombo", "OddjobHat", "SilverPP7"};
 
-str GFGuardTypes[29] = { "AlpsGuard", "AuricGolf", "AuricOfficer", "AuricPool", "AuricRanch", "AuricSuit", "AuricTux", "CamoGuard", "ChinaGuard", "CrabKeyGuard", "DrNo", "GateKeeper", "GoldGuard", "Golfer", "GrayGuard", "Hazmat", "HazmatPink", "Kapungo", "KischArmy", "Korean", "Ling", "MeiLin", "MexGuard", "OddJob", "PlaneCrew", "RanchGuard", "RedGrant", "RosaKlebb", "SpectreGuard" };
+str GFGuardTypes[32] = { "AlpsGuard", "AuricGolf", "AuricOfficer", "AuricPool", "AuricRanch", "AuricSuit", "AuricTux", "CamoGuard", "ChinaGuard", "CrabKeyGuard", "DrNo", "GateKeeper", "GoldGuard", "Golfer", "GrayGuard", "Hazmat", "HazmatPink", "Kapungo", "KischArmy", "Korean", "Ling", "MeiLin", "MexGuard", "OddJob", "PlaneCrew", "RanchGuard", "RedGrant", "RosaKlebb", "SpectreGuard", "MexCiv1", "MexCiv2", "MechBlue" };
 str GFHeadTypes[15] = { "Cho", "Kim", "Kor1", "Kor2", "Kor3", "Mok", "Cyberen", "Jack", "Kyle", "MF", "Sean", "Sogun", "Subdrag", "Trevor", "DrNo" };
-str GFHatTypes[6] = { "CapMex", "CrabKey", "HatKorean", "NavyPeak", "OddjobHat", "Spectre" };
-str GFGunTypes[24] = { "AK47", "AR7", "Bazooka", "Colt", "Garand", "GoldRevolver", "Kar98K", "Laser", "Luger", "M14", "M1Carbine", "M79", "MP40", "OddjobHat", "P38", "PPKS", "PPK", "Purdy", "Remington", "SW22", "SW36", "ThompsonDrum", "Thompson", "Uzi" };
+str GFHatTypes[7] = { "", "CapMex", "CrabKey", "HatKorean", "NavyPeak", "OddjobHat", "Spectre" };
+str GFGunTypes[23] = { "AK47", "AR7", "Bazooka", "Colt", "Garand", "GoldRevolver", "Kar98K", "Laser", "Luger", "M14", "M1Carbine", "M79", "MP40", "P38", "PPKS", "PPK", "Purdy", "Remington", "SW22", "SW36", "ThompsonDrum", "Thompson", "Uzi" };
 
 /*function int SetPointerExt(int assign_slot, int tid, int assign_to_tid) 
 {
@@ -583,19 +583,22 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec, int goldfinger)
 	}
 	else
 	{
-		if(type == 1)
+		if(type == 1 || type == 2)
 			randomHead = random(0,5);	
 		else
 			randomHead = random(6,13);	
 			
-		GiveInventory("Goldeneye_HeadPart",randomHead+1);	
-		
-		if(type != 1)
+		if(type != 18)
 		{
-			elitechance = ec; 
-			eliterand = random(0,100);
-			if(elitechance > eliterand)
-				GiveInventory("Goldeneye_GlassesPart",1);	
+			GiveInventory("Goldeneye_HeadPart",randomHead+1);	
+		
+			if(type != 18)
+			{
+				elitechance = ec; 
+				eliterand = random(0,100);
+				if(elitechance > eliterand)
+					GiveInventory("Goldeneye_GlassesPart",1);	
+			}
 		}
 		
 		switch(type)
@@ -603,28 +606,136 @@ Script "GoldeneyeEnemyPartsPicker" (int type, int ec, int goldfinger)
 			//Korean
 			case 1:
 				//Select Body
-				GiveInventory("Goldeneye_BodyPart",20);
+				SetInventory("Goldeneye_BodyPart",20);
 				
 				//Select Hat
 				randnum = random(0,100);
 				if(randnum >= 50) 
-					GiveInventory("Goldeneye_HatPart",2);
+					SetInventory("Goldeneye_HatPart",3);
 
 				//Select Gun
 				randnum = random(0,100);
-				if(randnum < 33)
-					guntype = 8;
-				else if(randnum < 80)
+				if(!CheckInventory("Goldeneye_GlassesPart"))
 				{
-					GiveInventory("Goldeneye_EnemyTwoHanded",1);
-					guntype = 12;
+					if(randnum < 33)
+						guntype = 8;
+					else if(randnum < 66)
+					{
+						SetInventory("Goldeneye_EnemyTwoHanded",1);
+						guntype = 12;
+					}
+					else
+						guntype = 13;
 				}
 				else
-					guntype = 14;
-				SetActorProperty(0,APROP_Mass,200+(1+guntype));
-				GiveInventory("Goldeneye_GunPart",1+guntype);
+				{
+					if(randnum < 33)
+					{
+						SetInventory("Goldeneye_EnemyTwoHanded",1);
+						guntype = 0;
+					}
+					else if(randnum < 66)
+					{
+						SetInventory("Goldeneye_EnemyTwoHanded",1);
+						guntype = 9;
+					}
+					else
+						guntype = 19;
+						
+					SetActorProperty(0,APROP_Health,240);
+					
+					SetInventory("Goldeneye_GrenadeThrower",1);
+				}			
+				break;
+				
+			//China guard
+			case 2:
+				//Select Body
+				SetInventory("Goldeneye_BodyPart",9);
+
+				//Select Gun
+				guntype = 0;
+				SetInventory("Goldeneye_EnemyTwoHanded",1);
+				break;
+				
+			//Ramirez Cartel thugs
+			case 3:
+				SetInventory("Goldeneye_BodyPart",random(30,31));
+				
+				//Select Gun
+				guntype = 13;		
+				break;
+				
+			//Ramirez Cartel guard
+			case 4:
+				//Select Body
+				SetInventory("Goldeneye_BodyPart",23);
+				
+				//Select Hat
+				SetInventory("Goldeneye_HatPart",1);
+				
+				//Select Gun
+				randnum = random(0,100);
+				if(randnum < 10)
+				{
+					SetInventory("Goldeneye_EnemyTwoHanded",1);
+					guntype = 0;
+				}
+				else if(randnum < 20)
+				{
+					SetInventory("Goldeneye_EnemyTwoHanded",1);
+					guntype = 10;
+				}
+				else if(randnum < 30)
+				{
+					SetInventory("Goldeneye_EnemyTwoHanded",1);
+					guntype = 4;
+				}
+				else if(randnum < 90)
+					guntype = 8;
+				else
+				{
+					guntype = 8;
+					GiveInventory("Goldeneye_DualWield",1);
+				}
+				
+				break;
+			
+			//Mechanic (blue)
+			case 5:
+				//Select Body
+				SetInventory("Goldeneye_BodyPart",32);
+				
+				//Select Gun
+				guntype = 3;
+				break;
+			
+			//Camo Guard
+			case 6:
+				//Select Body
+				SetInventory("Goldeneye_BodyPart",8);
+				
+				//Select Gun
+				guntype = 17;
+				SetInventory("Goldeneye_EnemyTwoHanded",1);
+				break;
+				
+			//Oddjob
+			case 18:
+				//Select Body
+				SetInventory("Goldeneye_BodyPart",24);
+				
+				//Select Hat
+				SetInventory("Goldeneye_HatPart",5);
+
+				//Select Gun
+				guntype = 20;
+				SetInventory("Goldeneye_EnemyTwoHanded",1);
+				SetInventory("Goldeneye_GrenadeThrower",1);
 				break;
 		}
+		SetActorProperty(0,APROP_Mass,200+(1+guntype));
+		SetInventory("Goldeneye_GunPart",1+guntype);
 	}
 }
 
@@ -705,8 +816,10 @@ Script "GoldeneyeUpdateAppearance" (void)
 	if(CheckInventory("Goldeneye_HasJetPack")) GiveInventory("Goldeneye_Misc_JetPack",1);
 }
 
-Script "GoldeneyeDrawEnemyFlash" (int dual, int goldfinger)
+Script "GoldeneyeDrawEnemyFlash" (int dual)
 {
+	int goldfinger = CheckInventory("Goldfinger_IsGoldFinger64");
+	str game = goldfinger ? "Goldfinger" : "Goldeneye";
 	//If the gun is a certain type, don't flash
 	if(!goldfinger)
 	{
@@ -714,10 +827,14 @@ Script "GoldeneyeDrawEnemyFlash" (int dual, int goldfinger)
 		if(CheckInventory("Goldeneye_GunPart") == 24) terminate;
 		if(CheckInventory("Goldeneye_GunPart") == 25 && !dual) terminate;
 	}
-	else {}
+	else 
+	{
+		if(CheckInventory("Goldeneye_GunPart") == 2) terminate;
+		if(CheckInventory("Goldeneye_GunPart") == 3) terminate;
+	}
 	if(CheckInventory("SamsaraZScriptReady") == 1)
 	{
-		GiveInventory(strparam(s:"Goldeneye_Flash_",s:dual ? "Dual" : "",s:goldfinger ? GFGunTypes[CheckInventory("Goldeneye_GunPart")-1] : GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+		GiveInventory(strparam(s:game,s:"_Flash_",s:dual ? "Dual" : "",s:goldfinger ? GFGunTypes[CheckInventory("Goldeneye_GunPart")-1] : GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
 		Delay(2);
 		GiveInventory("Goldeneye_Flash_DualClearBoth",1);
 	}
@@ -728,7 +845,7 @@ Script "Goldeneye_DrawGrenade" (int hide)
 	if(!hide)
 	{
 		if(CheckInventory("SamsaraZScriptReady") == 1)
-			GiveInventory("Goldeneye_Gun_Grenade",1);
+			GiveInventory(CheckInventory("Goldfinger_IsGoldFinger64") ? "Goldfinger_Gun_Grenade" : "Goldeneye_Gun_Grenade",1);
 	}
 	else
 	{
@@ -744,23 +861,41 @@ Script "Goldeneye_DrawGrenade" (int hide)
 //Restore Guns in case something like grenade sequence is interrupted
 Script "Goldeneye_RestoreGuns" (void)
 {
-	if(CheckInventory("Goldeneye_BodyPart") != 16)
+	int goldfinger = CheckInventory("Goldfinger_IsGoldFinger64");
+	str game = goldfinger ? "Goldfinger" : "Goldeneye";
+	if(!goldfinger)
 	{
-		if(CheckInventory("Goldeneye_BodyPart") == 21)
+		if(CheckInventory("Goldeneye_BodyPart") != 16)
 		{
-			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[1]),1);
-			if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[1]),1); 
+			if(CheckInventory("Goldeneye_BodyPart") == 21)
+			{
+				GiveInventory(strparam(s:game,s:"_Gun_",s:GunTypes[1]),1);
+				if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:game,s:"_Gun_Dual",s:GunTypes[1]),1); 
+			}
+			else
+			{
+				GiveInventory(strparam(s:game,s:"_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+				if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:game,s:"_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+			}
 		}
 		else
 		{
-			GiveInventory(strparam(s:"Goldeneye_Gun_",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
-			if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldeneye_Gun_Dual",s:GunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+			GiveInventory("Goldeneye_OddJob_RestoreHat",1);
+			GiveInventory("Goldeneye_Gun_Clear",1);
 		}
 	}
 	else
 	{
-		GiveInventory("Goldeneye_OddJob_RestoreHat",1);
-		GiveInventory("Goldeneye_Gun_Clear",1);
+		if(CheckInventory("Goldeneye_BodyPart") == 21)
+		{
+			GiveInventory(strparam(s:"Goldfinger_Gun_",s:GFGunTypes[1]),1);
+			if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldfinger_Gun_Dual",s:GFGunTypes[1]),1); 
+		}
+		else
+		{
+			GiveInventory(strparam(s:"Goldfinger_Gun_",s:GFGunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+			if(CheckInventory("Goldeneye_DualWield")) GiveInventory(strparam(s:"Goldfinger_Gun_Dual",s:GFGunTypes[CheckInventory("Goldeneye_GunPart")-1]),1);
+		}
 	}
 }
 
@@ -792,78 +927,121 @@ Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
 	int alreadyFiredR = 0;
 	int synchronous = 0;
 	int initSyncAttack = 1;
+	int goldfinger = CheckInventory("Goldfinger_IsGoldFinger64");
 	Delay(initTimer);
 	while(!CheckInventory("GoldeneyeEnemyKillAttack") && (ClassifyActor(0) & ACTOR_ALIVE))
 	{
-		switch(CheckInventory("Goldeneye_GunPart"))
+		if(!goldfinger)
 		{
-			case 1:
-			case 2:
-			case 3:
-			case 17:
-			case 18:
-			case 19:
-			case 20:
-			case 28:
-				delayTimerL = 24;
-				delayTimerR = delayTimerL;
+			switch(CheckInventory("Goldeneye_GunPart"))
+			{
+				case 1:
+				case 2:
+				case 3:
+				case 17:
+				case 18:
+				case 19:
+				case 20:
+				case 28:
+					delayTimerL = 24;
+					delayTimerR = delayTimerL;
+					break;
+				case 21:
+				case 22:
+					delayTimerL = 12;
+					delayTimerR = delayTimerL;
 				break;
-			case 21:
-			case 22:
-				delayTimerL = 12;
-				delayTimerR = delayTimerL;
-			break;
-			case 4:
-			case 5:
-				delayTimerL = 7;
-				delayTimerR = delayTimerL;
-				break;
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-			case 12:
-				delayTimerL = 4;
-				delayTimerR = delayTimerL;
-				break;
-			case 13:
-			case 14:
-				delayTimerL = 3;
-				delayTimerR = delayTimerL;
-				break;
-			case 15:
-			case 16:
-				delayTimerL = 2;
-				delayTimerR = delayTimerL;
-				break;
-			case 23:
-			case 24:
-				fireOnceL = 1;
-				delayTimerR = delayTimerL;
-				break;
-			case 25:
-				delayTimerL = 24;
-				delayTimerR = 7;
-				synchronous = 1;
-				break;
-			case 26:
-				synchronous = 1;
-				delayTimerL = 2;
-				delayTimerR = 36;
-				//fireOnceR = 1; This is Xenia, so this should be a little more dangerous
-				break;
+				case 4:
+				case 5:
+					delayTimerL = 7;
+					delayTimerR = delayTimerL;
+					break;
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+				case 10:
+				case 11:
+				case 12:
+					delayTimerL = 4;
+					delayTimerR = delayTimerL;
+					break;
+				case 13:
+				case 14:
+					delayTimerL = 3;
+					delayTimerR = delayTimerL;
+					break;
+				case 15:
+				case 16:
+					delayTimerL = 2;
+					delayTimerR = delayTimerL;
+					break;
+				case 23:
+				case 24:
+					fireOnceL = 1;
+					delayTimerR = delayTimerL;
+					break;
+				case 25:
+					delayTimerL = 24;
+					delayTimerR = 7;
+					synchronous = 1;
+					break;
+				case 26:
+					synchronous = 1;
+					delayTimerL = 2;
+					delayTimerR = 36;
+					//fireOnceR = 1; This is Xenia, so this should be a little more dangerous
+					break;
+			}
+		}
+		else
+		{
+			switch(CheckInventory("Goldeneye_GunPart"))
+			{
+				case 1:
+				case 21:
+				case 22:
+					delayTimerL = 3;
+					delayTimerR = delayTimerL;
+					break;
+				case 4:
+				case 9:
+				case 14:
+				case 19:
+				case 20:
+				case 4:
+					delayTimerL = 24;
+					delayTimerR = delayTimerL;
+					break;
+				case 5:
+					delayTimerL = 16;
+					delayTimerR = delayTimerL;
+					break;
+				case 11:
+					delayTimerL = 12;
+					delayTimerR = delayTimerL;
+					break;
+				case 10:
+				case 13:
+					delayTimerL = 4;
+					delayTimerR = delayTimerL;
+					break;
+				case 17:
+				case 18:
+					delayTimerL = 36;
+					delayTimerR = delayTimerL;
+					break;
+			}
 		}
 		if(!synchronous)
 		{
-			if(!fireOnceL || !alreadyFiredL) GiveInventory("GoldeneyeEnemyWeaponChooser",1);
+			if(!fireOnceL || !alreadyFiredL) GiveInventory(goldfinger ? "GoldfingerEnemyWeaponChooser" : "GoldeneyeEnemyWeaponChooser",1);
 			if(dual)
 			{
 				//TO-DO - we need to make another method or function that will run this part when the weapon is synchronous. Something like Xenia's combo
 				Delay(delayTimerL);
 				if(CheckInventory("GoldeneyeEnemyKillAttack") || !(ClassifyActor(0) & ACTOR_ALIVE)) break;
-				if(!fireOnceR || !alreadyFiredR) GiveInventory("GoldeneyeEnemyWeaponChooserDual",1);
+				if(!fireOnceR || !alreadyFiredR) GiveInventory(goldfinger ? "GoldfingerEnemyWeaponChooserDual" : "GoldeneyeEnemyWeaponChooserDual",1);
 			}
 			Delay(delayTimerR);
 			alreadyFiredL = 1;
@@ -871,7 +1049,7 @@ Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
 		}
 		else if(!dual)
 		{
-			if(!fireOnceL || !alreadyFiredL) GiveInventory("GoldeneyeEnemyWeaponChooser",1);
+			if(!fireOnceL || !alreadyFiredL) GiveInventory(goldfinger ? "GoldfingerEnemyWeaponChooser" : "GoldeneyeEnemyWeaponChooser",1);
 			Delay(delayTimerL);
 			alreadyFiredL = 1;
 		}
@@ -879,7 +1057,7 @@ Script "Goldeneye_EnemyAttacker" (int dual, int initTimer)
 		{
 			if(initSyncAttack) ACS_NamedExecuteWithResult("Goldeneye_SynchronousFire", delayTimerR, fireOnceR);
 			initSyncAttack = 0;
-			if(!fireOnceL || !alreadyFiredL) GiveInventory("GoldeneyeEnemyWeaponChooser",1);
+			if(!fireOnceL || !alreadyFiredL) GiveInventory(goldfinger ? "GoldfingerEnemyWeaponChooser" : "GoldeneyeEnemyWeaponChooser",1);
 			Delay(delayTimerL);
 			alreadyFiredL = 1;
 		}	
@@ -912,7 +1090,7 @@ Script "Goldeneye_TracerDamage" (void)
 	int skill = GameSkill()+1;
 	int guardtier = CheckInventory("Goldeneye_GuardTierToken");
     int guardchance = guardtier+2;
-	guntype = GetActorProperty(0,APROP_MASS)-201;
+	guntype = CheckInventory("Goldeneye_GunPart")-1;
 	gunchance = GunChances[guntype];
 	skillchance = 6*skill;			
 	hitmul = (skillchance+gunchance) * guardchance;

@@ -1,0 +1,110 @@
+Actor Goldfinger_OddJob : Goldeneye_EnemyBase
+{
+	YScale 1.05
+	XScale 1.25
+	Health 3000
+	Tag "Oddjob"
+    Obituary "%o was assassinated by Oddjob."
+	Painchance 0
+	States
+	{
+		Spawn:
+			TNT1 AA 0 A_UnsetShootable
+			TNT1 A 0 A_GiveInventory("Goldfinger_IsGoldFinger64")
+			TNT1 A 0 A_ChangeFlag("DECOUPLEDANIMATIONS",true)
+			TNT1 A 0 ACS_NamedExecuteWithResult("GoldeneyeEnemyPartsPicker",18,0,1)
+			TNT1 A 0 A_JumpIfInventory("AlreadySpawned",1,"Spawn2")
+			TNT1 A 0 ACS_NamedExecuteAlways("ReMixerSpawnScript",0,1,0)
+			TNT1 A 0 A_GiveInventory("AlreadySpawned",1)
+			TNT1 A 0 A_SetShootable
+			Goto Spawn2
+		Missile:
+			TNT1 A 0 A_TakeInventory("GoldeneyeEnemyKillAttack")
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_BodyPart",17,2)
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_BodyPart",16,"FireOddJob")
+			TNT1 A 0 A_Jump(224,2)
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_GrenadeThrower",1,"ThrowOddJobHat")  
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_DualWield",1,"FireSingleHandedDual")	
+			TNT1 A 0 A_JumpIfInventory("Goldeneye_EnemyTwoHanded",1,"FireTwoHanded")
+			Goto FireSingleHanded
+		ThrowOddJobHat:
+			GE15 A 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
+			GE15 A 0 A_SetArg(0,40)
+			GE15 A 0 A_SetArg(1,5)
+			GE15 A 0 A_GiveInventory("Goldeneye_OddJob_AttachHatGun")
+			GE15 A 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForward")
+			GE15 ABCDE 4 A_FaceTarget
+			GE15 F 0 A_GiveInventory("Goldeneye_DecAnimation_RemoveHat")
+			GE15 F 0 A_CustomMissile("Goldfinger_OddJob_HatProjectile",28,5,0)
+			GE15 F 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
+			GE15 FGH 4 A_FaceTarget
+		ThrowOddJobHatEnd:
+			GE15 I 0 A_GiveInventory("Goldeneye_DecAnimation_FireStepForwardEnd")
+			GE15 IJKLMNOPQRSTUVW 4
+			GE15 A 0 A_GiveInventory("Goldeneye_DecAnimation_ClearGun")
+			GE15 A 0 A_GiveInventory("Goldeneye_OddJob_RestoreHat")
+			GE15 A 0 ACS_NamedExecuteWithResult("Goldeneye_RestoreGuns")
+			Goto See	
+	}
+}
+
+actor Goldfinger_OddJob_HatProjectile : Goldfinger_HatProjectile
+{
+    States
+    {
+      Spawn:
+        GE00 A 0
+        GE00 A 0 A_PlaySound("Goldfinger/HatThrow",CHAN_VOICE,1.0,true)
+      SpawnLoop:
+        GE00 A 0 A_JumpIf(velx == 0 || vely == 0, "Death")
+        GE00 A 1 A_SetAngle(angle+30,SPF_INTERPOLATE)
+        loop
+
+      Bounce:
+		GE00 A 0 A_SetGravity(0.33)
+        GE00 A 0 A_PlaySound("silence",CHAN_VOICE)
+        GE00 A 0 A_StopSound(CHAN_VOICE)
+        GE00 A 0 A_PlaySound("Goldfinger/HatCollide",CHAN_VOICE)
+        goto SpawnLoop
+
+      Bounce.Actor:
+        GE00 A 0 A_PlaySound("silence",CHAN_VOICE)
+        GE00 A 0 A_StopSound(CHAN_VOICE)
+        GE00 A 0 A_PlaySound("Goldeneye/HitBody",CHAN_VOICE)
+        GE00 A 0 A_SetUserVar("user_damage",250)
+        GE00 A 0 A_Explode(CallACS("BondHitBox", user_damage),8,0,false,8)
+        goto SpawnLoop
+
+      Death:
+		GE00 A 0 A_SetGravity(0.33)
+        GE00 A 0 A_ChangeFlag("THRUACTORS",true)
+      DeathLoseInertia:
+        GE00 A 0 A_JumpIfCloser(24,"Remove")
+        GE00 A 1
+        GE00 A 0 A_CheckFloor("DeathStart")
+        loop
+
+      DeathStart:
+		GE00 A 1 A_SpawnItemEx("Goldfinger_OddJob_HatPickup")
+        Stop
+    }
+}
+
+Actor Goldfinger_OddJob_HatPickup : SamsaraSlotOneDrop
+{
+	Scale 0.5
+	States
+	{
+		Spawn:
+			GE00 Z 0 NoDelay ACS_NamedExecuteWithResult("Samsara_SwitchableObject", 35)
+			goto SpawnGameModeCheck
+
+		SpawnActual:
+			GE00 Z 0 A_ChangeFlag("THRUACTORS",false)
+			GE00 Z 0 A_ChangeFlag("NOTIMEFREEZE",false)
+		SpawnActualLoop:
+			GE00 Z -1
+			Stop
+	}
+}

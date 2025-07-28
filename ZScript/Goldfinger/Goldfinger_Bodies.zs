@@ -375,3 +375,41 @@ Class Goldfinger_Body_SpectreGuard : CustomInventory
 	}
 }
 
+Class Goldfinger_Body_MexCiv1 : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{ 
+				A_ChangeModel("",1,"Models/Goldfinger/Bodies","mexciv1.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldfinger_Body_MexCiv2 : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{ 
+				A_ChangeModel("",1,"Models/Goldfinger/Bodies","mexciv2.iqm");
+			}
+			Stop;
+	}
+}
+
+Class Goldfinger_Body_MechBlue : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{ 
+				A_ChangeModel("",1,"Models/Goldfinger/Bodies","mechblue.iqm");
+			}
+			Stop;
+	}
+}

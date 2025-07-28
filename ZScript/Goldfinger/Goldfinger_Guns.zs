@@ -632,3 +632,15 @@ Class Goldfinger_Gun_Uzi : CustomInventory
 	}
 }
 
+Class Goldfinger_Gun_Grenade : CustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0
+			{ 
+				A_ChangeModel("",4,"Models/Goldfinger/Guns","grenade.iqm");
+			}
+			Stop;
+	}
+}
